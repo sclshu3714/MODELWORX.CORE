@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLExtension", "SQLExtensio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VXHelper", "VXHelper\VXHelper.csproj", "{A63B7E8E-F5FB-4AAC-8987-2B066E80FBE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{932E96F4-C2A6-49E2-9E88-FE8485E38E35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUnitTest", "UnitTest\ZUnitTest.csproj", "{932E96F4-C2A6-49E2-9E88-FE8485E38E35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
