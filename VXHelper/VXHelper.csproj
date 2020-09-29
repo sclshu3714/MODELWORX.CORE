@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>VXHelper.Core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\x64\7z.dll" />
+    <None Remove="Common\x64\handle.exe" />
+    <None Remove="Common\x86\7z.dll" />
+    <None Remove="Common\x86\handle.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Common\x64\7z.dll" />
+    <EmbeddedResource Include="Common\x64\handle.exe" />
+    <EmbeddedResource Include="Common\x86\7z.dll" />
+    <EmbeddedResource Include="Common\x86\handle.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>

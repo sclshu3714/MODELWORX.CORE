@@ -9,7 +9,7 @@
         <Description>Expression表达式转换为SQL语句，支持SqlServer、MySQL、Oracle、SQLite、PostgreSQL；基于Dapper实现了不同数据库对应的数据仓储Repository；</Description>
         <Copyright>Copyright © 2020-2020 , sclshu@163.com</Copyright>
         <PackageId>SQLExtension.Core</PackageId>
-        <PackageReleaseNotes>1.备份开源项目</PackageReleaseNotes>
+        <PackageReleaseNotes>1.备份开源项目。</PackageReleaseNotes>
         <FileVersion>1.0.0.0</FileVersion>
         <PackageProjectUrl>https://github.com/sclshu3714/SQLExtension</PackageProjectUrl>
         <PackageIcon>Database.png</PackageIcon>
