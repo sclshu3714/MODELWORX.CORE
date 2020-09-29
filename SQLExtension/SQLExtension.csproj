@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <Authors>sclshu</Authors>
+        <Version>1.0.0.0</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>Expression表达式转换为SQL语句，支持SqlServer、MySQL、Oracle、SQLite、PostgreSQL；基于Dapper实现了不同数据库对应的数据仓储Repository；</Description>
+        <Copyright>Copyright © 2020-2020 , sclshu@163.com</Copyright>
+        <PackageId>SQLExtension.Core</PackageId>
+        <PackageReleaseNotes>1.备份开源项目</PackageReleaseNotes>
+        <FileVersion>1.0.0.0</FileVersion>
+        <PackageProjectUrl>https://github.com/sclshu3714/SQLExtension</PackageProjectUrl>
+        <PackageIcon>Database.png</PackageIcon>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <Company>sclshu</Company>
+        <AssemblyName>SQLExtension.Core</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\netstandard2.0\SQLExtension.xml</DocumentationFile>
+        <DebugType>Full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DocumentationFile>bin\Release\netstandard2.0\SQLBuilder.Core.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Icon\Database.png" />
+      <None Remove="Icon\Database.png" />
+      <None Include="Icon\Database.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.0.35" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.7" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.7" />
+        <PackageReference Include="MySql.Data" Version="8.0.21" />
+        <PackageReference Include="Npgsql" Version="4.1.4" />
+        <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.80" />
+        <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+        <PackageReference Include="System.Data.Common" Version="4.3.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Nuget\" />
+    </ItemGroup>
+
+</Project>
