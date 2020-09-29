@@ -80,7 +80,7 @@ namespace VXHelper
             else
                 handlepath = string.Format(@"{0}Common\x86\handle.exe", AppDomain.CurrentDomain.BaseDirectory);
             if(!File.Exists(handlepath)) {
-                //不存在，从嵌入文件抽取到本地。
+                #region //不存在，从嵌入文件抽取到本地。
                 if(!Directory.Exists(Path.GetDirectoryName(handlepath)))
                     Directory.CreateDirectory(Path.GetDirectoryName(handlepath));
                 Assembly assembly = Assembly.GetExecutingAssembly();
@@ -112,8 +112,8 @@ namespace VXHelper
                         }
                     }
                 }
+                #endregion
             }
-        
             Process tool = new Process();
             tool.StartInfo.FileName = handlepath;
             tool.StartInfo.Arguments = fileName + " /accepteula";
