@@ -14,7 +14,7 @@ namespace UnitTest
         /// </summary>
         [STAThread]
         static void Main() {
-            VXFlushMemory.Taskkill("TIM");
+            VXFlushMemory.Taskkill("QQ");
         }
     }
 }
