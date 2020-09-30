@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>VXHelper.Core</AssemblyName>
+    <Description>帮助类集合，包含JSON的转换， 类型的转换、INI、App.config的操作、压缩与解压、内存释放、序列化与反序列化。</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Copyright © 2020-2020 , sclshu@163.com</Copyright>
+    <PackageProjectUrl>https://github.com/sclshu3714/MODELWORX_CORE/VXHelper</PackageProjectUrl>
+    <PackageIcon>VX.png</PackageIcon>
+    <PackageReleaseNotes>帮助类集合，包含JSON的转换， 类型的转换、INI、App.config的操作、压缩与解压、内存释放、序列化与反序列化。</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +17,10 @@
     <None Remove="Common\x64\handle.exe" />
     <None Remove="Common\x86\7z.dll" />
     <None Remove="Common\x86\handle.exe" />
+    <None Include="Icon\VX.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="SharpCompress" Version="0.26.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 

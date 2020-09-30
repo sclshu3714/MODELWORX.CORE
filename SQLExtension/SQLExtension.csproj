@@ -11,7 +11,7 @@
         <PackageId>SQLExtension.Core</PackageId>
         <PackageReleaseNotes>1.备份开源项目。</PackageReleaseNotes>
         <FileVersion>1.0.0.0</FileVersion>
-        <PackageProjectUrl>https://github.com/sclshu3714/SQLExtension</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/sclshu3714/MODELWORX_CORE/SQLExtensioon</PackageProjectUrl>
         <PackageIcon>Database.png</PackageIcon>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

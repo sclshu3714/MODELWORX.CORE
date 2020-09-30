@@ -11,6 +11,8 @@ namespace VXHelper
 {
     public class VXFlushMemory
     {
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
         private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
         private static VXFlushMemory flushMemory = null;//全局设置
 
@@ -42,6 +44,24 @@ namespace VXHelper
         /// <returns></returns>
         [DllImport("psapi.dll")]
         static extern int EmptyWorkingSet(IntPtr hwProc);
+
+        /// <summary>
+        /// 释放内存
+        /// </summary>
+        public void ClearMemory() {
+            staticClearMemory();
+        }
+        /// <summary>      
+        /// 释放内存      
+        /// </summary>      
+        public static void staticClearMemory() {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if(Environment.OSVersion.Platform == PlatformID.Win32NT) {
+                SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
+            }
+        }
+
         /// <summary>
         /// 释放内存
         /// </summary>
@@ -57,7 +77,7 @@ namespace VXHelper
             Process[] processes = Process.GetProcesses();
             foreach(Process process in processes) {
                 //以下系统进程没有权限，所以跳过，防止出错影响效率。
-                if(NoEmptys.Contains(process.ProcessName) || process.ProcessName.Contains("System"))
+                if(NoEmptys.Contains(process.ProcessName) || process.ProcessName.Contains("System") || process.ProcessName.Contains("Idle"))
                     continue;
                 try {
                     EmptyWorkingSet(process.Handle);
