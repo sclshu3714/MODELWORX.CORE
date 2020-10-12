@@ -2,14 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>VXHelper.Core</AssemblyName>
+    <AssemblyName>VXDesignHelper.Core</AssemblyName>
     <Description>帮助类集合，包含JSON的转换， 类型的转换、INI、App.config的操作、压缩与解压、内存释放、序列化与反序列化。</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>Copyright © 2020-2020 , sclshu@163.com</Copyright>
-    <PackageProjectUrl>https://github.com/sclshu3714/MODELWORX_CORE/VXHelper</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/sclshu3714/MODELWORX_CORE/VXDesignHelper</PackageProjectUrl>
     <PackageIcon>VX.png</PackageIcon>
     <PackageReleaseNotes>帮助类集合，包含JSON的转换， 类型的转换、INI、App.config的操作、压缩与解压、内存释放、序列化与反序列化。</PackageReleaseNotes>
+    <PackageId>VXDesignHelper.Core</PackageId>
+    <Authors>VXDesignHelper.Core</Authors>
+    <Product>VXDesignHelper.Core</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +37,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SharpCompress" Version="0.26.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

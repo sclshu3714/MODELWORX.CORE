@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VXHelper\VXHelper.csproj" />
+    <ProjectReference Include="..\VXHelper\VXDesignHelper.csproj" />
   </ItemGroup>
 
 </Project>

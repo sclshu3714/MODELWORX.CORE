@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -18,7 +21,7 @@ namespace VXHelper
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXConvert Convertext {
+        public static VXConvert CONVERTEXT {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
@@ -152,6 +155,133 @@ namespace VXHelper
                     return Type.GetType("System.Guid", true, true);
                 default:
                     return Type.GetType(type, true, true);
+            }
+        }
+        #endregion
+
+        #region 文件类型
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr _lopen(string lpPathName, int iReadWrite);
+        [DllImport("kernel32.dll")]
+        private static extern bool CloseHandle(IntPtr hObject);
+        private const int OF_READWRITE = 2;
+        private const int OF_SHARE_DENY_NONE = 0x40;
+        private static readonly IntPtr HFILE_ERROR = new IntPtr(-1);
+        /// <summary>
+        /// 判断文件是否被独占
+        /// </summary>
+        /// <param name="fileFullName"></param>
+        /// <returns></returns>
+        public static int FileIsOpen(string path) {
+            if(!File.Exists(path)) {
+                return -1;
+            }
+            IntPtr handle = _lopen(path, OF_READWRITE | OF_SHARE_DENY_NONE);
+            if(handle == HFILE_ERROR) {
+                return 1;
+            }
+            CloseHandle(handle);
+            return 0;
+        }
+        /// <summary>
+        /// 获取文件名称，带后缀
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFileName(string path) {
+            return Path.GetFileName(path);
+        }
+        /// <summary>
+        /// 获取文件的后缀带点
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetExtension(string path) {
+            return Path.GetExtension(path);
+        }
+        /// <summary>
+        /// 将Bitmap转换为byte[]
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns></returns>
+        public static byte[] GetByteFormImage(Bitmap original) {
+            return GetByteFormImage(original);
+        }
+        /// <summary>
+        /// 将Bitmap转换为byte[]
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns></returns>
+        public static byte[] GetByteFormImage(Image original) {
+            if(original == null)
+                return new byte[0];
+            original = new Bitmap(original, 150, 150);
+            ImageFormat format = original.RawFormat;
+            using(MemoryStream ms = new MemoryStream()) {
+                if(format.Equals(ImageFormat.MemoryBmp)) {
+                    string filePath = string.Format(@"{0}Temp\Temp.png", AppDomain.CurrentDomain.BaseDirectory);
+                    original.Save(filePath, ImageFormat.Png);
+                    using(FileStream imageFileStream = new FileStream(filePath, FileMode.Open)) {
+                        original = Image.FromStream(imageFileStream);
+                        format = original.RawFormat;
+                        imageFileStream.Close();
+                    }
+                    File.Delete(filePath);
+                }
+                original.Save(ms, format);
+                byte[] buffer = new byte[ms.Length];
+                //ms.Seek(0, SeekOrigin.Begin);//Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                //ms.Read(buffer, 0, buffer.Length);
+                buffer = ms.ToArray();
+                return buffer;
+            }
+        }
+        /// <summary>
+        /// 将String转换为byte[]
+        /// </summary>
+        /// <param name="imageStr"></param>
+        /// <returns></returns>
+        public static byte[] GetByteFormString(string imageStr) {
+            if(imageStr == null || string.IsNullOrEmpty(imageStr))
+                return null;
+            byte[] imgPhoto = Convert.FromBase64String(imageStr);
+            return imgPhoto;
+        }
+        /// <summary>
+        /// 将byte[]转换为String
+        /// </summary>
+        /// <param name="imageByte"></param>
+        /// <returns></returns>
+        public static string GetStringFormByte(byte[] imageByte) {
+            if(imageByte == null || imageByte.Length == 0)
+                return null;
+            string imgPhoto = Convert.ToBase64String(imageByte);
+            return imgPhoto;
+        }
+        /// <summary>
+        /// 将byte[]转为Bitmap
+        /// </summary>
+        /// <param name="imgPhoto"></param>
+        /// <returns></returns>
+        public static Bitmap GetBitmapFromByte(byte[] imgPhoto) {
+            if(imgPhoto == null || imgPhoto.Length == 0)
+                return null;
+            using(MemoryStream ms = new MemoryStream(imgPhoto)) {
+                using(Bitmap image = new Bitmap(ms)) {
+                    return image;
+                }
+            }
+        }
+        /// <summary>
+        /// 将byte[]转为图片
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public static Image GetImageFromByte(byte[] buffer) {
+            if(buffer == null || buffer.Length == 0)
+                return null;
+            using(MemoryStream ms = new MemoryStream(buffer)) {
+                return Image.FromStream(ms);
             }
         }
         #endregion

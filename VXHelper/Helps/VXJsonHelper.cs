@@ -17,7 +17,7 @@ namespace VXHelper
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXJson Jsonext {
+        public static VXJson JSONEXT {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
