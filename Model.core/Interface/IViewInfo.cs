@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Model.core.Users;
+using VXModel.Users;
 
-namespace Model.core.Interface
+namespace VXModel.Interface
 {
     public interface IViewInfo : IDisposable, ICloneable
     {
@@ -37,6 +37,6 @@ namespace Model.core.Interface
         /// <param name="explain">说明</param>
         /// <param name="position">位置</param>
         /// <param name="level">错误级别:未知Unknown0;普通消息Message1;警告消息Warning2;错误消息Error3;操作信息Operate4</param>
-        void OperationMessage(string logid, string code, string explain, string position, int level);
+        void DisplayMessage(string logid, string code, string explain, string position, int level);
     }
 }

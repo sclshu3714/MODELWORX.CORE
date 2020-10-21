@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using Model.core.Users;
+using VXModel.Users;
 
-namespace Model.core.Interface
+namespace VXModel.Interface
 {
     /// <summary>
     /// 插件接口

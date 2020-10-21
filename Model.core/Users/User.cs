@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Model.core.Users
+namespace VXModel.Users
 {
     /// <summary>
     /// 用户

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using VXModel.Users;
 
 namespace VXHelper.Helps
 {
@@ -62,8 +63,8 @@ namespace VXHelper.Helps
         /// <summary>
         /// 内存清理
         /// </summary>
-        public static VXFlushMemory FlushMemory {
-            get { return VXFlushMemory.FlushMemoryExt; }
+        public static void FlushMemory() {
+            VXFlushMemory.staticFlushMemory();
         }
         #endregion
 
@@ -96,12 +97,12 @@ namespace VXHelper.Helps
         /// <summary>
         /// 登录用户
         /// </summary>
-        public static string LogonUser {
+        public static User LogonUser {
             get { return logonUser; }
             set { logonUser = value; }
         }
         private string workbenchPath = null;                //工作区
-        private static string logonUser = null;             // 登录用户
+        private static User logonUser = null;             // 登录用户
         private static object lockObject = new object();    //对象锁，用于控制多线程异步操作
         private static DesignSettings designSettings = null;//全局设置
         #endregion
