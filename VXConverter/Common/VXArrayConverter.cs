@@ -9,7 +9,6 @@ namespace VXConverter.Common
     /// 数组转字符串
     /// </summary>
     /// <example>
-    /// 
     /// </example>
     public class VXArrayConverter : ArrayConverter
     {
