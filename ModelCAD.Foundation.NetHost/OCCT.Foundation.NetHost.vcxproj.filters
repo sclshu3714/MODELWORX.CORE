@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="OCCTProxy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Visualization">
+      <UniqueIdentifier>{f7cc0d13-8296-447a-b1eb-f2d41a028246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModelingData">
+      <UniqueIdentifier>{9bfb4102-1ae6-45fc-b11b-86dbb8519cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModelingAlgorithms">
+      <UniqueIdentifier>{3ef93ca1-701e-482c-a273-d09ec8863efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FoundationClasses">
+      <UniqueIdentifier>{7c51f359-ecbd-4afd-b039-58b64dd6e19e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Draw">
+      <UniqueIdentifier>{33db10e4-b633-4b4a-8215-2d7175733306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataExchange">
+      <UniqueIdentifier>{307a302f-c291-4a8e-84f3-4ff5ef191cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApplicationFramework">
+      <UniqueIdentifier>{d74cd674-69db-4a29-a4fc-6509447d1361}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
