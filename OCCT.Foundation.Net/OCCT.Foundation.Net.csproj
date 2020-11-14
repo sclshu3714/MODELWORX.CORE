@@ -45,14 +45,58 @@
   <ItemGroup>
     <Compile Include="Enums\OCCTEnum.cs" />
     <Compile Include="Events\OperationEvents.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Ax1.cs" />
+    <Compile Include="ModelingData\TKG3d\Geom\Geom_Geometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\ModelCAD.Foundation.NetHost\OCCT.Foundation.NetHost.vcxproj">
-      <Project>{969912d9-78e7-4ab8-b4ff-6b52b4f03991}</Project>
+    <Folder Include="ApplicationFramework\" />
+    <Folder Include="DataExchange\" />
+    <Folder Include="ModelingAlgorithms\" />
+    <Folder Include="Visualization\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OCCT.Foundation.NetHost\OCCT.Foundation.NetHost.vcxproj">
+      <Project>{fc9b89c2-f6cc-441c-b386-5e90817b0973}</Project>
       <Name>OCCT.Foundation.NetHost</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Ax2.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Ax22d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Ax2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Ax3.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Circ.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Circ2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Cone.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Cylinder.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Dir.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Dir2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Elips.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Elips2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_GTrsf.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_GTrsf2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Hypr.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Hypr2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Lin.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Lin2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Mat.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Mat2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Parab.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Parab2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Pln.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Pnt.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Pnt2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Quaternion.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Sphere.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Torus.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Trsf.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Trsf2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Vec.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_Vec2d.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_XY.cs" />
+    <Compile Include="FoundationClasses\TKMath\gp\gp_XYZ.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

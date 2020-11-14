@@ -139,6 +139,12 @@
     <Filter Include="头文件\FoundationClasses\TKernel\Standard">
       <UniqueIdentifier>{63e58573-3333-4cd5-9c70-843013ea1170}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\TopLoc">
+      <UniqueIdentifier>{ecbb2911-7d61-4bf0-aa39-002e14cd7ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath\TopLoc">
+      <UniqueIdentifier>{1f1e1d7b-a2a6-4e7f-9a58-71d5b93bca15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -267,6 +273,9 @@
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h">
       <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -379,6 +388,9 @@
       <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>

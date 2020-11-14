@@ -241,6 +241,7 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XY.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
@@ -280,6 +281,7 @@
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XY.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XYZ.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
