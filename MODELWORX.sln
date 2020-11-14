@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VXConverter", "VXConverter\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OCCT_x86", "OCCT_x86", "{54B42AA4-7B0D-407B-8AF9-8F710899B0E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCCT.WinForms.Net", "ModelCAD.WinForms.Net\OCCT.WinForms.Net.csproj", "{C7694045-4191-4C68-8DEB-1104CF900BE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCCT.WinForms.Net", "OCCT.WinForms.Net\OCCT.WinForms.Net.csproj", "{C7694045-4191-4C68-8DEB-1104CF900BE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCCT.Foundation.Net", "ModelCAD.Foundation.Net\OCCT.Foundation.Net.csproj", "{6F261828-9518-47FB-9121-78D3B9C3DFB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCCT.Foundation.Net", "OCCT.Foundation.Net\OCCT.Foundation.Net.csproj", "{6F261828-9518-47FB-9121-78D3B9C3DFB6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OCCT.Foundation.NetHost", "ModelCAD.Foundation.NetHost\OCCT.Foundation.NetHost.vcxproj", "{969912D9-78E7-4AB8-B4FF-6B52B4F03991}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OCCT.Foundation.NetHost", "OCCT.Foundation.NetHost\OCCT.Foundation.NetHost.vcxproj", "{969912D9-78E7-4AB8-B4FF-6B52B4F03991}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCCTPreview", "OCCTPreview\OCCTPreview.csproj", "{CA84DD84-C609-4E08-833F-0ADACF3915B1}"
 EndProject

@@ -42,7 +42,7 @@ class gp_Vec;
 //! symmetry, axis of rotation, and so on).
 //! For example, this entity can be used to locate a geometric entity
 //! or to define a symmetry axis.
-class gp_Ax1 
+class gp_Lin
 {
 public:
 

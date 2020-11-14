@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{FC9B89C2-F6CC-441C-B386-5E90817B0973}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
+    <RootNamespace>OCCTFoundationNetHost</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\win32\$(VCVER)\bind\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <CompileAsManaged>true</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)OCCT.Foundation.NetHost.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(CSF_OCCTLibPath);E:\Software\OCC\OpenCASCADE7.4.0\Build\win32\vc14\lib;E:\Software\OCC\OpenCASCADE7.4.0\Build\win32\vc14\libd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKDCAF.lib;TKDraw.lib;TKernel.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIGES.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKOffset.lib;TKOpenGl.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKSTEP.lib;TKSTEP209.lib;TKSTEPAttr.lib;TKSTEPBase.lib;TKSTL.lib;TKTObj.lib;TKTObjDRAW.lib;TKTopAlgo.lib;TKTopTest.lib;TKV3d.lib;TKVCAF.lib;TKViewerTest.lib;TKVRML.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXDEIGES.lib;TKXDESTEP.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)OCCT.Foundation.NetHost.pdb</ProgramDatabaseFile>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <ImportLibrary>$(OutDir)OCCT.Foundation.NetHost.lib</ImportLibrary>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax2.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax22d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax3.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Circ.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Circ2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Cone.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Cylinder.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Dir.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Dir2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Hypr.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Hypr2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Lin.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Lin2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Mat.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Mat2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Parab.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Parab2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pln.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pnt.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pnt2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Quaternion.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_QuaternionNLerp.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_QuaternionSLerp.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Sphere.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Torus.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_TrsfNLerp.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_VectorWithNullMagnitude.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XY.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax22d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax3.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Circ.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Circ2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Cone.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Cylinder.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Dir.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Dir2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Elips.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Elips2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_GTrsf.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_GTrsf2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Hypr.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Hypr2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Lin.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Lin2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Mat.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Mat2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Parab.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Parab2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pln.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pnt.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pnt2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Quaternion.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Sphere.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Torus.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Trsf.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Trsf2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Vec.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Vec2d.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XY.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XYZ.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
+    <ClCompile Include="OCCTProxy.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

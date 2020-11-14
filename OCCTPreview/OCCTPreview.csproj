@@ -80,11 +80,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelCAD.Foundation.Net\OCCT.Foundation.Net.csproj">
+    <ProjectReference Include="..\OCCT.Foundation.Net\OCCT.Foundation.Net.csproj">
       <Project>{6f261828-9518-47fb-9121-78d3b9c3dfb6}</Project>
       <Name>OCCT.Foundation.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModelCAD.WinForms.Net\OCCT.WinForms.Net.csproj">
+    <ProjectReference Include="..\OCCT.WinForms.Net\OCCT.WinForms.Net.csproj">
       <Project>{c7694045-4191-4c68-8deb-1104cf900be9}</Project>
       <Name>OCCT.WinForms.Net</Name>
     </ProjectReference>

@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses">
+      <UniqueIdentifier>{5c7c4a94-7f29-4500-81c3-636058f700a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses">
+      <UniqueIdentifier>{62d722d9-17c8-4b6e-b46d-a757ef90aec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath">
+      <UniqueIdentifier>{52dac250-1795-471f-8771-307fde7e3f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath">
+      <UniqueIdentifier>{b2842db1-5969-4038-b3ba-006c1d743647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\gp">
+      <UniqueIdentifier>{5dc8d9b7-139f-475f-b63e-7541c89de7f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath\gp">
+      <UniqueIdentifier>{a21b3ec6-fd54-48e5-8bf7-9d47d162c963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKernel">
+      <UniqueIdentifier>{565a4b2b-631d-46ff-96e5-a4b56e14c609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKernel">
+      <UniqueIdentifier>{cf529365-6616-4f4d-b0e6-76045b477a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath\Bnd">
+      <UniqueIdentifier>{49d27a4a-7153-4f71-b96a-40512d13f590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\Bnd">
+      <UniqueIdentifier>{09648eb0-a2c6-4c03-bd5a-5476b498ebd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\BSplCLib">
+      <UniqueIdentifier>{1443d697-8793-45ae-9510-556500071da2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath\BSplCLib">
+      <UniqueIdentifier>{129fa659-0eae-4665-a2cb-2fd368934432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\BSplSLib">
+      <UniqueIdentifier>{1a698d53-92bb-4141-b254-8655113c8cf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKMath\BSplSLib">
+      <UniqueIdentifier>{93b1a3cf-a6fd-4f4c-b676-9058aeb70d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization">
+      <UniqueIdentifier>{aaa2a26c-64aa-40db-87b6-1999eda42b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization">
+      <UniqueIdentifier>{b171677e-42df-46a2-bbb5-7ffcc573c8ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d">
+      <UniqueIdentifier>{1c18b89a-5c34-42a7-9b8e-1d288414c201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKV3d">
+      <UniqueIdentifier>{cfdcf898-c7f1-4032-9bdf-5091a0c23c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\AIS">
+      <UniqueIdentifier>{95edef94-fbb0-4e90-b53c-957e00f7d4f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\AIS">
+      <UniqueIdentifier>{758477c1-1bb4-468c-a552-84fdc23b6284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData">
+      <UniqueIdentifier>{8299f988-5be5-48fd-b831-12d1c4e944e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData">
+      <UniqueIdentifier>{aff93764-fb59-4d26-9c98-2e26f9bdca3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep">
+      <UniqueIdentifier>{b61409f1-0a59-4cd6-af86-70d943ac4935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep">
+      <UniqueIdentifier>{25441cc1-8024-4bb3-be66-be0763ece9f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep\TopoDS">
+      <UniqueIdentifier>{421510dc-b8e6-4887-bc31-c1c49de0da8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep\TopoDS">
+      <UniqueIdentifier>{a3d163dc-9037-4b99-9ed7-883f2d1e908d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework">
+      <UniqueIdentifier>{74e8a6b0-6d0d-42a0-ba0d-02612e3051b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework">
+      <UniqueIdentifier>{d7c8173d-30a6-4714-b043-319890bc686e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange">
+      <UniqueIdentifier>{30c83d15-4a93-4cd7-9d5f-f6e17bfed9ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange">
+      <UniqueIdentifier>{ffcbb826-82db-4be7-b7e5-1741ba182b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms">
+      <UniqueIdentifier>{fd2bd779-a754-46a2-afb0-b27f162b6b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms">
+      <UniqueIdentifier>{c4417756-805c-4ec9-8e98-4065b4a079e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKXMesh">
+      <UniqueIdentifier>{d30322df-54de-40ee-a762-b4f6a2577a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKXMesh">
+      <UniqueIdentifier>{66f2a6c7-fb24-414e-ab21-0d8399842e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKG3d">
+      <UniqueIdentifier>{647b6c1a-b571-4bff-b12a-8971ae2d7437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep\BRepTools">
+      <UniqueIdentifier>{35d1ccd8-86e5-4dbd-8815-e09bf1a7d6de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep\BRepTools">
+      <UniqueIdentifier>{abcb93df-f0ff-44a0-b463-674f0fdc9bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKG3d\Geom">
+      <UniqueIdentifier>{bcbce9a0-0aac-4ba4-9718-30a88efbdb72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKG3d">
+      <UniqueIdentifier>{8ae683cc-f54f-4c78-8a14-84bf8877dbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKG3d\Geom">
+      <UniqueIdentifier>{992071ff-ec8a-4fef-9d5b-e42701eb8df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKernel\Standard">
+      <UniqueIdentifier>{46ba7536-7c3d-4b22-a1f7-e6f5f6feee37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKernel\Standard">
+      <UniqueIdentifier>{63e58573-3333-4cd5-9c70-843013ea1170}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax2.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax3.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax22d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Circ.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Circ2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Cone.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Cylinder.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Dir.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Dir2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Hypr.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Hypr2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Lin.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Lin2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Mat.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Mat2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Parab.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Parab2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pln.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pnt.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Pnt2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Quaternion.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_QuaternionNLerp.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_QuaternionSLerp.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Sphere.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Torus.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_TrsfNLerp.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec2d.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_VectorWithNullMagnitude.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XY.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h">
+      <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="OCCTProxy.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax3.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax22d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Circ.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Circ2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Cone.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Cylinder.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Dir.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Dir2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Elips.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Elips2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_GTrsf.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_GTrsf2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Hypr.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Hypr2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Lin.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Lin2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Mat.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Mat2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Parab.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Parab2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pln.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pnt.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Pnt2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Quaternion.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Sphere.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Torus.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Trsf.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Trsf2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Vec.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Vec2d.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XY.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XYZ.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\gp</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
