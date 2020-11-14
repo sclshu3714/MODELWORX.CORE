@@ -27,101 +27,101 @@
 namespace TKG3d
 {
 	XGeom_Geometry::XGeom_Geometry(void) {
-
+		
 	}
 
 	XGeom_Geometry::XGeom_Geometry(Geom_Geometry* pos) {
-		NativeHandle = pos;
+		GeomNativeHandle = pos;
 	}
 
 	XGeom_Geometry::~XGeom_Geometry() {
-		if (NativeHandle != NULL)
-			delete NativeHandle;
-		NativeHandle = NULL;
+		if (GeomNativeHandle != NULL)
+			delete GeomNativeHandle;
+		GeomNativeHandle = NULL;
 	}
 
 	Handle(Geom_Geometry) XGeom_Geometry::GetGeometry() {
-		return NativeHandle;// Handle(Geom_Geometry)(NativeHandle);
+		return GeomNativeHandle;// Handle(Geom_Geometry)(GeomNativeHandle);
 	}
 
 
 	void XGeom_Geometry::Mirror(xgp_Pnt^ P) {
-		NativeHandle->Mirror(P->GetPnt());
+		GeomNativeHandle->Mirror(P->GetPnt());
 	}
 
 
 
 	void XGeom_Geometry::Mirror(xgp_Ax1^ A1) {
-		NativeHandle->Mirror(A1->GetAx1());
+		GeomNativeHandle->Mirror(A1->GetAx1());
 	}
 
 
 	void XGeom_Geometry::Mirror(xgp_Ax2^ A2) {
-		NativeHandle->Mirror(A2->GetAx2());
+		GeomNativeHandle->Mirror(A2->GetAx2());
 	}
 
 
 	void XGeom_Geometry::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-		NativeHandle->Rotate(A1->GetAx1(), Ang);
+		GeomNativeHandle->Rotate(A1->GetAx1(), Ang);
 	}
 
 
 	void XGeom_Geometry::Scale(xgp_Pnt^ P, Standard_Real S) {
-		NativeHandle->Scale(P->GetPnt(), S);
+		GeomNativeHandle->Scale(P->GetPnt(), S);
 	}
 
 
 	void XGeom_Geometry::Translate(xgp_Vec^ V) {
-		NativeHandle->Translate(V->GetVec());
+		GeomNativeHandle->Translate(V->GetVec());
 	}
 
 
 	void XGeom_Geometry::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+		GeomNativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
 	}
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Mirrored(xgp_Pnt^ P) {
-		return NativeHandle->Mirrored(P->GetPnt());
+		return GeomNativeHandle->Mirrored(P->GetPnt());
 	}
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Mirrored(xgp_Ax1^ A1) {
-		return NativeHandle->Mirrored(A1->GetAx1());
+		return GeomNativeHandle->Mirrored(A1->GetAx1());
 	}
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Mirrored(xgp_Ax2^ A2) {
-		return NativeHandle->Mirrored(A2->GetAx2());
+		return GeomNativeHandle->Mirrored(A2->GetAx2());
 	}
 
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-		return NativeHandle->Rotated(A1->GetAx1(), Ang);
+		return GeomNativeHandle->Rotated(A1->GetAx1(), Ang);
 	}
 
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Scaled(xgp_Pnt^ P, Standard_Real S) {
-		return NativeHandle->Scaled(P->GetPnt(), S);
+		return GeomNativeHandle->Scaled(P->GetPnt(), S);
 	}
 
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Transformed(xgp_Trsf^ T) {
-		return NativeHandle->Transformed(T->GetTrsf());
+		return GeomNativeHandle->Transformed(T->GetTrsf());
 	}
 
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Translated(xgp_Vec^ V) {
-		return NativeHandle->Translated(V->GetVec());
+		return GeomNativeHandle->Translated(V->GetVec());
 	}
 
 
 	Handle(Geom_Geometry) XGeom_Geometry::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		return NativeHandle->Translated(P1->GetPnt(), P2->GetPnt());
+		return GeomNativeHandle->Translated(P1->GetPnt(), P2->GetPnt());
 	}
 
 	Handle(Geom_Geometry) XGeom_Geometry::Copy() {

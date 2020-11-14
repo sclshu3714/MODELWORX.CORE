@@ -1817,6 +1817,38 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, Abstract, Befo
     Translated(handle<Geom_Geometry>*, xgp_Vec): PrivateScope, Public, HideBySig
     Copy(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(Geom_Surface*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
+    UReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UReversed(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
+    UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    VReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    VReversed(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
+    VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsUClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsVClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UPeriod(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsVPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    VPeriod(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    VIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsCNu(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsCNv(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    D0(Double, Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    D1(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    D2(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Value(Double, Double): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<V3d_Viewer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1903,7 +1935,6 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, HideBySig
     ImportBrep(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     ImportBrep(String): PrivateScope, Public, HideBySig
-    ImportStep(TCollection_AsciiString* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ImportStep(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     ImportIges(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     ExportBRep(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig

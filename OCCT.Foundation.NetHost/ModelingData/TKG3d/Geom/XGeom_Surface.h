@@ -13,31 +13,6 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
-
-#ifndef _Geom_Surface_HeaderFile
-#define _Geom_Surface_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Geom_Curve.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
-#include <GeomAbs_Shape.hxx>
-#include <Standard_Integer.hxx>
-class Standard_RangeError;
-class Standard_NoSuchObject;
-class Geom_UndefinedDerivative;
-class Geom_UndefinedValue;
-class gp_Trsf;
-class gp_GTrsf2d;
-class gp_Pnt;
-class gp_Vec;
-
-
-class Geom_Surface;
-DEFINE_STANDARD_HANDLE(Geom_Surface, Geom_Geometry)
-
 //! Describes the common behavior of surfaces in 3D
 //! space. The Geom package provides many
 //! implementations of concrete derived surfaces, such as
@@ -64,239 +39,258 @@ DEFINE_STANDARD_HANDLE(Geom_Surface, Geom_Geometry)
 //! Warning
 //! The Geom package does not prevent the construction of
 //! surfaces with null areas, or surfaces which self-intersect.
-class Geom_Surface : public Geom_Geometry
+
+#pragma once
+#include "Standard_RangeError.hxx"
+#include "Standard_NoSuchObject.hxx"
+#include "Standard_Type.hxx"
+#include "Geom_UndefinedDerivative.hxx"	 
+#include "Standard_ConstructionError.hxx"
+#include "Geom_UndefinedValue.hxx"
+#include "Geom_Surface.hxx"
+#include "XGeom_Geometry.h"
+#include "xgp_Pnt.h"
+#include "xgp_Ax1.h"
+#include "xgp_Ax2.h"
+#include "xgp_Vec.h"
+#include "xgp_Trsf.h"
+
+using namespace TKMath;
+namespace TKG3d
 {
+	class Standard_RangeError;
+	class Standard_NoSuchObject;
+	class Geom_UndefinedDerivative;
+	class Geom_UndefinedValue;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax1;
+	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec;
+	ref class TKMath::xgp_Trsf;
+	ref class TKMath::xgp_GTrsf2d;
+	public ref class XGeom_Surface : XGeom_Geometry
+	{
+	public:
 
-public:
+		//!
+		XGeom_Surface(void);
 
-  
+		//! 
+		XGeom_Surface(Geom_Surface* pos);
 
-  //! Reverses the U direction of parametrization of <me>.
-  //! The bounds of the surface are not modified.
-  Standard_EXPORT virtual void UReverse() = 0;
-  
+		//!
+		~XGeom_Surface();
 
-  //! Reverses the U direction of parametrization of <me>.
-  //! The bounds of the surface are not modified.
-  //! A copy of <me> is returned.
-  Standard_EXPORT Standard_NODISCARD Handle(Geom_Surface) UReversed() const;
-  
-  //! Returns the  parameter on the  Ureversed surface for
-  //! the point of parameter U on <me>.
-  //!
-  //! me->UReversed()->Value(me->UReversedParameter(U),V)
-  //!
-  //! is the same point as
-  //!
-  //! me->Value(U,V)
-  Standard_EXPORT virtual Standard_Real UReversedParameter (const Standard_Real U) const = 0;
-  
+		//!
+		Handle(Geom_Surface) GetSurface();
 
-  //! Reverses the V direction of parametrization of <me>.
-  //! The bounds of the surface are not modified.
-  Standard_EXPORT virtual void VReverse() = 0;
-  
-
-  //! Reverses the V direction of parametrization of <me>.
-  //! The bounds of the surface are not modified.
-  //! A copy of <me> is returned.
-  Standard_EXPORT Standard_NODISCARD Handle(Geom_Surface) VReversed() const;
-  
-  //! Returns the  parameter on the  Vreversed surface for
-  //! the point of parameter V on <me>.
-  //!
-  //! me->VReversed()->Value(U,me->VReversedParameter(V))
-  //!
-  //! is the same point as
-  //!
-  //! me->Value(U,V)
-  Standard_EXPORT virtual Standard_Real VReversedParameter (const Standard_Real V) const = 0;
-  
-  //! Computes the  parameters on the  transformed  surface for
-  //! the transform of the point of parameters U,V on <me>.
-  //!
-  //! me->Transformed(T)->Value(U',V')
-  //!
-  //! is the same point as
-  //!
-  //! me->Value(U,V).Transformed(T)
-  //!
-  //! Where U',V' are the new values of U,V after calling
-  //!
-  //! me->TranformParameters(U,V,T)
-  //!
-  //! This methods does not change <U> and <V>
-  //!
-  //! It  can be redefined.  For  example on  the Plane,
-  //! Cylinder, Cone, Revolved and Extruded surfaces.
-  Standard_EXPORT virtual void TransformParameters (Standard_Real& U, Standard_Real& V, const gp_Trsf& T) const;
-  
-  //! Returns a 2d transformation  used to find the  new
-  //! parameters of a point on the transformed surface.
-  //!
-  //! me->Transformed(T)->Value(U',V')
-  //!
-  //! is the same point as
-  //!
-  //! me->Value(U,V).Transformed(T)
-  //!
-  //! Where U',V' are  obtained by transforming U,V with
-  //! th 2d transformation returned by
-  //!
-  //! me->ParametricTransformation(T)
-  //!
-  //! This methods returns an identity transformation
-  //!
-  //! It  can be redefined.  For  example on  the Plane,
-  //! Cylinder, Cone, Revolved and Extruded surfaces.
-  Standard_EXPORT virtual gp_GTrsf2d ParametricTransformation (const gp_Trsf& T) const;
-  
-  //! Returns the parametric bounds U1, U2, V1 and V2 of this surface.
-  //! If the surface is infinite, this function can return a value
-  //! equal to Precision::Infinite: instead of Standard_Real::LastReal.
-  Standard_EXPORT virtual void Bounds (Standard_Real& U1, Standard_Real& U2, Standard_Real& V1, Standard_Real& V2) const = 0;
-  
-  //! Checks whether this surface is closed in the u
-  //! parametric direction.
-  //! Returns true if, in the u parametric direction: taking
-  //! uFirst and uLast as the parametric bounds in
-  //! the u parametric direction, for each parameter v, the
-  //! distance between the points P(uFirst, v) and
-  //! P(uLast, v) is less than or equal to gp::Resolution().
-  Standard_EXPORT virtual Standard_Boolean IsUClosed() const = 0;
-  
-  //! Checks whether this surface is closed in the u
-  //! parametric direction.
-  //! Returns true if, in the v parametric
-  //! direction: taking vFirst and vLast as the
-  //! parametric bounds in the v parametric direction, for
-  //! each parameter u, the distance between the points
-  //! P(u, vFirst) and P(u, vLast) is less than
-  //! or equal to gp::Resolution().
-  Standard_EXPORT virtual Standard_Boolean IsVClosed() const = 0;
-  
-  //! Checks if this surface is periodic in the u
-  //! parametric direction. Returns true if:
-  //! - this surface is closed in the u parametric direction, and
-  //! - there is a constant T such that the distance
-  //! between the points P (u, v) and P (u + T,
-  //! v) (or the points P (u, v) and P (u, v +
-  //! T)) is less than or equal to gp::Resolution().
-  //! Note: T is the parametric period in the u parametric direction.
-  Standard_EXPORT virtual Standard_Boolean IsUPeriodic() const = 0;
-  
-  //! Returns the period of this surface in the u
-  //! parametric direction.
-  //! raises if the surface is not uperiodic.
-  Standard_EXPORT virtual Standard_Real UPeriod() const;
-  
-  //! Checks if this surface is periodic in the v
-  //! parametric direction. Returns true if:
-  //! - this surface is closed in the v parametric direction, and
-  //! - there is a constant T such that the distance
-  //! between the points P (u, v) and P (u + T,
-  //! v) (or the points P (u, v) and P (u, v +
-  //! T)) is less than or equal to gp::Resolution().
-  //! Note: T is the parametric period in the v parametric direction.
-  Standard_EXPORT virtual Standard_Boolean IsVPeriodic() const = 0;
-  
-  //! Returns the period of this surface in the v parametric direction.
-  //! raises if the surface is not vperiodic.
-  Standard_EXPORT virtual Standard_Real VPeriod() const;
-  
-  //! Computes the U isoparametric curve.
-  Standard_EXPORT virtual Handle(Geom_Curve) UIso (const Standard_Real U) const = 0;
-  
-  //! Computes the V isoparametric curve.
-  Standard_EXPORT virtual Handle(Geom_Curve) VIso (const Standard_Real V) const = 0;
-  
-
-  //! Returns the Global Continuity of the surface in direction U and V :
-  //! C0 : only geometric continuity,
-  //! C1 : continuity of the first derivative all along the surface,
-  //! C2 : continuity of the second derivative all along the surface,
-  //! C3 : continuity of the third derivative all along the surface,
-  //! G1 : tangency continuity all along the surface,
-  //! G2 : curvature continuity all along the surface,
-  //! CN : the order of continuity is infinite.
-  //! Example :
-  //! If the surface is C1 in the V parametric direction and C2
-  //! in the U parametric direction Shape = C1.
-  Standard_EXPORT virtual GeomAbs_Shape Continuity() const = 0;
-  
-  //! Returns the order of continuity of the surface in the
-  //! U parametric direction.
-  //! Raised if N < 0.
-  Standard_EXPORT virtual Standard_Boolean IsCNu (const Standard_Integer N) const = 0;
-  
-  //! Returns the order of continuity of the surface in the
-  //! V parametric direction.
-  //! Raised if N < 0.
-  Standard_EXPORT virtual Standard_Boolean IsCNv (const Standard_Integer N) const = 0;
-  
-  //! Computes the point of parameter U,V on the surface.
-  //!
-  //! Raised only for an "OffsetSurface" if it is not possible to
-  //! compute the current point.
-  Standard_EXPORT virtual void D0 (const Standard_Real U, const Standard_Real V, gp_Pnt& P) const = 0;
-  
-
-  //! Computes the point P and the first derivatives in the
-  //! directions U and V at this point.
-  //! Raised if the continuity of the surface is not C1.
-  Standard_EXPORT virtual void D1 (const Standard_Real U, const Standard_Real V, gp_Pnt& P, gp_Vec& D1U, gp_Vec& D1V) const = 0;
-  
-
-  //! Computes the point P, the first and the second derivatives in
-  //! the directions U and V at this point.
-  //! Raised if the continuity of the surface is not C2.
-  Standard_EXPORT virtual void D2 (const Standard_Real U, const Standard_Real V, gp_Pnt& P, gp_Vec& D1U, gp_Vec& D1V, gp_Vec& D2U, gp_Vec& D2V, gp_Vec& D2UV) const = 0;
-  
-
-  //! Computes the point P, the first,the second and the third
-  //! derivatives in the directions U and V at this point.
-  //! Raised if the continuity of the surface is not C2.
-  Standard_EXPORT virtual void D3 (const Standard_Real U, const Standard_Real V, gp_Pnt& P, gp_Vec& D1U, gp_Vec& D1V, gp_Vec& D2U, gp_Vec& D2V, gp_Vec& D2UV, gp_Vec& D3U, gp_Vec& D3V, gp_Vec& D3UUV, gp_Vec& D3UVV) const = 0;
-  
-  //! ---Purpose ;
-  //! Computes the derivative of order Nu in the direction U and Nv
-  //! in the direction V at the point P(U, V).
-  //!
-  //! Raised if the continuity of the surface is not CNu in the U
-  //! direction or not CNv in the V direction.
-  //! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
-  Standard_EXPORT virtual gp_Vec DN (const Standard_Real U, const Standard_Real V, const Standard_Integer Nu, const Standard_Integer Nv) const = 0;
-  
-
-  //! Computes the point of parameter U on the surface.
-  //!
-  //! It is implemented with D0
-  //!
-  //! Raised only for an "OffsetSurface" if it is not possible to
-  //! compute the current point.
-  Standard_EXPORT gp_Pnt Value (const Standard_Real U, const Standard_Real V) const;
+		//! Reverses the U direction of parametrization of <me>.
+		//! The bounds of the surface are not modified.
+		virtual void UReverse() = 0;
 
 
+		//! Reverses the U direction of parametrization of <me>.
+		//! The bounds of the surface are not modified.
+		//! A copy of <me> is returned.
+		Handle(Geom_Surface) UReversed();
+
+		//! Returns the  parameter on the  Ureversed surface for
+		//! the point of parameter U on <me>.
+		//!
+		//! me->UReversed()->Value(me->UReversedParameter(U),V)
+		//!
+		//! is the same point as
+		//!
+		//! me->Value(U,V)
+		virtual Standard_Real^ UReversedParameter(Standard_Real U) = 0;
 
 
-  DEFINE_STANDARD_RTTIEXT(Geom_Surface,Geom_Geometry)
-
-protected:
-
-
+		//! Reverses the V direction of parametrization of <me>.
+		//! The bounds of the surface are not modified.
+		virtual void VReverse() = 0;
 
 
-private:
+		//! Reverses the V direction of parametrization of <me>.
+		//! The bounds of the surface are not modified.
+		//! A copy of <me> is returned.
+		Handle(Geom_Surface) VReversed();
+
+		//! Returns the  parameter on the  Vreversed surface for
+		//! the point of parameter V on <me>.
+		//!
+		//! me->VReversed()->Value(U,me->VReversedParameter(V))
+		//!
+		//! is the same point as
+		//!
+		//! me->Value(U,V)
+		virtual Standard_Real^ VReversedParameter(Standard_Real V) = 0;
+
+		//! Computes the  parameters on the  transformed  surface for
+		//! the transform of the point of parameters U,V on <me>.
+		//!
+		//! me->Transformed(T)->Value(U',V')
+		//!
+		//! is the same point as
+		//!
+		//! me->Value(U,V).Transformed(T)
+		//!
+		//! Where U',V' are the new values of U,V after calling
+		//!
+		//! me->TranformParameters(U,V,T)
+		//!
+		//! This methods does not change <U> and <V>
+		//!
+		//! It  can be redefined.  For  example on  the Plane,
+		//! Cylinder, Cone, Revolved and Extruded surfaces.
+		virtual void TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T);
+
+		//! Returns a 2d transformation  used to find the  new
+		//! parameters of a point on the transformed surface.
+		//!
+		//! me->Transformed(T)->Value(U',V')
+		//!
+		//! is the same point as
+		//!
+		//! me->Value(U,V).Transformed(T)
+		//!
+		//! Where U',V' are  obtained by transforming U,V with
+		//! th 2d transformation returned by
+		//!
+		//! me->ParametricTransformation(T)
+		//!
+		//! This methods returns an identity transformation
+		//!
+		//! It  can be redefined.  For  example on  the Plane,
+		//! Cylinder, Cone, Revolved and Extruded surfaces.
+		virtual xgp_GTrsf2d^ ParametricTransformation(xgp_Trsf^ T);
+
+		//! Returns the parametric bounds U1, U2, V1 and V2 of this surface.
+		//! If the surface is infinite, this function can return a value
+		//! equal to Precision::Infinite: instead of Standard_Real::LastReal.
+		virtual void Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) = 0;
+
+		//! Checks whether this surface is closed in the u
+		//! parametric direction.
+		//! Returns true if, in the u parametric direction: taking
+		//! uFirst and uLast as the parametric bounds in
+		//! the u parametric direction, for each parameter v, the
+		//! distance between the points P(uFirst, v) and
+		//! P(uLast, v) is less than or equal to gp::Resolution().
+		virtual Standard_Boolean^ IsUClosed() = 0;
+
+		//! Checks whether this surface is closed in the u
+		//! parametric direction.
+		//! Returns true if, in the v parametric
+		//! direction: taking vFirst and vLast as the
+		//! parametric bounds in the v parametric direction, for
+		//! each parameter u, the distance between the points
+		//! P(u, vFirst) and P(u, vLast) is less than
+		//! or equal to gp::Resolution().
+		virtual Standard_Boolean^ IsVClosed() = 0;
+
+		//! Checks if this surface is periodic in the u
+		//! parametric direction. Returns true if:
+		//! - this surface is closed in the u parametric direction, and
+		//! - there is a constant T such that the distance
+		//! between the points P (u, v) and P (u + T,
+		//! v) (or the points P (u, v) and P (u, v +
+		//! T)) is less than or equal to gp::Resolution().
+		//! Note: T is the parametric period in the u parametric direction.
+		virtual Standard_Boolean^ IsUPeriodic() = 0;
+
+		//! Returns the period of this surface in the u
+		//! parametric direction.
+		//! raises if the surface is not uperiodic.
+		virtual Standard_Real^ UPeriod();
+
+		//! Checks if this surface is periodic in the v
+		//! parametric direction. Returns true if:
+		//! - this surface is closed in the v parametric direction, and
+		//! - there is a constant T such that the distance
+		//! between the points P (u, v) and P (u + T,
+		//! v) (or the points P (u, v) and P (u, v +
+		//! T)) is less than or equal to gp::Resolution().
+		//! Note: T is the parametric period in the v parametric direction.
+		virtual Standard_Boolean^ IsVPeriodic() = 0;
+
+		//! Returns the period of this surface in the v parametric direction.
+		//! raises if the surface is not vperiodic.
+		virtual Standard_Real^ VPeriod();
+
+		//! Computes the U isoparametric curve.
+		virtual Handle(Geom_Curve) UIso(Standard_Real U) = 0;
+
+		//! Computes the V isoparametric curve.
+		virtual Handle(Geom_Curve) VIso(Standard_Real V) = 0;
 
 
+		//! Returns the Global Continuity of the surface in direction U and V :
+		//! C0 : only geometric continuity,
+		//! C1 : continuity of the first derivative all along the surface,
+		//! C2 : continuity of the second derivative all along the surface,
+		//! C3 : continuity of the third derivative all along the surface,
+		//! G1 : tangency continuity all along the surface,
+		//! G2 : curvature continuity all along the surface,
+		//! CN : the order of continuity is infinite.
+		//! Example :
+		//! If the surface is C1 in the V parametric direction and C2
+		//! in the U parametric direction Shape = C1.
+		virtual GeomAbs_Shape Continuity() = 0;
+
+		//! Returns the order of continuity of the surface in the
+		//! U parametric direction.
+		//! Raised if N < 0.
+		virtual Standard_Boolean^ IsCNu(Standard_Integer N) = 0;
+
+		//! Returns the order of continuity of the surface in the
+		//! V parametric direction.
+		//! Raised if N < 0.
+		virtual Standard_Boolean^ IsCNv(Standard_Integer N) = 0;
+
+		//! Computes the point of parameter U,V on the surface.
+		//!
+		//! Raised only for an "OffsetSurface" if it is not possible to
+		//! compute the current point.
+		virtual void D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) = 0;
 
 
-};
+		//! Computes the point P and the first derivatives in the
+		//! directions U and V at this point.
+		//! Raised if the continuity of the surface is not C1.
+		virtual void D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) = 0;
 
 
+		//! Computes the point P, the first and the second derivatives in
+		//! the directions U and V at this point.
+		//! Raised if the continuity of the surface is not C2.
+		virtual void D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) = 0;
 
 
+		//! Computes the point P, the first,the second and the third
+		//! derivatives in the directions U and V at this point.
+		//! Raised if the continuity of the surface is not C2.
+		virtual void D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) = 0;
+
+		//! ---Purpose ;
+		//! Computes the derivative of order Nu in the direction U and Nv
+		//! in the direction V at the point P(U, V).
+		//!
+		//! Raised if the continuity of the surface is not CNu in the U
+		//! direction or not CNv in the V direction.
+		//! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
+		virtual xgp_Vec^ DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) = 0;
 
 
+		//! Computes the point of parameter U on the surface.
+		//!
+		//! It is implemented with D0
+		//!
+		//! Raised only for an "OffsetSurface" if it is not possible to
+		//! compute the current point.
+		xgp_Pnt^ Value(Standard_Real U, Standard_Real V);
 
-#endif // _Geom_Surface_HeaderFile
+	protected:
+		Geom_Surface* NativeHandle;
+		//Handle<Geom_Surface> NativeHandle;
+	};
+}

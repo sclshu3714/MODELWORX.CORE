@@ -53,6 +53,7 @@ namespace TKG3d
 	{
 
 	public:
+
 		//! 
 		XGeom_Geometry(void);
 
@@ -129,6 +130,6 @@ namespace TKG3d
 
 
 	protected:
-		Geom_Geometry* NativeHandle;
+		Geom_Geometry* GeomNativeHandle;
 	};
 }

@@ -21,25 +21,17 @@
 //#include <Standard_DefineException.hxx>
 //#include <Standard_SStream.hxx>
 //#include <Standard_DomainError.hxx>
-#pragma once
-#include "gp_VectorWithNullMagnitude.hxx"
-
-namespace TKMath
-{
-	class gp_VectorWithNullMagnitude;
-	public ref class xgp_VectorWithNullMagnitude
-	{
-		//DEFINE_STANDARD_HANDLE(gp_VectorWithNullMagnitude, Standard_DomainError)
-		//
-		#if !defined No_Exception && !defined No_gp_VectorWithNullMagnitude
-		  #define gp_VectorWithNullMagnitude_Raise_if(CONDITION, MESSAGE) \
-		  if (CONDITION) throw gp_VectorWithNullMagnitude(MESSAGE);
-		#else
-		  #define gp_VectorWithNullMagnitude_Raise_if(CONDITION, MESSAGE)
-		#endif
-		//
-		//DEFINE_STANDARD_EXCEPTION(gp_VectorWithNullMagnitude, Standard_DomainError)
-		//
-		//#endif // _gp_VectorWithNullMagnitude_HeaderFile
-	};
-}
+//
+//class gp_VectorWithNullMagnitude;
+//DEFINE_STANDARD_HANDLE(gp_VectorWithNullMagnitude, Standard_DomainError)
+//
+//#if !defined No_Exception && !defined No_gp_VectorWithNullMagnitude
+//  #define gp_VectorWithNullMagnitude_Raise_if(CONDITION, MESSAGE) \
+//  if (CONDITION) throw gp_VectorWithNullMagnitude(MESSAGE);
+//#else
+//  #define gp_VectorWithNullMagnitude_Raise_if(CONDITION, MESSAGE)
+//#endif
+//
+//DEFINE_STANDARD_EXCEPTION(gp_VectorWithNullMagnitude, Standard_DomainError)
+//
+//#endif // _gp_VectorWithNullMagnitude_HeaderFile
