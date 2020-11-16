@@ -14,7 +14,7 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
+#include <XAIS_InteractiveContext.h>
 #include <AIS_DataMapIteratorOfDataMapOfIOStatus.hxx>
 #include <AIS_GlobalStatus.hxx>
 #include <AIS_InteractiveContext.hxx>
@@ -41,416 +41,268 @@
 #include <V3d_View.hxx>
 #include <V3d_Viewer.hxx>
 
-//=======================================================================
-//function : SetSelectionModeActive
-//purpose  :
-//=======================================================================
-void AIS_InteractiveContext::SetSelectionModeActive (const Handle(AIS_InteractiveObject)& theObj,
-                                                     const Standard_Integer theMode,
-                                                     const Standard_Boolean theIsActive,
-                                                     const AIS_SelectionModesConcurrency theActiveFilter,
-                                                     const Standard_Boolean theIsForce)
+namespace TKV3d
 {
-  if (theObj.IsNull())
-  {
-    return;
-  }
-
-  const Handle(AIS_GlobalStatus)* aStat = myObjects.Seek (theObj);
-  if (aStat == NULL)
-  {
-    return;
-  }
-
-  if (!theIsActive
-   || (theMode == -1
-    && theActiveFilter == AIS_SelectionModesConcurrency_Single))
-  {
-    if ((*aStat)->GraphicStatus() == AIS_DS_Displayed
-     || theIsForce)
+    //=======================================================================
+    //function : SetSelectionModeActive
+    //purpose  :
+    //=======================================================================
+    void XAIS_InteractiveContext::SetSelectionModeActive(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode, Standard_Boolean theIsActive, AIS_SelectionModesConcurrency theActiveFilter, Standard_Boolean theIsForce)
     {
-      if (theMode == -1)
-      {
-        for (TColStd_ListIteratorOfListOfInteger aModeIter ((*aStat)->SelectionModes()); aModeIter.More(); aModeIter.Next())
-        {
-          mgrSelector->Deactivate (theObj, aModeIter.Value());
-        }
-      }
-      else
-      {
-        mgrSelector->Deactivate (theObj, theMode);
-      }
-    }
+        NativeHandle()->SetSelectionModeActive(theObj, theMode, theIsActive, theActiveFilter, theIsForce);
+    };
 
-    if (theMode == -1)
+    // ============================================================================
+    // function : Activate
+    // purpose  :
+    // ============================================================================
+    void XAIS_InteractiveContext::Activate(Standard_Integer theMode, Standard_Boolean theIsForce)
     {
-      (*aStat)->ClearSelectionModes();
-    }
-    else
+        NativeHandle()->Activate(theMode, theIsForce);
+    };
+
+    //! Deactivates all the activated selection modes of an object.
+    void XAIS_InteractiveContext::Deactivate(Handle(AIS_InteractiveObject) theObj) {
+        NativeHandle()->Deactivate(theObj);
+    };
+
+    //! Deactivates all the activated selection modes of the interactive object anIobj with a given selection mode aMode.
+    void XAIS_InteractiveContext::Deactivate(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode) {
+        NativeHandle()->Deactivate(theObj, theMode);
+    };
+
+
+    // ============================================================================
+    // function : Deactivate
+    // purpose  :
+    // ============================================================================
+    void XAIS_InteractiveContext::Deactivate(Standard_Integer theMode)
     {
-      (*aStat)->RemoveSelectionMode (theMode);
-    }
-    return;
-  }
-  else if (theMode == -1)
-  {
-    return;
-  }
+        NativeHandle()->Deactivate(theMode);
+    };
 
-  if ((*aStat)->SelectionModes().Size() == 1
-   && (*aStat)->SelectionModes().First() == theMode)
-  {
-    return;
-  }
-
-  if ((*aStat)->GraphicStatus() == AIS_DS_Displayed
-    || theIsForce)
-  {
-    switch (theActiveFilter)
+    // ============================================================================
+    // function : Deactivate
+    // purpose  :
+    // ============================================================================
+    void XAIS_InteractiveContext::Deactivate()
     {
-      case AIS_SelectionModesConcurrency_Single:
-      {
-        for (TColStd_ListIteratorOfListOfInteger aModeIter ((*aStat)->SelectionModes()); aModeIter.More(); aModeIter.Next())
-        {
-          mgrSelector->Deactivate (theObj, aModeIter.Value());
-        }
-        (*aStat)->ClearSelectionModes();
-        break;
-      }
-      case AIS_SelectionModesConcurrency_GlobalOrLocal:
-      {
-        const Standard_Integer aGlobSelMode = theObj->GlobalSelectionMode();
-        TColStd_ListOfInteger aRemovedModes;
-        for (TColStd_ListIteratorOfListOfInteger aModeIter ((*aStat)->SelectionModes()); aModeIter.More(); aModeIter.Next())
-        {
-          if ((theMode == aGlobSelMode && aModeIter.Value() != aGlobSelMode)
-           || (theMode != aGlobSelMode && aModeIter.Value() == aGlobSelMode))
-          {
-            mgrSelector->Deactivate (theObj, aModeIter.Value());
-            aRemovedModes.Append (aModeIter.Value());
-          }
-        }
-        if (aRemovedModes.Size() == (*aStat)->SelectionModes().Size())
-        {
-          (*aStat)->ClearSelectionModes();
-        }
-        else
-        {
-          for (TColStd_ListIteratorOfListOfInteger aModeIter (aRemovedModes); aModeIter.More(); aModeIter.Next())
-          {
-            (*aStat)->RemoveSelectionMode (aModeIter.Value());
-          }
-        }
-        break;
-      }
-      case AIS_SelectionModesConcurrency_Multiple:
-      {
-        break;
-      }
-    }
-    mgrSelector->Activate (theObj, theMode);
-  }
-  (*aStat)->AddSelectionMode (theMode);
-}
+        NativeHandle()->Deactivate();
+    };
 
-// ============================================================================
-// function : Activate
-// purpose  :
-// ============================================================================
-void AIS_InteractiveContext::Activate (const Standard_Integer theMode,
-                                       const Standard_Boolean theIsForce)
-{
-  AIS_ListOfInteractive aDisplayedObjects;
-  DisplayedObjects (aDisplayedObjects);
-
-  for (AIS_ListIteratorOfListOfInteractive anIter (aDisplayedObjects); anIter.More(); anIter.Next())
-  {
-    Load (anIter.Value(), -1);
-    Activate (anIter.Value(), theMode, theIsForce);
-  }
-
-}
-
-// ============================================================================
-// function : Deactivate
-// purpose  :
-// ============================================================================
-void AIS_InteractiveContext::Deactivate (const Standard_Integer theMode)
-{
-  AIS_ListOfInteractive aDisplayedObjects;
-  DisplayedObjects (aDisplayedObjects);
-
-  for (AIS_ListIteratorOfListOfInteractive anIter (aDisplayedObjects); anIter.More(); anIter.Next())
-  {
-    Deactivate (anIter.Value(), theMode);
-  }
-}
-
-// ============================================================================
-// function : Deactivate
-// purpose  :
-// ============================================================================
-void AIS_InteractiveContext::Deactivate()
-{
-  AIS_ListOfInteractive aDisplayedObjects;
-  DisplayedObjects (aDisplayedObjects);
-
-  for (AIS_ListIteratorOfListOfInteractive anIter (aDisplayedObjects); anIter.More(); anIter.Next())
-  {
-    Deactivate (anIter.Value());
-  }
-}
-
-//=======================================================================
-//function : ActivatedModes
-//purpose  :
-//=======================================================================
-void AIS_InteractiveContext::ActivatedModes (const Handle(AIS_InteractiveObject)& theObj,
-                                             TColStd_ListOfInteger& theList) const
-{
-  const Handle(AIS_GlobalStatus)* aStatus = myObjects.Seek (theObj);
-  if (aStatus != NULL)
-  {
-    for (TColStd_ListIteratorOfListOfInteger aModeIter ((*aStatus)->SelectionModes()); aModeIter.More(); aModeIter.Next())
+    //=======================================================================
+    //function : ActivatedModes
+    //purpose  :
+    //=======================================================================
+    void XAIS_InteractiveContext::ActivatedModes(Handle(AIS_InteractiveObject) theObj, TColStd_ListOfInteger theList)
     {
-      theList.Append (aModeIter.Value());
-    }
-  }
-}
+        NativeHandle()->ActivatedModes(theObj, theList);
+    };
 
-//=======================================================================
-//function : SubIntensityOn
-//purpose  : 
-//=======================================================================
-void AIS_InteractiveContext::
-SubIntensityOn(const Handle(AIS_InteractiveObject)& anIObj,
-               const Standard_Boolean updateviewer)
-{
-  turnOnSubintensity (anIObj);
-  if (updateviewer)
-    myMainVwr->Update();
-}
-//=======================================================================
-//function : SubIntensityOff
-//purpose  : 
-//=======================================================================
+    //! Sub-intensity allows temporary highlighting of particular objects with specified color in a manner of selection highlight,
+      //! but without actual selection (e.g., global status and owner's selection state will not be updated).
+      //! The method returns the color of such highlighting.
+      //! By default, it is Quantity_NOC_GRAY40.
+    Quantity_Color XAIS_InteractiveContext::SubIntensityColor() {
+        return NativeHandle()->SubIntensityColor();
+    };
 
-void AIS_InteractiveContext::SubIntensityOff (const Handle(AIS_InteractiveObject)& theObj,
-                                              const Standard_Boolean theToUpdateViewer)
-{
-  const Handle(AIS_GlobalStatus)* aStatus = myObjects.Seek (theObj);
-  if (aStatus == NULL
-   || !(*aStatus)->IsSubIntensityOn())
-  {
-    return;
-  }
+    //! Sub-intensity allows temporary highlighting of particular objects with specified color in a manner of selection highlight,
+    //! but without actual selection (e.g., global status and owner's selection state will not be updated).
+    //! The method sets up the color for such highlighting.
+    //! By default, this is Quantity_NOC_GRAY40.
+    void XAIS_InteractiveContext::SetSubIntensityColor(Quantity_Color theColor) {
+        NativeHandle()->SetSubIntensityColor(theColor);
+    };
 
-  (*aStatus)->SubIntensityOff();
-  Standard_Boolean toUpdateMain = Standard_False;
-  if ((*aStatus)->GraphicStatus() == AIS_DS_Displayed)
-  {
-    myMainPM->Unhighlight (theObj);
-    toUpdateMain = Standard_True;
-  }
-    
-  if (IsSelected (theObj))
-  {
-    highlightSelected (theObj->GlobalSelOwner());
-  }
+    //=======================================================================
+    //function : SubIntensityOn
+    //purpose  : 
+    //=======================================================================
+    void XAIS_InteractiveContext::SubIntensityOn(Handle(AIS_InteractiveObject) anIObj, Standard_Boolean updateviewer)
+    {
+        NativeHandle()->SubIntensityOn(anIObj, updateviewer);
+    };
+    //=======================================================================
+    //function : SubIntensityOff
+    //purpose  : 
+    //=======================================================================
 
-  if (theToUpdateViewer && toUpdateMain)
-  {
-    myMainVwr->Update();
-  }
-}
+    void XAIS_InteractiveContext::SubIntensityOff(Handle(AIS_InteractiveObject) theObj, Standard_Boolean theToUpdateViewer)
+    {
+        NativeHandle()->SubIntensityOff(theObj, theToUpdateViewer);
+    };
 
-//=======================================================================
-//function : AddFilter
-//purpose  : 
-//=======================================================================
-void AIS_InteractiveContext::AddFilter(const Handle(SelectMgr_Filter)& aFilter)
-{
-  myFilters->Add(aFilter);
-}
+    //! Returns selection instance
+    Handle(AIS_Selection) XAIS_InteractiveContext::Selection() {
+        return NativeHandle()->Selection();
+    };
 
-//=======================================================================
-//function : RemoveFilter
-//purpose  : 
-//=======================================================================
-void AIS_InteractiveContext::RemoveFilter(const Handle(SelectMgr_Filter)& aFilter)
-{
-  myFilters->Remove(aFilter);
-}
+    //! Sets selection instance to manipulate a container of selected owners
+    //! @param theSelection an instance of the selection
+    void XAIS_InteractiveContext::SetSelection(Handle(AIS_Selection) theSelection) {
+        NativeHandle()->SetSelection(theSelection);
+    };
 
-//=======================================================================
-//function : RemoveFilters
-//purpose  : 
-//=======================================================================
+    //=======================================================================
+    //function : AddFilter
+    //purpose  : 
+    //=======================================================================
+    void XAIS_InteractiveContext::AddFilter(Handle(SelectMgr_Filter) aFilter)
+    {
+        NativeHandle()->AddFilter(aFilter);
+    };
 
-void AIS_InteractiveContext::RemoveFilters()
-{
-  myFilters->Clear();
-}
+    //=======================================================================
+    //function : RemoveFilter
+    //purpose  : 
+    //=======================================================================
+    void XAIS_InteractiveContext::RemoveFilter(Handle(SelectMgr_Filter) aFilter)
+    {
+        NativeHandle()->RemoveFilter(aFilter);
+    };
 
-//=======================================================================
-//function : Filters
-//purpose  : 
-//=======================================================================
-const SelectMgr_ListOfFilter& AIS_InteractiveContext::Filters() const 
-{
-  return myFilters->StoredFilters();
-}
+    //=======================================================================
+    //function : RemoveFilters
+    //purpose  : 
+    //=======================================================================
 
-//=======================================================================
-//function : DisplayActiveSensitive
-//purpose  : 
-//=======================================================================
-void AIS_InteractiveContext::DisplayActiveSensitive(const Handle(V3d_View)& aviou)
-{
-  myMainSel->DisplaySensitive(aviou);
-}
-//=======================================================================
-//function : DisplayActiveSensitive
-//purpose  : 
-//=======================================================================
+    void XAIS_InteractiveContext::RemoveFilters()
+    {
+        NativeHandle()->RemoveFilters();
+    };
 
-void AIS_InteractiveContext::DisplayActiveSensitive(const Handle(AIS_InteractiveObject)& theObj,
-                                                    const Handle(V3d_View)& theView)
-{
-  const Handle(AIS_GlobalStatus)* aStatus = myObjects.Seek (theObj);
-  if (aStatus == NULL)
-  {
-    return;
-  }
+    //! Return picking strategy; SelectMgr_PickingStrategy_FirstAcceptable by default.
+        //! @sa MoveTo()/Filters()
+    SelectMgr_PickingStrategy XAIS_InteractiveContext::PickingStrategy() {
+        return NativeHandle()->PickingStrategy();
+    };
 
-  for (TColStd_ListIteratorOfListOfInteger aModeIter ((*aStatus)->SelectionModes()); aModeIter.More(); aModeIter.Next())
-  {
-    const Handle(SelectMgr_Selection)& aSel = theObj->Selection (aModeIter.Value());
-    myMainSel->DisplaySensitive (aSel, theObj->Transformation(), theView, Standard_False);
-  }
-}
-
-//=======================================================================
-//function : ClearActiveSensitive
-//purpose  : 
-//=======================================================================
-void AIS_InteractiveContext::ClearActiveSensitive (const Handle(V3d_View)& theView)
-{
-  myMainSel->ClearSensitive (theView);
-}
-
-//=======================================================================
-//function : PurgeDisplay
-//purpose  : 
-//=======================================================================
-
-Standard_Integer AIS_InteractiveContext::PurgeDisplay()
-{
-  Standard_Integer NbStr = PurgeViewer(myMainVwr);
-  myMainVwr->Update();
-  return NbStr;
-}
+    //! Setup picking strategy - which entities detected by picking line will be accepted, considering Selection Filters.
+    //! By default (SelectMgr_PickingStrategy_FirstAcceptable), Selection Filters reduce the list of entities
+    //! so that the context accepts topmost in remaining.
+    //!
+    //! This means that entities behind non-selectable (by filters) parts can be picked by user.
+    //! If this behavior is undesirable, and user wants that non-selectable (by filters) parts
+    //! should remain an obstacle for picking, SelectMgr_PickingStrategy_OnlyTopmost can be set instead.
+    //!
+    //! Notice, that since Selection Manager operates only objects registered in it,
+    //! SelectMgr_PickingStrategy_OnlyTopmost will NOT prevent picking entities behind
+    //! visible by unregistered in Selection Manager presentations (e.g. deactivated).
+    //! Hence, SelectMgr_PickingStrategy_OnlyTopmost changes behavior only with Selection Filters enabled.
+    void XAIS_InteractiveContext::SetPickingStrategy(SelectMgr_PickingStrategy theStrategy) {
+        NativeHandle()->SetPickingStrategy(theStrategy);
+    };
 
 
-//=======================================================================
-//function : PurgeViewer
-//purpose  : 
-//=======================================================================
-Standard_Integer AIS_InteractiveContext::PurgeViewer(const Handle(V3d_Viewer)& Vwr)
-{
-  Handle(Graphic3d_StructureManager) GSM = Vwr->StructureManager();
-  Standard_Integer NbCleared(0);
-  Graphic3d_MapOfStructure SOS;
-  GSM->DisplayedStructures(SOS);
+    //=======================================================================
+    //function : Filters
+    //purpose  : 
+    //=======================================================================
+    SelectMgr_ListOfFilter XAIS_InteractiveContext::Filters()
+    {
+        return NativeHandle()->Filters();
+    };
 
-  Handle(Graphic3d_Structure) G;
-  for(Graphic3d_MapIteratorOfMapOfStructure It(SOS); It.More();It.Next()){
-    G = It.Key();
-    Standard_Address Add = G->Owner();
-    if(Add==NULL){
-      G->Erase();
-      G->Clear();// it means that it is not referenced as a presentation of InterfactiveObject...
-      NbCleared++;
-    }
-    Handle(AIS_InteractiveObject) IO = (AIS_InteractiveObject*)Add;
-    if(!myObjects.IsBound(IO)){
-      G->Erase();
-      NbCleared++;
-    }
-  }
-  return NbCleared;
-}
+    //=======================================================================
+    //function : DisplayActiveSensitive
+    //purpose  : 
+    //=======================================================================
+    void XAIS_InteractiveContext::DisplayActiveSensitive(Handle(V3d_View) aviou)
+    {
+        NativeHandle()->DisplayActiveSensitive(aviou);
+    };
+    //=======================================================================
+    //function : DisplayActiveSensitive
+    //purpose  : 
+    //=======================================================================
 
-//=======================================================================
-//function : IsImmediateModeOn
-//purpose  :
-//=======================================================================
+    void XAIS_InteractiveContext::DisplayActiveSensitive(Handle(AIS_InteractiveObject) theObj, Handle(V3d_View) theView)
+    {
+        NativeHandle()->DisplayActiveSensitive(theObj, theView);
+    };
 
-Standard_Boolean AIS_InteractiveContext::IsImmediateModeOn()  const 
-{
-  return myMainPM->IsImmediateModeOn();
-}
+    //=======================================================================
+    //function : ClearActiveSensitive
+    //purpose  : 
+    //=======================================================================
+    void XAIS_InteractiveContext::ClearActiveSensitive(Handle(V3d_View) theView)
+    {
+        NativeHandle()->ClearActiveSensitive(theView);
+    };
 
-//=======================================================================
-//function : BeginImmediateDraw
-//purpose  :
-//=======================================================================
+    //=======================================================================
+    //function : PurgeDisplay
+    //purpose  : 
+    //=======================================================================
 
-Standard_Boolean AIS_InteractiveContext::BeginImmediateDraw()
-{
-  if (myMainPM->IsImmediateModeOn())
-  {
-    myMainPM->BeginImmediateDraw();
-    return Standard_True;
-  }
-  return Standard_False;
-}
+    Standard_Integer XAIS_InteractiveContext::PurgeDisplay()
+    {
+        return NativeHandle()->PurgeDisplay();
+    };
 
-//=======================================================================
-//function : ImmediateAdd
-//purpose  :
-//=======================================================================
 
-Standard_Boolean AIS_InteractiveContext::ImmediateAdd (const Handle(AIS_InteractiveObject)& theObj,
-                                                       const Standard_Integer               theMode)
-{
-  if (!myMainPM->IsImmediateModeOn())
-  {
-    return Standard_False;
-  }
+    ////=======================================================================
+    ////function : PurgeViewer
+    ////purpose  : 
+    ////=======================================================================
+    //Standard_Integer XAIS_InteractiveContext::PurgeViewer(Handle(V3d_Viewer) Vwr)
+    //{
+    //    return NativeHandle()->PurgeViewer(Vwr);
+    //};
 
-  myMainPM->AddToImmediateList (myMainPM->Presentation (theObj, theMode));
-  return Standard_True;
-}
+    //=======================================================================
+    //function : IsImmediateModeOn
+    //purpose  :
+    //=======================================================================
 
-//=======================================================================
-//function : EndImmediateDraw
-//purpose  :
-//=======================================================================
+    Standard_Boolean XAIS_InteractiveContext::IsImmediateModeOn()
+    {
+        return NativeHandle()->IsImmediateModeOn();
+    };
 
-Standard_Boolean AIS_InteractiveContext::EndImmediateDraw (const Handle(V3d_View)& theView)
-{
-  if (!myMainPM->IsImmediateModeOn())
-  {
-    return Standard_False;
-  }
+    //! Redraws immediate structures in all views of the viewer given taking into account its visibility.
+    void XAIS_InteractiveContext::RedrawImmediate(Handle(V3d_Viewer) theViewer) {
+        NativeHandle()->RedrawImmediate(theViewer);
+    };
 
-  myMainPM->EndImmediateDraw (theView->Viewer());
-  return Standard_True;
-}
+    //=======================================================================
+    //function : BeginImmediateDraw
+    //purpose  :
+    //=======================================================================
 
-//=======================================================================
-//function : EndImmediateDraw
-//purpose  :
-//=======================================================================
+    Standard_Boolean XAIS_InteractiveContext::BeginImmediateDraw()
+    {
+        return NativeHandle()->BeginImmediateDraw();
+    };
 
-Standard_Boolean AIS_InteractiveContext::EndImmediateDraw()
-{
-  if (!myMainPM->IsImmediateModeOn())
-  {
-    return Standard_False;
-  }
+    //=======================================================================
+    //function : ImmediateAdd
+    //purpose  :
+    //=======================================================================
 
-  myMainPM->EndImmediateDraw (myMainVwr);
-  return Standard_True;
-}
+    Standard_Boolean XAIS_InteractiveContext::ImmediateAdd(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode)
+    {
+        return NativeHandle()->ImmediateAdd(theObj, theMode);
+    };
+
+    //=======================================================================
+    //function : EndImmediateDraw
+    //purpose  :
+    //=======================================================================
+
+    Standard_Boolean XAIS_InteractiveContext::EndImmediateDraw(Handle(V3d_View) theView)
+    {
+        return NativeHandle()->EndImmediateDraw(theView);
+    };
+
+    //=======================================================================
+    //function : EndImmediateDraw
+    //purpose  :
+    //=======================================================================
+
+    Standard_Boolean XAIS_InteractiveContext::EndImmediateDraw()
+    {
+        return NativeHandle()->EndImmediateDraw();
+    };
+};

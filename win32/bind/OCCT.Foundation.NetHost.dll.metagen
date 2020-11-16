@@ -1792,6 +1792,55 @@ Class TKMath.xgp_Torus: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Translated(xgp_Vec): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKernel.XStandard_ConstructionError: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class TKMath.XTopLoc_Datum3D: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopLoc_Datum3D*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopLoc_Datum3D* Handle 'get ' : 
+  Methods:
+    GetDatum3D(TopLoc_Datum3D*): PrivateScope, Public, HideBySig
+    Transformation(): PrivateScope, Public, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Class TKMath.XTopLoc_Location: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<TopLoc_Datum3D>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopLoc_Location*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopLoc_Location*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    TopLoc_Location* Handle 'get ' : 
+  Methods:
+    GetLocation(TopLoc_Location*): PrivateScope, Public, HideBySig
+    IsIdentity(): PrivateScope, Public, HideBySig
+    Identity(): PrivateScope, Public, HideBySig
+    FirstDatum(handle<TopLoc_Datum3D>*): PrivateScope, Public, HideBySig
+    FirstPower(): PrivateScope, Public, HideBySig
+    NextLocation(): PrivateScope, Public, HideBySig
+    Transformation(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    Inverted(): PrivateScope, Public, HideBySig
+    Multiplied(XTopLoc_Location): PrivateScope, Public, HideBySig
+    op_Multiply(XTopLoc_Location): PrivateScope, Public, HideBySig, SpecialName
+    Divided(XTopLoc_Location): PrivateScope, Public, HideBySig
+    op_Division(XTopLoc_Location): PrivateScope, Public, HideBySig, SpecialName
+    Predivided(XTopLoc_Location): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
+    HashCode(Int32): PrivateScope, Public, HideBySig
+    IsEqual(XTopLoc_Location): PrivateScope, Public, HideBySig
+    op_Equality(XTopLoc_Location): PrivateScope, Public, HideBySig, SpecialName
+    IsDifferent(XTopLoc_Location): PrivateScope, Public, HideBySig
+    op_Inequality(XTopLoc_Location): PrivateScope, Public, HideBySig, SpecialName
+    DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
+    ShallowDump(basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
     Void .ctor(Geom_Geometry*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1945,4 +1994,258 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TranslateModel(String, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<V3d_Viewer>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<AIS_InteractiveContext> Handle 'get ' : 
+  Methods:
+    SetDeviationCoefficient(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetDeviationAngle(Double): PrivateScope, Public, HideBySig
+    SetDeviationAngle(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetAngleAndDeviation(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetHLRDeviationCoefficient(Double): PrivateScope, Public, HideBySig
+    SetHLRDeviationCoefficient(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetHLRDeviationAngle(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetHLRAngleAndDeviation(Double): PrivateScope, Public, HideBySig
+    SetHLRAngleAndDeviation(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DeviationCoefficient(): PrivateScope, Public, HideBySig
+    DeviationAngle(): PrivateScope, Public, HideBySig
+    HLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetHLRAngle(Double): PrivateScope, Public, HideBySig
+    HLRAngle(): PrivateScope, Public, HideBySig
+    HiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetHiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    DrawHiddenLine(): PrivateScope, Public, HideBySig
+    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    SetIsoNumber(Int32, AIS_TypeOfIso): PrivateScope, Public, HideBySig
+    IsoNumber(AIS_TypeOfIso): PrivateScope, Public, HideBySig
+    IsoOnPlane(): PrivateScope, Public, HideBySig
+    IsoOnPlane(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    IsoOnTriangulation(): PrivateScope, Public, HideBySig
+    IsoOnTriangulation(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    IsoOnTriangulation(Boolean(HasFieldMarshal), handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    SetCurrentObject(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AddOrRemoveCurrentObject(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UpdateCurrent(): PrivateScope, Public, HideBySig
+    IsCurrent(handle<AIS_InteractiveObject>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    InitCurrent(): PrivateScope, Public, HideBySig
+    MoreCurrent(): PrivateScope, Public, HideBySig
+    NextCurrent(): PrivateScope, Public, HideBySig
+    Current(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    NbCurrents(): PrivateScope, Public, HideBySig
+    HilightCurrents(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnhilightCurrents(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ClearCurrents(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SubIntensityColor(Quantity_Color*): PrivateScope, Public, HideBySig
+    SetSubIntensityColor(Quantity_Color): PrivateScope, Public, HideBySig
+    SubIntensityOn(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SubIntensityOff(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Selection(handle<AIS_Selection>*): PrivateScope, Public, HideBySig
+    SetSelection(handle<AIS_Selection>*): PrivateScope, Public, HideBySig
+    get_Handle(handle<AIS_InteractiveContext>*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    SetSelected(handle<SelectMgr_EntityOwner>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AddOrRemoveSelected(handle<SelectMgr_EntityOwner>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AddOrRemoveSelected(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetSelectedState(handle<SelectMgr_EntityOwner>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HilightSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnhilightSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UpdateSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ClearSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    IsSelected(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    IsSelected(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    FirstSelectedObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    NbSelected(): PrivateScope, Public, HideBySig
+    InitSelected(): PrivateScope, Public, HideBySig
+    MoreSelected(): PrivateScope, Public, HideBySig
+    NextSelected(): PrivateScope, Public, HideBySig
+    SelectedOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    SelectedInteractive(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    HasSelectedShape(): PrivateScope, Public, HideBySig
+    SelectedShape(TopoDS_Shape*): PrivateScope, Public, HideBySig
+    HasApplicative(): PrivateScope, Public, HideBySig
+    Applicative(handle<Standard_Transient>*): PrivateScope, Public, HideBySig
+    BeginImmediateDraw(): PrivateScope, Public, HideBySig
+    ImmediateAdd(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    EndImmediateDraw(): PrivateScope, Public, HideBySig
+    EndImmediateDraw(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    IsImmediateModeOn(): PrivateScope, Public, HideBySig
+    RedrawImmediate(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    SetSelectionModeActive(handle<AIS_InteractiveObject>*, Int32, Boolean(HasFieldMarshal), AIS_SelectionModesConcurrency, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Activate(Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Activate(handle<AIS_InteractiveObject>* IsImplicitlyDereferenced, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Deactivate(): PrivateScope, Public, HideBySig
+    Deactivate(Int32): PrivateScope, Public, HideBySig
+    Deactivate(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    Deactivate(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    ActivatedModes(handle<AIS_InteractiveObject>*, NCollection_List<int>*): PrivateScope, Public, HideBySig
+    EntityOwners(handle<NCollection_Shared<NCollection_IndexedMap<opencascade::handle<SelectMgr_EntityOwner>\,NCollection_DefaultHasher<opencascade::handle<SelectMgr_EntityOwner> > >\,void> >*, handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    Filters(NCollection_List<opencascade::handle<SelectMgr_Filter> >*): PrivateScope, Public, HideBySig
+    AddFilter(handle<SelectMgr_Filter>*): PrivateScope, Public, HideBySig
+    RemoveFilter(handle<SelectMgr_Filter>*): PrivateScope, Public, HideBySig
+    RemoveFilters(): PrivateScope, Public, HideBySig
+    PickingStrategy(): PrivateScope, Public, HideBySig
+    SetPickingStrategy(SelectMgr_PickingStrategy): PrivateScope, Public, HideBySig
+    DefaultDrawer(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    CurrentViewer(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    SelectionManager(handle<SelectMgr_SelectionManager>*): PrivateScope, Public, HideBySig
+    MainPrsMgr(handle<PrsMgr_PresentationManager>*): PrivateScope, Public, HideBySig
+    MainSelector(handle<StdSelect_ViewerSelector3d>*): PrivateScope, Public, HideBySig
+    UpdateCurrentViewer(): PrivateScope, Public, HideBySig
+    DisplayedObjects(AIS_KindOfInteractive, Int32, NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    DisplayedObjects(NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    ErasedObjects(AIS_KindOfInteractive, Int32, NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    ErasedObjects(NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    ObjectsByDisplayStatus(AIS_KindOfInteractive, Int32, AIS_DisplayStatus, NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    ObjectsByDisplayStatus(AIS_DisplayStatus, NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
+    ObjectsInside(NCollection_List<opencascade::handle<AIS_InteractiveObject> >*, AIS_KindOfInteractive, Int32): PrivateScope, Public, HideBySig
+    RebuildSelectionStructs(): PrivateScope, Public, HideBySig
+    Disconnect(handle<AIS_InteractiveObject>*, handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    ObjectsForView(NCollection_List<opencascade::handle<AIS_InteractiveObject> >*, handle<V3d_View>*, Boolean(HasFieldMarshal), AIS_DisplayStatus): PrivateScope, Public, HideBySig
+    PurgeDisplay(): PrivateScope, Public, HideBySig
+    GravityPoint(handle<V3d_View>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DisplayActiveSensitive(handle<AIS_InteractiveObject>*, handle<V3d_View>*): PrivateScope, Public, HideBySig
+    DisplayActiveSensitive(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    ClearActiveSensitive(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    SetLocalAttributes(handle<AIS_InteractiveObject>*, handle<Prs3d_Drawer>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnsetLocalAttributes(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetCurrentFacingModel(handle<AIS_InteractiveObject>*, Aspect_TypeOfFacingModel): PrivateScope, Public, HideBySig
+    HasColor(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    Color(handle<AIS_InteractiveObject>*, Quantity_Color): PrivateScope, Public, HideBySig
+    SetColor(handle<AIS_InteractiveObject>*, Quantity_Color, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnsetColor(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Width(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetWidth(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetWidth(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetMaterial(handle<AIS_InteractiveObject>*, Graphic3d_MaterialAspect*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnsetMaterial(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetTransparency(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnsetTransparency(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetPolygonOffsets(handle<AIS_InteractiveObject>*, Int32, Single, Single, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HasPolygonOffsets(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    PolygonOffsets(handle<AIS_InteractiveObject>*, Int32, Single, Single): PrivateScope, Public, HideBySig
+    SetTrihedronSize(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    TrihedronSize(): PrivateScope, Public, HideBySig
+    SetPlaneSize(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetPlaneSize(Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    PlaneSize(Double, Double): PrivateScope, Public, HideBySig
+    SetDeviationCoefficient(Double): PrivateScope, Public, HideBySig
+    DisplayStatus(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    Status(handle<AIS_InteractiveObject>*, TCollection_ExtendedString*): PrivateScope, Public, HideBySig
+    IsDisplayed(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    IsDisplayed(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    SetAutoActivateSelection(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    GetAutoActivateSelection(): PrivateScope, Public, HideBySig
+    Display(handle<AIS_InteractiveObject>*, Int32, Int32, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), AIS_DisplayStatus): PrivateScope, Public, HideBySig
+    Display(handle<AIS_InteractiveObject>*, Int32, Int32, Boolean(HasFieldMarshal), AIS_DisplayStatus): PrivateScope, Public, HideBySig
+    Display(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Load(handle<AIS_InteractiveObject>*, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Load(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    Erase(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    EraseAll(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DisplayAll(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    EraseSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DisplaySelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ClearPrs(handle<AIS_InteractiveObject>*, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Remove(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RemoveAll(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Redisplay(AIS_KindOfInteractive, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Redisplay(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RecomputePrsOnly(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RecomputeSelectionOnly(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    Update(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HighlightStyle(handle<SelectMgr_EntityOwner>*, handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    HighlightStyle(handle<AIS_InteractiveObject>*, handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    HighlightStyle(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    HighlightStyle(handle<Prs3d_Drawer>*, Prs3d_TypeOfHighlight): PrivateScope, Public, HideBySig
+    SetHighlightStyle(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    SetHighlightStyle(Prs3d_TypeOfHighlight, handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    SelectionStyle(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    SetSelectionStyle(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    IsHilighted(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    IsHilighted(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    HilightWithColor(handle<AIS_InteractiveObject>*, handle<Prs3d_Drawer>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Unhilight(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DisplayPriority(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    SetDisplayPriority(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    GetZLayer(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    SetZLayer(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
+    SetViewAffinity(handle<AIS_InteractiveObject>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DisplayMode(): PrivateScope, Public, HideBySig
+    SetDisplayMode(handle<AIS_InteractiveObject>*, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetDisplayMode(Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnsetDisplayMode(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetLocation(handle<AIS_InteractiveObject>*, XTopLoc_Location): PrivateScope, Public, HideBySig
+    ResetLocation(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    HasLocation(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    Location(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    SetTransformPersistence(handle<AIS_InteractiveObject>*, Graphic3d_TransModeFlags, xgp_Pnt): PrivateScope, Public, HideBySig
+    SetTransformPersistence(handle<AIS_InteractiveObject>*, handle<Graphic3d_TransformPers>*): PrivateScope, Public, HideBySig
+    SetPixelTolerance(Int32): PrivateScope, Public, HideBySig
+    PixelTolerance(): PrivateScope, Public, HideBySig
+    SetSelectionSensitivity(handle<AIS_InteractiveObject>*, Int32, Int32): PrivateScope, Public, HideBySig
+    LastActiveView(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    MoveTo(Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ClearDetected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HasDetected(): PrivateScope, Public, HideBySig
+    DetectedOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    DetectedInteractive(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    HasNextDetected(): PrivateScope, Public, HideBySig
+    HilightNextDetected(handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HilightPreviousDetected(handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    InitDetected(): PrivateScope, Public, HideBySig
+    MoreDetected(): PrivateScope, Public, HideBySig
+    NextDetected(): PrivateScope, Public, HideBySig
+    DetectedCurrentOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    AddSelect(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    AddSelect(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
+    Select(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Select(NCollection_Array1<gp_Pnt2d>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Select(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ShiftSelect(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ShiftSelect(NCollection_Array1<gp_Pnt2d>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ShiftSelect(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    BoundingBoxOfSelection(Bnd_Box*): PrivateScope, Public, HideBySig
+    FitSelected(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    FitSelected(handle<V3d_View>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ToHilightSelected(): PrivateScope, Public, HideBySig
+    SetToHilightSelected(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AutomaticHilight(): PrivateScope, Public, HideBySig
+    SetAutomaticHilight(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetSelected(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<AIS_InteractiveObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+    Void .ctor(AIS_InteractiveObject*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<AIS_InteractiveObject> Handle 'get ' : 
+  Methods:
+    Type(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Signature(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Redisplay(ValueType Boolean IsBoxed): PrivateScope, Public, HideBySig
+    HasInteractiveContext(): PrivateScope, Public, HideBySig
+    InteractiveContext(): PrivateScope, Public, HideBySig
+    SetContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasOwner(): PrivateScope, Public, HideBySig
+    GetOwner(handle<Standard_Transient>*): PrivateScope, Public, HideBySig
+    SetOwner(handle<Standard_Transient>*): PrivateScope, Public, HideBySig
+    ClearOwner(): PrivateScope, Public, HideBySig
+    GetContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, HideBySig
+    HasPresentation(): PrivateScope, Public, HideBySig
+    Presentation(handle<Graphic3d_Structure>*): PrivateScope, Public, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetAIS_InteractiveObject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

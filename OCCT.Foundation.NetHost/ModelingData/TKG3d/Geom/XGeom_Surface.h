@@ -55,6 +55,7 @@
 #include "xgp_Vec.h"
 #include "xgp_Trsf.h"
 
+
 using namespace TKMath;
 namespace TKG3d
 {

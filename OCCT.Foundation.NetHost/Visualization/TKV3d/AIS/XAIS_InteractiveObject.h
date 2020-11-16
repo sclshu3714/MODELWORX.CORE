@@ -1,4 +1,4 @@
-// Created on: 1996-12-11
+﻿// Created on: 1996-12-11
 // Created by: Robert COUBLANC
 // Copyright (c) 1996-1999 Matra Datavision
 // Copyright (c) 1999-2014 OPEN CASCADE SAS
@@ -27,13 +27,17 @@
 //! * Selectable Object (SelectMgr_SelectableObject)
 //!   Consider defining an enumeration of supported Selection Mode indexes for particular Interactive Object or class of Interactive Objects.
 //!   - ComputeSelection() computing selectable entities for the given selection mode index.
+
+#ifndef _XAIS_InteractiveObject_HeaderFile
+#define _XAIS_InteractiveObject_HeaderFile
 #pragma once
-#include "Standard_Handle.hxx"
-#include "Standard_Transient.hxx"
+#include <Prs3d_BasicAspect.hxx>
 #include "AIS_InteractiveObject.hxx"
 #include "XAIS_InteractiveContext.h"
 //wrapper of pure C++ classes to ref classes
 #include <NCollection_Haft.h>
+
+class Prs3d_BasicAspect;
 
 namespace TKV3d
 {
@@ -44,7 +48,7 @@ namespace TKV3d
 		XAIS_InteractiveObject(void);
 
 		//!
-		XAIS_InteractiveObject(Handle(Standard_Transient)* handle);
+		XAIS_InteractiveObject(AIS_InteractiveObject* pos);
 
 		//!
 		~XAIS_InteractiveObject();
@@ -80,7 +84,7 @@ namespace TKV3d
 
 		//! Sets the interactive context aCtx and provides a link
 		//! to the default drawing tool or "Drawer" if there is none.
-	    virtual void SetContext(Handle(XAIS_InteractiveContext)^ aCtx);
+		virtual void SetContext(Handle(AIS_InteractiveContext) aCtx);
 
 		//! Returns true if the object has an owner attributed to it.
 		//! The owner can be a shape for a set of sub-shapes or a sub-shape for sub-shapes which it is composed of, and takes the form of a transient.
@@ -95,20 +99,20 @@ namespace TKV3d
 		//! edges, wires, and faces.
 		//! -   Users, presentable objects connecting to sensitive
 		//! primitives, or a shape which has been decomposed.
-		Handle(Standard_Transient)^ GetOwner();
+		Handle(Standard_Transient) GetOwner();
 
 		//! Allows you to attribute the owner theApplicativeEntity to
 		//! an Interactive Object. This can be a shape for a set of
 		//! sub-shapes or a sub-shape for sub-shapes which it
 		//! is composed of. The owner takes the form of a transient.
-		void SetOwner(Handle(Standard_Transient) ^ theApplicativeEntity);
+		void SetOwner(Handle(Standard_Transient) theApplicativeEntity);
 
 		//! Each Interactive Object has methods which allow us to attribute an Owner to it in the form of a Transient.
 		//! This method removes the owner from the graphic entity.
 		void ClearOwner();
 
 		//! Returns the context pointer to the interactive context.
-		Handle(AIS_InteractiveContext)^ GetContext();
+		Handle(AIS_InteractiveContext) GetContext();
 
 		//! Returns TRUE when this object has a presentation in the current DisplayMode()
 		Standard_Boolean^ HasPresentation();
@@ -116,14 +120,23 @@ namespace TKV3d
 		//! Returns the current presentation of this object according to the current DisplayMode()
 		Handle(Prs3d_Presentation) Presentation();
 
-		//! Sets the graphic basic aspect to the current presentation.
-	    void SetAspect(Handle(Prs3d_BasicAspect)^ anAspect);
-
 		//! Dumps the content of me into the stream
-		virtual void DumpJson(Standard_OStream^ theOStream, Standard_Integer theDepth) ;
+		virtual void DumpJson(Standard_OStream theOStream, Standard_Integer theDepth);
 
-		virtual  Handle(Standard_Transient)* GetAIS_InteractiveObject();
+		virtual  Handle(Standard_Transient)* GetAIS_InteractiveObject() = 0;
+
+		/// <summary>
+		/// 本地句柄
+		/// </summary>
+		property Handle(AIS_InteractiveObject) Handle
+		{
+			Handle(AIS_InteractiveObject) get() {
+				return NativeHandle();
+			}
+		};
+
 	private:
-		NCollection_Haft<Handle(AIS_InteractiveContext)> NativeHandle;
+		NCollection_Haft<Handle(AIS_InteractiveObject)> NativeHandle;
 	};
 };
+#endif // _XAIS_InteractiveObject_HeaderFile

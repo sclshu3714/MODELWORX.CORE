@@ -23,7 +23,7 @@ namespace OCCT.WinForms.Net
 			}
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
-            myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
+            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
             myDegenerateModeIsOn = true;
             IsRectVisible = false;
@@ -78,8 +78,10 @@ namespace OCCT.WinForms.Net
         private void RenderWindow_KeyDown(object sender, KeyEventArgs e) {
             if(e.Shift)
                 myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
-            else if(e.Control)
-                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Ctrl;
+            if(e.Control)
+                myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Ctrl;
+            if (e.Alt)
+                myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Alt;
         }
         /// <summary>
         /// 键盘弹起事件
@@ -103,7 +105,7 @@ namespace OCCT.WinForms.Net
                     myXmax = e.X; myYmax = e.Y;
                     if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
                         // start the dinamic zooming....
-                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicZooming;
+                        myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
                     else {
                         switch(myCurrentMode) {
                             case CurrentAction3d.CurAction3d_Nothing:
@@ -144,7 +146,7 @@ namespace OCCT.WinForms.Net
                     {
                         if(!myDegenerateModeIsOn)
                             OCCTView.SetDegenerateModeOn();
-                        OCCTView.Pan(e.X, e.Y);
+                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
                     }
                     #endregion
                     break;
@@ -162,8 +164,27 @@ namespace OCCT.WinForms.Net
             switch(e.Button) {
                 case MouseButtons.Left:
                     #region 鼠标左键弹起
-                    if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                        if (e.X == myXmin && e.Y == myYmin)
+                        {
+                            myXmax = e.X; myYmax = e.Y;
+                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                MultiInputEvent(myXmax, myYmax);
+                            else
+                                InputEvent(myXmax, myYmax);
+                        }
+                        else
+                        {
+                            myXmax = e.X; myYmax = e.Y;
+                            DrawRectangle(false);
+                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                MultiDragEvent(myXmax, myYmax, 1);
+                            else
+                                DragEvent(myXmax, myYmax, 1);
+                        }
+                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
                         return;
+                    }
                     switch(myCurrentMode) {
                         case CurrentAction3d.CurAction3d_Nothing:
                             if(e.X == myXmin && e.Y == myYmin) {
@@ -242,6 +263,7 @@ namespace OCCT.WinForms.Net
                         OCCTView.SetDegenerateModeOn();
                         myDegenerateModeIsOn = true;
                     }
+                    myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
                     #endregion
                     break;
                 default:
@@ -258,8 +280,11 @@ namespace OCCT.WinForms.Net
             if(e.Button == MouseButtons.Left) //left button is pressed
             {
                 if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
-                    OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
+                    //OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
+                    //myXmax = e.X; myYmax = e.Y;
+                    DrawRectangle(false);
                     myXmax = e.X; myYmax = e.Y;
+                    DrawRectangle(true);
                 }
                 else {
                     switch(myCurrentMode) {
@@ -293,10 +318,6 @@ namespace OCCT.WinForms.Net
                 }
             } // e.Button == MouseButtons.Left
             else if(e.Button == MouseButtons.Middle) {
-                //if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
-                //    OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
-                //    myXmax = e.X; myYmax = e.Y;
-                //}
                 OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
                 myXmax = e.X; myYmax = e.Y;
             }//e.Button=MouseButtons.Middle
@@ -321,7 +342,10 @@ namespace OCCT.WinForms.Net
         /// <param name="e"></param>
 		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e) {
             //InputHandler.MouseWheel(mCanvas, e, Control.ModifierKeys);
-            OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
+            int addsd = 1;
+            if (e.Delta > 0) addsd = - 1;
+            else  addsd = 1;
+            OCCTView.Zoom(e.X + addsd, e.Y, e.X, e.Y);
             myXmax = e.X; myYmax = e.Y;
         }
 

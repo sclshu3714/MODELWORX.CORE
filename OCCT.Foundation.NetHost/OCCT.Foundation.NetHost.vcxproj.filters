@@ -276,6 +276,18 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h">
+      <Filter>头文件\FoundationClasses\TKMath\TopLoc</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h">
+      <Filter>头文件\FoundationClasses\TKMath\TopLoc</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -392,6 +404,27 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\TopLoc</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\TopLoc</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_1.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_2.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_3.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

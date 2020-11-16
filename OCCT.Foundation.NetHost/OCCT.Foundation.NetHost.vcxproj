@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <CompileAsManaged>true</CompileAsManaged>
@@ -240,8 +240,12 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_VectorWithNullMagnitude.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XY.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h" />
+    <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h" />
+    <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
@@ -280,9 +284,16 @@
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Vec2d.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XY.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XYZ.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_1.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_2.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_3.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

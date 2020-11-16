@@ -20,6 +20,8 @@
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
 
+
+
 namespace TKMath
 {
     ref class xgp_XYZ;
