@@ -548,7 +548,7 @@ namespace OCCT.WinForms.Net
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
             bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
             OCCTView.SetDisplayMode(1);
-            OCCTView.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_ALUMINIUM);
+            //OCCTView.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_ALUMINIUM);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return reuslt;

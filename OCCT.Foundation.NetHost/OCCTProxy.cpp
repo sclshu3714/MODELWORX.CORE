@@ -33,7 +33,17 @@
 #include <NCollection_Haft.h>
 
 #include <vcclr.h>
+#include <XCAFApp_Application.hxx>
 #include <STEPCAFControl_Reader.hxx>
+#include <XCAFDoc_ColorTool.hxx>
+#include <XCAFDoc_ShapeTool.hxx>
+#include <TDataStd_Name.hxx>
+#include <XCAFDoc_DocumentTool.hxx>
+#include <TDF_ChildIterator.hxx>
+#include <XCAFPrs_AISObject.hxx>
+#include <TPrsStd_AISPresentation.hxx>
+#include <XCAFPrs_Driver.hxx>
+#include <TNaming_NamedShape.hxx>
 
 // list of required OCCT libraries
 #pragma comment(lib, "TKernel.lib")
@@ -48,6 +58,7 @@
 #pragma comment(lib, "TKStl.lib")
 #pragma comment(lib, "TKVrml.lib")
 #pragma comment(lib, "TKLCAF.lib")
+class XCAFDoc_ShapeTool;
 
 //! Auxiliary tool for converting C# string into UTF-8 string.
 static TCollection_AsciiString toAsciiString(String^ theString) {
@@ -667,11 +678,11 @@ public:
     // ============================================
     // Import / export functionality
     // ============================================
-#pragma region  Import / export functionality
-/// <summary>
-///Import BRep file
-/// </summary>
-/// <param name="theFileName">Name of import file</param>
+    #pragma region  Import / export functionality
+    /// <summary>
+    ///Import BRep file
+    /// </summary>
+    /// <param name="theFileName">Name of import file</param>
     bool ImportBrep(System::String^ theFileName) {
         return ImportBrep(toAsciiString(theFileName));
     }
@@ -724,7 +735,7 @@ public:
         return true;
     }
 
-    /*/// <summary>
+    /// <summary>
     /// Import Step file
     /// </summary>
     /// <param name="theFileName">Name of import file</param>
@@ -740,23 +751,86 @@ public:
         STEPCAFControl_Reader aReader;
         aReader.SetColorMode(ColorMode);
         aReader.SetNameMode(NameMode);
-        aReader.SetLayerMode(LayerMode);
+        /*aReader.SetLayerMode(LayerMode);
         aReader.SetPropsMode(PropsMode);
         aReader.SetSHUOMode(SHUOMode);
         aReader.SetGDTMode(GDTMode);
-        aReader.SetViewMode(ViewMode);
+        aReader.SetViewMode(ViewMode);*/
         IFSelect_ReturnStatus aStatus = IFSelect_RetVoid;
         aStatus = aReader.ReadFile(theFileName.ToCString());
-        if (aStatus == IFSelect_RetDone) {
-            Handle(TDocStd_Document) aDoc;
-            Handle(TDocStd_Application) A = DDocStd::GetApplication();
-            A->NewDocument("BinXCAF", doc);
-        }
-        else {
+        //Handle(TDocStd_Document) aDoc = new TDocStd_Document("XSEFSTEP");
+        Handle(TDocStd_Document) aDoc;
+        Handle(XCAFApp_Application) anApp = XCAFApp_Application::GetApplication();
+        anApp->NewDocument("XSEFSTEP", aDoc);
+        if (aStatus != IFSelect_RetDone || !aReader.Transfer(aDoc)) {
             return false;
         }
+          
+        TDF_Label aRootLabel = aDoc->Main();
+        TDF_Label RootLabel = aRootLabel.Root();
+        visit(RootLabel, Standard_True);
         return true;
-    }*/
+    }
+    /// <summary>
+    /// ±éÀú½á¹¹
+    /// </summary>
+    /// <param name="theLabel"></param>
+    /// <param name="aShapeTool"></param>
+    /// <param name="aColorTool"></param>
+    void visit(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw)
+    {
+        //Handle(TDataStd_Name) aName;
+        //if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {
+        //    std::cout << "  Name: " << aName->Get() << std::endl;
+        //}
+        Handle(XCAFDoc_ShapeTool)& aShapeTool = XCAFDoc_DocumentTool::ShapeTool(theLabel);
+        if (!theLabel.HasChild() && aShapeTool->IsShape(theLabel))
+        {
+            Display(theLabel, IsBoundaryDraw);
+            return;
+        }
+        for (TDF_ChildIterator iter(theLabel, Standard_False); iter.More(); iter.Next())
+        {
+            if (iter.Value().IsNull())
+                continue;
+            visit(iter.Value(), IsBoundaryDraw);
+        }
+    }
+
+    void Display(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw) {
+        Handle(TDataStd_Name) aName;
+        if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {
+            std::cout << "  Name: " << aName->Get() << std::endl;
+        }
+        Handle(TPrsStd_AISPresentation) aPrs;
+        if (!theLabel.FindAttribute(TPrsStd_AISPresentation::GetID(), aPrs)) {
+            aPrs = TPrsStd_AISPresentation::Set(theLabel, XCAFPrs_Driver::GetID());
+            aPrs->SetMaterial(Graphic3d_NOM_PLASTIC);
+            aPrs->Display(Standard_True);
+
+            Handle(AIS_InteractiveObject) anInteractive = aPrs->GetAIS();
+            if (!anInteractive.IsNull()) {
+                // get drawer
+                const Handle(Prs3d_Drawer)& aDrawer = anInteractive->Attributes();
+                // default attributes
+                Standard_Real aRed = 0.0;
+                Standard_Real aGreen = 0.0;
+                Standard_Real aBlue = 0.0;
+                Standard_Real aWidth = 1.0;
+                Aspect_TypeOfLine aLineType = Aspect_TOL_SOLID;
+                // turn boundaries on/off
+                Standard_Boolean isBoundaryDraw = Standard_True;
+                aDrawer->SetFaceBoundaryDraw(isBoundaryDraw);
+                Quantity_Color aColor(aRed, aGreen, aBlue, Quantity_TOC_RGB);
+                Handle(Prs3d_LineAspect) aBoundaryAspect = new Prs3d_LineAspect(aColor, aLineType, aWidth);
+                aDrawer->SetFaceBoundaryAspect(aBoundaryAspect);
+                mainAISContext()->Display(anInteractive, Standard_True);
+            }
+            //mainAISContext()->UpdateCurrentViewer();
+        }
+    }
+
+
     /// <summary>
     ///Import Iges file
     /// </summary>
@@ -905,7 +979,7 @@ public:
                 isResult = ImportBrep(aFilename);
                 break;
             case 1:
-                isResult = ImportStep(aFilename);
+                isResult = ImportStep(aFilename, true, true, true, true, false, true, true);// ImportStep(aFilename);
                 break;
             case 2:
                 isResult = ImportIges(aFilename);
@@ -941,7 +1015,7 @@ public:
         return isResult;
     }
 
-#pragma endregion
+    #pragma endregion
 
     /// <summary>
     ///Initialize OCCTProxy
@@ -953,37 +1027,10 @@ public:
         mainAISContext() = NULL;
     }
 
-    private:
-        //Standard_Boolean FillDicWS(NCollection_DataMap<TCollection_AsciiString, Handle(STEPCAFControl_ExternFile)>& dicFile) {
-        //    ClearDicWS();
-        //    if (dicFile.IsEmpty()) {
-        //        return Standard_False;
-        //    }
-        //    Handle(STEPCAFControl_ExternFile) EF;
-        //    NCollection_DataMap<TCollection_AsciiString, Handle(STEPCAFControl_ExternFile)>::Iterator DicEFIt(dicFile);
-        //    for (; DicEFIt.More(); DicEFIt.Next()) {
-        //        TCollection_AsciiString filename = DicEFIt.Key();
-        //        EF = DicEFIt.Value();
-        //        AddWS(filename, EF->GetWS());
-        //    }
-        //    return Standard_True;
-        //}
-        //void AddWS(TCollection_AsciiString filename,
-        //    const Handle(XSControl_WorkSession)& WS) {
-        //    WS->SetVars(new XSDRAW_Vars); // support of DRAW variables
-        //    thedictws.Bind(filename, WS);
-        //}
-        //Standard_Boolean ClearDicWS() {
-        //    thedictws.Clear();
-        //    return Standard_True;
-        //}
-
 private:
 
     NCollection_Haft<Handle(V3d_Viewer)>             mainViewer;
     NCollection_Haft<Handle(V3d_View)>               mainView;
     NCollection_Haft<Handle(AIS_InteractiveContext)> mainAISContext;
-    NCollection_Haft<Handle(OpenGl_GraphicDriver)>  mainGraphicDriver;
-
-    //NCollection_DataMap<TCollection_AsciiString, Handle(Standard_Transient)> thedictws;
+    NCollection_Haft<Handle(OpenGl_GraphicDriver)>   mainGraphicDriver;
 };
