@@ -14,8 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _xgp_TrsfForm_HeaderFile
+#define _xgp_TrsfForm_HeaderFile
 //! Identifies the type of a geometric transformation.
-enum xgp_TrsfForm
+[FlagsAttribute]
+[Serializable]
+public enum class xgp_TrsfForm
 {
   gp_Identity,     //!< No transformation (matrix is identity)
   gp_Rotation,     //!< Rotation
@@ -27,3 +31,4 @@ enum xgp_TrsfForm
   gp_CompoundTrsf, //!< Combination of the above transformations
   gp_Other         //!< Transformation with not-orthogonal matrix
 };
+#endif _xgp_TrsfForm_HeaderFile

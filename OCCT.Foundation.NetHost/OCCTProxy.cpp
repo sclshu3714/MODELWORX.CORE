@@ -797,7 +797,8 @@ public:
             Display(theLabel, IsBoundaryDraw);
             return;
         }
-        for (TDF_ChildIterator iter(theLabel, Standard_False); iter.More(); iter.Next()) {
+        TDF_ChildIterator iter;
+        for (iter.Initialize(theLabel, Standard_False); iter.More(); iter.Next()) {
             if (iter.Value().IsNull())
                 continue;
             visit(iter.Value(), IsBoundaryDraw);

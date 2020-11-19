@@ -285,6 +285,29 @@ Class TKLCAF.XTDF_ChildIterator: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Value(TDF_Label*): PrivateScope, Public, HideBySig
     EditValue(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TDF_IDFilter*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TDF_IDFilter* Handle 'get ' : 
+  Methods:
+    GetIDFilter(TDF_IDFilter*): PrivateScope, Public, HideBySig
+    IgnoreAll(): PrivateScope, Public, HideBySig
+    IgnoreAll(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    Keep(NCollection_List<Standard_GUID>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Keep(XStandard_GUID): PrivateScope, Public, HideBySig
+    Ignore(NCollection_List<Standard_GUID>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Ignore(XStandard_GUID): PrivateScope, Public, HideBySig
+    IsKept(XTDF_Attribute): PrivateScope, Public, HideBySig
+    IsKept(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    IsKept(XStandard_GUID): PrivateScope, Public, HideBySig
+    IsIgnored(XTDF_Attribute): PrivateScope, Public, HideBySig
+    IsIgnored(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    IsIgnored(XStandard_GUID): PrivateScope, Public, HideBySig
+    IDList(NCollection_List<Standard_GUID>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Copy(XTDF_IDFilter): PrivateScope, Public, HideBySig
+    Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<TDocStd_Document> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

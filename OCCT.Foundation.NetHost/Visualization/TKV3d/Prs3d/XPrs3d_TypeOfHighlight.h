@@ -11,11 +11,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_TypeOfHighlight_HeaderFile
-#define _Prs3d_TypeOfHighlight_HeaderFile
+#ifndef _XPrs3d_TypeOfHighlight_HeaderFile
+#define _XPrs3d_TypeOfHighlight_HeaderFile
 
 //! Type of highlighting to apply specific style.
-enum Prs3d_TypeOfHighlight
+[FlagsAttribute]
+[Serializable]
+public enum class XPrs3d_TypeOfHighlight
 {
   Prs3d_TypeOfHighlight_None = 0,       //!< no highlighting
   Prs3d_TypeOfHighlight_Selected,       //!< entire object is selected
@@ -26,4 +28,4 @@ enum Prs3d_TypeOfHighlight
   Prs3d_TypeOfHighlight_NB
 };
 
-#endif // _Prs3d_TypeOfHighlight_HeaderFile
+#endif // _XPrs3d_TypeOfHighlight_HeaderFile

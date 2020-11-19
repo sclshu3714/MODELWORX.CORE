@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopAbs_ShapeEnum_HeaderFile
-#define _TopAbs_ShapeEnum_HeaderFile
+#ifndef _XTopAbs_ShapeEnum_HeaderFile
+#define _XTopAbs_ShapeEnum_HeaderFile
 
 //! Identifies various topological shapes. This
 //! enumeration allows you to use dynamic typing of shapes.
@@ -42,17 +42,20 @@
 //! - EDGE: A single dimensional shape corresponding
 //! to a curve, and bound by a vertex at each extremity.
 //! - VERTEX: A zero-dimensional shape corresponding to a point in geometry.
-enum TopAbs_ShapeEnum
+
+[FlagsAttribute]
+[Serializable]
+public enum class XTopAbs_ShapeEnum
 {
-TopAbs_COMPOUND,
-TopAbs_COMPSOLID,
-TopAbs_SOLID,
-TopAbs_SHELL,
-TopAbs_FACE,
-TopAbs_WIRE,
-TopAbs_EDGE,
-TopAbs_VERTEX,
-TopAbs_SHAPE
+	TopAbs_COMPOUND,
+	TopAbs_COMPSOLID,
+	TopAbs_SOLID,
+	TopAbs_SHELL,
+	TopAbs_FACE,
+	TopAbs_WIRE,
+	TopAbs_EDGE,
+	TopAbs_VERTEX,
+	TopAbs_SHAPE
 };
 
-#endif // _TopAbs_ShapeEnum_HeaderFile
+#endif // _XTopAbs_ShapeEnum_HeaderFile

@@ -217,6 +217,27 @@
     <Filter Include="源文件\DataExchange\TKXCAF\XCAFPrs">
       <UniqueIdentifier>{c9adab4d-f342-4855-906e-0de78fbf3d22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\Graphic3d">
+      <UniqueIdentifier>{0ae6dfc2-a531-4f4c-aef0-a80e22c20c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\Prs3d">
+      <UniqueIdentifier>{dca35983-27eb-45db-873f-915339725c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKG3d\TopAbs">
+      <UniqueIdentifier>{113bda65-a1fe-4558-a0c1-50539b29f3a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKSTEP">
+      <UniqueIdentifier>{c1e0fb98-143d-43e0-bcc7-55818cc6d4ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKSTEP\STEPConstruct">
+      <UniqueIdentifier>{1a1a660f-19f2-4273-95c7-58bcf0fb374f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKSTEP">
+      <UniqueIdentifier>{57be2ee2-588f-48ed-a747-ef231aff9f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKSTEP\STEPConstruct">
+      <UniqueIdentifier>{31fae613-8493-4a2e-bca9-deb4e7bb397e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -399,6 +420,27 @@
     <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h">
       <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfMaterial.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_TypeOfHighlight.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_ShapeEnum.h">
+      <Filter>头文件\ModelingData\TKG3d\TopAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_EulerSequence.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_TrsfForm.h">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDList.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -575,6 +617,9 @@
     </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

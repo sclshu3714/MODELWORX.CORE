@@ -13,14 +13,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_IDList_HeaderFile
-#define TDF_IDList_HeaderFile
-
-#include <Standard_GUID.hxx>
+#ifndef XTDF_IDList_HeaderFile
+#define XTDF_IDList_HeaderFile
+#pragma once
+#include <TDF_IDList.hxx>
+#include <XStandard_GUID.h>
 #include <NCollection_List.hxx>
+using namespace TKernel;
+ref class TKernel::XStandard_GUID;
 
-typedef NCollection_List<Standard_GUID> TDF_IDList;
-typedef NCollection_List<Standard_GUID>::Iterator TDF_ListIteratorOfIDList;
+typedef NCollection_List<XStandard_GUID> XTDF_IDList;
+typedef NCollection_List<XStandard_GUID>::Iterator TDF_ListIteratorOfIDList;
 
 
 #endif

@@ -14,6 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _xgp_EulerSequence_HeaderFile
+#define _xgp_EulerSequence_HeaderFile
+
 //! Enumerates all 24 possible variants of generalized
 //! Euler angles, defining general 3d rotation by three
 //! rotations around main axes of coordinate system,
@@ -30,8 +33,9 @@
 //! Two specific values are provided for most frequently used
 //! conventions: classic Euler angles (intrinsic ZXZ) and
 //! yaw-pitch-roll (intrinsic ZYX).
-
-enum xgp_EulerSequence
+[FlagsAttribute]
+[Serializable]
+public enum class xgp_EulerSequence
 {
   //! Classic Euler angles, alias to Intrinsic_ZXZ
   gp_EulerAngles,
@@ -69,3 +73,4 @@ enum xgp_EulerSequence
   gp_Intrinsic_ZXZ,
   gp_Intrinsic_ZYZ
 };
+#endif _xgp_EulerSequence_HeaderFile

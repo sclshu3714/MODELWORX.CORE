@@ -202,6 +202,8 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDList.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.h" />
@@ -227,6 +229,7 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Dir2d.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Elips2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_EulerSequence.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_GTrsf2d.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Hypr.h" />
@@ -247,6 +250,7 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Torus.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Trsf2d.h" />
+    <ClInclude Include="FoundationClasses\TKMath\gp\xgp_TrsfForm.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_TrsfNLerp.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Vec2d.h" />
@@ -257,13 +261,17 @@
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
+    <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_ShapeEnum.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfMaterial.h" />
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_TypeOfHighlight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.cpp" />
