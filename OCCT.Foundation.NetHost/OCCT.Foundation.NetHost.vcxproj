@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDF;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDocStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDataStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKVCAF\TPrsStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\TCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <CompileAsManaged>true</CompileAsManaged>
@@ -199,7 +199,20 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.h" />
+    <ClInclude Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.h" />
+    <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h" />
+    <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h" />
+    <ClInclude Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.h" />
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h" />
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_GUID.h" />
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_Helper.h" />
+    <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax2.h" />
@@ -248,6 +261,19 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.cpp" />
+    <ClCompile Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.cpp" />
+    <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp" />
+    <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp" />
+    <ClCompile Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.cpp" />
+    <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_GUID.cpp" />
+    <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_Helper.cpp" />
+    <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2.cpp" />

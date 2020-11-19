@@ -48,10 +48,15 @@ namespace TKV3d
 		XAIS_InteractiveObject(void);
 
 		//!
-		XAIS_InteractiveObject(AIS_InteractiveObject* pos);
+		XAIS_InteractiveObject(Handle(AIS_InteractiveObject) pos);
 
 		//!
 		~XAIS_InteractiveObject();
+
+		//!
+		void SetNativeHandle(Handle(AIS_InteractiveObject) pos);
+
+		Handle(AIS_InteractiveObject) GetInteractiveObject();
 
 		//! Returns the kind of Interactive Object; AIS_KOI_None by default.
 		virtual AIS_KindOfInteractive Type() { return AIS_KOI_None; }
@@ -123,7 +128,6 @@ namespace TKV3d
 		//! Dumps the content of me into the stream
 		virtual void DumpJson(Standard_OStream theOStream, Standard_Integer theDepth);
 
-		virtual  Handle(Standard_Transient)* GetAIS_InteractiveObject() = 0;
 
 		/// <summary>
 		/// 本地句柄

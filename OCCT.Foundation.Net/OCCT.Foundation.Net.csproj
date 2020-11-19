@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataExchange\TKXSBase\IFSelect\IFSelect_ReturnStatus.cs" />
     <Compile Include="Enums\OCCTEnum.cs" />
     <Compile Include="Events\OperationEvents.cs" />
     <Compile Include="FoundationClasses\TKMath\gp\gp.cs" />
@@ -57,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationFramework\" />
-    <Folder Include="DataExchange\" />
     <Folder Include="ModelingAlgorithms\" />
   </ItemGroup>
   <ItemGroup>

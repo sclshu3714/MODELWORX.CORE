@@ -44,6 +44,7 @@
 #include <TPrsStd_AISPresentation.hxx>
 #include <XCAFPrs_Driver.hxx>
 #include <TNaming_NamedShape.hxx>
+#include <XAIS_InteractiveContext.h>
 
 // list of required OCCT libraries
 #pragma comment(lib, "TKernel.lib")
@@ -59,6 +60,8 @@
 #pragma comment(lib, "TKVrml.lib")
 #pragma comment(lib, "TKLCAF.lib")
 class XCAFDoc_ShapeTool;
+using namespace TKV3d;
+ref class TKV3d::XAIS_InteractiveContext;
 
 //! Auxiliary tool for converting C# string into UTF-8 string.
 static TCollection_AsciiString toAsciiString(String^ theString) {
@@ -672,6 +675,15 @@ public:
     Handle(AIS_InteractiveContext) GetContext(void) {
         return mainAISContext();
     }
+
+    /// <summary>
+     ///Get AISContext
+     /// </summary>
+    XAIS_InteractiveContext^ GetInteractiveContext(void)
+    {
+        return gcnew XAIS_InteractiveContext(mainAISContext());
+    }
+
 #pragma endregion
 
 public:
@@ -765,7 +777,6 @@ public:
         if (aStatus != IFSelect_RetDone || !aReader.Transfer(aDoc)) {
             return false;
         }
-          
         TDF_Label aRootLabel = aDoc->Main();
         TDF_Label RootLabel = aRootLabel.Root();
         visit(RootLabel, Standard_True);
@@ -775,28 +786,28 @@ public:
     /// 遍历结构
     /// </summary>
     /// <param name="theLabel"></param>
-    /// <param name="aShapeTool"></param>
-    /// <param name="aColorTool"></param>
+    /// <param name="IsBoundaryDraw"></param>
     void visit(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw)
     {
         //Handle(TDataStd_Name) aName;
         //if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {
         //    std::cout << "  Name: " << aName->Get() << std::endl;
         //}
-        Handle(XCAFDoc_ShapeTool)& aShapeTool = XCAFDoc_DocumentTool::ShapeTool(theLabel);
-        if (!theLabel.HasChild() && aShapeTool->IsShape(theLabel))
-        {
+        if (!theLabel.HasChild()) {
             Display(theLabel, IsBoundaryDraw);
             return;
         }
-        for (TDF_ChildIterator iter(theLabel, Standard_False); iter.More(); iter.Next())
-        {
+        for (TDF_ChildIterator iter(theLabel, Standard_False); iter.More(); iter.Next()) {
             if (iter.Value().IsNull())
                 continue;
             visit(iter.Value(), IsBoundaryDraw);
         }
     }
-
+    /// <summary>
+    /// 显示图形
+    /// </summary>
+    /// <param name="theLabel"></param>
+    /// <param name="IsBoundaryDraw"></param>
     void Display(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw) {
         Handle(TDataStd_Name) aName;
         if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {

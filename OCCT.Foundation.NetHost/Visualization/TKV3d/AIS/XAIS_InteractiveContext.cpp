@@ -91,6 +91,11 @@ namespace TKV3d {
         NativeHandle() = new AIS_InteractiveContext(MainViewer);
     }
 
+    //! Constructs the interactive context object defined by the principal viewer MainViewer.
+    XAIS_InteractiveContext::XAIS_InteractiveContext(Handle(AIS_InteractiveContext) pos) {
+        NativeHandle() = pos;
+    };
+
     //=======================================================================
     //function : ~AIS_InteractiveContext
     //purpose  :
@@ -246,6 +251,20 @@ namespace TKV3d {
         NativeHandle()->Display(theIObj, theDispMode, theSelectionMode, theToUpdateViewer, theDispStatus);
     };
 
+    //! Displays the object in this Context using default Display Mode.
+        //! This will be the object's default display mode, if there is one. Otherwise, it will be the context mode.
+        //! The Interactive Object's default selection mode is activated if GetAutoActivateSelection() is TRUE. In general, this is 0.
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
+        NativeHandle()->Display(theIObj->GetInteractiveObject(), theToUpdateViewer);
+    };
+
+    //! Sets status, display mode and selection mode for specified Object
+        //! If theSelectionMode equals -1, theIObj will not be activated: it will be displayed but will not be selectable.
+        //! AIS_DisplayStatus theDispStatus
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Integer theDispStatus) {
+        NativeHandle()->Display(theIObj->GetInteractiveObject(), theDispMode, theSelectionMode, theToUpdateViewer, AIS_DisplayStatus(theDispStatus));
+    };
+
     //=======================================================================
     //function : Load
     //purpose  :
@@ -255,6 +274,24 @@ namespace TKV3d {
         NativeHandle()->Load(theIObj, theSelMode);
     };
 
+    //! Allows you to load the Interactive Object with a given selection mode,
+        //! and/or with the desired decomposition option, whether the object is visualized or not.
+        //! The loaded objects will be selectable but displayable in highlighting only when detected by the Selector.
+    void XAIS_InteractiveContext::Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode) {
+        NativeHandle()->Load(theObj->GetInteractiveObject(), theSelectionMode);
+    };
+
+    //! AIS_DisplayStatus   theDispStatus
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Boolean theToAllowDecomposition, Standard_Integer theDispStatus) {
+        (void)theToAllowDecomposition;
+        NativeHandle()->Display(theIObj->GetInteractiveObject(), theDispMode, theSelectionMode, theToUpdateViewer, AIS_DisplayStatus(theDispStatus));
+    }
+
+    void XAIS_InteractiveContext::Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode, Standard_Boolean) {
+        NativeHandle()->Load(theObj->GetInteractiveObject(), theSelectionMode);
+    }
+
+
     //=======================================================================
     //function : Erase
     //purpose  :
@@ -262,6 +299,12 @@ namespace TKV3d {
     void XAIS_InteractiveContext::Erase(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->Erase(theIObj, theToUpdateViewer);
+    };
+
+    //! Hides the object. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
+        //! To show hidden objects, use Display().
+    void XAIS_InteractiveContext::Erase(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
+        NativeHandle()->Erase(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
@@ -297,6 +340,12 @@ namespace TKV3d {
         NativeHandle()->ClearPrs(theIObj, theMode, theToUpdateViewer);
     };
 
+    //! Empties the graphic presentation of the mode indexed by aMode.
+        //! Warning! Removes theIObj. theIObj is still active if it was previously activated.
+    void XAIS_InteractiveContext::ClearPrs(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer) {
+        NativeHandle()->ClearPrs(theIObj->GetInteractiveObject(), theMode, theToUpdateViewer);
+    };
+
 
     //=======================================================================
     //function : EraseSelected
@@ -323,6 +372,11 @@ namespace TKV3d {
     void XAIS_InteractiveContext::Remove(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->Remove(theIObj, theToUpdateViewer);
+    };
+
+    //! Removes Object from every viewer.
+    void XAIS_InteractiveContext::Remove(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
+        NativeHandle()->Remove(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
@@ -440,7 +494,7 @@ namespace TKV3d {
     //=======================================================================
     void XAIS_InteractiveContext::SetDisplayPriority(Handle(AIS_InteractiveObject) theIObj, Standard_Integer thePriority)
     {
-        return  NativeHandle()->SetDisplayPriority(theIObj, thePriority);
+         NativeHandle()->SetDisplayPriority(theIObj, thePriority);
     };
 
     //=======================================================================
@@ -449,7 +503,13 @@ namespace TKV3d {
     //=======================================================================
     void XAIS_InteractiveContext::Redisplay(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes)
     {
-        return  NativeHandle()->Redisplay(theIObj, theToUpdateViewer, theAllModes);
+         NativeHandle()->Redisplay(theIObj, theToUpdateViewer, theAllModes);
+    };
+
+    //! Recomputes the seen parts presentation of the Object.
+        //! If theAllModes equals true, all presentations are present in the object even if unseen.
+    void XAIS_InteractiveContext::Redisplay(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes) {
+        NativeHandle()->Redisplay(theIObj->GetInteractiveObject(), theToUpdateViewer, theAllModes);
     };
 
     //=======================================================================
@@ -469,6 +529,13 @@ namespace TKV3d {
     {
         NativeHandle()->RecomputePrsOnly(theIObj, theToUpdateViewer, theAllModes);
     };
+
+    //! Recomputes the displayed presentations, flags the others.
+        //! Doesn't update presentations.
+    void XAIS_InteractiveContext::RecomputePrsOnly(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes) {
+        NativeHandle()->RecomputePrsOnly(theIObj->GetInteractiveObject(), theToUpdateViewer, theAllModes);
+    };
+
     //=======================================================================
     //function : RecomputeSelectionOnly
     //purpose  : 
@@ -478,6 +545,12 @@ namespace TKV3d {
         NativeHandle()->RecomputeSelectionOnly(theIO);
     };
 
+    //! Recomputes the active selections, flags the others.
+        //! Doesn't update presentations.
+    void XAIS_InteractiveContext::RecomputeSelectionOnly(XAIS_InteractiveObject^ anIObj) {
+        NativeHandle()->RecomputeSelectionOnly(anIObj->GetInteractiveObject());
+    };
+
     //=======================================================================
     //function : Update
     //purpose  :
@@ -485,6 +558,13 @@ namespace TKV3d {
     void XAIS_InteractiveContext::Update(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theUpdateViewer)
     {
         NativeHandle()->Update(theIObj, theUpdateViewer);
+    };
+
+    //! Updates displayed interactive object by checking and recomputing its flagged as "to be recomputed" presentation and selection structures.
+        //! This method does not force any recomputation on its own.
+        //! The method recomputes selections even if they are loaded without activation in particular selector.
+    void XAIS_InteractiveContext::Update(XAIS_InteractiveObject^ theIObj, Standard_Boolean theUpdateViewer) {
+        NativeHandle()->Update(theIObj->GetInteractiveObject(), theUpdateViewer);
     };
 
     //! Returns highlight style settings.   enum:Prs3d_TypeOfHighlight

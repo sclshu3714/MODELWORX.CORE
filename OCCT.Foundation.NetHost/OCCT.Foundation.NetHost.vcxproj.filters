@@ -145,6 +145,78 @@
     <Filter Include="源文件\FoundationClasses\TKMath\TopLoc">
       <UniqueIdentifier>{1f1e1d7b-a2a6-4e7f-9a58-71d5b93bca15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\DataExchange\TKXDESTEP">
+      <UniqueIdentifier>{dd8bc1d5-08bb-4f17-889e-eb76cf4c94ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXDESTEP">
+      <UniqueIdentifier>{832700f5-25b3-468d-8523-62058e2d6857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKXDESTEP\STEPCAFControl">
+      <UniqueIdentifier>{6ade0323-8356-4ba5-a6ae-1c6e03c4c80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXDESTEP\STEPCAFControl">
+      <UniqueIdentifier>{f1720542-4743-44bd-a778-acac86f336d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKLCAF">
+      <UniqueIdentifier>{35a44a2c-cc5f-45ce-90c5-548693af3d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKLCAF\TDF">
+      <UniqueIdentifier>{c712598e-51af-4375-a22e-f3c5662aecaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKLCAF">
+      <UniqueIdentifier>{8e78fa74-7188-4013-aa8c-eb81b5d75ab6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKLCAF\TDF">
+      <UniqueIdentifier>{94b98ecb-f206-48ad-ab8c-3166fee8abd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKLCAF\TDocStd">
+      <UniqueIdentifier>{a842bb21-7b5e-4cb8-bccd-704d7b7f9a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKLCAF\TDocStd">
+      <UniqueIdentifier>{291a7e01-1824-46bd-a875-c188e3194a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKernel\TCollection">
+      <UniqueIdentifier>{79a3259b-c709-482b-a8e2-cdd110c2499c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKernel\TCollection">
+      <UniqueIdentifier>{c0e6c59c-744c-40d1-9185-b888409abe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKXCAF">
+      <UniqueIdentifier>{3148e359-e437-40d5-a887-e42fb9b8e78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKXCAF\XCAFApp">
+      <UniqueIdentifier>{3f4676fb-65c4-417e-afdc-e9845b59cdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXCAF">
+      <UniqueIdentifier>{9682360d-2d44-4e32-aeb0-927511684afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXCAF\XCAFApp">
+      <UniqueIdentifier>{90820db5-45c0-4abb-8746-3827ed63663a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKLCAF\TDataStd">
+      <UniqueIdentifier>{54dd68ce-570d-42d1-80b8-79dd4c34eb3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKLCAF\TDataStd">
+      <UniqueIdentifier>{692c6461-3005-4db0-98fe-e03c3cec191b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKVCAF">
+      <UniqueIdentifier>{439e86e5-4720-4f16-96b7-45545c9871fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ApplicationFramework\TKVCAF\TPrsStd">
+      <UniqueIdentifier>{3b79c802-7fa8-42b7-8ede-0aaeeb4f2f55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKVCAF">
+      <UniqueIdentifier>{0365a8fb-3922-4b52-b08a-c3fc9f446178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ApplicationFramework\TKVCAF\TPrsStd">
+      <UniqueIdentifier>{4ae27774-a9e6-4a39-8bd0-ddce9ebd4425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKXCAF\XCAFPrs">
+      <UniqueIdentifier>{1318920c-0821-44f7-bda0-787c280177f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXCAF\XCAFPrs">
+      <UniqueIdentifier>{c9adab4d-f342-4855-906e-0de78fbf3d22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -288,6 +360,45 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
     </ClInclude>
+    <ClInclude Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.h">
+      <Filter>头文件\DataExchange\TKXDESTEP\STEPCAFControl</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.h">
+      <Filter>头文件\FoundationClasses\TKernel\TCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_Helper.h">
+      <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFApp</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_GUID.h">
+      <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDataStd</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.h">
+      <Filter>头文件\ApplicationFramework\TKVCAF\TPrsStd</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -425,6 +536,45 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.cpp">
+      <Filter>源文件\DataExchange\TKXDESTEP\STEPCAFControl</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\TCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_Helper.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFApp</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_GUID.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDataStd</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.cpp">
+      <Filter>源文件\ApplicationFramework\TKVCAF\TPrsStd</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@ namespace TKV3d {
 	};
 
 	//!
-	XAIS_InteractiveObject::XAIS_InteractiveObject(AIS_InteractiveObject* pos) {
+	XAIS_InteractiveObject::XAIS_InteractiveObject(Handle(AIS_InteractiveObject) pos) {
 		NativeHandle() = pos;
 	};
 
@@ -16,6 +16,15 @@ namespace TKV3d {
 		NativeHandle() = NULL;
 	};
 
+	//!
+	void XAIS_InteractiveObject::SetNativeHandle(Handle(AIS_InteractiveObject) pos) {
+		NativeHandle() = pos;
+	};
+
+
+	Handle(AIS_InteractiveObject) XAIS_InteractiveObject::GetInteractiveObject() {
+		return NativeHandle();
+	};
 
 	//! Updates the active presentation; if <AllModes> = Standard_True
 	//! all the presentations inside are recomputed.

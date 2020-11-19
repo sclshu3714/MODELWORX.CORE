@@ -21,6 +21,7 @@
 #include "xgp_Pnt.h"
 #include "XTopLoc_Location.h"
 #include "NCollection_Haft.h"
+#include "XAIS_InteractiveObject.h"
 
 #include <AIS_DataMapOfIOStatus.hxx>
 #include <AIS_DisplayMode.hxx>
@@ -74,12 +75,17 @@ namespace TKV3d
 {
     ref class TKMath::xgp_Pnt;
     ref class TKMath::XTopLoc_Location;
+    ref class XAIS_InteractiveObject;
     public ref class XAIS_InteractiveContext// : public Standard_Transient
     {
     public: //! @name object display management
 
         //! Constructs the interactive context object defined by the principal viewer MainViewer.
         XAIS_InteractiveContext(Handle(V3d_Viewer) MainViewer);
+
+
+        //! Constructs the interactive context object defined by the principal viewer MainViewer.
+        XAIS_InteractiveContext(Handle(AIS_InteractiveContext) pos);
 
         //! Destructor.
         virtual ~XAIS_InteractiveContext();
@@ -111,25 +117,48 @@ namespace TKV3d
         //! The Interactive Object's default selection mode is activated if GetAutoActivateSelection() is TRUE. In general, this is 0.
         void Display(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer);
 
+        //! Displays the object in this Context using default Display Mode.
+        //! This will be the object's default display mode, if there is one. Otherwise, it will be the context mode.
+        //! The Interactive Object's default selection mode is activated if GetAutoActivateSelection() is TRUE. In general, this is 0.
+        void Display(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer);
+
         //! Sets status, display mode and selection mode for specified Object
         //! If theSelectionMode equals -1, theIObj will not be activated: it will be displayed but will not be selectable.
         void Display(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, AIS_DisplayStatus theDispStatus);
+
+        //! Sets status, display mode and selection mode for specified Object
+        //! If theSelectionMode equals -1, theIObj will not be activated: it will be displayed but will not be selectable.
+        //! AIS_DisplayStatus theDispStatus
+        void Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Integer theDispStatus);
 
         //! Allows you to load the Interactive Object with a given selection mode,
         //! and/or with the desired decomposition option, whether the object is visualized or not.
         //! The loaded objects will be selectable but displayable in highlighting only when detected by the Selector.
         void Load(Handle(AIS_InteractiveObject) theObj, Standard_Integer theSelectionMode);
 
+        //! Allows you to load the Interactive Object with a given selection mode,
+        //! and/or with the desired decomposition option, whether the object is visualized or not.
+        //! The loaded objects will be selectable but displayable in highlighting only when detected by the Selector.
+        void Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode);
+
         void Display(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theDispMode,  Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Boolean theToAllowDecomposition, AIS_DisplayStatus theDispStatus) {
             (void)theToAllowDecomposition;
             Display(theIObj, theDispMode, theSelectionMode, theToUpdateViewer, theDispStatus);
         }
 
+        //! AIS_DisplayStatus   theDispStatus
+        void Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Boolean theToAllowDecomposition, Standard_Integer theDispStatus);
+
         void Load(Handle(AIS_InteractiveObject) theObj, Standard_Integer theSelectionMode, Standard_Boolean) { Load(theObj, theSelectionMode); }
 
+        void Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode, Standard_Boolean);
         //! Hides the object. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
         //! To show hidden objects, use Display().
         void Erase(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer);
+
+        //! Hides the object. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
+        //! To show hidden objects, use Display().
+        void Erase(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer);
 
         //! Hides all objects. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
         //! To show all hidden objects, use DisplayAll().
@@ -149,8 +178,16 @@ namespace TKV3d
         //! Warning! Removes theIObj. theIObj is still active if it was previously activated.
         void ClearPrs(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer);
 
+
+        //! Empties the graphic presentation of the mode indexed by aMode.
+        //! Warning! Removes theIObj. theIObj is still active if it was previously activated.
+        void ClearPrs(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer);
+
         //! Removes Object from every viewer.
         void Remove(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer);
+
+        //! Removes Object from every viewer.
+        void Remove(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer);
 
         //! Removes all the objects from Context.
         void RemoveAll(Standard_Boolean theToUpdateViewer);
@@ -158,6 +195,10 @@ namespace TKV3d
         //! Recomputes the seen parts presentation of the Object.
         //! If theAllModes equals true, all presentations are present in the object even if unseen.
         void Redisplay(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes);
+
+        //! Recomputes the seen parts presentation of the Object.
+        //! If theAllModes equals true, all presentations are present in the object even if unseen.
+        void Redisplay(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes);
 
         //! Recomputes the Prs/Selection of displayed objects of a given type and a given signature.
         //! if signature = -1  doesn't take signature criterion.
@@ -167,14 +208,27 @@ namespace TKV3d
         //! Doesn't update presentations.
         void RecomputePrsOnly(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes);
 
+        //! Recomputes the displayed presentations, flags the others.
+        //! Doesn't update presentations.
+        void RecomputePrsOnly(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes);
+
         //! Recomputes the active selections, flags the others.
         //! Doesn't update presentations.
         void RecomputeSelectionOnly(Handle(AIS_InteractiveObject) anIObj);
+
+        //! Recomputes the active selections, flags the others.
+        //! Doesn't update presentations.
+        void RecomputeSelectionOnly(XAIS_InteractiveObject^ anIObj);
 
         //! Updates displayed interactive object by checking and recomputing its flagged as "to be recomputed" presentation and selection structures.
         //! This method does not force any recomputation on its own.
         //! The method recomputes selections even if they are loaded without activation in particular selector.
         void Update(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theUpdateViewer);
+
+        //! Updates displayed interactive object by checking and recomputing its flagged as "to be recomputed" presentation and selection structures.
+        //! This method does not force any recomputation on its own.
+        //! The method recomputes selections even if they are loaded without activation in particular selector.
+        void Update(XAIS_InteractiveObject^ theIObj, Standard_Boolean theUpdateViewer);
 
     public: //! @name highlighting management
 

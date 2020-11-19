@@ -38,7 +38,8 @@ namespace OCCTPreview
         }
         int index = 0;
         private void btnSetModel_Click(object sender, EventArgs e) {
-            render.SetDisplayMode(index++);
+            index = index == 0 ? 1 : 0;
+            render.SetDisplayMode(index);
         }
     }
 }

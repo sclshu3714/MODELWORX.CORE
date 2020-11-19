@@ -27,11 +27,14 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnStep = new System.Windows.Forms.ToolStripButton();
-            this.btnBgColor = new System.Windows.Forms.ToolStripButton();
-            this.RWControl = new System.Windows.Forms.Panel();
             this.btnSetModel = new System.Windows.Forms.ToolStripButton();
+            this.btnBgColor = new System.Windows.Forms.ToolStripButton();
+            this.btnStep = new System.Windows.Forms.ToolStripButton();
+            this.RWControl = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tvwNode = new System.Windows.Forms.TreeView();
             this.toolStrip1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -43,19 +46,19 @@
             this.btnStep});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(800, 31);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnStep
+            // btnSetModel
             // 
-            this.btnStep.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStep.Image = ((System.Drawing.Image)(resources.GetObject("btnStep.Image")));
-            this.btnStep.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnStep.Name = "btnStep";
-            this.btnStep.Size = new System.Drawing.Size(29, 28);
-            this.btnStep.Text = "STEP";
-            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
+            this.btnSetModel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSetModel.Image = ((System.Drawing.Image)(resources.GetObject("btnSetModel.Image")));
+            this.btnSetModel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSetModel.Name = "btnSetModel";
+            this.btnSetModel.Size = new System.Drawing.Size(29, 28);
+            this.btnSetModel.Text = "显示模式";
+            this.btnSetModel.Click += new System.EventHandler(this.btnSetModel_Click);
             // 
             // btnBgColor
             // 
@@ -67,35 +70,59 @@
             this.btnBgColor.Text = "背景色";
             this.btnBgColor.Click += new System.EventHandler(this.btnBgColor_Click);
             // 
+            // btnStep
+            // 
+            this.btnStep.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnStep.Image = ((System.Drawing.Image)(resources.GetObject("btnStep.Image")));
+            this.btnStep.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnStep.Name = "btnStep";
+            this.btnStep.Size = new System.Drawing.Size(29, 28);
+            this.btnStep.Text = "STEP";
+            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
+            // 
             // RWControl
             // 
             this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RWControl.Location = new System.Drawing.Point(0, 27);
+            this.RWControl.Location = new System.Drawing.Point(229, 3);
             this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(800, 423);
+            this.RWControl.Size = new System.Drawing.Size(568, 413);
             this.RWControl.TabIndex = 1;
             // 
-            // btnSetModel
+            // tableLayoutPanel1
             // 
-            this.btnSetModel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSetModel.Image = ((System.Drawing.Image)(resources.GetObject("btnSetModel.Image")));
-            this.btnSetModel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSetModel.Name = "btnSetModel";
-            this.btnSetModel.Size = new System.Drawing.Size(29, 24);
-            this.btnSetModel.Text = "显示模式";
-            this.btnSetModel.Click += new System.EventHandler(this.btnSetModel_Click);
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.75F));
+            this.tableLayoutPanel1.Controls.Add(this.tvwNode, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.RWControl, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 31);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 419);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // tvwNode
+            // 
+            this.tvwNode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvwNode.Location = new System.Drawing.Point(3, 3);
+            this.tvwNode.Name = "tvwNode";
+            this.tvwNode.Size = new System.Drawing.Size(220, 413);
+            this.tvwNode.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.RWControl);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
             this.Text = "OCCT";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +135,8 @@
         private System.Windows.Forms.ToolStripButton btnBgColor;
         private System.Windows.Forms.Panel RWControl;
         private System.Windows.Forms.ToolStripButton btnSetModel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TreeView tvwNode;
     }
 }
 

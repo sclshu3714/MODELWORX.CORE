@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OCCT.Foundation.Net;
+using TKXDESTEP;
+using TKLCAF;
+using TKXCAF;
+using TKVCAF;
+using TKV3d;
 
 namespace OCCT.WinForms.Net
 {
@@ -16,11 +21,11 @@ namespace OCCT.WinForms.Net
         #region 构型
         public RenderWindow() {
             InitializeComponent();
-			OCCTView = new OCCTProxy();
-			IsInitViewer = OCCTView.InitViewer(this.Handle);
-			if(!IsInitViewer) {
-				MessageBox.Show("初始化图形失败");
-			}
+            OCCTView = new OCCTProxy();
+            IsInitViewer = OCCTView.InitViewer(this.Handle);
+            if (!IsInitViewer) {
+                MessageBox.Show("初始化图形失败");
+            }
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
@@ -40,10 +45,10 @@ namespace OCCT.WinForms.Net
         }
 
         public RenderWindow(Control parent) : this() {
-			if(parent != null) {
-				parent.Controls.Add(this);
-				Dock = DockStyle.Fill;
-			}
+            if (parent != null) {
+                parent.Controls.Add(this);
+                Dock = DockStyle.Fill;
+            }
         }
         #endregion
 
@@ -65,7 +70,7 @@ namespace OCCT.WinForms.Net
             //if(mCanvas != null) {
             //	mCanvas.GetContext().RequestUpdate(EnumUpdateFlags.Camera);
             //}
-            if(IsInitViewer) {
+            if (IsInitViewer) {
                 OCCTView.RedrawView();
                 OCCTView.UpdateView();
             }
@@ -76,9 +81,9 @@ namespace OCCT.WinForms.Net
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RenderWindow_KeyDown(object sender, KeyEventArgs e) {
-            if(e.Shift)
+            if (e.Shift)
                 myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
-            if(e.Control)
+            if (e.Control)
                 myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Ctrl;
             if (e.Alt)
                 myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Alt;
@@ -98,24 +103,24 @@ namespace OCCT.WinForms.Net
         /// <param name="e"></param>
         private void RenderWindow_MouseDown(object sender, MouseEventArgs e) {
             //InputHandler.MouseDown(mCanvas, e, Control.ModifierKeys);
-            switch(e.Button) {
+            switch (e.Button) {
                 case MouseButtons.Left:
                     #region 鼠标左键按下
                     myXmin = e.X; myYmin = e.Y;
                     myXmax = e.X; myYmax = e.Y;
-                    if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
                         // start the dinamic zooming....
                         myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
                     else {
-                        switch(myCurrentMode) {
+                        switch (myCurrentMode) {
                             case CurrentAction3d.CurAction3d_Nothing:
-                                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                                     MultiDragEvent(myXmax, myYmax, -1);
                                 else
                                     DragEvent(myXmax, myYmax, -1);
                                 break;
                             case CurrentAction3d.CurAction3d_DynamicRotation:
-                                if(!myDegenerateModeIsOn)
+                                if (!myDegenerateModeIsOn)
                                     OCCTView.SetDegenerateModeOn();
                                 //start the rotation
                                 OCCTView.StartRotation(e.X, e.Y);
@@ -132,8 +137,8 @@ namespace OCCT.WinForms.Net
                 case MouseButtons.Right:
                     #region 鼠标右键按下
                     //MessageBox.Show("right mouse button is down");
-                    if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
-                        if(!myDegenerateModeIsOn)
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                        if (!myDegenerateModeIsOn)
                             OCCTView.SetDegenerateModeOn();
                         OCCTView.StartRotation(e.X, e.Y);
                     }
@@ -144,7 +149,7 @@ namespace OCCT.WinForms.Net
                 case MouseButtons.Middle:
                     #region 鼠标中键按下
                     {
-                        if(!myDegenerateModeIsOn)
+                        if (!myDegenerateModeIsOn)
                             OCCTView.SetDegenerateModeOn();
                         myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
                     }
@@ -161,7 +166,7 @@ namespace OCCT.WinForms.Net
         /// <param name="e"></param>
 		private void RenderWindow_MouseUp(object sender, MouseEventArgs e) {
             //InputHandler.MouseUp(mCanvas, e, Control.ModifierKeys);
-            switch(e.Button) {
+            switch (e.Button) {
                 case MouseButtons.Left:
                     #region 鼠标左键弹起
                     if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
@@ -185,11 +190,11 @@ namespace OCCT.WinForms.Net
                         myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
                         return;
                     }
-                    switch(myCurrentMode) {
+                    switch (myCurrentMode) {
                         case CurrentAction3d.CurAction3d_Nothing:
-                            if(e.X == myXmin && e.Y == myYmin) {
+                            if (e.X == myXmin && e.Y == myYmin) {
                                 myXmax = e.X; myYmax = e.Y;
-                                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                                     MultiInputEvent(myXmax, myYmax);
                                 else
                                     InputEvent(myXmax, myYmax);
@@ -197,7 +202,7 @@ namespace OCCT.WinForms.Net
                             else {
                                 myXmax = e.X; myYmax = e.Y;
                                 DrawRectangle(false);
-                                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                                     MultiDragEvent(myXmax, myYmax, 1);
                                 else
                                     DragEvent(myXmax, myYmax, 1);
@@ -210,7 +215,7 @@ namespace OCCT.WinForms.Net
                             myXmax = e.X; myYmax = e.Y;
                             DrawRectangle(false);
                             int ValZWMin = 1;
-                            if(Math.Abs(myXmax - myXmin) > ValZWMin && Math.Abs(myXmax - myYmax) > ValZWMin)
+                            if (Math.Abs(myXmax - myXmin) > ValZWMin && Math.Abs(myXmax - myYmax) > ValZWMin)
                                 OCCTView.WindowFitAll(myXmin, myYmin, myXmax, myYmax);
                             this.Cursor = System.Windows.Forms.Cursors.Default;
                             //IE_WinForms.Form1 f = (IE_WinForms.Form1)this.ParentForm;
@@ -226,7 +231,7 @@ namespace OCCT.WinForms.Net
                             break;
                         case CurrentAction3d.CurAction3d_DynamicRotation:
                             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-                            if(!myDegenerateModeIsOn) {
+                            if (!myDegenerateModeIsOn) {
                                 OCCTView.SetDegenerateModeOff();
                                 myDegenerateModeIsOn = false;
                             }
@@ -243,7 +248,7 @@ namespace OCCT.WinForms.Net
                     break;
                 case MouseButtons.Right:
                     #region 鼠标右键弹起
-                    if(!myDegenerateModeIsOn) {
+                    if (!myDegenerateModeIsOn) {
                         OCCTView.SetDegenerateModeOff();
                         myDegenerateModeIsOn = false;
                     }
@@ -255,7 +260,7 @@ namespace OCCT.WinForms.Net
                     break;
                 case MouseButtons.Middle:
                     #region 鼠标中键弹出
-                    if(!myDegenerateModeIsOn) {
+                    if (!myDegenerateModeIsOn) {
                         OCCTView.SetDegenerateModeOff();
                         myDegenerateModeIsOn = false;
                     }
@@ -277,9 +282,9 @@ namespace OCCT.WinForms.Net
         /// <param name="e"></param>
 		private void RenderWindow_MouseMove(object sender, MouseEventArgs e) {
             //InputHandler.MouseMove(mCanvas, e, Control.ModifierKeys);
-            if(e.Button == MouseButtons.Left) //left button is pressed
+            if (e.Button == MouseButtons.Left) //left button is pressed
             {
-                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
                     //OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
                     //myXmax = e.X; myYmax = e.Y;
                     DrawRectangle(false);
@@ -287,7 +292,7 @@ namespace OCCT.WinForms.Net
                     DrawRectangle(true);
                 }
                 else {
-                    switch(myCurrentMode) {
+                    switch (myCurrentMode) {
                         case CurrentAction3d.CurAction3d_Nothing:
                             DrawRectangle(false);
                             myXmax = e.X; myYmax = e.Y;
@@ -317,19 +322,19 @@ namespace OCCT.WinForms.Net
                     }
                 }
             } // e.Button == MouseButtons.Left
-            else if(e.Button == MouseButtons.Middle) {
+            else if (e.Button == MouseButtons.Middle) {
                 OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
                 myXmax = e.X; myYmax = e.Y;
             }//e.Button=MouseButtons.Middle
-            else if(e.Button == MouseButtons.Right) //right button is pressed
+            else if (e.Button == MouseButtons.Right) //right button is pressed
             {
-                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
                     OCCTView.Rotation(e.X, e.Y);
             }
             else // no buttons are pressed
             {
                 myXmax = e.X; myYmax = e.Y;
-                if(myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                     MultiMoveEvent(e.X, e.Y);
                 else
                     MoveEvent(e.X, e.Y);
@@ -343,29 +348,29 @@ namespace OCCT.WinForms.Net
 		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e) {
             //InputHandler.MouseWheel(mCanvas, e, Control.ModifierKeys);
             int addsd = 1;
-            if (e.Delta > 0) addsd = - 1;
-            else  addsd = 1;
+            if (e.Delta > 0) addsd = -1;
+            else addsd = 1;
             OCCTView.Zoom(e.X + addsd, e.Y, e.X, e.Y);
             myXmax = e.X; myYmax = e.Y;
         }
 
         protected void MultiDragEvent(int x, int y, int theState) {
-            if(theState == -1) {
+            if (theState == -1) {
                 theButtonDownX = x;
                 theButtonDownY = y;
             }
-            else if(theState == 1)
+            else if (theState == 1)
                 OCCTView.ShiftSelect(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
                         Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
         }
 
         protected void DragEvent(int x, int y, int theState) {
-            if(theState == -1) //mouse is down
+            if (theState == -1) //mouse is down
             {
                 theButtonDownX = x;
                 theButtonDownY = y;
             }
-            else if(theState == 1) //mouse is up
+            else if (theState == 1) //mouse is up
             {
                 OCCTView.Select(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
                         Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
@@ -391,7 +396,7 @@ namespace OCCT.WinForms.Net
         private void DrawRectangle(bool draw) {
             Graphics gr = Graphics.FromHwnd(this.Handle);
             System.Drawing.Pen p = null;
-            if(this.IsRectVisible || (!draw))//erase the rect
+            if (this.IsRectVisible || (!draw))//erase the rect
             {
                 int r = OCCTView.GetBGColR();
                 int g = OCCTView.GetBGColG();
@@ -400,11 +405,11 @@ namespace OCCT.WinForms.Net
                 this.IsRectVisible = false;
                 this.OCCTView.UpdateView();
             }
-            else if(draw) {
+            else if (draw) {
                 p = new Pen(System.Drawing.Color.White);
                 this.IsRectVisible = true;
             }
-            if(p == null)
+            if (p == null)
                 return;
             int x = Math.Min(this.myXmin, this.myXmax);
             int y = Math.Min(this.myYmin, this.myYmax);
@@ -448,7 +453,7 @@ namespace OCCT.WinForms.Net
         /// <param name="IsObjectColor">是否是对象</param>
         public void ChangeColor(bool IsObjectColor) {
             int r, g, b;
-            if(IsObjectColor) {
+            if (IsObjectColor) {
                 r = OCCTView.GetObjColR();
                 g = OCCTView.GetObjColG();
                 b = OCCTView.GetObjColB();
@@ -460,12 +465,12 @@ namespace OCCT.WinForms.Net
             }
             System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
             ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
-            if(ColDlg.ShowDialog() == DialogResult.OK) {
+            if (ColDlg.ShowDialog() == DialogResult.OK) {
                 Color c = ColDlg.Color;
                 r = c.R;
                 g = c.G;
                 b = c.B;
-                if(IsObjectColor)
+                if (IsObjectColor)
                     OCCTView.SetColor(r, g, b);
                 else
                     OCCTView.SetBackgroundColor(r, g, b);
@@ -490,7 +495,7 @@ namespace OCCT.WinForms.Net
         /// <param name="color">要修改的颜色</param>
         public void ChangeColor(bool IsObjectColor, Color color) {
             int r, g, b;
-            if(IsObjectColor) {
+            if (IsObjectColor) {
                 r = OCCTView.GetObjColR();
                 g = OCCTView.GetObjColG();
                 b = OCCTView.GetObjColB();
@@ -500,15 +505,15 @@ namespace OCCT.WinForms.Net
                 g = OCCTView.GetBGColG();
                 b = OCCTView.GetBGColB();
             }
-            if(color == Color.Empty) {
+            if (color == Color.Empty) {
                 System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
                 ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
-                if(ColDlg.ShowDialog() == DialogResult.OK) {
+                if (ColDlg.ShowDialog() == DialogResult.OK) {
                     color = ColDlg.Color;
                 }
             }
             r = color.R; g = color.G; b = color.B;
-            if(IsObjectColor)
+            if (IsObjectColor)
                 OCCTView.SetColor(r, g, b);
             else
                 OCCTView.SetBackgroundColor(r, g, b);
@@ -546,12 +551,85 @@ namespace OCCT.WinForms.Net
         /// <param name="theFormat">Determines format of Import/Export file</param>
         /// <param name="theIsImport">Determines is Import or not</param>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
-            bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
+            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
+            //OCCTView.SetDisplayMode(1);
+            //OCCTView.RedrawView();
+            //OCCTView.ZoomAllView();
+            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            aReader.SetColorMode(true);
+            aReader.SetNameMode(true);
+            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            anApp.NewDocument("XSEFSTEP", aDoc);
+            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+                return false;
+            XTDF_Label aRootLabel = aDoc.Main();
+            XTDF_Label RootLabel = aRootLabel.Root();
+            VisibleSettings(RootLabel, true);
             OCCTView.SetDisplayMode(1);
-            //OCCTView.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_ALUMINIUM);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
-            return reuslt;
+            return true;
+        }
+
+        private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            if (!theLabel.HasChild())
+            {
+                Display(theLabel, IsBoundaryDraw);
+                return;
+            }
+            XTDF_ChildIterator iter = new XTDF_ChildIterator();
+            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
+            {
+                if (iter.EditValue().IsNull())
+                    continue;
+                VisibleSettings(iter.EditValue(), IsBoundaryDraw);
+            }
+        }
+        /// <summary>
+        /// 显示图形
+        /// </summary>
+        /// <param name="theLabel"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            XTDataStd_Name aName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetIDx(), aName))
+            {
+                //std::cout << "  Name: " << aName->Get() << std::endl;
+            }
+            XTPrsStd_AISPresentation aPrs = new XTPrsStd_AISPresentation();
+            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetIDx(), aPrs))
+            {
+                aPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
+                aPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
+                aPrs.Display(true);
+
+                XAIS_InteractiveObject anInteractive = aPrs.GetAISx();
+                if (anInteractive != null)
+                {
+                    XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+                    context.Display(anInteractive, true);
+                    //// get drawer
+                    //const Handle(Prs3d_Drawer)&aDrawer = anInteractive->Attributes();
+                    //// default attributes
+                    //Standard_Real aRed = 0.0;
+                    //Standard_Real aGreen = 0.0;
+                    //Standard_Real aBlue = 0.0;
+                    //Standard_Real aWidth = 1.0;
+                    //Aspect_TypeOfLine aLineType = Aspect_TOL_SOLID;
+                    //// turn boundaries on/off
+                    //Standard_Boolean isBoundaryDraw = Standard_True;
+                    //aDrawer->SetFaceBoundaryDraw(isBoundaryDraw);
+                    //Quantity_Color aColor(aRed, aGreen, aBlue, Quantity_TOC_RGB);
+                    //Handle(Prs3d_LineAspect) aBoundaryAspect = new Prs3d_LineAspect(aColor, aLineType, aWidth);
+                    //aDrawer->SetFaceBoundaryAspect(aBoundaryAspect);
+                    //mainAISContext()->Display(anInteractive, Standard_True);
+                }
+                ////mainAISContext()->UpdateCurrentViewer();
+            }
         }
         #endregion
 
