@@ -1,8 +1,8 @@
 # MODELWORX.CORE
 共享核心库
+
+#提高github更新速度
 #C:\Windows\System32\drivers\etc 修改 hosts
-#140.82.113.4 github.com
-#199.232.69.194 github.global.ssl.fastly.net
 # GitHub Start
 140.82.114.4 github.com
 192.30.255.119 gist.github.com
