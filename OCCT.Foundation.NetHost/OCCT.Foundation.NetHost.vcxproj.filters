@@ -238,6 +238,42 @@
     <Filter Include="源文件\DataExchange\TKSTEP\STEPConstruct">
       <UniqueIdentifier>{31fae613-8493-4a2e-bca9-deb4e7bb397e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Visualization\TKService">
+      <UniqueIdentifier>{31361b50-c084-49e5-a7a4-3e6db242a4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKService\Aspect">
+      <UniqueIdentifier>{21e4efc7-b110-4fe5-ae25-7a543c049f53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKService">
+      <UniqueIdentifier>{711bcb08-7c86-4aa1-80f5-fa04521393af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKService\Aspect">
+      <UniqueIdentifier>{e7ec6c82-f925-438d-8e18-2784b907ed18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\Graphic3d">
+      <UniqueIdentifier>{61bf5c87-0f5f-46b1-a73d-9c689e1ddffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FoundationClasses\TKernel\Quantity">
+      <UniqueIdentifier>{1259e72e-4b3c-46ee-8d38-448f717f0404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKernel\Quantity">
+      <UniqueIdentifier>{7962fceb-fc16-4ce8-9a33-eb0b145e5900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\Prs3d">
+      <UniqueIdentifier>{2f8707b9-4ca8-4be7-8a4f-f672405f409f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\SelectMgr">
+      <UniqueIdentifier>{a14d20b6-1c7a-4895-b3b4-1f0d5ce9509a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\SelectMgr">
+      <UniqueIdentifier>{3e961f9c-4b02-4401-8747-01125b4ea0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\PrsMgr">
+      <UniqueIdentifier>{259d5e36-6269-4ffd-93c9-ae5a558229f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\PrsMgr">
+      <UniqueIdentifier>{dd44bf4d-f5be-4f0e-9340-d31867766799}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -441,6 +477,84 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDList.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfLine.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_PresentationAttributes.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfHighlightMethod.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_NameOfColor.h">
+      <Filter>头文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.h">
+      <Filter>头文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_TypeOfColor.h">
+      <Filter>头文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKSTEP\STEPConstruct\XSTEPConstruct_Tool.h">
+      <Filter>头文件\DataExchange\TKSTEP\STEPConstruct</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_Drawer.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfDeflection.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_TypeOfHLR.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DatumAttribute.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DatumAxes.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DatumMode.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DatumParts.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DimensionArrowOrientation.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DimensionTextHorizontalPosition.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_DimensionTextVerticalPosition.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_TypeOfLinePicking.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_VertexDrawMode.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfShadingModel.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_LineAspect.h">
+      <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.h">
+      <Filter>头文件\Visualization\TKV3d\SelectMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_PresentableObject.h">
+      <Filter>头文件\Visualization\TKV3d\PrsMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfFacingModel.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_TypeOfPresentation3d.h">
+      <Filter>头文件\Visualization\TKV3d\PrsMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -620,6 +734,30 @@
     </ClCompile>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_PresentationAttributes.cpp">
+      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKSTEP\STEPConstruct\XSTEPConstruct_Tool.cpp">
+      <Filter>源文件\DataExchange\TKSTEP\STEPConstruct</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Prs3d\XPrs3d_Drawer.cpp">
+      <Filter>源文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.cpp">
+      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Prs3d\XPrs3d_LineAspect.cpp">
+      <Filter>源文件\Visualization\TKV3d\Prs3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\PrsMgr\XPrsMgr_PresentableObject.cpp">
+      <Filter>源文件\Visualization\TKV3d\PrsMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.cpp">
+      <Filter>源文件\Visualization\TKV3d\SelectMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

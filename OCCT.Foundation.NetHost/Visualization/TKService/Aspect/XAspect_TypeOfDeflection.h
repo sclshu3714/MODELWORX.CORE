@@ -13,16 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfDeflection_HeaderFile
-#define _Aspect_TypeOfDeflection_HeaderFile
+#ifndef _XAspect_TypeOfDeflection_HeaderFile
+#define _XAspect_TypeOfDeflection_HeaderFile
 
 //! Defines if the maximal chordial deflection used when
 //! drawing an object is absolute  or relative to the size
 //! of the object.
-enum Aspect_TypeOfDeflection
+public enum class XAspect_TypeOfDeflection
 {
 Aspect_TOD_RELATIVE,
 Aspect_TOD_ABSOLUTE
 };
 
-#endif // _Aspect_TypeOfDeflection_HeaderFile
+#endif // _XAspect_TypeOfDeflection_HeaderFile

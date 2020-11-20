@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfHighlightMethod_HeaderFile
-#define _Aspect_TypeOfHighlightMethod_HeaderFile
+#ifndef _XAspect_TypeOfHighlightMethod_HeaderFile
+#define _XAspect_TypeOfHighlightMethod_HeaderFile
 
 //! Definition of a highlight method
 //!
@@ -22,10 +22,10 @@
 //! (default white)
 //! TOHM_BOUNDBOX       enclosed by the boundary box
 //! (default white)
-enum Aspect_TypeOfHighlightMethod
+public enum class XAspect_TypeOfHighlightMethod
 {
-Aspect_TOHM_COLOR,
-Aspect_TOHM_BOUNDBOX
+	Aspect_TOHM_COLOR,
+	Aspect_TOHM_BOUNDBOX
 };
 
 #endif // _Aspect_TypeOfHighlightMethod_HeaderFile

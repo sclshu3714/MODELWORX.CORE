@@ -13,15 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfFacingModel_HeaderFile
-#define _Aspect_TypeOfFacingModel_HeaderFile
+#ifndef _XAspect_TypeOfFacingModel_HeaderFile
+#define _XAspect_TypeOfFacingModel_HeaderFile
 
 
-enum Aspect_TypeOfFacingModel
+public enum class XAspect_TypeOfFacingModel
 {
 Aspect_TOFM_BOTH_SIDE,
 Aspect_TOFM_BACK_SIDE,
 Aspect_TOFM_FRONT_SIDE
 };
 
-#endif // _Aspect_TypeOfFacingModel_HeaderFile
+#endif // _XAspect_TypeOfFacingModel_HeaderFile

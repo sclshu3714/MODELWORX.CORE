@@ -1,44 +1,49 @@
-// Created by: NW,JPB,CAL
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGraphic3d_AspectLine3d.h>
+namespace TKV3d {
+    //! Creates a context table for line primitives
+    //! defined with the following default values:
+    //!
+    //! Color = Quantity_NOC_YELLOW;
+    //! Type  = Aspect_TOL_SOLID;
+    //! Width = 1.0;
+    XGraphic3d_AspectLine3d::XGraphic3d_AspectLine3d() {
+        NativeHandle() = new Graphic3d_AspectLine3d();
+    };
 
-#include <Graphic3d_AspectLine3d.hxx>
+    XGraphic3d_AspectLine3d::XGraphic3d_AspectLine3d(Handle(Graphic3d_AspectLine3d) posAspectLine) {
+        NativeHandle() = posAspectLine;
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(Graphic3d_AspectLine3d, Graphic3d_Aspects)
+    //! Creates a context table for line primitives defined with the specified values.
+    //! Warning: theWidth is the "line width scale factor".
+    //! The nominal line width is 1 pixel.
+    //! The width of the line is determined by applying the line width scale factor to this nominal line width.
+    //! The supported line widths vary by 1-pixel units.
+    XGraphic3d_AspectLine3d::XGraphic3d_AspectLine3d(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, Standard_Real theWidth) {
+        NativeHandle() = new Graphic3d_AspectLine3d(theColor->GetColor(), safe_cast<Aspect_TypeOfLine>(theType), theWidth);
+    };
 
-// =======================================================================
-// function : Graphic3d_AspectLine3d
-// purpose  :
-// =======================================================================
-Graphic3d_AspectLine3d::Graphic3d_AspectLine3d()
-{
-  myShadingModel = Graphic3d_TOSM_UNLIT;
-  myInteriorColor.SetRGB (Quantity_NOC_YELLOW);
-  myLineType  = Aspect_TOL_SOLID;
-  myLineWidth = 1.0f;
-}
+    Handle(Graphic3d_AspectLine3d) XGraphic3d_AspectLine3d::GetAspectLine3d() {
+        return NativeHandle();
+    };
 
-// =======================================================================
-// function : Graphic3d_AspectLine3d
-// purpose  :
-// =======================================================================
-Graphic3d_AspectLine3d::Graphic3d_AspectLine3d (const Quantity_Color& theColor,
-                                                Aspect_TypeOfLine theType,
-                                                Standard_Real theWidth)
-{
-  myShadingModel = Graphic3d_TOSM_UNLIT;
-  myInteriorColor.SetRGB (theColor);
-  myLineType = theType;
-  SetLineWidth ((float)theWidth);
+    //! 
+    void XGraphic3d_AspectLine3d::SetNativeHandle(Handle(Graphic3d_AspectLine3d) theAspect) {
+        NativeHandle() = theAspect;
+    };
+
+    //! Return line type.
+    XAspect_TypeOfLine XGraphic3d_AspectLine3d::Type() {
+        return safe_cast<XAspect_TypeOfLine>(NativeHandle()->Type());
+    };
+
+    //! Modifies the type of line.
+    void XGraphic3d_AspectLine3d::SetType(XAspect_TypeOfLine theType) {
+        NativeHandle()->SetType(safe_cast<Aspect_TypeOfLine>(theType));
+    };
+
+    //! Return line width.
+    Standard_ShortReal XGraphic3d_AspectLine3d::Width() {
+        return NativeHandle()->Width();
+    };
 }

@@ -52,6 +52,8 @@
     <Compile Include="FoundationClasses\TKMath\gp\gp_TrsfForm.cs" />
     <Compile Include="ModelingData\TKG3d\Geom\Geom_Geometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visualization\TKService\Aspect\Aspect_TypeOfHighlightMethod.cs" />
+    <Compile Include="Visualization\TKService\Aspect\Aspect_TypeOfLine.cs" />
     <Compile Include="Visualization\TKV3d\Graphic3d\Graphic3d_NameOfMaterial.cs" />
     <Compile Include="Visualization\TKV3d\Prs3d\Prs3d_TypeOfHighlight.cs" />
     <Compile Include="ModelingData\TKG3d\TopAbs\TopAbs_ShapeEnum.cs" />

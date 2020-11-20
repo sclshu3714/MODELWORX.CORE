@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DatumAxes_HeaderFile
-#define _Prs3d_DatumAxes_HeaderFile
+#ifndef _XPrs3d_DatumAxes_HeaderFile
+#define _XPrs3d_DatumAxes_HeaderFile
 
 //! Enumeration defining an axes used in datum aspect, see Prs3d_Datum.
-enum Prs3d_DatumAxes
+public enum class XPrs3d_DatumAxes
 {
   Prs3d_DA_XAxis      = 0x00000001,      //!< X axis of the datum
   Prs3d_DA_YAxis      = 0x00000002,      //!< Y axis of the datum
@@ -31,4 +31,4 @@ enum Prs3d_DatumAxes
                       | Prs3d_DA_ZAxis  //!< XYZ 3D axes
 };
 
-#endif // _Prs3d_DatumParts_HeaderFile
+#endif // _XPrs3d_DatumParts_HeaderFile

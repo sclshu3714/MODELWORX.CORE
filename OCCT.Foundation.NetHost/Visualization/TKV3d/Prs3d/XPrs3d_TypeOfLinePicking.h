@@ -14,14 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_TypeOfLinePicking_HeaderFile
-#define _Prs3d_TypeOfLinePicking_HeaderFile
+#ifndef _XPrs3d_TypeOfLinePicking_HeaderFile
+#define _XPrs3d_TypeOfLinePicking_HeaderFile
 
 
-enum Prs3d_TypeOfLinePicking
+public enum class XPrs3d_TypeOfLinePicking
 {
 Prs3d_TOLP_Point,
 Prs3d_TOLP_Segment
 };
 
-#endif // _Prs3d_TypeOfLinePicking_HeaderFile
+#endif // _XPrs3d_TypeOfLinePicking_HeaderFile

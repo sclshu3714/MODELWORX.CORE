@@ -13,6 +13,9 @@ namespace TKernel {
         XStandard_Helper();
         //! Auxiliary tool for converting C# string into UTF-8 string.
         static TCollection_AsciiString toAsciiString(String^ theString);
+		static Standard_CString toCString(TCollection_AsciiString AsciiString);
+		static String^ toString(TCollection_AsciiString AsciiString);
+		static String^ toString(Standard_CString CString);
 	};
 }
 #endif _XStandard_Helper_HeaderFile

@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_TypeOfHLR_HeaderFile
-#define _Prs3d_TypeOfHLR_HeaderFile
+#ifndef _XPrs3d_TypeOfHLR_HeaderFile
+#define _XPrs3d_TypeOfHLR_HeaderFile
 
 //! Declares types of hidden line removal algorithm.
 //! TOH_Algo enables using of exact HLR algorithm.
@@ -23,11 +23,11 @@
 //! TOH_NotSet is used by Prs3d_Drawer class, it means that the drawer should return the global value.
 //! For more details see Prs3d_Drawer class, AIS_Shape::Compute() method and
 //! HLRAlgo package from TKHLR toolkit.
-enum Prs3d_TypeOfHLR
+public enum class XPrs3d_TypeOfHLR
 {
-Prs3d_TOH_NotSet,
-Prs3d_TOH_PolyAlgo,
-Prs3d_TOH_Algo
+	Prs3d_TOH_NotSet,
+	Prs3d_TOH_PolyAlgo,
+	Prs3d_TOH_Algo
 };
 
-#endif // _Prs3d_TypeOfHLR_HeaderFile
+#endif // _XPrs3d_TypeOfHLR_HeaderFile

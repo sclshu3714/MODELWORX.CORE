@@ -610,23 +610,24 @@ namespace OCCT.WinForms.Net
                 XAIS_InteractiveObject anInteractive = aPrs.GetAISx();
                 if (anInteractive != null)
                 {
-                    XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-                    context.Display(anInteractive, true);
-                    //// get drawer
-                    //const Handle(Prs3d_Drawer)&aDrawer = anInteractive->Attributes();
+                    //XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+                    //context.Display(anInteractive, true);
+                    // get drawer
+                    XPrs3d_Drawer aDrawer = anInteractive.Attributes();
                     //// default attributes
-                    //Standard_Real aRed = 0.0;
-                    //Standard_Real aGreen = 0.0;
-                    //Standard_Real aBlue = 0.0;
-                    //Standard_Real aWidth = 1.0;
-                    //Aspect_TypeOfLine aLineType = Aspect_TOL_SOLID;
+                    //float aRed = 0.0;
+                    //float aGreen = 0.0;
+                    //float aBlue = 0.0;
+                    //float aWidth = 1.0;
+                    //XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
                     //// turn boundaries on/off
-                    //Standard_Boolean isBoundaryDraw = Standard_True;
-                    //aDrawer->SetFaceBoundaryDraw(isBoundaryDraw);
-                    //Quantity_Color aColor(aRed, aGreen, aBlue, Quantity_TOC_RGB);
-                    //Handle(Prs3d_LineAspect) aBoundaryAspect = new Prs3d_LineAspect(aColor, aLineType, aWidth);
+                    //bool isBoundaryDraw = true;
+                    //aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
+                    //XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, Quantity_TOC_RGB);
+                    //XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
                     //aDrawer->SetFaceBoundaryAspect(aBoundaryAspect);
-                    //mainAISContext()->Display(anInteractive, Standard_True);
+                    //XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+                    //context.Display(anInteractive, true);
                 }
                 ////mainAISContext()->UpdateCurrentViewer();
             }

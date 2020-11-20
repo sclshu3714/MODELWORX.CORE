@@ -14,19 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DimensionTextVerticalPosition_HeaderFile
-#define _Prs3d_DimensionTextVerticalPosition_HeaderFile
+#ifndef _XPrs3d_DimensionTextVerticalPosition_HeaderFile
+#define _XPrs3d_DimensionTextVerticalPosition_HeaderFile
 
 //! Specifies options for positioning dimension value label in vertical direction
 //! with respect to dimension (extension) line.
 //! DTVP_Above - text label is located above the dimension or extension line.
 //! DTVP_Below - text label is located below the dimension or extension line.
 //! DTVP_Center - the text label middle-point is in line with dimension or extension line.
-enum Prs3d_DimensionTextVerticalPosition
+public enum class XPrs3d_DimensionTextVerticalPosition
 {
 Prs3d_DTVP_Above,
 Prs3d_DTVP_Below,
 Prs3d_DTVP_Center
 };
 
-#endif // _Prs3d_DimensionTextVerticalPosition_HeaderFile
+#endif // _XPrs3d_DimensionTextVerticalPosition_HeaderFile

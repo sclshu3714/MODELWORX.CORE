@@ -14,18 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_VertexDrawMode_HeaderFile
-#define _Prs3d_VertexDrawMode_HeaderFile
+#ifndef _XPrs3d_VertexDrawMode_HeaderFile
+#define _XPrs3d_VertexDrawMode_HeaderFile
 
 //! Describes supported modes of visualization of the shape's vertices:
 //! VDM_Isolated  - only isolated vertices (not belonging to a face) are displayed.
 //! VDM_All       - all vertices of the shape are displayed.
 //! VDM_Inherited - the global settings are inherited and applied to the shape's presentation.
-enum Prs3d_VertexDrawMode
+public enum class XPrs3d_VertexDrawMode
 {
 Prs3d_VDM_Isolated,
 Prs3d_VDM_All,
 Prs3d_VDM_Inherited
 };
 
-#endif // _Prs3d_VertexDrawMode_HeaderFile
+#endif // _XPrs3d_VertexDrawMode_HeaderFile

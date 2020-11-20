@@ -158,6 +158,9 @@ Class TKernel.XStandard_Helper: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     toAsciiString(TCollection_AsciiString*, String): PrivateScope, Public, Static, HideBySig
+    toCString(TCollection_AsciiString*): PrivateScope, Public, Static, HideBySig
+    toString(SByte*): PrivateScope, Public, Static, HideBySig
+    toString(TCollection_AsciiString*): PrivateScope, Public, Static, HideBySig
 Class TKernel.XTCollection_ExtendedString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TCollection_AsciiString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XTCollection_ExtendedString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1688,6 +1691,437 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     AddSelect(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
     AddSelect(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
     Select(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Mat, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gp_GTrsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gp_GTrsf*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    gp_GTrsf* Handle 'get ' : 
+  Methods:
+    GetGTrsf(gp_GTrsf*): PrivateScope, Public, HideBySig
+    SetAffinity(xgp_Ax2, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetAffinity(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetVectorialPart(xgp_Mat): PrivateScope, Public, HideBySig
+    SetTranslationPart(xgp_XYZ): PrivateScope, Public, HideBySig
+    SetTrsf(xgp_Trsf): PrivateScope, Public, HideBySig
+    IsNegative(): PrivateScope, Public, HideBySig
+    IsSingular(): PrivateScope, Public, HideBySig
+    Form(): PrivateScope, Public, HideBySig
+    SetForm(): PrivateScope, Public, HideBySig
+    TranslationPart(): PrivateScope, Public, HideBySig
+    VectorialPart(): PrivateScope, Public, HideBySig
+    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Invert(): PrivateScope, Public, HideBySig
+    Inverted(): PrivateScope, Public, HideBySig
+    Multiplied(xgp_GTrsf): PrivateScope, Public, HideBySig
+    op_Multiply(xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName
+    Multiply(xgp_GTrsf): PrivateScope, Public, HideBySig
+    op_MultiplicationAssignment(xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName
+    PreMultiply(xgp_GTrsf): PrivateScope, Public, HideBySig
+    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Transforms(Double, Double, Double): PrivateScope, Public, HideBySig
+    Transforms(xgp_XYZ): PrivateScope, Public, HideBySig
+    Trsf(): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(NCollection_Vec3<float>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Quantity_Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(XQuantity_NameOfColor): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Quantity_Color* Handle 'get ' : 
+  Methods:
+    GetColor(Quantity_Color*): PrivateScope, Public, HideBySig
+    ChangeContrast(Double IsConst): PrivateScope, Public, HideBySig
+    ChangeIntensity(Double IsConst): PrivateScope, Public, HideBySig
+    SetValues(Double IsConst, Double, Double, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
+    SetValues(XQuantity_NameOfColor IsConst): PrivateScope, Public, HideBySig
+    Delta(XQuantity_Color, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Distance(XQuantity_Color): PrivateScope, Public, HideBySig
+    SquareDistance(XQuantity_Color): PrivateScope, Public, HideBySig
+    Blue(): PrivateScope, Public, HideBySig
+    Green(): PrivateScope, Public, HideBySig
+    Hue(): PrivateScope, Public, HideBySig
+    IsDifferent(XQuantity_Color): PrivateScope, Public, HideBySig
+    op_Inequality(XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName
+    IsEqual(XQuantity_Color): PrivateScope, Public, HideBySig
+    op_Equality(XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName
+    Light(): PrivateScope, Public, HideBySig
+    Name(Double IsConst, Double, Double): PrivateScope, Public, Static, HideBySig
+    Name(): PrivateScope, Public, HideBySig
+    Red(): PrivateScope, Public, HideBySig
+    Saturation(): PrivateScope, Public, HideBySig
+    Values(Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
+    SetEpsilon(Double IsConst): PrivateScope, Public, Static, HideBySig
+    Epsilon(): PrivateScope, Public, Static, HideBySig
+    StringName(XQuantity_NameOfColor): PrivateScope, Public, Static, HideBySig
+    ColorFromName(String, XQuantity_Color): PrivateScope, Public, Static, HideBySig
+    ColorFromName(String, XQuantity_NameOfColor* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    ColorFromHex(String, XQuantity_Color): PrivateScope, Public, Static, HideBySig
+    ColorToHex(TCollection_AsciiString*, XQuantity_Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    HlsRgb(Double IsConst, Double, Double, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    RgbHls(Double IsConst, Double, Double, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Color2argb(XQuantity_Color, Int32* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Argb2color(Int32 IsConst, XQuantity_Color): PrivateScope, Public, Static, HideBySig
+    Test(): PrivateScope, Public, Static, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Graphic3d_PresentationAttributes> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XGraphic3d_PresentationAttributes: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Graphic3d_PresentationAttributes> Handle 'get ' : 
+  Methods:
+    GetPresentationAttributes(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig
+    SetNativeHandle(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig
+    Method(): PrivateScope, Public, HideBySig
+    SetMethod(XAspect_TypeOfHighlightMethod): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ColorRGBA(): PrivateScope, Public, HideBySig
+    Color(): PrivateScope, Public, HideBySig
+    SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Transparency(): PrivateScope, Public, HideBySig
+    SetTransparency(Single IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ZLayer(): PrivateScope, Public, HideBySig
+    SetZLayer(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DisplayMode(): PrivateScope, Public, HideBySig
+    SetDisplayMode(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    BasicFillAreaAspect(): PrivateScope, Public, HideBySig
+    SetBasicFillAreaAspect(handle<Graphic3d_AspectFillArea3d>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_Handle(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Prs3d_Drawer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XGraphic3d_PresentationAttributes
+    Void .ctor(opencascade.handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Prs3d_Drawer> Handle 'get ' : 
+  Methods:
+    HasOwnArrowAspect(): PrivateScope, Public, HideBySig
+    SetLineArrowDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    LineArrowDraw(): PrivateScope, Public, HideBySig
+    HasOwnLineArrowDraw(): PrivateScope, Public, HideBySig
+    HiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetHiddenLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnHiddenLineAspect(): PrivateScope, Public, HideBySig
+    DrawHiddenLine(): PrivateScope, Public, HideBySig
+    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    HasOwnDrawHiddenLine(): PrivateScope, Public, HideBySig
+    VectorAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetVectorAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnVectorAspect(): PrivateScope, Public, HideBySig
+    SetVertexDrawMode(XPrs3d_VertexDrawMode): PrivateScope, Public, HideBySig
+    VertexDrawMode(): PrivateScope, Public, HideBySig
+    HasOwnVertexDrawMode(): PrivateScope, Public, HideBySig
+    DatumAspect(handle<Prs3d_DatumAspect>*): PrivateScope, Public, HideBySig
+    SetDatumAspect(handle<Prs3d_DatumAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnDatumAspect(): PrivateScope, Public, HideBySig
+    SectionAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetSectionAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnSectionAspect(): PrivateScope, Public, HideBySig
+    SetFreeBoundaryAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FreeBoundaryAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    HasOwnFreeBoundaryAspect(): PrivateScope, Public, HideBySig
+    SetFreeBoundaryDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    FreeBoundaryDraw(): PrivateScope, Public, HideBySig
+    HasOwnFreeBoundaryDraw(): PrivateScope, Public, HideBySig
+    SetUnFreeBoundaryAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UnFreeBoundaryAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    HasOwnUnFreeBoundaryAspect(): PrivateScope, Public, HideBySig
+    SetUnFreeBoundaryDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    UnFreeBoundaryDraw(): PrivateScope, Public, HideBySig
+    HasOwnUnFreeBoundaryDraw(): PrivateScope, Public, HideBySig
+    SetFaceBoundaryAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FaceBoundaryAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    HasOwnFaceBoundaryAspect(): PrivateScope, Public, HideBySig
+    SetupOwnFaceBoundaryAspect(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    SetFaceBoundaryDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    FaceBoundaryDraw(): PrivateScope, Public, HideBySig
+    HasOwnFaceBoundaryDraw(): PrivateScope, Public, HideBySig
+    HasOwnFaceBoundaryUpperContinuity(): PrivateScope, Public, HideBySig
+    FaceBoundaryUpperContinuity(): PrivateScope, Public, HideBySig
+    SetFaceBoundaryUpperContinuity(GeomAbs_Shape): PrivateScope, Public, HideBySig
+    UnsetFaceBoundaryUpperContinuity(): PrivateScope, Public, HideBySig
+    DimensionAspect(handle<Prs3d_DimensionAspect>*): PrivateScope, Public, HideBySig
+    SetDimensionAspect(handle<Prs3d_DimensionAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnDimensionAspect(): PrivateScope, Public, HideBySig
+    SetDimLengthModelUnits(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetDimAngleModelUnits(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    DimLengthModelUnits(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    DimAngleModelUnits(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    HasOwnDimLengthModelUnits(): PrivateScope, Public, HideBySig
+    HasOwnDimAngleModelUnits(): PrivateScope, Public, HideBySig
+    SetDimLengthDisplayUnits(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetDimAngleDisplayUnits(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    DimLengthDisplayUnits(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    DimAngleDisplayUnits(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    HasOwnDimLengthDisplayUnits(): PrivateScope, Public, HideBySig
+    HasOwnDimAngleDisplayUnits(): PrivateScope, Public, HideBySig
+    Link(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    Link(): PrivateScope, Public, HideBySig
+    HasLink(): PrivateScope, Public, HideBySig
+    SetLink(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    ClearLocalAttributes(): PrivateScope, Public, HideBySig
+    SetShaderProgram(handle<Graphic3d_ShaderProgram>* IsImplicitlyDereferenced, Graphic3d_GroupAspect, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetShadingModel(XGraphic3d_TypeOfShadingModel, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    get_Handle(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XPrs3d_Drawer(): PrivateScope, Public, HideBySig
+    GetDrawer(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    SetTypeOfDeflection(XAspect_TypeOfDeflection): PrivateScope, Public, HideBySig
+    TypeOfDeflection(): PrivateScope, Public, HideBySig
+    HasOwnTypeOfDeflection(): PrivateScope, Public, HideBySig
+    SetMaximalChordialDeviation(Double IsConst): PrivateScope, Public, HideBySig
+    MaximalChordialDeviation(): PrivateScope, Public, HideBySig
+    HasOwnMaximalChordialDeviation(): PrivateScope, Public, HideBySig
+    SetTypeOfHLR(XPrs3d_TypeOfHLR): PrivateScope, Public, HideBySig
+    TypeOfHLR(): PrivateScope, Public, HideBySig
+    HasOwnTypeOfHLR(): PrivateScope, Public, HideBySig
+    SetMaximalParameterValue(Double IsConst): PrivateScope, Public, HideBySig
+    MaximalParameterValue(): PrivateScope, Public, HideBySig
+    HasOwnMaximalParameterValue(): PrivateScope, Public, HideBySig
+    SetIsoOnPlane(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    IsoOnPlane(): PrivateScope, Public, HideBySig
+    HasOwnIsoOnPlane(): PrivateScope, Public, HideBySig
+    IsoOnTriangulation(): PrivateScope, Public, HideBySig
+    HasOwnIsoOnTriangulation(): PrivateScope, Public, HideBySig
+    SetIsoOnTriangulation(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    SetDiscretisation(Int32 IsConst): PrivateScope, Public, HideBySig
+    Discretisation(): PrivateScope, Public, HideBySig
+    HasOwnDiscretisation(): PrivateScope, Public, HideBySig
+    SetDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
+    DeviationCoefficient(): PrivateScope, Public, HideBySig
+    HasOwnDeviationCoefficient(): PrivateScope, Public, HideBySig
+    PreviousDeviationCoefficient(): PrivateScope, Public, HideBySig
+    UpdatePreviousDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetHLRDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
+    HLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    HasOwnHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    PreviousHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetDeviationAngle(): PrivateScope, Public, HideBySig
+    SetDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
+    DeviationAngle(): PrivateScope, Public, HideBySig
+    HasOwnDeviationAngle(): PrivateScope, Public, HideBySig
+    PreviousDeviationAngle(): PrivateScope, Public, HideBySig
+    UpdatePreviousDeviationAngle(): PrivateScope, Public, HideBySig
+    SetHLRAngle(): PrivateScope, Public, HideBySig
+    SetHLRAngle(Double IsConst): PrivateScope, Public, HideBySig
+    HLRAngle(): PrivateScope, Public, HideBySig
+    HasOwnHLRDeviationAngle(): PrivateScope, Public, HideBySig
+    PreviousHLRDeviationAngle(): PrivateScope, Public, HideBySig
+    SetAutoTriangulation(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    IsAutoTriangulation(): PrivateScope, Public, HideBySig
+    HasOwnIsAutoTriangulation(): PrivateScope, Public, HideBySig
+    UIsoAspect(handle<Prs3d_IsoAspect>*): PrivateScope, Public, HideBySig
+    SetUIsoAspect(handle<Prs3d_IsoAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnUIsoAspect(): PrivateScope, Public, HideBySig
+    VIsoAspect(handle<Prs3d_IsoAspect>*): PrivateScope, Public, HideBySig
+    SetVIsoAspect(handle<Prs3d_IsoAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnVIsoAspect(): PrivateScope, Public, HideBySig
+    WireAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetWireAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnWireAspect(): PrivateScope, Public, HideBySig
+    SetWireDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    WireDraw(): PrivateScope, Public, HideBySig
+    HasOwnWireDraw(): PrivateScope, Public, HideBySig
+    PointAspect(handle<Prs3d_PointAspect>*): PrivateScope, Public, HideBySig
+    SetPointAspect(handle<Prs3d_PointAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnPointAspect(): PrivateScope, Public, HideBySig
+    SetupOwnPointAspect(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    LineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnLineAspect(): PrivateScope, Public, HideBySig
+    SetOwnLineAspects(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    SetOwnDatumAspects(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    TextAspect(handle<Prs3d_TextAspect>*): PrivateScope, Public, HideBySig
+    SetTextAspect(handle<Prs3d_TextAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnTextAspect(): PrivateScope, Public, HideBySig
+    ShadingAspect(handle<Prs3d_ShadingAspect>*): PrivateScope, Public, HideBySig
+    SetShadingAspect(handle<Prs3d_ShadingAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnShadingAspect(): PrivateScope, Public, HideBySig
+    SetupOwnShadingAspect(XPrs3d_Drawer): PrivateScope, Public, HideBySig
+    SeenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetSeenLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnSeenLineAspect(): PrivateScope, Public, HideBySig
+    PlaneAspect(handle<Prs3d_PlaneAspect>*): PrivateScope, Public, HideBySig
+    SetPlaneAspect(handle<Prs3d_PlaneAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnPlaneAspect(): PrivateScope, Public, HideBySig
+    ArrowAspect(handle<Prs3d_ArrowAspect>*): PrivateScope, Public, HideBySig
+    SetArrowAspect(handle<Prs3d_ArrowAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<PrsMgr_PresentableObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XPrsMgr_PresentableObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<PrsMgr_PresentableObject> Handle 'get ' : 
+  Methods:
+    SetBaseNativeHandle(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig
+    Presentations(): PrivateScope, Public, HideBySig
+    ZLayer(): PrivateScope, Public, HideBySig
+    SetZLayer(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsMutable(): PrivateScope, Public, HideBySig
+    SetMutable(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasDisplayMode(): PrivateScope, Public, HideBySig
+    DisplayMode(): PrivateScope, Public, HideBySig
+    SetDisplayMode(Int32 IsConst): PrivateScope, Public, HideBySig
+    UnsetDisplayMode(): PrivateScope, Public, HideBySig
+    HasHilightMode(): PrivateScope, Public, HideBySig
+    HilightMode(): PrivateScope, Public, HideBySig
+    SetHilightMode(Int32 IsConst): PrivateScope, Public, HideBySig
+    UnsetHilightMode(): PrivateScope, Public, HideBySig
+    AcceptDisplayMode(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DefaultDisplayMode(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ToBeUpdated(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetToUpdate(): PrivateScope, Public, HideBySig
+    SetToUpdate(Int32): PrivateScope, Public, HideBySig
+    IsInfinite(): PrivateScope, Public, HideBySig
+    SetInfiniteState(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    TypeOfPresentation3d(): PrivateScope, Public, HideBySig
+    SetTypeOfPresentation(XPrsMgr_TypeOfPresentation3d): PrivateScope, Public, HideBySig
+    Attributes(): PrivateScope, Public, HideBySig
+    SetAttributes(XPrs3d_Drawer): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HilightAttributes(): PrivateScope, Public, HideBySig
+    SetHilightAttributes(XPrs3d_Drawer): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DynamicHilightAttributes(): PrivateScope, Public, HideBySig
+    SetDynamicHilightAttributes(XPrs3d_Drawer): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetHilightAttributes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SynchronizeAspects(): PrivateScope, Public, HideBySig
+    TransformPersistence(): PrivateScope, Public, HideBySig
+    SetTransformPersistence(handle<Graphic3d_TransformPers>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LocalTransformationGeom(): PrivateScope, Public, HideBySig
+    SetLocalTransformation(handle<Geom_Transformation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetLocalTransformation(xgp_Trsf): PrivateScope, Public, HideBySig
+    HasTransformation(): PrivateScope, Public, HideBySig
+    TransformationGeom(): PrivateScope, Public, HideBySig
+    LocalTransformation(): PrivateScope, Public, HideBySig
+    Transformation(): PrivateScope, Public, HideBySig
+    InversedTransformation(): PrivateScope, Public, HideBySig
+    CombinedParentTransformation(): PrivateScope, Public, HideBySig
+    ResetTransformation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UpdateTransformation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ClipPlanes(): PrivateScope, Public, HideBySig
+    SetClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Parent(): PrivateScope, Public, HideBySig
+    Children(): PrivateScope, Public, HideBySig
+    AddChild(XPrsMgr_PresentableObject): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddChildWithCurrentTransformation(XPrsMgr_PresentableObject): PrivateScope, Public, HideBySig
+    RemoveChild(XPrsMgr_PresentableObject): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveChildWithRestoreTransformation(XPrsMgr_PresentableObject): PrivateScope, Public, HideBySig
+    HasOwnPresentations(): PrivateScope, Public, HideBySig
+    BoundingBox(Bnd_Box* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetIsoOnTriangulation(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    CurrentFacingModel(): PrivateScope, Public, HideBySig
+    SetCurrentFacingModel(XAspect_TypeOfFacingModel): PrivateScope, Public, HideBySig
+    HasColor(): PrivateScope, Public, HideBySig
+    Color(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetColor(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasWidth(): PrivateScope, Public, HideBySig
+    Width(): PrivateScope, Public, HideBySig
+    SetWidth(Double IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetWidth(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasMaterial(): PrivateScope, Public, HideBySig
+    Material(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetMaterial(Graphic3d_MaterialAspect* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetMaterial(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsTransparent(): PrivateScope, Public, HideBySig
+    Transparency(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetTransparency(Double IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetTransparency(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasPolygonOffsets(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    PolygonOffsets(Int32* IsImplicitlyDereferenced, Single* IsImplicitlyDereferenced, Single* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetPolygonOffsets(Int32 IsConst, Single IsConst, Single IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnsetAttributes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ToPropagateVisualState(): PrivateScope, Public, HideBySig
+    SetPropagateVisualState(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    get_Handle(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XPrsMgr_PresentableObject(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<SelectMgr_SelectableObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XSelectMgr_SelectableObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XPrsMgr_PresentableObject
+    Void .ctor(opencascade.handle<SelectMgr_SelectableObject>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<SelectMgr_SelectableObject> Handle 'get ' : 
+  Methods:
+    SetNativeHandle(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, HideBySig
+    ComputeSelection(handle<SelectMgr_Selection>* IsImplicitlyDereferenced, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AcceptShapeDecomposition(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RecomputePrimitives(Int32 IsConst): PrivateScope, Public, HideBySig
+    RecomputePrimitives(): PrivateScope, Public, HideBySig
+    AddSelection(handle<SelectMgr_Selection>* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    ClearSelections(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    Selection(handle<SelectMgr_Selection>*, Int32 IsConst): PrivateScope, Public, HideBySig
+    HasSelection(Int32 IsConst): PrivateScope, Public, HideBySig
+    Selections(NCollection_Sequence<opencascade::handle<SelectMgr_Selection> >*): PrivateScope, Public, HideBySig
+    ResetTransformation(): PrivateScope, Public, Virtual, HideBySig
+    UpdateTransformation(): PrivateScope, Public, Virtual, HideBySig
+    UpdateTransformations(handle<SelectMgr_Selection>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HilightSelected(handle<PrsMgr_PresentationManager>* IsImplicitlyDereferenced, NCollection_Sequence<opencascade::handle<SelectMgr_EntityOwner> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ClearSelected(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ClearDynamicHighlight(handle<PrsMgr_PresentationManager>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HilightOwnerWithColor(handle<PrsMgr_PresentationManager>* IsImplicitlyDereferenced, handle<Prs3d_Drawer>* IsImplicitlyDereferenced, handle<SelectMgr_EntityOwner>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsAutoHilight(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetAutoHilight(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetHilightPresentation(handle<Graphic3d_Structure>*, handle<PrsMgr_PresentationManager>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetSelectPresentation(handle<Graphic3d_Structure>*, handle<PrsMgr_PresentationManager>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ErasePresentations(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetZLayer(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig
+    UpdateSelection(Int32 IsConst): PrivateScope, Public, HideBySig
+    SetAssemblyOwner(handle<SelectMgr_EntityOwner>* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    BndBoxOfSelected(Bnd_Box*, handle<NCollection_Shared<NCollection_IndexedMap<opencascade::handle<SelectMgr_EntityOwner>\,NCollection_DefaultHasher<opencascade::handle<SelectMgr_EntityOwner> > >\,void> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GlobalSelectionMode(): PrivateScope, Public, HideBySig
+    GlobalSelOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetAssemblyOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, Virtual, HideBySig
+    get_Handle(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<AIS_InteractiveObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1696,10 +2130,9 @@ Class NCollection_Haft<opencascade::handle<AIS_InteractiveObject> >: AutoLayout,
     op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XSelectMgr_SelectableObject
     Void .ctor(opencascade.handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
   Properties:
     opencascade.handle<AIS_InteractiveObject> Handle 'get ' : 
   Methods:
@@ -1720,7 +2153,6 @@ Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, Before
     Presentation(handle<Graphic3d_Structure>*): PrivateScope, Public, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TPrsStd_AISPresentation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1800,6 +2232,630 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     AfterUndo(handle<TDF_AttributeDelta>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, Virtual, HideBySig
     get_Handle(handle<TPrsStd_AISPresentation>*): PrivateScope, Public, HideBySig, SpecialName
     ~XTPrsStd_AISPresentation(): PrivateScope, Public, HideBySig
+Struct XAspect_TypeOfFacingModel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_TypeOfFacingModel Aspect_TOFM_BOTH_SIDE = 0 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfFacingModel Aspect_TOFM_BACK_SIDE = 1 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfFacingModel Aspect_TOFM_FRONT_SIDE = 2 : Public, Static, Literal, HasDefault
+Struct XAspect_TypeOfHighlightMethod: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_TypeOfHighlightMethod Aspect_TOHM_COLOR = 0 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfHighlightMethod Aspect_TOHM_BOUNDBOX = 1 : Public, Static, Literal, HasDefault
+Struct XQuantity_NameOfColor: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XQuantity_NameOfColor Quantity_NOC_BLACK = 0 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MATRABLUE = 1 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MATRAGRAY = 2 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ALICEBLUE = 3 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ANTIQUEWHITE = 4 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ANTIQUEWHITE1 = 5 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ANTIQUEWHITE2 = 6 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ANTIQUEWHITE3 = 7 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ANTIQUEWHITE4 = 8 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AQUAMARINE1 = 9 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AQUAMARINE2 = 10 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AQUAMARINE4 = 11 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AZURE = 12 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AZURE2 = 13 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AZURE3 = 14 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_AZURE4 = 15 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BEIGE = 16 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BISQUE = 17 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BISQUE2 = 18 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BISQUE3 = 19 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BISQUE4 = 20 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLANCHEDALMOND = 21 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLUE1 = 22 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLUE2 = 23 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLUE3 = 24 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLUE4 = 25 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BLUEVIOLET = 26 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BROWN = 27 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BROWN1 = 28 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BROWN2 = 29 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BROWN3 = 30 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BROWN4 = 31 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BURLYWOOD = 32 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BURLYWOOD1 = 33 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BURLYWOOD2 = 34 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BURLYWOOD3 = 35 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BURLYWOOD4 = 36 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CADETBLUE = 37 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CADETBLUE1 = 38 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CADETBLUE2 = 39 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CADETBLUE3 = 40 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CADETBLUE4 = 41 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHARTREUSE = 42 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHARTREUSE1 = 43 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHARTREUSE2 = 44 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHARTREUSE3 = 45 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHARTREUSE4 = 46 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHOCOLATE = 47 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHOCOLATE1 = 48 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHOCOLATE2 = 49 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHOCOLATE3 = 50 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CHOCOLATE4 = 51 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORAL = 52 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORAL1 = 53 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORAL2 = 54 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORAL3 = 55 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORAL4 = 56 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORNFLOWERBLUE = 57 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORNSILK1 = 58 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORNSILK2 = 59 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORNSILK3 = 60 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CORNSILK4 = 61 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CYAN1 = 62 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CYAN2 = 63 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CYAN3 = 64 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_CYAN4 = 65 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGOLDENROD = 66 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGOLDENROD1 = 67 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGOLDENROD2 = 68 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGOLDENROD3 = 69 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGOLDENROD4 = 70 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKGREEN = 71 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKKHAKI = 72 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKOLIVEGREEN = 73 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKOLIVEGREEN1 = 74 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKOLIVEGREEN2 = 75 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKOLIVEGREEN3 = 76 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKOLIVEGREEN4 = 77 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORANGE = 78 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORANGE1 = 79 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORANGE2 = 80 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORANGE3 = 81 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORANGE4 = 82 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORCHID = 83 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORCHID1 = 84 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORCHID2 = 85 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORCHID3 = 86 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKORCHID4 = 87 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSALMON = 88 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSEAGREEN = 89 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSEAGREEN1 = 90 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSEAGREEN2 = 91 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSEAGREEN3 = 92 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSEAGREEN4 = 93 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEBLUE = 94 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEGRAY1 = 95 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEGRAY2 = 96 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEGRAY3 = 97 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEGRAY4 = 98 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKSLATEGRAY = 99 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKTURQUOISE = 100 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DARKVIOLET = 101 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPPINK = 102 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPPINK2 = 103 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPPINK3 = 104 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPPINK4 = 105 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPSKYBLUE1 = 106 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPSKYBLUE2 = 107 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPSKYBLUE3 = 108 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DEEPSKYBLUE4 = 109 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DODGERBLUE1 = 110 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DODGERBLUE2 = 111 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DODGERBLUE3 = 112 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_DODGERBLUE4 = 113 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FIREBRICK = 114 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FIREBRICK1 = 115 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FIREBRICK2 = 116 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FIREBRICK3 = 117 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FIREBRICK4 = 118 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FLORALWHITE = 119 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_FORESTGREEN = 120 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GAINSBORO = 121 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GHOSTWHITE = 122 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLD = 123 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLD1 = 124 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLD2 = 125 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLD3 = 126 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLD4 = 127 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLDENROD = 128 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLDENROD1 = 129 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLDENROD2 = 130 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLDENROD3 = 131 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GOLDENROD4 = 132 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY = 133 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY0 = 134 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY1 = 135 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY10 = 136 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY11 = 137 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY12 = 138 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY13 = 139 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY14 = 140 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY15 = 141 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY16 = 142 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY17 = 143 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY18 = 144 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY19 = 145 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY2 = 146 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY20 = 147 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY21 = 148 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY22 = 149 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY23 = 150 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY24 = 151 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY25 = 152 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY26 = 153 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY27 = 154 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY28 = 155 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY29 = 156 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY3 = 157 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY30 = 158 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY31 = 159 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY32 = 160 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY33 = 161 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY34 = 162 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY35 = 163 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY36 = 164 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY37 = 165 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY38 = 166 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY39 = 167 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY4 = 168 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY40 = 169 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY41 = 170 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY42 = 171 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY43 = 172 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY44 = 173 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY45 = 174 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY46 = 175 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY47 = 176 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY48 = 177 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY49 = 178 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY5 = 179 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY50 = 180 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY51 = 181 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY52 = 182 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY53 = 183 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY54 = 184 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY55 = 185 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY56 = 186 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY57 = 187 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY58 = 188 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY59 = 189 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY6 = 190 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY60 = 191 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY61 = 192 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY62 = 193 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY63 = 194 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY64 = 195 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY65 = 196 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY66 = 197 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY67 = 198 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY68 = 199 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY69 = 200 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY7 = 201 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY70 = 202 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY71 = 203 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY72 = 204 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY73 = 205 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY74 = 206 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY75 = 207 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY76 = 208 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY77 = 209 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY78 = 210 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY79 = 211 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY8 = 212 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY80 = 213 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY81 = 214 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY82 = 215 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY83 = 216 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY85 = 217 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY86 = 218 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY87 = 219 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY88 = 220 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY89 = 221 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY9 = 222 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY90 = 223 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY91 = 224 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY92 = 225 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY93 = 226 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY94 = 227 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY95 = 228 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREEN = 229 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREEN1 = 230 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREEN2 = 231 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREEN3 = 232 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREEN4 = 233 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GREENYELLOW = 234 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY97 = 235 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY98 = 236 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_GRAY99 = 237 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HONEYDEW = 238 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HONEYDEW2 = 239 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HONEYDEW3 = 240 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HONEYDEW4 = 241 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HOTPINK = 242 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HOTPINK1 = 243 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HOTPINK2 = 244 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HOTPINK3 = 245 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_HOTPINK4 = 246 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_INDIANRED = 247 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_INDIANRED1 = 248 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_INDIANRED2 = 249 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_INDIANRED3 = 250 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_INDIANRED4 = 251 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_IVORY = 252 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_IVORY2 = 253 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_IVORY3 = 254 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_IVORY4 = 255 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_KHAKI = 256 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_KHAKI1 = 257 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_KHAKI2 = 258 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_KHAKI3 = 259 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_KHAKI4 = 260 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAVENDER = 261 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAVENDERBLUSH1 = 262 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAVENDERBLUSH2 = 263 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAVENDERBLUSH3 = 264 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAVENDERBLUSH4 = 265 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LAWNGREEN = 266 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LEMONCHIFFON1 = 267 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LEMONCHIFFON2 = 268 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LEMONCHIFFON3 = 269 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LEMONCHIFFON4 = 270 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTBLUE = 271 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTBLUE1 = 272 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTBLUE2 = 273 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTBLUE3 = 274 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTBLUE4 = 275 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTCORAL = 276 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTCYAN1 = 277 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTCYAN2 = 278 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTCYAN3 = 279 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTCYAN4 = 280 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENROD = 281 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENROD1 = 282 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENROD2 = 283 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENROD3 = 284 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENROD4 = 285 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGOLDENRODYELLOW = 286 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTGRAY = 287 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTPINK = 288 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTPINK1 = 289 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTPINK2 = 290 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTPINK3 = 291 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTPINK4 = 292 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSALMON1 = 293 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSALMON2 = 294 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSALMON3 = 295 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSALMON4 = 296 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSEAGREEN = 297 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSKYBLUE = 298 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSKYBLUE1 = 299 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSKYBLUE2 = 300 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSKYBLUE3 = 301 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSKYBLUE4 = 302 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSLATEBLUE = 303 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSLATEGRAY = 304 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSTEELBLUE = 305 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSTEELBLUE1 = 306 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSTEELBLUE2 = 307 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSTEELBLUE3 = 308 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTSTEELBLUE4 = 309 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTYELLOW = 310 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTYELLOW2 = 311 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTYELLOW3 = 312 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIGHTYELLOW4 = 313 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LIMEGREEN = 314 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_LINEN = 315 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAGENTA1 = 316 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAGENTA2 = 317 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAGENTA3 = 318 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAGENTA4 = 319 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAROON = 320 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAROON1 = 321 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAROON2 = 322 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAROON3 = 323 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MAROON4 = 324 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMAQUAMARINE = 325 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMORCHID = 326 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMORCHID1 = 327 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMORCHID2 = 328 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMORCHID3 = 329 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMORCHID4 = 330 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMPURPLE = 331 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMPURPLE1 = 332 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMPURPLE2 = 333 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMPURPLE3 = 334 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMPURPLE4 = 335 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMSEAGREEN = 336 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMSLATEBLUE = 337 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMSPRINGGREEN = 338 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMTURQUOISE = 339 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MEDIUMVIOLETRED = 340 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MIDNIGHTBLUE = 341 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MINTCREAM = 342 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MISTYROSE = 343 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MISTYROSE2 = 344 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MISTYROSE3 = 345 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MISTYROSE4 = 346 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_MOCCASIN = 347 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_NAVAJOWHITE1 = 348 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_NAVAJOWHITE2 = 349 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_NAVAJOWHITE3 = 350 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_NAVAJOWHITE4 = 351 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_NAVYBLUE = 352 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLDLACE = 353 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLIVEDRAB = 354 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLIVEDRAB1 = 355 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLIVEDRAB2 = 356 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLIVEDRAB3 = 357 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_OLIVEDRAB4 = 358 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGE = 359 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGE1 = 360 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGE2 = 361 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGE3 = 362 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGE4 = 363 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGERED = 364 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGERED1 = 365 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGERED2 = 366 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGERED3 = 367 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORANGERED4 = 368 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORCHID = 369 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORCHID1 = 370 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORCHID2 = 371 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORCHID3 = 372 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ORCHID4 = 373 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGOLDENROD = 374 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGREEN = 375 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGREEN1 = 376 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGREEN2 = 377 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGREEN3 = 378 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEGREEN4 = 379 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALETURQUOISE = 380 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALETURQUOISE1 = 381 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALETURQUOISE2 = 382 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALETURQUOISE3 = 383 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALETURQUOISE4 = 384 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEVIOLETRED = 385 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEVIOLETRED1 = 386 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEVIOLETRED2 = 387 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEVIOLETRED3 = 388 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PALEVIOLETRED4 = 389 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PAPAYAWHIP = 390 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PEACHPUFF = 391 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PEACHPUFF2 = 392 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PEACHPUFF3 = 393 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PEACHPUFF4 = 394 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PERU = 395 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PINK = 396 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PINK1 = 397 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PINK2 = 398 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PINK3 = 399 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PINK4 = 400 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PLUM = 401 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PLUM1 = 402 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PLUM2 = 403 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PLUM3 = 404 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PLUM4 = 405 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_POWDERBLUE = 406 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PURPLE = 407 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PURPLE1 = 408 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PURPLE2 = 409 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PURPLE3 = 410 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_PURPLE4 = 411 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_RED = 412 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_RED1 = 413 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_RED2 = 414 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_RED3 = 415 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_RED4 = 416 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROSYBROWN = 417 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROSYBROWN1 = 418 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROSYBROWN2 = 419 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROSYBROWN3 = 420 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROSYBROWN4 = 421 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROYALBLUE = 422 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROYALBLUE1 = 423 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROYALBLUE2 = 424 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROYALBLUE3 = 425 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_ROYALBLUE4 = 426 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SADDLEBROWN = 427 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SALMON = 428 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SALMON1 = 429 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SALMON2 = 430 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SALMON3 = 431 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SALMON4 = 432 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SANDYBROWN = 433 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEAGREEN = 434 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEAGREEN1 = 435 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEAGREEN2 = 436 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEAGREEN3 = 437 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEAGREEN4 = 438 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEASHELL = 439 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEASHELL2 = 440 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEASHELL3 = 441 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SEASHELL4 = 442 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_BEET = 443 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TEAL = 444 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SIENNA = 445 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SIENNA1 = 446 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SIENNA2 = 447 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SIENNA3 = 448 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SIENNA4 = 449 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SKYBLUE = 450 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SKYBLUE1 = 451 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SKYBLUE2 = 452 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SKYBLUE3 = 453 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SKYBLUE4 = 454 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEBLUE = 455 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEBLUE1 = 456 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEBLUE2 = 457 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEBLUE3 = 458 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEBLUE4 = 459 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEGRAY1 = 460 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEGRAY2 = 461 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEGRAY3 = 462 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEGRAY4 = 463 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SLATEGRAY = 464 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SNOW = 465 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SNOW2 = 466 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SNOW3 = 467 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SNOW4 = 468 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SPRINGGREEN = 469 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SPRINGGREEN2 = 470 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SPRINGGREEN3 = 471 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_SPRINGGREEN4 = 472 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_STEELBLUE = 473 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_STEELBLUE1 = 474 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_STEELBLUE2 = 475 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_STEELBLUE3 = 476 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_STEELBLUE4 = 477 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TAN = 478 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TAN1 = 479 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TAN2 = 480 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TAN3 = 481 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TAN4 = 482 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_THISTLE = 483 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_THISTLE1 = 484 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_THISTLE2 = 485 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_THISTLE3 = 486 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_THISTLE4 = 487 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TOMATO = 488 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TOMATO1 = 489 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TOMATO2 = 490 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TOMATO3 = 491 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TOMATO4 = 492 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TURQUOISE = 493 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TURQUOISE1 = 494 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TURQUOISE2 = 495 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TURQUOISE3 = 496 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_TURQUOISE4 = 497 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLET = 498 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLETRED = 499 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLETRED1 = 500 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLETRED2 = 501 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLETRED3 = 502 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_VIOLETRED4 = 503 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHEAT = 504 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHEAT1 = 505 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHEAT2 = 506 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHEAT3 = 507 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHEAT4 = 508 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHITESMOKE = 509 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOW = 510 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOW1 = 511 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOW2 = 512 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOW3 = 513 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOW4 = 514 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_YELLOWGREEN = 515 : Public, Static, Literal, HasDefault
+    XQuantity_NameOfColor Quantity_NOC_WHITE = 516 : Public, Static, Literal, HasDefault
+Struct XQuantity_TypeOfColor: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XQuantity_TypeOfColor Quantity_TOC_RGB = 0 : Public, Static, Literal, HasDefault
+    XQuantity_TypeOfColor Quantity_TOC_HLS = 1 : Public, Static, Literal, HasDefault
+Struct XAspect_TypeOfDeflection: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_TypeOfDeflection Aspect_TOD_RELATIVE = 0 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfDeflection Aspect_TOD_ABSOLUTE = 1 : Public, Static, Literal, HasDefault
+Struct XPrs3d_TypeOfHLR: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XPrs3d_TypeOfHLR Prs3d_TOH_NotSet = 0 : Public, Static, Literal, HasDefault
+    XPrs3d_TypeOfHLR Prs3d_TOH_PolyAlgo = 1 : Public, Static, Literal, HasDefault
+    XPrs3d_TypeOfHLR Prs3d_TOH_Algo = 2 : Public, Static, Literal, HasDefault
+Struct XPrs3d_VertexDrawMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XPrs3d_VertexDrawMode Prs3d_VDM_Isolated = 0 : Public, Static, Literal, HasDefault
+    XPrs3d_VertexDrawMode Prs3d_VDM_All = 1 : Public, Static, Literal, HasDefault
+    XPrs3d_VertexDrawMode Prs3d_VDM_Inherited = 2 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_TypeOfShadingModel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_DEFAULT = -1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_UNLIT = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_FACET = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_VERTEX = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_FRAGMENT = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel Graphic3d_TOSM_NONE = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel V3d_COLOR = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel V3d_FLAT = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel V3d_GOURAUD = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel V3d_PHONG = 3 : Public, Static, Literal, HasDefault
+Struct XPrsMgr_TypeOfPresentation3d: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XPrsMgr_TypeOfPresentation3d PrsMgr_TOP_AllView = 0 : Public, Static, Literal, HasDefault
+    XPrsMgr_TypeOfPresentation3d PrsMgr_TOP_ProjectorDependant = 1 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_NameOfMaterial: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_BRASS = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_BRONZE = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_COPPER = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_GOLD = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_PEWTER = 4 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_PLASTER = 5 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_PLASTIC = 6 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_SILVER = 7 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_STEEL = 8 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_STONE = 9 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_SHINY_PLASTIC = 10 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_SATIN = 11 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_METALIZED = 12 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_NEON_GNC = 13 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_CHROME = 14 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_ALUMINIUM = 15 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_OBSIDIAN = 16 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_NEON_PHC = 17 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_JADE = 18 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_CHARCOAL = 19 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_WATER = 20 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_GLASS = 21 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_DIAMOND = 22 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_TRANSPARENT = 23 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_DEFAULT = 24 : Public, Static, Literal, HasDefault
+    XGraphic3d_NameOfMaterial Graphic3d_NOM_UserDefined = 25 : Public, Static, Literal, HasDefault
+Class TKSTEP.XSTEPConstruct_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<XSControl_WorkSession>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(STEPConstruct_Tool*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    STEPConstruct_Tool* Handle 'get ' : 
+  Methods:
+    GetTool(STEPConstruct_Tool*): PrivateScope, Public, HideBySig
+    WS(): PrivateScope, Public, HideBySig
+    Model(handle<Interface_InterfaceModel>*): PrivateScope, Public, HideBySig
+    Graph(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    TransientProcess(): PrivateScope, Public, HideBySig
+    FinderProcess(): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<XCAFApp_Application> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -2211,46 +3267,6 @@ Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Translate(xgp_Vec2d): PrivateScope, Public, HideBySig
     Translated(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
     Translated(xgp_Vec2d): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Mat, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_GTrsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_GTrsf*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    gp_GTrsf* Handle 'get ' : 
-  Methods:
-    GetGTrsf(gp_GTrsf*): PrivateScope, Public, HideBySig
-    SetAffinity(xgp_Ax2, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetAffinity(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetVectorialPart(xgp_Mat): PrivateScope, Public, HideBySig
-    SetTranslationPart(xgp_XYZ): PrivateScope, Public, HideBySig
-    SetTrsf(xgp_Trsf): PrivateScope, Public, HideBySig
-    IsNegative(): PrivateScope, Public, HideBySig
-    IsSingular(): PrivateScope, Public, HideBySig
-    Form(): PrivateScope, Public, HideBySig
-    SetForm(): PrivateScope, Public, HideBySig
-    TranslationPart(): PrivateScope, Public, HideBySig
-    VectorialPart(): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Invert(): PrivateScope, Public, HideBySig
-    Inverted(): PrivateScope, Public, HideBySig
-    Multiplied(xgp_GTrsf): PrivateScope, Public, HideBySig
-    op_Multiply(xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName
-    Multiply(xgp_GTrsf): PrivateScope, Public, HideBySig
-    op_MultiplicationAssignment(xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName
-    PreMultiply(xgp_GTrsf): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Transforms(Double, Double, Double): PrivateScope, Public, HideBySig
-    Transforms(xgp_XYZ): PrivateScope, Public, HideBySig
-    Trsf(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Hypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -2844,4 +3860,67 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TranslateModel(String, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Graphic3d_AspectLine3d> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XGraphic3d_AspectLine3d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKernel.XQuantity_Color, XAspect_TypeOfLine, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Graphic3d_AspectLine3d> Handle 'get ' : 
+  Methods:
+    GetAspectLine3d(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig
+    SetNativeHandle(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig
+    Type(): PrivateScope, Public, HideBySig
+    SetType(XAspect_TypeOfLine): PrivateScope, Public, HideBySig
+    Width(): PrivateScope, Public, HideBySig
+    SetWidth(Single): PrivateScope, Public, HideBySig
+    SetWidth(Double IsConst): PrivateScope, Public, HideBySig
+    get_Handle(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XGraphic3d_AspectLine3d(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct XAspect_TypeOfLine: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_TypeOfLine Aspect_TOL_EMPTY = -1 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfLine Aspect_TOL_SOLID = 0 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfLine Aspect_TOL_DASH = 1 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfLine Aspect_TOL_DOT = 2 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfLine Aspect_TOL_DOTDASH = 3 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfLine Aspect_TOL_USERDEFINED = 4 : Public, Static, Literal, HasDefault
+Class NCollection_Haft<opencascade::handle<Prs3d_LineAspect> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XPrs3d_LineAspect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKV3d.XGraphic3d_AspectLine3d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XQuantity_Color, XAspect_TypeOfLine, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Prs3d_LineAspect> Handle 'get ' : 
+  Methods:
+    SetNativeHandle(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    GetLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    SetTypeOfLine(XAspect_TypeOfLine): PrivateScope, Public, HideBySig
+    SetWidth(Double IsConst): PrivateScope, Public, HideBySig
+    Aspect(): PrivateScope, Public, HideBySig
+    SetAspect(XGraphic3d_AspectLine3d): PrivateScope, Public, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32 IsConst): PrivateScope, Public, Virtual, HideBySig
+    get_Handle(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XPrs3d_LineAspect(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

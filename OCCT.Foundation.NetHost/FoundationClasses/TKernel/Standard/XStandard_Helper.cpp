@@ -18,4 +18,20 @@ namespace TKernel {
         }
         return TCollection_AsciiString(aWCharPtr);
     }
+
+    Standard_CString XStandard_Helper::toCString(TCollection_AsciiString AsciiString) {
+        return AsciiString.ToCString();
+    };
+
+    String^ XStandard_Helper::toString(Standard_CString CString) {
+        std::string tstring = std::string(CString);
+        System::String^ sString = gcnew System::String(tstring.c_str());
+        return sString;
+    };
+
+    String^ XStandard_Helper::toString(TCollection_AsciiString AsciiString) {
+        std::string tstring = std::string(AsciiString.ToCString());
+        System::String^ sString = gcnew System::String(tstring.c_str());
+        return sString;
+    };
 }

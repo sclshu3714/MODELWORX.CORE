@@ -1,858 +1,524 @@
-// Created on: 1997-12-16
-// Created by: Jean Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-#include <PrsMgr_PresentableObject.hxx>
-
-#include <Graphic3d_AspectFillArea3d.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <Prs3d_LineAspect.hxx>
-#include <Prs3d_PointAspect.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <Prs3d_Projector.hxx>
-#include <Prs3d_ShadingAspect.hxx>
-#include <PrsMgr_Presentation.hxx>
-#include <PrsMgr_PresentationManager.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <TColStd_MapOfInteger.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(PrsMgr_PresentableObject, Standard_Transient)
-
-//=======================================================================
-//function : getIdentityTrsf
-//purpose  :
-//=======================================================================
-const gp_Trsf& PrsMgr_PresentableObject::getIdentityTrsf()
-{
-  static const gp_Trsf THE_IDENTITY_TRSF;
-  return THE_IDENTITY_TRSF;
-}
-
-//=======================================================================
-//function : PrsMgr_PresentableObject
-//purpose  :
-//=======================================================================
-PrsMgr_PresentableObject::PrsMgr_PresentableObject (const PrsMgr_TypeOfPresentation3d theType)
-: myParent (NULL),
-  myDrawer (new Prs3d_Drawer()),
-  myTypeOfPresentation3d (theType),
-  //
-  myCurrentFacingModel (Aspect_TOFM_BOTH_SIDE),
-  myOwnWidth (0.0f),
-  hasOwnColor (Standard_False),
-  hasOwnMaterial (Standard_False),
-  //
-  myInfiniteState (Standard_False),
-  myIsMutable (Standard_False),
-  myHasOwnPresentations (Standard_True),
-  myToPropagateVisualState (Standard_True)
-{
-  myDrawer->SetDisplayMode (-1);
-}
-
-//=======================================================================
-//function : ~PrsMgr_PresentableObject
-//purpose  : destructor
-//=======================================================================
-PrsMgr_PresentableObject::~PrsMgr_PresentableObject()
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    // should never happen - assertion can be used
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.Value();
-    aPrs3d->Erase();
-    aPrs3d->myPresentableObject = NULL;
-  }
-
-  for (PrsMgr_ListOfPresentableObjectsIter anIter (myChildren); anIter.More(); anIter.Next())
-  {
-    anIter.Value()->SetCombinedParentTransform (Handle(Geom_Transformation)());
-    anIter.Value()->myParent = NULL;
-  }
-}
-
-//=======================================================================
-//function : Fill
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::Fill (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
-                                     const Handle(PrsMgr_Presentation)&        thePrs,
-                                     const Standard_Integer                    theMode)
-{
-  const Handle(Prs3d_Presentation)& aStruct3d = thePrs;
-  Compute (thePrsMgr, aStruct3d, theMode);
-  aStruct3d->SetTransformation (myTransformation);
-  aStruct3d->SetClipPlanes (myClipPlanes);
-  aStruct3d->SetTransformPersistence (TransformPersistence());
-}
-
-//=======================================================================
-//function : Compute
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::Compute(const Handle(Prs3d_Projector)& /*aProjector*/,
-                                       const Handle(Prs3d_Presentation)& /*aPresentation*/)
-{
-  throw Standard_NotImplemented("cannot compute under a specific projector");
-}
-
-//=======================================================================
-//function : Compute
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::Compute(const Handle(Prs3d_Projector)& /* aProjector*/,
-                                       const Handle(Geom_Transformation)& /*aTrsf*/,
-				                               const Handle(Prs3d_Presentation)& /*aPresentation*/)
-{
-  throw Standard_NotImplemented("cannot compute under a specific projector");
-}
-
-//=======================================================================
-//function : ToBeUpdated
-//purpose  :
-//=======================================================================
-Standard_Boolean PrsMgr_PresentableObject::ToBeUpdated (Standard_Boolean theToIncludeHidden) const
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    if (aModedPrs->MustBeUpdated())
-    {
-      if (theToIncludeHidden)
-      {
-        return Standard_True;
-      }
-
-      Handle(PrsMgr_PresentationManager) aPrsMgr = aModedPrs->PresentationManager();
-      if (aPrsMgr->IsDisplayed  (this, aModedPrs->Mode())
-       || aPrsMgr->IsHighlighted(this, aModedPrs->Mode()))
-      {
-        return Standard_True;
-      }
-    }
-  }
-  return Standard_False;
-}
-
-//=======================================================================
-//function : UpdatePresentations
-//purpose  :
-//=======================================================================
-Standard_Boolean PrsMgr_PresentableObject::UpdatePresentations (Standard_Boolean theToIncludeHidden)
-{
-  Standard_Boolean hasUpdates = Standard_False;
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    if (aModedPrs->MustBeUpdated())
-    {
-      Handle(PrsMgr_PresentationManager) aPrsMgr = aModedPrs->PresentationManager();
-      if (theToIncludeHidden
-       || aPrsMgr->IsDisplayed  (this, aModedPrs->Mode())
-       || aPrsMgr->IsHighlighted(this, aModedPrs->Mode()))
-      {
-        hasUpdates = Standard_True;
-        aPrsMgr->Update (this, aModedPrs->Mode());
-      }
-    }
-  }
-  return hasUpdates;
-}
-
-//=======================================================================
-//function : Update
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::Update (Standard_Integer theMode, Standard_Boolean theToClearOther)
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More();)
-  {
-    if (aPrsIter.Value()->Mode() == theMode)
-    {
-      Handle(PrsMgr_PresentationManager) aPrsMgr = aPrsIter.Value()->PresentationManager();
-      if (aPrsMgr->IsDisplayed  (this, theMode)
-       || aPrsMgr->IsHighlighted(this, theMode))
-      {
-        aPrsMgr->Update (this, theMode);
-        aPrsIter.Value()->SetUpdateStatus (Standard_False);
-      }
-      else
-      {
-        SetToUpdate (aPrsIter.Value()->Mode());
-      }
-    }
-    else if (theToClearOther)
-    {
-      myPresentations.Remove (aPrsIter);
-      continue;
-    }
-    aPrsIter.Next();
-  }
-}
-
-//=======================================================================
-//function : SetToUpdate
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::SetToUpdate (Standard_Integer theMode)
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    if (theMode == -1
-     || aPrsIter.Value()->Mode() == theMode)
-    {
-      aPrsIter.ChangeValue()->SetUpdateStatus (Standard_True);
-    }
-  }
-}
-
-//=======================================================================
-//function : ToBeUpdated
-//purpose  : gets the list of modes to be updated
-//=======================================================================
-void PrsMgr_PresentableObject::ToBeUpdated (TColStd_ListOfInteger& theOutList) const
-{
-  theOutList.Clear();
-  TColStd_MapOfInteger MI(myPresentations.Length()); 
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    if (aModedPrs->MustBeUpdated()
-     && MI.Add (aModedPrs->Mode()))
-    {
-      theOutList.Append (aModedPrs->Mode());
-    }
-  }
-}
-
-//=======================================================================
-//function : SetTypeOfPresentation
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetTypeOfPresentation (const PrsMgr_TypeOfPresentation3d theType)
-{
-  myTypeOfPresentation3d = theType;
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs  = aPrsIter.Value();
-    aPrs->SetVisual (myTypeOfPresentation3d == PrsMgr_TOP_ProjectorDependant
-                   ? Graphic3d_TOS_COMPUTED
-                   : Graphic3d_TOS_ALL);
-  }
-}
-
-//=======================================================================
-//function : setLocalTransformation
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::setLocalTransformation (const Handle(Geom_Transformation)& theTransformation)
-{
-  myLocalTransformation = theTransformation;
-  UpdateTransformation();
-}
-
-//=======================================================================
-//function : ResetTransformation
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::ResetTransformation() 
-{
-  setLocalTransformation (Handle(Geom_Transformation)());
-}
-
-//=======================================================================
-//function : SetCombinedParentTransform
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::SetCombinedParentTransform (const Handle(Geom_Transformation)& theTrsf)
-{
-  myCombinedParentTransform = theTrsf;
-  UpdateTransformation();
-}
-
-//=======================================================================
-//function : UpdateTransformation
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::UpdateTransformation()
-{
-  myTransformation.Nullify();
-  myInvTransformation = gp_Trsf();
-  if (!myCombinedParentTransform.IsNull() && myCombinedParentTransform->Form() != gp_Identity)
-  {
-    if (!myLocalTransformation.IsNull() && myLocalTransformation->Form() != gp_Identity)
-    {
-      const gp_Trsf aTrsf = myCombinedParentTransform->Trsf() * myLocalTransformation->Trsf();
-      myTransformation    = new Geom_Transformation (aTrsf);
-      myInvTransformation = aTrsf.Inverted();
-    }
-    else
-    {
-      myTransformation    = myCombinedParentTransform;
-      myInvTransformation = myCombinedParentTransform->Trsf().Inverted();
-    }
-  }
-  else if (!myLocalTransformation.IsNull() && myLocalTransformation->Form() != gp_Identity)
-  {
-    myTransformation    = myLocalTransformation;
-    myInvTransformation = myLocalTransformation->Trsf().Inverted();
-  }
-
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    aPrsIter.ChangeValue()->SetTransformation (myTransformation);
-  }
-
-  for (PrsMgr_ListOfPresentableObjectsIter aChildIter (myChildren); aChildIter.More(); aChildIter.Next())
-  {
-    aChildIter.Value()->SetCombinedParentTransform (myTransformation);
-  }
-}
-
-//=======================================================================
-//function : recomputeComputed
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::recomputeComputed() const
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.Value();
-    aPrs3d->ReCompute();
-  }
-}
-
-//=======================================================================
-//function : SetTransformPersistence
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers)
-{
-  myTransformPersistence = theTrsfPers;
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.Value();
-    aPrs3d->SetTransformPersistence (myTransformPersistence);
-    aPrs3d->ReCompute();
-  }
-}
-
-//=======================================================================
-//function : GetTransformPersistence
-//purpose  :
-//=======================================================================
-gp_Pnt PrsMgr_PresentableObject::GetTransformPersistencePoint() const
-{
-  if (myTransformPersistence.IsNull())
-  {
-    return gp_Pnt();
-  }
-  else if (myTransformPersistence->IsZoomOrRotate())
-  {
-    return myTransformPersistence->AnchorPoint();
-  }
-  else if (!myTransformPersistence->IsTrihedronOr2d())
-  {
-    return gp_Pnt();
-  }
-
-  Standard_Real anX = 0.0;
-  if ((myTransformPersistence->Corner2d() & Aspect_TOTP_RIGHT) != 0)
-  {
-    anX = 1.0;
-  }
-  else if ((myTransformPersistence->Corner2d() & Aspect_TOTP_LEFT) != 0)
-  {
-    anX = -1.0;
-  }
-
-  Standard_Real anY = 0.0;
-  if ((myTransformPersistence->Corner2d() & Aspect_TOTP_TOP) != 0)
-  {
-    anY = 1.0;
-  }
-  else if ((myTransformPersistence->Corner2d() & Aspect_TOTP_BOTTOM) != 0)
-  {
-    anY = -1.0;
-  }
-
-  return gp_Pnt (anX, anY, myTransformPersistence->Offset2d().x());
-}
-
-//=======================================================================
-//function : AddChild
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::AddChild (const Handle(PrsMgr_PresentableObject)& theObject)
-{
-  Handle(PrsMgr_PresentableObject) aHandleGuard = theObject;
-  if (theObject->myParent != NULL)
-  {
-    theObject->myParent->RemoveChild (aHandleGuard);
-  }
-
-  myChildren.Append (theObject);  
-  theObject->myParent = this;
-  theObject->SetCombinedParentTransform (myTransformation);
-}
-
-//=======================================================================
-//function : AddChildWithCurrentTransformation
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::AddChildWithCurrentTransformation(const Handle(PrsMgr_PresentableObject)& theObject)
-{
-  gp_Trsf aTrsf = Transformation().Inverted() * theObject->Transformation();
-  theObject->SetLocalTransformation(aTrsf);
-  AddChild(theObject);
-}
-
-//=======================================================================
-//function : RemoveChild
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::RemoveChild (const Handle(PrsMgr_PresentableObject)& theObject)
-{
-  PrsMgr_ListOfPresentableObjectsIter anIter (myChildren);
-  for (; anIter.More(); anIter.Next())
-  {
-    if (anIter.Value() == theObject)
-    {
-      theObject->myParent = NULL;
-      theObject->SetCombinedParentTransform (Handle(Geom_Transformation)());
-      myChildren.Remove (anIter);
-      break;
-    }
-  }
-}
-
-//=======================================================================
-//function : RemoveChildWithRestoreTransformation
-//purpose  : 
-//=======================================================================
-void PrsMgr_PresentableObject::RemoveChildWithRestoreTransformation(const Handle(PrsMgr_PresentableObject)& theObject)
-{
-  gp_Trsf aTrsf = theObject->Transformation();
-  RemoveChild(theObject);
-  theObject->SetLocalTransformation(aTrsf);
-}
-
-//=======================================================================
-//function : SetZLayer
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetZLayer (const Graphic3d_ZLayerId theLayerId)
-{
-  if (myDrawer->ZLayer() == theLayerId)
-  {
-    return;
-  }
-
-  myDrawer->SetZLayer (theLayerId);
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    aModedPrs->SetZLayer (theLayerId);
-  }
-}
-
-// =======================================================================
-// function : AddClipPlane
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::AddClipPlane (const Handle(Graphic3d_ClipPlane)& thePlane)
-{
-  // add to collection and process changes
-  if (myClipPlanes.IsNull())
-  {
-    myClipPlanes = new Graphic3d_SequenceOfHClipPlane();
-  }
-
-  myClipPlanes->Append (thePlane);
-  UpdateClipping();
-}
-
-// =======================================================================
-// function : RemoveClipPlane
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::RemoveClipPlane (const Handle(Graphic3d_ClipPlane)& thePlane)
-{
-  if (myClipPlanes.IsNull())
-  {
-    return;
-  }
-
-  // remove from collection and process changes
-  for (Graphic3d_SequenceOfHClipPlane::Iterator aPlaneIt (*myClipPlanes); aPlaneIt.More(); aPlaneIt.Next())
-  {
-    const Handle(Graphic3d_ClipPlane)& aPlane = aPlaneIt.Value();
-    if (aPlane != thePlane)
-      continue;
-
-    myClipPlanes->Remove (aPlaneIt);
-    UpdateClipping();
-    return;
-  }
-}
-
-// =======================================================================
-// function : SetClipPlanes
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::SetClipPlanes (const Handle(Graphic3d_SequenceOfHClipPlane)& thePlanes)
-{
-  // change collection and process changes
-  myClipPlanes = thePlanes;
-  UpdateClipping();
-}
-
-// =======================================================================
-// function : UpdateClipping
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::UpdateClipping()
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    aModedPrs->SetClipPlanes (myClipPlanes);
-  }
-}
-
-//=======================================================================
-//function : SetInfiniteState
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetInfiniteState (const Standard_Boolean theFlag)
-{
-  if (myInfiniteState == theFlag)
-  {
-    return;
-  }
-
-  myInfiniteState = theFlag;
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    aModedPrs->SetInfiniteState (theFlag);
-  }
-}
-
-// =======================================================================
-// function : SetMutable
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::SetMutable (const Standard_Boolean theIsMutable)
-{
-  if (myIsMutable == theIsMutable)
-  {
-    return;
-  }
-
-  myIsMutable = theIsMutable;
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aModedPrs = aPrsIter.Value();
-    aModedPrs->SetMutable (theIsMutable);
-  }
-}
-
-// =======================================================================
-// function : UnsetAttributes
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::UnsetAttributes()
-{
-  Handle(Prs3d_Drawer) aDrawer = new Prs3d_Drawer();
-  if (myDrawer->HasLink())
-  {
-    aDrawer->Link(myDrawer->Link());
-  }
-  myDrawer = aDrawer;
-
-  hasOwnColor    = Standard_False;
-  hasOwnMaterial = Standard_False;
-  myOwnWidth     = 0.0f;
-  myDrawer->SetTransparency (0.0f);
-}
-
-//=======================================================================
-//function : SetHilightMode
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetHilightMode (const Standard_Integer theMode)
-{
-  if (myHilightDrawer.IsNull())
-  {
-    myHilightDrawer = new Prs3d_Drawer();
-    myHilightDrawer->Link (myDrawer);
-    myHilightDrawer->SetAutoTriangulation (Standard_False);
-    myHilightDrawer->SetColor (Quantity_NOC_GRAY80);
-    myHilightDrawer->SetZLayer(Graphic3d_ZLayerId_UNKNOWN);
-  }
-  if (myDynHilightDrawer.IsNull())
-  {
-    myDynHilightDrawer = new Prs3d_Drawer();
-    myDynHilightDrawer->Link (myDrawer);
-    myDynHilightDrawer->SetColor (Quantity_NOC_CYAN1);
-    myDynHilightDrawer->SetAutoTriangulation (Standard_False);
-    myDynHilightDrawer->SetZLayer(Graphic3d_ZLayerId_Top);
-  }
-  myHilightDrawer   ->SetDisplayMode (theMode);
-  myDynHilightDrawer->SetDisplayMode (theMode);
-}
-
-//=======================================================================
-//function : SynchronizeAspects
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SynchronizeAspects()
-{
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.ChangeValue();
-    for (Graphic3d_SequenceOfGroup::Iterator aGroupIter (aPrs3d->Groups()); aGroupIter.More(); aGroupIter.Next())
-    {
-      if (!aGroupIter.Value().IsNull())
-      {
-        aGroupIter.ChangeValue()->SynchronizeAspects();
-      }
-    }
-  }
-}
-
-//=======================================================================
-//function : replaceAspects
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::replaceAspects (const Graphic3d_MapOfAspectsToAspects& theMap)
-{
-  if (theMap.IsEmpty())
-  {
-    return;
-  }
-
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.ChangeValue();
-    for (Graphic3d_SequenceOfGroup::Iterator aGroupIter (aPrs3d->Groups()); aGroupIter.More(); aGroupIter.Next())
-    {
-      if (!aGroupIter.Value().IsNull())
-      {
-        aGroupIter.ChangeValue()->ReplaceAspects (theMap);
-      }
-    }
-  }
-}
-
-//=======================================================================
-//function : BoundingBox
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::BoundingBox (Bnd_Box& theBndBox)
-{
-  if (myDrawer->DisplayMode() == -1)
-  {
-    if (!myPresentations.IsEmpty())
-    {
-      const Handle(PrsMgr_Presentation)& aPrs3d = myPresentations.First();
-      const Graphic3d_BndBox3d& aBndBox = aPrs3d->CStructure()->BoundingBox();
-      if (aBndBox.IsValid())
-      {
-        theBndBox.Update (aBndBox.CornerMin().x(), aBndBox.CornerMin().y(), aBndBox.CornerMin().z(),
-                          aBndBox.CornerMax().x(), aBndBox.CornerMax().y(), aBndBox.CornerMax().z());
-      }
-      else
-      {
-        theBndBox.SetVoid();
-      }
-      return;
-    }
-
-    for (PrsMgr_ListOfPresentableObjectsIter aPrsIter (myChildren); aPrsIter.More(); aPrsIter.Next())
-    {
-      if (const Handle(PrsMgr_PresentableObject)& aChild = aPrsIter.Value())
-      {
-        Bnd_Box aBox;
-        aChild->BoundingBox (aBox);
-        theBndBox.Add (aBox);
-      }
-    }
-    return;
-  }
-
-  for (PrsMgr_Presentations::Iterator aPrsIter (myPresentations); aPrsIter.More(); aPrsIter.Next())
-  {
-    const Handle(PrsMgr_Presentation)& aPrs3d = aPrsIter.ChangeValue();
-    if (aPrs3d->Mode() == myDrawer->DisplayMode())
-    {
-      const Graphic3d_BndBox3d& aBndBox = aPrs3d->CStructure()->BoundingBox();
-      if (aBndBox.IsValid())
-      {
-        theBndBox.Update (aBndBox.CornerMin().x(), aBndBox.CornerMin().y(), aBndBox.CornerMin().z(),
-                          aBndBox.CornerMax().x(), aBndBox.CornerMax().y(), aBndBox.CornerMax().z());
-      }
-      else
-      {
-        theBndBox.SetVoid();
-      }
-      return;
-    }
-  }
-}
-
-//=======================================================================
-//function : Material
-//purpose  :
-//=======================================================================
-Graphic3d_NameOfMaterial PrsMgr_PresentableObject::Material() const
-{
-  return myDrawer->ShadingAspect()->Material().Name();
-}
-
-//=======================================================================
-//function : SetMaterial
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetMaterial (const Graphic3d_MaterialAspect& theMaterial)
-{
-  myDrawer->SetupOwnShadingAspect();
-  myDrawer->ShadingAspect()->SetMaterial (theMaterial);
-  hasOwnMaterial = Standard_True;
-}
-
-//=======================================================================
-//function : UnsetMaterial
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::UnsetMaterial()
-{
-  if (!HasMaterial())
-  {
-    return;
-  }
-
-  if (HasColor() || IsTransparent())
-  {
-    if (myDrawer->HasLink())
-    {
-      myDrawer->ShadingAspect()->SetMaterial (myDrawer->Link()->ShadingAspect()->Aspect()->BackMaterial());
-    }
-
-    if (HasColor())
-    {
-      SetColor (myDrawer->Color());
-    }
-
-    if (IsTransparent())
-    {
-      SetTransparency (myDrawer->Transparency());
-    }
-  }
-  else
-  {
-    myDrawer->SetShadingAspect (Handle(Prs3d_ShadingAspect)());
-  }
-
-  hasOwnMaterial = Standard_False;
-}
-
-//=======================================================================
-//function : SetTransparency
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetTransparency (const Standard_Real theValue)
-{
-  myDrawer->SetupOwnShadingAspect();
-  myDrawer->ShadingAspect()->Aspect()->ChangeFrontMaterial().SetTransparency (Standard_ShortReal(theValue));
-  myDrawer->ShadingAspect()->Aspect()->ChangeBackMaterial() .SetTransparency (Standard_ShortReal(theValue));
-  myDrawer->SetTransparency (Standard_ShortReal(theValue));
-}
-
-//=======================================================================
-//function : UnsetTransparency
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::UnsetTransparency()
-{
-  if (HasColor() || HasMaterial())
-  {
-    myDrawer->ShadingAspect()->Aspect()->ChangeFrontMaterial().SetTransparency (0.0f);
-    myDrawer->ShadingAspect()->Aspect()->ChangeBackMaterial() .SetTransparency (0.0f);
-  }
-  else
-  {
-    myDrawer->SetShadingAspect (Handle(Prs3d_ShadingAspect)());
-  }
-  myDrawer->SetTransparency (0.0f);
-}
-
-//=======================================================================
-//function : SetPolygonOffsets
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::SetPolygonOffsets (const Standard_Integer   theMode,
-                                                  const Standard_ShortReal theFactor,
-                                                  const Standard_ShortReal theUnits)
-{
-  myDrawer->SetupOwnShadingAspect();
-  myDrawer->ShadingAspect()->Aspect()->SetPolygonOffsets (theMode, theFactor, theUnits);
-  SynchronizeAspects();
-}
-
-//=======================================================================
-//function : HasPolygonOffsets
-//purpose  :
-//=======================================================================
-Standard_Boolean PrsMgr_PresentableObject::HasPolygonOffsets() const
-{
-  return !(myDrawer->HasOwnShadingAspect()
-        || (myDrawer->HasLink()
-         && myDrawer->ShadingAspect() == myDrawer->Link()->ShadingAspect()));
-}
-
-//=======================================================================
-//function : PolygonOffsets
-//purpose  :
-//=======================================================================
-void PrsMgr_PresentableObject::PolygonOffsets (Standard_Integer&   theMode,
-                                               Standard_ShortReal& theFactor,
-                                               Standard_ShortReal& theUnits) const
-{
-  if (HasPolygonOffsets())
-  {
-    myDrawer->ShadingAspect()->Aspect()->PolygonOffsets (theMode, theFactor, theUnits);
-  }
-}
-
-// =======================================================================
-// function : DumpJson
-// purpose  :
-// =======================================================================
-void PrsMgr_PresentableObject::DumpJson (Standard_OStream& theOStream, const Standard_Integer) const
-{
-  OCCT_DUMP_CLASS_BEGIN (theOStream, PrsMgr_PresentableObject);
-
-  OCCT_DUMP_FIELD_VALUE_POINTER (theOStream, myParent);
-
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myOwnWidth);
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, hasOwnColor);
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, hasOwnMaterial);
-
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myInfiniteState);
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsMutable);
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myHasOwnPresentations);
+#include <XPrsMgr_PresentableObject.h>
+
+namespace TKV3d {
+
+    XPrsMgr_PresentableObject::XPrsMgr_PresentableObject() {
+        
+    };
+
+    XPrsMgr_PresentableObject::XPrsMgr_PresentableObject(Handle(PrsMgr_PresentableObject) pos) {
+        NativeHandle() = pos;
+    };
+
+    //! 
+    void XPrsMgr_PresentableObject::SetBaseNativeHandle(Handle(PrsMgr_PresentableObject) pos) {
+        NativeHandle() = pos;
+    };
+
+    Handle(PrsMgr_PresentableObject) XPrsMgr_PresentableObject::GetPresentableObject() {
+        return NativeHandle();
+    };
+
+    //! Return presentations.
+    PrsMgr_Presentations& XPrsMgr_PresentableObject::Presentations() {
+        return NativeHandle()->Presentations();
+    };
+
+    //! Get ID of Z layer for main presentation.
+    Graphic3d_ZLayerId XPrsMgr_PresentableObject::ZLayer() {
+        return NativeHandle()->ZLayer();
+    };
+
+    //! Set Z layer ID and update all presentations of the presentable object.
+    //! The layers mechanism allows drawing objects in higher layers in overlay of objects in lower layers.
+    void XPrsMgr_PresentableObject::SetZLayer(const Graphic3d_ZLayerId theLayerId) {
+        NativeHandle()->SetZLayer(theLayerId);
+    };
+
+    //! Returns true if object has mutable nature (content or location are be changed regularly).
+    //! Mutable object will be managed in different way than static onces (another optimizations).
+    Standard_Boolean XPrsMgr_PresentableObject::IsMutable() {
+        return NativeHandle()->IsMutable();
+    };
+
+    //! Sets if the object has mutable nature (content or location will be changed regularly).
+    //! This method should be called before object displaying to take effect.
+    void XPrsMgr_PresentableObject::SetMutable(const Standard_Boolean theIsMutable) {
+        NativeHandle()->SetMutable(theIsMutable);
+    };
+
+    //! Returns true if the Interactive Object has display mode setting overriding global setting (within Interactive Context).
+    Standard_Boolean XPrsMgr_PresentableObject::HasDisplayMode() {
+        return NativeHandle()->HasDisplayMode();
+    };
+
+    //! Returns the display mode setting of the Interactive Object.
+    //! The range of supported display mode indexes should be specified within object definition and filtered by AccepDisplayMode().
+    //! @sa AcceptDisplayMode()
+    Standard_Integer XPrsMgr_PresentableObject::DisplayMode() {
+        return NativeHandle()->DisplayMode();
+    };
+
+    //! Sets the display mode for the interactive object.
+    //! An object can have its own temporary display mode, which is different from that proposed by the interactive context.
+    //! @sa AcceptDisplayMode()
+    void XPrsMgr_PresentableObject::SetDisplayMode(const Standard_Integer theMode) {
+        NativeHandle()->SetDisplayMode(theMode);
+    };
+
+    //! Removes display mode settings from the interactive object.
+    void XPrsMgr_PresentableObject::UnsetDisplayMode() {
+        NativeHandle()->UnsetDisplayMode();
+    };
+
+    //! Returns true if the Interactive Object is in highlight mode.
+    Standard_Boolean XPrsMgr_PresentableObject::HasHilightMode() {
+        return NativeHandle()->HasHilightMode();
+    };
+
+    //! Returns highlight display mode.
+    //! This is obsolete method for backward compatibility - use ::HilightAttributes() and ::DynamicHilightAttributes() instead.
+    Standard_Integer XPrsMgr_PresentableObject::HilightMode() {
+        return NativeHandle()->HilightMode();
+    };
+
+    //! Sets highlight display mode.
+    //! This is obsolete method for backward compatibility - use ::HilightAttributes() and ::DynamicHilightAttributes() instead.
+    void XPrsMgr_PresentableObject::SetHilightMode(const Standard_Integer theMode) {
+        return NativeHandle()->SetHilightMode(theMode);
+    };
+
+    //! Unsets highlight display mode.
+    void XPrsMgr_PresentableObject::UnsetHilightMode() {
+        NativeHandle()->UnsetHilightMode();
+    };
+
+    //! Returns true if the class of objects accepts specified display mode index.
+    //! The interactive context can have a default mode of representation for the set of Interactive Objects.
+    //! This mode may not be accepted by a given class of objects.
+    //! Consequently, this method allowing us to get information about the class in question must be implemented.
+    //! At least one display mode index should be accepted by this method.
+    //! Although subclass can leave default implementation, it is highly desired defining exact list of supported modes instead,
+    //! which is usually an enumeration for one object or objects class sharing similar list of display modes.
+    Standard_Boolean XPrsMgr_PresentableObject::AcceptDisplayMode(const Standard_Integer theMode) {
+        return NativeHandle()->AcceptDisplayMode(theMode);
+    };
+
+    //! Returns the default display mode.
+    Standard_Integer XPrsMgr_PresentableObject::DefaultDisplayMode() {
+        return NativeHandle()->DefaultDisplayMode();
+    };
+
+    //! Returns TRUE if any active presentation has invalidation flag.
+    //! @param theToIncludeHidden when TRUE, also checks hidden presentations
+    //! theToIncludeHidden = Standard_False
+    Standard_Boolean XPrsMgr_PresentableObject::ToBeUpdated(Standard_Boolean theToIncludeHidden) {
+        return NativeHandle()->ToBeUpdated(theToIncludeHidden);
+    };
+
+    //! Flags presentation to be updated; UpdatePresentations() will recompute these presentations.
+    //! @param theMode presentation (display mode) to invalidate, or -1 to invalidate them all
+    void XPrsMgr_PresentableObject::SetToUpdate(Standard_Integer theMode) {
+        return NativeHandle()->SetToUpdate(theMode);
+    };
+
+    //! flags all the Presentations to be Updated.
+    void XPrsMgr_PresentableObject::SetToUpdate() {
+        NativeHandle()->SetToUpdate();
+    };
+
+    //! Returns true if the interactive object is infinite; FALSE by default.
+    //! This flag affects various operations operating on bounding box of graphic presentations of this object.
+    //! For instance, infinite objects are not taken in account for View FitAll.
+    //! This does not necessarily means that object is actually infinite,
+    //! auxiliary objects might be also marked with this flag to achieve desired behavior.
+    Standard_Boolean XPrsMgr_PresentableObject::IsInfinite() {
+        return NativeHandle()->IsInfinite();
+    };
+
+    //! Sets if object should be considered as infinite.
+    //! theFlag = Standard_True
+    void XPrsMgr_PresentableObject::SetInfiniteState(const Standard_Boolean theFlag) {
+        NativeHandle()->SetInfiniteState(theFlag);
+    };
+
+    //! Returns information on whether the object accepts display in HLR mode or not.
+    XPrsMgr_TypeOfPresentation3d XPrsMgr_PresentableObject::TypeOfPresentation3d() {
+        return safe_cast<XPrsMgr_TypeOfPresentation3d>(NativeHandle()->TypeOfPresentation3d());
+    };
+
+    //! Set type of presentation.
+    void XPrsMgr_PresentableObject::SetTypeOfPresentation(XPrsMgr_TypeOfPresentation3d theType) {
+        NativeHandle()->SetTypeOfPresentation(safe_cast<PrsMgr_TypeOfPresentation3d>(theType));
+    };
+
+    //! @name presentation attributes
+
+  //! Returns the attributes settings.
+    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::Attributes() {
+        return gcnew XPrs3d_Drawer(NativeHandle()->Attributes());
+    };
+
+    //! Initializes the drawing tool theDrawer.
+    void XPrsMgr_PresentableObject::SetAttributes(XPrs3d_Drawer^ theDrawer) {
+        NativeHandle()->SetAttributes(theDrawer->GetDrawer());
+    };
+
+    //! Returns the hilight attributes settings.
+    //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalSelected and Prs3d_TypeOfHighlight_Selected defined within AIS_InteractiveContext.
+    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::HilightAttributes() {
+        return gcnew XPrs3d_Drawer(NativeHandle()->HilightAttributes());
+    };
+
+    //! Initializes the hilight drawing tool theDrawer.
+    void XPrsMgr_PresentableObject::SetHilightAttributes(XPrs3d_Drawer^ theDrawer) {
+        NativeHandle()->SetHilightAttributes(theDrawer->GetDrawer());
+    };
+
+    //! Returns the hilight attributes settings.
+    //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalDynamic and Prs3d_TypeOfHighlight_Dynamic defined within AIS_InteractiveContext.
+    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::DynamicHilightAttributes() {
+        return gcnew XPrs3d_Drawer(NativeHandle()->DynamicHilightAttributes());
+    };
+
+    //! Initializes the dynamic hilight drawing tool.
+    void XPrsMgr_PresentableObject::SetDynamicHilightAttributes(XPrs3d_Drawer^ theDrawer) {
+        NativeHandle()->SetDynamicHilightAttributes(theDrawer->GetDrawer());
+    };
+
+    //! Clears settings provided by the hilight drawing tool theDrawer.
+    void XPrsMgr_PresentableObject::UnsetHilightAttributes() {
+        NativeHandle()->UnsetHilightAttributes();
+    };
+
+    //! Synchronize presentation aspects after their modification.
+    //!
+    //! This method should be called after modifying primitive aspect properties (material, texture, shader)
+    //! so that modifications will take effect on already computed presentation groups (thus avoiding re-displaying the object).
+    void XPrsMgr_PresentableObject::SynchronizeAspects() {
+        NativeHandle()->SynchronizeAspects();
+    };
+
+       //! @name object transformation
+
+      //! Returns Transformation Persistence defining a special Local Coordinate system where this presentable object is located or NULL handle if not defined.
+      //! Position of the object having Transformation Persistence is mutable and depends on camera position.
+      //! The same applies to a bounding box of the object.
+      //! @sa Graphic3d_TransformPers class description
+    const Handle(Graphic3d_TransformPers)& XPrsMgr_PresentableObject::TransformPersistence() {
+        return NativeHandle()->TransformPersistence();
+    };
+
+    //! Sets up Transform Persistence defining a special Local Coordinate system where this object should be located.
+    //! Note that management of Transform Persistence object is more expensive than of the normal one,
+    //! because it requires its position being recomputed basing on camera position within each draw call / traverse.
+    //! @sa Graphic3d_TransformPers class description
+    void XPrsMgr_PresentableObject::SetTransformPersistence(const Handle(Graphic3d_TransformPers)& theTrsfPers) {
+        NativeHandle()->SetTransformPersistence(theTrsfPers);
+    };
+
+    //! Return the local transformation.
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::LocalTransformationGeom() {
+          return NativeHandle()->LocalTransformationGeom();
+    };
+
+    //! Sets local transformation to theTransformation.
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    void XPrsMgr_PresentableObject::SetLocalTransformation(xgp_Trsf^ theTrsf) {
+        NativeHandle()->SetLocalTransformation(theTrsf->GetTrsf());
+    };
+
+    //! Sets local transformation to theTransformation.
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    void XPrsMgr_PresentableObject::SetLocalTransformation(const Handle(Geom_Transformation)& theTrsf) {
+        NativeHandle()->SetLocalTransformation(theTrsf);
+    };
+
+    //! Returns true if object has a transformation that is different from the identity.
+    Standard_Boolean XPrsMgr_PresentableObject::HasTransformation() {
+        return NativeHandle()->HasTransformation();
+    };
+
+    //! Return the transformation taking into account transformation of parent object(s).
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::TransformationGeom() {
+        return NativeHandle()->TransformationGeom();
+    };
+
+    //! Return the local transformation.
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    const xgp_Trsf^ XPrsMgr_PresentableObject::LocalTransformation() {
+        return gcnew xgp_Trsf(NativeHandle()->LocalTransformation());
+    };
+
+    //! Return the transformation taking into account transformation of parent object(s).
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    const xgp_Trsf^ XPrsMgr_PresentableObject::Transformation() {
+        return gcnew xgp_Trsf(NativeHandle()->Transformation());
+    };
+
+    //! Return inversed transformation.
+    const xgp_GTrsf^ XPrsMgr_PresentableObject::InversedTransformation() {
+        return gcnew xgp_GTrsf(NativeHandle()->InversedTransformation());
+    };
+
+    //! Return combined parent transformation.
+    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::CombinedParentTransformation() {
+        return NativeHandle()->CombinedParentTransformation();
+    };
+
+    //! resets local transformation to identity.
+    void XPrsMgr_PresentableObject::ResetTransformation() {
+        NativeHandle()->ResetTransformation();
+    };
+
+    //! Updates final transformation (parent + local) of presentable object and its presentations.
+    void XPrsMgr_PresentableObject::UpdateTransformation() {
+        NativeHandle()->UpdateTransformation();
+    };
+
+    //! @name clipping planes
+
+    //! Get clip planes.
+    //! @return set of previously added clip planes for all display mode presentations.
+    const Handle(Graphic3d_SequenceOfHClipPlane)& XPrsMgr_PresentableObject::ClipPlanes() {
+        return NativeHandle()->ClipPlanes();
+    };
+
+    //! Set clip planes for graphical clipping for all display mode presentations.
+    //! The composition of clip planes truncates the rendering space to convex volume.
+    //! Please be aware that number of supported clip plane is limited.
+    //! The planes which exceed the limit are ignored.
+    //! Besides of this, some planes can be already set in view where the object is shown:
+    //! the number of these planes should be subtracted from limit to predict the maximum
+    //! possible number of object clipping planes.
+    void XPrsMgr_PresentableObject::SetClipPlanes(const Handle(Graphic3d_SequenceOfHClipPlane)& thePlanes) {
+        NativeHandle()->SetClipPlanes(thePlanes);
+    };
+
+    //! Adds clip plane for graphical clipping for all display mode
+    //! presentations. The composition of clip planes truncates the rendering
+    //! space to convex volume. Please be aware that number of supported
+    //! clip plane is limited. The planes which exceed the limit are ignored.
+    //! Besides of this, some planes can be already set in view where the object
+    //! is shown: the number of these planes should be subtracted from limit
+    //! to predict the maximum possible number of object clipping planes.
+    //! @param thePlane [in] the clip plane to be appended to map of clip planes.
+    void XPrsMgr_PresentableObject::AddClipPlane(const Handle(Graphic3d_ClipPlane)& thePlane) {
+        NativeHandle()->AddClipPlane(thePlane);
+    };
+
+    //! Removes previously added clip plane.
+    //! @param thePlane [in] the clip plane to be removed from map of clip planes.
+    void XPrsMgr_PresentableObject::RemoveClipPlane(const Handle(Graphic3d_ClipPlane)& thePlane) {
+        NativeHandle()->RemoveClipPlane(thePlane);
+    };
+
+    //! @name parent/children properties
+
+    //! Returns parent of current object in scene hierarchy.
+    XPrsMgr_PresentableObject^ XPrsMgr_PresentableObject::Parent() {
+        return gcnew XPrsMgr_PresentableObject(NativeHandle()->Parent());
+    };
+
+    //! Returns children of the current object.
+    const PrsMgr_ListOfPresentableObjects& XPrsMgr_PresentableObject::Children() {
+        return NativeHandle()->Children();
+    };
+
+    //! Makes theObject child of current object in scene hierarchy.
+    void XPrsMgr_PresentableObject::AddChild(XPrsMgr_PresentableObject^ theObject) {
+        NativeHandle()->AddChild(theObject->GetPresentableObject());
+    };
+
+    //! Makes theObject child of current object in scene hierarchy with keeping the current global transformation
+    //! So the object keeps the same position/orientation in the global CS.
+    void XPrsMgr_PresentableObject::AddChildWithCurrentTransformation(XPrsMgr_PresentableObject^ theObject) {
+        NativeHandle()->AddChildWithCurrentTransformation(theObject->GetPresentableObject());
+    };
+
+    //! Removes theObject from children of current object in scene hierarchy.
+    void XPrsMgr_PresentableObject::RemoveChild(XPrsMgr_PresentableObject^ theObject) {
+        NativeHandle()->RemoveChild(theObject->GetPresentableObject());
+    };
+
+    //! Removes theObject from children of current object in scene hierarchy with keeping the current global transformation.
+    //! So the object keeps the same position/orientation in the global CS.
+    void XPrsMgr_PresentableObject::RemoveChildWithRestoreTransformation(XPrsMgr_PresentableObject^ theObject) {
+        NativeHandle()->RemoveChildWithRestoreTransformation(theObject->GetPresentableObject());
+    };
+
+    //! Returns true if object should have own presentations.
+    Standard_Boolean XPrsMgr_PresentableObject::HasOwnPresentations() {
+        return NativeHandle()->HasOwnPresentations();
+    };
+
+    //! Returns bounding box of object correspondingly to its current display mode.
+    //! This method requires presentation to be already computed, since it relies on bounding box of presentation structures,
+    //! which are supposed to be same/close amongst different display modes of this object.
+    void XPrsMgr_PresentableObject::BoundingBox(Bnd_Box& theBndBox) {
+
+    };
+    //! @name simplified presentation properties API
+
+    //! Enables or disables on-triangulation build of isolines according to the flag given.
+    void XPrsMgr_PresentableObject::SetIsoOnTriangulation(const Standard_Boolean theIsEnabled) {
+        NativeHandle()->SetIsoOnTriangulation(theIsEnabled);
+    };
+
+    //! Returns the current facing model which is in effect.
+    XAspect_TypeOfFacingModel XPrsMgr_PresentableObject::CurrentFacingModel() {
+        return safe_cast<XAspect_TypeOfFacingModel>(NativeHandle()->CurrentFacingModel());
+    };
+
+    //! change the current facing model apply on polygons for SetColor(), SetTransparency(), SetMaterial() methods default facing model is Aspect_TOFM_TWO_SIDE.
+    //! This mean that attributes is applying both on the front and back face.
+    //! theModel = Aspect_TOFM_BOTH_SIDE
+    void XPrsMgr_PresentableObject::SetCurrentFacingModel(XAspect_TypeOfFacingModel theModel) {
+        NativeHandle()->SetCurrentFacingModel(safe_cast<Aspect_TypeOfFacingModel>(theModel));
+    };
+
+    //! Returns true if the Interactive Object has color.
+    Standard_Boolean XPrsMgr_PresentableObject::HasColor() {
+        return NativeHandle()->HasColor();
+    };
+
+    //! Returns the color setting of the Interactive Object.
+    void XPrsMgr_PresentableObject::Color(XQuantity_Color^ theColor) {
+        NativeHandle()->Color(theColor->GetColor());
+    };
+
+    //! Only the interactive object knowns which Drawer attribute is affected by the color, if any
+    //! (ex: for a wire,it's the wireaspect field of the drawer, but for a vertex, only the point aspect field is affected by the color).
+    //! WARNING : Do not forget to set the corresponding fields here (hasOwnColor and myDrawer->SetColor())
+    void XPrsMgr_PresentableObject::SetColor(XQuantity_Color^ theColor) {
+        NativeHandle()->SetColor(theColor->GetColor());
+    };
+
+    //! Removes color settings. Only the Interactive Object
+    //! knows which Drawer attribute is   affected by the color
+    //! setting. For a wire, for example, wire aspect is the
+    //! attribute affected. For a vertex, however, only point
+    //! aspect is affected by the color setting.
+    void XPrsMgr_PresentableObject::UnsetColor() {
+        NativeHandle()->UnsetColor();
+    };
+
+    //! Returns true if the Interactive Object has width.
+    Standard_Boolean XPrsMgr_PresentableObject::HasWidth() {
+        return NativeHandle()->HasWidth();
+    };
+
+    //! Returns the width setting of the Interactive Object.
+    Standard_Real XPrsMgr_PresentableObject::Width() {
+        return NativeHandle()->Width();
+    };
+
+    //! Allows you to provide the setting aValue for width.
+    //! Only the Interactive Object knows which Drawer attribute is affected by the width setting.
+    void XPrsMgr_PresentableObject::SetWidth(const Standard_Real theWidth) {
+        NativeHandle()->SetWidth(theWidth);
+    };
+
+    //! Reset width to default value.
+    void XPrsMgr_PresentableObject::UnsetWidth() {
+        NativeHandle()->UnsetWidth();
+    };
+
+    //! Returns true if the Interactive Object has a setting for material.
+    Standard_Boolean XPrsMgr_PresentableObject::HasMaterial() {
+        return NativeHandle()->HasMaterial();
+    };
+
+    //! Returns the current material setting as enumeration value.
+    XGraphic3d_NameOfMaterial XPrsMgr_PresentableObject::Material() {
+        return safe_cast<XGraphic3d_NameOfMaterial>(NativeHandle()->Material());
+    };
+
+    //! Sets the material aMat defining this display attribute
+    //! for the interactive object.
+    //! Material aspect determines shading aspect, color and
+    //! transparency of visible entities.
+    void XPrsMgr_PresentableObject::SetMaterial(Graphic3d_MaterialAspect& aName) {
+        NativeHandle()->SetMaterial(aName);
+    };
+
+    //! Removes the setting for material.
+    void XPrsMgr_PresentableObject::UnsetMaterial() {
+        NativeHandle()->UnsetMaterial();
+    };
+
+    //! Returns true if there is a transparency setting.
+    Standard_Boolean XPrsMgr_PresentableObject::IsTransparent() {
+         return NativeHandle()->IsTransparent();
+    };
+
+    //! Returns the transparency setting.
+    //! This will be between 0.0 and 1.0.
+    //! At 0.0 an object will be totally opaque, and at 1.0, fully transparent.
+    Standard_Real XPrsMgr_PresentableObject::Transparency() {
+        return NativeHandle()->Transparency();
+    };
+
+    //! Attributes a setting aValue for transparency.
+    //! The transparency value should be between 0.0 and 1.0.
+    //! At 0.0 an object will be totally opaque, and at 1.0, fully transparent.
+    //! Warning At a value of 1.0, there may be nothing visible.
+    //! aValue = 0.6
+    void XPrsMgr_PresentableObject::SetTransparency(const Standard_Real aValue) {
+         NativeHandle()->SetTransparency(aValue);
+    };
+
+    //! Removes the transparency setting. The object is opaque by default.
+    void XPrsMgr_PresentableObject::UnsetTransparency() {
+        NativeHandle()->UnsetTransparency();
+    };
+
+    //! Returns Standard_True if <myDrawer> has non-null shading aspect
+    Standard_Boolean XPrsMgr_PresentableObject::HasPolygonOffsets() {
+        return NativeHandle()->HasPolygonOffsets();
+    };
+
+    //! Retrieves current polygon offsets settings from <myDrawer>.
+    void XPrsMgr_PresentableObject::PolygonOffsets(Standard_Integer& aMode, Standard_ShortReal& aFactor, Standard_ShortReal& aUnits) {
+        NativeHandle()->PolygonOffsets(aMode, aFactor, aUnits);
+    };
+
+    //! Sets up polygon offsets for this object.
+    //! @sa Graphic3d_Aspects::SetPolygonOffsets()
+    //! aFactor = 1.0    aUnits = 0.0
+    void XPrsMgr_PresentableObject::SetPolygonOffsets(const Standard_Integer aMode, const Standard_ShortReal aFactor, const Standard_ShortReal aUnits) {
+        NativeHandle()->SetPolygonOffsets(aMode, aFactor, aUnits);
+    };
+
+    //! Clears settings provided by the drawing tool aDrawer.
+    void XPrsMgr_PresentableObject::UnsetAttributes() {
+        NativeHandle()->UnsetAttributes();
+    };
+
+    //! Dumps the content of me into the stream
+    //! theDepth = -1
+    void XPrsMgr_PresentableObject::DumpJson(Standard_OStream& theOStream, const Standard_Integer theDepth) {
+        NativeHandle()->DumpJson(theOStream, theDepth);
+    };
+
+    //! @name deprecated methods
+    //! Get value of the flag "propagate visual state"
+    //! It means that the display/erase/color visual state is propagated automatically to all children;
+    //! by default, the flag is true 
+    Standard_Boolean XPrsMgr_PresentableObject::ToPropagateVisualState() {
+         return NativeHandle()->ToPropagateVisualState();
+    };
+
+    //! Change the value of the flag "propagate visual state"
+    void XPrsMgr_PresentableObject::SetPropagateVisualState(const Standard_Boolean theFlag) {
+        NativeHandle()->SetPropagateVisualState(theFlag);
+    };
 }

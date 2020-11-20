@@ -13,8 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_PresentationAttributes_HeaderFile
-#define _Graphic3d_PresentationAttributes_HeaderFile
+#ifndef _XGraphic3d_PresentationAttributes_HeaderFile
+#define _XGraphic3d_PresentationAttributes_HeaderFile
+#pragma once
+#include "Graphic3d_PresentationAttributes.hxx"
+#include "NCollection_Haft.h"
+#include "XAspect_TypeOfHighlightMethod.h"
+#include "XQuantity_NameOfColor.h"
+#include "XQuantity_Color.h"
 
 #include <Aspect_TypeOfHighlightMethod.hxx>
 #include <Graphic3d_AspectFillArea3d.hxx>
@@ -23,83 +29,84 @@
 #include <Standard_Type.hxx>
 #include <Quantity_ColorRGBA.hxx>
 
-//! Class defines presentation properties.
-class Graphic3d_PresentationAttributes : public Standard_Transient
-{
-  DEFINE_STANDARD_RTTIEXT(Graphic3d_PresentationAttributes, Standard_Transient)
-public:
+using namespace TKernel;
+namespace TKV3d {
+    ref class TKernel::XQuantity_Color;
+    //! Class defines presentation properties.
+    public ref class XGraphic3d_PresentationAttributes    // : public Standard_Transient
+    {
+        //! DEFINE_STANDARD_RTTIEXT(Graphic3d_PresentationAttributes, Standard_Transient)
+    public:
 
-  //! Empty constructor.
-  Graphic3d_PresentationAttributes()
-  : myBasicColor (Quantity_NOC_WHITE),
-    myHiMethod (Aspect_TOHM_COLOR),
-    myZLayer   (Graphic3d_ZLayerId_Default),
-    myDispMode (0)
-  {
-    //
-  }
+        //! Empty constructor.
+        XGraphic3d_PresentationAttributes();
 
-  //! Destructor.
-  virtual ~Graphic3d_PresentationAttributes() {}
+        //! Empty constructor.
+        XGraphic3d_PresentationAttributes(Handle(Graphic3d_PresentationAttributes) pos);
 
-  //! Returns highlight method, Aspect_TOHM_COLOR by default.
-  Aspect_TypeOfHighlightMethod Method() const { return myHiMethod; }
+        //! Destructor.
+        virtual ~XGraphic3d_PresentationAttributes();
 
-  //! Changes highlight method to the given one.
-  virtual void SetMethod (const Aspect_TypeOfHighlightMethod theMethod) { myHiMethod = theMethod; }
+        Handle(Graphic3d_PresentationAttributes) GetPresentationAttributes();
 
-  //! Returns basic presentation color (including alpha channel).
-  const Quantity_ColorRGBA& ColorRGBA() const { return myBasicColor; }
+        void SetNativeHandle(Handle(Graphic3d_PresentationAttributes) pos);
 
-  //! Returns basic presentation color, Quantity_NOC_WHITE by default.
-  const Quantity_Color& Color() const { return myBasicColor.GetRGB(); }
+        //! Returns highlight method, Aspect_TOHM_COLOR by default.
+        XAspect_TypeOfHighlightMethod Method();
 
-  //! Sets basic presentation color (RGB components, does not modifies transparency).
-  virtual void SetColor (const Quantity_Color& theColor)
-  {
-    myBasicColor.ChangeRGB() = theColor;
-  }
+        //! Changes highlight method to the given one.
+        virtual void SetMethod(XAspect_TypeOfHighlightMethod theMethod);
 
-  //! Returns basic presentation transparency (0 - opaque, 1 - fully transparent), 0 by default (opaque).
-  Standard_ShortReal Transparency() const { return 1.0f - myBasicColor.Alpha(); }
+        //! Returns basic presentation color (including alpha channel).
+        const Quantity_ColorRGBA& ColorRGBA();
 
-  //! Sets basic presentation transparency (0 - opaque, 1 - fully transparent).
-  virtual void SetTransparency (const Standard_ShortReal theTranspCoef)
-  {
-    myBasicColor.SetAlpha (1.0f - theTranspCoef);
-  }
+        //! Returns basic presentation color, Quantity_NOC_WHITE by default.
+        const XQuantity_Color^ Color();
 
-  //! Returns presentation Zlayer, Graphic3d_ZLayerId_Default by default.
-  //! Graphic3d_ZLayerId_UNKNOWN means undefined (a layer of main presentation to be used).
-  Graphic3d_ZLayerId ZLayer() const { return myZLayer; }
+        //! Sets basic presentation color (RGB components, does not modifies transparency).
+        virtual void SetColor(XQuantity_Color^ theColor);
 
-  //! Sets presentation Zlayer.
-  virtual void SetZLayer (const Graphic3d_ZLayerId theLayer) { myZLayer = theLayer; }
+        //! Returns basic presentation transparency (0 - opaque, 1 - fully transparent), 0 by default (opaque).
+        Standard_ShortReal Transparency();
 
-  //! Returns display mode, 0 by default.
-  //! -1 means undefined (main display mode of presentation to be used).
-  Standard_Integer DisplayMode() const { return myDispMode; }
+        //! Sets basic presentation transparency (0 - opaque, 1 - fully transparent).
+        virtual void SetTransparency(const Standard_ShortReal theTranspCoef);
 
-  //! Sets display mode.
-  virtual void SetDisplayMode (const Standard_Integer theMode) { myDispMode = theMode; }
+        //! Returns presentation Zlayer, Graphic3d_ZLayerId_Default by default.
+        //! Graphic3d_ZLayerId_UNKNOWN means undefined (a layer of main presentation to be used).
+        Graphic3d_ZLayerId ZLayer();
 
-  //! Return basic presentation fill area aspect, NULL by default.
-  //! When set, might be used instead of Color() property.
-  const Handle(Graphic3d_AspectFillArea3d)& BasicFillAreaAspect() const { return myBasicFillAreaAspect; }
+        //! Sets presentation Zlayer.
+        virtual void SetZLayer(const Graphic3d_ZLayerId theLayer);
 
-  //! Sets basic presentation fill area aspect.
-  virtual void SetBasicFillAreaAspect (const Handle(Graphic3d_AspectFillArea3d)& theAspect) { myBasicFillAreaAspect = theAspect; }
+        //! Returns display mode, 0 by default.
+        //! -1 means undefined (main display mode of presentation to be used).
+        Standard_Integer DisplayMode();
 
-protected:
+        //! Sets display mode.
+        virtual void SetDisplayMode(const Standard_Integer theMode);
 
-  Handle(Graphic3d_AspectFillArea3d) myBasicFillAreaAspect; //!< presentation fill area aspect
-  Quantity_ColorRGBA                 myBasicColor;          //!< presentation color
-  Aspect_TypeOfHighlightMethod       myHiMethod;            //!< box or color highlighting
-  Graphic3d_ZLayerId                 myZLayer;              //!< Z-layer
-  Standard_Integer                   myDispMode;            //!< display mode
+        //! Return basic presentation fill area aspect, NULL by default.
+        //! When set, might be used instead of Color() property.
+        const Handle(Graphic3d_AspectFillArea3d)& BasicFillAreaAspect();
 
-};
+        //! Sets basic presentation fill area aspect.
+        virtual void SetBasicFillAreaAspect(const Handle(Graphic3d_AspectFillArea3d)& theAspect);
 
-DEFINE_STANDARD_HANDLE (Graphic3d_PresentationAttributes, Standard_Transient)
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property Handle(Graphic3d_PresentationAttributes) Handle
+        {
+            Handle(Graphic3d_PresentationAttributes) get() {
+                return NativeHandle();
+            }
+        };
+    private:
+        NCollection_Haft<Handle(Graphic3d_PresentationAttributes)> NativeHandle;
 
-#endif // _Graphic3d_PresentationAttributes_HeaderFile
+    };
+
+    //!DEFINE_STANDARD_HANDLE(Graphic3d_PresentationAttributes, Standard_Transient)
+}
+#endif // _XGraphic3d_PresentationAttributes_HeaderFile

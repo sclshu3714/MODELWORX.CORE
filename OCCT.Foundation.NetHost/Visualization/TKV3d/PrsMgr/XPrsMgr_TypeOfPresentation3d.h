@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _PrsMgr_TypeOfPresentation3d_HeaderFile
-#define _PrsMgr_TypeOfPresentation3d_HeaderFile
+#ifndef _XPrsMgr_TypeOfPresentation3d_HeaderFile
+#define _XPrsMgr_TypeOfPresentation3d_HeaderFile
 
 //! To declare the type of presentation as follows
 //! -   AllView for display involving no recalculation for
@@ -23,10 +23,10 @@
 //! -   ProjectorDependant for display in hidden line
 //! removal mode, where every new point of view
 //! entails recalculation of the display.
-enum PrsMgr_TypeOfPresentation3d
+public enum class XPrsMgr_TypeOfPresentation3d
 {
 PrsMgr_TOP_AllView,
 PrsMgr_TOP_ProjectorDependant
 };
 
-#endif // _PrsMgr_TypeOfPresentation3d_HeaderFile
+#endif // _XPrsMgr_TypeOfPresentation3d_HeaderFile

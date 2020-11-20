@@ -34,6 +34,7 @@
 #include <Prs3d_BasicAspect.hxx>
 #include "AIS_InteractiveObject.hxx"
 #include "XAIS_InteractiveContext.h"
+#include "XSelectMgr_SelectableObject.h"
 //wrapper of pure C++ classes to ref classes
 #include <NCollection_Haft.h>
 
@@ -41,7 +42,7 @@ class Prs3d_BasicAspect;
 
 namespace TKV3d
 {
-	public ref class XAIS_InteractiveObject
+	public ref class XAIS_InteractiveObject : public XSelectMgr_SelectableObject
 	{
 	public:
 		//! 

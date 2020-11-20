@@ -22,8 +22,8 @@
 using namespace TKernel;
 ref class TKernel::XStandard_GUID;
 
-typedef NCollection_List<XStandard_GUID> XTDF_IDList;
-typedef NCollection_List<XStandard_GUID>::Iterator TDF_ListIteratorOfIDList;
+typedef NCollection_List<XStandard_GUID^> XTDF_IDList;
+typedef NCollection_List<XStandard_GUID^>::Iterator XTDF_ListIteratorOfIDList;
 
 
 #endif

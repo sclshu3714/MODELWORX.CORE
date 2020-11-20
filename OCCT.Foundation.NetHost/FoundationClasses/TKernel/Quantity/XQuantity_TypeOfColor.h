@@ -14,9 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Quantity_TypeOfColor_HeaderFile
-#define _Quantity_TypeOfColor_HeaderFile
-
+#ifndef _XQuantity_TypeOfColor_HeaderFile
+#define _XQuantity_TypeOfColor_HeaderFile
+using namespace System;
 //! Identifies color definition systems
 //! -   Quantity_TOC_RGB: with this system a
 //! color is defined by its quantities of red, green and blue (R-G-B values).
@@ -26,10 +26,12 @@
 //! A Quantity_Color object may define a color
 //! from three values R-G-B or H-L-S according
 //! to a given color definition system.
-enum Quantity_TypeOfColor
+[FlagsAttribute]
+[Serializable]
+public enum class XQuantity_TypeOfColor
 {
-Quantity_TOC_RGB,
-Quantity_TOC_HLS
+	Quantity_TOC_RGB,
+	Quantity_TOC_HLS
 };
 
-#endif // _Quantity_TypeOfColor_HeaderFile
+#endif // _XQuantity_TypeOfColor_HeaderFile

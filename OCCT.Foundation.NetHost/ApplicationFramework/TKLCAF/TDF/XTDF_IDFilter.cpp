@@ -59,14 +59,15 @@ namespace TKLCAF {
     //! Attributes with ID owned by <anIDList> are to be kept and
     //! the filter will answer true to the question
     //! IsKept(<anID>) with ID from <anIDList>.
-    void XTDF_IDFilter::Keep(XTDF_IDList& anIDListx) {
+    /*void XTDF_IDFilter::Keep(XTDF_IDList& anIDListx) {
         TDF_IDList anIDList;
         if (!anIDListx.IsEmpty()) {
-            TDF_ListIteratorOfIDList itr(anIDListx);
-            for (; itr.More(); itr.Next()) anIDList.Append(itr.Value());
+            XTDF_ListIteratorOfIDList itr(anIDListx);
+            for (; itr.More(); itr.Next())
+                anIDList.Append(itr.Value()->GetGUID());
         }
         NativeHandle->Keep(anIDList);
-    };
+    };*/
 
     //! An attribute with <anID> as ID is to be ignored and
     //! the filter will answer false to the question
@@ -119,6 +120,18 @@ namespace TKLCAF {
     void XTDF_IDFilter::IDList(TDF_IDList& anIDList) {
         NativeHandle->IDList(anIDList);
     };
+
+    //! Copies the list of ID to be kept or ignored in
+    //! <anIDList>. <anIDList> is cleared before use.
+    /*void XTDF_IDFilter::IDList(XTDF_IDList& anIDListx) {
+        TDF_IDList anIDList;
+        if (!anIDListx.IsEmpty()) {
+            XTDF_ListIteratorOfIDList itr(anIDListx);
+            for (; itr.More(); itr.Next()) 
+                anIDList.Append(itr.Value()->GetGUID());
+        }
+        NativeHandle->IDList(anIDList);
+    };*/
 
     //! Copies into <me> the contents of
     //! <fromFilter>. <me> is cleared before copy.

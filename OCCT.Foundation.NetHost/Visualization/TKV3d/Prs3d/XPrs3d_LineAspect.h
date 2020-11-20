@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_LineAspect_HeaderFile
-#define _Prs3d_LineAspect_HeaderFile
+#ifndef _XPrs3d_LineAspect_HeaderFile
+#define _XPrs3d_LineAspect_HeaderFile
+#pragma once
+#include <Prs3d_LineAspect.hxx>
+#include "XQuantity_Color.h"
+#include "XAspect_TypeOfLine.h"
+#include "NCollection_Haft.h"
+#include "XGraphic3d_AspectLine3d.h"
+#include "XPrs3d_LineAspect.h"
+#include "XGraphic3d_AspectLine3d.h"
 
 #include <Aspect_TypeOfLine.hxx>
 #include <Graphic3d_AspectLine3d.hxx>
@@ -30,48 +38,67 @@
 //! Any object which requires a value for line aspect as
 //! an argument may then be given the attribute manager
 //! as a substitute argument in the form of a field such as myDrawer for example.
-class Prs3d_LineAspect : public Prs3d_BasicAspect
-{
-  DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)
-public:
-  
-  //! Constructs a framework for line aspect defined by
-  //! -   the color aColor
-  //! -   the type of line aType and
-  //! -   the line thickness aWidth.
-  //! Type of line refers to whether the line is solid or dotted, for example.
-  Standard_EXPORT Prs3d_LineAspect (const Quantity_Color& theColor, const Aspect_TypeOfLine theType, const Standard_Real theWidth);
-  
-  Prs3d_LineAspect(const Handle(Graphic3d_AspectLine3d)& theAspect) : myAspect (theAspect) {}
+using namespace TKernel;
+using namespace TKV3d;
+namespace TKV3d {
+	ref class TKernel::XQuantity_Color;	
+	ref class TKV3d::XGraphic3d_AspectLine3d;
+	public ref class XPrs3d_LineAspect //: public Prs3d_BasicAspect
+	{
+		//! DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)
+	public:
 
-  //! Sets the line color defined at the time of construction.
-  //! Default value: Quantity_NOC_YELLOW
-  void SetColor (const Quantity_Color& theColor) { myAspect->SetColor (theColor); }
+		//! Constructs a framework for line aspect defined by
+		//! -   the color aColor
+		//! -   the type of line aType and
+		//! -   the line thickness aWidth.
+		//! Type of line refers to whether the line is solid or dotted, for example.
+		XPrs3d_LineAspect(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, const Standard_Real theWidth);
 
-  //! Sets the type of line defined at the time of construction.
-  //! This could, for example, be solid, dotted or made up of dashes.
-  //! Default value: Aspect_TOL_SOLID
-  void SetTypeOfLine (const Aspect_TypeOfLine theType) { myAspect->SetType (theType); }
-  
-  //! Sets the line width defined at the time of construction.
-  //! Default value: 1.
-  void SetWidth (const Standard_Real theWidth) { myAspect->SetWidth (theWidth); }
+		XPrs3d_LineAspect(Handle(Prs3d_LineAspect) theAspect);
 
-  //! Returns the line aspect. This is defined as the set of
-  //! color, type and thickness attributes.
-  const Handle(Graphic3d_AspectLine3d)& Aspect() const { return myAspect; }
-  
-  void SetAspect (const Handle(Graphic3d_AspectLine3d)& theAspect) { myAspect = theAspect; }
+		XPrs3d_LineAspect(XGraphic3d_AspectLine3d^ theAspect);
 
-  //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const Standard_OVERRIDE;
+		void SetNativeHandle(Handle(Prs3d_LineAspect) theAspect);
 
-protected:
+		Handle(Prs3d_LineAspect) GetLineAspect();
 
-  Handle(Graphic3d_AspectLine3d) myAspect;
+		//! Sets the line color defined at the time of construction.
+		//! Default value: Quantity_NOC_YELLOW
+		void SetColor(XQuantity_Color^ theColor);
 
-};
+		//! Sets the type of line defined at the time of construction.
+		//! This could, for example, be solid, dotted or made up of dashes.
+		//! Default value: Aspect_TOL_SOLID
+		void SetTypeOfLine(XAspect_TypeOfLine theType);
 
-DEFINE_STANDARD_HANDLE(Prs3d_LineAspect, Prs3d_BasicAspect)
+		//! Sets the line width defined at the time of construction.
+		//! Default value: 1.
+		void SetWidth(const Standard_Real theWidth);
 
-#endif // _Prs3d_LineAspect_HeaderFile
+		//! Returns the line aspect. This is defined as the set of
+		//! color, type and thickness attributes.
+		XGraphic3d_AspectLine3d^ Aspect();
+
+		void SetAspect(XGraphic3d_AspectLine3d^ theAspect);
+
+		//! Dumps the content of me into the stream
+		//!  theDepth = -1
+		virtual void DumpJson(Standard_OStream& theOStream, const Standard_Integer theDepth) Standard_OVERRIDE;
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property Handle(Prs3d_LineAspect) Handle
+		{
+			Handle(Prs3d_LineAspect) get() {
+				return NativeHandle();
+			}
+		};
+	private:
+		NCollection_Haft<Handle(Prs3d_LineAspect)> NativeHandle;
+
+	};
+	//! DEFINE_STANDARD_HANDLE(Prs3d_LineAspect, Prs3d_BasicAspect)
+}
+#endif // _XPrs3d_LineAspect_HeaderFile

@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DimensionTextHorizontalPosition_HeaderFile
-#define _Prs3d_DimensionTextHorizontalPosition_HeaderFile
+#ifndef _XPrs3d_DimensionTextHorizontalPosition_HeaderFile
+#define _XPrs3d_DimensionTextHorizontalPosition_HeaderFile
 
 //! Specifies options for positioning dimension value label in horizontal direction.
 //! DTHP_Left   - value label located at left side on dimension extension.
@@ -23,7 +23,7 @@
 //! DTHP_Center - value label located at center of dimension line.
 //! DTHP_Fit    - value label located automatically at left side if does not fits
 //! the dimension space, otherwise the value label is placed at center.
-enum Prs3d_DimensionTextHorizontalPosition
+public enum class XPrs3d_DimensionTextHorizontalPosition
 {
 Prs3d_DTHP_Left,
 Prs3d_DTHP_Right,
@@ -31,4 +31,4 @@ Prs3d_DTHP_Center,
 Prs3d_DTHP_Fit
 };
 
-#endif // _Prs3d_DimensionTextHorizontalPosition_HeaderFile
+#endif // _XPrs3d_DimensionTextHorizontalPosition_HeaderFile

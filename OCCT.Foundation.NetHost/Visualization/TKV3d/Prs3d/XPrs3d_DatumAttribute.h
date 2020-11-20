@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DatumAttribute_HeaderFile
-#define _Prs3d_DatumAttribute_HeaderFile
+#ifndef _XPrs3d_DatumAttribute_HeaderFile
+#define _XPrs3d_DatumAttribute_HeaderFile
 
 //! Enumeration defining a part of datum aspect, see Prs3d_Datum.
-enum Prs3d_DatumAttribute
+public enum class XPrs3d_DatumAttribute
 {
   Prs3d_DA_XAxisLength = 0,
   Prs3d_DA_YAxisLength,
@@ -27,4 +27,4 @@ enum Prs3d_DatumAttribute
   Prs3d_DP_ShadingNumberOfFacettes
 };
 
-#endif // _Prs3d_DatumAttribute_HeaderFile
+#endif // _XPrs3d_DatumAttribute_HeaderFile

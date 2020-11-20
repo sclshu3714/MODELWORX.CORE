@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _SelectMgr_SelectableObject_HeaderFile
-#define _SelectMgr_SelectableObject_HeaderFile
+#ifndef _XSelectMgr_SelectableObject_HeaderFile
+#define _XSelectMgr_SelectableObject_HeaderFile
+#pragma once
+#include "NCollection_Haft.h"
+#include <SelectMgr_SelectableObject.hxx>
+#include "XPrsMgr_PresentableObject.h"
+
 
 #include <PrsMgr_PresentableObject.hxx>
 #include <SelectMgr_IndexedMapOfOwner.hxx>
@@ -41,184 +46,156 @@ class SelectMgr_SelectionManager;
 //! * Selectable Object (SelectMgr_SelectableObject)
 //!   Consider defining an enumeration of supported Selection Mode indexes for particular Interactive Object or class of Interactive Objects.
 //!   - ComputeSelection() computing selectable entities for the given selection mode index.
-class SelectMgr_SelectableObject : public PrsMgr_PresentableObject
-{
-  DEFINE_STANDARD_RTTIEXT(SelectMgr_SelectableObject, PrsMgr_PresentableObject)
-  friend class SelectMgr_SelectionManager;
-public:
+namespace TKV3d {
+    public ref class XSelectMgr_SelectableObject : public XPrsMgr_PresentableObject
+    {
+        //! DEFINE_STANDARD_RTTIEXT(SelectMgr_SelectableObject, PrsMgr_PresentableObject)
+        //!    friend class SelectMgr_SelectionManager;
+    public:
+        XSelectMgr_SelectableObject();
+        //!
+        XSelectMgr_SelectableObject(Handle(SelectMgr_SelectableObject) pos);
 
-  //! Clears all selections of the object
-  Standard_EXPORT virtual ~SelectMgr_SelectableObject();
+        //! 
+        void SetNativeHandle(Handle(SelectMgr_SelectableObject) pos);
 
-  //! Computes sensitive primitives for the given selection mode - key interface method of Selectable Object.
-  //! @param theSelection selection to fill
-  //! @param theMode selection mode to create sensitive primitives
-  virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
-                                 const Standard_Integer theMode) = 0;
+        //! Clears all selections of the object
+        virtual ~XSelectMgr_SelectableObject();
 
-  //! Informs the graphic context that the interactive Object may be decomposed into sub-shapes for dynamic selection.
-  //! The most used Interactive Object is AIS_Shape.
-  virtual Standard_Boolean AcceptShapeDecomposition() const { return Standard_False; }
+        //! Computes sensitive primitives for the given selection mode - key interface method of Selectable Object.
+        //! @param theSelection selection to fill
+        //! @param theMode selection mode to create sensitive primitives
+        virtual void ComputeSelection(const Handle(SelectMgr_Selection)& theSelection, Standard_Integer theMode);
 
-  //! Re-computes the sensitive primitives for all modes. IMPORTANT: Do not use
-  //! this method to update selection primitives except implementing custom selection manager!
-  //! This method does not take into account necessary BVH updates, but may invalidate the pointers
-  //! it refers to. TO UPDATE SELECTION properly from outside classes, use method UpdateSelection.
-  Standard_EXPORT void RecomputePrimitives();
-  
-  //! Re-computes the sensitive primitives which correspond to the <theMode>th selection mode.
-  //! IMPORTANT: Do not use this method to update selection primitives except implementing custom selection manager!
-  //! selection manager! This method does not take into account necessary BVH updates, but may invalidate
-  //! the pointers it refers to. TO UPDATE SELECTION properly from outside classes, use method UpdateSelection.
-  Standard_EXPORT void RecomputePrimitives (const Standard_Integer theMode);
-  
-  //! Adds the selection aSelection with the selection mode
-  //! index aMode to this framework.
-  Standard_EXPORT void AddSelection (const Handle(SelectMgr_Selection)& aSelection, const Standard_Integer aMode);
-  
-  //! Empties all the selections in the SelectableObject
-  //! <update> parameter defines whether all object's
-  //! selections should be flagged for further update or not.
-  //! This improved method can be used to recompute an
-  //! object's selection (without redisplaying the object
-  //! completely) when some selection mode is activated not for the first time.
-  Standard_EXPORT void ClearSelections (const Standard_Boolean update = Standard_False);
-  
-  //! Returns the selection having specified selection mode or NULL.
-  Standard_EXPORT const Handle(SelectMgr_Selection)& Selection (const Standard_Integer theMode) const;
+        //! Informs the graphic context that the interactive Object may be decomposed into sub-shapes for dynamic selection.
+        //! The most used Interactive Object is AIS_Shape.
+        virtual Standard_Boolean AcceptShapeDecomposition();
 
-  //! Returns true if a selection corresponding to the selection mode theMode was computed for this object.
-  Standard_Boolean HasSelection (const Standard_Integer theMode) const { return !Selection (theMode).IsNull(); }
+        //! Re-computes the sensitive primitives for all modes. IMPORTANT: Do not use
+        //! this method to update selection primitives except implementing custom selection manager!
+        //! This method does not take into account necessary BVH updates, but may invalidate the pointers
+        //! it refers to. TO UPDATE SELECTION properly from outside classes, use method UpdateSelection.
+        void RecomputePrimitives();
 
-  //! Return the sequence of selections.
-  const SelectMgr_SequenceOfSelection& Selections() const { return myselections; }
+        //! Re-computes the sensitive primitives which correspond to the <theMode>th selection mode.
+        //! IMPORTANT: Do not use this method to update selection primitives except implementing custom selection manager!
+        //! selection manager! This method does not take into account necessary BVH updates, but may invalidate
+        //! the pointers it refers to. TO UPDATE SELECTION properly from outside classes, use method UpdateSelection.
+        void RecomputePrimitives(const Standard_Integer theMode);
 
-  Standard_EXPORT void ResetTransformation() Standard_OVERRIDE;
-  
-  //! Recomputes the location of the selection aSelection.
-  Standard_EXPORT virtual void UpdateTransformation() Standard_OVERRIDE;
-  
-  //! Updates locations in all sensitive entities from <aSelection>
-  //! and in corresponding entity owners.
-  Standard_EXPORT virtual void UpdateTransformations (const Handle(SelectMgr_Selection)& aSelection);
-  
-  //! Method which draws selected owners ( for fast presentation draw )
-  Standard_EXPORT virtual void HilightSelected (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
-                                                const SelectMgr_SequenceOfOwner& theSeq);
-  
-  //! Method which clear all selected owners belonging
-  //! to this selectable object ( for fast presentation draw )
-  Standard_EXPORT virtual void ClearSelected();
+        //! Adds the selection aSelection with the selection mode
+        //! index aMode to this framework.
+        void AddSelection(const Handle(SelectMgr_Selection)& aSelection, Standard_Integer aMode);
 
-  //! Method that needs to be implemented when the object
-  //! manages selection and dynamic highlighting on its own.
-  //! Clears or invalidates dynamic highlight presentation.
-  //! By default it clears immediate draw of given presentation
-  //! manager.
-  Standard_EXPORT virtual void ClearDynamicHighlight (const Handle(PrsMgr_PresentationManager)& theMgr);
+        //! Empties all the selections in the SelectableObject
+        //! <update> parameter defines whether all object's
+        //! selections should be flagged for further update or not.
+        //! This improved method can be used to recompute an
+        //! object's selection (without redisplaying the object
+        //! completely) when some selection mode is activated not for the first time.
+        //! update = Standard_False
+        void ClearSelections(const Standard_Boolean update);
 
-  //! Method which hilight an owner belonging to
-  //! this selectable object  ( for fast presentation draw )
-  Standard_EXPORT virtual void HilightOwnerWithColor (const Handle(PrsMgr_PresentationManager)& thePM,
-                                                      const Handle(Prs3d_Drawer)& theStyle,
-                                                      const Handle(SelectMgr_EntityOwner)& theOwner);
-  
-  //! If returns True, the old mechanism for highlighting selected objects is used (HilightSelected Method may be empty).
-  //! If returns False, the HilightSelected method will be fully responsible for highlighting selected entity owners belonging to this selectable object.
-  virtual Standard_Boolean IsAutoHilight() const { return myAutoHilight; }
-  
-  //! Set AutoHilight property to true or false.
-  virtual void SetAutoHilight (const Standard_Boolean theAutoHilight) { myAutoHilight = theAutoHilight; }
-  
-  //! Creates or returns existing presentation for highlighting detected object.
-  //! @param thePrsMgr presentation manager to create new presentation
-  //! @return existing or newly created presentation (when thePrsMgr is not NULL)
-  Standard_EXPORT Handle(Prs3d_Presentation) GetHilightPresentation (const Handle(PrsMgr_PresentationManager)& thePrsMgr);
+        //! Returns the selection having specified selection mode or NULL.
+        Handle(SelectMgr_Selection) Selection(const Standard_Integer theMode);
 
-  //! Creates or returns existing presentation for highlighting selected object.
-  //! @param thePrsMgr presentation manager to create new presentation
-  //! @return existing or newly created presentation (when thePrsMgr is not NULL)
-  Standard_EXPORT Handle(Prs3d_Presentation) GetSelectPresentation (const Handle(PrsMgr_PresentationManager)& thePrsMgr);
+        //! Returns true if a selection corresponding to the selection mode theMode was computed for this object.
+        Standard_Boolean HasSelection(const Standard_Integer theMode);
 
-  //! Removes presentations returned by GetHilightPresentation() and GetSelectPresentation().
-  Standard_EXPORT virtual void ErasePresentations (Standard_Boolean theToRemove);
+        //! Return the sequence of selections.
+        SelectMgr_SequenceOfSelection Selections();
 
-  //! Set Z layer ID and update all presentations of the selectable object.
-  //! The layers mechanism allows drawing objects in higher layers in overlay of objects in lower layers.
-  Standard_EXPORT virtual void SetZLayer (const Graphic3d_ZLayerId theLayerId) Standard_OVERRIDE;
-  
-  //! Sets update status FULL to selections of the object. Must be used as the only method of UpdateSelection
-  //! from outer classes to prevent BVH structures from being outdated.
-  void UpdateSelection (const Standard_Integer theMode = -1)
-  {
-    updateSelection (theMode);
-  }
+        void ResetTransformation() Standard_OVERRIDE;
 
-  //! Sets common entity owner for assembly sensitive object entities
-  Standard_EXPORT void SetAssemblyOwner (const Handle(SelectMgr_EntityOwner)& theOwner, const Standard_Integer theMode = -1);
+        //! Recomputes the location of the selection aSelection.
+        virtual void UpdateTransformation() Standard_OVERRIDE;
 
-  //! Returns a bounding box of sensitive entities with the owners given if they are a part of activated selection
-  Standard_EXPORT Bnd_Box BndBoxOfSelected (const Handle(SelectMgr_IndexedMapOfOwner)& theOwners);
+        //! Updates locations in all sensitive entities from <aSelection>
+        //! and in corresponding entity owners.
+        virtual void UpdateTransformations(const Handle(SelectMgr_Selection)& aSelection);
 
-  //! Returns the mode for selection of object as a whole; 0 by default.
-  Standard_Integer GlobalSelectionMode() const { return myGlobalSelMode; }
+        //! Method which draws selected owners ( for fast presentation draw )
+        virtual void HilightSelected(const Handle(PrsMgr_PresentationManager)& thePrsMgr, SelectMgr_SequenceOfOwner& theSeq);
 
-  //! Returns the owner of mode for selection of object as a whole
-  Standard_EXPORT virtual Handle(SelectMgr_EntityOwner) GlobalSelOwner() const;
+        //! Method which clear all selected owners belonging
+        //! to this selectable object ( for fast presentation draw )
+        virtual void ClearSelected();
 
-  //! Returns common entity owner if the object is an assembly
-  Standard_EXPORT virtual const Handle(SelectMgr_EntityOwner)& GetAssemblyOwner() const;
+        //! Method that needs to be implemented when the object
+        //! manages selection and dynamic highlighting on its own.
+        //! Clears or invalidates dynamic highlight presentation.
+        //! By default it clears immediate draw of given presentation
+        //! manager.
+        virtual void ClearDynamicHighlight(const Handle(PrsMgr_PresentationManager)& theMgr);
 
-  //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const Standard_OVERRIDE;
+        //! Method which hilight an owner belonging to
+        //! this selectable object  ( for fast presentation draw )
+        virtual void HilightOwnerWithColor(const Handle(PrsMgr_PresentationManager)& thePM, Handle(Prs3d_Drawer)& theStyle, Handle(SelectMgr_EntityOwner)& theOwner);
 
-public:
+        //! If returns True, the old mechanism for highlighting selected objects is used (HilightSelected Method may be empty).
+        //! If returns False, the HilightSelected method will be fully responsible for highlighting selected entity owners belonging to this selectable object.
+        virtual Standard_Boolean IsAutoHilight();
 
-  //! Begins the iteration scanning for sensitive primitives.
-  Standard_DEPRECATED("Deprecated method, Selections() should be used instead")
-  void Init() { mycurrent = 1; }
+        //! Set AutoHilight property to true or false.
+        virtual void SetAutoHilight(const Standard_Boolean theAutoHilight);
 
-  //! Continues the iteration scanning for sensitive primitives.
-  Standard_DEPRECATED("Deprecated method, Selections() should be used instead")
-  Standard_Boolean More() const { return mycurrent <= myselections.Length(); }
+        //! Creates or returns existing presentation for highlighting detected object.
+        //! @param thePrsMgr presentation manager to create new presentation
+        //! @return existing or newly created presentation (when thePrsMgr is not NULL)
+        Handle(Prs3d_Presentation) GetHilightPresentation(const Handle(PrsMgr_PresentationManager)& thePrsMgr);
 
-  //! Continues the iteration scanning for sensitive primitives.
-  Standard_DEPRECATED("Deprecated method, Selections() should be used instead")
-  void Next() { ++mycurrent; }
+        //! Creates or returns existing presentation for highlighting selected object.
+        //! @param thePrsMgr presentation manager to create new presentation
+        //! @return existing or newly created presentation (when thePrsMgr is not NULL)
+        Handle(Prs3d_Presentation) GetSelectPresentation(const Handle(PrsMgr_PresentationManager)& thePrsMgr);
 
-  //! Returns the current selection in this framework.
-  Standard_DEPRECATED("Deprecated method, Selections() should be used instead")
-  const Handle(SelectMgr_Selection)& CurrentSelection() const { return myselections (mycurrent); }
+        //! Removes presentations returned by GetHilightPresentation() and GetSelectPresentation().
+        virtual void ErasePresentations(Standard_Boolean theToRemove);
 
-protected:
+        //! Set Z layer ID and update all presentations of the selectable object.
+        //! The layers mechanism allows drawing objects in higher layers in overlay of objects in lower layers.
+        virtual void SetZLayer(const Graphic3d_ZLayerId theLayerId) Standard_OVERRIDE;
 
-  //! Protected empty constructor.
-  Standard_EXPORT SelectMgr_SelectableObject(const PrsMgr_TypeOfPresentation3d aTypeOfPresentation3d = PrsMgr_TOP_AllView);
+        //! Sets update status FULL to selections of the object. Must be used as the only method of UpdateSelection
+        //! from outer classes to prevent BVH structures from being outdated.
+        //! theMode = -1
+        void UpdateSelection(const Standard_Integer theMode);
 
-  //! Override global selection mode.
-  void setGlobalSelMode (const Standard_Integer theMode)
-  {
-    myGlobalSelMode = theMode > 0 ? theMode : 0;
-  }
+        //! Sets common entity owner for assembly sensitive object entities
+        //! theMode = -1
+        void SetAssemblyOwner(const Handle(SelectMgr_EntityOwner)& theOwner, Standard_Integer);
 
-  //! Update clipping planes state.
-  Standard_EXPORT virtual void UpdateClipping() Standard_OVERRIDE;
+        //! Returns a bounding box of sensitive entities with the owners given if they are a part of activated selection
+        Bnd_Box BndBoxOfSelected(const Handle(SelectMgr_IndexedMapOfOwner)& theOwners);
 
-  //! Sets update status FULL to selections of the object.
-  //! Must be used as the only method of UpdateSelection from outer classes to prevent BVH structures from being outdated.
-  Standard_EXPORT virtual void updateSelection (const Standard_Integer theMode);
+        //! Returns the mode for selection of object as a whole; 0 by default.
+        Standard_Integer GlobalSelectionMode();
 
-protected:
+        //! Returns the owner of mode for selection of object as a whole
+        virtual Handle(SelectMgr_EntityOwner) GlobalSelOwner();
 
-  SelectMgr_SequenceOfSelection myselections;    //!< list of selections
-  Handle(Prs3d_Presentation)    mySelectionPrs;  //!< optional presentation for highlighting selected object
-  Handle(Prs3d_Presentation)    myHilightPrs;    //!< optional presentation for highlighting detected object
-  Standard_Integer              myGlobalSelMode; //!< global selection mode
-  Standard_Integer              mycurrent;       //!< [deprecated] iterator value
-  Standard_Boolean              myAutoHilight;   //!< auto-highlighting flag defining
+        //! Returns common entity owner if the object is an assembly
+        virtual Handle(SelectMgr_EntityOwner) GetAssemblyOwner();
 
-};
+        //! Dumps the content of me into the stream
+        //! theDepth = -1
+        virtual void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth) Standard_OVERRIDE;
 
-DEFINE_STANDARD_HANDLE(SelectMgr_SelectableObject, PrsMgr_PresentableObject)
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property Handle(SelectMgr_SelectableObject) Handle
+        {
+            Handle(SelectMgr_SelectableObject) get() {
+                return NativeHandle();
+            }
+        };
 
-#endif // _SelectMgr_SelectableObject_HeaderFile
+    private:
+        NCollection_Haft<Handle(SelectMgr_SelectableObject)> NativeHandle;
+
+    };
+
+    //! DEFINE_STANDARD_HANDLE(SelectMgr_SelectableObject, PrsMgr_PresentableObject)
+}
+#endif // _XSelectMgr_SelectableObject_HeaderFile

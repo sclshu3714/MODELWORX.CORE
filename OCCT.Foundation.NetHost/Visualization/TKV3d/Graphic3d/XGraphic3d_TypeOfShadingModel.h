@@ -14,11 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfShadingModel_HeaderFile
-#define _Graphic3d_TypeOfShadingModel_HeaderFile
+#ifndef _XGraphic3d_TypeOfShadingModel_HeaderFile
+#define _XGraphic3d_TypeOfShadingModel_HeaderFile
 
 //! Definition of the color shading model.
-enum Graphic3d_TypeOfShadingModel
+public enum class XGraphic3d_TypeOfShadingModel
 {
   //! Use Shading Model, specified as default for entire Viewer.
   Graphic3d_TOSM_DEFAULT = -1,
@@ -54,10 +54,10 @@ enum Graphic3d_TypeOfShadingModel
   V3d_PHONG   = Graphic3d_TOSM_FRAGMENT
 };
 
-enum
+public enum
 {
   //! Auxiliary value defining the overall number of values in enumeration Graphic3d_TypeOfShadingModel
-  Graphic3d_TypeOfShadingModel_NB = Graphic3d_TOSM_FRAGMENT + 1
+  XGraphic3d_TypeOfShadingModel_NB = XGraphic3d_TypeOfShadingModel(Graphic3d_TOSM_FRAGMENT) + 1
 };
 
-#endif // _Graphic3d_TypeOfShadingModel_HeaderFile
+#endif // _XGraphic3d_TypeOfShadingModel_HeaderFile

@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DatumParts_HeaderFile
-#define _Prs3d_DatumParts_HeaderFile
+#ifndef _XPrs3d_DatumParts_HeaderFile
+#define _XPrs3d_DatumParts_HeaderFile
 
 //! Enumeration defining a part of datum aspect, see Prs3d_Datum.
-enum Prs3d_DatumParts
+public enum class XPrs3d_DatumParts
 {
   Prs3d_DP_Origin = 0,
   Prs3d_DP_XAxis,
@@ -30,4 +30,4 @@ enum Prs3d_DatumParts
   Prs3d_DP_None
 };
 
-#endif // _Prs3d_DatumParts_HeaderFile
+#endif // _XPrs3d_DatumParts_HeaderFile

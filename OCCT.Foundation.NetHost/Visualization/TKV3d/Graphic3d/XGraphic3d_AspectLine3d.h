@@ -13,57 +13,81 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_AspectLine3d_HeaderFile
-#define _Graphic3d_AspectLine3d_HeaderFile
+#ifndef _XGraphic3d_AspectLine3d_HeaderFile
+#define _XGraphic3d_AspectLine3d_HeaderFile
+#pragma once
+#include <Graphic3d_AspectLine3d.hxx>
+#include "XQuantity_Color.h"
+#include "XAspect_TypeOfLine.h"
+#include "NCollection_Haft.h"
 
 #include <Graphic3d_Aspects.hxx>
 
+using namespace TKernel;
 //! Creates and updates a group of attributes for 3d line primitives.
 //! This group contains the color, the type of line, and its thickness.
-class Graphic3d_AspectLine3d : public Graphic3d_Aspects
-{
-  DEFINE_STANDARD_RTTIEXT(Graphic3d_AspectLine3d, Graphic3d_Aspects)
-public:
+namespace TKV3d {
+    ref class TKernel::XQuantity_Color;
+   public ref class XGraphic3d_AspectLine3d //: public Graphic3d_Aspects
+    {
+        //! DEFINE_STANDARD_RTTIEXT(Graphic3d_AspectLine3d, Graphic3d_Aspects)
+    public:
 
-  //! Creates a context table for line primitives
-  //! defined with the following default values:
-  //!
-  //! Color = Quantity_NOC_YELLOW;
-  //! Type  = Aspect_TOL_SOLID;
-  //! Width = 1.0;
-  Standard_EXPORT Graphic3d_AspectLine3d();
-  
-  //! Creates a context table for line primitives defined with the specified values.
-  //! Warning: theWidth is the "line width scale factor".
-  //! The nominal line width is 1 pixel.
-  //! The width of the line is determined by applying the line width scale factor to this nominal line width.
-  //! The supported line widths vary by 1-pixel units.
-  Standard_EXPORT Graphic3d_AspectLine3d (const Quantity_Color& theColor,
-                                          Aspect_TypeOfLine theType,
-                                          Standard_Real theWidth);
+        //! Creates a context table for line primitives
+        //! defined with the following default values:
+        //!
+        //! Color = Quantity_NOC_YELLOW;
+        //! Type  = Aspect_TOL_SOLID;
+        //! Width = 1.0;
+        XGraphic3d_AspectLine3d();
 
-  //! Return line type.
-  Aspect_TypeOfLine Type() const { return myLineType; }
+        XGraphic3d_AspectLine3d(Handle(Graphic3d_AspectLine3d) posAspectLine);
 
-  //! Modifies the type of line.
-  void SetType (const Aspect_TypeOfLine theType) { myLineType = theType; }
+        //! Creates a context table for line primitives defined with the specified values.
+        //! Warning: theWidth is the "line width scale factor".
+        //! The nominal line width is 1 pixel.
+        //! The width of the line is determined by applying the line width scale factor to this nominal line width.
+        //! The supported line widths vary by 1-pixel units.
+        XGraphic3d_AspectLine3d(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, Standard_Real theWidth);
 
-  //! Return line width.
-  Standard_ShortReal Width() const { return myLineWidth; }
+        Handle(Graphic3d_AspectLine3d) GetAspectLine3d();
 
-  //! Modifies the line thickness.
-  //! Warning: Raises Standard_OutOfRange if the width is a negative value.
-  void SetWidth (const Standard_Real theWidth) { SetWidth ((float )theWidth); }
+        //! 
+        void SetNativeHandle(Handle(Graphic3d_AspectLine3d) theAspect);
 
-  //! Modifies the line thickness.
-  //! Warning: Raises Standard_OutOfRange if the width is a negative value.
-  void SetWidth (Standard_ShortReal theWidth)
-  {
-    SetLineWidth (theWidth);
-  }
+        //! Return line type.
+        XAspect_TypeOfLine Type();
 
-};
+        //! Modifies the type of line.
+        void SetType(XAspect_TypeOfLine theType);
 
-DEFINE_STANDARD_HANDLE(Graphic3d_AspectLine3d, Graphic3d_Aspects)
+        //! Return line width.
+        Standard_ShortReal Width();
 
-#endif // _Graphic3d_AspectLine3d_HeaderFile
+        //! Modifies the line thickness.
+        //! Warning: Raises Standard_OutOfRange if the width is a negative value.
+        void SetWidth(const Standard_Real theWidth) { SetWidth((float)theWidth); }
+
+        //! Modifies the line thickness.
+        //! Warning: Raises Standard_OutOfRange if the width is a negative value.
+        void SetWidth(Standard_ShortReal theWidth)
+        {
+            NativeHandle()->SetLineWidth(theWidth);
+        }
+
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property Handle(Graphic3d_AspectLine3d) Handle
+        {
+            Handle(Graphic3d_AspectLine3d) get() {
+                return NativeHandle();
+            }
+        };
+    private:
+        NCollection_Haft<Handle(Graphic3d_AspectLine3d)> NativeHandle;
+    };
+
+    //! DEFINE_STANDARD_HANDLE(Graphic3d_AspectLine3d, Graphic3d_Aspects)
+}
+#endif // _XGraphic3d_AspectLine3d_HeaderFile

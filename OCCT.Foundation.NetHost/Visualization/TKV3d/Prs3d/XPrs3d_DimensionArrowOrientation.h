@@ -14,19 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DimensionArrowOrientation_HeaderFile
-#define _Prs3d_DimensionArrowOrientation_HeaderFile
+#ifndef _XPrs3d_DimensionArrowOrientation_HeaderFile
+#define _XPrs3d_DimensionArrowOrientation_HeaderFile
 
 //! Specifies dimension arrow location and orientation.
 //! DAO_Internal - arrows "inside", pointing outwards.
 //! DAO_External - arrows "outside", pointing inwards.
 //! DAO_Fit      - arrows oriented inside if value label with arrowtips fit the dimension line,
 //! otherwise - externally
-enum Prs3d_DimensionArrowOrientation
+public enum class XPrs3d_DimensionArrowOrientation
 {
 Prs3d_DAO_Internal,
 Prs3d_DAO_External,
 Prs3d_DAO_Fit
 };
 
-#endif // _Prs3d_DimensionArrowOrientation_HeaderFile
+#endif // _XPrs3d_DimensionArrowOrientation_HeaderFile

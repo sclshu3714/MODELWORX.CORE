@@ -13,18 +13,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfLine_HeaderFile
-#define _Aspect_TypeOfLine_HeaderFile
+#ifndef _XAspect_TypeOfLine_HeaderFile
+#define _XAspect_TypeOfLine_HeaderFile
 
 //! Definition of line types
-enum Aspect_TypeOfLine
+public enum class XAspect_TypeOfLine
 {
-  Aspect_TOL_EMPTY = -1, //!< hidden
-  Aspect_TOL_SOLID =  0, //!< continuous
-  Aspect_TOL_DASH,       //!< dashed 2.0,1.0 (MM)
-  Aspect_TOL_DOT,        //!< dotted 0.2,0.5 (MM)
-  Aspect_TOL_DOTDASH,    //!< mixed  10.0,1.0,2.0,1.0 (MM)
-  Aspect_TOL_USERDEFINED //!< defined by Users
+	Aspect_TOL_EMPTY = -1, //!< hidden
+	Aspect_TOL_SOLID = 0, //!< continuous
+	Aspect_TOL_DASH,       //!< dashed 2.0,1.0 (MM)
+	Aspect_TOL_DOT,        //!< dotted 0.2,0.5 (MM)
+	Aspect_TOL_DOTDASH,    //!< mixed  10.0,1.0,2.0,1.0 (MM)
+	Aspect_TOL_USERDEFINED //!< defined by Users
 };
 
-#endif // _Aspect_TypeOfLine_HeaderFile
+#endif // _XAspect_TypeOfLine_HeaderFile
