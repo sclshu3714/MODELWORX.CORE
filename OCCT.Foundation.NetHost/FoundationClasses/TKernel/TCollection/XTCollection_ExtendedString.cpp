@@ -408,6 +408,12 @@ namespace TKernel
         return NativeHandle->Value(where);
     };
 
+    //! Returns the System::String
+    System::String^ XTCollection_ExtendedString::GetValueString() {
+        TCollection_AsciiString* tAsc = new TCollection_AsciiString(*NativeHandle);
+        return XStandard_Helper::toString(*tAsc);
+    };
+
     //! Converts the internal <mystring> to UTF8 coding and
     //! returns length of the out CString. A memory for the
     //! <theCString> should be allocated before call!

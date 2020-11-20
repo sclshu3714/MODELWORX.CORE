@@ -228,6 +228,7 @@ Class TKernel.XTCollection_ExtendedString: AutoLayout, AnsiClass, Class, Public,
     ToWideString(): PrivateScope, Public, HideBySig
     Trunc(Int32 IsConst): PrivateScope, Public, HideBySig
     Value(Int32 IsConst): PrivateScope, Public, HideBySig
+    GetValueString(): PrivateScope, Public, HideBySig
     HashCode(XTCollection_ExtendedString, Int32 IsConst): PrivateScope, Public, Static, HideBySig
     ToUTF8CString(SByte** IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     LengthOfCString(): PrivateScope, Public, HideBySig

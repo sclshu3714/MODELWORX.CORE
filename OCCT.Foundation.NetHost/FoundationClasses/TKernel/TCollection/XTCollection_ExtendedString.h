@@ -125,6 +125,8 @@ namespace TKernel {
         //! Returns the TCollection_ExtendedString
         TCollection_ExtendedString GetExtendedString();
 
+        
+
         //! Appends the other extended string to this extended string.
         //! Note that this method is an alias of operator +=.
         //! Example: aString += anotherString
@@ -342,6 +344,9 @@ namespace TKernel {
         //! Standard_OutOfRange if where lies outside
         //! the bounds of this extended string.
         Standard_ExtCharacter Value(const Standard_Integer where);
+
+        //! Returns the System::String
+        System::String^ GetValueString();
 
         //! Returns a hashed value for the extended string within the range 1 .. theUpper.
         //! Note: if string is ASCII, the computed value is the same as the value computed with the HashCode function on a
