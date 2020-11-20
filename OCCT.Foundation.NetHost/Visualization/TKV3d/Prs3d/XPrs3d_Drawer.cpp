@@ -804,13 +804,13 @@ namespace TKV3d {
     //! The method sets line aspect owned by the drawer that will be used during
     //! visualization instead of the one set in link.
     //! theAspect is the line aspect that determines the look of the face boundaries.
-    void XPrs3d_Drawer::SetFaceBoundaryAspect(const Handle(Prs3d_LineAspect)& theAspect) {
-        NativeHandle()->SetFaceBoundaryAspect(theAspect);
+    void XPrs3d_Drawer::SetFaceBoundaryAspect(XPrs3d_LineAspect^ theAspect) {
+        NativeHandle()->SetFaceBoundaryAspect(theAspect->GetLineAspect());
     };
 
     //! Returns line aspect of face boundaries.
-    Handle(Prs3d_LineAspect) XPrs3d_Drawer::FaceBoundaryAspect() {
-        return NativeHandle()->FaceBoundaryAspect();
+    XPrs3d_LineAspect^ XPrs3d_Drawer::FaceBoundaryAspect() {
+        return gcnew XPrs3d_LineAspect(NativeHandle()->FaceBoundaryAspect());
     };
 
     //! Returns true if the drawer has its own attribute for

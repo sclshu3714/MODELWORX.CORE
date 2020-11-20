@@ -156,6 +156,8 @@ namespace TKV3d {
 
   //! Returns the attributes settings.
     const XPrs3d_Drawer^ XPrsMgr_PresentableObject::Attributes() {
+        if (NativeHandle().IsNull())
+            return gcnew XPrs3d_Drawer();
         return gcnew XPrs3d_Drawer(NativeHandle()->Attributes());
     };
 

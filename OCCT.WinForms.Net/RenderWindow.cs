@@ -13,6 +13,7 @@ using TKLCAF;
 using TKXCAF;
 using TKVCAF;
 using TKV3d;
+using TKernel;
 
 namespace OCCT.WinForms.Net
 {
@@ -564,6 +565,7 @@ namespace OCCT.WinForms.Net
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
+
             XTDF_Label aRootLabel = aDoc.Main();
             XTDF_Label RootLabel = aRootLabel.Root();
             VisibleSettings(RootLabel, true);
@@ -595,10 +597,13 @@ namespace OCCT.WinForms.Net
         /// <param name="IsBoundaryDraw"></param>
         void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XTDataStd_Name aName = new XTDataStd_Name();
             if (theLabel.FindAttribute(XTDataStd_Name.GetIDx(), aName))
             {
                 //std::cout << "  Name: " << aName->Get() << std::endl;
+                MessageBox.Show($"Name:{aName.Getx()}");
+                context.RemoveAll(true);
             }
             XTPrsStd_AISPresentation aPrs = new XTPrsStd_AISPresentation();
             if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetIDx(), aPrs))
@@ -610,24 +615,23 @@ namespace OCCT.WinForms.Net
                 XAIS_InteractiveObject anInteractive = aPrs.GetAISx();
                 if (anInteractive != null)
                 {
-                    //XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-                    //context.Display(anInteractive, true);
                     // get drawer
                     XPrs3d_Drawer aDrawer = anInteractive.Attributes();
-                    //// default attributes
-                    //float aRed = 0.0;
-                    //float aGreen = 0.0;
-                    //float aBlue = 0.0;
-                    //float aWidth = 1.0;
-                    //XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
-                    //// turn boundaries on/off
-                    //bool isBoundaryDraw = true;
-                    //aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
-                    //XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, Quantity_TOC_RGB);
-                    //XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
-                    //aDrawer->SetFaceBoundaryAspect(aBoundaryAspect);
-                    //XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-                    //context.Display(anInteractive, true);
+                    // default attributes
+                    float aRed = 0.0f;
+                    float aGreen = 0.0f;
+                    float aBlue = 0.0f;
+                    float aWidth = 1.0f;
+                    XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
+                    // turn boundaries on/off
+                    bool isBoundaryDraw = true;
+                    aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
+                    XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+                    XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
+                    aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
+                    context.Display(anInteractive, true);
+                    OCCTView.SetDisplayMode(1);
+                    OCCTView.ZoomAllView();
                 }
                 ////mainAISContext()->UpdateCurrentViewer();
             }

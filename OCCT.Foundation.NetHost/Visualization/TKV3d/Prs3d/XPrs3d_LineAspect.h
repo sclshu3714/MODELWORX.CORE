@@ -39,10 +39,9 @@
 //! an argument may then be given the attribute manager
 //! as a substitute argument in the form of a field such as myDrawer for example.
 using namespace TKernel;
-using namespace TKV3d;
 namespace TKV3d {
 	ref class TKernel::XQuantity_Color;	
-	ref class TKV3d::XGraphic3d_AspectLine3d;
+	ref class XGraphic3d_AspectLine3d;
 	public ref class XPrs3d_LineAspect //: public Prs3d_BasicAspect
 	{
 		//! DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)
@@ -84,7 +83,7 @@ namespace TKV3d {
 
 		//! Dumps the content of me into the stream
 		//!  theDepth = -1
-		virtual void DumpJson(Standard_OStream& theOStream, const Standard_Integer theDepth) Standard_OVERRIDE;
+		virtual void DumpJson(Standard_OStream& theOStream, const Standard_Integer theDepth);// Standard_OVERRIDE;
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

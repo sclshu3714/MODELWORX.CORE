@@ -52,7 +52,7 @@ namespace TKXCAF {
 	public:
 
 
-		virtual Standard_Boolean Update(const TDF_Label& L, Handle(AIS_InteractiveObject)& ais) Standard_OVERRIDE;
+		virtual Standard_Boolean Update(const TDF_Label& L, Handle(AIS_InteractiveObject)& ais);// Standard_OVERRIDE;
 
 		virtual Standard_Boolean Update(XTDF_Label^ L, XAIS_InteractiveObject^ ais);
 		//! returns GUID of the driver

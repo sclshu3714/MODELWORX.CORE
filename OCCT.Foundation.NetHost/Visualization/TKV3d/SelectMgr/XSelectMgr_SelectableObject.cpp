@@ -12,8 +12,9 @@ namespace TKV3d {
     };
 
     //! 
-    void XSelectMgr_SelectableObject::SetNativeHandle(Handle(SelectMgr_SelectableObject) pos) {
+    void XSelectMgr_SelectableObject::SetSelectMgr_SelectableObjectNativeHandle(Handle(SelectMgr_SelectableObject) pos) {
         NativeHandle() = pos;
+        SetBaseNativeHandle(NativeHandle());
     };
 
     //! Clears all selections of the object

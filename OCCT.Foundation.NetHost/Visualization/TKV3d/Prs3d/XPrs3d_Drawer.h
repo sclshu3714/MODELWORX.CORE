@@ -23,6 +23,7 @@
 #include "XPrs3d_TypeOfHLR.h"
 #include "XPrs3d_VertexDrawMode.h"
 #include "XGraphic3d_TypeOfShadingModel.h"
+#include "XPrs3d_LineAspect.h"
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -57,6 +58,7 @@ namespace TKV3d {
     //! A graphic attribute manager which governs how
     //! objects such as color, width, line thickness and deflection are displayed.
     //! A drawer includes an instance of the Aspect classes with particular default values.
+    ref class XPrs3d_LineAspect;
     public ref class XPrs3d_Drawer : public XGraphic3d_PresentationAttributes
     {
         //! DEFINE_STANDARD_RTTIEXT(Prs3d_Drawer, Graphic3d_PresentationAttributes)
@@ -622,10 +624,10 @@ namespace TKV3d {
         //! The method sets line aspect owned by the drawer that will be used during
         //! visualization instead of the one set in link.
         //! theAspect is the line aspect that determines the look of the face boundaries.
-        void SetFaceBoundaryAspect(const Handle(Prs3d_LineAspect)& theAspect);
+        void SetFaceBoundaryAspect(XPrs3d_LineAspect^ theAspect);
 
         //! Returns line aspect of face boundaries.
-        Handle(Prs3d_LineAspect) FaceBoundaryAspect();
+        XPrs3d_LineAspect^ FaceBoundaryAspect();
 
         //! Returns true if the drawer has its own attribute for
         //! face boundaries aspect that overrides the one in the link.

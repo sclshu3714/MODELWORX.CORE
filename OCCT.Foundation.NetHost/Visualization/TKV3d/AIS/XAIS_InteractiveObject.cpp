@@ -8,6 +8,7 @@ namespace TKV3d {
 	//!
 	XAIS_InteractiveObject::XAIS_InteractiveObject(Handle(AIS_InteractiveObject) pos) {
 		NativeHandle() = pos;
+		SetSelectMgr_SelectableObjectNativeHandle(NativeHandle());
 	};
 
 
@@ -19,6 +20,7 @@ namespace TKV3d {
 	//!
 	void XAIS_InteractiveObject::SetNativeHandle(Handle(AIS_InteractiveObject) pos) {
 		NativeHandle() = pos;
+		SetSelectMgr_SelectableObjectNativeHandle(NativeHandle());
 	};
 
 
