@@ -20,14 +20,7 @@ namespace TKLCAF {
 	//! class methods working on the name itself
 	//! ========================================
 	//! Returns the GUID for name attributes.
-	const Standard_GUID& XTDataStd_Name::GetID() {
-		return TDataStd_Name::GetID();
-	};
-
-	//! class methods working on the name itself
-	//! ========================================
-	//! Returns the GUID for name attributes.
-	XStandard_GUID^ XTDataStd_Name::GetIDx() {
+	XStandard_GUID^ XTDataStd_Name::GetID() {
 		return gcnew XStandard_GUID(TDataStd_Name::GetID());
 	};
 
@@ -53,18 +46,8 @@ namespace TKLCAF {
 	//! move to draw from <pathlist> build the string path
 	//! Name methods
 	//! ============
-	Handle(TDataStd_Name) XTDataStd_Name::Set(const TDF_Label& label, const TCollection_ExtendedString& string) {
-		return TDataStd_Name::Set(label,string);
-	};
-
 	XTDataStd_Name^ XTDataStd_Name::Set(XTDF_Label^ label, XTCollection_ExtendedString^ string) {
 		return gcnew XTDataStd_Name(TDataStd_Name::Set(label->GetLabel(), string->GetExtendedString()));
-	};
-
-	//! Finds, or creates, a Name attribute with explicit user defined <guid> and sets <string>.
-	//! The Name attribute  is  returned. 
-	Handle(TDataStd_Name) XTDataStd_Name::Set(const TDF_Label& label, const Standard_GUID& guid, const TCollection_ExtendedString& string) {
-		return TDataStd_Name::Set(label, guid, string);
 	};
 
 	XTDataStd_Name^ XTDataStd_Name::Set(XTDF_Label^ label, XStandard_GUID^ guid, XTCollection_ExtendedString^ string) {
@@ -72,18 +55,12 @@ namespace TKLCAF {
 	};
 
 	//! Sets <S> as name. Raises if <S> is not a valid name.
-	void XTDataStd_Name::Set(const TCollection_ExtendedString& S) {
-		NativeHandle()->Set(S);
-	};
-
-	//! Sets <S> as name. Raises if <S> is not a valid name.
 	void XTDataStd_Name::Set(XTCollection_ExtendedString^ S) {
 		NativeHandle()->Set(S->GetExtendedString());
 	};
 
-	//! Sets the explicit user defined GUID  to the attribute.
-	void XTDataStd_Name::SetID(const Standard_GUID& guid) {
-		NativeHandle()->SetID(guid);
+	void XTDataStd_Name::SetID(const Standard_GUID& theGuid) {
+		NativeHandle()->SetID(theGuid);
 	};
 
 	//! Sets the explicit user defined GUID  to the attribute.
@@ -97,41 +74,21 @@ namespace TKLCAF {
 	};
 
 	//! Returns the name contained in this name attribute.
-	const TCollection_ExtendedString& XTDataStd_Name::Get() {
-		return NativeHandle()->Get();
-	};
-
-	//! Returns the name contained in this name attribute.
-	const XTCollection_ExtendedString^ XTDataStd_Name::Getx() {
+	const XTCollection_ExtendedString^ XTDataStd_Name::Get() {
 		return gcnew XTCollection_ExtendedString(NativeHandle()->Get());
 	};
 
-	Standard_GUID XTDataStd_Name::ID() {
-		return NativeHandle()->ID();
-	};
 
-	XStandard_GUID^ XTDataStd_Name::GetIDEx() {
+	XStandard_GUID^ XTDataStd_Name::ID() {
 		return gcnew XStandard_GUID(NativeHandle()->ID());
-	};
-
-	void XTDataStd_Name::Restore(const Handle(TDF_Attribute)& with) {
-		NativeHandle()->Restore(with);
 	};
 
 	void XTDataStd_Name::Restore(XTDF_Attribute^ with) {
 		NativeHandle()->Restore(with->GetAttribute());
 	};
 
-	Handle(TDF_Attribute) XTDataStd_Name::NewEmpty() {
-		return NativeHandle()->NewEmpty();
-	};
-
-	XTDF_Attribute^ XTDataStd_Name::NewEmptyx() {
+	XTDF_Attribute^ XTDataStd_Name::NewEmpty() {
 		return gcnew XTDF_Attribute(NativeHandle()->NewEmpty());
-	};
-
-	void XTDataStd_Name::Paste(const Handle(TDF_Attribute)& intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) {
-		NativeHandle()->Paste(intoAttribute, aRelocationTable);
 	};
 
 	void XTDataStd_Name::Paste(XTDF_Attribute^ intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) {

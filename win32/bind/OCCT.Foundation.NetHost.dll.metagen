@@ -98,14 +98,12 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     opencascade.handle<TDF_Attribute> Handle 'get ' : 
   Methods:
-    ID(Standard_GUID*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetIDEx(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetID(XStandard_GUID): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetID(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetNativeHandle(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig
-    Label(TDF_Label*): PrivateScope, Public, HideBySig
-    EditLabel(): PrivateScope, Public, HideBySig
+    Label(): PrivateScope, Public, HideBySig
     GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig
     Transaction(): PrivateScope, Public, HideBySig
     UntilTransaction(): PrivateScope, Public, HideBySig
@@ -131,10 +129,8 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     BeforeCommitTransaction(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Backup(): PrivateScope, Public, HideBySig
     IsBackuped(): PrivateScope, Public, HideBySig
-    BackupCopy(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    BackupCopyx(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    BackupCopy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Restore(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DeltaOnAddition(handle<TDF_DeltaOnAddition>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DeltaOnForget(handle<TDF_DeltaOnForget>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DeltaOnResume(handle<TDF_DeltaOnResume>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -142,10 +138,8 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     DeltaOnModification(handle<TDF_DeltaOnModification>*, XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DeltaOnModification(handle<TDF_DeltaOnModification>*, handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DeltaOnRemoval(handle<TDF_DeltaOnRemoval>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    NewEmpty(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    NewEmptyx(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Paste(handle<TDF_Attribute>* IsImplicitlyDereferenced, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     References(handle<TDF_DataSet>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     op_LeftShift(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
@@ -250,26 +244,17 @@ Class TKLCAF.XTDataStd_Name: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Methods:
     GetName(TDataStd_Name*): PrivateScope, Public, HideBySig
     GetID(): PrivateScope, Public, Static, HideBySig
-    GetIDx(): PrivateScope, Public, Static, HideBySig
     Set(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    Set(TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Set(XTDF_Label, XStandard_GUID, XTCollection_ExtendedString): PrivateScope, Public, Static, HideBySig
-    Set(handle<TDataStd_Name>*, TDF_Label* IsImplicitlyDereferenced, Standard_GUID* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Set(XTDF_Label, XTCollection_ExtendedString): PrivateScope, Public, Static, HideBySig
-    Set(handle<TDataStd_Name>*, TDF_Label* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     SetID(): PrivateScope, Public, Virtual, HideBySig
     SetID(XStandard_GUID): PrivateScope, Public, Virtual, HideBySig
     SetID(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     Get(): PrivateScope, Public, HideBySig
-    Getx(): PrivateScope, Public, HideBySig
-    ID(Standard_GUID*): PrivateScope, Public, Virtual, HideBySig
-    GetIDEx(): PrivateScope, Public, Virtual, HideBySig
+    ID(): PrivateScope, Public, Virtual, HideBySig
     Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
-    Restore(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
-    NewEmpty(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
-    NewEmptyx(): PrivateScope, Public, Virtual, HideBySig
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig
     Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
-    Paste(handle<TDF_Attribute>* IsImplicitlyDereferenced, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     get_Handle(handle<TDataStd_Name>*): PrivateScope, Public, HideBySig, SpecialName
     ~XTDataStd_Name(): PrivateScope, Public, HideBySig
@@ -1858,7 +1843,7 @@ Class TKV3d.XPrs3d_LineAspect: AutoLayout, AnsiClass, Class, Public, BeforeField
     SetWidth(Double IsConst): PrivateScope, Public, HideBySig
     Aspect(): PrivateScope, Public, HideBySig
     SetAspect(XGraphic3d_AspectLine3d): PrivateScope, Public, HideBySig
-    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32 IsConst): PrivateScope, Public, Virtual, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_Handle(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig, SpecialName
     ~XPrs3d_LineAspect(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
@@ -2268,16 +2253,11 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     AddSelectionMode(Int32 IsConst, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     HasOwnSelectionMode(): PrivateScope, Public, HideBySig
     UnsetSelectionMode(): PrivateScope, Public, HideBySig
-    ID(Standard_GUID*): PrivateScope, Public, Virtual, HideBySig
-    GetIDEx(): PrivateScope, Public, Virtual, HideBySig
-    NewEmpty(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
-    NewEmptyx(): PrivateScope, Public, Virtual, HideBySig
+    ID(): PrivateScope, Public, Virtual, HideBySig
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig
     Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
-    Restore(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
-    Paste(handle<TDF_Attribute>* IsImplicitlyDereferenced, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
-    BackupCopy(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
-    BackupCopyx(): PrivateScope, Public, Virtual, HideBySig
+    BackupCopy(): PrivateScope, Public, Virtual, HideBySig
     AfterAddition(): PrivateScope, Public, Virtual, HideBySig
     BeforeRemoval(): PrivateScope, Public, Virtual, HideBySig
     BeforeForget(): PrivateScope, Public, Virtual, HideBySig
@@ -3913,6 +3893,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ImportBrep(String): PrivateScope, Public, HideBySig
     ImportStep(TCollection_AsciiString* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ImportStep(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ImportStepB(TCollection_AsciiString* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     visit(TDF_Label* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Display(TDF_Label* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ImportIges(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig

@@ -565,10 +565,16 @@ namespace OCCT.WinForms.Net
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
-
+            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
+            //XTDF_LabelSequence aRootLabels;
+            //Assembly.GetFreeShapes(aRootLabels);
+            //for (XTDF_LabelSequence.Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
+            //{
+            //    XTDF_Label aRootLabel = aRootIter.Value();
+            //    VisibleSettings(aRootLabel, true);
+            //}
             XTDF_Label aRootLabel = aDoc.Main();
-            XTDF_Label RootLabel = aRootLabel.Root();
-            VisibleSettings(RootLabel, true);
+            VisibleSettings(aRootLabel, true);
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
@@ -599,10 +605,10 @@ namespace OCCT.WinForms.Net
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XTDataStd_Name aName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetIDx(), aName))
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), aName))
             {
                 //std::cout << "  Name: " << aName->Get() << std::endl;
-                MessageBox.Show($"Name:{aName.Getx()}");
+                MessageBox.Show($"Name:{aName.Get().GetValueString()}");
                 context.RemoveAll(true);
             }
             XTPrsStd_AISPresentation aPrs = new XTPrsStd_AISPresentation();

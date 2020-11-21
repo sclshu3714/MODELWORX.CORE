@@ -153,10 +153,7 @@ namespace TKLCAF {
         XTDF_Attribute(Handle(TDF_Attribute) pos);
 
         //! Returns the ID of the attribute.
-        virtual Standard_GUID ID();
-
-        //! Returns the ID of the attribute.
-        virtual XStandard_GUID^  GetIDEx();
+        virtual XStandard_GUID^  ID();
 
         //! Sets specific ID of the attribute (supports several attributes 
         //! of one type at the same label feature).
@@ -179,9 +176,7 @@ namespace TKLCAF {
         //! If the label is not included in a data
         //! framework, it is null.
         //! This function should not be redefined inline.
-        TDF_Label Label();
-
-        XTDF_Label^ EditLabel();
+        XTDF_Label^ Label();
 
         //£¡
         Handle(TDF_Attribute) GetAttribute();
@@ -335,16 +330,7 @@ namespace TKLCAF {
 
         //! Copies  the attribute  contents into  a  new other
         //! attribute. It is used by Backup().
-        virtual Handle(TDF_Attribute) BackupCopy();
-
-        //! Copies  the attribute  contents into  a  new other
-        //! attribute. It is used by Backup().
-        virtual XTDF_Attribute^ BackupCopyx();
-
-        //! Restores the backuped contents from <anAttribute>
-        //! into this one. It is used when aborting a
-        //! transaction.
-        virtual void Restore(const Handle(TDF_Attribute)& anAttribute);
+        virtual XTDF_Attribute^ BackupCopy();
 
         //! Restores the backuped contents from <anAttribute>
         //! into this one. It is used when aborting a
@@ -381,11 +367,7 @@ namespace TKLCAF {
 
         //! Returns an new empty attribute from the good end
         //! type. It is used by the copy algorithm.
-        virtual Handle(TDF_Attribute) NewEmpty();
-
-        //! Returns an new empty attribute from the good end
-        //! type. It is used by the copy algorithm.
-        virtual XTDF_Attribute^ NewEmptyx();
+        virtual XTDF_Attribute^ NewEmpty();
 
         //! This method is different from the "Copy" one,
         //! because it is used when copying an attribute from
@@ -400,8 +382,6 @@ namespace TKLCAF {
         //! It is possible to use <aRelocationTable> to
         //! get/set the relocation value of a source
         //! attribute.
-        virtual void Paste(const Handle(TDF_Attribute)& intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable);
-
         virtual void Paste(XTDF_Attribute^ intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable);
 
         //! Adds the first level referenced attributes and labels

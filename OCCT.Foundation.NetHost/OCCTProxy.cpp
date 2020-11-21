@@ -45,6 +45,8 @@
 #include <XCAFPrs_Driver.hxx>
 #include <TNaming_NamedShape.hxx>
 #include <XAIS_InteractiveContext.h>
+#include <ViewerTest.hxx>
+#include <TPrsStd_AISViewer.hxx>
 
 // list of required OCCT libraries
 #pragma comment(lib, "TKernel.lib")
@@ -778,8 +780,49 @@ public:
             return false;
         }
         TDF_Label aRootLabel = aDoc->Main();
-        TDF_Label RootLabel = aRootLabel.Root();
-        visit(RootLabel, Standard_True);
+        visit(aRootLabel, Standard_True);
+        return true;
+    }
+    bool ImportStepB(const TCollection_AsciiString& theFileName, Boolean ColorMode, Boolean NameMode, Boolean LayerMode, Boolean PropsMode, Boolean SHUOMode, Boolean GDTMode, Boolean ViewMode) {
+        Handle(TDocStd_Document) aDoc;
+        STEPCAFControl_Reader aReader;
+        aReader.SetColorMode(ColorMode);
+        aReader.SetNameMode(NameMode);
+        IFSelect_ReturnStatus aStatus = IFSelect_RetVoid;
+        aStatus = aReader.ReadFile(theFileName.ToCString());
+        Handle(XCAFApp_Application) anApp = XCAFApp_Application::GetApplication();
+        anApp->NewDocument("XSEFSTEP", aDoc);
+        if (aStatus != IFSelect_RetDone || !aReader.Transfer(aDoc)) {
+            return false;
+        }
+        Handle(XCAFDoc_ShapeTool) Assembly = XCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
+        TDF_LabelSequence aRootLabels;
+        Assembly->GetFreeShapes(aRootLabels);
+        for (TDF_LabelSequence::Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
+        {
+           const TDF_Label& aRootLabel = aRootIter.Value();
+           visit(aRootLabel, true);
+        }
+
+        //TopoDS_Shape shape = Assembly->GetShape(frshapes.Value(1));
+        //Handle(AIS_Shape) ais_shape = new AIS_Shape(shape);
+
+        ////get a label of shape.
+        //TDF_Label aLabel;
+        //aLabel = Assembly->FindShape(shape);
+
+        //Handle(XCAFDoc_ColorTool) myColors = XCAFDoc_DocumentTool::ColorTool(aDoc->Main());
+        //TDF_LabelSequence ColLabels;
+        //myColors->GetColors(ColLabels);
+
+        //Quantity_Color col;
+        //XCAFDoc_ColorType ctype = XCAFDoc_ColorGen;
+        //myColors->GetColor(aLabel, ctype, col);
+
+        //ais_shape->SetColor(col);
+
+        //mainAISContext()->Display(ais_shape, 0);
+        //mainView()->Redraw();
         return true;
     }
     /// <summary>
@@ -991,7 +1034,7 @@ public:
                 isResult = ImportBrep(aFilename);
                 break;
             case 1:
-                isResult = ImportStep(aFilename, true, true, true, true, false, true, true);// ImportStep(aFilename);
+                isResult = ImportStepB(aFilename, true, true, true, true, false, true, true);// ImportStep(aFilename);
                 break;
             case 2:
                 isResult = ImportIges(aFilename);

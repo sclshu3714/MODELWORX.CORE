@@ -63,12 +63,7 @@ namespace TKLCAF {
 		//! class methods working on the name itself
 		//! ========================================
 		//! Returns the GUID for name attributes.
-		static const Standard_GUID& GetID();
-
-		//! class methods working on the name itself
-		//! ========================================
-		//! Returns the GUID for name attributes.
-		static XStandard_GUID^ GetIDx();
+		static XStandard_GUID^ GetID();
 
 		//! Creates (if does not exist) and sets the name in the name attribute.
 		//! from any label <L>  search in father  labels (L is not
@@ -92,24 +87,17 @@ namespace TKLCAF {
 		//! move to draw from <pathlist> build the string path
 		//! Name methods
 		//! ============
-		static Handle(TDataStd_Name) Set(const TDF_Label& label, const TCollection_ExtendedString& string);
-
 		static XTDataStd_Name^ Set(XTDF_Label^ label, XTCollection_ExtendedString^ string);
 
 		//! Finds, or creates, a Name attribute with explicit user defined <guid> and sets <string>.
 		//! The Name attribute  is  returned. 
-		static Handle(TDataStd_Name) Set(const TDF_Label& label, const Standard_GUID& guid, const TCollection_ExtendedString& string);
-		
 		static XTDataStd_Name^ Set(XTDF_Label^ label, XStandard_GUID^ guid, XTCollection_ExtendedString^ string);
-
-		//! Sets <S> as name. Raises if <S> is not a valid name.
-		void Set(const TCollection_ExtendedString& S);
 
 		//! Sets <S> as name. Raises if <S> is not a valid name.
 		void Set(XTCollection_ExtendedString^ S);
 
 		//! Sets the explicit user defined GUID  to the attribute.
-		void SetID(const Standard_GUID& guid) Standard_OVERRIDE;
+		void SetID(const Standard_GUID& theGuid) Standard_OVERRIDE;
 
 		//! Sets the explicit user defined GUID  to the attribute.
 		void SetID(XStandard_GUID^ guid) Standard_OVERRIDE;
@@ -118,24 +106,13 @@ namespace TKLCAF {
 		void SetID() Standard_OVERRIDE;
 
 		//! Returns the name contained in this name attribute.
-		const TCollection_ExtendedString& Get();
+		const XTCollection_ExtendedString^ Get();
 
-		//! Returns the name contained in this name attribute.
-		const XTCollection_ExtendedString^ Getx();
-
-		Standard_GUID ID() Standard_OVERRIDE;
-
-		XStandard_GUID^ GetIDEx() Standard_OVERRIDE;
-
-		void Restore(const Handle(TDF_Attribute)& with) Standard_OVERRIDE;
+		XStandard_GUID^ ID() Standard_OVERRIDE;
 
 		void Restore(XTDF_Attribute^ with) Standard_OVERRIDE;
 
-		Handle(TDF_Attribute) NewEmpty() Standard_OVERRIDE;
-
-		XTDF_Attribute^ NewEmptyx() Standard_OVERRIDE;
-
-		void Paste(const Handle(TDF_Attribute)& intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) Standard_OVERRIDE;
+		XTDF_Attribute^ NewEmpty() Standard_OVERRIDE;
 
 		void Paste(XTDF_Attribute^ intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) Standard_OVERRIDE;
 

@@ -19,19 +19,17 @@ namespace TKernel {
         return TCollection_AsciiString(aWCharPtr);
     }
 
-    Standard_CString XStandard_Helper::toCString(TCollection_AsciiString AsciiString) {
-        return AsciiString.ToCString();
+    Standard_CString XStandard_Helper::toCString(TCollection_AsciiString AString) {
+        return AString.ToCString();
     };
 
     String^ XStandard_Helper::toString(Standard_CString CString) {
-        std::string tstring = std::string(CString);
-        System::String^ sString = gcnew System::String(tstring.c_str());
+        System::String^ sString = gcnew System::String(CString);
         return sString;
     };
 
-    String^ XStandard_Helper::toString(TCollection_AsciiString AsciiString) {
-        std::string tstring = std::string(AsciiString.ToCString());
-        System::String^ sString = gcnew System::String(tstring.c_str());
+    String^ XStandard_Helper::toString(TCollection_AsciiString AString) {
+        System::String^ sString = gcnew System::String(AString.ToCString());
         return sString;
     };
 }

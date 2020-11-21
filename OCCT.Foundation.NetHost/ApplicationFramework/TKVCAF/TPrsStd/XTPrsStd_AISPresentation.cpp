@@ -263,43 +263,24 @@ namespace TKVCAF {
 		NativeHandle()->UnsetSelectionMode();
 	};
 
-	Standard_GUID XTPrsStd_AISPresentation::ID() {
-		return NativeHandle()->ID();
-	};
 
-	XStandard_GUID^ XTPrsStd_AISPresentation::GetIDEx() {
+	XStandard_GUID^ XTPrsStd_AISPresentation::ID() {
 		return gcnew XStandard_GUID(NativeHandle()->ID());
 	};
 
-	Handle(TDF_Attribute) XTPrsStd_AISPresentation::NewEmpty() {
-		return NativeHandle()->NewEmpty();
-	};
-
-	XTDF_Attribute^ XTPrsStd_AISPresentation::NewEmptyx() {
+	XTDF_Attribute^ XTPrsStd_AISPresentation::NewEmpty() {
 		return gcnew XTDF_Attribute(NativeHandle()->NewEmpty());
-	};
-
-	void XTPrsStd_AISPresentation::Restore(const Handle(TDF_Attribute)& with) {
-		NativeHandle()->Restore(with);
 	};
 
 	void XTPrsStd_AISPresentation::Restore(XTDF_Attribute^ with) {
 		NativeHandle()->Restore(with->GetAttribute());
 	};
 
-	void XTPrsStd_AISPresentation::Paste(const Handle(TDF_Attribute)& into, Handle(TDF_RelocationTable)& RT) {
-		NativeHandle()->Paste(into, RT);
-	};
-
 	void XTPrsStd_AISPresentation::Paste(XTDF_Attribute^ into, Handle(TDF_RelocationTable)& RT) {
 		NativeHandle()->Paste(into->GetAttribute(), RT);
 	};
 
-	Handle(TDF_Attribute) XTPrsStd_AISPresentation::BackupCopy() {
-		return NativeHandle()->BackupCopy();
-	};
-
-	XTDF_Attribute^ XTPrsStd_AISPresentation::BackupCopyx() {
+	XTDF_Attribute^ XTPrsStd_AISPresentation::BackupCopy() {
 		return gcnew XTDF_Attribute(NativeHandle()->BackupCopy());
 	};
 

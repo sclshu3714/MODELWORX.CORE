@@ -13,13 +13,9 @@ namespace TKLCAF {
     void XTDF_Attribute::SetNativeHandle(Handle(TDF_Attribute) pos) {
         NativeHandle() = pos;
     };
-    //! Returns the ID of the attribute.
-    Standard_GUID XTDF_Attribute::ID() {
-       return NativeHandle()->ID();
-    };
 
     //! Returns the ID of the attribute.
-    XStandard_GUID^ XTDF_Attribute::GetIDEx() {
+    XStandard_GUID^ XTDF_Attribute::ID() {
         return gcnew XStandard_GUID(NativeHandle()->ID());
     };
 
@@ -49,11 +45,7 @@ namespace TKLCAF {
     //! If the label is not included in a data
     //! framework, it is null.
     //! This function should not be redefined inline.
-    TDF_Label XTDF_Attribute::Label() {
-        return NativeHandle()->Label();
-    };
-
-    XTDF_Label^ XTDF_Attribute::EditLabel() {
+    XTDF_Label^ XTDF_Attribute::Label() {
         return gcnew XTDF_Label(NativeHandle()->Label());
     };
 
@@ -250,22 +242,10 @@ namespace TKLCAF {
 
     //! Copies  the attribute  contents into  a  new other
     //! attribute. It is used by Backup().
-    Handle(TDF_Attribute) XTDF_Attribute::BackupCopy() {
-        return NativeHandle()->BackupCopy();
-    };
-
-    //! Copies  the attribute  contents into  a  new other
-    //! attribute. It is used by Backup().
-    XTDF_Attribute^ XTDF_Attribute::BackupCopyx() {
+    XTDF_Attribute^ XTDF_Attribute::BackupCopy() {
         return gcnew XTDF_Attribute(NativeHandle()->BackupCopy());
     };
 
-    //! Restores the backuped contents from <anAttribute>
-    //! into this one. It is used when aborting a
-    //! transaction.
-    void XTDF_Attribute::Restore(const Handle(TDF_Attribute)& anAttribute) {
-        return NativeHandle()->Restore(anAttribute);
-    };
 
     //! Restores the backuped contents from <anAttribute>
     //! into this one. It is used when aborting a
@@ -316,15 +296,10 @@ namespace TKLCAF {
         return NativeHandle()->DeltaOnRemoval();
     };
 
-    //! Returns an new empty attribute from the good end
-    //! type. It is used by the copy algorithm.
-    Handle(TDF_Attribute) XTDF_Attribute::NewEmpty() {
-        return NativeHandle()->NewEmpty();
-    };
 
     //! Returns an new empty attribute from the good end
     //! type. It is used by the copy algorithm.
-    XTDF_Attribute^ XTDF_Attribute::NewEmptyx() {
+    XTDF_Attribute^ XTDF_Attribute::NewEmpty() {
         return gcnew XTDF_Attribute(NativeHandle()->NewEmpty());
     };
 
@@ -341,10 +316,6 @@ namespace TKLCAF {
     //! It is possible to use <aRelocationTable> to
     //! get/set the relocation value of a source
     //! attribute.
-    void XTDF_Attribute::Paste(const Handle(TDF_Attribute)& intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) {
-        NativeHandle()->Paste(intoAttribute, aRelocationTable);
-    };
-
     void XTDF_Attribute::Paste(XTDF_Attribute^ intoAttribute, Handle(TDF_RelocationTable)& aRelocationTable) {
         NativeHandle()->Paste(intoAttribute->GetAttribute(), aRelocationTable);
     };

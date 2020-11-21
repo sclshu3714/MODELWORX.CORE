@@ -222,25 +222,15 @@ namespace TKVCAF {
 		//! Clears all selection modes of the attribute.
 		void UnsetSelectionMode();
 
-		Standard_GUID ID() Standard_OVERRIDE;
+		XStandard_GUID^ ID() Standard_OVERRIDE;
 
-		XStandard_GUID^ GetIDEx() Standard_OVERRIDE;
-
-		Handle(TDF_Attribute) NewEmpty() Standard_OVERRIDE;
-
-		XTDF_Attribute^ NewEmptyx() Standard_OVERRIDE;
-
-		void Restore(const Handle(TDF_Attribute)& with) Standard_OVERRIDE;
+		XTDF_Attribute^ NewEmpty() Standard_OVERRIDE;
 
 		void Restore(XTDF_Attribute^ with) Standard_OVERRIDE;
 
-		void Paste(const Handle(TDF_Attribute)& into, Handle(TDF_RelocationTable)& RT) Standard_OVERRIDE;
-
 		void Paste(XTDF_Attribute^ into, Handle(TDF_RelocationTable)& RT) Standard_OVERRIDE;
 		
-		virtual Handle(TDF_Attribute) BackupCopy() Standard_OVERRIDE;
-
-		virtual XTDF_Attribute^ BackupCopyx() Standard_OVERRIDE;
+		virtual XTDF_Attribute^ BackupCopy() Standard_OVERRIDE;
 
 		virtual void AfterAddition() Standard_OVERRIDE;
 
