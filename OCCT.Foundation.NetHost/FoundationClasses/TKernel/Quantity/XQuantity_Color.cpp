@@ -216,8 +216,7 @@ namespace TKernel {
     //! static 
     System::String^ XQuantity_Color::StringName(XQuantity_NameOfColor AColor) {
         Standard_CString cString = Quantity_Color::StringName(safe_cast<Quantity_NameOfColor>(AColor));
-        std::string tstring = std::string(cString);
-        System::String^ sString = gcnew System::String(tstring.c_str());
+        System::String^ sString = gcnew System::String(cString);
         return sString;
     };
 
