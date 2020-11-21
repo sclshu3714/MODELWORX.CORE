@@ -41,6 +41,10 @@
 //! affinity transformation. To avoid modifying the nature of
 //! an object, use a xgp_Trsf2d transformation instead, as
 //! objects of thisnamespace TKMath  {  public ref class respect the nature of geometric objects.
+
+
+#ifndef _xgp_GTrsf2d_HeaderFile
+#define _xgp_GTrsf2d_HeaderFile
 #pragma once
 #include <gp_GTrsf2d.hxx>
 #include "xgp_Trsf2d.h"
@@ -241,3 +245,4 @@ namespace TKMath
         gp_GTrsf2d* NativeHandle;
     };
 }
+#endif // _xgp_GTrsf2d_HeaderFile

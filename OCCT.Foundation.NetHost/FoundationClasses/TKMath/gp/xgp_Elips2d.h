@@ -29,6 +29,9 @@
 //! Geom2d_Ellipse which provides additional functions for
 //! constructing ellipses and works, in particular, with the
 //! parametric equations of ellipses
+
+#ifndef _xgp_Elips2d_HeaderFile
+#define _xgp_Elips2d_HeaderFile
 #pragma once
 #include <gp_Elips2d.hxx>
 #include "xgp_Ax2d.h"
@@ -269,3 +272,4 @@ namespace TKMath
         gp_Elips2d* NativeHandle;
     };
 }
+#endif // _xgp_Elips2d_HeaderFile

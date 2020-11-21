@@ -11,7 +11,8 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
-
+#ifndef _xgp_Mat2d_HeaderFile
+#define _xgp_Mat2d_HeaderFile
 #pragma once
 #include <gp_Mat2d.hxx>
 #include "xgp_Trsf2d.h"
@@ -237,3 +238,4 @@ namespace TKMath
         gp_Mat2d* NativeHandle;
     };
 }
+#endif // _xgp_Mat2d_HeaderFile

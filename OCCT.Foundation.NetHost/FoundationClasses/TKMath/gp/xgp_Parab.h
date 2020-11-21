@@ -36,6 +36,9 @@
 //! Geom_Parabola which provides additional functions for
 //! constructing parabolas and works, in particular, with the
 //! parametric equations of parabolas
+
+#ifndef _xgp_Parab_HeaderFile
+#define _xgp_Parab_HeaderFile
 #pragma once
 #include <gp_Parab.hxx>
 #include "xgp_Ax1.h"
@@ -235,3 +238,4 @@ namespace TKMath
         gp_Parab* NativeHandle;
     };
 }
+#endif // _xgp_Parab_HeaderFile

@@ -12,6 +12,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _xgp_Dir2d_HeaderFile
+#define _xgp_Dir2d_HeaderFile
 #pragma once
 #include <gp_Dir2d.hxx>
 #include "xgp_XY.h"
@@ -267,3 +269,4 @@ namespace TKMath
         gp_Dir2d* NativeHandle;
     };
 } 
+#endif // _xgp_Dir2d_HeaderFile

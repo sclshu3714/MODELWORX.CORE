@@ -29,6 +29,9 @@
 //! -   to define geometric transformations (axis of
 //! symmetry, axis of rotation, and so on).
 //! Note: to define a left-handed 2D coordinate system, use xgp_Ax22d.
+
+#ifndef _xgp_Ax2d_HeaderFile
+#define _xgp_Ax2d_HeaderFile
 #pragma once
 #include <gp_Ax2d.hxx>
 #include "xgp_Vec2d.h"
@@ -192,3 +195,4 @@ namespace TKMath
         gp_Ax2d* NativeHandle;
     };
 }
+#endif // _xgp_Ax2d_HeaderFile

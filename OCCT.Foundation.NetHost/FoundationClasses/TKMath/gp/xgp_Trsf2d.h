@@ -28,6 +28,8 @@
 //! and T defines the translation part of the transformation.
 //! This transformation never change the nature of the objects.
 
+#ifndef _xgp_Trsf2d_HeaderFile
+#define _xgp_Trsf2d_HeaderFile
 #pragma once
 #include <gp_Trsf2d.hxx>
 #include "xgp_Trsf.h"
@@ -240,3 +242,4 @@ namespace TKMath
 
     };
 };
+#endif  //_xgp_Trsf2d_HeaderFile

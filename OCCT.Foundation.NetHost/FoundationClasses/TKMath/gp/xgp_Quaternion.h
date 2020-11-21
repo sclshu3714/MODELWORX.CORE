@@ -19,6 +19,9 @@
 //! In addition, provides methods for conversion to and from other
 //! representatons of rotation (3*3 matrix, vector and
 //! angle, Euler angles)
+
+#ifndef _xgp_Quaternion_HeaderFile
+#define _xgp_Quaternion_HeaderFile
 #pragma once
 #include <gp_Quaternion.hxx>
 #include "xgp_Vec.h"
@@ -247,3 +250,4 @@ namespace TKMath
         gp_Quaternion* NativeHandle;
     };
 };
+#endif // _xgp_Quaternion_HeaderFile

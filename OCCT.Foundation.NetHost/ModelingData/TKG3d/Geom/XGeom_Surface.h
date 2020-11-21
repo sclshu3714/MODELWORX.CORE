@@ -40,7 +40,10 @@
 //! The Geom package does not prevent the construction of
 //! surfaces with null areas, or surfaces which self-intersect.
 
+#ifndef _XGeom_Surface_HeaderFile
+#define _XGeom_Surface_HeaderFile
 #pragma once
+#include "NCollection_Haft.h"
 #include "Standard_RangeError.hxx"
 #include "Standard_NoSuchObject.hxx"
 #include "Standard_Type.hxx"
@@ -77,17 +80,19 @@ namespace TKG3d
 		XGeom_Surface(void);
 
 		//! 
-		XGeom_Surface(Geom_Surface* pos);
+		XGeom_Surface(Handle(Geom_Surface) pos);
 
 		//!
 		~XGeom_Surface();
+
+		void SetGeom_SurfaceHandle(Handle(Geom_Surface) handle);
 
 		//!
 		Handle(Geom_Surface) GetSurface();
 
 		//! Reverses the U direction of parametrization of <me>.
 		//! The bounds of the surface are not modified.
-		virtual void UReverse() = 0;
+		virtual void UReverse();
 
 
 		//! Reverses the U direction of parametrization of <me>.
@@ -103,12 +108,12 @@ namespace TKG3d
 		//! is the same point as
 		//!
 		//! me->Value(U,V)
-		virtual Standard_Real^ UReversedParameter(Standard_Real U) = 0;
+		virtual Standard_Real^ UReversedParameter(Standard_Real U);
 
 
 		//! Reverses the V direction of parametrization of <me>.
 		//! The bounds of the surface are not modified.
-		virtual void VReverse() = 0;
+		virtual void VReverse();
 
 
 		//! Reverses the V direction of parametrization of <me>.
@@ -124,7 +129,7 @@ namespace TKG3d
 		//! is the same point as
 		//!
 		//! me->Value(U,V)
-		virtual Standard_Real^ VReversedParameter(Standard_Real V) = 0;
+		virtual Standard_Real^ VReversedParameter(Standard_Real V);
 
 		//! Computes the  parameters on the  transformed  surface for
 		//! the transform of the point of parameters U,V on <me>.
@@ -168,7 +173,7 @@ namespace TKG3d
 		//! Returns the parametric bounds U1, U2, V1 and V2 of this surface.
 		//! If the surface is infinite, this function can return a value
 		//! equal to Precision::Infinite: instead of Standard_Real::LastReal.
-		virtual void Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) = 0;
+		virtual void Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2);
 
 		//! Checks whether this surface is closed in the u
 		//! parametric direction.
@@ -177,7 +182,7 @@ namespace TKG3d
 		//! the u parametric direction, for each parameter v, the
 		//! distance between the points P(uFirst, v) and
 		//! P(uLast, v) is less than or equal to gp::Resolution().
-		virtual Standard_Boolean^ IsUClosed() = 0;
+		virtual Standard_Boolean^ IsUClosed();
 
 		//! Checks whether this surface is closed in the u
 		//! parametric direction.
@@ -187,7 +192,7 @@ namespace TKG3d
 		//! each parameter u, the distance between the points
 		//! P(u, vFirst) and P(u, vLast) is less than
 		//! or equal to gp::Resolution().
-		virtual Standard_Boolean^ IsVClosed() = 0;
+		virtual Standard_Boolean^ IsVClosed();
 
 		//! Checks if this surface is periodic in the u
 		//! parametric direction. Returns true if:
@@ -197,7 +202,7 @@ namespace TKG3d
 		//! v) (or the points P (u, v) and P (u, v +
 		//! T)) is less than or equal to gp::Resolution().
 		//! Note: T is the parametric period in the u parametric direction.
-		virtual Standard_Boolean^ IsUPeriodic() = 0;
+		virtual Standard_Boolean^ IsUPeriodic();
 
 		//! Returns the period of this surface in the u
 		//! parametric direction.
@@ -212,17 +217,17 @@ namespace TKG3d
 		//! v) (or the points P (u, v) and P (u, v +
 		//! T)) is less than or equal to gp::Resolution().
 		//! Note: T is the parametric period in the v parametric direction.
-		virtual Standard_Boolean^ IsVPeriodic() = 0;
+		virtual Standard_Boolean^ IsVPeriodic();
 
 		//! Returns the period of this surface in the v parametric direction.
 		//! raises if the surface is not vperiodic.
 		virtual Standard_Real^ VPeriod();
 
 		//! Computes the U isoparametric curve.
-		virtual Handle(Geom_Curve) UIso(Standard_Real U) = 0;
+		virtual Handle(Geom_Curve) UIso(Standard_Real U);
 
 		//! Computes the V isoparametric curve.
-		virtual Handle(Geom_Curve) VIso(Standard_Real V) = 0;
+		virtual Handle(Geom_Curve) VIso(Standard_Real V);
 
 
 		//! Returns the Global Continuity of the surface in direction U and V :
@@ -236,41 +241,41 @@ namespace TKG3d
 		//! Example :
 		//! If the surface is C1 in the V parametric direction and C2
 		//! in the U parametric direction Shape = C1.
-		virtual GeomAbs_Shape Continuity() = 0;
+		virtual GeomAbs_Shape Continuity();
 
 		//! Returns the order of continuity of the surface in the
 		//! U parametric direction.
 		//! Raised if N < 0.
-		virtual Standard_Boolean^ IsCNu(Standard_Integer N) = 0;
+		virtual Standard_Boolean^ IsCNu(Standard_Integer N);
 
 		//! Returns the order of continuity of the surface in the
 		//! V parametric direction.
 		//! Raised if N < 0.
-		virtual Standard_Boolean^ IsCNv(Standard_Integer N) = 0;
+		virtual Standard_Boolean^ IsCNv(Standard_Integer N);
 
 		//! Computes the point of parameter U,V on the surface.
 		//!
 		//! Raised only for an "OffsetSurface" if it is not possible to
 		//! compute the current point.
-		virtual void D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) = 0;
+		virtual void D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P);
 
 
 		//! Computes the point P and the first derivatives in the
 		//! directions U and V at this point.
 		//! Raised if the continuity of the surface is not C1.
-		virtual void D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) = 0;
+		virtual void D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V);
 
 
 		//! Computes the point P, the first and the second derivatives in
 		//! the directions U and V at this point.
 		//! Raised if the continuity of the surface is not C2.
-		virtual void D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) = 0;
+		virtual void D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV);
 
 
 		//! Computes the point P, the first,the second and the third
 		//! derivatives in the directions U and V at this point.
 		//! Raised if the continuity of the surface is not C2.
-		virtual void D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) = 0;
+		virtual void D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV);
 
 		//! ---Purpose ;
 		//! Computes the derivative of order Nu in the direction U and Nv
@@ -279,7 +284,7 @@ namespace TKG3d
 		//! Raised if the continuity of the surface is not CNu in the U
 		//! direction or not CNv in the V direction.
 		//! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
-		virtual xgp_Vec^ DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) = 0;
+		virtual xgp_Vec^ DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv);
 
 
 		//! Computes the point of parameter U on the surface.
@@ -289,9 +294,15 @@ namespace TKG3d
 		//! Raised only for an "OffsetSurface" if it is not possible to
 		//! compute the current point.
 		xgp_Pnt^ Value(Standard_Real U, Standard_Real V);
+	
+		property Handle(Geom_Surface) SHandle {
+			Handle(Geom_Surface) get() {
+				return NativeHandle();
+			}
+		};
 
-	protected:
-		Geom_Surface* NativeHandle;
-		//Handle<Geom_Surface> NativeHandle;
+	private:
+		NCollection_Haft<Handle(Geom_Surface)> NativeHandle;
 	};
 }
+#endif // _XGeom_Surface_HeaderFile

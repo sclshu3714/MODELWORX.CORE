@@ -34,6 +34,9 @@
 //! Geom_Ellipse which provides additional functions for
 //! constructing ellipses and works, in particular, with the
 //! parametric equations of ellipses
+
+#ifndef _xgp_Elips_HeaderFile
+#define _xgp_Elips_HeaderFile
 #pragma once
 #include <gp_Elips.hxx>
 #include "xgp_Ax2.h"
@@ -268,3 +271,4 @@ namespace TKMath
         gp_Elips* NativeHandle;
     };
 } 
+#endif // _xgp_Elips_HeaderFile

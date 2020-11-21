@@ -3754,12 +3754,22 @@ Class TKMath.XTopLoc_Datum3D: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
-    Void .ctor(Geom_Geometry*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class NCollection_Haft<opencascade::handle<Geom_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<Geom_Geometry>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Geom_Geometry> GHandle 'get ' : 
+  Methods:
+    SetBaseNativeHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
@@ -3768,7 +3778,7 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, Abstract, Befo
     Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     Translate(xgp_Vec): PrivateScope, Public, HideBySig
-    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Mirrored(handle<Geom_Geometry>*, xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(handle<Geom_Geometry>*, xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(handle<Geom_Geometry>*, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3778,39 +3788,51 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, Abstract, Befo
     Translated(handle<Geom_Geometry>*, xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     Translated(handle<Geom_Geometry>*, xgp_Vec): PrivateScope, Public, HideBySig
     Copy(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_GHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
-  :TKG3d.XGeom_Geometry
-    Void .ctor(Geom_Surface*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class NCollection_Haft<opencascade::handle<Geom_Surface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_Surface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Geom_Surface> SHandle 'get ' : 
+  Methods:
+    SetGeom_SurfaceHandle(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
     GetSurface(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
-    UReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     UReversed(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
-    UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    VReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    VReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     VReversed(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
-    VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    IsUClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    IsVClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsUClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsVClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     UPeriod(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsVPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    IsVPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     VPeriod(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    UIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    VIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    IsCNu(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    IsCNv(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    D0(Double, Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    D1(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    D2(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    VIso(handle<Geom_Curve>*, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCNu(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCNv(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D0(Double, Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D1(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D2(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Value(Double, Double): PrivateScope, Public, HideBySig
+    get_SHandle(handle<Geom_Surface>*): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<V3d_Viewer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

@@ -73,4 +73,4 @@ public enum class xgp_EulerSequence
   gp_Intrinsic_ZXZ,
   gp_Intrinsic_ZYZ
 };
-#endif _xgp_EulerSequence_HeaderFile
+#endif //_xgp_EulerSequence_HeaderFile

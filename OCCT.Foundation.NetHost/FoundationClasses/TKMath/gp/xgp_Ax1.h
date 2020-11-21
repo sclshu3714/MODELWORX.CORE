@@ -1,3 +1,6 @@
+
+#ifndef _xgp_Ax1_HeaderFile
+#define _xgp_Ax1_HeaderFile
 #pragma once
 #include "gp_Ax1.hxx"
 #include "xgp_Pnt.h"
@@ -205,3 +208,4 @@ namespace TKMath
         gp_Ax1* NativeHandle;
     };
 }
+#endif // _xgp_Ax1_HeaderFile

@@ -31,6 +31,8 @@
 //! Geom_SphericalSurface which provides additional
 //! functions for constructing spheres and works, in
 //! particular, with the parametric equations of spheres.
+#ifndef _xgp_Sphere_HeaderFile
+#define _xgp_Sphere_HeaderFile
 #pragma once
 #include <gp_Sphere.hxx>
 #include "xgp_Pnt.h"
@@ -209,3 +211,4 @@ namespace TKMath
         gp_Sphere* NativeHandle;
     };
 };
+#endif // _xgp_Sphere_HeaderFile

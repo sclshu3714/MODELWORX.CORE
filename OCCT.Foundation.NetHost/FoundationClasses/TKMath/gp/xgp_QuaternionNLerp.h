@@ -12,6 +12,9 @@
 // commercial license or contractual agreement.
 //! Class perform linear interpolation (approximate rotation interpolation),
 //! result quaternion nonunit, its length lay between. sqrt(2)/2  and 1.0
+
+#ifndef _xgp_QuaternionNLerp_HeaderFile
+#define _xgp_QuaternionNLerp_HeaderFile
 #pragma once
 #include <gp_QuaternionNLerp.hxx>
 #include <xgp_Quaternion.h>
@@ -82,3 +85,4 @@ namespace TKMath
         xgp_Quaternion ^myQEnd;
     };
 };
+#endif // _xgp_QuaternionNLerp_HeaderFile

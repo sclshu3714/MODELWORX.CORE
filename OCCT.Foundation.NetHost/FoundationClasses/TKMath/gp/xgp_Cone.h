@@ -40,6 +40,9 @@
 //! Geom_ConicalSurface which provides additional
 //! functions for constructing cones and works, in particular,
 //! with the parametric equations of cones xgp_Ax3
+
+#ifndef _xgp_Cone_HeaderFile
+#define _xgp_Cone_HeaderFile
 #pragma once
 #include <gp_Cone.hxx>
 #include "xgp_Ax1.h"
@@ -238,3 +241,4 @@ namespace TKMath
         gp_Cone* NativeHandle;
     };
 }
+#endif // _xgp_Cone_HeaderFile

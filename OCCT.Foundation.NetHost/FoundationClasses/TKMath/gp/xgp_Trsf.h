@@ -34,6 +34,8 @@
 //! transformation and T defines the translation part of the
 //! transformation.
 //! This transformation never change the nature of the objects.
+#ifndef _xgp_Trsf_HeaderFile
+#define _xgp_Trsf_HeaderFile
 #pragma once
 #include <gp_Trsf.hxx>
 #include "xgp_Trsf2d.h"
@@ -383,3 +385,4 @@ namespace TKMath
         gp_Trsf* NativeHandle;
     };
 };
+#endif //_xgp_Trsf_HeaderFile

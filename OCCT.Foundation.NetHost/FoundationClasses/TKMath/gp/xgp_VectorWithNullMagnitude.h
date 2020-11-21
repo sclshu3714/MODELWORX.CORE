@@ -14,8 +14,8 @@
 //// Alternatively, this file may be used under the terms of Open CASCADE
 //// commercial license or contractual agreement.
 //
-//#ifndef _gp_VectorWithNullMagnitude_HeaderFile
-//#define _gp_VectorWithNullMagnitude_HeaderFile
+#ifndef _xgp_VectorWithNullMagnitude_HeaderFile
+#define _xgp_VectorWithNullMagnitude_HeaderFile
 //
 //#include <Standard_Type.hxx>
 //#include <Standard_DefineException.hxx>
@@ -40,6 +40,7 @@ namespace TKMath
 		//
 		//DEFINE_STANDARD_EXCEPTION(gp_VectorWithNullMagnitude, Standard_DomainError)
 		//
-		//#endif // _gp_VectorWithNullMagnitude_HeaderFile
+		//
 	};
 }
+#endif // _xgp_VectorWithNullMagnitude_HeaderFile

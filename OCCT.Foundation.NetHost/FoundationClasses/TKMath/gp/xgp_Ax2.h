@@ -39,6 +39,9 @@
 //! -   the unit vectors "X Direction", "Y Direction" and "main
 //! Direction", respectively, as their unit vectors.
 //! The "Z Axis" is also the "main Axis".
+
+#ifndef _xgp_Ax2_HeaderFile
+#define _xgp_Ax2_HeaderFile
 #pragma once
 #include <gp_Ax2.hxx>
 #include "xgp_Pnt.h"
@@ -355,3 +358,4 @@ namespace TKMath
         gp_Ax2* NativeHandle;
     };
 }
+#endif // _xgp_Ax2_HeaderFile

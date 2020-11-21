@@ -1,3 +1,6 @@
+
+#ifndef _xgp_HeaderFile
+#define _xgp_HeaderFile
 #pragma once
 #include "gp.hxx"
 #include <xgp_Ax1.h>
@@ -101,3 +104,4 @@ namespace TKMath
         gp* NativeHandle;
     };
 };
+#endif // _xgp_HeaderFile

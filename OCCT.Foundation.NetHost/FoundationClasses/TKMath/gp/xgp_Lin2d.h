@@ -30,6 +30,9 @@
 //! Geom2d_Line which provides additional functions for
 //! constructing lines and works, in particular, with the
 //! parametric equations of lines
+
+#ifndef _xgp_Lin2d_HeaderFile
+#define _xgp_Lin2d_HeaderFile
 #pragma once
 #include <gp_Lin2d.hxx>
 #include "xgp_Ax2d.h"
@@ -213,3 +216,4 @@ namespace TKMath
         gp_Lin2d* NativeHandle;
     };
 };
+#endif // _xgp_Lin2d_HeaderFile

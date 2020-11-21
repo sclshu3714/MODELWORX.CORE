@@ -11,6 +11,9 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+
+#ifndef _xgp_Mat_HeaderFile
+#define _xgp_Mat_HeaderFile
 #pragma once
 #include <gp_Mat.hxx>
 #include "xgp_XYZ.h"
@@ -264,3 +267,4 @@ namespace TKMath
             gp_Mat* NativeHandle;
     };
 }
+#endif // _xgp_Mat_HeaderFile

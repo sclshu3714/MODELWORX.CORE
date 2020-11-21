@@ -31,6 +31,9 @@
 //! Geom_CylindricalSurface which provides additional
 //! functions for constructing cylinders and works, in
 //! particular, with the parametric equations of cylinders xgp_Ax3
+
+#ifndef _xgp_Cylinder_HeaderFile
+#define _xgp_Cylinder_HeaderFile
 #pragma once
 #include <gp_Cylinder.hxx>
 #include "xgp_Ax1.h"
@@ -202,3 +205,4 @@ namespace TKMath
         gp_Cylinder* NativeHandle;
     };
 }
+#endif // _xgp_Cylinder_HeaderFile

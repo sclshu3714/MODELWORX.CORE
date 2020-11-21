@@ -35,6 +35,9 @@
 //! Geom2d_Circle which provides additional functions for
 //! constructing circles and works, with the parametric
 //! equations of circles in particular  xgp_Ax22d
+
+#ifndef _xgp_Circ2d_HeaderFile
+#define _xgp_Circ2d_HeaderFile
 #pragma once
 #include <gp_Circ2d.hxx>
 #include "xgp_Ax2d.h"
@@ -234,3 +237,4 @@ namespace TKMath
         gp_Circ2d* NativeHandle;
     };
 }
+#endif // _xgp_Circ2d_HeaderFile

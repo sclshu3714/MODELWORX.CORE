@@ -25,6 +25,9 @@
 //! Geom_Line which provides additional functions for
 //! constructing lines and works, in particular, with the
 //! parametric equations of lines
+
+#ifndef _xgp_Lin_HeaderFile
+#define _xgp_Lin_HeaderFile
 #pragma once
 #include <gp_Lin.hxx>
 #include "xgp_Ax1.h"
@@ -211,3 +214,4 @@ namespace TKMath
         gp_Lin* NativeHandle;
     };
 }
+#endif // _xgp_Lin_HeaderFile

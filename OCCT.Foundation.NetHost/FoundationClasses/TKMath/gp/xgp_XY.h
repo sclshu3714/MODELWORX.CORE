@@ -17,6 +17,8 @@
 //! Trsf2d or a  GTrsf2d from package gp.
 //! It is used in vectorial computations or for holding this type
 //! of information in data structures.
+#ifndef _xgp_XY_HeaderFile
+#define _xgp_XY_HeaderFile
 #pragma once
 #include <gp_XY.hxx>
 #include "xgp_Mat2d.h"
@@ -269,3 +271,4 @@ namespace TKMath
             gp_XY* NativeHandle;
     };
 };
+#endif //_xgp_XY_HeaderFile

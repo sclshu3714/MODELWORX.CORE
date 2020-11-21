@@ -31,9 +31,12 @@
 //! concrete type of derived object. All other
 //! transformations are implemented using the Transform method.
 
+#ifndef _XGeom_Geometry_HeaderFile
+#define _XGeom_Geometry_HeaderFile
 #pragma once
 #include "Geom_Geometry.hxx"
 #include "Standard_ConstructionError.hxx"
+#include "NCollection_Haft.h"
 #include "xgp_Pnt.h"
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
@@ -59,10 +62,13 @@ namespace TKG3d
 		XGeom_Geometry(void);
 
 		//! 
-		XGeom_Geometry(Geom_Geometry* pos);
+		XGeom_Geometry(Handle(Geom_Geometry) pos);
 
 		//!
 		~XGeom_Geometry();
+
+		//! 
+		void SetBaseNativeHandle(Handle(Geom_Geometry) pos);
 
 		//!
 		Handle(Geom_Geometry) GetGeometry();
@@ -107,7 +113,7 @@ namespace TKG3d
 		//! or a complex transformation obtained by combination of
 		//! the previous elementaries transformations.
 		//! (see class Transformation of the package Geom).
-		virtual void Transform(xgp_Trsf^ T) = 0;
+		virtual void Transform(xgp_Trsf^ T);
 
 		Handle(Geom_Geometry) Mirrored(xgp_Pnt^ P);
 
@@ -118,7 +124,7 @@ namespace TKG3d
 		Handle(Geom_Geometry) Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
 		Handle(Geom_Geometry) Scaled(xgp_Pnt^ P, Standard_Real S);
-		
+
 		Handle(Geom_Geometry) Transformed(xgp_Trsf^ T);
 
 		Handle(Geom_Geometry) Translated(xgp_Vec^ V);
@@ -128,9 +134,17 @@ namespace TKG3d
 		//! Creates a new object which is a copy of this geometric object.
 		virtual Handle(Geom_Geometry) Copy();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property Handle(Geom_Geometry) GHandle {
+			Handle(Geom_Geometry) get() {
+				return 	NativeHandle();
+			}
+		}
 
-
-	protected:
-		Geom_Geometry* GeomNativeHandle;
+	private:
+		NCollection_Haft<Handle(Geom_Geometry)> NativeHandle;
 	};
 }
+#endif // _XGeom_Geometry_HeaderFile

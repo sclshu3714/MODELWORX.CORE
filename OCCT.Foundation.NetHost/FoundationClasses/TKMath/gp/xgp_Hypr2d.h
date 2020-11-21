@@ -50,6 +50,9 @@
 //! Geom2d_Hyperbola which provides additional functions
 //! for constructing hyperbolas and works, in particular, with
 //! the parametric equations of hyperbolas
+
+#ifndef _xgp_Hypr2d_HeaderFile
+#define _xgp_Hypr2d_HeaderFile
 #pragma once
 #include <gp_Hypr2d.hxx>
 #include "xgp_Ax2d.h"
@@ -346,3 +349,4 @@ namespace TKMath
         gp_Hypr2d* NativeHandle;
     };
 }
+#endif // _xgp_Hypr2d_HeaderFile

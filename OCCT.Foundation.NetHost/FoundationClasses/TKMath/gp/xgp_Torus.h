@@ -43,6 +43,8 @@
 //! Geom_ToroidalSurface which provides additional
 //! functions for constructing tori and works, in particular,
 //! with the parametric equations of tori.
+#ifndef _xgp_Torus_HeaderFile
+#define _xgp_Torus_HeaderFile
 #pragma once
 #include <gp_Torus.hxx>
 #include "xgp_Ax3.h"
@@ -246,3 +248,4 @@ namespace TKMath
         gp_Torus* NativeHandle;
     };
 };
+#endif // _xgp_Torus_HeaderFile

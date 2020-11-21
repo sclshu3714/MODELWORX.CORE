@@ -56,6 +56,10 @@
 //! Geom_Hyperbola which provides additional functions for
 //! constructing hyperbolas and works, in particular, with the
 //! parametric equations of hyperbolas
+
+
+#ifndef _xgp_Hypr_HeaderFile
+#define _xgp_Hypr_HeaderFile
 #pragma once
 #include <gp_Hypr.hxx>
 #include "xgp_Ax1.h"
@@ -329,3 +333,4 @@ namespace TKMath
         Standard_Real minorRadius;
     };
 } 
+#endif // _xgp_Hypr_HeaderFile

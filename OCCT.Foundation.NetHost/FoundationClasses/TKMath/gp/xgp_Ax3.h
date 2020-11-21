@@ -47,6 +47,10 @@
 //! "main Direction", respectively, as their unit vectors.
 //! -   The "Z Axis" is also the "main Axis".
 //! -   xgp_Ax2 is used to define a coordinate system that must be always right-handed.
+
+
+#ifndef _xgp_Ax3_HeaderFile
+#define _xgp_Ax3_HeaderFile
 #pragma once
 #include <gp_Ax3.hxx>
 #include "xgp_Ax1.h"
@@ -310,3 +314,4 @@ namespace TKMath
         gp_Ax3* NativeHandle;
     };
 }
+#endif // _xgp_Ax3_HeaderFile

@@ -28,6 +28,9 @@
 //! -   the origin of the coordinate system as their origin, and
 //! -   the unit vectors "X Direction" and "Y Direction",
 //! respectively, as their unit vectors.
+
+#ifndef _xgp_Ax22d_HeaderFile
+#define _xgp_Ax22d_HeaderFile
 #pragma once
 #include <gp_Ax22d.hxx>
 #include "xgp_Pnt2d.h"
@@ -234,3 +237,4 @@ namespace TKMath
         gp_Ax22d* NativeHandle;
     };
 }
+#endif // _xgp_Ax22d_HeaderFile

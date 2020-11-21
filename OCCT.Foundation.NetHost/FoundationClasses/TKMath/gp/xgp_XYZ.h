@@ -11,6 +11,8 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+#ifndef _xgp_XYZ_HeaderFile
+#define _xgp_XYZ_HeaderFile
 #pragma once
 #include <gp_XYZ.hxx>
 #include "xgp_Mat.h"
@@ -329,3 +331,4 @@ namespace TKMath
 
     };
 };
+#endif //_xgp_XYZ_HeaderFile

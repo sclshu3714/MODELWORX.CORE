@@ -31,4 +31,4 @@ public enum class xgp_TrsfForm
   gp_CompoundTrsf, //!< Combination of the above transformations
   gp_Other         //!< Transformation with not-orthogonal matrix
 };
-#endif _xgp_TrsfForm_HeaderFile
+#endif //_xgp_TrsfForm_HeaderFile

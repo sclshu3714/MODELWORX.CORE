@@ -32,6 +32,9 @@
 //! Geom_Plane which provides additional functions for
 //! constructing planes and works, in particular, with the
 //! parametric equations of planes
+
+#ifndef _xgp_Pln_HeaderFile
+#define _xgp_Pln_HeaderFile
 #pragma once
 #include <gp_Pln.hxx>
 #include "xgp_Ax1.h"
@@ -266,3 +269,4 @@ namespace TKMath
         gp_Pln* NativeHandle;
     };
 }
+#endif // _xgp_Pln_HeaderFile

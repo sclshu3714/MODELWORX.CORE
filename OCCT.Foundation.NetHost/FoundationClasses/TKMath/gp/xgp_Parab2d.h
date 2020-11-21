@@ -33,6 +33,8 @@
 //! Geom2d_Parabola which provides additional functions
 //! for constructing parabolas and works, in particular, with
 //! the parametric equations of parabolas
+#ifndef _xgp_Parab2d_HeaderFile
+#define _xgp_Parab2d_HeaderFile
 #pragma once
 #include <gp_Parab2d.hxx>
 #include "xgp_Ax2d.h"
@@ -246,3 +248,4 @@ namespace TKMath
         gp_Parab2d* NativeHandle;
     };
 }
+#endif // _xgp_Parab2d_HeaderFile

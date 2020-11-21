@@ -38,6 +38,8 @@
 //! constructing circles and works, in particular, with the
 //! parametric equations of circles
 
+#ifndef _xgp_Circ_HeaderFile
+#define _xgp_Circ_HeaderFile
 #pragma once
 #include <gp_Circ.hxx>
 #include "xgp_Ax1.h"
@@ -231,3 +233,4 @@ namespace TKMath
         gp_Circ* NativeHandle;
     };
 }
+#endif // _xgp_Circ_HeaderFile

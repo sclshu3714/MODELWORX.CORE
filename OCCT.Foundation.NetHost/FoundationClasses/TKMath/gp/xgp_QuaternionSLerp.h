@@ -11,6 +11,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _xgp_QuaternionSLerp_HeaderFile
+#define _xgp_QuaternionSLerp_HeaderFile
 #pragma once
 #include <gp_QuaternionSLerp.hxx>
 #include <xgp_Quaternion.h>
@@ -89,3 +91,4 @@ namespace TKMath
         Standard_Real myOmega;
     };
 };
+#endif // _xgp_QuaternionSLerp_HeaderFile

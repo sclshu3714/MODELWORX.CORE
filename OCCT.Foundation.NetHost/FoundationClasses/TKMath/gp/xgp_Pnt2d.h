@@ -11,7 +11,8 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
-
+#ifndef _xgp_Pnt2d_HeaderFile
+#define _xgp_Pnt2d_HeaderFile
 #pragma once
 #include "gp_Pnt2d.hxx"
 #include "xgp_XY.h"
@@ -174,3 +175,4 @@ namespace TKMath
         gp_Pnt2d* NativeHandle;
     };
 };
+#endif // _xgp_Pnt2d_HeaderFile

@@ -34,7 +34,7 @@ namespace TKMath
     //! vector V where M defines the vectorial part of
     //! the transformation, and V the translation part, or
     xgp_GTrsf::xgp_GTrsf(xgp_Mat^ M, xgp_XYZ^ V) {
-        NativeHandle = new  gp_GTrsf(M->GetMat(), V->GetXYZ());
+        NativeHandle = new gp_GTrsf(M->GetMat(), V->GetXYZ());
     };
 
 
