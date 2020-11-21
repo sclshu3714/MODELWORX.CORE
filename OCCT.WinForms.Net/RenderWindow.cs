@@ -29,8 +29,6 @@ namespace OCCT.WinForms.Net
             }
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
-            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-            myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
             myDegenerateModeIsOn = true;
             IsRectVisible = false;
             OCCTView.SetLight(true);
@@ -232,6 +230,22 @@ namespace OCCT.WinForms.Net
                             break;
                         case CurrentAction3d.CurAction3d_DynamicRotation:
                             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+                            if (e.X == myXmin && e.Y == myYmin)
+                            {
+                                myXmax = e.X; myYmax = e.Y;
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiInputEvent(myXmax, myYmax);
+                                else
+                                    InputEvent(myXmax, myYmax);
+                            }
+                            else
+                            {
+                                myXmax = e.X; myYmax = e.Y;
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiDragEvent(myXmax, myYmax, 1);
+                                else
+                                    DragEvent(myXmax, myYmax, 1);
+                            }
                             if (!myDegenerateModeIsOn) {
                                 OCCTView.SetDegenerateModeOff();
                                 myDegenerateModeIsOn = false;
@@ -552,32 +566,32 @@ namespace OCCT.WinForms.Net
         /// <param name="theFormat">Determines format of Import/Export file</param>
         /// <param name="theIsImport">Determines is Import or not</param>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
-            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
-            //OCCTView.SetDisplayMode(1);
-            //OCCTView.RedrawView();
-            //OCCTView.ZoomAllView();
-            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
-            aReader.SetColorMode(true);
-            aReader.SetNameMode(true);
-            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
-            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
-            anApp.NewDocument("XSEFSTEP", aDoc);
-            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
-                return false;
-            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
-            //XTDF_LabelSequence aRootLabels;
-            //Assembly.GetFreeShapes(aRootLabels);
-            //for (XTDF_LabelSequence.Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
-            //{
-            //    XTDF_Label aRootLabel = aRootIter.Value();
-            //    VisibleSettings(aRootLabel, true);
-            //}
-            XTDF_Label aRootLabel = aDoc.Main();
-            VisibleSettings(aRootLabel, true);
+            bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
+            //XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            //aReader.SetColorMode(true);
+            //aReader.SetNameMode(true);
+            //IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            //XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            //XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            //anApp.NewDocument("XSEFSTEP", aDoc);
+            //if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+            //    return false;
+            ////XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
+            ////XTDF_LabelSequence aRootLabels;
+            ////Assembly.GetFreeShapes(aRootLabels);
+            ////for (XTDF_LabelSequence.Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
+            ////{
+            ////    XTDF_Label aRootLabel = aRootIter.Value();
+            ////    VisibleSettings(aRootLabel, true);
+            ////}
+            //XTDF_Label aRootLabel = aDoc.Main();
+            //VisibleSettings(aRootLabel, true);
+            //OCCTView.SetDisplayMode(1);
+            //OCCTView.RedrawView();
+            //OCCTView.ZoomAllView();
             return true;
         }
 

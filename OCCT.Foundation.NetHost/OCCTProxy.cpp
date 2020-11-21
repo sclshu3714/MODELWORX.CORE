@@ -797,32 +797,13 @@ public:
         }
         Handle(XCAFDoc_ShapeTool) Assembly = XCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
         TDF_LabelSequence aRootLabels;
+        //Assembly->GetShapes(aRootLabels);
         Assembly->GetFreeShapes(aRootLabels);
         for (TDF_LabelSequence::Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
         {
            const TDF_Label& aRootLabel = aRootIter.Value();
-           visit(aRootLabel, true);
+           visitB(aRootLabel, true);
         }
-
-        //TopoDS_Shape shape = Assembly->GetShape(frshapes.Value(1));
-        //Handle(AIS_Shape) ais_shape = new AIS_Shape(shape);
-
-        ////get a label of shape.
-        //TDF_Label aLabel;
-        //aLabel = Assembly->FindShape(shape);
-
-        //Handle(XCAFDoc_ColorTool) myColors = XCAFDoc_DocumentTool::ColorTool(aDoc->Main());
-        //TDF_LabelSequence ColLabels;
-        //myColors->GetColors(ColLabels);
-
-        //Quantity_Color col;
-        //XCAFDoc_ColorType ctype = XCAFDoc_ColorGen;
-        //myColors->GetColor(aLabel, ctype, col);
-
-        //ais_shape->SetColor(col);
-
-        //mainAISContext()->Display(ais_shape, 0);
-        //mainView()->Redraw();
         return true;
     }
     /// <summary>
@@ -844,6 +825,22 @@ public:
         for (iter.Initialize(theLabel, Standard_False); iter.More(); iter.Next()) {
             if (iter.Value().IsNull())
                 continue;
+            visit(iter.Value(), IsBoundaryDraw);
+        }
+    }
+    /// <summary>
+    /// ±éÀú½á¹¹
+    /// </summary>
+    /// <param name="theLabel"></param>
+    /// <param name="IsBoundaryDraw"></param>
+    void visitB(const TDF_Label& theLabel,Standard_Boolean IsBoundaryDraw)
+    {
+        if (!theLabel.IsNull() && !theLabel.HasChild()) {
+            Display(theLabel, IsBoundaryDraw);
+            return;
+        }
+        TDF_ChildIterator iter;
+        for (iter.Initialize(theLabel, Standard_False); iter.More(); iter.Next()) {
             visit(iter.Value(), IsBoundaryDraw);
         }
     }
