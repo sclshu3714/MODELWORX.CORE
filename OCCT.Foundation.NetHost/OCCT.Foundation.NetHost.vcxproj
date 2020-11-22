@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDF;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDocStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDataStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKVCAF\TPrsStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\DataExchange\TKSTEP\STEPConstruct;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\TCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Quantity;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Prs3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Graphic3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKService\Aspect;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\SelectMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\PrsMgr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDF;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDocStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDataStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKVCAF\TPrsStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\NCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\TCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Quantity;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\DataExchange\TKSTEP\STEPConstruct;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKService\Aspect;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Prs3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Graphic3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\SelectMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\PrsMgr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <CompileAsManaged>true</CompileAsManaged>
@@ -203,15 +203,19 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h" />
-    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDList.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_LabelSequence.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_XIterator.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.h" />
     <ClInclude Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.h" />
     <ClInclude Include="DataExchange\TKSTEP\STEPConstruct\XSTEPConstruct_Tool.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h" />
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h" />
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h" />
     <ClInclude Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.h" />
+    <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_NameOfColor.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_TypeOfColor.h" />
@@ -304,6 +308,8 @@
     <ClCompile Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.cpp" />
     <ClCompile Include="DataExchange\TKSTEP\STEPConstruct\XSTEPConstruct_Tool.cpp" />
     <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp" />
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.cpp" />
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.cpp" />
     <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp" />
     <ClCompile Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.cpp" />

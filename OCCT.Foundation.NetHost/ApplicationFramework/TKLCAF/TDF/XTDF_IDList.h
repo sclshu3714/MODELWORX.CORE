@@ -17,13 +17,15 @@
 #define XTDF_IDList_HeaderFile
 #pragma once
 #include <TDF_IDList.hxx>
+#include "XNCollection_List.h"
 #include <XStandard_GUID.h>
 #include <NCollection_List.hxx>
 using namespace TKernel;
 ref class TKernel::XStandard_GUID;
+//ref class XNCollection_List;
 
-typedef NCollection_List<XStandard_GUID^> XTDF_IDList;
-typedef NCollection_List<XStandard_GUID^>::Iterator XTDF_ListIteratorOfIDList;
+typedef XNCollection_List<XStandard_GUID> XTDF_IDList;
+typedef XNCollection_List<XStandard_GUID>::Iterator XTDF_ListIteratorOfIDList;
 
 
-#endif
+#endif	// XTDF_IDList_HeaderFile

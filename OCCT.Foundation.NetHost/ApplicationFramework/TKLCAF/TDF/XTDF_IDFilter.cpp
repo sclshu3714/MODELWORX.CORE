@@ -52,7 +52,7 @@ namespace TKLCAF {
     //! Attributes with ID owned by <anIDList> are to be kept and
     //! the filter will answer true to the question
     //! IsKept(<anID>) with ID from <anIDList>.
-    void XTDF_IDFilter::Keep(const TDF_IDList& anIDList) {
+    void XTDF_IDFilter::Keep(TDF_IDList& anIDList) {
         NativeHandle->Keep(anIDList);
     };
 
@@ -79,7 +79,8 @@ namespace TKLCAF {
     //! Attributes with ID owned by <anIDList> are to be
     //! ignored and the filter will answer false to the
     //! question IsKept(<anID>) with ID from <anIDList>.
-    void XTDF_IDFilter::Ignore(const TDF_IDList& anIDList) {
+    void XTDF_IDFilter::Ignore(TDF_IDList& anIDList) {
+        //TDF_IDList anIDList = anIDListx->GetList();
         NativeHandle->Ignore(anIDList);
     };
 

@@ -96,7 +96,7 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Interfaces:
     System.IDisposable
   Properties:
-    opencascade.handle<TDF_Attribute> Handle 'get ' : 
+    opencascade.handle<TDF_Attribute> AHandle 'get ' : 
   Methods:
     ID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -145,7 +145,7 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     op_LeftShift(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
     ExtendedDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, TDF_IDFilter* IsImplicitlyDereferenced, NCollection_IndexedMap<opencascade::handle<TDF_Attribute>\,NCollection_DefaultHasher<opencascade::handle<Standard_Transient> > >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Forget(Int32 IsConst): PrivateScope, Public, HideBySig
-    get_Handle(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig, SpecialName
+    get_AHandle(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig, SpecialName
     ~XTDF_Attribute(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKernel.XStandard_Helper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -271,8 +271,7 @@ Class TKLCAF.XTDF_ChildIterator: AutoLayout, AnsiClass, Class, Public, BeforeFie
     More(): PrivateScope, Public, HideBySig
     Next(): PrivateScope, Public, HideBySig
     NextBrother(): PrivateScope, Public, HideBySig
-    Value(TDF_Label*): PrivateScope, Public, HideBySig
-    EditValue(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TDF_IDFilter*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -2920,6 +2919,156 @@ Class TKXCAF.XXCAFApp_Application: AutoLayout, AnsiClass, Class, Public, BeforeF
     GetApplication(handle<XCAFApp_Application>*): PrivateScope, Public, Static, HideBySig
     get_Handle(handle<XCAFApp_Application>*): PrivateScope, Public, HideBySig, SpecialName
     ~XXCAFApp_Application(): PrivateScope, Public, HideBySig
+Class TKLCAF.XTDF_XIterator: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(NCollection_Sequence<TDF_Label>*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetIterator(Iterator*): PrivateScope, Public, HideBySig
+    More(): PrivateScope, Public, HideBySig
+    Next(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    ChangeValue(): PrivateScope, Public, HideBySig
+    IsEqual(XTDF_XIterator): PrivateScope, Public, HideBySig
+Class TKLCAF.XTDF_LabelSequence: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(NCollection_Sequence<TDF_Label>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Initialize(NCollection_Sequence<TDF_Label>*): PrivateScope, Public, HideBySig
+    GetLabelSequence(NCollection_Sequence<TDF_Label>*): PrivateScope, Public, HideBySig
+    Iterator(): PrivateScope, Public, HideBySig
+    More(): PrivateScope, Public, HideBySig
+    Next(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<XCAFDoc_ShapeTool> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKXCAF.XXCAFDoc_ShapeTool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKLCAF.XTDF_Attribute
+    Void .ctor(opencascade.handle<XCAFDoc_ShapeTool>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<XCAFDoc_ShapeTool> DHandle 'get ' : 
+  Methods:
+    GetID(): PrivateScope, Public, Static, HideBySig
+    Set(handle<XCAFDoc_ShapeTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsTopLevel(XTDF_Label): PrivateScope, Public, HideBySig
+    IsFree(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsShape(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsSimpleShape(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsReference(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsAssembly(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsComponent(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsCompound(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    IsSubShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    IsSubShape(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    SearchUsingMap(TopoDS_Shape* IsImplicitlyDereferenced, XTDF_Label, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Search(TopoDS_Shape* IsImplicitlyDereferenced, XTDF_Label, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    FindShape(TopoDS_Shape* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    FindShape(TopoDS_Shape* IsImplicitlyDereferenced, XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    GetShape(TopoDS_Shape*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    GetShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    NewShape(): PrivateScope, Public, HideBySig
+    SetShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    AddShape(TopoDS_Shape* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RemoveShape(XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Init(): PrivateScope, Public, HideBySig
+    SetAutoNaming(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, Static, HideBySig
+    AutoNaming(): PrivateScope, Public, Static, HideBySig
+    ComputeShapes(XTDF_Label): PrivateScope, Public, HideBySig
+    ComputeSimpleShapes(): PrivateScope, Public, HideBySig
+    GetShapes(XTDF_LabelSequence): PrivateScope, Public, HideBySig
+    GetFreeShapes(): PrivateScope, Public, HideBySig
+    GetUsers(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    GetLocation(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    GetReferredShape(XTDF_Label, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    NbComponents(XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    GetComponents(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    AddComponent(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AddComponent(XTDF_Label, XTDF_Label, XTopLoc_Location): PrivateScope, Public, HideBySig
+    RemoveComponent(XTDF_Label): PrivateScope, Public, HideBySig
+    UpdateAssemblies(): PrivateScope, Public, HideBySig
+    FindSubShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced, XTDF_Label): PrivateScope, Public, HideBySig
+    AddSubShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced, XTDF_Label): PrivateScope, Public, HideBySig
+    AddSubShape(XTDF_Label, TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FindMainShapeUsingMap(TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FindMainShape(TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetSubShapes(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    BaseLabel(): PrivateScope, Public, HideBySig
+    Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DumpShape(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, XTDF_Label, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    ID(): PrivateScope, Public, Virtual, HideBySig
+    Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig
+    Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    IsExternRef(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    SetExternRefs(XTDF_Label, NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetExternRefs(NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetExternRefs(XTDF_Label, NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> >* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    SetSHUO(NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced, handle<XCAFDoc_GraphNode>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetSHUO(XTDF_Label, handle<XCAFDoc_GraphNode>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    GetAllComponentSHUO(XTDF_Label, NCollection_Sequence<opencascade::handle<TDF_Attribute> >* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    GetSHUOUpperUsage(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    GetSHUONextUsage(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    RemoveSHUO(XTDF_Label): PrivateScope, Public, HideBySig
+    FindComponent(TopoDS_Shape* IsImplicitlyDereferenced, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetSHUOInstance(TopoDS_Shape*, handle<XCAFDoc_GraphNode>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetInstanceSHUO(handle<XCAFDoc_GraphNode>*, TopoDS_Shape* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetAllSHUOInstances(handle<XCAFDoc_GraphNode>* IsImplicitlyDereferenced, NCollection_Sequence<TopoDS_Shape>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FindSHUO(NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced, handle<XCAFDoc_GraphNode>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Expand(XTDF_Label): PrivateScope, Public, HideBySig
+    GetNamedProperties(handle<TDataStd_NamedData>*, TopoDS_Shape* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    GetNamedProperties(handle<TDataStd_NamedData>*, XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    get_DHandle(handle<XCAFDoc_ShapeTool>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XXCAFDoc_ShapeTool(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<XCAFDoc_DocumentTool> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKXCAF.XXCAFDoc_DocumentTool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKLCAF.XTDF_Attribute
+    Void .ctor(opencascade.handle<XCAFDoc_DocumentTool>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<XCAFDoc_DocumentTool> DHandle 'get ' : 
+  Methods:
+    GetID(): PrivateScope, Public, Static, HideBySig
+    Set(XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    IsXCAFDocument(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    DocLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ShapesLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ColorsLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    LayersLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    DGTsLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    MaterialsLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ViewsLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ClippingPlanesLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    NotesLabel(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ShapeTool(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ColorTool(handle<XCAFDoc_ColorTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    LayerTool(handle<XCAFDoc_LayerTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    DimTolTool(handle<XCAFDoc_DimTolTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    MaterialTool(handle<XCAFDoc_MaterialTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ViewTool(handle<XCAFDoc_ViewTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    ClippingPlaneTool(handle<XCAFDoc_ClippingPlaneTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    NotesTool(handle<XCAFDoc_NotesTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    Init(): PrivateScope, Public, HideBySig
+    ID(): PrivateScope, Public, Virtual, HideBySig
+    Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig
+    Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    get_DHandle(handle<XCAFDoc_DocumentTool>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XXCAFDoc_DocumentTool(): PrivateScope, Public, HideBySig
 Class TKXCAF.XXCAFPrs_Driver: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:

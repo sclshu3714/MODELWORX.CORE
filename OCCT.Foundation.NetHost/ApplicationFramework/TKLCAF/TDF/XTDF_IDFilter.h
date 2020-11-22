@@ -19,7 +19,7 @@
 #include <TDF_IDFilter.hxx>
 #include "XStandard_GUID.h"
 #include "XTDF_Attribute.h"
-//! #include "XTDF_IDList.h"
+//#include "XTDF_IDList.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -81,7 +81,7 @@ namespace TKLCAF {
         //! Attributes with ID owned by <anIDList> are to be kept and
         //! the filter will answer true to the question
         //! IsKept(<anID>) with ID from <anIDList>.
-        void Keep(const TDF_IDList& anIDList);
+        void Keep(TDF_IDList& anIDList);
 
         //! Attributes with ID owned by <anIDList> are to be kept and
         //! the filter will answer true to the question
@@ -96,7 +96,7 @@ namespace TKLCAF {
         //! Attributes with ID owned by <anIDList> are to be
         //! ignored and the filter will answer false to the
         //! question IsKept(<anID>) with ID from <anIDList>.
-        void Ignore(const TDF_IDList& anIDList);
+        void Ignore(TDF_IDList& anIDList);
 
         //! Returns true if the ID is to be kept.
         Standard_Boolean IsKept(XStandard_GUID^ anID);

@@ -274,6 +274,12 @@
     <Filter Include="源文件\Visualization\TKV3d\PrsMgr">
       <UniqueIdentifier>{dd44bf4d-f5be-4f0e-9340-d31867766799}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\DataExchange\TKXCAF\XCAFDoc">
+      <UniqueIdentifier>{7f25686a-a819-4809-85e3-048f29b781d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DataExchange\TKXCAF\XCAFDoc">
+      <UniqueIdentifier>{c4c3da58-e780-4224-ad40-ea9537fef776}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -474,9 +480,6 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDList.h">
-      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
-    </ClInclude>
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfLine.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
     </ClInclude>
@@ -554,6 +557,21 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_TypeOfPresentation3d.h">
       <Filter>头文件\Visualization\TKV3d\PrsMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h">
+      <Filter>头文件\FoundationClasses\TKernel\TCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_LabelSequence.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_XIterator.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -758,6 +776,12 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.cpp">
       <Filter>源文件\Visualization\TKV3d\SelectMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

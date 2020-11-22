@@ -13,13 +13,60 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_LabelSequence_HeaderFile
-#define TDF_LabelSequence_HeaderFile
+#ifndef XTDF_LabelSequence_HeaderFile
+#define XTDF_LabelSequence_HeaderFile
 
-#include <TDF_Label.hxx>
+#pragma once
+#include <TDF_LabelSequence.hxx>
+#include <XTDF_Label.h>
 #include <NCollection_Sequence.hxx>
+#include "XTDF_XIterator.h"
+namespace TKLCAF {
+	typedef NCollection_Sequence<TDF_Label> TDF_LabelSequence;
+	public ref class XTDF_LabelSequence
+	{
+	public:
+		XTDF_LabelSequence() {};
+		XTDF_LabelSequence(TDF_LabelSequence Labels) {
+			NativeHandle = new TDF_LabelSequence(Labels);
+		};
+		~XTDF_LabelSequence() {
+			NativeHandle->Clear();
+		};
 
-typedef NCollection_Sequence<TDF_Label> TDF_LabelSequence;
+		void Initialize(TDF_LabelSequence Labels) {
+			NativeHandle = new TDF_LabelSequence(Labels);
+		};								  
 
+		TDF_LabelSequence GetLabelSequence() {
+			return *NativeHandle;
+		};
 
-#endif
+		XTDF_XIterator^ Iterator() {
+			NativeIterator = gcnew XTDF_XIterator(*NativeHandle, Standard_True);
+			return NativeIterator;
+		};
+
+		//! Returns true if a current label is found in the
+		//! iteration process.
+		Standard_Boolean More() {
+			return NativeIterator->More();
+		};
+
+		//! Move the  current  iteration  to the next Item.
+		void Next() {
+			NativeIterator->Next();
+		};
+
+		//! Returns the current label; or, if there is
+		//! none, a null label.
+		XTDF_Label^ Value() {
+			return NativeIterator->Value();
+		};
+
+	private:
+		TDF_LabelSequence* NativeHandle;
+		XTDF_XIterator^ NativeIterator;
+	};
+}
+#endif // XTDF_LabelSequence_HeaderFile

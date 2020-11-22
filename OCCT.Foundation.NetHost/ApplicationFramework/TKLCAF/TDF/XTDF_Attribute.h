@@ -426,7 +426,7 @@ namespace TKLCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(TDF_Attribute) Handle
+        property Handle(TDF_Attribute) AHandle
         {
             Handle(TDF_Attribute) get() {
                 return NativeHandle();

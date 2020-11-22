@@ -566,38 +566,38 @@ namespace OCCT.WinForms.Net
         /// <param name="theFormat">Determines format of Import/Export file</param>
         /// <param name="theIsImport">Determines is Import or not</param>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
-            bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
-            OCCTView.SetDisplayMode(1);
-            OCCTView.RedrawView();
-            OCCTView.ZoomAllView();
-            //XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
-            //aReader.SetColorMode(true);
-            //aReader.SetNameMode(true);
-            //IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            //XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
-            //XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
-            //anApp.NewDocument("XSEFSTEP", aDoc);
-            //if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
-            //    return false;
-            ////XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
-            ////XTDF_LabelSequence aRootLabels;
-            ////Assembly.GetFreeShapes(aRootLabels);
-            ////for (XTDF_LabelSequence.Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
-            ////{
-            ////    XTDF_Label aRootLabel = aRootIter.Value();
-            ////    VisibleSettings(aRootLabel, true);
-            ////}
-            //XTDF_Label aRootLabel = aDoc.Main();
-            //VisibleSettings(aRootLabel, true);
+            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
             //OCCTView.SetDisplayMode(1);
             //OCCTView.RedrawView();
             //OCCTView.ZoomAllView();
+            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            aReader.SetColorMode(true);
+            aReader.SetNameMode(true);
+            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            anApp.NewDocument("XSEFSTEP", aDoc);
+            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+                return false;
+            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
+            //XTDF_LabelSequence aRootLabels = Assembly.GetFreeShapes();
+            //XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            //for (; aRootIter.More(); aRootIter.Next())
+            //{
+            //    XTDF_Label aRootLabel = aRootIter.Value();
+            //    VisibleSettings(aRootLabel, true);
+            //}
+            XTDF_Label aRootLabel = aDoc.Main();
+            VisibleSettings(aRootLabel, true);
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
             return true;
         }
 
         private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
-            if (!theLabel.HasChild())
+            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
             {
                 Display(theLabel, IsBoundaryDraw);
                 return;
@@ -605,9 +605,7 @@ namespace OCCT.WinForms.Net
             XTDF_ChildIterator iter = new XTDF_ChildIterator();
             for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
             {
-                if (iter.EditValue().IsNull())
-                    continue;
-                VisibleSettings(iter.EditValue(), IsBoundaryDraw);
+                VisibleSettings(iter.Value(), IsBoundaryDraw);
             }
         }
         /// <summary>
@@ -621,9 +619,9 @@ namespace OCCT.WinForms.Net
             XTDataStd_Name aName = new XTDataStd_Name();
             if (theLabel.FindAttribute(XTDataStd_Name.GetID(), aName))
             {
-                //std::cout << "  Name: " << aName->Get() << std::endl;
-                MessageBox.Show($"Name:{aName.Get().GetValueString()}");
-                context.RemoveAll(true);
+                //std::cout << "  Name: " << aName.Get() << std::endl;
+                //MessageBox.Show($"Name:{aName.Get().GetValueString()}");
+                //context.RemoveAll(true);
             }
             XTPrsStd_AISPresentation aPrs = new XTPrsStd_AISPresentation();
             if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetIDx(), aPrs))
