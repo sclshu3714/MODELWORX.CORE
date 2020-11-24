@@ -120,7 +120,7 @@ namespace TKernel {
         //! Creation by converting an Ascii string to an extended
         //! string. The string is treated as having UTF-8 coding.
         //! If it is not a UTF-8 then each character is copied to ExtCharacter.
-        XTCollection_ExtendedString(const TCollection_AsciiString& astring);
+        XTCollection_ExtendedString(TCollection_AsciiString astring);
 
         //! Returns the TCollection_ExtendedString
         TCollection_ExtendedString GetExtendedString();

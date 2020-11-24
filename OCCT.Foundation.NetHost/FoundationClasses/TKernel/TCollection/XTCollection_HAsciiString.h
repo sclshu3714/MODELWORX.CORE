@@ -14,8 +14,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TCollection_HAsciiString_HeaderFile
-#define _TCollection_HAsciiString_HeaderFile
+#ifndef _XTCollection_HAsciiString_HeaderFile
+#define _XTCollection_HAsciiString_HeaderFile
+#pragma once
+#include <TCollection_AsciiString.hxx>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -493,4 +495,4 @@ private:
 
 
 
-#endif // _TCollection_HAsciiString_HeaderFile
+#endif // _XTCollection_HAsciiString_HeaderFile

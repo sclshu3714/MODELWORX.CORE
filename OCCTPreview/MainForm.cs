@@ -34,7 +34,8 @@ namespace OCCTPreview
             dialog.InitialDirectory = @"D:\DataSource\TESTSTEP";
             dialog.Filter = "STEP文件(*.stp;*step)|*.stp;*step|所有文件(*.*)|*.*";
             if(dialog.ShowDialog() == DialogResult.OK)
-                render.TranslateModel(dialog.FileName, CurrentModelFormat.STEP, true);
+                render.TranslateModel(ref this.tvwNode, dialog.FileName, CurrentModelFormat.STEP, true);
+            this.tvwNode.ExpandAll();
         }
         int index = 0;
         private void btnSetModel_Click(object sender, EventArgs e) {

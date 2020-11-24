@@ -20,6 +20,7 @@
 #include <TDF_Label.hxx>
 #include "XStandard_GUID.h"
 #include "XTDF_Attribute.h"
+//#include "XTDataStd_Name.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -68,9 +69,12 @@ namespace TKLCAF {
 
     ref class XTDF_Attribute;
     ref class TKernel::XStandard_GUID;
+    //ref class XTDataStd_Name;
     public ref class XTDF_Label
     {
     public:
+
+        //! DEFINE_STANDARD_ALLOC
 
         //! Constructs an empty label object.
         XTDF_Label();
@@ -165,7 +169,7 @@ namespace TKLCAF {
         //! The method returns True if found, False otherwise.
         //!
         //! A removed attribute cannot be found.
-        Standard_Boolean FindAttribute(const Standard_GUID& anID, Handle(TDF_Attribute)& anAttribute);
+        Standard_Boolean FindAttribute(Standard_GUID anID, Handle(TDF_Attribute) anAttribute);
 
         //! Finds an attribute of the current label, according
         //! to <anID>.
@@ -174,11 +178,11 @@ namespace TKLCAF {
         //! The method returns True if found, False otherwise.
         //!
         //! A removed attribute cannot be found.
-        Standard_Boolean FindAttribute(XStandard_GUID^ anID, XTDF_Attribute^ anAttribute);
+        Standard_Boolean FindAttribute(XStandard_GUID^ anID, XTDF_Attribute^% anAttribute);
 
         //! Safe variant of FindAttribute() for arbitrary type of argument
         template <class T>
-        Standard_Boolean FindAttribute(const Standard_GUID& theID, Handle(T)& theAttr)
+        Standard_Boolean FindAttribute(Standard_GUID theID, Handle(T) theAttr)
         {
             Handle(TDF_Attribute) anAttr;
             return FindAttribute(theID, anAttr) && !(theAttr = Handle(T)::DownCast(anAttr)).IsNull();
@@ -198,6 +202,17 @@ namespace TKLCAF {
 
         //! attribute of a removed one.
         Standard_Boolean FindAttribute(XStandard_GUID^ anID, Standard_Integer aTransaction, XTDF_Attribute^ anAttribute);
+
+        ////! Finds an attribute of the current label,
+        //Standard_Boolean FindAttribute(XStandard_GUID^ anID, XTDataStd_Name^ anAttribute) {
+        //    /*Handle(TDF_Attribute) anAttr;*/
+        //    /*Standard_Boolean result = FindAttribute(anID->GetGUID(), anAttr);
+        //    Handle(TDataStd_Name) theAttr = Handle(TDataStd_Name)::DownCast(anAttr);
+        //    anAttribute = gcnew XTDataStd_Name(theAttr);
+        //    result &= anAttribute->GetName().IsNull();*/
+        //    Handle(TDF_Attribute) anAttr;
+        //    return FindAttribute(anID->GetGUID(), anAttr) && !(anAttribute = gcnew XTDataStd_Name(Handle(TDataStd_Name)::DownCast(anAttr)))->GetName().IsNull();
+        //};
 
         //! Returns true if <me> or a DESCENDANT of <me> owns
         //! attributes not yet available in transaction 0. It

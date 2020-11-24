@@ -280,6 +280,10 @@ namespace TKXCAF {
         //! which are free (i.e. not referred by any other)
         XTDF_LabelSequence^ GetFreeShapes();
 
+        //! Returns a sequence of all top-level shapes
+        //! which are free (i.e. not referred by any other)
+        void GetFreeShapes(XTDF_LabelSequence^ %FreeLabels);
+
         //! Returns list of labels which refer shape L as component
         //! Returns number of users (0 if shape is free)
         //! Standard_Boolean getsubchilds = Standard_False

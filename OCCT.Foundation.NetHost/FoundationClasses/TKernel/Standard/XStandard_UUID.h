@@ -12,24 +12,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Standard_UUID_HeaderFile
-#define _Standard_UUID_HeaderFile
-
+#ifndef _XStandard_UUID_HeaderFile
+#define _XStandard_UUID_HeaderFile
+#pragma once
+#include <Standard_UUID.hxx>
 #include <Standard_Type.hxx>
+namespace TKernel {
+	typedef GUID Standard_UUID;
+	public ref class XStandard_UUID {
+	public:
+		XStandard_UUID() {
+			NativeHandle = new Standard_UUID();
+		};
+		XStandard_UUID(Standard_UUID* UUID) {
+			NativeHandle = UUID;
+		};
 
-#ifdef _WIN32
-#include <windows.h>
-#else
-typedef struct {
-  unsigned long Data1 ;
-  unsigned short Data2 ;
-  unsigned short Data3 ;
-  unsigned char Data4[8] ;
-} GUID ;
-#endif
+		XStandard_UUID(unsigned long Data1, unsigned short Data2, unsigned short Data3, array<unsigned char, 1>^ Data4) {
+			unsigned char* CData4 = new unsigned char(Data4->Length);
+			for (int i = 0; i < Data4->Length; i++)
+				CData4[i] = Data4[i];
+			Standard_UUID UUID = { Data1, Data2, Data3, *CData4 };
+			NativeHandle = new Standard_UUID(UUID);
+		};
 
-typedef GUID Standard_UUID ;
-
-#endif
+		Standard_UUID GetUUID() {
+			return *NativeHandle;
+		};
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property Standard_UUID* Handle
+		{
+			Standard_UUID* get() {
+				return NativeHandle;
+			}
+		}
+	private:
+		Standard_UUID* NativeHandle;
+	};
+}
+#endif // _XStandard_UUID_HeaderFile
 
 

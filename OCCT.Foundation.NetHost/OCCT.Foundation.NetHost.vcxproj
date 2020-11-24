@@ -222,6 +222,8 @@
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h" />
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_GUID.h" />
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_Helper.h" />
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_UUID.h" />
+    <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.h" />
     <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp.h" />
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h" />
@@ -315,6 +317,7 @@
     <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_GUID.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_Helper.cpp" />
+    <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp" />

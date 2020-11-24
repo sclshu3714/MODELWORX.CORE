@@ -38,14 +38,12 @@ class TCollection_ExtendedString;
 class TDF_Attribute;
 class TDF_RelocationTable;
 
-
-//class TDataStd_Name;
-//DEFINE_STANDARD_HANDLE(TDataStd_Name, TDF_Attribute)
+//ref class XTDF_Attribute;
+//DEFINE_STANDARD_HANDLE(XTDataStd_Name, XTDF_Attribute)
 
 using namespace TKernel;
 namespace TKLCAF {
 	ref class XTDF_Label;
-	ref class XTDF_Attribute;
 	ref class TKernel::XTCollection_ExtendedString;
 	ref class TKernel::XStandard_GUID;
 	//! Used to define a name attribute containing a string which specifies the name.
@@ -58,7 +56,9 @@ namespace TKLCAF {
 
 		XTDataStd_Name(Handle(TDataStd_Name) pos);
 
-		TDataStd_Name GetName();
+		//XTDataStd_Name(XTDF_Attribute^ pos);
+
+		Handle(TDataStd_Name) GetName();
 
 		//! class methods working on the name itself
 		//! ========================================
@@ -127,6 +127,7 @@ namespace TKLCAF {
 				return NativeHandle();
 			}
 		}
+		//! DEFINE_STANDARD_RTTIEXT(XTDataStd_Name, XTDF_Attribute)
 	private:
 		NCollection_Haft<Handle(TDataStd_Name)> NativeHandle;
 

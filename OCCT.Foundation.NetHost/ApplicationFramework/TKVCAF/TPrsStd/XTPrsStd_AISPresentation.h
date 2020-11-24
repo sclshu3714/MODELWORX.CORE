@@ -45,8 +45,8 @@ class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_AttributeDelta;
 
-//class TPrsStd_AISPresentation;
-//DEFINE_STANDARD_HANDLE(TPrsStd_AISPresentation, TDF_Attribute)
+//class XTPrsStd_AISPresentation;
+//DEFINE_STANDARD_HANDLE(XTPrsStd_AISPresentation, XTDF_Attribute)
 
 //! An attribute to associate an
 //! AIS_InteractiveObject to a label in an AIS viewer.
@@ -75,10 +75,7 @@ namespace TKVCAF {
 		Handle(TPrsStd_AISPresentation) GetAISPresentation();
 
 		//! Returns the GUID for TPrsStd_AISPresentation attributes.
-		static const Standard_GUID& GetID();
-
-		//! Returns the GUID for TPrsStd_AISPresentation attributes.
-		static const XStandard_GUID^ GetIDx();
+		static const XStandard_GUID^ GetID();
 
 		//! Creates or retrieves the presentation attribute on
 		//! the label L, and sets the GUID driver.
@@ -124,9 +121,7 @@ namespace TKVCAF {
 		//! Recompute presentation of object and apply the visualization settings
 		void Update();
 
-		Standard_GUID GetDriverGUID();
-
-		XStandard_GUID^ GetDriverGUIDx();
+		XStandard_GUID^ GetDriverGUID();
 
 		void SetDriverGUID(const Standard_GUID& guid);
 
@@ -136,16 +131,13 @@ namespace TKVCAF {
 		Standard_Boolean IsDisplayed();
 
 		//! Returns AIS_InteractiveObject stored in the presentation attribute
-		Handle(AIS_InteractiveObject) GetAIS();
-
-		//! Returns AIS_InteractiveObject stored in the presentation attribute
-		XAIS_InteractiveObject^ GetAISx();
+		XAIS_InteractiveObject^ GetAIS();
 
 		//! Returns the material setting for this presentation attribute.
-		Graphic3d_NameOfMaterial Material();
+		XGraphic3d_NameOfMaterial^ Material();
 
 		//! Sets the material aName for this presentation  attribute.
-		void SetMaterial(const Graphic3d_NameOfMaterial aName);
+		void SetMaterial(XGraphic3d_NameOfMaterial aName);
 
 		//! Sets the material aName for this presentation  attribute.
 		void SetMaterial(const Standard_Integer aName);
@@ -171,10 +163,10 @@ namespace TKVCAF {
 		//! Removes the transparency setting from this presentation attribute.
 		void UnsetTransparency();
 
-		Quantity_NameOfColor Color();
+		XQuantity_NameOfColor Color();
 
 		//! Sets the color aColor for this presentation attribute.
-		void SetColor(const Quantity_NameOfColor aColor);
+		void SetColor(XQuantity_NameOfColor aColor);
 
 		//! Returns true if this presentation attribute already has a color setting.
 		Standard_Boolean HasOwnColor();

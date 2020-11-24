@@ -573,6 +573,12 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_XIterator.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_UUID.h">
+      <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.h">
+      <Filter>头文件\FoundationClasses\TKernel\TCollection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -782,6 +788,9 @@
     </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\TCollection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

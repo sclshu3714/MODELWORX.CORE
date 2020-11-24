@@ -5,9 +5,18 @@ Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934
 	hash=None, flags=None
 Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class TKernel.XStandard_UUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(UInt32, UInt16, UInt16, Byte[]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    _GUID* Handle 'get ' : 
+  Methods:
+    GetUUID(_GUID*): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class TKernel.XStandard_GUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Standard_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XStandard_UUID): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Int32, Char, Char, Char, Byte, Byte, Byte, Byte, Byte, Byte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Char*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -17,21 +26,21 @@ Class TKernel.XStandard_GUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
   Methods:
     ToUUID(): PrivateScope, Public, HideBySig
     GetGUID(Standard_GUID*): PrivateScope, Public, HideBySig
-    ToCString(SByte* IsConst IsConst): PrivateScope, Public, HideBySig
-    ToExtString(Char* IsConst IsConst): PrivateScope, Public, HideBySig
-    IsSame(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    op_Equality(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
-    IsNotSame(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    op_Inequality(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
-    Assign(_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Assign(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    op_Assign(_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
-    op_Assign(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    ToCString(SByte*): PrivateScope, Public, HideBySig
+    ToExtString(Char*): PrivateScope, Public, HideBySig
+    IsSame(XStandard_GUID): PrivateScope, Public, HideBySig
+    op_Equality(XStandard_GUID): PrivateScope, Public, HideBySig, SpecialName
+    IsNotSame(XStandard_GUID): PrivateScope, Public, HideBySig
+    op_Inequality(XStandard_GUID): PrivateScope, Public, HideBySig, SpecialName
+    Assign(XStandard_UUID): PrivateScope, Public, HideBySig
+    Assign(XStandard_GUID): PrivateScope, Public, HideBySig
+    op_Assign(XStandard_UUID): PrivateScope, Public, HideBySig, SpecialName
+    op_Assign(XStandard_GUID): PrivateScope, Public, HideBySig, SpecialName
     ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     CheckGUIDFormat(SByte* IsConst IsConst): PrivateScope, Public, Static, HideBySig
     Hash(Int32 IsConst): PrivateScope, Public, HideBySig
-    HashCode(Standard_GUID* IsImplicitlyDereferenced, Int32): PrivateScope, Public, Static, HideBySig
-    IsEqual(Standard_GUID* IsImplicitlyDereferenced, Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    HashCode(XStandard_GUID, Int32): PrivateScope, Public, Static, HideBySig
+    IsEqual(XStandard_GUID, XStandard_GUID): PrivateScope, Public, Static, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class TKLCAF.XTDF_Label: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TDF_Label): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -62,8 +71,8 @@ Class TKLCAF.XTDF_Label: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ResumeAttribute(handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     FindAttribute(XStandard_GUID, Int32, XTDF_Attribute): PrivateScope, Public, HideBySig
     FindAttribute(Standard_GUID* IsImplicitlyDereferenced, Int32, handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    FindAttribute(XStandard_GUID, XTDF_Attribute): PrivateScope, Public, HideBySig
-    FindAttribute(Standard_GUID* IsImplicitlyDereferenced, handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    FindAttribute(XStandard_GUID, XTDF_Attribute&): PrivateScope, Public, HideBySig
+    FindAttribute(Standard_GUID*, handle<TDF_Attribute>*): PrivateScope, Public, HideBySig
     MayBeModified(): PrivateScope, Public, HideBySig
     AttributesModified(): PrivateScope, Public, HideBySig
     HasAttribute(): PrivateScope, Public, HideBySig
@@ -242,7 +251,7 @@ Class TKLCAF.XTDataStd_Name: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     opencascade.handle<TDataStd_Name> Handle 'get ' : 
   Methods:
-    GetName(TDataStd_Name*): PrivateScope, Public, HideBySig
+    GetName(handle<TDataStd_Name>*): PrivateScope, Public, HideBySig
     GetID(): PrivateScope, Public, Static, HideBySig
     Set(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
     Set(XTDF_Label, XStandard_GUID, XTCollection_ExtendedString): PrivateScope, Public, Static, HideBySig
@@ -296,133 +305,6 @@ Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Copy(XTDF_IDFilter): PrivateScope, Public, HideBySig
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-Class NCollection_Haft<opencascade::handle<TDocStd_Document> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKLCAF.XTDocStd_Document: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKernel.XTCollection_ExtendedString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TCollection_ExtendedString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(opencascade.handle<TDocStd_Document>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    opencascade.handle<TDocStd_Document> Handle 'get ' : 
-  Methods:
-    Get(handle<TDocStd_Document>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
-    GetDocument(handle<TDocStd_Document>*): PrivateScope, Public, HideBySig
-    IsSaved(): PrivateScope, Public, HideBySig
-    IsChanged(): PrivateScope, Public, HideBySig
-    SetSaved(): PrivateScope, Public, HideBySig
-    SetSavedTime(Int32 IsConst): PrivateScope, Public, HideBySig
-    GetSavedTime(): PrivateScope, Public, HideBySig
-    GetName(TCollection_ExtendedString*): PrivateScope, Public, HideBySig
-    GetPath(TCollection_ExtendedString*): PrivateScope, Public, HideBySig
-    SetData(handle<TDF_Data>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    GetData(handle<TDF_Data>*): PrivateScope, Public, HideBySig
-    Main(): PrivateScope, Public, HideBySig
-    IsEmpty(): PrivateScope, Public, HideBySig
-    IsValid(): PrivateScope, Public, HideBySig
-    SetModified(XTDF_Label): PrivateScope, Public, HideBySig
-    PurgeModified(): PrivateScope, Public, HideBySig
-    GetModified(NCollection_Map<TDF_Label\,TDF_LabelMapHasher>*): PrivateScope, Public, HideBySig
-    NewCommand(): PrivateScope, Public, HideBySig
-    HasOpenCommand(): PrivateScope, Public, HideBySig
-    OpenCommand(): PrivateScope, Public, HideBySig
-    CommitCommand(): PrivateScope, Public, HideBySig
-    AbortCommand(): PrivateScope, Public, HideBySig
-    GetUndoLimit(): PrivateScope, Public, HideBySig
-    SetUndoLimit(Int32 IsConst): PrivateScope, Public, HideBySig
-    ClearUndos(): PrivateScope, Public, HideBySig
-    ClearRedos(): PrivateScope, Public, HideBySig
-    GetAvailableUndos(): PrivateScope, Public, HideBySig
-    Undo(): PrivateScope, Public, HideBySig
-    GetAvailableRedos(): PrivateScope, Public, HideBySig
-    Redo(): PrivateScope, Public, HideBySig
-    GetUndos(NCollection_List<opencascade::handle<TDF_Delta> >*): PrivateScope, Public, HideBySig
-    GetRedos(NCollection_List<opencascade::handle<TDF_Delta> >*): PrivateScope, Public, HideBySig
-    RemoveFirstUndo(): PrivateScope, Public, HideBySig
-    InitDeltaCompaction(): PrivateScope, Public, HideBySig
-    PerformDeltaCompaction(): PrivateScope, Public, HideBySig
-    UpdateReferences(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Recompute(): PrivateScope, Public, HideBySig
-    Update(handle<CDM_Document>* IsImplicitlyDereferenced, Int32, Void*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    StorageFormat(TCollection_ExtendedString*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetEmptyLabelsSavingMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
-    EmptyLabelsSavingMode(): PrivateScope, Public, HideBySig
-    ChangeStorageFormat(TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetNestedTransactionMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
-    IsNestedTransactionMode(): PrivateScope, Public, HideBySig
-    SetModificationMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
-    ModificationMode(): PrivateScope, Public, HideBySig
-    BeforeClose(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    get_Handle(handle<TDocStd_Document>*): PrivateScope, Public, HideBySig, SpecialName
-    ~XTDocStd_Document(): PrivateScope, Public, HideBySig
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class NCollection_Haft<opencascade::handle<TDocStd_Application> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKLCAF.XTDocStd_Application: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TDocStd_Application*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    opencascade.handle<TDocStd_Application> Handle 'get ' : 
-  Methods:
-    IsDriverLoaded(): PrivateScope, Public, HideBySig
-    MessageDriver(handle<Message_Messenger>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetNativeHandle(handle<TDocStd_Application>*): PrivateScope, Public, HideBySig
-    Resources(handle<Resource_Manager>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    ResourcesName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    DefineFormat(TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, handle<PCDM_RetrievalDriver>* IsImplicitlyDereferenced, handle<PCDM_StorageDriver>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ReadingFormats(NCollection_Sequence<TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    WritingFormats(NCollection_Sequence<TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    NbDocuments(): PrivateScope, Public, HideBySig
-    GetDocument(Int32 IsConst, XTDocStd_Document): PrivateScope, Public, HideBySig
-    GetDocument(Int32 IsConst, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    NewDocument(String, XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    NewDocument(XTCollection_ExtendedString, XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    NewDocument(TCollection_ExtendedString* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    InitDocument(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    InitDocument(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Close(XTDocStd_Document): PrivateScope, Public, HideBySig
-    Close(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    IsInSession(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    IsInSession(TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Open(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, XTDocStd_Document): PrivateScope, Public, HideBySig
-    Open(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Open(XTCollection_ExtendedString, XTDocStd_Document): PrivateScope, Public, HideBySig
-    Open(TCollection_ExtendedString* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SaveAs(XTDocStd_Document, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SaveAs(XTDocStd_Document, XTCollection_ExtendedString, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SaveAs(XTDocStd_Document, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SaveAs(XTDocStd_Document, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Save(XTDocStd_Document, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
-    Save(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Save(XTDocStd_Document): PrivateScope, Public, HideBySig
-    Save(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    OnOpenTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    OnOpenTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    OnCommitTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    OnCommitTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    OnAbortTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    OnAbortTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    get_Handle(handle<TDocStd_Application>*): PrivateScope, Public, HideBySig, SpecialName
-    ~XTDocStd_Application(): PrivateScope, Public, HideBySig
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_XYZ, TKMath.xgp_XYZ, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -2207,7 +2089,6 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
   Methods:
     GetAISPresentation(handle<TPrsStd_AISPresentation>*): PrivateScope, Public, HideBySig
     GetID(): PrivateScope, Public, Static, HideBySig
-    GetIDx(): PrivateScope, Public, Static, HideBySig
     Set(XTDF_Attribute): PrivateScope, Public, Static, HideBySig
     Set(handle<TPrsStd_AISPresentation>*, handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Set(XTDF_Label, XStandard_GUID): PrivateScope, Public, Static, HideBySig
@@ -2218,16 +2099,14 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     Display(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     Erase(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     Update(): PrivateScope, Public, HideBySig
-    GetDriverGUID(Standard_GUID*): PrivateScope, Public, HideBySig
-    GetDriverGUIDx(): PrivateScope, Public, HideBySig
+    GetDriverGUID(): PrivateScope, Public, HideBySig
     SetDriverGUID(XStandard_GUID): PrivateScope, Public, HideBySig
     SetDriverGUID(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     IsDisplayed(): PrivateScope, Public, HideBySig
-    GetAIS(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
-    GetAISx(): PrivateScope, Public, HideBySig
+    GetAIS(): PrivateScope, Public, HideBySig
     Material(): PrivateScope, Public, HideBySig
     SetMaterial(Int32 IsConst): PrivateScope, Public, HideBySig
-    SetMaterial(Graphic3d_NameOfMaterial IsConst): PrivateScope, Public, HideBySig
+    SetMaterial(XGraphic3d_NameOfMaterial): PrivateScope, Public, HideBySig
     HasOwnMaterial(): PrivateScope, Public, HideBySig
     UnsetMaterial(): PrivateScope, Public, HideBySig
     SetTransparency(Double IsConst): PrivateScope, Public, HideBySig
@@ -2235,7 +2114,7 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     HasOwnTransparency(): PrivateScope, Public, HideBySig
     UnsetTransparency(): PrivateScope, Public, HideBySig
     Color(): PrivateScope, Public, HideBySig
-    SetColor(Quantity_NameOfColor IsConst): PrivateScope, Public, HideBySig
+    SetColor(XQuantity_NameOfColor): PrivateScope, Public, HideBySig
     HasOwnColor(): PrivateScope, Public, HideBySig
     UnsetColor(): PrivateScope, Public, HideBySig
     Width(): PrivateScope, Public, HideBySig
@@ -2885,6 +2764,133 @@ Struct XGraphic3d_NameOfMaterial: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XGraphic3d_NameOfMaterial Graphic3d_NOM_TRANSPARENT = 23 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_DEFAULT = 24 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_UserDefined = 25 : Public, Static, Literal, HasDefault
+Class NCollection_Haft<opencascade::handle<TDocStd_Document> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKLCAF.XTDocStd_Document: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKernel.XTCollection_ExtendedString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TCollection_ExtendedString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<TDocStd_Document>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<TDocStd_Document> Handle 'get ' : 
+  Methods:
+    Get(handle<TDocStd_Document>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    GetDocument(handle<TDocStd_Document>*): PrivateScope, Public, HideBySig
+    IsSaved(): PrivateScope, Public, HideBySig
+    IsChanged(): PrivateScope, Public, HideBySig
+    SetSaved(): PrivateScope, Public, HideBySig
+    SetSavedTime(Int32 IsConst): PrivateScope, Public, HideBySig
+    GetSavedTime(): PrivateScope, Public, HideBySig
+    GetName(TCollection_ExtendedString*): PrivateScope, Public, HideBySig
+    GetPath(TCollection_ExtendedString*): PrivateScope, Public, HideBySig
+    SetData(handle<TDF_Data>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetData(handle<TDF_Data>*): PrivateScope, Public, HideBySig
+    Main(): PrivateScope, Public, HideBySig
+    IsEmpty(): PrivateScope, Public, HideBySig
+    IsValid(): PrivateScope, Public, HideBySig
+    SetModified(XTDF_Label): PrivateScope, Public, HideBySig
+    PurgeModified(): PrivateScope, Public, HideBySig
+    GetModified(NCollection_Map<TDF_Label\,TDF_LabelMapHasher>*): PrivateScope, Public, HideBySig
+    NewCommand(): PrivateScope, Public, HideBySig
+    HasOpenCommand(): PrivateScope, Public, HideBySig
+    OpenCommand(): PrivateScope, Public, HideBySig
+    CommitCommand(): PrivateScope, Public, HideBySig
+    AbortCommand(): PrivateScope, Public, HideBySig
+    GetUndoLimit(): PrivateScope, Public, HideBySig
+    SetUndoLimit(Int32 IsConst): PrivateScope, Public, HideBySig
+    ClearUndos(): PrivateScope, Public, HideBySig
+    ClearRedos(): PrivateScope, Public, HideBySig
+    GetAvailableUndos(): PrivateScope, Public, HideBySig
+    Undo(): PrivateScope, Public, HideBySig
+    GetAvailableRedos(): PrivateScope, Public, HideBySig
+    Redo(): PrivateScope, Public, HideBySig
+    GetUndos(NCollection_List<opencascade::handle<TDF_Delta> >*): PrivateScope, Public, HideBySig
+    GetRedos(NCollection_List<opencascade::handle<TDF_Delta> >*): PrivateScope, Public, HideBySig
+    RemoveFirstUndo(): PrivateScope, Public, HideBySig
+    InitDeltaCompaction(): PrivateScope, Public, HideBySig
+    PerformDeltaCompaction(): PrivateScope, Public, HideBySig
+    UpdateReferences(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Recompute(): PrivateScope, Public, HideBySig
+    Update(handle<CDM_Document>* IsImplicitlyDereferenced, Int32, Void*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    StorageFormat(TCollection_ExtendedString*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetEmptyLabelsSavingMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    EmptyLabelsSavingMode(): PrivateScope, Public, HideBySig
+    ChangeStorageFormat(TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetNestedTransactionMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    IsNestedTransactionMode(): PrivateScope, Public, HideBySig
+    SetModificationMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    ModificationMode(): PrivateScope, Public, HideBySig
+    BeforeClose(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_Handle(handle<TDocStd_Document>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XTDocStd_Document(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<TDocStd_Application> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKLCAF.XTDocStd_Application: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TDocStd_Application*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<TDocStd_Application> Handle 'get ' : 
+  Methods:
+    IsDriverLoaded(): PrivateScope, Public, HideBySig
+    MessageDriver(handle<Message_Messenger>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetNativeHandle(handle<TDocStd_Application>*): PrivateScope, Public, HideBySig
+    Resources(handle<Resource_Manager>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ResourcesName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DefineFormat(TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, handle<PCDM_RetrievalDriver>* IsImplicitlyDereferenced, handle<PCDM_StorageDriver>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ReadingFormats(NCollection_Sequence<TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    WritingFormats(NCollection_Sequence<TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    NbDocuments(): PrivateScope, Public, HideBySig
+    GetDocument(Int32 IsConst, XTDocStd_Document): PrivateScope, Public, HideBySig
+    GetDocument(Int32 IsConst, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    NewDocument(String, XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NewDocument(XTCollection_ExtendedString, XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NewDocument(TCollection_ExtendedString* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    InitDocument(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    InitDocument(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Close(XTDocStd_Document): PrivateScope, Public, HideBySig
+    Close(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    IsInSession(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
+    IsInSession(TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Open(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, XTDocStd_Document): PrivateScope, Public, HideBySig
+    Open(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Open(XTCollection_ExtendedString, XTDocStd_Document): PrivateScope, Public, HideBySig
+    Open(TCollection_ExtendedString* IsImplicitlyDereferenced, handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SaveAs(XTDocStd_Document, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
+    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SaveAs(XTDocStd_Document, XTCollection_ExtendedString, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
+    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SaveAs(XTDocStd_Document, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SaveAs(XTDocStd_Document, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
+    SaveAs(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Save(XTDocStd_Document, XTCollection_ExtendedString): PrivateScope, Public, HideBySig
+    Save(handle<TDocStd_Document>* IsImplicitlyDereferenced, TCollection_ExtendedString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Save(XTDocStd_Document): PrivateScope, Public, HideBySig
+    Save(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    OnOpenTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnOpenTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnCommitTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnCommitTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnAbortTransaction(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnAbortTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_Handle(handle<TDocStd_Application>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XTDocStd_Application(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKSTEP.XSTEPConstruct_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<XSControl_WorkSession>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(STEPConstruct_Tool*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -2984,6 +2990,7 @@ Class TKXCAF.XXCAFDoc_ShapeTool: AutoLayout, AnsiClass, Class, Public, BeforeFie
     ComputeShapes(XTDF_Label): PrivateScope, Public, HideBySig
     ComputeSimpleShapes(): PrivateScope, Public, HideBySig
     GetShapes(XTDF_LabelSequence): PrivateScope, Public, HideBySig
+    GetFreeShapes(XTDF_LabelSequence&): PrivateScope, Public, HideBySig
     GetFreeShapes(): PrivateScope, Public, HideBySig
     GetUsers(XTDF_Label, NCollection_Sequence<TDF_Label>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     GetLocation(XTDF_Label): PrivateScope, Public, Static, HideBySig
@@ -3118,6 +3125,120 @@ Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, Be
     SetViewMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetViewMode(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKernel.XTCollection_AsciiString, TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString, SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TCollection_AsciiString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte*, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    TCollection_AsciiString* Handle 'get ' : 
+  Methods:
+    RemoveAll(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    RemoveAll(SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Remove(Int32, Int32): PrivateScope, Public, HideBySig
+    RightAdjust(): PrivateScope, Public, HideBySig
+    RightJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Search(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Search(SByte*): PrivateScope, Public, HideBySig
+    SearchFromEnd(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    SearchFromEnd(SByte*): PrivateScope, Public, HideBySig
+    SetValue(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    SetValue(Int32, SByte*): PrivateScope, Public, HideBySig
+    SetValue(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Split(Int32): PrivateScope, Public, HideBySig
+    SubString(Int32, Int32): PrivateScope, Public, HideBySig
+    ToCString(): PrivateScope, Public, HideBySig
+    Token(SByte*, Int32): PrivateScope, Public, HideBySig
+    Trunc(Int32): PrivateScope, Public, HideBySig
+    UpperCase(): PrivateScope, Public, HideBySig
+    UsefullLength(): PrivateScope, Public, HideBySig
+    Value(Int32): PrivateScope, Public, HideBySig
+    HashCode(XTCollection_AsciiString, Int32): PrivateScope, Public, Static, HideBySig
+    IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    GetAsciiString(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    AssignCat(SByte*): PrivateScope, Public, HideBySig
+    AssignCat(Double): PrivateScope, Public, HideBySig
+    AssignCat(Int32): PrivateScope, Public, HideBySig
+    AssignCat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    op_AdditionAssignment(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(Int32): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
+    Capitalize(): PrivateScope, Public, HideBySig
+    Cat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Cat(SByte*): PrivateScope, Public, HideBySig
+    Cat(Double): PrivateScope, Public, HideBySig
+    Cat(Int32): PrivateScope, Public, HideBySig
+    Cat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    op_Addition(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(Int32): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
+    Center(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    ChangeAll(SByte IsSignUnspecifiedByte, SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Clear(): PrivateScope, Public, HideBySig
+    Copy(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Copy(SByte*): PrivateScope, Public, HideBySig
+    op_Assign(XTCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    op_Assign(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Assign(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    Swap(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    FirstLocationInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    FirstLocationNotInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    Insert(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Insert(Int32, SByte*): PrivateScope, Public, HideBySig
+    Insert(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    InsertAfter(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    InsertBefore(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsEmpty(): PrivateScope, Public, HideBySig
+    IsEqual(XTCollection_AsciiString, SByte*): PrivateScope, Public, Static, HideBySig
+    IsEqual(XTCollection_AsciiString, XTCollection_AsciiString): PrivateScope, Public, Static, HideBySig
+    IsEqual(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsEqual(SByte*): PrivateScope, Public, HideBySig
+    op_Equality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Equality(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsDifferent(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsDifferent(SByte*): PrivateScope, Public, HideBySig
+    op_Inequality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Inequality(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsLess(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsLess(SByte*): PrivateScope, Public, HideBySig
+    op_LessThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_LessThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsGreater(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsGreater(SByte*): PrivateScope, Public, HideBySig
+    op_GreaterThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_GreaterThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    StartsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    EndsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IntegerValue(): PrivateScope, Public, HideBySig
+    IsIntegerValue(): PrivateScope, Public, HideBySig
+    IsRealValue(): PrivateScope, Public, HideBySig
+    IsAscii(): PrivateScope, Public, HideBySig
+    LeftAdjust(): PrivateScope, Public, HideBySig
+    LeftJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Length(): PrivateScope, Public, HideBySig
+    Location(Int32, SByte IsSignUnspecifiedByte, Int32, Int32): PrivateScope, Public, HideBySig
+    Location(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    LowerCase(): PrivateScope, Public, HideBySig
+    Prepend(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Print(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    RealValue(): PrivateScope, Public, HideBySig
 Class TKMath.xgp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:

@@ -239,6 +239,14 @@ namespace TKXCAF {
         return FreeLabels;
     };
 
+    //! Returns a sequence of all top-level shapes
+        //! which are free (i.e. not referred by any other)
+    void XXCAFDoc_ShapeTool::GetFreeShapes(XTDF_LabelSequence^ %FreeLabels) {
+        TDF_LabelSequence Labels;
+        NativeHandle()->GetFreeShapes(Labels);
+        FreeLabels = gcnew XTDF_LabelSequence(Labels);
+    };
+
     //! Returns list of labels which refer shape L as component
     //! Returns number of users (0 if shape is free)
     //!static 

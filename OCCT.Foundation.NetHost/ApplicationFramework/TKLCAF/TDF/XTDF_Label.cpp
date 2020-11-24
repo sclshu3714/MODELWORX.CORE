@@ -1,4 +1,8 @@
 #include <XTDF_Label.h>
+#include <XTDataStd_Name.h>
+#include <XTPrsStd_AISPresentation.h>        
+#include <TDataStd_Name.hxx>
+using namespace TKVCAF;
 
 namespace TKLCAF {
     //! Constructs an empty label object.
@@ -124,12 +128,29 @@ namespace TKLCAF {
     //! The method returns True if found, False otherwise.
     //!
     //! A removed attribute cannot be found.
-    Standard_Boolean XTDF_Label::FindAttribute(const Standard_GUID& anID, Handle(TDF_Attribute)& anAttribute) {
+    Standard_Boolean XTDF_Label::FindAttribute(Standard_GUID anID, Handle(TDF_Attribute) anAttribute) {
         return NativeHandle->FindAttribute(anID, anAttribute);
     };
 
-    Standard_Boolean XTDF_Label::FindAttribute(XStandard_GUID^ anID, XTDF_Attribute^ anAttribute) {
-        return NativeHandle->FindAttribute(anID->GetGUID(), anAttribute->GetAttribute());
+    Standard_Boolean XTDF_Label::FindAttribute(XStandard_GUID^ anID, XTDF_Attribute^% theAttribute) {
+        System::String^ typeName = theAttribute->GetType()->Name;
+        Standard_Boolean result = false;
+        if (typeName == "XTDataStd_Name") {
+            //XTDataStd_Name^ XName = dynamic_cast<XTDataStd_Name^>(theAttribute);
+            Handle(TDataStd_Name) TName;
+            result = NativeHandle->FindAttribute(anID->GetGUID(), TName);
+            //std::cout << "  Name: " << TName->Get() << std::endl;
+            theAttribute = gcnew XTDataStd_Name(TName);
+            //XTDataStd_Name^ XName = dynamic_cast<XTDataStd_Name^>(theAttribute);
+            //std::cout << "  Name: " << XName->GetName()->Get() << std::endl;
+        }
+        else if (typeName == "XTPrsStd_AISPresentation") {
+            //XTPrsStd_AISPresentation^ XAISPresentation = dynamic_cast<XTPrsStd_AISPresentation^>(theAttribute);
+            Handle(TPrsStd_AISPresentation) TAISPresentation;
+            result = NativeHandle->FindAttribute(anID->GetGUID(), TAISPresentation);
+            theAttribute = gcnew XTPrsStd_AISPresentation(TAISPresentation);
+        }
+        return  result;
     };
 
     //! Finds an attribute of the current label, according

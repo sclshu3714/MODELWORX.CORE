@@ -18,6 +18,7 @@
 #define _XStandard_GUID_HeaderFile
 #pragma once
 #include "Standard_GUID.hxx"
+#include "XStandard_UUID.h"
 
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
@@ -47,19 +48,19 @@ namespace TKernel {
 		//! following format:
 		//! Length : 36 char
 		//! "00000000-0000-0000-0000-000000000000"
-		XStandard_GUID(const Standard_CString aGuid);
+		XStandard_GUID(Standard_CString aGuid);
 
 		//! build a GUID from an unicode string with the
 		//! following format:
 		//!
 		//! "00000000-0000-0000-0000-000000000000"
-		XStandard_GUID(const Standard_ExtString aGuid);
+		XStandard_GUID(Standard_ExtString aGuid);
 
-		XStandard_GUID(const Standard_Integer a32b, Standard_ExtCharacter a16b1, Standard_ExtCharacter a16b2, Standard_ExtCharacter a16b3, Standard_Byte a8b1, Standard_Byte a8b2, Standard_Byte a8b3, Standard_Byte a8b4, Standard_Byte a8b5, Standard_Byte a8b6);
+		XStandard_GUID(Standard_Integer a32b, Standard_ExtCharacter a16b1, Standard_ExtCharacter a16b2, Standard_ExtCharacter a16b3, Standard_Byte a8b1, Standard_Byte a8b2, Standard_Byte a8b3, Standard_Byte a8b4, Standard_Byte a8b5, Standard_Byte a8b6);
 
-		XStandard_GUID(const Standard_UUID& aGuid);
+		XStandard_GUID(XStandard_UUID^ aGuid);
 
-		XStandard_GUID(const Standard_GUID& aGuid);
+		XStandard_GUID(Standard_GUID aGuid);
 
 		XStandard_GUID^ ToUUID();
 
@@ -71,35 +72,35 @@ namespace TKernel {
 		//! the guid have the following format:
 		//!
 		//! "00000000-0000-0000-0000-000000000000"
-		void ToCString(const Standard_PCharacter aStrGuid);
+		void ToCString(Standard_PCharacter aStrGuid);
 
 		//! translate the GUID into unicode string
 		//! the aStrGuid is allocated by user.
 		//! the guid have the following format:
 		//!
 		//! "00000000-0000-0000-0000-000000000000"
-		void ToExtString(const Standard_PExtCharacter aStrGuid);
+		void ToExtString(Standard_PExtCharacter aStrGuid);
 
-		Standard_Boolean IsSame(const Standard_GUID& uid);
-		Standard_Boolean operator == (const Standard_GUID& uid)
+		Standard_Boolean IsSame(XStandard_GUID^ uid);
+		Standard_Boolean operator == (XStandard_GUID^ uid)
 		{
 			return IsSame(uid);
 		}
 
-		Standard_Boolean IsNotSame(const Standard_GUID& uid);
-		Standard_Boolean operator != (const Standard_GUID& uid)
+		Standard_Boolean IsNotSame(XStandard_GUID^ uid);
+		Standard_Boolean operator != (XStandard_GUID^ uid)
 		{
 			return IsNotSame(uid);
 		}
 
-		void Assign(const Standard_GUID& uid);
-		void operator = (const Standard_GUID& uid)
+		void Assign(XStandard_GUID^ uid);
+		void operator = (XStandard_GUID^ uid)
 		{
 			Assign(uid);
 		}
 
-		void Assign(const Standard_UUID& uid);
-		void operator = (const Standard_UUID& uid)
+		void Assign(XStandard_UUID^ uid);
+		void operator = (XStandard_UUID^ uid)
 		{
 			Assign(uid);
 		}
@@ -120,10 +121,10 @@ namespace TKernel {
 		//! @param theGUID the GUID which hash code is to be computed
 		//! @param theUpperBound the upper bound of the range a computing hash code must be within
 		//! @return a computed hash code, in the range [1, theUpperBound]
-		static Standard_Integer HashCode(const Standard_GUID& theGUID, Standard_Integer theUpperBound);
+		static Standard_Integer HashCode(XStandard_GUID^ theGUID, Standard_Integer theUpperBound);
 
 		//! Returns True  when the two GUID are the same.
-		static Standard_Boolean IsEqual(const Standard_GUID& string1, Standard_GUID& string2);
+		static Standard_Boolean IsEqual(XStandard_GUID^ string1,XStandard_GUID^ string2);
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

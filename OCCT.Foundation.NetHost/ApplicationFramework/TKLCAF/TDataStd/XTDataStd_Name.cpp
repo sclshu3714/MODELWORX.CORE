@@ -1,5 +1,4 @@
 #include "XTDataStd_Name.h"
-
 namespace TKLCAF {
 
 	XTDataStd_Name::XTDataStd_Name() : XTDF_Attribute(){
@@ -13,15 +12,22 @@ namespace TKLCAF {
 		SetNativeHandle(NativeHandle());
 	};
 
-	TDataStd_Name XTDataStd_Name::GetName() {
-		return *NativeHandle();
+	//XTDataStd_Name::XTDataStd_Name(XTDF_Attribute^ anAttr) : XTDF_Attribute(anAttr->GetAttribute()) {
+	//	XTDataStd_Name^ theAttr = dynamic_cast<XTDataStd_Name^>(anAttr);
+	//	NativeHandle() = theAttr->GetName();
+	//	SetNativeHandle(NativeHandle());
+	//};
+
+	Handle(TDataStd_Name) XTDataStd_Name::GetName() {
+		return NativeHandle();
 	};
 
 	//! class methods working on the name itself
 	//! ========================================
 	//! Returns the GUID for name attributes.
 	XStandard_GUID^ XTDataStd_Name::GetID() {
-		return gcnew XStandard_GUID(TDataStd_Name::GetID());
+		Standard_GUID standard_GUID = TDataStd_Name::GetID();
+		return gcnew XStandard_GUID(standard_GUID);
 	};
 
 	//! Creates (if does not exist) and sets the name in the name attribute.
@@ -75,6 +81,7 @@ namespace TKLCAF {
 
 	//! Returns the name contained in this name attribute.
 	const XTCollection_ExtendedString^ XTDataStd_Name::Get() {
+		std::cout << "  Name: " << NativeHandle()->Get() << std::endl;
 		return gcnew XTCollection_ExtendedString(NativeHandle()->Get());
 	};
 

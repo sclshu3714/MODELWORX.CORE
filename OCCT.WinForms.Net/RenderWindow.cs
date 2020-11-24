@@ -558,18 +558,7 @@ namespace OCCT.WinForms.Net
         #endregion
 
         #region 导入/导出
-        /// <summary>
-        /// 定义必须调用的导入/导出函数
-        /// Define which Import/Export function must be called
-        /// </summary>
-        /// <param name="theFileName">Name of Import/Export file</param>
-        /// <param name="theFormat">Determines format of Import/Export file</param>
-        /// <param name="theIsImport">Determines is Import or not</param>
-        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
-            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
-            //OCCTView.SetDisplayMode(1);
-            //OCCTView.RedrawView();
-            //OCCTView.ZoomAllView();
+        public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
@@ -579,25 +568,130 @@ namespace OCCT.WinForms.Net
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
-            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
-            //XTDF_LabelSequence aRootLabels = Assembly.GetFreeShapes();
-            //XTDF_XIterator aRootIter = aRootLabels.Iterator();
-            //for (; aRootIter.More(); aRootIter.Next())
-            //{
-            //    XTDF_Label aRootLabel = aRootIter.Value();
-            //    VisibleSettings(aRootLabel, true);
-            //}
+            TreeNode PNode = null;
             XTDF_Label aRootLabel = aDoc.Main();
-            VisibleSettings(aRootLabel, true);
+            XTDF_Attribute aName = new XTDataStd_Name();
+            if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+            {
+                //std::cout << "  Name: " << aName.Get() << std::endl;
+                XTDataStd_Name XName = aName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                string text = EString.GetValueString();
+                PNode = new TreeNode();
+                PNode.Name = text;
+                PNode.Text = text;
+                //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                TempNode.Nodes.Add(PNode);
+
+            }
+            if (PNode == null)
+            {
+                PNode = new TreeNode();
+                PNode.Name = "ShapesSTEP";
+                PNode.Text = "ShapesSTEP";
+                //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                TempNode.Nodes.Add(PNode);
+            }
+            VisibleSettings(ref PNode, aRootLabel, true);
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return true;
         }
 
+        private void VisibleSettings(ref TreeNode TempNode, XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            if (!theLabel.IsNull() && !theLabel.HasChild()) // && XXCAFDoc_ShapeTool.IsShape(theLabel))
+            {
+                XTDF_Attribute aName = new XTDataStd_Name();
+                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+                {
+                    //std::cout << "  Name: " << aName.Get() << std::endl;
+                    XTDataStd_Name XName = aName as XTDataStd_Name;
+                    XTCollection_ExtendedString EString = XName.Get();
+                    string text = EString.GetValueString();
+                    TreeNode CNode = new TreeNode();
+                    CNode.Name = text;
+                    CNode.Text = text;
+                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(CNode);
+                }
+                
+                Display(theLabel, IsBoundaryDraw);
+                return;
+            }
+            TreeNode PNode = null;
+            {
+                XTDF_Attribute aName = new XTDataStd_Name();
+                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+                {
+                    //std::cout << "  Name: " << aName.Get() << std::endl;
+                    XTDataStd_Name XName = aName as XTDataStd_Name;
+                    XTCollection_ExtendedString EString = XName.Get();
+                    string text = EString.GetValueString();
+                    PNode = new TreeNode();
+                    PNode.Name = text;
+                    PNode.Text = text;
+                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(PNode);
+
+                }
+                else {
+                    PNode = new TreeNode();
+                    PNode.Name = "NoName";
+                    PNode.Text = "没有名称";
+                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(PNode);
+                }
+            }
+            XTDF_ChildIterator iter = new XTDF_ChildIterator();
+            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
+            {
+                VisibleSettings(ref PNode, iter.Value(), IsBoundaryDraw);
+            }
+        }
+
+        /// <summary>
+        /// 定义必须调用的导入/导出函数
+        /// Define which Import/Export function must be called
+        /// </summary>
+        /// <param name="theFileName">Name of Import/Export file</param>
+        /// <param name="theFormat">Determines format of Import/Export file</param>
+        /// <param name="theIsImport">Determines is Import or not</param>
+        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
+            bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
+            //XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            //aReader.SetColorMode(true);
+            //aReader.SetNameMode(true);
+            //IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            //XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            //XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            //anApp.NewDocument("XSEFSTEP", aDoc);
+            //if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+            //    return false;
+            ////XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
+            ////XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            ////Assembly.GetFreeShapes(ref aRootLabels);
+            ////XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            ////for (; aRootIter.More(); aRootIter.Next())
+            ////{
+            ////    XTDF_Label aRootLabel = aRootIter.Value();
+            ////    VisibleSettings(aRootLabel, true);
+            ////}
+            //XTDF_Label aRootLabel = aDoc.Main();
+            //VisibleSettings(aRootLabel, true);
+            //OCCTView.SetDisplayMode(1);
+            //OCCTView.RedrawView();
+            //OCCTView.ZoomAllView();
+            return true;
+        }
+
         private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
-            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
+            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsShape(theLabel))
             {
                 Display(theLabel, IsBoundaryDraw);
                 return;
@@ -616,43 +710,48 @@ namespace OCCT.WinForms.Net
         void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-            XTDataStd_Name aName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), aName))
+            XTDF_Attribute aName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(),ref aName))
             {
                 //std::cout << "  Name: " << aName.Get() << std::endl;
-                //MessageBox.Show($"Name:{aName.Get().GetValueString()}");
+                XTDataStd_Name XName = aName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                //MessageBox.Show($"Name:{EString.GetValueString()}");
                 //context.RemoveAll(true);
-            }
-            XTPrsStd_AISPresentation aPrs = new XTPrsStd_AISPresentation();
-            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetIDx(), aPrs))
-            {
-                aPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
-                aPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
-                aPrs.Display(true);
 
-                XAIS_InteractiveObject anInteractive = aPrs.GetAISx();
-                if (anInteractive != null)
-                {
-                    // get drawer
-                    XPrs3d_Drawer aDrawer = anInteractive.Attributes();
-                    // default attributes
-                    float aRed = 0.0f;
-                    float aGreen = 0.0f;
-                    float aBlue = 0.0f;
-                    float aWidth = 1.0f;
-                    XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
-                    // turn boundaries on/off
-                    bool isBoundaryDraw = true;
-                    aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
-                    XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
-                    XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
-                    aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
-                    context.Display(anInteractive, true);
-                    OCCTView.SetDisplayMode(1);
-                    OCCTView.ZoomAllView();
-                }
-                ////mainAISContext()->UpdateCurrentViewer();
             }
+            XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
+            XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
+            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(),ref aPrs))
+            {
+                xPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
+                xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
+                xPrs.Display(true);
+            }
+            else
+                xPrs = aPrs as XTPrsStd_AISPresentation;
+            XAIS_InteractiveObject anInteractive = xPrs.GetAIS();
+            if (anInteractive != null)
+            {
+                // get drawer
+                XPrs3d_Drawer aDrawer = anInteractive.Attributes();
+                // default attributes
+                float aRed = 0.0f;
+                float aGreen = 0.0f;
+                float aBlue = 0.0f;
+                float aWidth = 1.0f;
+                XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
+                // turn boundaries on/off
+                bool isBoundaryDraw = true;
+                aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
+                XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+                XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
+                aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
+                context.Display(anInteractive, true);
+                OCCTView.SetDisplayMode(1);
+                OCCTView.ZoomAllView();
+            }
+            //mainAISContext()->UpdateCurrentViewer();
         }
         #endregion
 

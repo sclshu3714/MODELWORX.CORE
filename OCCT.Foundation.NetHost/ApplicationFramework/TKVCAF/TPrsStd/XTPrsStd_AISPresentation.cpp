@@ -16,14 +16,8 @@ namespace TKVCAF {
 	};
 
 	//! Returns the GUID for TPrsStd_AISPresentation attributes.
-	//! static
-	const Standard_GUID& XTPrsStd_AISPresentation::GetID() {
-		return  TPrsStd_AISPresentation::GetID();
-	};
-
-	//! Returns the GUID for TPrsStd_AISPresentation attributes.
 	//! static 
-	const XStandard_GUID^ XTPrsStd_AISPresentation::GetIDx() {
+	const XStandard_GUID^ XTPrsStd_AISPresentation::GetID() {
 		return gcnew XStandard_GUID(TPrsStd_AISPresentation::GetID());
 	};
 
@@ -97,11 +91,8 @@ namespace TKVCAF {
 		NativeHandle()->Update();
 	};
 
-	Standard_GUID XTPrsStd_AISPresentation::GetDriverGUID() {
-		return NativeHandle()->GetDriverGUID();
-	};
 
-	XStandard_GUID^ XTPrsStd_AISPresentation::GetDriverGUIDx() {
+	XStandard_GUID^ XTPrsStd_AISPresentation::GetDriverGUID() {
 		return gcnew XStandard_GUID(NativeHandle()->GetDriverGUID());
 	};
 
@@ -119,23 +110,18 @@ namespace TKVCAF {
 	};
 
 	//! Returns AIS_InteractiveObject stored in the presentation attribute
-	Handle(AIS_InteractiveObject) XTPrsStd_AISPresentation::GetAIS() {
-		return NativeHandle()->GetAIS();
-	};
-
-	//! Returns AIS_InteractiveObject stored in the presentation attribute
-	XAIS_InteractiveObject^ XTPrsStd_AISPresentation::GetAISx() {
+	XAIS_InteractiveObject^ XTPrsStd_AISPresentation::GetAIS() {
 		return gcnew XAIS_InteractiveObject(NativeHandle()->GetAIS());
 	};
 
 	//! Returns the material setting for this presentation attribute.
-	Graphic3d_NameOfMaterial XTPrsStd_AISPresentation::Material() {
-		return NativeHandle()->Material();
+	XGraphic3d_NameOfMaterial^ XTPrsStd_AISPresentation::Material() {
+		return safe_cast<XGraphic3d_NameOfMaterial>(NativeHandle()->Material());
 	};			   
 
 	//! Sets the material aName for this presentation  attribute.
-	void XTPrsStd_AISPresentation::SetMaterial(const Graphic3d_NameOfMaterial aName) {
-		NativeHandle()->SetMaterial(aName);
+	void XTPrsStd_AISPresentation::SetMaterial(XGraphic3d_NameOfMaterial aName) {
+		NativeHandle()->SetMaterial(safe_cast<Graphic3d_NameOfMaterial>(aName));
 	};
 
 	//! Sets the material aName for this presentation  attribute.
@@ -176,13 +162,13 @@ namespace TKVCAF {
 		NativeHandle()->UnsetTransparency();
 	};
 
-	Quantity_NameOfColor XTPrsStd_AISPresentation::Color() {
-		return NativeHandle()->Color();
+	XQuantity_NameOfColor XTPrsStd_AISPresentation::Color() {
+		return safe_cast<XQuantity_NameOfColor>(NativeHandle()->Color());
 	};
 
 	//! Sets the color aColor for this presentation attribute.
-	void XTPrsStd_AISPresentation::SetColor(const Quantity_NameOfColor aColor) {
-		NativeHandle()->SetColor(aColor);
+	void XTPrsStd_AISPresentation::SetColor(XQuantity_NameOfColor aColor) {
+		NativeHandle()->SetColor(safe_cast<Quantity_NameOfColor>(aColor));
 	};
 
 	//! Returns true if this presentation attribute already has a color setting.

@@ -17,19 +17,19 @@ namespace TKernel {
 	//! following format:
 	//!
 	//! "00000000-0000-0000-0000-000000000000"
-	XStandard_GUID::XStandard_GUID(const Standard_ExtString aGuid) {
+	XStandard_GUID::XStandard_GUID(Standard_ExtString aGuid) {
 		NativeHandle = new Standard_GUID(aGuid);
 	};
 
-	XStandard_GUID::XStandard_GUID(const Standard_Integer a32b, Standard_ExtCharacter a16b1, Standard_ExtCharacter a16b2, Standard_ExtCharacter a16b3, Standard_Byte a8b1, Standard_Byte a8b2, Standard_Byte a8b3, Standard_Byte a8b4, Standard_Byte a8b5, Standard_Byte a8b6) {
+	XStandard_GUID::XStandard_GUID(Standard_Integer a32b, Standard_ExtCharacter a16b1, Standard_ExtCharacter a16b2, Standard_ExtCharacter a16b3, Standard_Byte a8b1, Standard_Byte a8b2, Standard_Byte a8b3, Standard_Byte a8b4, Standard_Byte a8b5, Standard_Byte a8b6) {
 		NativeHandle = new Standard_GUID(a32b, a16b1, a16b2, a16b3, a8b1, a8b2, a8b3, a8b4, a8b5, a8b6);
 	};
 
-	XStandard_GUID::XStandard_GUID(const Standard_UUID& aGuid) {
-		NativeHandle = new Standard_GUID(aGuid);
+	XStandard_GUID::XStandard_GUID(XStandard_UUID^ aGuid) {
+		NativeHandle = new Standard_GUID(aGuid->GetUUID());
 	};
 
-	XStandard_GUID::XStandard_GUID(const Standard_GUID& aGuid) {
+	XStandard_GUID::XStandard_GUID(Standard_GUID aGuid) {
 		NativeHandle = new Standard_GUID(aGuid);
 	};
 
@@ -47,7 +47,7 @@ namespace TKernel {
 	//! the guid have the following format:
 	//!
 	//! "00000000-0000-0000-0000-000000000000"
-	void XStandard_GUID::ToCString(const Standard_PCharacter aStrGuid) {
+	void XStandard_GUID::ToCString(Standard_PCharacter aStrGuid) {
 		NativeHandle->ToCString(aStrGuid);
 	};
 
@@ -56,27 +56,27 @@ namespace TKernel {
 	//! the guid have the following format:
 	//!
 	//! "00000000-0000-0000-0000-000000000000"
-	void XStandard_GUID::ToExtString(const Standard_PExtCharacter aStrGuid) {
+	void XStandard_GUID::ToExtString(Standard_PExtCharacter aStrGuid) {
 		NativeHandle->ToExtString(aStrGuid);
 	};
 
-	Standard_Boolean XStandard_GUID::IsSame(const Standard_GUID& uid) {
-		return NativeHandle->IsSame(uid);
+	Standard_Boolean XStandard_GUID::IsSame(XStandard_GUID^ uid) {
+		return NativeHandle->IsSame(uid->GetGUID());
 	};
 
 
-	Standard_Boolean XStandard_GUID::IsNotSame(const Standard_GUID& uid) {
-		return NativeHandle->IsNotSame(uid);
+	Standard_Boolean XStandard_GUID::IsNotSame(XStandard_GUID^ uid) {
+		return NativeHandle->IsNotSame(uid->GetGUID());
 	};
 
 
-	void XStandard_GUID::Assign(const Standard_GUID& uid) {
-		NativeHandle->Assign(uid);
+	void XStandard_GUID::Assign(XStandard_GUID^ uid) {
+		NativeHandle->Assign(uid->GetGUID());
 	};
 
 
-	void XStandard_GUID::Assign(const Standard_UUID& uid) {
-		NativeHandle->Assign(uid);
+	void XStandard_GUID::Assign(XStandard_UUID^ uid) {
+		NativeHandle->Assign(uid->GetUUID());
 	};
 
 	//! Display the GUID with the following format:
@@ -101,12 +101,12 @@ namespace TKernel {
 	//! @param theGUID the GUID which hash code is to be computed
 	//! @param theUpperBound the upper bound of the range a computing hash code must be within
 	//! @return a computed hash code, in the range [1, theUpperBound]
-	Standard_Integer XStandard_GUID::HashCode(const Standard_GUID& theGUID, Standard_Integer theUpperBound) {
-		return Standard_GUID::HashCode(theGUID, theUpperBound);
+	Standard_Integer XStandard_GUID::HashCode(XStandard_GUID^ theGUID, Standard_Integer theUpperBound) {
+		return Standard_GUID::HashCode(theGUID->GetGUID(), theUpperBound);
 	};
 
 	//! Returns True  when the two GUID are the same.
-	Standard_Boolean XStandard_GUID::IsEqual(const Standard_GUID& string1, Standard_GUID& string2) {
-		return Standard_GUID::IsEqual(string1, string2);
+	Standard_Boolean XStandard_GUID::IsEqual(XStandard_GUID^ string1, XStandard_GUID^ string2) {
+		return Standard_GUID::IsEqual(string1->GetGUID(), string2->GetGUID());
 	};
 }
