@@ -1,6 +1,7 @@
 #include <XTDF_Label.h>
 #include <XTDataStd_Name.h>
-#include <XTPrsStd_AISPresentation.h>        
+#include <XTPrsStd_AISPresentation.h>  
+#include <XTDataStd_Integer.h>
 #include <TDataStd_Name.hxx>
 using namespace TKVCAF;
 
@@ -136,19 +137,22 @@ namespace TKLCAF {
         System::String^ typeName = theAttribute->GetType()->Name;
         Standard_Boolean result = false;
         if (typeName == "XTDataStd_Name") {
-            //XTDataStd_Name^ XName = dynamic_cast<XTDataStd_Name^>(theAttribute);
             Handle(TDataStd_Name) TName;
             result = NativeHandle->FindAttribute(anID->GetGUID(), TName);
-            //std::cout << "  Name: " << TName->Get() << std::endl;
             theAttribute = gcnew XTDataStd_Name(TName);
-            //XTDataStd_Name^ XName = dynamic_cast<XTDataStd_Name^>(theAttribute);
-            //std::cout << "  Name: " << XName->GetName()->Get() << std::endl;
         }
         else if (typeName == "XTPrsStd_AISPresentation") {
-            //XTPrsStd_AISPresentation^ XAISPresentation = dynamic_cast<XTPrsStd_AISPresentation^>(theAttribute);
             Handle(TPrsStd_AISPresentation) TAISPresentation;
             result = NativeHandle->FindAttribute(anID->GetGUID(), TAISPresentation);
             theAttribute = gcnew XTPrsStd_AISPresentation(TAISPresentation);
+        }
+        else if (typeName == "XTDataStd_Integer") {
+            Handle(TDataStd_Integer) TInteger;
+            result = NativeHandle->FindAttribute(anID->GetGUID(), TInteger);
+            theAttribute = gcnew XTDataStd_Integer(TInteger);
+        }
+        else {
+            result = NativeHandle->FindAttribute(anID->GetGUID(), theAttribute->GetAttribute());
         }
         return  result;
     };

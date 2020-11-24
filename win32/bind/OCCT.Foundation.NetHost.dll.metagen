@@ -157,6 +157,36 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     get_AHandle(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig, SpecialName
     ~XTDF_Attribute(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<TDataStd_Integer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKLCAF.XTDataStd_Integer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKLCAF.XTDF_Attribute
+    Void .ctor(opencascade.handle<TDataStd_Integer>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<TDataStd_Integer> Handle 'get ' : 
+  Methods:
+    GetID(): PrivateScope, Public, Static, HideBySig
+    Set(Int32 IsConst): PrivateScope, Public, HideBySig
+    Set(XTDF_Label, XStandard_GUID, Int32 IsConst): PrivateScope, Public, Static, HideBySig
+    Set(XTDF_Label, Int32): PrivateScope, Public, Static, HideBySig
+    SetID(): PrivateScope, Public, Virtual, HideBySig
+    SetID(XStandard_GUID): PrivateScope, Public, Virtual, HideBySig
+    Get(): PrivateScope, Public, HideBySig
+    IsCaptured(): PrivateScope, Public, HideBySig
+    ID(): PrivateScope, Public, Virtual, HideBySig
+    Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
+    NewEmpty(): PrivateScope, Public, Virtual, HideBySig
+    Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    GetInteger(handle<TDataStd_Integer>*): PrivateScope, Public, HideBySig
+    get_Handle(handle<TDataStd_Integer>*): PrivateScope, Public, HideBySig, SpecialName
+    ~XTDataStd_Integer(): PrivateScope, Public, HideBySig
 Class TKernel.XStandard_Helper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

@@ -199,6 +199,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Integer.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h" />
@@ -300,6 +301,7 @@
     <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Integer.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.cpp" />

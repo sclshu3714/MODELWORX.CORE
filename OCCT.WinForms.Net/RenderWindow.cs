@@ -558,6 +558,7 @@ namespace OCCT.WinForms.Net
         #endregion
 
         #region 导入/导出
+        private int index = 0;
         public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
@@ -571,16 +572,21 @@ namespace OCCT.WinForms.Net
             TreeNode PNode = null;
             XTDF_Label aRootLabel = aDoc.Main();
             XTDF_Attribute aName = new XTDataStd_Name();
+            XTDF_Attribute aInteger = new XTDataStd_Integer();
             if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
             {
-                //std::cout << "  Name: " << aName.Get() << std::endl;
+                XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                if (!aRootLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                    XInteger = XTDataStd_Integer.Set(aRootLabel, index++);
+                else
+                    XInteger = aInteger as XTDataStd_Integer;
                 XTDataStd_Name XName = aName as XTDataStd_Name;
                 XTCollection_ExtendedString EString = XName.Get();
                 string text = EString.GetValueString();
                 PNode = new TreeNode();
                 PNode.Name = text;
-                PNode.Text = text;
-                //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                PNode.Text = $"{text}_{XInteger.Get()}";
+                PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
                 TempNode.Nodes.Add(PNode);
 
             }
@@ -603,17 +609,23 @@ namespace OCCT.WinForms.Net
         {
             if (!theLabel.IsNull() && !theLabel.HasChild()) // && XXCAFDoc_ShapeTool.IsShape(theLabel))
             {
+               
                 XTDF_Attribute aName = new XTDataStd_Name();
                 if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
                 {
-                    //std::cout << "  Name: " << aName.Get() << std::endl;
+                    XTDF_Attribute aInteger = new XTDataStd_Integer();
+                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
+                    else
+                        XInteger = aInteger as XTDataStd_Integer;
                     XTDataStd_Name XName = aName as XTDataStd_Name;
                     XTCollection_ExtendedString EString = XName.Get();
                     string text = EString.GetValueString();
                     TreeNode CNode = new TreeNode();
                     CNode.Name = text;
-                    CNode.Text = text;
-                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    CNode.Text = $"{text}_{XInteger.Get()}";
+                    CNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
                     TempNode.Nodes.Add(CNode);
                 }
                 
@@ -622,17 +634,22 @@ namespace OCCT.WinForms.Net
             }
             TreeNode PNode = null;
             {
+                XTDF_Attribute aInteger = new XTDataStd_Integer();
                 XTDF_Attribute aName = new XTDataStd_Name();
                 if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
                 {
-                    //std::cout << "  Name: " << aName.Get() << std::endl;
+                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
+                    else
+                        XInteger = aInteger as XTDataStd_Integer;
                     XTDataStd_Name XName = aName as XTDataStd_Name;
                     XTCollection_ExtendedString EString = XName.Get();
                     string text = EString.GetValueString();
                     PNode = new TreeNode();
                     PNode.Name = text;
-                    PNode.Text = text;
-                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    PNode.Text = $"{text}_{XInteger.Get()}";
+                    PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
                     TempNode.Nodes.Add(PNode);
 
                 }
