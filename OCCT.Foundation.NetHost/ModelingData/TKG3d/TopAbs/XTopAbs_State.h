@@ -14,20 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopAbs_State_HeaderFile
-#define _TopAbs_State_HeaderFile
+#ifndef _XTopAbs_State_HeaderFile
+#define _XTopAbs_State_HeaderFile
 
 //! Identifies the position of a vertex or a set of
 //! vertices relative to a region of a shape.
 //! The figure shown above illustrates the states of
 //! vertices found in various parts of the edge relative
 //! to the face which it intersects.
-enum TopAbs_State
+public enum class XTopAbs_State
 {
-TopAbs_IN,
-TopAbs_OUT,
-TopAbs_ON,
-TopAbs_UNKNOWN
+	TopAbs_IN,
+	TopAbs_OUT,
+	TopAbs_ON,
+	TopAbs_UNKNOWN
 };
 
-#endif // _TopAbs_State_HeaderFile
+#endif // _XTopAbs_State_HeaderFile

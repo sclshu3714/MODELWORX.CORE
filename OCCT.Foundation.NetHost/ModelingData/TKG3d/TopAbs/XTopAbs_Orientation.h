@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopAbs_Orientation_HeaderFile
-#define _TopAbs_Orientation_HeaderFile
+#ifndef _XTopAbs_Orientation_HeaderFile
+#define _XTopAbs_Orientation_HeaderFile
 
 //! Identifies the orientation of a topological shape.
 //! Orientation can represent a relation between two
@@ -37,12 +37,12 @@
 //! region. A change in orientation implies a switch of
 //! default region. This allows you to apply changes of
 //! orientation to the shape as a whole.
-enum TopAbs_Orientation
+public enum class XTopAbs_Orientation
 {
-TopAbs_FORWARD,
-TopAbs_REVERSED,
-TopAbs_INTERNAL,
-TopAbs_EXTERNAL
+	TopAbs_FORWARD,
+	TopAbs_REVERSED,
+	TopAbs_INTERNAL,
+	TopAbs_EXTERNAL
 };
 
-#endif // _TopAbs_Orientation_HeaderFile
+#endif // _XTopAbs_Orientation_HeaderFile

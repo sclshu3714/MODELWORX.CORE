@@ -14,12 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _XTopoDS_Shape_HeaderFile
+#define _XTopoDS_Shape_HeaderFile
 #pragma once
 #include <TopoDS_Shape.hxx>
 #include "XTopLoc_Location.h"
-
-using namespace TKMath;
-
+#include "NCollection_Haft.h"
+#include <XTopAbs_Orientation.h>
+#include <XTopAbs_ShapeEnum.h>
 //! Describes a shape which
 //! - references an underlying shape with the potential
 //! to be given a location and an orientation
@@ -30,7 +32,7 @@ using namespace TKMath;
 //! relation to other shapes).
 //! Note: A Shape is empty if it references an underlying
 //! shape which has an empty list of shapes.   
-
+using namespace TKMath;
 namespace TKBRep {
     ref class TKMath::XTopLoc_Location;
     public ref class XTopoDS_Shape
@@ -42,30 +44,30 @@ namespace TKBRep {
         XTopoDS_Shape(void);
 
         //! Creates a NULL Shape referring to nothing.
-        XTopoDS_Shape(TopoDS_Shape* pos);
+        XTopoDS_Shape(TopoDS_Shape pos);
 
         //! Creates a NULL Shape referring to nothing.
-        XTopoDS_Shape(TopoDS_Shape pos);
+        XTopoDS_Shape(Handle(TopoDS_Shape) pos);
 
         ~XTopoDS_Shape();
 
-        #ifndef OCCT_NO_RVALUE_REFERENCE
+        //#ifndef OCCT_NO_RVALUE_REFERENCE
 
-        //! Generalized moveructor, accepting also sub-classes
-        //! (TopoDS_Shape hierarchy declares only fake sub-classes with no extra fields).
-        template<class T2>
-        XTopoDS_Shape(T2^ theOther, typename std::enable_if<opencascade::std::is_base_of<XTopoDS_Shape, T2>::value>::type*);
+        ////! Generalized moveructor, accepting also sub-classes
+        ////! (TopoDS_Shape hierarchy declares only fake sub-classes with no extra fields).
+        //template<class T2>
+        //XTopoDS_Shape(T2^ theOther, typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value>::type*);
 
-        //! Generalized move assignment operator.
-        template<class T2>
-        typename std::enable_if<opencascade::std::is_base_of<XTopoDS_Shape, T2>::value, XTopoDS_Shape>::type^
-            operator= (T2^ theOther) {
-            return *this;
-        };
-        #endif
+        ////! Generalized move assignment operator.
+        //template<class T2>
+        //typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value, TopoDS_Shape>::type^
+        //    operator= (T2^ theOther) {
+        //    return *this;
+        //};
+        //#endif
 
         //!
-        TopoDS_Shape GetShape();
+        Handle(TopoDS_Shape) GetShape();
 
         //! Returns true if this shape is null. In other words, it
         //! references no underlying shape with the potential to
@@ -87,14 +89,14 @@ namespace TKBRep {
         XTopoDS_Shape^ Located(XTopLoc_Location^ theLoc);
 
         //! Returns the shape orientation.
-        TopAbs_Orientation Orientation();
+        XTopAbs_Orientation Orientation();
 
         //! Sets the shape orientation.
-        void Orientation(TopAbs_Orientation theOrient);
+        void Orientation(XTopAbs_Orientation theOrient);
 
         //! Returns  a    shape  similar  to  <me>   with  the
         //! orientation set to <Or>.
-        XTopoDS_Shape^ Oriented(TopAbs_Orientation theOrient);
+        XTopoDS_Shape^ Oriented(XTopAbs_Orientation theOrient);
 
         //! Returns a handle to the actual shape implementation.
         Handle(TopoDS_TShape) TShape();
@@ -104,7 +106,7 @@ namespace TKBRep {
         //! example VERTEX, EDGE, and so on.
         //! Exceptions
         //! Standard_NullObject if this shape is null.
-        TopAbs_ShapeEnum ShapeType();
+        XTopAbs_ShapeEnum ShapeType();
 
         //! Returns the free flag.
         Standard_Boolean^ Free();
@@ -134,7 +136,7 @@ namespace TKBRep {
         Standard_Boolean^ Orientable();
 
         //! Sets the orientability flag.
-        void Orientable(const Standard_Boolean theIsOrientable);
+        void Orientable(Standard_Boolean theIsOrientable);
 
         //! Returns the closedness flag.
         Standard_Boolean^ Closed();
@@ -180,12 +182,12 @@ namespace TKBRep {
 
         //! Updates the Shape Orientation by composition with theOrient,
         //! using the Compose method from the TopAbs package.
-        void Compose(TopAbs_Orientation theOrient);
+        void Compose(XTopAbs_Orientation theOrient);
 
         //! Returns  a  shape   similar   to  <me>   with  the
         //! orientation composed with theOrient, using the
         //! Compose method from the TopAbs package.
-        XTopoDS_Shape^ Composed(TopAbs_Orientation theOrient);
+        XTopoDS_Shape^ Composed(XTopAbs_Orientation theOrient);
 
         //! Returns the number of direct sub-shapes (children).
         //! @sa TopoDS_Iterator for accessing sub-shapes
@@ -228,22 +230,36 @@ namespace TKBRep {
         //! and no sub-shapes.
         XTopoDS_Shape^ EmptyCopied();
 
-        void TShape(const Handle(TopoDS_TShape) theTShape);
+        void TShape(Handle(TopoDS_TShape) theTShape);
+
+        void TShape(XTopoDS_Shape^ theTShape);
 
         //! Dumps the content of me into the stream
         void DumpJson(Standard_OStream theOStream, Standard_Integer theDepth);
 
+
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property Handle(TopoDS_Shape) Handle
+        {
+            Handle(TopoDS_Shape) get() {
+                return NativeHandle();
+            }
+        }
     private:
-        TopoDS_Shape* NativeHandle;
+        NCollection_Haft<Handle(TopoDS_Shape)> NativeHandle;
 
     };
 
-    //! Computes a hash code for the given shape, in the range [1, theUpperBound]
-    //! @param theShape the shape which hash code is to be computed
-    //! @param theUpperBound the upper bound of the range a computing hash code must be within
-    //! @return a computed hash code, in the range [1, theUpperBound]
-    inline Standard_Integer HashCode(XTopoDS_Shape^ theShape, Standard_Integer theUpperBound)
-    {
-        return theShape->GetShape().HashCode(theUpperBound);
-    }
+    ////! Computes a hash code for the given shape, in the range [1, theUpperBound]
+    ////! @param theShape the shape which hash code is to be computed
+    ////! @param theUpperBound the upper bound of the range a computing hash code must be within
+    ////! @return a computed hash code, in the range [1, theUpperBound]
+    //inline Standard_Integer HashCode(XTopoDS_Shape^ theShape, Standard_Integer theUpperBound)
+    //{
+    //    return theShape->GetShape()->HashCode(theUpperBound);
+    //}
 }
+
+#endif // _XTopoDS_Shape_HeaderFile

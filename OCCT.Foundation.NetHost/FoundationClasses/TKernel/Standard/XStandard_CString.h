@@ -14,78 +14,59 @@
 
 //!@file Functions working with plain C strings
 
-#ifndef _Standard_CString_HeaderFile
-# define _Standard_CString_HeaderFile
-
+#ifndef _XStandard_CString_HeaderFile
+#define _XStandard_CString_HeaderFile
+#pragma once
+#include <Standard_CString.hxx>
+#include <Standard_Integer.hxx>
 #include <Standard_Macro.hxx>
-
 # include <string.h>
 # include <stdio.h>
+namespace TKernel {
 
-# if defined(_MSC_VER) && ! defined(strcasecmp)
-#  define strcasecmp _stricmp
-# endif
+    public ref class XStandard_CString {
 
-// C++ only definitions
-#ifdef __cplusplus
+        XStandard_CString();
 
-#include <Standard_Integer.hxx>
+        XStandard_CString(Standard_CString* pos);
 
-//! Returns bounded hash code for the null-terminated string, in the range [1, theUpperBound]
-//! @param theString the null-terminated string which hash code is to be computed
-//! @param theUpperBound the upper bound of the range a computing hash code must be within
-//! @return a computed hash code, in the range [1, theUpperBound]
-Standard_EXPORT Standard_Integer HashCode (Standard_CString theString, Standard_Integer theUpperBound);
+        Standard_CString GetCString();
 
-//! Returns 32-bit hash code for the first theLen characters in the string theStr.
-//! The result is unbound (may be not only positive, but also negative)
-//! @param theString the string which hash code is to be computed
-//! @param theLength the length of the given string
-//! @return a computed hash code of the given string
-Standard_EXPORT Standard_Integer HashCodes (Standard_CString theString, Standard_Integer theLength);
+        //! Returns bounded hash code for the null-terminated string, in the range [1, theUpperBound]
+        //! @param theString the null-terminated string which hash code is to be computed
+        //! @param theUpperBound the upper bound of the range a computing hash code must be within
+        //! @return a computed hash code, in the range [1, theUpperBound]
+        Standard_Integer HashCode(XStandard_CString^ theString, Standard_Integer theUpperBound);
 
-//! Returns bounded hash code for the first theLength characters in the string theString, in the range [1, theUpperBound]
-//! @param theString the string which hash code is to be computed
-//! @param theLength the length of the initial substring of the given string which hash code is to be computed
-//! @param theUpperBound the upper bound of the range a computing hash code must be within
-//! @return a computed hash code of the given string
-inline Standard_Integer HashCode (const Standard_CString theString,
-                                  const Standard_Integer theLength,
-                                  const Standard_Integer theUpperBound)
-{
-//  return (Abs( HashCodes( Value , Len ) ) % Upper ) + 1 ;
-  return HashCode (HashCodes (theString, theLength), theUpperBound);
+        //! Returns 32-bit hash code for the first theLen characters in the string theStr.
+        //! The result is unbound (may be not only positive, but also negative)
+        //! @param theString the string which hash code is to be computed
+        //! @param theLength the length of the given string
+        //! @return a computed hash code of the given string
+        Standard_Integer HashCodes(XStandard_CString^ theString, Standard_Integer theLength);
+
+        //! Returns bounded hash code for the first theLength characters in the string theString, in the range [1, theUpperBound]
+        //! @param theString the string which hash code is to be computed
+        //! @param theLength the length of the initial substring of the given string which hash code is to be computed
+        //! @param theUpperBound the upper bound of the range a computing hash code must be within
+        //! @return a computed hash code of the given string
+        Standard_Integer HashCode(XStandard_CString^ theString, Standard_Integer theLength, Standard_Integer theUpperBound);
+  
+
+        //! Returns Standard_True if two strings are equal
+        Standard_Boolean IsEqual(XStandard_CString^ theOne, XStandard_CString^ theTwo);
+
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property Standard_CString* Handle
+        {
+            Standard_CString* get() {
+                return NativeHandle;
+            }
+        }
+    private:
+        Standard_CString* NativeHandle;
+    };
 }
-
-//! Returns Standard_True if two strings are equal
-inline Standard_Boolean IsEqual (const Standard_CString theOne, const Standard_CString theTwo)
-{
-  return strcmp (theOne, theTwo) == 0;
-}
-
-#endif /* __cplusplus */
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-//! Equivalent of standard C function atof() that always uses C locale
-Standard_EXPORT double Atof (const char* theStr);
-
-//! Optimized equivalent of standard C function strtod() that always uses C locale
-Standard_EXPORT double Strtod (const char* theStr, char** theNextPtr);
-
-//! Equivalent of standard C function printf() that always uses C locale
-Standard_EXPORT int Printf (const char* theFormat, ...);
-
-//! Equivalent of standard C function fprintf() that always uses C locale
-Standard_EXPORT int Fprintf (FILE* theFile, const char* theFormat, ...);
-
-//! Equivalent of standard C function sprintf() that always uses C locale
-Standard_EXPORT int Sprintf (char* theBuffer, const char* theFormat, ...);
-
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-
-#endif
+#endif  // _XStandard_CString_HeaderFile

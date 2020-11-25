@@ -280,6 +280,9 @@
     <Filter Include="源文件\DataExchange\TKXCAF\XCAFDoc">
       <UniqueIdentifier>{c4c3da58-e780-4224-ad40-ea9537fef776}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\ModelingData\TKG3d\TopAbs">
+      <UniqueIdentifier>{689c5f92-eb40-4aba-970d-3969d1044488}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -582,6 +585,15 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Integer.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDataStd</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_Orientation.h">
+      <Filter>头文件\ModelingData\TKG3d\TopAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs.h">
+      <Filter>头文件\ModelingData\TKG3d\TopAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h">
+      <Filter>头文件\ModelingData\TKG3d\TopAbs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -797,6 +809,9 @@
     </ClCompile>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Integer.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDataStd</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp">
+      <Filter>源文件\ModelingData\TKG3d\TopAbs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
