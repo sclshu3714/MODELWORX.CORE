@@ -14,20 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_KindOfUnit_HeaderFile
-#define _AIS_KindOfUnit_HeaderFile
+#ifndef _XAIS_KindOfUnit_HeaderFile
+#define _XAIS_KindOfUnit_HeaderFile
 
 //! Declares the type of Interactive Object unit.
-enum AIS_KindOfUnit
+public enum class XAIS_KindOfUnit
 {
-AIS_TOU_LENGTH,
-AIS_TOU_SURFACE,
-AIS_TOU_VOLUME,
-AIS_TOU_PLANE_ANGLE,
-AIS_TOU_SOLID_ANGLE,
-AIS_TOU_MASS,
-AIS_TOU_FORCE,
-AIS_TOU_TIME
+	AIS_TOU_LENGTH,
+	AIS_TOU_SURFACE,
+	AIS_TOU_VOLUME,
+	AIS_TOU_PLANE_ANGLE,
+	AIS_TOU_SOLID_ANGLE,
+	AIS_TOU_MASS,
+	AIS_TOU_FORCE,
+	AIS_TOU_TIME
 };
 
-#endif // _AIS_KindOfUnit_HeaderFile
+#endif // _XAIS_KindOfUnit_HeaderFile

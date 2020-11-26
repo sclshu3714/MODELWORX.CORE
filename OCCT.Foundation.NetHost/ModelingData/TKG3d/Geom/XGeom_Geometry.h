@@ -137,8 +137,8 @@ namespace TKG3d
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Handle(Geom_Geometry) GHandle {
-			Handle(Geom_Geometry) get() {
+		virtual property Handle(Standard_Transient) Handle {
+			Handle(Standard_Transient) get() {
 				return 	NativeHandle();
 			}
 		}

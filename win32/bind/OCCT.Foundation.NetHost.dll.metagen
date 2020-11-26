@@ -1418,7 +1418,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     SubIntensityOff(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Selection(handle<AIS_Selection>*): PrivateScope, Public, HideBySig
     SetSelection(handle<AIS_Selection>*): PrivateScope, Public, HideBySig
-    get_Handle(handle<AIS_InteractiveContext>*): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(handle<AIS_InteractiveContext>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     Select(NCollection_Array1<gp_Pnt2d>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Select(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -2102,7 +2102,7 @@ Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, Before
     HasPresentation(): PrivateScope, Public, HideBySig
     Presentation(handle<Graphic3d_Structure>*): PrivateScope, Public, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class NCollection_Haft<opencascade::handle<TPrsStd_AISPresentation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -2794,6 +2794,16 @@ Struct XGraphic3d_NameOfMaterial: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XGraphic3d_NameOfMaterial Graphic3d_NOM_TRANSPARENT = 23 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_DEFAULT = 24 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_UserDefined = 25 : Public, Static, Literal, HasDefault
+Struct XAIS_KindOfInteractive: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAIS_KindOfInteractive AIS_KOI_None = 0 : Public, Static, Literal, HasDefault
+    XAIS_KindOfInteractive AIS_KOI_Datum = 1 : Public, Static, Literal, HasDefault
+    XAIS_KindOfInteractive AIS_KOI_Shape = 2 : Public, Static, Literal, HasDefault
+    XAIS_KindOfInteractive AIS_KOI_Object = 3 : Public, Static, Literal, HasDefault
+    XAIS_KindOfInteractive AIS_KOI_Relation = 4 : Public, Static, Literal, HasDefault
+    XAIS_KindOfInteractive AIS_KOI_Dimension = 5 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<TDocStd_Document> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4054,6 +4064,86 @@ Class TKMath.XTopLoc_Datum3D: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TopoDS_Shape*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopoDS_Shape*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    TopoDS_Shape* Handle 'get ' : 
+  Methods:
+    GetShape(TopoDS_Shape*): PrivateScope, Public, HideBySig
+    IsNull(): PrivateScope, Public, HideBySig
+    Nullify(): PrivateScope, Public, HideBySig
+    Location(XTopLoc_Location): PrivateScope, Public, HideBySig
+    Location(): PrivateScope, Public, HideBySig
+    Located(XTopLoc_Location): PrivateScope, Public, HideBySig
+    Orientation(XTopAbs_Orientation): PrivateScope, Public, HideBySig
+    Orientation(): PrivateScope, Public, HideBySig
+    Oriented(XTopAbs_Orientation): PrivateScope, Public, HideBySig
+    TShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    TShape(handle<TopoDS_TShape>*): PrivateScope, Public, HideBySig
+    TShape(handle<TopoDS_TShape>*): PrivateScope, Public, HideBySig
+    ShapeType(): PrivateScope, Public, HideBySig
+    Free(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Free(): PrivateScope, Public, HideBySig
+    Locked(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Locked(): PrivateScope, Public, HideBySig
+    Modified(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Modified(): PrivateScope, Public, HideBySig
+    Checked(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Checked(): PrivateScope, Public, HideBySig
+    Orientable(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Orientable(): PrivateScope, Public, HideBySig
+    Closed(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Closed(): PrivateScope, Public, HideBySig
+    Infinite(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Infinite(): PrivateScope, Public, HideBySig
+    Convex(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Convex(): PrivateScope, Public, HideBySig
+    Move(XTopLoc_Location): PrivateScope, Public, HideBySig
+    Moved(XTopLoc_Location): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, HideBySig
+    Reversed(): PrivateScope, Public, HideBySig
+    Complement(): PrivateScope, Public, HideBySig
+    Complemented(): PrivateScope, Public, HideBySig
+    Compose(XTopAbs_Orientation): PrivateScope, Public, HideBySig
+    Composed(XTopAbs_Orientation): PrivateScope, Public, HideBySig
+    NbChildren(): PrivateScope, Public, HideBySig
+    IsPartner(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    IsSame(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    IsEqual(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    op_Equality(XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName
+    IsNotEqual(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    op_Inequality(XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName
+    HashCode(Int32): PrivateScope, Public, HideBySig
+    EmptyCopy(): PrivateScope, Public, HideBySig
+    EmptyCopied(): PrivateScope, Public, HideBySig
+    DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XTopAbs_Orientation TopAbs_FORWARD = 0 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_REVERSED = 1 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_INTERNAL = 2 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_EXTERNAL = 3 : Public, Static, Literal, HasDefault
+Struct XTopAbs_ShapeEnum: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XTopAbs_ShapeEnum TopAbs_COMPOUND = 0 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_COMPSOLID = 1 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SOLID = 2 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SHELL = 3 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_FACE = 4 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_WIRE = 5 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_EDGE = 6 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_VERTEX = 7 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SHAPE = 8 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<Geom_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4067,7 +4157,7 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Interfaces:
     System.IDisposable
   Properties:
-    opencascade.handle<Geom_Geometry> GHandle 'get ' : 
+    opencascade.handle<Standard_Transient> Handle 'get ' : 
   Methods:
     SetBaseNativeHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
@@ -4088,7 +4178,7 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Translated(handle<Geom_Geometry>*, xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     Translated(handle<Geom_Geometry>*, xgp_Vec): PrivateScope, Public, HideBySig
     Copy(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    get_GHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Surface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4102,7 +4192,7 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<Geom_Surface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
-    opencascade.handle<Geom_Surface> SHandle 'get ' : 
+    opencascade.handle<Standard_Transient> Handle 'get ' : 
   Methods:
     SetGeom_SurfaceHandle(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
     GetSurface(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
@@ -4132,7 +4222,7 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Value(Double, Double): PrivateScope, Public, HideBySig
-    get_SHandle(handle<Geom_Surface>*): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -4148,27 +4238,6 @@ Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ShapeOrientationToString(XTopAbs_Orientation): PrivateScope, Public, Static, HideBySig
     ShapeOrientationFromString(String, XTopAbs_Orientation): PrivateScope, Public, Static, HideBySig
     ShapeOrientationFromString(String): PrivateScope, Public, Static, HideBySig
-Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XTopAbs_Orientation TopAbs_FORWARD = 0 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_REVERSED = 1 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_INTERNAL = 2 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_EXTERNAL = 3 : Public, Static, Literal, HasDefault
-Struct XTopAbs_ShapeEnum: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XTopAbs_ShapeEnum TopAbs_COMPOUND = 0 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_COMPSOLID = 1 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SOLID = 2 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SHELL = 3 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_FACE = 4 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_WIRE = 5 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_EDGE = 6 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_VERTEX = 7 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SHAPE = 8 : Public, Static, Literal, HasDefault
 Struct XTopAbs_State: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -4273,3 +4342,65 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<AIS_Shape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XAIS_InteractiveObject
+    Void .ctor(opencascade.handle<AIS_Shape>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopoDS_Shape*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<AIS_InteractiveObject> Handle 'get ' : 
+  Methods:
+    Signature(): PrivateScope, Public, Virtual, HideBySig
+    Type(): PrivateScope, Public, Virtual, HideBySig
+    AcceptShapeDecomposition(): PrivateScope, Public, Virtual, HideBySig
+    AcceptDisplayMode(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, HideBySig
+    SetShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Set(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    SetOwnDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
+    SetOwnDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetOwnHLRDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
+    SetOwnHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
+    SetOwnDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
+    SetOwnDeviationAngle(): PrivateScope, Public, HideBySig
+    SetOwnHLRDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
+    SetOwnHLRDeviationAngle(): PrivateScope, Public, HideBySig
+    SetAngleAndDeviation(Double IsConst): PrivateScope, Public, HideBySig
+    UserAngle(): PrivateScope, Public, HideBySig
+    SetHLRAngleAndDeviation(Double IsConst): PrivateScope, Public, HideBySig
+    OwnDeviationCoefficient(Double, Double): PrivateScope, Public, HideBySig
+    OwnHLRDeviationCoefficient(Double, Double): PrivateScope, Public, HideBySig
+    OwnDeviationAngle(Double, Double): PrivateScope, Public, HideBySig
+    OwnHLRDeviationAngle(Double, Double): PrivateScope, Public, HideBySig
+    SetTypeOfHLR(XPrs3d_TypeOfHLR): PrivateScope, Public, HideBySig
+    TypeOfHLR(): PrivateScope, Public, HideBySig
+    SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig
+    UnsetColor(): PrivateScope, Public, Virtual, HideBySig
+    SetWidth(Double IsConst): PrivateScope, Public, Virtual, HideBySig
+    UnsetWidth(): PrivateScope, Public, Virtual, HideBySig
+    SetMaterial(Graphic3d_MaterialAspect* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    UnsetMaterial(): PrivateScope, Public, Virtual, HideBySig
+    SetTransparency(Double IsConst): PrivateScope, Public, Virtual, HideBySig
+    UnsetTransparency(): PrivateScope, Public, Virtual, HideBySig
+    BoundingBox(Bnd_Box*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Color(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig
+    Material(): PrivateScope, Public, Virtual, HideBySig
+    Transparency(): PrivateScope, Public, Virtual, HideBySig
+    SelectionType(Int32 IsConst): PrivateScope, Public, Static, HideBySig
+    SelectionMode(XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
+    TextureRepeatUV(): PrivateScope, Public, HideBySig
+    SetTextureRepeatUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    TextureOriginUV(): PrivateScope, Public, HideBySig
+    SetTextureOriginUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    TextureScaleUV(): PrivateScope, Public, HideBySig
+    SetTextureScaleUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    computeHlrPresentation(handle<Prs3d_Projector>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
+    get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_Shape(): PrivateScope, Public, HideBySig

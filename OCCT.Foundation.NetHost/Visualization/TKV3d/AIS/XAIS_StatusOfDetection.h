@@ -14,19 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_StatusOfDetection_HeaderFile
-#define _AIS_StatusOfDetection_HeaderFile
+#ifndef _XAIS_StatusOfDetection_HeaderFile
+#define _XAIS_StatusOfDetection_HeaderFile
 
 
-enum AIS_StatusOfDetection
+public enum class XAIS_StatusOfDetection
 {
-AIS_SOD_Error,
-AIS_SOD_Nothing,
-AIS_SOD_AllBad,
-AIS_SOD_Selected,
-AIS_SOD_OnlyOneDetected,
-AIS_SOD_OnlyOneGood,
-AIS_SOD_SeveralGood
+	AIS_SOD_Error,
+	AIS_SOD_Nothing,
+	AIS_SOD_AllBad,
+	AIS_SOD_Selected,
+	AIS_SOD_OnlyOneDetected,
+	AIS_SOD_OnlyOneGood,
+	AIS_SOD_SeveralGood
 };
 
-#endif // _AIS_StatusOfDetection_HeaderFile
+#endif // _XAIS_StatusOfDetection_HeaderFile

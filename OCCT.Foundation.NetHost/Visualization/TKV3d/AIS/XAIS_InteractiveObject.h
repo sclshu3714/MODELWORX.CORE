@@ -37,6 +37,7 @@
 #include "XSelectMgr_SelectableObject.h"
 //wrapper of pure C++ classes to ref classes
 #include <NCollection_Haft.h>
+#include <XAIS_KindOfInteractive.h>
 
 class Prs3d_BasicAspect;
 
@@ -60,7 +61,7 @@ namespace TKV3d
 		Handle(AIS_InteractiveObject) GetInteractiveObject();
 
 		//! Returns the kind of Interactive Object; AIS_KOI_None by default.
-		virtual AIS_KindOfInteractive Type() { return AIS_KOI_None; }
+		virtual XAIS_KindOfInteractive Type();
 
 		//! Specifies additional characteristics of Interactive Object of Type(); -1 by default.
 		//! Among the datums, this signature is attributed to the shape.
@@ -72,7 +73,7 @@ namespace TKV3d
 		//! - Line           signature 5
 		//! - Circle         signature 6
 		//! - Plane          signature 7.
-		virtual Standard_Integer^ Signature() { return -1; }
+		virtual Standard_Integer^ Signature();
 
 		//! Updates the active presentation; if <AllModes> = Standard_True
 		//! all the presentations inside are recomputed.
@@ -133,7 +134,7 @@ namespace TKV3d
 		/// <summary>
 		/// 本地句柄
 		/// </summary>
-		property Handle(AIS_InteractiveObject) Handle
+		virtual property Handle(AIS_InteractiveObject) Handle
 		{
 			Handle(AIS_InteractiveObject) get() {
 				return NativeHandle();

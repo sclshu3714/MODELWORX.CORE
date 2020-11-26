@@ -14,27 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_KindOfDimension_HeaderFile
-#define _AIS_KindOfDimension_HeaderFile
+#ifndef _XAIS_KindOfDimension_HeaderFile
+#define _XAIS_KindOfDimension_HeaderFile
 
 //! Declares the kinds of dimensions needed in the
 //! display of Interactive Objects.
-enum AIS_KindOfDimension
+public enum class XAIS_KindOfDimension
 {
-AIS_KOD_NONE,
-AIS_KOD_LENGTH,
-AIS_KOD_PLANEANGLE,
-AIS_KOD_SOLIDANGLE,
-AIS_KOD_AREA,
-AIS_KOD_VOLUME,
-AIS_KOD_MASS,
-AIS_KOD_TIME,
-AIS_KOD_RADIUS,
-AIS_KOD_DIAMETER,
-AIS_KOD_CHAMF2D,
-AIS_KOD_CHAMF3D,
-AIS_KOD_OFFSET,
-AIS_KOD_ELLIPSERADIUS
+	AIS_KOD_NONE,
+	AIS_KOD_LENGTH,
+	AIS_KOD_PLANEANGLE,
+	AIS_KOD_SOLIDANGLE,
+	AIS_KOD_AREA,
+	AIS_KOD_VOLUME,
+	AIS_KOD_MASS,
+	AIS_KOD_TIME,
+	AIS_KOD_RADIUS,
+	AIS_KOD_DIAMETER,
+	AIS_KOD_CHAMF2D,
+	AIS_KOD_CHAMF3D,
+	AIS_KOD_OFFSET,
+	AIS_KOD_ELLIPSERADIUS
 };
 
-#endif // _AIS_KindOfDimension_HeaderFile
+#endif // _XAIS_KindOfDimension_HeaderFile

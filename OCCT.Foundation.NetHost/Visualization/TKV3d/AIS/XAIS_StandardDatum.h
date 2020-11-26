@@ -14,20 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_StandardDatum_HeaderFile
-#define _AIS_StandardDatum_HeaderFile
+#ifndef _XAIS_StandardDatum_HeaderFile
+#define _XAIS_StandardDatum_HeaderFile
 
 //! Declares the type of standard datum of an Interactive Object.
-enum AIS_StandardDatum
+public enum class XAIS_StandardDatum
 {
-AIS_SD_None,
-AIS_SD_Point,
-AIS_SD_Axis,
-AIS_SD_Trihedron,
-AIS_SD_PlaneTrihedron,
-AIS_SD_Line,
-AIS_SD_Circle,
-AIS_SD_Plane
+	AIS_SD_None,
+	AIS_SD_Point,
+	AIS_SD_Axis,
+	AIS_SD_Trihedron,
+	AIS_SD_PlaneTrihedron,
+	AIS_SD_Line,
+	AIS_SD_Circle,
+	AIS_SD_Plane
 };
 
-#endif // _AIS_StandardDatum_HeaderFile
+#endif // _XAIS_StandardDatum_HeaderFile

@@ -12,22 +12,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_KindOfRelation_HeaderFile
-#define _AIS_KindOfRelation_HeaderFile
+#ifndef _XAIS_KindOfRelation_HeaderFile
+#define _XAIS_KindOfRelation_HeaderFile
 
-enum AIS_KindOfRelation
+public enum class XAIS_KindOfRelation
 {
-  AIS_KOR_NONE = 0,
-  AIS_KOR_CONCENTRIC,
-  AIS_KOR_EQUALDISTANCE,
-  AIS_KOR_EQUALRADIUS,
-  AIS_KOR_FIX,
-  AIS_KOR_IDENTIC,
-  AIS_KOR_OFFSET,
-  AIS_KOR_PARALLEL,
-  AIS_KOR_PERPENDICULAR,
-  AIS_KOR_TANGENT,
-  AIS_KOR_SYMMETRIC
+	AIS_KOR_NONE = 0,
+	AIS_KOR_CONCENTRIC,
+	AIS_KOR_EQUALDISTANCE,
+	AIS_KOR_EQUALRADIUS,
+	AIS_KOR_FIX,
+	AIS_KOR_IDENTIC,
+	AIS_KOR_OFFSET,
+	AIS_KOR_PARALLEL,
+	AIS_KOR_PERPENDICULAR,
+	AIS_KOR_TANGENT,
+	AIS_KOR_SYMMETRIC
 };
 
-#endif
+#endif	// _XAIS_KindOfRelation_HeaderFile

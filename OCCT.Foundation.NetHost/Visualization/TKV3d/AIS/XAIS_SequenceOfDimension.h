@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AIS_SequenceOfDimension_HeaderFile
-#define AIS_SequenceOfDimension_HeaderFile
+#ifndef XAIS_SequenceOfDimension_HeaderFile
+#define XAIS_SequenceOfDimension_HeaderFile
 
 #include <AIS_Relation.hxx>
 #include <NCollection_Sequence.hxx>
@@ -23,4 +23,4 @@
 typedef NCollection_Sequence<Handle(AIS_Relation)> AIS_SequenceOfDimension;
 
 
-#endif
+#endif // XAIS_SequenceOfDimension_HeaderFile

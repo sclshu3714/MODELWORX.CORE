@@ -594,6 +594,54 @@
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h">
       <Filter>头文件\ModelingData\TKG3d\TopAbs</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Shape.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfDimension.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfInteractive.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfRelation.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfSurface.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfUnit.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_SelectionModesConcurrency.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_SelectStatus.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_StandardDatum.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_StatusOfDetection.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_StatusOfPick.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_TypeOfAxis.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_TypeOfDist.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_TypeOfIso.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_TypeOfPlane.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -812,6 +860,12 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp">
       <Filter>源文件\ModelingData\TKG3d\TopAbs</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Shape.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

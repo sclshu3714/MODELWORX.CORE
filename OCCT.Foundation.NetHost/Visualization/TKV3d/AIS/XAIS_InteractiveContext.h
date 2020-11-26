@@ -1113,7 +1113,7 @@ namespace TKV3d
         /// <summary>
         /// 本地句柄
         /// </summary>
-        property Handle(AIS_InteractiveContext) Handle
+        virtual property Handle(AIS_InteractiveContext) Handle
         {
             Handle(AIS_InteractiveContext) get() {
                 return NativeHandle();

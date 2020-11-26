@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_TypeOfPlane_HeaderFile
-#define _AIS_TypeOfPlane_HeaderFile
+#ifndef _XAIS_TypeOfPlane_HeaderFile
+#define _XAIS_TypeOfPlane_HeaderFile
 
 //! Declares the type of plane.
-enum AIS_TypeOfPlane
+public enum class XAIS_TypeOfPlane
 {
-AIS_TOPL_Unknown,
-AIS_TOPL_XYPlane,
-AIS_TOPL_XZPlane,
-AIS_TOPL_YZPlane
+	AIS_TOPL_Unknown,
+	AIS_TOPL_XYPlane,
+	AIS_TOPL_XZPlane,
+	AIS_TOPL_YZPlane
 };
 
-#endif // _AIS_TypeOfPlane_HeaderFile
+#endif // _XAIS_TypeOfPlane_HeaderFile

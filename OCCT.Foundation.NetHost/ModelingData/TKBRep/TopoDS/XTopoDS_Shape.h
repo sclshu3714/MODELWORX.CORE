@@ -47,27 +47,27 @@ namespace TKBRep {
         XTopoDS_Shape(TopoDS_Shape pos);
 
         //! Creates a NULL Shape referring to nothing.
-        XTopoDS_Shape(Handle(TopoDS_Shape) pos);
+        XTopoDS_Shape(TopoDS_Shape* pos);
 
         ~XTopoDS_Shape();
 
-        //#ifndef OCCT_NO_RVALUE_REFERENCE
+        #ifndef OCCT_NO_RVALUE_REFERENCE
 
-        ////! Generalized moveructor, accepting also sub-classes
-        ////! (TopoDS_Shape hierarchy declares only fake sub-classes with no extra fields).
-        //template<class T2>
-        //XTopoDS_Shape(T2^ theOther, typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value>::type*);
+        //! Generalized moveructor, accepting also sub-classes
+        //! (TopoDS_Shape hierarchy declares only fake sub-classes with no extra fields).
+        template<class T2>
+        XTopoDS_Shape(T2 theOther, typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value>::type*);
 
-        ////! Generalized move assignment operator.
-        //template<class T2>
-        //typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value, TopoDS_Shape>::type^
-        //    operator= (T2^ theOther) {
-        //    return *this;
-        //};
-        //#endif
+        //! Generalized move assignment operator.
+        template<class T2>
+        typename std::enable_if<opencascade::std::is_base_of<TopoDS_Shape, T2>::value, TopoDS_Shape>::type^
+            operator= (T2 theOther) {
+            return *this;
+        };
+        #endif
 
         //!
-        Handle(TopoDS_Shape) GetShape();
+        TopoDS_Shape GetShape();
 
         //! Returns true if this shape is null. In other words, it
         //! references no underlying shape with the potential to
@@ -241,25 +241,16 @@ namespace TKBRep {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(TopoDS_Shape) Handle
+        property TopoDS_Shape* Handle
         {
-            Handle(TopoDS_Shape) get() {
-                return NativeHandle();
+            TopoDS_Shape* get() {
+                return NativeHandle;
             }
         }
     private:
-        NCollection_Haft<Handle(TopoDS_Shape)> NativeHandle;
+        TopoDS_Shape* NativeHandle;
 
     };
-
-    ////! Computes a hash code for the given shape, in the range [1, theUpperBound]
-    ////! @param theShape the shape which hash code is to be computed
-    ////! @param theUpperBound the upper bound of the range a computing hash code must be within
-    ////! @return a computed hash code, in the range [1, theUpperBound]
-    //inline Standard_Integer HashCode(XTopoDS_Shape^ theShape, Standard_Integer theUpperBound)
-    //{
-    //    return theShape->GetShape()->HashCode(theUpperBound);
-    //}
 }
 
 #endif // _XTopoDS_Shape_HeaderFile

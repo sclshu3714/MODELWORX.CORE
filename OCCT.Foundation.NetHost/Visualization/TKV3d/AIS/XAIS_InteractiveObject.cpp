@@ -28,6 +28,25 @@ namespace TKV3d {
 		return NativeHandle();
 	};
 
+	//! Returns the kind of Interactive Object; AIS_KOI_None by default.
+	XAIS_KindOfInteractive XAIS_InteractiveObject::Type() {
+		return safe_cast<XAIS_KindOfInteractive>(NativeHandle()->Type());
+	};
+
+	//! Specifies additional characteristics of Interactive Object of Type(); -1 by default.
+	//! Among the datums, this signature is attributed to the shape.
+	//! The remaining datums have the following default signatures:
+	//! - Point          signature 1
+	//! - Axis           signature 2
+	//! - Trihedron      signature 3
+	//! - PlaneTrihedron signature 4
+	//! - Line           signature 5
+	//! - Circle         signature 6
+	//! - Plane          signature 7.
+	Standard_Integer^ XAIS_InteractiveObject::Signature() {
+		return NativeHandle()->Signature();
+	};
+
 	//! Updates the active presentation; if <AllModes> = Standard_True
 	//! all the presentations inside are recomputed.
 	//! IMPORTANT: It is preferable to call Redisplay method of

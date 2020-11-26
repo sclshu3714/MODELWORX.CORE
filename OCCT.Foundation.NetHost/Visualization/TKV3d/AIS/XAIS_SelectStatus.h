@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_SelectStatus_HeaderFile
-#define _AIS_SelectStatus_HeaderFile
+#ifndef _XAIS_SelectStatus_HeaderFile
+#define _XAIS_SelectStatus_HeaderFile
 
 
-enum AIS_SelectStatus
+public enum class XAIS_SelectStatus
 {
-AIS_SS_Added,
-AIS_SS_Removed,
-AIS_SS_NotDone
+	AIS_SS_Added,
+	AIS_SS_Removed,
+	AIS_SS_NotDone
 };
 
-#endif // _AIS_SelectStatus_HeaderFile
+#endif // _XAIS_SelectStatus_HeaderFile

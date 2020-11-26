@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_TypeOfAxis_HeaderFile
-#define _AIS_TypeOfAxis_HeaderFile
+#ifndef _XAIS_TypeOfAxis_HeaderFile
+#define _XAIS_TypeOfAxis_HeaderFile
 
 //! Declares the type of axis.
-enum AIS_TypeOfAxis
+public enum class XAIS_TypeOfAxis
 {
-AIS_TOAX_Unknown,
-AIS_TOAX_XAxis,
-AIS_TOAX_YAxis,
-AIS_TOAX_ZAxis
+	AIS_TOAX_Unknown,
+	AIS_TOAX_XAxis,
+	AIS_TOAX_YAxis,
+	AIS_TOAX_ZAxis
 };
 
-#endif // _AIS_TypeOfAxis_HeaderFile
+#endif // _XAIS_TypeOfAxis_HeaderFile

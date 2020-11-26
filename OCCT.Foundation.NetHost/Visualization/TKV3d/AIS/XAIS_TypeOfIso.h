@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_TypeOfIso_HeaderFile
-#define _AIS_TypeOfIso_HeaderFile
+#ifndef _XAIS_TypeOfIso_HeaderFile
+#define _XAIS_TypeOfIso_HeaderFile
 
 //! Declares the type of isoparameter displayed.
-enum AIS_TypeOfIso
+public enum class XAIS_TypeOfIso
 {
-AIS_TOI_IsoU,
-AIS_TOI_IsoV,
-AIS_TOI_Both
+	AIS_TOI_IsoU,
+	AIS_TOI_IsoV,
+	AIS_TOI_Both
 };
 
-#endif // _AIS_TypeOfIso_HeaderFile
+#endif // _XAIS_TypeOfIso_HeaderFile

@@ -14,20 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_KindOfSurface_HeaderFile
-#define _AIS_KindOfSurface_HeaderFile
+#ifndef _XAIS_KindOfSurface_HeaderFile
+#define _XAIS_KindOfSurface_HeaderFile
 
 
-enum AIS_KindOfSurface
+public enum class XAIS_KindOfSurface
 {
-AIS_KOS_Plane,
-AIS_KOS_Cylinder,
-AIS_KOS_Cone,
-AIS_KOS_Sphere,
-AIS_KOS_Torus,
-AIS_KOS_Revolution,
-AIS_KOS_Extrusion,
-AIS_KOS_OtherSurface
+	AIS_KOS_Plane,
+	AIS_KOS_Cylinder,
+	AIS_KOS_Cone,
+	AIS_KOS_Sphere,
+	AIS_KOS_Torus,
+	AIS_KOS_Revolution,
+	AIS_KOS_Extrusion,
+	AIS_KOS_OtherSurface
 };
 
-#endif // _AIS_KindOfSurface_HeaderFile
+#endif // _XAIS_KindOfSurface_HeaderFile

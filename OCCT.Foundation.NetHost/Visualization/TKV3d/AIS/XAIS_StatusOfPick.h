@@ -14,17 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_StatusOfPick_HeaderFile
-#define _AIS_StatusOfPick_HeaderFile
+#ifndef _XAIS_StatusOfPick_HeaderFile
+#define _XAIS_StatusOfPick_HeaderFile
 
 
-enum AIS_StatusOfPick
+public enum class XAIS_StatusOfPick
 {
-AIS_SOP_Error,
-AIS_SOP_NothingSelected,
-AIS_SOP_Removed,
-AIS_SOP_OneSelected,
-AIS_SOP_SeveralSelected
+	AIS_SOP_Error,
+	AIS_SOP_NothingSelected,
+	AIS_SOP_Removed,
+	AIS_SOP_OneSelected,
+	AIS_SOP_SeveralSelected
 };
 
-#endif // _AIS_StatusOfPick_HeaderFile
+#endif // _XAIS_StatusOfPick_HeaderFile
