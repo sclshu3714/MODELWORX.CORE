@@ -271,6 +271,7 @@
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs.h" />
@@ -281,6 +282,7 @@
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfFacingModel.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfHighlightMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfLine.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Axis.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfDimension.h" />
@@ -418,10 +420,12 @@
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Axis.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_1.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_2.cpp" />

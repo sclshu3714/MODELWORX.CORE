@@ -4244,6 +4244,40 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Copy(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> Handle 'get ' : 
+  Methods:
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reversed(): PrivateScope, Public, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(Double): PrivateScope, Public, HideBySig
+    get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Surface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4406,6 +4440,48 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<AIS_Axis> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XAIS_InteractiveObject
+    Void .ctor(opencascade.handle<Geom_Axis1Placement>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_Axis2Placement>*, XAIS_TypeOfAxis): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_Line>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<AIS_InteractiveObject> Handle 'get ' : 
+  Methods:
+    Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
+    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, HideBySig
+    SetComponent(handle<Geom_Line>*): PrivateScope, Public, HideBySig
+    Axis2Placement(handle<Geom_Axis2Placement>*): PrivateScope, Public, HideBySig
+    SetAxis2Placement(handle<Geom_Axis2Placement>*, XAIS_TypeOfAxis): PrivateScope, Public, HideBySig
+    SetAxis1Placement(handle<Geom_Axis1Placement>*): PrivateScope, Public, HideBySig
+    TypeOfAxis(): PrivateScope, Public, HideBySig
+    SetTypeOfAxis(XAIS_TypeOfAxis): PrivateScope, Public, HideBySig
+    IsXYZAxis(): PrivateScope, Public, HideBySig
+    AcceptDisplayMode(Int32): PrivateScope, Public, Virtual, HideBySig
+    Compute(handle<Prs3d_Projector>*, handle<Geom_Transformation>*, handle<Graphic3d_Structure>*): PrivateScope, Public, Virtual, HideBySig
+    Signature(): PrivateScope, Public, Virtual, HideBySig
+    Type(): PrivateScope, Public, Virtual, HideBySig
+    SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig
+    SetWidth(Double IsConst): PrivateScope, Public, Virtual, HideBySig
+    UnsetColor(): PrivateScope, Public, Virtual, HideBySig
+    UnsetWidth(): PrivateScope, Public, Virtual, HideBySig
+    get_Handle(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_Axis(): PrivateScope, Public, HideBySig
+Struct XAIS_TypeOfAxis: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAIS_TypeOfAxis AIS_TOAX_Unknown = 0 : Public, Static, Literal, HasDefault
+    XAIS_TypeOfAxis AIS_TOAX_XAxis = 1 : Public, Static, Literal, HasDefault
+    XAIS_TypeOfAxis AIS_TOAX_YAxis = 2 : Public, Static, Literal, HasDefault
+    XAIS_TypeOfAxis AIS_TOAX_ZAxis = 3 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<AIS_Shape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

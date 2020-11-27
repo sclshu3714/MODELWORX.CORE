@@ -53,7 +53,7 @@ namespace TKG3d
 	ref class TKMath::xgp_Ax2;
 	ref class TKMath::xgp_Vec;
 	ref class TKMath::xgp_Trsf;
-	public ref class XGeom_Geometry
+	public ref class XGeom_Geometry	//: public Standard_Transient
 	{
 
 	public:

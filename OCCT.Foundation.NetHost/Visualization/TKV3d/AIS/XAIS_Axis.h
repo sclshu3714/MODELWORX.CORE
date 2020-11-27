@@ -14,19 +14,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_Axis_HeaderFile
-#define _AIS_Axis_HeaderFile
+#ifndef _XAIS_Axis_HeaderFile
+#define _XAIS_Axis_HeaderFile
+#pragma once
+#include "AIS_Axis.hxx"
+#include <XAIS_InteractiveObject.h>
+#include <XAIS_TypeOfAxis.h>
+#include <xgp_Dir.h>
+#include <xgp_Pnt.h>
+#include <XSelectMgr_Selection.h>
 
-#include <AIS_InteractiveObject.hxx>
-#include <AIS_TypeOfAxis.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <SelectMgr_Selection.hxx>
+#include <Geom_Line.hxx>
+#include <Geom_Axis1Placement.hxx>
+#include <Geom_Axis2Placement.hxx>
+#include <Prs3d_LineAspect.hxx>
+#include <Prs3d_Projector.hxx>
 
 class Geom_Line;
 class Geom_Axis1Placement;
 class Geom_Axis2Placement;
 class Prs3d_LineAspect;
+
+using namespace TKMath;
 
 //! Locates the x, y and z axes in an Interactive Object.
 //! These are used to orient it correctly in presentations
@@ -34,103 +43,98 @@ class Prs3d_LineAspect;
 //! shape, for example, from one of the axes. Conversely,
 //! an axis can be created to build a revolved shape and
 //! then situated relative to one of the axes of the view.
+namespace TKV3d {
 
-class AIS_Axis : public AIS_InteractiveObject
-{
-  DEFINE_STANDARD_RTTIEXT(AIS_Axis, AIS_InteractiveObject)
-public:
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Dir;
+	public ref class XAIS_Axis : public XAIS_InteractiveObject
+	{
+		//! DEFINE_STANDARD_RTTIEXT(AIS_Axis, AIS_InteractiveObject)
+	public:
 
-  //! Initializes the line aComponent
-  Standard_EXPORT AIS_Axis(const Handle(Geom_Line)& aComponent);
+		//! Initializes the line aComponent
+		XAIS_Axis(Handle(Geom_Line) aComponent);
 
-  //! initializes the axis2 position
-  //! aComponent. The coordinate system used is right-handed.
-  Standard_EXPORT AIS_Axis(const Handle(Geom_Axis2Placement)& aComponent, const AIS_TypeOfAxis anAxisType);
+		//! initializes the axis2 position
+		//! aComponent. The coordinate system used is right-handed.
+		XAIS_Axis(Handle(Geom_Axis2Placement) aComponent, XAIS_TypeOfAxis anAxisType);
 
-  //! Initializes the axis1 position anAxis.
-  Standard_EXPORT AIS_Axis(const Handle(Geom_Axis1Placement)& anAxis);
+		//! Initializes the axis1 position anAxis.
+		XAIS_Axis(Handle(Geom_Axis1Placement) anAxis);
 
-  //! Returns the axis entity aComponent and identifies it
-  //! as a component of a shape.
-  const Handle(Geom_Line)& Component() const { return myComponent; }
+		//! Returns the axis entity aComponent and identifies it
+		//! as a component of a shape.
+		const Handle(Geom_Line) Component();
 
-  //! Sets the coordinates of the lin aComponent.
-  Standard_EXPORT void SetComponent (const Handle(Geom_Line)& aComponent);
+		Handle(AIS_Axis) GetAxis();
 
-  //! Returns the position of axis2 and   positions it by
-  //! identifying it as the x, y, or z axis and giving its
-  //! direction in 3D space. The coordinate system used is right-handed.
-  const Handle(Geom_Axis2Placement)& Axis2Placement() const { return myAx2; }
+		//! Sets the coordinates of the lin aComponent.
+		void SetComponent(Handle(Geom_Line) aComponent);
 
-  //! Allows you to provide settings for aComponent:the
-  //! position and direction of an axis in 3D space. The
-  //! coordinate system used is right-handed.
-  Standard_EXPORT void SetAxis2Placement (const Handle(Geom_Axis2Placement)& aComponent, const AIS_TypeOfAxis anAxisType);
-  
-  //! Constructs a new line to serve as the axis anAxis in 3D space.
-  Standard_EXPORT void SetAxis1Placement (const Handle(Geom_Axis1Placement)& anAxis);
-  
-  //! Returns the type of axis.
-  AIS_TypeOfAxis TypeOfAxis() const { return myTypeOfAxis; }
+		//! Returns the position of axis2 and   positions it by
+		//! identifying it as the x, y, or z axis and giving its
+		//! direction in 3D space. The coordinate system used is right-handed.
+		const Handle(Geom_Axis2Placement) Axis2Placement();
 
-  //! Constructs the entity theTypeAxis to stock information
-  //! concerning type of axis.
-  void SetTypeOfAxis (const AIS_TypeOfAxis theTypeAxis) { myTypeOfAxis = theTypeAxis; }
+		//! Allows you to provide settings for aComponent:the
+		//! position and direction of an axis in 3D space. The
+		//! coordinate system used is right-handed.
+		void SetAxis2Placement(Handle(Geom_Axis2Placement) aComponent, XAIS_TypeOfAxis anAxisType);
 
-  //! Returns a signature of 2 for axis datums. When you
-  //! activate mode 2 by a signature, you pick AIS objects
-  //! of type AIS_Axis.
-  Standard_Boolean IsXYZAxis() const { return myIsXYZAxis; }
+		//! Constructs a new line to serve as the axis anAxis in 3D space.
+		void SetAxis1Placement(Handle(Geom_Axis1Placement) anAxis);
 
-  //! Returns true if the interactive object accepts the display mode aMode.
-  Standard_EXPORT Standard_Boolean AcceptDisplayMode (const Standard_Integer aMode) const Standard_OVERRIDE;
-  
-  //! computes the presentation according to a point of view
-  //! given by <aProjector>.
-  //! To be Used when the associated degenerated Presentations
-  //! have been transformed by <aTrsf> which is not a Pure
-  //! Translation. The HLR Prs can't be deducted automatically
-  //! WARNING :<aTrsf> must be applied
-  //! to the object to display before computation  !!!
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Geom_Transformation)& aTrsf, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
+		//! Returns the type of axis.
+		XAIS_TypeOfAxis TypeOfAxis();
 
-  virtual Standard_Integer Signature() const Standard_OVERRIDE { return 2; }
+		//! Constructs the entity theTypeAxis to stock information
+		//! concerning type of axis.
+		void SetTypeOfAxis(XAIS_TypeOfAxis theTypeAxis);
 
-  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KOI_Datum; }
+		//! Returns a signature of 2 for axis datums. When you
+		//! activate mode 2 by a signature, you pick AIS objects
+		//! of type AIS_Axis.
+		Standard_Boolean IsXYZAxis();
 
-  Standard_EXPORT void SetColor (const Quantity_Color& aColor) Standard_OVERRIDE;
-  
-  Standard_EXPORT void SetWidth (const Standard_Real aValue) Standard_OVERRIDE;
-  
-  Standard_EXPORT void UnsetColor() Standard_OVERRIDE;
-  
-  Standard_EXPORT void UnsetWidth() Standard_OVERRIDE;
+		//! Returns true if the interactive object accepts the display mode aMode.
+		Standard_Boolean AcceptDisplayMode(Standard_Integer aMode) Standard_OVERRIDE;
 
-private:
+		//! computes the presentation according to a point of view
+		//! given by <aProjector>.
+		//! To be Used when the associated degenerated Presentations
+		//! have been transformed by <aTrsf> which is not a Pure
+		//! Translation. The HLR Prs can't be deducted automatically
+		//! WARNING :<aTrsf> must be applied
+		//! to the object to display before computation  !!!
+		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, const Handle(Prs3d_Presentation) aPresentation) Standard_OVERRIDE;
 
-  Standard_EXPORT void Compute (const Handle(PrsMgr_PresentationManager3d)& aPresentationManager, const Handle(Prs3d_Presentation)& aPresentation, const Standard_Integer aMode = 0) Standard_OVERRIDE;
-  
-  Standard_EXPORT void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
-  
-  Standard_EXPORT void ComputeSelection (const Handle(SelectMgr_Selection)& aSelection, const Standard_Integer aMode) Standard_OVERRIDE;
-  
-  Standard_EXPORT void ComputeFields();
+		virtual Standard_Integer Signature() Standard_OVERRIDE;
 
-private:
+		virtual XAIS_KindOfInteractive Type() Standard_OVERRIDE;
 
-  Handle(Geom_Line) myComponent;
-  Handle(Geom_Axis2Placement) myAx2;
-  gp_Pnt myPfirst;
-  gp_Pnt myPlast;
-  AIS_TypeOfAxis myTypeOfAxis;
-  Standard_Boolean myIsXYZAxis;
-  gp_Dir myDir;
-  Standard_Real myVal;
-  Standard_CString myText;
-  Handle(Prs3d_LineAspect) myLineAspect;
+		void SetColor(XQuantity_Color^ aColor) Standard_OVERRIDE;
 
-};
+		void SetWidth(const Standard_Real aValue) Standard_OVERRIDE;
 
-DEFINE_STANDARD_HANDLE(AIS_Axis, AIS_InteractiveObject)
+		void UnsetColor() Standard_OVERRIDE;
 
-#endif // _AIS_Axis_HeaderFile
+		void UnsetWidth() Standard_OVERRIDE;
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property Handle(AIS_InteractiveObject) Handle
+		{
+			Handle(AIS_InteractiveObject) get() Standard_OVERRIDE {
+				return NativeHandle();
+			}
+		};
+
+	private:
+		NCollection_Haft<Handle(AIS_Axis)> NativeHandle;
+
+	};
+
+	//! DEFINE_STANDARD_HANDLE(AIS_Axis, AIS_InteractiveObject)
+}
+#endif // _XAIS_Axis_HeaderFile

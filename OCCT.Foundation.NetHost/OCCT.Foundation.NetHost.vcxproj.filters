@@ -759,6 +759,12 @@
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerId.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Axis.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -986,6 +992,12 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_MaterialAspect.cpp">
       <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Axis.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

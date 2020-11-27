@@ -73,7 +73,7 @@ namespace TKV3d
 		//! - Line           signature 5
 		//! - Circle         signature 6
 		//! - Plane          signature 7.
-		virtual Standard_Integer^ Signature();
+		virtual Standard_Integer Signature();
 
 		//! Updates the active presentation; if <AllModes> = Standard_True
 		//! all the presentations inside are recomputed.

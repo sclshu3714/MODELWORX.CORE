@@ -14,7 +14,7 @@ namespace TKV3d {
         NativeHandle() = pos;
     };
     //! Returns index 0. This value refers to SHAPE from TopAbs_ShapeEnum
-    Standard_Integer^ XAIS_Shape::Signature() {
+    Standard_Integer XAIS_Shape::Signature() {
         return NativeHandle()->Signature();
     };
 

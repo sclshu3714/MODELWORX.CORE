@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Geom_Line_HeaderFile
-#define _Geom_Line_HeaderFile
+#ifndef _XGeom_Line_HeaderFile
+#define _XGeom_Line_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -36,8 +36,8 @@ class gp_Trsf;
 class Geom_Geometry;
 
 
-class Geom_Line;
-DEFINE_STANDARD_HANDLE(Geom_Line, Geom_Curve)
+//class Geom_Line;
+//DEFINE_STANDARD_HANDLE(Geom_Line, Geom_Curve)
 
 //! Describes an infinite line.
 //! A line is defined and positioned in space with an axis
@@ -203,4 +203,4 @@ private:
 
 
 
-#endif // _Geom_Line_HeaderFile
+#endif // _XGeom_Line_HeaderFile

@@ -82,7 +82,7 @@ namespace TKV3d {
 
         XAIS_Shape(Handle(AIS_Shape) pos);
         //! Returns index 0. This value refers to SHAPE from TopAbs_ShapeEnum
-        virtual Standard_Integer^ Signature() Standard_OVERRIDE;
+        virtual Standard_Integer Signature() Standard_OVERRIDE;
 
         //! Returns Object as the type of Interactive Object.
         virtual XAIS_KindOfInteractive Type() Standard_OVERRIDE;

@@ -53,7 +53,7 @@ public enum class XGraphic3d_TypeOfShadingModel
   V3d_GOURAUD = Graphic3d_TOSM_VERTEX,
   V3d_PHONG   = Graphic3d_TOSM_FRAGMENT,
   //! Auxiliary value defining the overall number of values in enumeration Graphic3d_TypeOfShadingModel
-  XGraphic3d_TypeOfShadingModel_NB = XGraphic3d_TypeOfShadingModel(Graphic3d_TOSM_FRAGMENT) + 1
+  XGraphic3d_TypeOfShadingModel_NB = Graphic3d_TOSM_FRAGMENT + 1
 };
 
 #endif // _XGraphic3d_TypeOfShadingModel_HeaderFile

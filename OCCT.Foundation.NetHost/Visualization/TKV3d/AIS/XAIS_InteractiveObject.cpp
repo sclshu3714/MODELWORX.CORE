@@ -43,7 +43,7 @@ namespace TKV3d {
 	//! - Line           signature 5
 	//! - Circle         signature 6
 	//! - Plane          signature 7.
-	Standard_Integer^ XAIS_InteractiveObject::Signature() {
+	Standard_Integer XAIS_InteractiveObject::Signature() {
 		return NativeHandle()->Signature();
 	};
 
