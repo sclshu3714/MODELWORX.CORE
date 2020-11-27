@@ -14,14 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfConnection_HeaderFile
-#define _Graphic3d_TypeOfConnection_HeaderFile
+#ifndef _XGraphic3d_TypeOfConnection_HeaderFile
+#define _XGraphic3d_TypeOfConnection_HeaderFile
 
 //! To manage the connections between the structures.
-enum Graphic3d_TypeOfConnection
+public enum class XGraphic3d_TypeOfConnection
 {
 Graphic3d_TOC_ANCESTOR,
 Graphic3d_TOC_DESCENDANT
 };
 
-#endif // _Graphic3d_TypeOfConnection_HeaderFile
+#endif // _XGraphic3d_TypeOfConnection_HeaderFile

@@ -13,17 +13,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_ZLayerId_HeaderFile
-#define _Graphic3d_ZLayerId_HeaderFile
-
-#include <Standard_Integer.hxx>
-
-typedef Standard_Integer Graphic3d_ZLayerId;
-
+#ifndef _XGraphic3d_ZLayerId_HeaderFile
+#define _XGraphic3d_ZLayerId_HeaderFile
 //! This enumeration defines the list of predefined layers, which can not be removed (but settings can be overridden).
 //! Custom layers might be added with positive index (>= 1) if standard list is insufficient for application needs;
 //! these layers will be displayed on top of predefined ones.
-enum
+public enum class XGraphic3d_ZLayerId
 {
   Graphic3d_ZLayerId_UNKNOWN = -1, //!< identifier for invalid ZLayer
   Graphic3d_ZLayerId_Default =  0, //!< default Z-layer for main presentations
@@ -33,4 +28,4 @@ enum
   Graphic3d_ZLayerId_BotOSD  = -5  //!< underlay for 2D presentations (On-Screen-Display)
 };
 
-#endif // _Graphic3d_ZLayerId_HeaderFile
+#endif // _XGraphic3d_ZLayerId_HeaderFile

@@ -14,21 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfReflection_HeaderFile
-#define _Graphic3d_TypeOfReflection_HeaderFile
+#ifndef _XGraphic3d_TypeOfReflection_HeaderFile
+#define _XGraphic3d_TypeOfReflection_HeaderFile
 
 //! Nature of the reflection of a material.
-enum Graphic3d_TypeOfReflection
+public enum class XGraphic3d_TypeOfReflection
 {
   Graphic3d_TOR_AMBIENT = 0,
   Graphic3d_TOR_DIFFUSE,
   Graphic3d_TOR_SPECULAR,
-  Graphic3d_TOR_EMISSION
-};
-
-enum
-{
+  Graphic3d_TOR_EMISSION,
   Graphic3d_TypeOfReflection_NB = 4
 };
 
-#endif // _Graphic3d_TypeOfReflection_HeaderFile
+#endif // _XGraphic3d_TypeOfReflection_HeaderFile

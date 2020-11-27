@@ -13,11 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Graphic3d_TRANS_MODE_FLAGS_HXX
-#define Graphic3d_TRANS_MODE_FLAGS_HXX
+#ifndef XGraphic3d_TRANS_MODE_FLAGS_HXX
+#define XGraphic3d_TRANS_MODE_FLAGS_HXX
 
 //! Transform Persistence Mode defining whether to lock in object position, rotation and / or zooming relative to camera position.
-enum Graphic3d_TransModeFlags
+public enum class XGraphic3d_TransModeFlags
 {
   Graphic3d_TMF_None           = 0x0000,                  //!< no persistence attributes (normal 3D object)
   Graphic3d_TMF_ZoomPers       = 0x0002,                  //!< object does not resize

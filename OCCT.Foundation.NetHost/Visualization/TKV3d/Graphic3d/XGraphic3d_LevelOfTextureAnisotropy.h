@@ -14,17 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
-#define _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
+#ifndef _XGraphic3d_LevelOfTextureAnisotropy_HeaderFile
+#define _XGraphic3d_LevelOfTextureAnisotropy_HeaderFile
 
 //! Level of anisotropy filter.
 //! Notice that actual quality depends on hardware capabilities!
-enum Graphic3d_LevelOfTextureAnisotropy
+public enum class XGraphic3d_LevelOfTextureAnisotropy
 {
-Graphic3d_LOTA_OFF,
-Graphic3d_LOTA_FAST,
-Graphic3d_LOTA_MIDDLE,
-Graphic3d_LOTA_QUALITY
+	Graphic3d_LOTA_OFF,
+	Graphic3d_LOTA_FAST,
+	Graphic3d_LOTA_MIDDLE,
+	Graphic3d_LOTA_QUALITY
 };
 
-#endif // _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
+#endif // _XGraphic3d_LevelOfTextureAnisotropy_HeaderFile

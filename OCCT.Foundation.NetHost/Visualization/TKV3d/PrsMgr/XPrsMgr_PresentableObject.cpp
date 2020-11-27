@@ -448,8 +448,8 @@ namespace TKV3d {
     //! for the interactive object.
     //! Material aspect determines shading aspect, color and
     //! transparency of visible entities.
-    void XPrsMgr_PresentableObject::SetMaterial(Graphic3d_MaterialAspect& aName) {
-        NativeHandle()->SetMaterial(aName);
+    void XPrsMgr_PresentableObject::SetMaterial(XGraphic3d_MaterialAspect^ aName) {
+        NativeHandle()->SetMaterial(aName->GetMaterialAspect());
     };
 
     //! Removes the setting for material.

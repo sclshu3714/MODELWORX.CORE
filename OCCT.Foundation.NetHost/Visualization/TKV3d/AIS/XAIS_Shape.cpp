@@ -177,8 +177,8 @@ namespace TKV3d {
 
     //! Allows you to provide settings for the material aName
     //! in the reconstructed compound shape.
-    void XAIS_Shape::SetMaterial(const Graphic3d_MaterialAspect& aName) {
-        NativeHandle()->SetMaterial(aName);
+    void XAIS_Shape::SetMaterial(XGraphic3d_MaterialAspect^ aName) {
+        NativeHandle()->SetMaterial(aName->GetMaterialAspect());
     };
 
     //! Removes settings for material in the reconstructed compound shape.

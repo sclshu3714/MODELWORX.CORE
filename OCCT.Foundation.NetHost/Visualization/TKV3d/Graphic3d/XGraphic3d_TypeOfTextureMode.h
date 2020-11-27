@@ -14,11 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfTextureMode_HeaderFile
-#define _Graphic3d_TypeOfTextureMode_HeaderFile
+#ifndef _XGraphic3d_TypeOfTextureMode_HeaderFile
+#define _XGraphic3d_TypeOfTextureMode_HeaderFile
 
 //! Type of the texture projection.
-enum Graphic3d_TypeOfTextureMode
+public enum class XGraphic3d_TypeOfTextureMode
 {
 Graphic3d_TOTM_OBJECT,
 Graphic3d_TOTM_SPHERE,
@@ -27,4 +27,4 @@ Graphic3d_TOTM_MANUAL,
 Graphic3d_TOTM_SPRITE
 };
 
-#endif // _Graphic3d_TypeOfTextureMode_HeaderFile
+#endif // _XGraphic3d_TypeOfTextureMode_HeaderFile

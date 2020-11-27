@@ -14,14 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_NameOfTexture1D_HeaderFile
-#define _Graphic3d_NameOfTexture1D_HeaderFile
+#ifndef _XGraphic3d_NameOfTexture1D_HeaderFile
+#define _XGraphic3d_NameOfTexture1D_HeaderFile
 
 //! Types of standard textures.
-enum Graphic3d_NameOfTexture1D
+public enum class XGraphic3d_NameOfTexture1D
 {
-Graphic3d_NOT_1D_ELEVATION,
-Graphic3d_NOT_1D_UNKNOWN
+	Graphic3d_NOT_1D_ELEVATION,
+	Graphic3d_NOT_1D_UNKNOWN
 };
 
-#endif // _Graphic3d_NameOfTexture1D_HeaderFile
+#endif // _XGraphic3d_NameOfTexture1D_HeaderFile

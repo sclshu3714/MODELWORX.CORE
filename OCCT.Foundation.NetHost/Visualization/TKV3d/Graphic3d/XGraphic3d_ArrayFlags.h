@@ -11,14 +11,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_ArrayFlags_HeaderFile
-#define _Graphic3d_ArrayFlags_HeaderFile
 
+#ifndef _XGraphic3d_ArrayFlags_HeaderFile
+#define _XGraphic3d_ArrayFlags_HeaderFile
 //! Bitmask for primitive array creation.
-typedef Standard_Integer Graphic3d_ArrayFlags;
+//typedef Standard_Integer XGraphic3d_ArrayFlags;
 
 //! Graphic3d_ArrayFlags bitmask values.
-enum
+public enum class XGraphic3d_ArrayFlags
 {
   Graphic3d_ArrayFlags_None          = 0x00,  //!< no flags
   Graphic3d_ArrayFlags_VertexNormal  = 0x01,  //!< per-vertex normal attribute
@@ -31,4 +31,4 @@ enum
   Graphic3d_ArrayFlags_IndexesMutable       = 0x80,  //!< mutable index array, which can be invalidated during lifetime without re-creation
 };
 
-#endif // _Graphic3d_ArrayFlags_HeaderFile
+#endif // _XGraphic3d_ArrayFlags_HeaderFile

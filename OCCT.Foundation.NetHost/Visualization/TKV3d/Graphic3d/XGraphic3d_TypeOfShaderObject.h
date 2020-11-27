@@ -13,11 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfShaderObject_HeaderFile
-#define _Graphic3d_TypeOfShaderObject_HeaderFile
+#ifndef _XGraphic3d_TypeOfShaderObject_HeaderFile
+#define _XGraphic3d_TypeOfShaderObject_HeaderFile
 
 //! Type of the shader object.
-enum Graphic3d_TypeOfShaderObject
+public enum class XGraphic3d_TypeOfShaderObject
 {
   // rendering shaders
   Graphic3d_TOS_VERTEX          = 0x01, //!< vertex shader object, mandatory

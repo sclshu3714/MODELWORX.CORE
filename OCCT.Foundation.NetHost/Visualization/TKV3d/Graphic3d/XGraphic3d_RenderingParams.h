@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_RenderingParams_HeaderFile
-#define _Graphic3d_RenderingParams_HeaderFile
+#ifndef _XGraphic3d_RenderingParams_HeaderFile
+#define _XGraphic3d_RenderingParams_HeaderFile
 
 #include <Graphic3d_AspectText3d.hxx>
 #include <Graphic3d_TransformPers.hxx>
@@ -25,7 +25,7 @@
 #include <Graphic3d_Vec4.hxx>
 
 //! Helper class to store rendering parameters.
-class Graphic3d_RenderingParams
+public ref class XGraphic3d_RenderingParams
 {
 public:
   //! Default pixels density.
@@ -35,7 +35,7 @@ public:
   static const Standard_Integer THE_DEFAULT_DEPTH = 3;
 
   //! Anaglyph filter presets.
-  enum Anaglyph
+  enum class XAnaglyph
   {
     Anaglyph_RedCyan_Simple,       //!< simple    filter for Red-Cyan      glasses (R+GB)
     Anaglyph_RedCyan_Optimized,    //!< optimized filter for Red-Cyan      glasses (R+GB)
@@ -47,7 +47,7 @@ public:
 
   //! Statistics display flags.
   //! If not specified otherwise, the counter value is computed for a single rendered frame.
-  enum PerfCounters
+  enum class XPerfCounters
   {
     PerfCounters_NONE        = 0x000, //!< no stats
     PerfCounters_FrameRate   = 0x001, //!< Frame Rate,        frames per second (number of frames within elapsed time)
@@ -81,7 +81,7 @@ public:
   };
 
   //! State of frustum culling optimization.
-  enum FrustumCulling
+  enum class FrustumCulling
   {
     FrustumCulling_Off,     //!< culling is disabled
     FrustumCulling_On,      //!< culling is active, and the list of culled entities is automatically updated before redraw
@@ -91,7 +91,7 @@ public:
 public:
 
   //! Creates default rendering parameters.
-  Graphic3d_RenderingParams()
+  XGraphic3d_RenderingParams()
   : Method                      (Graphic3d_RM_RASTERIZATION),
     TransparencyMethod          (Graphic3d_RTM_BLEND_UNORDERED),
     LineFeather                 (1.0f),
@@ -167,8 +167,8 @@ public:
 
 public:
 
-  Graphic3d_RenderingMode           Method;                      //!< specifies rendering mode, Graphic3d_RM_RASTERIZATION by default
-  Graphic3d_RenderTransparentMethod TransparencyMethod;          //!< specifies rendering method for transparent graphics
+  XGraphic3d_RenderingMode           Method;                      //!< specifies rendering mode, Graphic3d_RM_RASTERIZATION by default
+  XGraphic3d_RenderTransparentMethod TransparencyMethod;          //!< specifies rendering method for transparent graphics
   Standard_ShortReal                LineFeather;                 //!< line feater width in pixels (> 0.0), 1.0 by default;
                                                                  //!  high values produce blurred results, small values produce sharp (aliased) edges
   Standard_ShortReal                OitDepthFactor;              //!< scalar factor [0-1] controlling influence of depth of a fragment to its final coverage
@@ -236,4 +236,4 @@ public:
                                                                  //!  will lead to performance regression (for example, text will be recreated every time).
 };
 
-#endif // _Graphic3d_RenderingParams_HeaderFile
+#endif // _XGraphic3d_RenderingParams_HeaderFile

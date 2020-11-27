@@ -12,13 +12,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_ArrayOfPoints_HeaderFile
-#define _Graphic3d_ArrayOfPoints_HeaderFile
+#ifndef _XGraphic3d_ArrayOfPoints_HeaderFile
+#define _XGraphic3d_ArrayOfPoints_HeaderFile
 
+#pragma once
+#include <Graphic3d_ArrayOfPoints.hxx>
 #include <Graphic3d_ArrayOfPrimitives.hxx>
 
 //! Contains points array definition.
-class Graphic3d_ArrayOfPoints : public Graphic3d_ArrayOfPrimitives
+public class XGraphic3d_ArrayOfPoints : public Graphic3d_ArrayOfPrimitives
 {
   DEFINE_STANDARD_RTTIEXT(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
 public:
@@ -47,4 +49,4 @@ public:
 
 DEFINE_STANDARD_HANDLE(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
 
-#endif // _Graphic3d_ArrayOfPoints_HeaderFile
+#endif // _XGraphic3d_ArrayOfPoints_HeaderFile

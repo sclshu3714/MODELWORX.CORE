@@ -14,20 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_GroupAspect_HeaderFile
-#define _Graphic3d_GroupAspect_HeaderFile
+#ifndef _XGraphic3d_GroupAspect_HeaderFile
+#define _XGraphic3d_GroupAspect_HeaderFile
 
 //! Identifies primitives aspects defined per group.
 //! - ASPECT_LINE: aspect for line primitives;
 //! - ASPECT_TEXT: aspect for text primitives;
 //! - ASPECT_MARKER: aspect for marker primitives;
 //! - ASPECT_FILL_AREA: aspect for face primitives.
-enum Graphic3d_GroupAspect
+public enum class XGraphic3d_GroupAspect
 {
-Graphic3d_ASPECT_LINE,
-Graphic3d_ASPECT_TEXT,
-Graphic3d_ASPECT_MARKER,
-Graphic3d_ASPECT_FILL_AREA
+	Graphic3d_ASPECT_LINE,
+	Graphic3d_ASPECT_TEXT,
+	Graphic3d_ASPECT_MARKER,
+	Graphic3d_ASPECT_FILL_AREA
 };
 
-#endif // _Graphic3d_GroupAspect_HeaderFile
+#endif // _XGraphic3d_GroupAspect_HeaderFile

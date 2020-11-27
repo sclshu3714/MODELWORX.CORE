@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TextPath_HeaderFile
-#define _Graphic3d_TextPath_HeaderFile
+#ifndef _XGraphic3d_TextPath_HeaderFile
+#define _XGraphic3d_TextPath_HeaderFile
 
 //! Direction in which text is displayed.
-enum Graphic3d_TextPath
+public enum class XGraphic3d_TextPath
 {
-Graphic3d_TP_UP,
-Graphic3d_TP_DOWN,
-Graphic3d_TP_LEFT,
-Graphic3d_TP_RIGHT
+	Graphic3d_TP_UP,
+	Graphic3d_TP_DOWN,
+	Graphic3d_TP_LEFT,
+	Graphic3d_TP_RIGHT
 };
 
-#endif // _Graphic3d_TextPath_HeaderFile
+#endif // _XGraphic3d_TextPath_HeaderFile

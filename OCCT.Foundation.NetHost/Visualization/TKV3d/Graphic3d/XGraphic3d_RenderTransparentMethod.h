@@ -13,14 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_RenderTransparentMethod_HeaderFile
-#define _Graphic3d_RenderTransparentMethod_HeaderFile
+#ifndef _XGraphic3d_RenderTransparentMethod_HeaderFile
+#define _XGraphic3d_RenderTransparentMethod_HeaderFile
 
 //! Enumerates transparency rendering methods supported by rasterization mode.
-enum Graphic3d_RenderTransparentMethod
+public enum class XGraphic3d_RenderTransparentMethod
 {
-  Graphic3d_RTM_BLEND_UNORDERED, //!< Basic blend transparency with non-commuting blend operator without sorting
-  Graphic3d_RTM_BLEND_OIT        //!< Weighted Blended Order-Independent Transparency with depth weight factor
+	  Graphic3d_RTM_BLEND_UNORDERED, //!< Basic blend transparency with non-commuting blend operator without sorting
+	  Graphic3d_RTM_BLEND_OIT        //!< Weighted Blended Order-Independent Transparency with depth weight factor
 };
 
-#endif // _Graphic3d_RenderTransparentMethod_HeaderFile
+#endif // _XGraphic3d_RenderTransparentMethod_HeaderFile

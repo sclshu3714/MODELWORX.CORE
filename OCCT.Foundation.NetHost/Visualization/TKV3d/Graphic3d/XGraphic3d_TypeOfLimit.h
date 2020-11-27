@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfLimit_HeaderFile
-#define _Graphic3d_TypeOfLimit_HeaderFile
+#ifndef _XGraphic3d_TypeOfLimit_HeaderFile
+#define _XGraphic3d_TypeOfLimit_HeaderFile
 
 //! Type of graphic resource limit.
-enum Graphic3d_TypeOfLimit
+public enum class XGraphic3d_TypeOfLimit
 {
   Graphic3d_TypeOfLimit_MaxNbLights,                    //!< maximum number of active light sources
   Graphic3d_TypeOfLimit_MaxNbClipPlanes,                //!< maximum number of active clipping planes
@@ -37,4 +37,4 @@ enum Graphic3d_TypeOfLimit
   Graphic3d_TypeOfLimit_NB                              //!< number of elements in this enumeration
 };
 
-#endif // _Graphic3d_TypeOfLimit_HeaderFile
+#endif // _XGraphic3d_TypeOfLimit_HeaderFile

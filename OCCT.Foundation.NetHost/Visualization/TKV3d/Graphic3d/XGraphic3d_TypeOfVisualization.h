@@ -14,17 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfVisualization_HeaderFile
-#define _Graphic3d_TypeOfVisualization_HeaderFile
+#ifndef _XGraphic3d_TypeOfVisualization_HeaderFile
+#define _XGraphic3d_TypeOfVisualization_HeaderFile
 
 //! Modes of visualisation of objects in a view
 //!
 //! TOV_WIREFRAME   wireframe visualisation
 //! TOV_SHADING     shaded visualisation
-enum Graphic3d_TypeOfVisualization
+public enum class XGraphic3d_TypeOfVisualization
 {
   Graphic3d_TOV_WIREFRAME,
   Graphic3d_TOV_SHADING
 };
 
-#endif // _Graphic3d_TypeOfVisualization_HeaderFile
+#endif // _XGraphic3d_TypeOfVisualization_HeaderFile

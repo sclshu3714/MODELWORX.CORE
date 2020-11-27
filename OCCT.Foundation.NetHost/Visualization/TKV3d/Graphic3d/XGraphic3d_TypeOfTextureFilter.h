@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfTextureFilter_HeaderFile
-#define _Graphic3d_TypeOfTextureFilter_HeaderFile
+#ifndef _XGraphic3d_TypeOfTextureFilter_HeaderFile
+#define _XGraphic3d_TypeOfTextureFilter_HeaderFile
 
 //! Type of the texture filter.
 //! Notice that for textures without mipmaps linear interpolation will be used instead of TOTF_BILINEAR and TOTF_TRILINEAR.
-enum Graphic3d_TypeOfTextureFilter
+public enum class XGraphic3d_TypeOfTextureFilter
 {
 Graphic3d_TOTF_NEAREST,
 Graphic3d_TOTF_BILINEAR,
 Graphic3d_TOTF_TRILINEAR
 };
 
-#endif // _Graphic3d_TypeOfTextureFilter_HeaderFile
+#endif // _XGraphic3d_TypeOfTextureFilter_HeaderFile

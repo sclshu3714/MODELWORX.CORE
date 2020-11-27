@@ -14,21 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_NameOfTextureEnv_HeaderFile
-#define _Graphic3d_NameOfTextureEnv_HeaderFile
+#ifndef _XGraphic3d_NameOfTextureEnv_HeaderFile
+#define _XGraphic3d_NameOfTextureEnv_HeaderFile
 
 //! Types of standard textures.
-enum Graphic3d_NameOfTextureEnv
+public enum class XGraphic3d_NameOfTextureEnv
 {
-Graphic3d_NOT_ENV_CLOUDS,
-Graphic3d_NOT_ENV_CV,
-Graphic3d_NOT_ENV_MEDIT,
-Graphic3d_NOT_ENV_PEARL,
-Graphic3d_NOT_ENV_SKY1,
-Graphic3d_NOT_ENV_SKY2,
-Graphic3d_NOT_ENV_LINES,
-Graphic3d_NOT_ENV_ROAD,
-Graphic3d_NOT_ENV_UNKNOWN
+	Graphic3d_NOT_ENV_CLOUDS,
+	Graphic3d_NOT_ENV_CV,
+	Graphic3d_NOT_ENV_MEDIT,
+	Graphic3d_NOT_ENV_PEARL,
+	Graphic3d_NOT_ENV_SKY1,
+	Graphic3d_NOT_ENV_SKY2,
+	Graphic3d_NOT_ENV_LINES,
+	Graphic3d_NOT_ENV_ROAD,
+	Graphic3d_NOT_ENV_UNKNOWN
 };
 
-#endif // _Graphic3d_NameOfTextureEnv_HeaderFile
+#endif // _XGraphic3d_NameOfTextureEnv_HeaderFile

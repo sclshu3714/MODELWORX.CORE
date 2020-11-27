@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_NameOfTexturePlane_HeaderFile
-#define _Graphic3d_NameOfTexturePlane_HeaderFile
+#ifndef _XGraphic3d_NameOfTexturePlane_HeaderFile
+#define _XGraphic3d_NameOfTexturePlane_HeaderFile
 
 //! Type of the texture projection plane for both S and T texture coordinate.
-enum Graphic3d_NameOfTexturePlane
+public enum class XGraphic3d_NameOfTexturePlane
 {
-Graphic3d_NOTP_XY,
-Graphic3d_NOTP_YZ,
-Graphic3d_NOTP_ZX,
-Graphic3d_NOTP_UNKNOWN
+	Graphic3d_NOTP_XY,
+	Graphic3d_NOTP_YZ,
+	Graphic3d_NOTP_ZX,
+	Graphic3d_NOTP_UNKNOWN
 };
 
-#endif // _Graphic3d_NameOfTexturePlane_HeaderFile
+#endif // _XGraphic3d_NameOfTexturePlane_HeaderFile

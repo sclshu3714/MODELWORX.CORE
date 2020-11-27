@@ -13,10 +13,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_HighlightStyle_HeaderFile
-#define _Graphic3d_HighlightStyle_HeaderFile
+#ifndef _XGraphic3d_HighlightStyle_HeaderFile
+#define _XGraphic3d_HighlightStyle_HeaderFile
 
 // header file for deprecated type Graphic3d_HighlightStyle
-#include <Prs3d_Drawer.hxx>
+#include <XPrs3d_Drawer.h>
 
-#endif // _Graphic3d_HighlightStyle_HeaderFile
+#endif // _XGraphic3d_HighlightStyle_HeaderFile

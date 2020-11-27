@@ -14,11 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfTexture_HeaderFile
-#define _Graphic3d_TypeOfTexture_HeaderFile
+#ifndef _XGraphic3d_TypeOfTexture_HeaderFile
+#define _XGraphic3d_TypeOfTexture_HeaderFile
 
 //! Type of the texture file format.
-enum Graphic3d_TypeOfTexture
+public enum class XGraphic3d_TypeOfTexture
 {
 Graphic3d_TOT_1D,
 Graphic3d_TOT_2D,
@@ -26,4 +26,4 @@ Graphic3d_TOT_2D_MIPMAP,
 Graphic3d_TOT_CUBEMAP
 };
 
-#endif // _Graphic3d_TypeOfTexture_HeaderFile
+#endif // _XGraphic3d_TypeOfTexture_HeaderFile

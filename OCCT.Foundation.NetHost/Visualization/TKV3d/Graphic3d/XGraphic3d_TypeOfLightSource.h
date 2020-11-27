@@ -14,11 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfLightSource_HeaderFile
-#define _Graphic3d_TypeOfLightSource_HeaderFile
+#ifndef _XGraphic3d_TypeOfLightSource_HeaderFile
+#define _XGraphic3d_TypeOfLightSource_HeaderFile
 
 //! Definition of all the type of light source.
-enum Graphic3d_TypeOfLightSource
+public enum class XGraphic3d_TypeOfLightSource
 {
   Graphic3d_TOLS_AMBIENT,     //!< ambient light
   Graphic3d_TOLS_DIRECTIONAL, //!< directional light
@@ -28,13 +28,9 @@ enum Graphic3d_TypeOfLightSource
   V3d_AMBIENT     = Graphic3d_TOLS_AMBIENT,
   V3d_DIRECTIONAL = Graphic3d_TOLS_DIRECTIONAL,
   V3d_POSITIONAL  = Graphic3d_TOLS_POSITIONAL,
-  V3d_SPOT        = Graphic3d_TOLS_SPOT
-};
-
-enum
-{
+  V3d_SPOT        = Graphic3d_TOLS_SPOT,
   //! Auxiliary value defining the overall number of values in enumeration Graphic3d_TypeOfLightSource
   Graphic3d_TypeOfLightSource_NB = Graphic3d_TOLS_SPOT + 1
 };
 
-#endif // _Graphic3d_TypeOfLightSource_HeaderFile
+#endif // _XGraphic3d_TypeOfLightSource_HeaderFile

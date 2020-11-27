@@ -194,7 +194,7 @@ namespace TKV3d {
 
         //! Allows you to provide settings for the material aName
         //! in the reconstructed compound shape.
-        virtual void SetMaterial(const Graphic3d_MaterialAspect& aName) Standard_OVERRIDE;
+        virtual void SetMaterial(XGraphic3d_MaterialAspect^ aName) Standard_OVERRIDE;
 
         //! Removes settings for material in the reconstructed compound shape.
         virtual void UnsetMaterial() Standard_OVERRIDE;

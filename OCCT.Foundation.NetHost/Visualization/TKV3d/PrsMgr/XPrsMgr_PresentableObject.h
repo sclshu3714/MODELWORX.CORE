@@ -25,6 +25,7 @@
 #include "XPrs3d_Drawer.h"
 #include "XPrsMgr_TypeOfPresentation3d.h"
 #include "XGraphic3d_NameOfMaterial.h"
+#include <XGraphic3d_MaterialAspect.h>
 
 #include <Aspect_TypeOfFacingModel.hxx>
 #include <gp_GTrsf.hxx>
@@ -60,6 +61,7 @@ using namespace TKMath;
 namespace TKV3d {
     ref class TKMath::xgp_Trsf;
     ref class TKMath::xgp_GTrsf;
+    ref class XGraphic3d_MaterialAspect;
     public ref class XPrsMgr_PresentableObject //: public Standard_Transient
     {
        //! DEFINE_STANDARD_RTTIEXT(PrsMgr_PresentableObject, Standard_Transient)
@@ -367,7 +369,7 @@ namespace TKV3d {
         //! for the interactive object.
         //! Material aspect determines shading aspect, color and
         //! transparency of visible entities.
-        virtual void SetMaterial(Graphic3d_MaterialAspect& aName);
+        virtual void SetMaterial(XGraphic3d_MaterialAspect^ aName);
 
         //! Removes the setting for material.
         virtual void UnsetMaterial();

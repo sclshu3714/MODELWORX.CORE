@@ -14,21 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfBackground_HeaderFile
-#define _Graphic3d_TypeOfBackground_HeaderFile
+#ifndef _XGraphic3d_TypeOfBackground_HeaderFile
+#define _XGraphic3d_TypeOfBackground_HeaderFile
 
 //! Describes type of view background.
-enum Graphic3d_TypeOfBackground
+public enum class XGraphic3d_TypeOfBackground
 {
 Graphic3d_TOB_NONE = -1,
 Graphic3d_TOB_GRADIENT,
 Graphic3d_TOB_TEXTURE,
-Graphic3d_TOB_CUBEMAP
-};
-
-enum
-{
-  Graphic3d_TypeOfBackground_NB = Graphic3d_TOB_CUBEMAP + 1
+Graphic3d_TOB_CUBEMAP,
+Graphic3d_TypeOfBackground_NB = Graphic3d_TOB_CUBEMAP + 1
 };
 
 #endif // _Graphic3d_TypeOfBackground_HeaderFile

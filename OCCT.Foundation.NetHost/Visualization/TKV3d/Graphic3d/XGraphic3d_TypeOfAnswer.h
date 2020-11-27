@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfAnswer_HeaderFile
-#define _Graphic3d_TypeOfAnswer_HeaderFile
+#ifndef _XGraphic3d_TypeOfAnswer_HeaderFile
+#define _XGraphic3d_TypeOfAnswer_HeaderFile
 
 //! The answer of the method AcceptDisplay
 //! AcceptDisplay  means is it possible to display the
@@ -23,11 +23,11 @@
 //! TOA_YES yes
 //! TOA_NO  no
 //! TOA_COMPUTE yes but we have to compute the representation
-enum Graphic3d_TypeOfAnswer
+public enum class XGraphic3d_TypeOfAnswer
 {
   Graphic3d_TOA_YES,
   Graphic3d_TOA_NO,
   Graphic3d_TOA_COMPUTE
 };
 
-#endif // _Graphic3d_TypeOfAnswer_HeaderFile
+#endif // _XGraphic3d_TypeOfAnswer_HeaderFile

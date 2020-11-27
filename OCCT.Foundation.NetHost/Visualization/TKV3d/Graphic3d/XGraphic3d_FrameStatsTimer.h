@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_FrameStatsTimer_HeaderFile
-#define _Graphic3d_FrameStatsTimer_HeaderFile
+#ifndef _XGraphic3d_FrameStatsTimer_HeaderFile
+#define _XGraphic3d_FrameStatsTimer_HeaderFile
 
 //! Timers for collecting frame performance statistics.
-enum Graphic3d_FrameStatsTimer
+public enum class XGraphic3d_FrameStatsTimer
 {
   Graphic3d_FrameStatsTimer_ElapsedFrame,
   Graphic3d_FrameStatsTimer_CpuFrame,
@@ -23,6 +23,6 @@ enum Graphic3d_FrameStatsTimer
   Graphic3d_FrameStatsTimer_CpuPicking,
   Graphic3d_FrameStatsTimer_CpuDynamics,
 };
-enum { Graphic3d_FrameStatsTimer_NB = Graphic3d_FrameStatsTimer_CpuDynamics + 1 };
+enum { XGraphic3d_FrameStatsTimer_NB = XGraphic3d_FrameStatsTimer::Graphic3d_FrameStatsTimer_CpuDynamics + 1 };
 
-#endif // _Graphic3d_FrameStatsTimer_HeaderFile
+#endif // _XGraphic3d_FrameStatsTimer_HeaderFile

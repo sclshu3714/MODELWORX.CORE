@@ -1926,6 +1926,168 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     HasOwnPlaneAspect(): PrivateScope, Public, HideBySig
     ArrowAspect(handle<Prs3d_ArrowAspect>*): PrivateScope, Public, HideBySig
     SetArrowAspect(handle<Prs3d_ArrowAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKernel.XTCollection_AsciiString, TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString, SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TCollection_AsciiString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte*, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    TCollection_AsciiString* Handle 'get ' : 
+  Methods:
+    RemoveAll(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    RemoveAll(SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Remove(Int32, Int32): PrivateScope, Public, HideBySig
+    RightAdjust(): PrivateScope, Public, HideBySig
+    RightJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Search(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Search(SByte*): PrivateScope, Public, HideBySig
+    SearchFromEnd(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    SearchFromEnd(SByte*): PrivateScope, Public, HideBySig
+    SetValue(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    SetValue(Int32, SByte*): PrivateScope, Public, HideBySig
+    SetValue(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Split(Int32): PrivateScope, Public, HideBySig
+    SubString(Int32, Int32): PrivateScope, Public, HideBySig
+    ToCString(): PrivateScope, Public, HideBySig
+    Token(SByte*, Int32): PrivateScope, Public, HideBySig
+    Trunc(Int32): PrivateScope, Public, HideBySig
+    UpperCase(): PrivateScope, Public, HideBySig
+    UsefullLength(): PrivateScope, Public, HideBySig
+    Value(Int32): PrivateScope, Public, HideBySig
+    HashCode(XTCollection_AsciiString, Int32): PrivateScope, Public, Static, HideBySig
+    IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    GetAsciiString(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    AssignCat(SByte*): PrivateScope, Public, HideBySig
+    AssignCat(Double): PrivateScope, Public, HideBySig
+    AssignCat(Int32): PrivateScope, Public, HideBySig
+    AssignCat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    op_AdditionAssignment(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(Int32): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
+    Capitalize(): PrivateScope, Public, HideBySig
+    Cat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Cat(SByte*): PrivateScope, Public, HideBySig
+    Cat(Double): PrivateScope, Public, HideBySig
+    Cat(Int32): PrivateScope, Public, HideBySig
+    Cat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    op_Addition(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(Int32): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
+    Center(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    ChangeAll(SByte IsSignUnspecifiedByte, SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Clear(): PrivateScope, Public, HideBySig
+    Copy(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Copy(SByte*): PrivateScope, Public, HideBySig
+    op_Assign(XTCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    op_Assign(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Assign(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    Swap(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    FirstLocationInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    FirstLocationNotInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    Insert(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Insert(Int32, SByte*): PrivateScope, Public, HideBySig
+    Insert(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    InsertAfter(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    InsertBefore(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsEmpty(): PrivateScope, Public, HideBySig
+    IsEqual(XTCollection_AsciiString, SByte*): PrivateScope, Public, Static, HideBySig
+    IsEqual(XTCollection_AsciiString, XTCollection_AsciiString): PrivateScope, Public, Static, HideBySig
+    IsEqual(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsEqual(SByte*): PrivateScope, Public, HideBySig
+    op_Equality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Equality(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsDifferent(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsDifferent(SByte*): PrivateScope, Public, HideBySig
+    op_Inequality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_Inequality(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsLess(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsLess(SByte*): PrivateScope, Public, HideBySig
+    op_LessThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_LessThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    IsGreater(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IsGreater(SByte*): PrivateScope, Public, HideBySig
+    op_GreaterThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
+    op_GreaterThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
+    StartsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    EndsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    IntegerValue(): PrivateScope, Public, HideBySig
+    IsIntegerValue(): PrivateScope, Public, HideBySig
+    IsRealValue(): PrivateScope, Public, HideBySig
+    IsAscii(): PrivateScope, Public, HideBySig
+    LeftAdjust(): PrivateScope, Public, HideBySig
+    LeftJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
+    Length(): PrivateScope, Public, HideBySig
+    Location(Int32, SByte IsSignUnspecifiedByte, Int32, Int32): PrivateScope, Public, HideBySig
+    Location(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
+    LowerCase(): PrivateScope, Public, HideBySig
+    Prepend(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Print(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    RealValue(): PrivateScope, Public, HideBySig
+Class TKV3d.XGraphic3d_MaterialAspect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(XGraphic3d_NameOfMaterial): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Graphic3d_MaterialAspect* Handle 'get ' : 
+  Methods:
+    NumberOfMaterials(): PrivateScope, Public, Static, HideBySig
+    MaterialName(): PrivateScope, Public, HideBySig
+    MaterialName(Int32 IsConst): PrivateScope, Public, Static, HideBySig
+    MaterialType(XGraphic3d_TypeOfMaterial): PrivateScope, Public, HideBySig
+    MaterialType(): PrivateScope, Public, HideBySig
+    MaterialType(Int32 IsConst): PrivateScope, Public, Static, HideBySig
+    MaterialFromName(String): PrivateScope, Public, Static, HideBySig
+    MaterialFromName(String, XGraphic3d_NameOfMaterial): PrivateScope, Public, Static, HideBySig
+    GetMaterialAspect(Graphic3d_MaterialAspect*): PrivateScope, Public, HideBySig
+    Name(): PrivateScope, Public, HideBySig
+    RequestedName(): PrivateScope, Public, HideBySig
+    StringName(): PrivateScope, Public, HideBySig
+    SetMaterialName(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Reset(): PrivateScope, Public, HideBySig
+    Color(): PrivateScope, Public, HideBySig
+    SetColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    Transparency(): PrivateScope, Public, HideBySig
+    Alpha(): PrivateScope, Public, HideBySig
+    SetTransparency(Single IsConst): PrivateScope, Public, HideBySig
+    SetAlpha(Single): PrivateScope, Public, HideBySig
+    AmbientColor(): PrivateScope, Public, HideBySig
+    SetAmbientColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    DiffuseColor(): PrivateScope, Public, HideBySig
+    SetDiffuseColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    SpecularColor(): PrivateScope, Public, HideBySig
+    SetSpecularColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    EmissiveColor(): PrivateScope, Public, HideBySig
+    SetEmissiveColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    Shininess(): PrivateScope, Public, HideBySig
+    SetShininess(Single IsConst): PrivateScope, Public, HideBySig
+    IncreaseShine(Single IsConst): PrivateScope, Public, HideBySig
+    RefractionIndex(): PrivateScope, Public, HideBySig
+    SetRefractionIndex(Single IsConst): PrivateScope, Public, HideBySig
+    BSDF(): PrivateScope, Public, HideBySig
+    SetBSDF(Graphic3d_BSDF* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ReflectionMode(XGraphic3d_TypeOfReflection): PrivateScope, Public, HideBySig
+    SetMaterialType(XGraphic3d_TypeOfMaterial): PrivateScope, Public, HideBySig
+    IsDifferent(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig
+    op_Inequality(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig, SpecialName
+    IsEqual(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig
+    op_Equality(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<PrsMgr_PresentableObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -2011,7 +2173,7 @@ Class TKV3d.XPrsMgr_PresentableObject: AutoLayout, AnsiClass, Class, Public, Bef
     UnsetWidth(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     HasMaterial(): PrivateScope, Public, HideBySig
     Material(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetMaterial(Graphic3d_MaterialAspect* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetMaterial(XGraphic3d_MaterialAspect): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     UnsetMaterial(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsTransparent(): PrivateScope, Public, HideBySig
     Transparency(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -2748,6 +2910,7 @@ Struct XGraphic3d_TypeOfShadingModel: AutoLayout, AnsiClass, Class, Public, Seal
     XGraphic3d_TypeOfShadingModel V3d_FLAT = 1 : Public, Static, Literal, HasDefault
     XGraphic3d_TypeOfShadingModel V3d_GOURAUD = 2 : Public, Static, Literal, HasDefault
     XGraphic3d_TypeOfShadingModel V3d_PHONG = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfShadingModel XGraphic3d_TypeOfShadingModel_NB = 4 : Public, Static, Literal, HasDefault
 Struct XAspect_TypeOfLine: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -2794,6 +2957,21 @@ Struct XGraphic3d_NameOfMaterial: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XGraphic3d_NameOfMaterial Graphic3d_NOM_TRANSPARENT = 23 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_DEFAULT = 24 : Public, Static, Literal, HasDefault
     XGraphic3d_NameOfMaterial Graphic3d_NOM_UserDefined = 25 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_TypeOfReflection: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_TypeOfReflection Graphic3d_TOR_AMBIENT = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfReflection Graphic3d_TOR_DIFFUSE = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfReflection Graphic3d_TOR_SPECULAR = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfReflection Graphic3d_TOR_EMISSION = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfReflection Graphic3d_TypeOfReflection_NB = 4 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_TypeOfMaterial: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_TypeOfMaterial Graphic3d_MATERIAL_ASPECT = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfMaterial Graphic3d_MATERIAL_PHYSIC = 1 : Public, Static, Literal, HasDefault
 Struct XAIS_KindOfInteractive: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -3165,120 +3343,6 @@ Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, Be
     SetViewMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetViewMode(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKernel.XTCollection_AsciiString, TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKernel.XTCollection_AsciiString, SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKernel.XTCollection_AsciiString, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TCollection_AsciiString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Int32, SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(SByte*, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    TCollection_AsciiString* Handle 'get ' : 
-  Methods:
-    RemoveAll(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    RemoveAll(SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    Remove(Int32, Int32): PrivateScope, Public, HideBySig
-    RightAdjust(): PrivateScope, Public, HideBySig
-    RightJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    Search(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    Search(SByte*): PrivateScope, Public, HideBySig
-    SearchFromEnd(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    SearchFromEnd(SByte*): PrivateScope, Public, HideBySig
-    SetValue(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    SetValue(Int32, SByte*): PrivateScope, Public, HideBySig
-    SetValue(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    Split(Int32): PrivateScope, Public, HideBySig
-    SubString(Int32, Int32): PrivateScope, Public, HideBySig
-    ToCString(): PrivateScope, Public, HideBySig
-    Token(SByte*, Int32): PrivateScope, Public, HideBySig
-    Trunc(Int32): PrivateScope, Public, HideBySig
-    UpperCase(): PrivateScope, Public, HideBySig
-    UsefullLength(): PrivateScope, Public, HideBySig
-    Value(Int32): PrivateScope, Public, HideBySig
-    HashCode(XTCollection_AsciiString, Int32): PrivateScope, Public, Static, HideBySig
-    IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-    GetAsciiString(TCollection_AsciiString*): PrivateScope, Public, HideBySig
-    AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    AssignCat(SByte*): PrivateScope, Public, HideBySig
-    AssignCat(Double): PrivateScope, Public, HideBySig
-    AssignCat(Int32): PrivateScope, Public, HideBySig
-    AssignCat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    op_AdditionAssignment(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_AdditionAssignment(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    op_AdditionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
-    op_AdditionAssignment(Int32): PrivateScope, Public, HideBySig, SpecialName
-    op_AdditionAssignment(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
-    Capitalize(): PrivateScope, Public, HideBySig
-    Cat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    Cat(SByte*): PrivateScope, Public, HideBySig
-    Cat(Double): PrivateScope, Public, HideBySig
-    Cat(Int32): PrivateScope, Public, HideBySig
-    Cat(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    op_Addition(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_Addition(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    op_Addition(Double): PrivateScope, Public, HideBySig, SpecialName
-    op_Addition(Int32): PrivateScope, Public, HideBySig, SpecialName
-    op_Addition(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig, SpecialName
-    Center(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    ChangeAll(SByte IsSignUnspecifiedByte, SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    Clear(): PrivateScope, Public, HideBySig
-    Copy(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    Copy(SByte*): PrivateScope, Public, HideBySig
-    op_Assign(XTCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
-    op_Assign(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_Assign(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    Swap(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    FirstLocationInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
-    FirstLocationNotInSet(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
-    Insert(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    Insert(Int32, SByte*): PrivateScope, Public, HideBySig
-    Insert(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    InsertAfter(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    InsertBefore(Int32, XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IsEmpty(): PrivateScope, Public, HideBySig
-    IsEqual(XTCollection_AsciiString, SByte*): PrivateScope, Public, Static, HideBySig
-    IsEqual(XTCollection_AsciiString, XTCollection_AsciiString): PrivateScope, Public, Static, HideBySig
-    IsEqual(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IsEqual(SByte*): PrivateScope, Public, HideBySig
-    op_Equality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_Equality(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    IsDifferent(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IsDifferent(SByte*): PrivateScope, Public, HideBySig
-    op_Inequality(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_Inequality(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    IsLess(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IsLess(SByte*): PrivateScope, Public, HideBySig
-    op_LessThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_LessThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    IsGreater(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IsGreater(SByte*): PrivateScope, Public, HideBySig
-    op_GreaterThan(XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName
-    op_GreaterThan(SByte*): PrivateScope, Public, HideBySig, SpecialName
-    StartsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    EndsWith(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    IntegerValue(): PrivateScope, Public, HideBySig
-    IsIntegerValue(): PrivateScope, Public, HideBySig
-    IsRealValue(): PrivateScope, Public, HideBySig
-    IsAscii(): PrivateScope, Public, HideBySig
-    LeftAdjust(): PrivateScope, Public, HideBySig
-    LeftJustify(Int32, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
-    Length(): PrivateScope, Public, HideBySig
-    Location(Int32, SByte IsSignUnspecifiedByte, Int32, Int32): PrivateScope, Public, HideBySig
-    Location(XTCollection_AsciiString, Int32, Int32): PrivateScope, Public, HideBySig
-    LowerCase(): PrivateScope, Public, HideBySig
-    Prepend(XTCollection_AsciiString): PrivateScope, Public, HideBySig
-    Print(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    RealValue(): PrivateScope, Public, HideBySig
 Class TKMath.xgp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -4385,7 +4449,7 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     UnsetColor(): PrivateScope, Public, Virtual, HideBySig
     SetWidth(Double IsConst): PrivateScope, Public, Virtual, HideBySig
     UnsetWidth(): PrivateScope, Public, Virtual, HideBySig
-    SetMaterial(Graphic3d_MaterialAspect* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    SetMaterial(XGraphic3d_MaterialAspect): PrivateScope, Public, Virtual, HideBySig
     UnsetMaterial(): PrivateScope, Public, Virtual, HideBySig
     SetTransparency(Double IsConst): PrivateScope, Public, Virtual, HideBySig
     UnsetTransparency(): PrivateScope, Public, Virtual, HideBySig

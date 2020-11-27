@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_RenderingMode_HeaderFile
-#define _Graphic3d_RenderingMode_HeaderFile
+#ifndef _XGraphic3d_RenderingMode_HeaderFile
+#define _XGraphic3d_RenderingMode_HeaderFile
 
 //! Describes rendering modes.
 //! - RM_RASTERIZATION: enables OpenGL rasterization mode;
 //! - RM_RAYTRACING: enables GPU ray-tracing mode.
-enum Graphic3d_RenderingMode
+public enum class XGraphic3d_RenderingMode
 {
-Graphic3d_RM_RASTERIZATION,
-Graphic3d_RM_RAYTRACING
+	Graphic3d_RM_RASTERIZATION,
+	Graphic3d_RM_RAYTRACING
 };
 
-#endif // _Graphic3d_RenderingMode_HeaderFile
+#endif // _XGraphic3d_RenderingMode_HeaderFile

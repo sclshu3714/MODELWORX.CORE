@@ -14,14 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfComposition_HeaderFile
-#define _Graphic3d_TypeOfComposition_HeaderFile
+#ifndef _XGraphic3d_TypeOfComposition_HeaderFile
+#define _XGraphic3d_TypeOfComposition_HeaderFile
 
 //! To manage the transformation matrices of structures.
-enum Graphic3d_TypeOfComposition
+public enum class XGraphic3d_TypeOfComposition
 {
 Graphic3d_TOC_REPLACE,
 Graphic3d_TOC_POSTCONCATENATE
 };
 
-#endif // _Graphic3d_TypeOfComposition_HeaderFile
+#endif // _XGraphic3d_TypeOfComposition_HeaderFile

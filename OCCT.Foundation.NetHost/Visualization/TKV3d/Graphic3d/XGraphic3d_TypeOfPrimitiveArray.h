@@ -14,11 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfPrimitiveArray_HeaderFile
-#define _Graphic3d_TypeOfPrimitiveArray_HeaderFile
+#ifndef _XGraphic3d_TypeOfPrimitiveArray_HeaderFile
+#define _XGraphic3d_TypeOfPrimitiveArray_HeaderFile
 
 //! The type of primitive array in a group in a structure.
-enum Graphic3d_TypeOfPrimitiveArray
+public enum class XGraphic3d_TypeOfPrimitiveArray
 {
   Graphic3d_TOPA_UNDEFINED,                //!< undefined primitive type
   // main rendering types
@@ -45,4 +45,4 @@ enum Graphic3d_TypeOfPrimitiveArray
                                            //!  array defines a polygon
 };
 
-#endif // _Graphic3d_TypeOfPrimitiveArray_HeaderFile
+#endif // _XGraphic3d_TypeOfPrimitiveArray_HeaderFile

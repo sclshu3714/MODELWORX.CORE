@@ -12,18 +12,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_CappingFlags_HeaderFile
-#define _Graphic3d_CappingFlags_HeaderFile
+#ifndef _XGraphic3d_CappingFlags_HeaderFile
+#define _XGraphic3d_CappingFlags_HeaderFile
 
 //! Enumeration of capping flags.
-enum Graphic3d_CappingFlags
+public enum class XGraphic3d_CappingFlags
 {
-  Graphic3d_CappingFlags_None           = 0x0000, //!< no flags
-  Graphic3d_CappingFlags_ObjectMaterial = 0x0001, //!< use object material
-  Graphic3d_CappingFlags_ObjectTexture  = 0x0002, //!< use object texture
-  Graphic3d_CappingFlags_ObjectShader   = 0x0008, //!< use object GLSL program
-  Graphic3d_CappingFlags_ObjectAspect =
+    Graphic3d_CappingFlags_None           = 0x0000, //!< no flags
+    Graphic3d_CappingFlags_ObjectMaterial = 0x0001, //!< use object material
+    Graphic3d_CappingFlags_ObjectTexture  = 0x0002, //!< use object texture
+    Graphic3d_CappingFlags_ObjectShader   = 0x0008, //!< use object GLSL program
+    Graphic3d_CappingFlags_ObjectAspect =
     Graphic3d_CappingFlags_ObjectMaterial | Graphic3d_CappingFlags_ObjectTexture | Graphic3d_CappingFlags_ObjectShader //!< use entire fill area aspect from object
 };
 
-#endif // _Graphic3d_CappingFlags_HeaderFile
+#endif // _XGraphic3d_CappingFlags_HeaderFile
