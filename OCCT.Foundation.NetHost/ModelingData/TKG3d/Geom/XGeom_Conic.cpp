@@ -15,49 +15,121 @@
 // commercial license or contractual agreement.
 
 
-#include <Geom_Conic.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_DomainError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
+#include <XGeom_Conic.h>
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Conic,Geom_Curve)
+namespace TKG3d {
+	XGeom_Conic::XGeom_Conic() {
+		//NativeHandle() = new Geom_Conic();
+	};
 
-typedef Geom_Conic         Conic;
-typedef gp_Ax1 Ax1;
-typedef gp_Ax2 Ax2;
-typedef gp_Pnt Pnt;
-typedef gp_Vec Vec;
+	XGeom_Conic::XGeom_Conic(Handle(Geom_Conic) pos) {
+		NativeHandle() = pos;
+		SetCurveHandle(NativeHandle());
+	};
+
+	Handle(Geom_Conic) XGeom_Conic::GetConic() {
+		return NativeHandle();
+	};
+
+	void XGeom_Conic::SetConicHandle(Handle(Geom_Conic) pos) {
+		NativeHandle() = pos; 
+		SetCurveHandle(NativeHandle());
+	};
+
+	//! Changes the orientation of the conic's plane. The normal
+	//! axis to the plane is A1. The XAxis and the YAxis are recomputed.
+	//!
+	//! raised if the A1 is parallel to the XAxis of the conic.
+	void XGeom_Conic::SetAxis(xgp_Ax1^ A1) {
+		NativeHandle()->SetAxis(A1->GetAx1());
+	};
+
+	//! changes the location point of the conic.
+	void XGeom_Conic::SetLocation(xgp_Pnt^ P) {
+		NativeHandle()->SetLocation(P->GetPnt());
+	};
+
+	//! changes the local coordinate system of the conic.
+	void XGeom_Conic::SetPosition(xgp_Ax2^ A2) {
+		NativeHandle()->SetPosition(A2->GetAx2());
+	};
+
+	//! Returns the "main Axis" of this conic. This axis is
+	//! normal to the plane of the conic.
+	xgp_Ax1^ XGeom_Conic::Axis() {
+		return gcnew xgp_Ax1(NativeHandle()->Axis());
+	};
 
 
+	//! Returns the eccentricity value of the conic e.
+	//! e for a circle
+	//! 0 < e < 1 for an ellipse  (e if MajorRadius = MinorRadius)
+	//! e > 1 for a hyperbola
+	//! e = 1 for a parabola
+	//! Exceptions
+	//! Standard_DomainError in the case of a hyperbola if
+	//! its major radius is null.
+	Standard_Real XGeom_Conic::Eccentricity() {
+		return NativeHandle()->Eccentricity();
+	};
 
-void  Geom_Conic::Reverse () {
 
-  gp_Dir Vz = pos.Direction ();
-  Vz.Reverse();
-  pos.SetDirection (Vz);
+	//! Returns the location point of the conic.
+	//! For the circle, the ellipse and the hyperbola it is the center of
+	//! the conic. For the parabola it is the Apex of the parabola.
+	xgp_Pnt^ XGeom_Conic::Location() {
+		return gcnew xgp_Pnt(NativeHandle()->Location());
+	};
+
+
+	//! Returns the local coordinates system of the conic.
+	//! The main direction of the Axis2Placement is normal to the
+	//! plane of the conic. The X direction of the Axis2placement
+	//! is in the plane of the conic and corresponds to the origin
+	//! for the conic's parametric value u.
+	xgp_Ax2^ XGeom_Conic::Position() {
+		return gcnew xgp_Ax2(NativeHandle()->Position());
+	};
+
+
+	//! Returns the XAxis of the conic.
+	//! This axis defines the origin of parametrization of the conic.
+	//! This axis is perpendicular to the Axis of the conic.
+	//! This axis and the Yaxis define the plane of the conic.
+	xgp_Ax1^ XGeom_Conic::XAxis() {
+		return gcnew xgp_Ax1(NativeHandle()->XAxis());
+	};
+
+
+	//! Returns the YAxis of the conic.
+	//! The YAxis is perpendicular to the Xaxis.
+	//! This axis and the Xaxis define the plane of the conic.
+	xgp_Ax1^ XGeom_Conic::YAxis() {
+		return gcnew xgp_Ax1(NativeHandle()->YAxis());
+	};
+
+
+	//! Reverses the direction of parameterization of <me>.
+	//! The local coordinate system of the conic is modified.
+	void XGeom_Conic::Reverse() {
+		return NativeHandle()->Reverse();
+	};
+
+	//! Returns the  parameter on the  reversed  curve for
+	//! the point of parameter U on <me>.
+	Standard_Real XGeom_Conic::ReversedParameter(Standard_Real U) {
+		return NativeHandle()->ReversedParameter(U);
+	};
+
+	//! The continuity of the conic is Cn.
+	XGeomAbs_Shape XGeom_Conic::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
+	};
+
+	//! Returns True.
+	//! Raised if N < 0.
+	Standard_Boolean XGeom_Conic::IsCN(Standard_Integer N) {
+		return NativeHandle()->IsCN(N);
+	};
 }
-
-void Geom_Conic::SetAxis (const Ax1& A1) {  pos.SetAxis (A1); }
-
-void Geom_Conic::SetLocation (const Pnt& O) { pos.SetLocation (O); }
-
-void Geom_Conic::SetPosition (const Ax2& A2) { pos = A2; }
-
-Ax1 Geom_Conic::Axis () const { return pos.Axis(); }
-
-GeomAbs_Shape Geom_Conic::Continuity () const { return GeomAbs_CN; }
-
-Pnt Geom_Conic::Location () const { return pos.Location(); }
-
-const gp_Ax2& Geom_Conic::Position () const { return pos; }
-
-Ax1 Geom_Conic::XAxis () const {return Ax1(pos.Location(), pos.XDirection());}
-
-Ax1 Geom_Conic::YAxis () const {return Ax1(pos.Location(), pos.YDirection());}
-
-Standard_Boolean Geom_Conic::IsCN (const Standard_Integer ) const { return Standard_True; }
 

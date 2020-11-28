@@ -14,14 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Geom_Conic_HeaderFile
-#define _Geom_Conic_HeaderFile
+#ifndef _XGeom_Conic_HeaderFile
+#define _XGeom_Conic_HeaderFile
+#pragma once
+#include <NCollection_Haft.h>
+#include <Geom_Conic.hxx>
+#include <XGeom_Curve.h>  
+#include <xgp_Ax1.h> 
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <gp_Ax2.hxx>
-#include <Geom_Curve.hxx>
 #include <Standard_Real.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Boolean.hxx>
@@ -29,13 +34,10 @@
 class Standard_ConstructionError;
 class Standard_RangeError;
 class Standard_DomainError;
-class gp_Ax1;
-class gp_Pnt;
-class gp_Ax2;
 
-
-class Geom_Conic;
-DEFINE_STANDARD_HANDLE(Geom_Conic, Geom_Curve)
+//
+//class Geom_Conic;
+//DEFINE_STANDARD_HANDLE(Geom_Conic, Geom_Curve)
 
 //! The abstract class Conic describes the common
 //! behavior of conic curves in 3D space and, in
@@ -60,104 +62,108 @@ DEFINE_STANDARD_HANDLE(Geom_Conic, Geom_Curve)
 //! the direction in which the parameter increases along
 //! the conic. The "X Axis" of the local coordinate system
 //! also defines the origin of the parameter of the conic.
-class Geom_Conic : public Geom_Curve
-{
+using namespace TKMath;
+namespace TKG3d {
+	ref class TKMath::xgp_Ax1;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax2;
+	public ref class XGeom_Conic : public XGeom_Curve
+	{
 
-public:
+	public:
+		XGeom_Conic();
 
-  
-  //! Changes the orientation of the conic's plane. The normal
-  //! axis to the plane is A1. The XAxis and the YAxis are recomputed.
-  //!
-  //! raised if the A1 is parallel to the XAxis of the conic.
-  Standard_EXPORT void SetAxis (const gp_Ax1& A1);
-  
-  //! changes the location point of the conic.
-  Standard_EXPORT void SetLocation (const gp_Pnt& P);
-  
-  //! changes the local coordinate system of the conic.
-  Standard_EXPORT void SetPosition (const gp_Ax2& A2);
-  
-  //! Returns the "main Axis" of this conic. This axis is
-  //! normal to the plane of the conic.
-  Standard_EXPORT gp_Ax1 Axis() const;
-  
+		XGeom_Conic(Handle(Geom_Conic) pos);
 
-  //! Returns the eccentricity value of the conic e.
-  //! e = 0 for a circle
-  //! 0 < e < 1 for an ellipse  (e = 0 if MajorRadius = MinorRadius)
-  //! e > 1 for a hyperbola
-  //! e = 1 for a parabola
-  //! Exceptions
-  //! Standard_DomainError in the case of a hyperbola if
-  //! its major radius is null.
-  Standard_EXPORT virtual Standard_Real Eccentricity() const = 0;
-  
+		Handle(Geom_Conic) GetConic();
 
-  //! Returns the location point of the conic.
-  //! For the circle, the ellipse and the hyperbola it is the center of
-  //! the conic. For the parabola it is the Apex of the parabola.
-  Standard_EXPORT gp_Pnt Location() const;
-  
+		void SetConicHandle(Handle(Geom_Conic) pos);
 
-  //! Returns the local coordinates system of the conic.
-  //! The main direction of the Axis2Placement is normal to the
-  //! plane of the conic. The X direction of the Axis2placement
-  //! is in the plane of the conic and corresponds to the origin
-  //! for the conic's parametric value u.
-  Standard_EXPORT const gp_Ax2& Position() const;
-  
+		//! Changes the orientation of the conic's plane. The normal
+		//! axis to the plane is A1. The XAxis and the YAxis are recomputed.
+		//!
+		//! raised if the A1 is parallel to the XAxis of the conic.
+		void SetAxis(xgp_Ax1^ A1);
 
-  //! Returns the XAxis of the conic.
-  //! This axis defines the origin of parametrization of the conic.
-  //! This axis is perpendicular to the Axis of the conic.
-  //! This axis and the Yaxis define the plane of the conic.
-  Standard_EXPORT gp_Ax1 XAxis() const;
-  
+		//! changes the location point of the conic.
+		void SetLocation(xgp_Pnt^ P);
 
-  //! Returns the YAxis of the conic.
-  //! The YAxis is perpendicular to the Xaxis.
-  //! This axis and the Xaxis define the plane of the conic.
-  Standard_EXPORT gp_Ax1 YAxis() const;
-  
+		//! changes the local coordinate system of the conic.
+		void SetPosition(xgp_Ax2^ A2);
 
-  //! Reverses the direction of parameterization of <me>.
-  //! The local coordinate system of the conic is modified.
-  Standard_EXPORT void Reverse() Standard_OVERRIDE;
-  
-  //! Returns the  parameter on the  reversed  curve for
-  //! the point of parameter U on <me>.
-  Standard_EXPORT virtual Standard_Real ReversedParameter (const Standard_Real U) const Standard_OVERRIDE = 0;
-  
-  //! The continuity of the conic is Cn.
-  Standard_EXPORT GeomAbs_Shape Continuity() const Standard_OVERRIDE;
-  
-  //! Returns True.
-  //! Raised if N < 0.
-  Standard_EXPORT Standard_Boolean IsCN (const Standard_Integer N) const Standard_OVERRIDE;
+		//! Returns the "main Axis" of this conic. This axis is
+		//! normal to the plane of the conic.
+		xgp_Ax1^ Axis();
 
 
+		//! Returns the eccentricity value of the conic e.
+		//! e for a circle
+		//! 0 < e < 1 for an ellipse  (e if MajorRadius = MinorRadius)
+		//! e > 1 for a hyperbola
+		//! e = 1 for a parabola
+		//! Exceptions
+		//! Standard_DomainError in the case of a hyperbola if
+		//! its major radius is null.
+		virtual Standard_Real Eccentricity();
 
 
-  DEFINE_STANDARD_RTTIEXT(Geom_Conic,Geom_Curve)
-
-protected:
-
-
-  gp_Ax2 pos;
+		//! Returns the location point of the conic.
+		//! For the circle, the ellipse and the hyperbola it is the center of
+		//! the conic. For the parabola it is the Apex of the parabola.
+		xgp_Pnt^ Location();
 
 
-private:
+		//! Returns the local coordinates system of the conic.
+		//! The main direction of the Axis2Placement is normal to the
+		//! plane of the conic. The X direction of the Axis2placement
+		//! is in the plane of the conic and corresponds to the origin
+		//! for the conic's parametric value u.
+		xgp_Ax2^ Position();
 
 
+		//! Returns the XAxis of the conic.
+		//! This axis defines the origin of parametrization of the conic.
+		//! This axis is perpendicular to the Axis of the conic.
+		//! This axis and the Yaxis define the plane of the conic.
+		xgp_Ax1^ XAxis();
 
 
-};
+		//! Returns the YAxis of the conic.
+		//! The YAxis is perpendicular to the Xaxis.
+		//! This axis and the Xaxis define the plane of the conic.
+		xgp_Ax1^ YAxis();
 
 
+		//! Reverses the direction of parameterization of <me>.
+		//! The local coordinate system of the conic is modified.
+		void Reverse() Standard_OVERRIDE;
 
+		//! Returns the  parameter on the  reversed  curve for
+		//! the point of parameter U on <me>.
+		virtual Standard_Real ReversedParameter(Standard_Real U) Standard_OVERRIDE;
 
+		//! The continuity of the conic is Cn.
+		XGeomAbs_Shape Continuity() Standard_OVERRIDE;
 
+		//! Returns True.
+		//! Raised if N < 0.
+		Standard_Boolean IsCN(Standard_Integer N) Standard_OVERRIDE;
 
+		//! DEFINE_STANDARD_RTTIEXT(Geom_Conic,Geom_Curve)
+		  /// <summary>
+		  /// ±¾µØ¾ä±ú
+		  /// </summary>
+		virtual property Handle(Standard_Transient) Handle {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
+				return 	NativeHandle();
+			}
+			/*void set(Handle(Standard_Transient) handle) {
+				NativeHandle() = Handle(Geom_Conic)::DownCast(handle);
+			}*/
+		}
 
-#endif // _Geom_Conic_HeaderFile
+	private:
+		NCollection_Haft<Handle(Geom_Conic)> NativeHandle;
+	};
+}
+#endif // _XGeom_Conic_HeaderFile

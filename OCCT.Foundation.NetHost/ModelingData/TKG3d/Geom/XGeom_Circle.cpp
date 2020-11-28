@@ -14,223 +14,141 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <ElCLib.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_Geometry.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Circle,Geom_Conic)
-
-typedef Geom_Circle         Circle;
-typedef gp_Ax2  Ax2;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
-typedef gp_XYZ  XYZ;
-
-
-
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_Circle::Copy() const {
-
-  Handle(Geom_Circle) C;
-  C = new Circle (pos, radius);
-  return C;
-}
-
-
-//=======================================================================
-//function : Geom_Circle
-//purpose  : 
-//=======================================================================
-
-Geom_Circle::Geom_Circle (const gp_Circ& C) : radius (C.Radius()) {  
-
-  pos = C.Position(); 
-}
-
-
-//=======================================================================
-//function : Geom_Circle
-//purpose  : 
-//=======================================================================
-
-Geom_Circle::Geom_Circle (const Ax2& A2, const Standard_Real R) : radius (R) {
-
-  if (R < 0.0) throw Standard_ConstructionError();
-  pos = A2;
-}
-
-
-//=======================================================================
-//function : IsClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Circle::IsClosed () const        { return Standard_True; }
-
-
-//=======================================================================
-//function : IsPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Circle::IsPeriodic () const      { return Standard_True; }
-
-
-//=======================================================================
-//function : ReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Circle::ReversedParameter( const Standard_Real U) const 
-{
-  return ( 2. * M_PI - U);
-}
-
-//=======================================================================
-//function : Eccentricity
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Circle::Eccentricity () const       { return 0.0; }
-
-
-//=======================================================================
-//function : FirstParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Circle::FirstParameter () const     { return 0.0; }
-
-
-//=======================================================================
-//function : LastParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Circle::LastParameter () const      { return 2.0 * M_PI; }
-
-
-//=======================================================================
-//function : Circ
-//purpose  : 
-//=======================================================================
-
-gp_Circ Geom_Circle::Circ () const  { return gp_Circ (pos, radius); }
-
-
-//=======================================================================
-//function : SetCirc
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::SetCirc (const gp_Circ& C) {
-
-   radius = C.Radius();
-   pos = C.Position();
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::SetRadius (const Standard_Real R) { 
-
-   if (R < 0.0)  throw Standard_ConstructionError();
-   radius = R;
-}
-
-//=======================================================================
-//function : Radius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Circle::Radius() const
-{
-  return radius;
-}
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::D0 (const Standard_Real U, Pnt& P) const {
-
-  P = ElCLib::CircleValue (U, pos, radius);
-}
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::D1 (const Standard_Real U, Pnt& P, Vec& V1) const {
-
-  ElCLib::CircleD1 (U, pos, radius, P, V1);
-}
-
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::D2 (const Standard_Real U, Pnt& P, Vec& V1, Vec& V2) const {
-
-   ElCLib::CircleD2 (U, pos, radius, P, V1, V2);
-}
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::D3 (
-const Standard_Real U, Pnt& P, Vec& V1, Vec& V2, Vec& V3) const {
-
-  ElCLib::CircleD3 (U, pos, radius, P, V1, V2, V3);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_Circle::DN (const Standard_Real U, const Standard_Integer N) const {
-
-   Standard_RangeError_Raise_if (N < 1, " ");
-   return ElCLib::CircleDN (U, pos, radius, N);
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_Circle::Transform (const Trsf& T) {
-
-   radius = radius * Abs(T.ScaleFactor());
-   pos.Transform (T);
+#include <XGeom_Circle.h>
+
+namespace TKG3d {
+	//! Constructs a circle by conversion of the gp_Circ circle C.
+	XGeom_Circle::XGeom_Circle(xgp_Circ^ C) {
+		NativeHandle() = new Geom_Circle(C->GetCirc());
+		SetConicHandle(NativeHandle());
+	};
+
+	//! Constructs a circle of radius Radius, where A2 locates the circle and
+	//! defines its orientation in 3D space such that:
+	//! - the center of the circle is the origin of A2,
+	//! - the origin, "X Direction" and "Y Direction" of A2
+	//! define the plane of the circle,
+	//! - A2 is the local coordinate system of the circle.
+	//! Note: It is possible to create a circle where Radius is equal to 0.0.
+	//! raised if Radius < 0.
+	XGeom_Circle::XGeom_Circle(xgp_Ax2^ A2, Standard_Real Radius) {
+		NativeHandle() = new Geom_Circle(A2->GetAx2(), Radius);
+		SetConicHandle(NativeHandle());
+	};
+
+
+	Handle(Geom_Circle) XGeom_Circle::GetCircle() {
+		return NativeHandle();
+	};
+
+	void XGeom_Circle::SetCircleHandle(Handle(Geom_Circle) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
+	};
+
+	//! Set <me> so that <me> has the same geometric properties as C.
+	void XGeom_Circle::SetCirc(xgp_Circ^ C) {
+		NativeHandle()->SetCirc(C->GetCirc());
+	};
+
+	//! Assigns the value R to the radius of this circle.
+	//! Note: it is possible to have a circle with a radius equal to 0.0.
+	//! Exceptions - Standard_ConstructionError if R is negative.
+	void XGeom_Circle::SetRadius(Standard_Real R) {
+		NativeHandle()->SetRadius(R);
+	};
+
+
+	//! returns the non transient circle from gp with the same
+	//! geometric properties as <me>.
+	xgp_Circ^ XGeom_Circle::Circ() {
+		return gcnew xgp_Circ(NativeHandle()->Circ());
+	};
+
+	//! Returns the radius of this circle.
+	Standard_Real XGeom_Circle::Radius() {
+		return NativeHandle()->Radius();
+	};
+
+	//! Computes the parameter on the reversed circle for
+	//! the point of parameter U on this circle.
+	//! For a circle, the returned value is: 2.*Pi - U.
+	Standard_Real XGeom_Circle::ReversedParameter(Standard_Real U) {
+		return NativeHandle()->ReversedParameter(U);
+	};
+
+	//! Returns the eccentricity  e = 0 for a circle.
+	Standard_Real XGeom_Circle::Eccentricity() {
+		return NativeHandle()->Eccentricity();
+	};
+
+	//! Returns the value of the first parameter of this
+	//! circle. This is  0.0, which gives the start point of this circle, or
+	//! The start point and end point of a circle are coincident.
+	Standard_Real XGeom_Circle::FirstParameter() {
+		return NativeHandle()->FirstParameter();
+	};
+
+	//! Returns the value of the last parameter of this
+	//! circle. This is 2.*Pi, which gives the end point of this circle.
+	//! The start point and end point of a circle are coincident.
+	Standard_Real XGeom_Circle::LastParameter() {
+		return NativeHandle()->LastParameter();
+	};
+
+	//! returns True.
+	Standard_Boolean XGeom_Circle::IsClosed() {
+		return NativeHandle()->IsClosed();
+	};
+
+	//! returns True.
+	Standard_Boolean XGeom_Circle::IsPeriodic() {
+		return NativeHandle()->IsPeriodic();
+	};
+
+	//! Returns in P the point of parameter U.
+	//! P = C + R * Cos (U) * XDir + R * Sin (U) * YDir
+	//! where C is the center of the circle , XDir the XDirection and
+	//! YDir the YDirection of the circle's local coordinate system.
+	void XGeom_Circle::D0(Standard_Real U, xgp_Pnt^ P) {
+		return NativeHandle()->D0(U, P->GetPnt());
+	};
+
+
+	//! Returns the point P of parameter U and the first derivative V1.
+	void XGeom_Circle::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
+		return NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U, the first and second
+	//! derivatives V1 and V2.
+	void XGeom_Circle::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
+		return NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+	};
+
+
+	//! Returns the point P of parameter u, the first second and third
+	//! derivatives V1 V2 and V3.
+	void XGeom_Circle::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
+		return NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+	};
+
+
+	//! The returned vector gives the value of the derivative for the
+	//! order of derivation N.
+	//! Raised if N < 1.
+	xgp_Vec^ XGeom_Circle::DN(Standard_Real U, Standard_Integer N) {
+		return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+	};
+
+	//! Applies the transformation T to this circle.
+	void XGeom_Circle::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this circle.
+	XGeom_Geometry^ XGeom_Circle::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }

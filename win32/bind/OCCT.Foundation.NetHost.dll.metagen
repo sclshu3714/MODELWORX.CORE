@@ -4279,6 +4279,72 @@ Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Value(Double): PrivateScope, Public, HideBySig
     get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Conic: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Curve
+    Void .ctor(opencascade.handle<Geom_Conic>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> Handle 'get ' : 
+  Methods:
+    GetConic(handle<Geom_Conic>*): PrivateScope, Public, HideBySig
+    SetConicHandle(handle<Geom_Conic>*): PrivateScope, Public, HideBySig
+    SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
+    SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
+    SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
+    Axis(): PrivateScope, Public, HideBySig
+    Eccentricity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Location(): PrivateScope, Public, HideBySig
+    Position(): PrivateScope, Public, HideBySig
+    XAxis(): PrivateScope, Public, HideBySig
+    YAxis(): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig
+    get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Conic(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_Circle> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Circle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Conic
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> Handle 'get ' : 
+  Methods:
+    GetCircle(handle<Geom_Circle>*): PrivateScope, Public, HideBySig
+    SetCircleHandle(handle<Geom_Circle>*): PrivateScope, Public, HideBySig
+    SetCirc(xgp_Circ): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
+    Circ(): PrivateScope, Public, HideBySig
+    Radius(): PrivateScope, Public, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    Eccentricity(): PrivateScope, Public, Virtual, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    get_Handle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Circle(): PrivateScope, Public, HideBySig
 Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:

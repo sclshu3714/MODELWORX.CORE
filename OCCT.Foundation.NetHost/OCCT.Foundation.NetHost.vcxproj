@@ -280,6 +280,8 @@
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
@@ -432,6 +434,8 @@
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />
