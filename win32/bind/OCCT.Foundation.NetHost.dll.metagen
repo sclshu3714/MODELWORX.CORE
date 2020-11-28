@@ -4713,7 +4713,7 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetTypeOfAxis(XAIS_TypeOfAxis): PrivateScope, Public, HideBySig
     IsXYZAxis(): PrivateScope, Public, HideBySig
     AcceptDisplayMode(Int32): PrivateScope, Public, Virtual, HideBySig
-    Compute(handle<Prs3d_Projector>*, handle<Geom_Transformation>*, handle<Graphic3d_Structure>*): PrivateScope, Public, Virtual, HideBySig
+    Compute(handle<Prs3d_Projector>*, handle<Geom_Transformation>*, handle<Graphic3d_Structure>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Signature(): PrivateScope, Public, Virtual, HideBySig
     Type(): PrivateScope, Public, Virtual, HideBySig
     SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig

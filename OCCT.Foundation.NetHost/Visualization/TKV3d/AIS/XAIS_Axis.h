@@ -106,7 +106,7 @@ namespace TKV3d {
 		//! Translation. The HLR Prs can't be deducted automatically
 		//! WARNING :<aTrsf> must be applied
 		//! to the object to display before computation  !!!
-		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, Handle(Prs3d_Presentation) aPresentation) Standard_OVERRIDE;
+		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, Handle(Prs3d_Presentation) aPresentation);// Standard_OVERRIDE;
 
 		virtual Standard_Integer Signature() Standard_OVERRIDE;
 
