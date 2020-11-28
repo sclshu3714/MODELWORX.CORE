@@ -759,10 +759,12 @@ namespace TKV3d {
         /// <summary>
        /// ±¾µØ¾ä±ú
        /// </summary>
-        property Handle(Prs3d_Drawer) Handle
-        {
-            Handle(Prs3d_Drawer) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                NativeHandle() = Handle(Prs3d_Drawer)::DownCast(handle);
             }
         };
     private:

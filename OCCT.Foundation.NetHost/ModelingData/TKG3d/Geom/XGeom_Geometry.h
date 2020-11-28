@@ -137,9 +137,12 @@ namespace TKG3d
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		virtual property Handle(Standard_Transient) Handle {
+		virtual property Handle(Standard_Transient) IHandle {
 			Handle(Standard_Transient) get() {
 				return 	NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) {
+				NativeHandle() = Handle(Geom_Geometry)::DownCast(handle);
 			}
 		}
 

@@ -426,10 +426,12 @@ namespace TKLCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(TDF_Attribute) AHandle
-        {
-            Handle(TDF_Attribute) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) {
+                NativeHandle() = Handle(TDF_Attribute)::DownCast(handle);
             }
         }
     private:

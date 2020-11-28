@@ -295,9 +295,12 @@ namespace TKG3d
 		//! compute the current point.
 		xgp_Pnt^ Value(Standard_Real U, Standard_Real V);
 	
-		virtual property Handle(Standard_Transient) Handle {
+		virtual property Handle(Standard_Transient) IHandle {
 			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(Geom_Surface)::DownCast(handle);
 			}
 		};
 

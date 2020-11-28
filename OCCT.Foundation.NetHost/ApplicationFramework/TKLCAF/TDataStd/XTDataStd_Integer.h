@@ -96,10 +96,12 @@ namespace TKLCAF {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Handle(TDataStd_Integer) Handle
-		{
-			Handle(TDataStd_Integer) get() {
+		virtual property Handle(Standard_Transient) IHandle  {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(TDataStd_Integer)::DownCast(handle);
 			}
 		}
 	private:

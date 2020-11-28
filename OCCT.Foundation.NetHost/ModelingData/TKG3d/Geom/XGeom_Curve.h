@@ -253,9 +253,12 @@ namespace TKG3d {
 	    /// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		virtual property Handle(Standard_Transient) Handle {
+		virtual property Handle(Standard_Transient) IHandle {
 			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return 	NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(Geom_Curve)::DownCast(handle);
 			}
 		}
 

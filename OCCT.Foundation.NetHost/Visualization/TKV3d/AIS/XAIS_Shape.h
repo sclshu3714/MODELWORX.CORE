@@ -294,12 +294,14 @@ namespace TKV3d {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        virtual property Handle(AIS_InteractiveObject) Handle
-        {
-            Handle(AIS_InteractiveObject) get() Standard_OVERRIDE {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
                 return NativeHandle();
             }
-        };
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                NativeHandle() = Handle(AIS_Shape)::DownCast(handle);
+            }
+        }
 
     private:
         NCollection_Haft<Handle(AIS_Shape)> NativeHandle;

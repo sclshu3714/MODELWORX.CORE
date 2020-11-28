@@ -96,10 +96,12 @@ namespace TKV3d {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(Graphic3d_PresentationAttributes) Handle
-        {
-            Handle(Graphic3d_PresentationAttributes) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() {//Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) {//Standard_OVERRIDE {
+                NativeHandle() = Handle(Graphic3d_PresentationAttributes)::DownCast(handle);
             }
         };
     private:

@@ -421,10 +421,12 @@ namespace TKV3d {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(PrsMgr_PresentableObject) Handle
-        {
-            Handle(PrsMgr_PresentableObject) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() {// Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) {// Standard_OVERRIDE {
+                NativeHandle() = Handle(PrsMgr_PresentableObject)::DownCast(handle);
             }
         };
 

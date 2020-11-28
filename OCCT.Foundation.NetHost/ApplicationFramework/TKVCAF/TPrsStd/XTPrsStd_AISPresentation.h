@@ -242,10 +242,12 @@ namespace TKVCAF {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Handle(TPrsStd_AISPresentation) Handle
-		{
-			Handle(TPrsStd_AISPresentation) get() {
+		virtual property Handle(Standard_Transient) IHandle {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(TPrsStd_AISPresentation)::DownCast(handle);
 			}
 		}
 	private:

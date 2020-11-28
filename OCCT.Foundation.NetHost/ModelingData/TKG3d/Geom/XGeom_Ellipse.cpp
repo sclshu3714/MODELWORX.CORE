@@ -14,332 +14,206 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <ElCLib.hxx>
-#include <Geom_Ellipse.hxx>
-#include <Geom_Geometry.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Ellipse,Geom_Conic)
-
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Pnt  Pnt;
-typedef gp_Vec  Vec;
-typedef gp_Trsf Trsf;
-typedef gp_XYZ  XYZ;
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_Ellipse::Copy() const
-{
-  Handle(Geom_Ellipse) E;
-  E = new Geom_Ellipse(pos, majorRadius, minorRadius);
-  return E;
-}
-
-
-
-
-//=======================================================================
-//function : Geom_Ellipse
-//purpose  : 
-//=======================================================================
-
-Geom_Ellipse::Geom_Ellipse (const gp_Elips& E) 
-  : majorRadius (E.MajorRadius()), minorRadius (E.MinorRadius()) 
-{
-  pos = E.Position ();
-}
-
-
-//=======================================================================
-//function : Geom_Ellipse
-//purpose  : 
-//=======================================================================
-
-Geom_Ellipse::Geom_Ellipse ( const Ax2& A, 
-                             const Standard_Real MajorRadius,
-                             const Standard_Real MinorRadius) 
-  : majorRadius (MajorRadius), minorRadius (MinorRadius) {
-
-   if (MajorRadius < MinorRadius || MinorRadius < 0.0 ) {
-     throw Standard_ConstructionError();
-   }
-   pos = A;
-}
-
-
-//=======================================================================
-//function : IsClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Ellipse::IsClosed () const      { return Standard_True; }
-
-//=======================================================================
-//function : IsPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Ellipse::IsPeriodic () const    { return Standard_True; }
-
-//=======================================================================
-//function : FirstParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::FirstParameter () const   { return 0.0; }
-
-//=======================================================================
-//function : LastParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::LastParameter () const    { return 2.0 * M_PI; }
-
-//=======================================================================
-//function : MajorRadius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::MajorRadius () const      { return majorRadius; }
-
-//=======================================================================
-//function : MinorRadius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::MinorRadius () const      { return minorRadius; }
-
-//=======================================================================
-//function : SetElips
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::SetElips (const gp_Elips& E) {
-
-  majorRadius = E.MajorRadius();
-  minorRadius = E.MinorRadius();
-  pos = E.Position();
-}
-
-
-//=======================================================================
-//function : SetMajorRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::SetMajorRadius (const Standard_Real MajorRadius) {
-
-  if (MajorRadius < minorRadius)  throw Standard_ConstructionError();
-  else                            majorRadius = MajorRadius; 
-}
-
-
-//=======================================================================
-//function : SetMinorRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::SetMinorRadius (const Standard_Real MinorRadius) {
-
-   if (MinorRadius < 0 || majorRadius < MinorRadius) {
-     throw Standard_ConstructionError();
-   }
-   else { minorRadius = MinorRadius; }
-}
-
-
-//=======================================================================
-//function : Elips
-//purpose  : 
-//=======================================================================
-
-gp_Elips Geom_Ellipse::Elips () const {
-
-  return gp_Elips (pos, majorRadius, minorRadius);
-}
-
-
-//=======================================================================
-//function : ReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::ReversedParameter( const Standard_Real U) const 
-{
-  return ( 2. * M_PI - U);
-}
-
-
-//=======================================================================
-//function : Directrix1
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Ellipse::Directrix1 () const {
-
-   gp_Elips Ev (pos, majorRadius, minorRadius);
-   return Ev.Directrix1();
-}
-
-
-//=======================================================================
-//function : Directrix2
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Ellipse::Directrix2 () const {
-
-  gp_Elips Ev (pos, majorRadius, minorRadius);
-  return Ev.Directrix2();
-}
-
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::D0 (const Standard_Real U, gp_Pnt& P) const {
-
-  P = ElCLib::EllipseValue (U, pos, majorRadius, minorRadius);
-}
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::D1 (const Standard_Real U, Pnt& P, Vec& V1) const {
-
-  ElCLib::EllipseD1 (U, pos, majorRadius, minorRadius, P, V1);
-}
-
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::D2 (const Standard_Real U, Pnt& P, Vec& V1, Vec& V2) const {
-
-  ElCLib::EllipseD2 (U, pos, majorRadius, minorRadius, P, V1, V2);
-}
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::D3 (const Standard_Real U, Pnt& P, Vec& V1, Vec& V2, Vec& V3) const {
-
-  ElCLib::EllipseD3 (U, pos, majorRadius, minorRadius, P, V1, V2, V3);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_Ellipse::DN (const Standard_Real U, const Standard_Integer N) const {
-
-   Standard_RangeError_Raise_if (N < 1, " ");
-   return ElCLib::EllipseDN (U, pos, majorRadius, minorRadius, N);
-}
-
-
-//=======================================================================
-//function : Eccentricity
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::Eccentricity () const {
-
-  if (majorRadius == 0.0) { return 0.0; }
-  else {
-    return (Sqrt(majorRadius*majorRadius-minorRadius*minorRadius))/majorRadius;
-  }
-}
-
-
-//=======================================================================
-//function : Focal
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::Focal () const {
-
-  return 2.0 * Sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
-}
-
-
-//=======================================================================
-//function : Focus1
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_Ellipse::Focus1 () const {
-
-  Standard_Real C = Sqrt (majorRadius * majorRadius - minorRadius * minorRadius);
-  Standard_Real Xp, Yp, Zp, Xd, Yd, Zd;
-  pos.Location().Coord (Xp, Yp, Zp);
-  pos.XDirection().Coord (Xd, Yd, Zd);
-  return Pnt (Xp + C * Xd,  Yp + C * Yd,  Zp + C * Zd);
-}
-
-
-//=======================================================================
-//function : Focus2
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_Ellipse::Focus2 () const {
-
-  Standard_Real C = Sqrt (majorRadius * majorRadius - minorRadius * minorRadius);
-  Standard_Real Xp, Yp, Zp, Xd, Yd, Zd;
-  pos.Location().Coord (Xp, Yp, Zp);
-  pos.XDirection().Coord (Xd, Yd, Zd);
-  return Pnt (Xp - C * Xd,  Yp - C * Yd,  Zp - C * Zd);
-}
-
-
-//=======================================================================
-//function : Parameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Ellipse::Parameter () const {
-
-  if (majorRadius == 0.0)  return 0.0;
-  else                     return (minorRadius * minorRadius) / majorRadius;
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_Ellipse::Transform (const Trsf& T) {
-
-  majorRadius = majorRadius * Abs(T.ScaleFactor());
-  minorRadius = minorRadius * Abs(T.ScaleFactor());
-  pos.Transform(T);
+#include <XGeom_Ellipse.h>
+
+namespace TKG3d {
+	//! Constructs an ellipse by conversion of the gp_Elips ellipse E.
+	XGeom_Ellipse::XGeom_Ellipse(xgp_Elips^ E) {
+		IHandle = new  Geom_Ellipse(E->GetElips());
+	};
+
+	//! Constructs an ellipse
+	//! defined by its major and minor radii, MajorRadius
+	//! and MinorRadius, where A2 locates the ellipse
+	//! and defines its orientation in 3D space such that:
+	//! - the center of the ellipse is the origin of A2,
+	//! - the "X Direction" of A2 defines the major axis
+	//! of the ellipse, i.e. the major radius
+	//! MajorRadius is measured along this axis,
+	//! - the "Y Direction" of A2 defines the minor axis
+	//! of the ellipse, i.e. the minor radius
+	//! MinorRadius is measured along this axis,
+	//! - A2 is the local coordinate system of the ellipse.
+	//! Exceptions
+	//! Standard_ConstructionError if:
+	//! - MajorRadius is less than MinorRadius, or
+	//! - MinorRadius is less than 0.
+	//! Warning The Geom package does not prevent the
+	//! construction of an ellipse where MajorRadius and
+	//! MinorRadius are equal.
+	XGeom_Ellipse::XGeom_Ellipse(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		IHandle = new  Geom_Ellipse(A2->GetAx2(), MajorRadius, MinorRadius);
+	};
+
+	//! Converts the gp_Elips ellipse E into this ellipse.
+	void XGeom_Ellipse::SetElips(xgp_Elips^ E) {
+		NativeHandle()->SetElips(E->GetElips());
+	};
+
+	//! Assigns a value to the major radius of this ellipse.
+	//! ConstructionError raised if MajorRadius < MinorRadius.
+	void XGeom_Ellipse::SetMajorRadius(Standard_Real MajorRadius) {
+		NativeHandle()->SetMajorRadius(MajorRadius);
+	};
+
+	//! Assigns a value to the minor radius of this ellipse.
+	//! ConstructionError raised if MajorRadius < MinorRadius or if MinorRadius < 0.
+	void XGeom_Ellipse::SetMinorRadius(Standard_Real MinorRadius) {
+		NativeHandle()->SetMinorRadius(MinorRadius);
+	};
+
+
+	//! returns the non transient ellipse from gp with the same
+	xgp_Elips^ XGeom_Ellipse::Elips() {
+		return gcnew xgp_Elips(NativeHandle()->Elips());
+	};
+
+	//! Computes the parameter on the reversed ellipse for
+	//! the point of parameter U on this ellipse.
+	//! For an ellipse, the returned value is: 2.*Pi - U.
+	Standard_Real XGeom_Ellipse::ReversedParameter(Standard_Real U) {
+		return NativeHandle()->ReversedParameter(U);
+	};
+
+
+	//! This directrix is the line normal to the XAxis of the ellipse
+	//! in the local plane (Z = 0) at a distance d = MajorRadius / e
+	//! from the center of the ellipse, where e is the eccentricity of
+	//! the ellipse.
+	//! This line is parallel to the "YAxis". The intersection point
+	//! between directrix1 and the "XAxis" is the "Location" point
+	//! of the directrix1. This point is on the positive side of
+	//! the "XAxis".
+	//! Raised if Eccentricity = 0.0. (The ellipse degenerates
+	//! into a circle)
+	xgp_Ax1^ XGeom_Ellipse::Directrix1() {
+		return gcnew xgp_Ax1(NativeHandle()->Directrix1());
+	};
+
+
+	//! This line is obtained by the symmetrical transformation
+	//! of "Directrix1" with respect to the "YAxis" of the ellipse.
+	//!
+	//! Raised if Eccentricity = 0.0. (The ellipse degenerates into a
+	//! circle).
+	xgp_Ax1^ XGeom_Ellipse::Directrix2() {
+		return gcnew xgp_Ax1(NativeHandle()->Directrix2());
+	};
+
+
+	//! Returns the eccentricity of the ellipse  between 0.0 and 1.0
+	//! If f is the distance between the center of the ellipse and
+	//! the Focus1 then the eccentricity e = f / MajorRadius.
+	//! Returns 0 if MajorRadius = 0
+	Standard_Real XGeom_Ellipse::Eccentricity() {
+		return NativeHandle()->Eccentricity();
+	};
+
+
+	//! Computes the focal distance. It is the distance between the
+	//! the two focus of the ellipse.
+	Standard_Real XGeom_Ellipse::Focal() {
+		return NativeHandle()->Focal();
+	};
+
+
+	//! Returns the first focus of the ellipse. This focus is on the
+	//! positive side of the "XAxis" of the ellipse.
+	xgp_Pnt^ XGeom_Ellipse::Focus1() {
+		return gcnew xgp_Pnt(NativeHandle()->Focus1());
+	};
+
+
+	//! Returns the second focus of the ellipse. This focus is on
+	//! the negative side of the "XAxis" of the ellipse.
+	xgp_Pnt^ XGeom_Ellipse::Focus2() {
+		return gcnew xgp_Pnt(NativeHandle()->Focus2());
+	};
+
+	//! Returns the major  radius of this ellipse.
+	Standard_Real XGeom_Ellipse::MajorRadius() {
+		return NativeHandle()->MajorRadius();
+	};
+
+	//! Returns the minor radius of this ellipse.
+	Standard_Real XGeom_Ellipse::MinorRadius() {
+		return NativeHandle()->MinorRadius();
+	};
+
+
+	//! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
+	//! of the ellipse.
+	//! Returns 0 if MajorRadius = 0
+	Standard_Real XGeom_Ellipse::Parameter() {
+		return NativeHandle()->Parameter();
+	};
+
+	//! Returns the value of the first parameter of this
+	//! ellipse. This is respectively:
+	//! - 0.0, which gives the start point of this ellipse, or
+	//! The start point and end point of an ellipse are coincident.
+	Standard_Real XGeom_Ellipse::FirstParameter() {
+		return NativeHandle()->FirstParameter();
+	};
+
+	//! Returns the value of the  last parameter of this
+	//! ellipse. This is respectively:
+	//! - 2.*Pi, which gives the end point of this ellipse.
+	//! The start point and end point of an ellipse are coincident.
+	Standard_Real XGeom_Ellipse::LastParameter() {
+		return NativeHandle()->LastParameter();
+	};
+
+	//! return True.
+	Standard_Boolean XGeom_Ellipse::IsClosed() {
+		return NativeHandle()->IsClosed();
+	};
+
+	//! return True.
+	Standard_Boolean XGeom_Ellipse::IsPeriodic() {
+		return NativeHandle()->IsPeriodic();
+	};
+
+	//! Returns in P the point of parameter U.
+	//! P = C + MajorRadius * Cos (U) * XDir + MinorRadius * Sin (U) * YDir
+	//! where C is the center of the ellipse , XDir the direction of
+	//! the "XAxis" and "YDir" the "YAxis" of the ellipse.
+	void XGeom_Ellipse::D0(Standard_Real U, xgp_Pnt^ P) {
+		return NativeHandle()->D0(U, P->GetPnt());
+	};
+
+	void XGeom_Ellipse::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
+		return NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U. The vectors V1 and V2
+	//! are the first and second derivatives at this point.
+	void XGeom_Ellipse::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
+		return NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U, the first second and
+	//! third derivatives V1 V2 and V3.
+	void XGeom_Ellipse::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
+		return NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+	};
+
+	//! For the point of parameter U of this ellipse, computes
+	//! the vector corresponding to the Nth derivative.
+	//! Exceptions Standard_RangeError if N is less than 1.
+	xgp_Vec^ XGeom_Ellipse::DN(Standard_Real U, Standard_Integer N) {
+		return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+	};
+
+	//! Applies the transformation T to this ellipse.
+	void XGeom_Ellipse::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this ellipse.
+	XGeom_Geometry^ XGeom_Ellipse::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }

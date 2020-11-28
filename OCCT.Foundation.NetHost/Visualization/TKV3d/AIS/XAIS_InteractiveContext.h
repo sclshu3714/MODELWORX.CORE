@@ -1113,10 +1113,12 @@ namespace TKV3d
         /// <summary>
         /// 本地句柄
         /// </summary>
-        virtual property Handle(AIS_InteractiveContext) Handle
-        {
-            Handle(AIS_InteractiveContext) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get(){// Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) {// Standard_OVERRIDE {
+                NativeHandle() = Handle(AIS_InteractiveContext)::DownCast(handle);
             }
         };
     protected: //! @name internal fields

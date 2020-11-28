@@ -134,12 +134,14 @@ namespace TKV3d
 		/// <summary>
 		/// 本地句柄
 		/// </summary>
-		virtual property Handle(AIS_InteractiveObject) Handle
-		{
-			Handle(AIS_InteractiveObject) get() {
+		virtual property Handle(Standard_Transient) IHandle {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
 			}
-		};
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(AIS_InteractiveObject)::DownCast(handle);
+			}
+		}
 
 	private:
 		NCollection_Haft<Handle(AIS_InteractiveObject)> NativeHandle;

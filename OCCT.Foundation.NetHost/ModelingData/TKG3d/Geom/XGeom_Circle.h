@@ -17,15 +17,16 @@
 #ifndef _XGeom_Circle_HeaderFile
 #define _XGeom_Circle_HeaderFile
 #pragma once
+#include <NCollection_Haft.h> 
+#include <XGeom_Geometry.h>	
+#include <XGeom_Conic.h>
 #include <Geom_Circle.hxx>
 #include <xgp_Vec.h>
-#include <XGeom_Geometry.h>
 #include <xgp_Circ.h>
 #include <xgp_Ax2.h>
 #include <xgp_Pnt.h>
 #include <xgp_Vec.h>
 #include <xgp_Trsf.h>
-#include <XGeom_Conic.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -180,9 +181,12 @@ namespace TKG3d {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		virtual property Handle(Standard_Transient) Handle {
+		virtual property Handle(Standard_Transient) IHandle {
 			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return 	NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(Geom_Circle)::DownCast(handle);
 			}
 		}
 

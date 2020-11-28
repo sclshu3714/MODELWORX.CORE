@@ -121,10 +121,13 @@ namespace TKLCAF {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Handle(TDataStd_Name) Handle
+		virtual property Handle(Standard_Transient) IHandle
 		{
-			Handle(TDataStd_Name) get() {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(TDataStd_Name)::DownCast(handle);
 			}
 		}
 		//! DEFINE_STANDARD_RTTIEXT(XTDataStd_Name, XTDF_Attribute)

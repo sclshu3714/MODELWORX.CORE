@@ -810,6 +810,9 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1057,6 +1060,9 @@
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>

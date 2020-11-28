@@ -466,10 +466,12 @@ namespace TKXCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(XCAFDoc_ShapeTool) DHandle
-        {
-            Handle(XCAFDoc_ShapeTool) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                NativeHandle() = Handle(XCAFDoc_ShapeTool)::DownCast(handle);
             }
         }
     private:

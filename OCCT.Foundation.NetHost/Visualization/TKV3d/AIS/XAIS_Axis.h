@@ -106,7 +106,7 @@ namespace TKV3d {
 		//! Translation. The HLR Prs can't be deducted automatically
 		//! WARNING :<aTrsf> must be applied
 		//! to the object to display before computation  !!!
-		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, const Handle(Prs3d_Presentation) aPresentation) Standard_OVERRIDE;
+		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, Handle(Prs3d_Presentation) aPresentation) Standard_OVERRIDE;
 
 		virtual Standard_Integer Signature() Standard_OVERRIDE;
 
@@ -123,13 +123,14 @@ namespace TKV3d {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		virtual property Handle(AIS_InteractiveObject) Handle
-		{
-			Handle(AIS_InteractiveObject) get() Standard_OVERRIDE {
+		virtual property Handle(Standard_Transient) IHandle {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
 				return NativeHandle();
 			}
-		};
-
+			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+				NativeHandle() = Handle(AIS_Axis)::DownCast(handle);
+			}
+		}
 	private:
 		NCollection_Haft<Handle(AIS_Axis)> NativeHandle;
 

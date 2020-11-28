@@ -88,10 +88,12 @@ namespace TKV3d {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Handle(Prs3d_LineAspect) Handle
-		{
-			Handle(Prs3d_LineAspect) get() {
+		virtual property Handle(Standard_Transient) IHandle {
+			Handle(Standard_Transient) get() {//Standard_OVERRIDE {
 				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) {//Standard_OVERRIDE {
+				NativeHandle() = Handle(Prs3d_LineAspect)::DownCast(handle);
 			}
 		};
 	private:

@@ -359,10 +359,12 @@ namespace TKLCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Handle(TDocStd_Application) Handle
-        {
-            Handle(TDocStd_Application) get() {
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() {//Standard_OVERRIDE {
                 return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) {
+                NativeHandle() = Handle(TDocStd_Application)::DownCast(handle);
             }
         }
     private:
