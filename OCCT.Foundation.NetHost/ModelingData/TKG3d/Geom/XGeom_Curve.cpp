@@ -159,8 +159,8 @@ namespace TKG3d {
 	//! G1 : tangency continuity all along the Curve,
 	//! G2 : curvature continuity all along the Curve,
 	//! CN : the order of continuity is infinite.
-	GeomAbs_Shape XGeom_Curve::Continuity() {
-		return NativeHandle()->Continuity();
+	XGeomAbs_Shape XGeom_Curve::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
 	};
 
 	//! Returns true if the degree of continuity of this curve is at least N.

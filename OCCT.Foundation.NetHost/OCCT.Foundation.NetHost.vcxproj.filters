@@ -283,6 +283,9 @@
     <Filter Include="源文件\ModelingData\TKG3d\TopAbs">
       <UniqueIdentifier>{689c5f92-eb40-4aba-970d-3969d1044488}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\FoundationClasses\TKMath\GeomAbs">
+      <UniqueIdentifier>{41d69480-2440-4cc3-9d3c-6a3926a35970}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -765,6 +768,39 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Vector.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_BSplKnotDistribution.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_CurveForm.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_CurveType.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_IsoType.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_JoinType.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_Shape.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_SurfaceForm.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_SurfaceType.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_UVSense.h">
+      <Filter>头文件\FoundationClasses\TKMath\GeomAbs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -997,6 +1033,12 @@
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>

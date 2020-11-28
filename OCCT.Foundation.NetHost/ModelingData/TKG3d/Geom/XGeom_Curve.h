@@ -32,6 +32,7 @@
 #include <Standard_Boolean.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Integer.hxx>
+#include <XGeomAbs_Shape.h>
 class Standard_RangeError;
 class Standard_NoSuchObject;
 class Geom_UndefinedDerivative;
@@ -188,7 +189,7 @@ namespace TKG3d {
 		//! G1 : tangency continuity all along the Curve,
 		//! G2 : curvature continuity all along the Curve,
 		//! CN : the order of continuity is infinite.
-		virtual GeomAbs_Shape Continuity();
+		virtual XGeomAbs_Shape Continuity();
 
 		//! Returns true if the degree of continuity of this curve is at least N.
 		//! Exceptions -  Standard_RangeError if N is less than 0.

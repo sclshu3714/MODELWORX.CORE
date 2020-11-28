@@ -115,24 +115,24 @@ namespace TKG3d
 		//! (see class Transformation of the package Geom).
 		virtual void Transform(xgp_Trsf^ T);
 
-		Handle(Geom_Geometry) Mirrored(xgp_Pnt^ P);
+		XGeom_Geometry^ Mirrored(xgp_Pnt^ P);
 
-		Handle(Geom_Geometry) Mirrored(xgp_Ax1^ A1);
+		XGeom_Geometry^ Mirrored(xgp_Ax1^ A1);
 
-		Handle(Geom_Geometry) Mirrored(xgp_Ax2^ A2);
+		XGeom_Geometry^ Mirrored(xgp_Ax2^ A2);
 
-		Handle(Geom_Geometry) Rotated(xgp_Ax1^ A1, Standard_Real Ang);
+		XGeom_Geometry^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-		Handle(Geom_Geometry) Scaled(xgp_Pnt^ P, Standard_Real S);
+		XGeom_Geometry^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
-		Handle(Geom_Geometry) Transformed(xgp_Trsf^ T);
+		XGeom_Geometry^ Transformed(xgp_Trsf^ T);
 
-		Handle(Geom_Geometry) Translated(xgp_Vec^ V);
+		XGeom_Geometry^ Translated(xgp_Vec^ V);
 
-		Handle(Geom_Geometry) Translated(xgp_Pnt^ P1, xgp_Pnt^ P2);
+		XGeom_Geometry^ Translated(xgp_Pnt^ P1, xgp_Pnt^ P2);
 
 		//! Creates a new object which is a copy of this geometric object.
-		virtual Handle(Geom_Geometry) Copy();
+		virtual XGeom_Geometry^ Copy();
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

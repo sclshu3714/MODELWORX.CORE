@@ -13,242 +13,189 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+#include "XGeom_Line.h"
+
+namespace TKG3d {
 
 
-#include <ElCLib.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_Line.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Precision.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
+	//! Creates a line located in 3D space with the axis placement A1.
+	//! The Location of A1 is the origin of the line.
+	XGeom_Line::XGeom_Line(xgp_Ax1^ A1) {
+		NativeHandle() = new Geom_Line(A1->GetAx1());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Line,Geom_Curve)
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-Handle(Geom_Geometry) Geom_Line::Copy() const {
+	//! Creates a line from a non transient line from package gp.
+	XGeom_Line::XGeom_Line(xgp_Lin^ L) {
+		NativeHandle() = new Geom_Line(L->GetLin());
+	};
 
-   Handle(Geom_Line) L;
-   L = new Geom_Line (pos);
-   return L;
+	XGeom_Line::XGeom_Line(Handle(Geom_Line) pos) {
+		NativeHandle() = pos;
+	};
+	//! Constructs a line passing through point P and parallel to vector V
+	//! (P and V are, respectively, the origin and the unit
+	//! vector of the positioning axis of the line).
+	XGeom_Line::XGeom_Line(xgp_Pnt^ P, xgp_Dir^ V) {
+		NativeHandle() = new Geom_Line(P->GetPnt(), V->GetDir());
+	};
+
+	Handle(Geom_Line) XGeom_Line::GetHLine() {
+		return NativeHandle();
+	};
+
+	//! Set <me> so that <me> has the same geometric properties as L.
+	void XGeom_Line::SetLin(xgp_Lin^ L) {
+		NativeHandle()->SetLin(L->GetLin());
+	};
+
+	//! changes the direction of the line.
+	void XGeom_Line::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(V->GetDir());
+	};
+
+
+	//! changes the "Location" point (origin) of the line.
+	void XGeom_Line::SetLocation(xgp_Pnt^ P) {
+		NativeHandle()->SetLocation(P->GetPnt());
+	};
+
+
+	//! changes the "Location" and a the "Direction" of <me>.
+	void XGeom_Line::SetPosition(xgp_Ax1^ A1) {
+		NativeHandle()->SetPosition(A1->GetAx1());
+	};
+
+
+	//! Returns non transient line from gp with the same geometric
+	//! properties as <me>
+	xgp_Lin^ XGeom_Line::Lin() {
+		return gcnew xgp_Lin(NativeHandle()->Lin());
+	};
+
+	//! Returns the positioning axis of this line; this is also its local coordinate system.
+	xgp_Ax1^ XGeom_Line::Position() {
+		return gcnew xgp_Ax1(NativeHandle()->Position());
+	};
+
+	//! Changes the orientation of this line. As a result, the
+	//! unit vector of the positioning axis of this line is reversed.
+	void XGeom_Line::Reverse() {
+		NativeHandle()->Reverse();
+	};
+
+	//! Computes the parameter on the reversed line for the
+	//! point of parameter U on this line.
+	//! For a line, the returned value is -U.
+	Standard_Real XGeom_Line::ReversedParameter(Standard_Real U) {
+		return NativeHandle()->ReversedParameter(U);
+	};
+
+	//! Returns the value of the first parameter of this
+	//! line. This is Standard_Real::RealFirst().
+	Standard_Real XGeom_Line::FirstParameter() {
+		return NativeHandle()->FirstParameter();
+	};
+
+	//! Returns the value of the last parameter of this
+	//! line. This is  Standard_Real::RealLast().
+	Standard_Real XGeom_Line::LastParameter() {
+		return NativeHandle()->LastParameter();
+	};
+
+	//! returns False
+	Standard_Boolean XGeom_Line::IsClosed() {
+		return NativeHandle()->IsClosed();
+	};
+
+	//! returns False
+	Standard_Boolean XGeom_Line::IsPeriodic() {
+		return NativeHandle()->IsPeriodic();
+	};
+
+	//! Returns GeomAbs_CN, which is the global continuity of any line.
+	XGeomAbs_Shape XGeom_Line::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
+	};
+
+	//! returns True.
+	//! Raised if N < 0.
+	Standard_Boolean XGeom_Line::IsCN(Standard_Integer N) {
+		return NativeHandle()->IsCN(N);
+	};
+
+	//! Returns in P the point of parameter U.
+	//! P (U) = O + U * Dir where O is the "Location" point of the
+	//! line and Dir the direction of the line.
+	void XGeom_Line::D0(Standard_Real U, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, P->GetPnt());
+	};
+
+
+	//! Returns the point P of parameter u and the first derivative V1.
+	void XGeom_Line::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
+		NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U, the first and second
+	//! derivatives V1 and V2. V2 is a vector with null magnitude
+	//! for a line.
+	void XGeom_Line::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
+		NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+	};
+
+
+	//! V2 and V3 are vectors with null magnitude for a line.
+	void XGeom_Line::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
+		NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+	};
+
+
+	//! The returned vector gives the value of the derivative for the
+	//! order of derivation N.
+	//! Raised if N < 1.
+	xgp_Vec^ XGeom_Line::DN(Standard_Real U, Standard_Integer N) {
+		return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+	};
+
+	//! Applies the transformation T to this line.
+	void XGeom_Line::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(T->GetTrsf());
+	};
+
+	//! Returns the  parameter on the  transformed  curve for
+	//! the transform of the point of parameter U on <me>.
+	//!
+	//! me->Transformed(T)->Value(me->TransformedParameter(U,T))
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U).Transformed(T)
+	//!
+	//! This methods returns <U> * T.ScaleFactor()
+	Standard_Real XGeom_Line::TransformedParameter(Standard_Real U, xgp_Trsf^ T) {
+		return NativeHandle()->TransformedParameter(U, T->GetTrsf());
+	};
+
+	//! Returns a  coefficient to compute the parameter on
+	//! the transformed  curve  for  the transform  of the
+	//! point on <me>.
+	//!
+	//! Transformed(T)->Value(U * ParametricTransformation(T))
+	//!
+	//! is the same point as
+	//!
+	//! Value(U).Transformed(T)
+	//!
+	//! This methods returns T.ScaleFactor()
+	Standard_Real XGeom_Line::ParametricTransformation(xgp_Trsf^ T) {
+		return NativeHandle()->ParametricTransformation(T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this line.
+	XGeom_Geometry^ XGeom_Line::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-//=======================================================================
-//function : Geom_Line
-//purpose  : 
-//=======================================================================
-
-Geom_Line::Geom_Line (const gp_Ax1& A) : pos (A) { }
-
-//=======================================================================
-//function : Geom_Line
-//purpose  : 
-//=======================================================================
-
-Geom_Line::Geom_Line (const gp_Lin& L) : pos (L.Position()) { }
-
-//=======================================================================
-//function : Geom_Line
-//purpose  : 
-//=======================================================================
-
-Geom_Line::Geom_Line (const gp_Pnt& P, const gp_Dir& V) : pos (P, V) { }
-
-//=======================================================================
-//function : Reverse
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::Reverse () { pos.Reverse(); }
-
-//=======================================================================
-//function : ReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Line::ReversedParameter( const Standard_Real U) const 
-{ return (-U);}
-
-//=======================================================================
-//function : SetDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::SetDirection (const gp_Dir& V) { pos.SetDirection (V); }
-
-//=======================================================================
-//function : SetLin
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::SetLin (const gp_Lin& L) { pos = L.Position(); }
-
-//=======================================================================
-//function : SetLocation
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::SetLocation (const gp_Pnt& P) { pos.SetLocation (P); }
-
-//=======================================================================
-//function : SetPosition
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::SetPosition (const gp_Ax1& A1) { pos = A1; }
-
-//=======================================================================
-//function : Position
-//purpose  : 
-//=======================================================================
-
-const gp_Ax1& Geom_Line::Position () const { return pos; }
-
-//=======================================================================
-//function : IsClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Line::IsClosed () const { return Standard_False; }
-
-//=======================================================================
-//function : IsPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Line::IsPeriodic () const { return Standard_False;  }
-
-//=======================================================================
-//function : Continuity
-//purpose  : 
-//=======================================================================
-
-GeomAbs_Shape Geom_Line::Continuity () const { return GeomAbs_CN; }
-
-//=======================================================================
-//function : FirstParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Line::FirstParameter () const 
-{ return -Precision::Infinite(); }
-
-//=======================================================================
-//function : LastParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Line::LastParameter () const 
-{ return Precision::Infinite(); }
-
-//=======================================================================
-//function : Lin
-//purpose  : 
-//=======================================================================
-
-gp_Lin Geom_Line::Lin () const { return gp_Lin (pos); }
-
-
-//=======================================================================
-//function : IsCN
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Line::IsCN (const Standard_Integer ) const 
-{ return Standard_True; }
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::Transform (const gp_Trsf& T) { pos.Transform (T); }
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::D0 (const Standard_Real U, gp_Pnt& P) const  
-{ 
-  P = ElCLib::LineValue (U, pos);
-}
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::D1 (const Standard_Real U, gp_Pnt& P, gp_Vec& V1) const {
- 
-  ElCLib::LineD1 (U, pos, P, V1);
-}
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::D2 (const Standard_Real U, gp_Pnt& P, gp_Vec& V1, gp_Vec& V2) const {
-
-  ElCLib::LineD1 (U, pos, P, V1);
-  V2.SetCoord (0.0, 0.0, 0.0);
-}
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_Line::D3 (const Standard_Real U, gp_Pnt& P, gp_Vec& V1, gp_Vec& V2, gp_Vec& V3) const{
-
-  ElCLib::LineD1 (U, pos, P, V1);
-  V2.SetCoord (0.0, 0.0, 0.0);
-  V3.SetCoord (0.0, 0.0, 0.0);
-}
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-gp_Vec Geom_Line::DN (const Standard_Real , const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N <= 0, " ");
-  if (N == 1) return gp_Vec (pos.Direction ());
-  else        return gp_Vec (0.0, 0.0, 0.0);
-}
-
-//=======================================================================
-//function : TransformedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Line::TransformedParameter(const Standard_Real U,
-					      const gp_Trsf& T) const
-{
-  if (Precision::IsInfinite(U)) return U;
-  return U * Abs(T.ScaleFactor());
-}
-
-
-//=======================================================================
-//function : TransformedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Line::ParametricTransformation(const gp_Trsf& T) const
-{
-  return Abs(T.ScaleFactor());
-}
-
 

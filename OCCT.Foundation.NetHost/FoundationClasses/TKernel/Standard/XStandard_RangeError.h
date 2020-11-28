@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Standard_RangeError_HeaderFile
-#define _Standard_RangeError_HeaderFile
+#ifndef _XStandard_RangeError_HeaderFile
+#define _XStandard_RangeError_HeaderFile
 
 #include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
