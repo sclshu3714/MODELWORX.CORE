@@ -39,7 +39,7 @@ namespace TKG3d
 	}
 
 	//! 
-	void XGeom_Geometry::SetBaseNativeHandle(Handle(Geom_Geometry) pos) {
+	void XGeom_Geometry::SetGeomHandle(Handle(Geom_Geometry) pos) {
 		NativeHandle() = pos;
 	};
 

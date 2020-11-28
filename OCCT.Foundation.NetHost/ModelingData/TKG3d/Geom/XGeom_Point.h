@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Geom_Point_HeaderFile
-#define _Geom_Point_HeaderFile
+#ifndef _XGeom_Point_HeaderFile
+#define _XGeom_Point_HeaderFile
+#pragma once
+#include <Geom_Point.hxx>
+#include <NCollection_Haft.h> 
+#include <XGeom_Geometry.h>
+#include <xgp_Pnt.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -25,61 +30,59 @@
 class gp_Pnt;
 
 
-class Geom_Point;
-DEFINE_STANDARD_HANDLE(Geom_Point, Geom_Geometry)
-
+//class Geom_Point;
+//DEFINE_STANDARD_HANDLE(Geom_Point, Geom_Geometry)
+using namespace TKMath;
 //! The abstract class Point describes the common
 //! behavior of geometric points in 3D space.
 //! The Geom package also provides the concrete class
 //! Geom_CartesianPoint.
-class Geom_Point : public Geom_Geometry
-{
+namespace TKG3d {
+	ref class TKMath::xgp_Pnt;
+	public ref class XGeom_Point : public XGeom_Geometry
+	{
 
-public:
+	public:
+		XGeom_Point();
 
-  
-  //! returns the Coordinates of <me>.
-  Standard_EXPORT virtual void Coord (Standard_Real& X, Standard_Real& Y, Standard_Real& Z) const = 0;
-  
-  //! returns a non transient copy of <me>
-  Standard_EXPORT virtual gp_Pnt Pnt() const = 0;
-  
-  //! returns the X coordinate of <me>.
-  Standard_EXPORT virtual Standard_Real X() const = 0;
-  
-  //! returns  the Y coordinate of <me>.
-  Standard_EXPORT virtual Standard_Real Y() const = 0;
-  
-  //! returns the Z coordinate of <me>.
-  Standard_EXPORT virtual Standard_Real Z() const = 0;
-  
-  //! Computes the distance between <me> and <Other>.
-  Standard_EXPORT Standard_Real Distance (const Handle(Geom_Point)& Other) const;
-  
-  //! Computes the square distance between <me> and <Other>.
-  Standard_EXPORT Standard_Real SquareDistance (const Handle(Geom_Point)& Other) const;
+		XGeom_Point(Handle(Geom_Point) pos);
 
+		void SetNativeHandle(Handle(Geom_Point) pos);
 
+		Handle(Geom_Point) GetPoint();
+		//! returns the Coordinates of <me>.
+		virtual void Coord(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
+		//! returns a non transient copy of <me>
+		virtual xgp_Pnt^ Pnt();
 
-  DEFINE_STANDARD_RTTIEXT(Geom_Point,Geom_Geometry)
+		//! returns the X coordinate of <me>.
+		virtual Standard_Real X();
 
-protected:
+		//! returns  the Y coordinate of <me>.
+		virtual Standard_Real Y();
 
+		//! returns the Z coordinate of <me>.
+		virtual Standard_Real Z();
 
+		//! Computes the distance between <me> and <Other>.
+		Standard_Real Distance(XGeom_Point^ Other);
 
+		//! Computes the square distance between <me> and <Other>.
+		Standard_Real SquareDistance(XGeom_Point^ Other);
 
-private:
+		//! DEFINE_STANDARD_RTTIEXT(Geom_Point, Geom_Geometry)
+			/// <summary>
+			/// ±¾µØ¾ä±ú
+			/// </summary>
+		virtual property Handle(Standard_Transient) Handle {
+			Handle(Standard_Transient) get() Standard_OVERRIDE {
+				return 	NativeHandle();
+			}
+		}
 
-
-
-
-};
-
-
-
-
-
-
-
-#endif // _Geom_Point_HeaderFile
+	private:
+		NCollection_Haft<Handle(Geom_Point)> NativeHandle;
+	};
+}
+#endif // _XGeom_Point_HeaderFile

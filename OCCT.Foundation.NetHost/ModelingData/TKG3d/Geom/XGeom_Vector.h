@@ -50,6 +50,8 @@ namespace TKG3d {
 
 		XGeom_Vector(Handle(Geom_Vector) pos);
 
+		void SetVectorHandle(Handle(Geom_Vector) handle);
+
 		Handle(Geom_Vector) GetVector();
 		//! Reverses the vector <me>.
 		void Reverse();

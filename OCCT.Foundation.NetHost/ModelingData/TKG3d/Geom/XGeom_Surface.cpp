@@ -9,17 +9,17 @@ namespace TKG3d {
 	//! 
 	XGeom_Surface::XGeom_Surface(Handle(Geom_Surface) pos) : XGeom_Geometry(pos) {
 		NativeHandle() = pos;
-		SetBaseNativeHandle(NativeHandle());
+		SetGeomHandle(NativeHandle());
 	};
 
 	//!
 	XGeom_Surface::~XGeom_Surface() {
-		SetBaseNativeHandle(NULL);
+		SetGeomHandle(NULL);
 		NativeHandle() = NULL;
 	};
-	void XGeom_Surface::SetGeom_SurfaceHandle(Handle(Geom_Surface) handle) {
+	void XGeom_Surface::SetSurfaceHandle(Handle(Geom_Surface) handle) {
 		NativeHandle() = handle;
-		SetBaseNativeHandle(NativeHandle());
+		SetGeomHandle(NativeHandle());
 	};
 
 	//!

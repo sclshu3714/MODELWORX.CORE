@@ -86,6 +86,8 @@ namespace TKG3d {
 		//!
 		~XGeom_Curve();
 
+		void SetCurveHandle(Handle(Geom_Curve) pos);
+
 		Handle(Geom_Curve) GetCurve();
 
 		//! Changes the direction of parametrization of <me>.

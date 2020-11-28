@@ -283,6 +283,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Vector.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs.h" />
@@ -434,6 +435,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />

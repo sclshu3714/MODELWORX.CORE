@@ -22,22 +22,31 @@ namespace TKG3d {
 	//! The Location of A1 is the origin of the line.
 	XGeom_Line::XGeom_Line(xgp_Ax1^ A1) {
 		NativeHandle() = new Geom_Line(A1->GetAx1());
+		SetCurveHandle(NativeHandle());
 	};
 
 
 	//! Creates a line from a non transient line from package gp.
 	XGeom_Line::XGeom_Line(xgp_Lin^ L) {
 		NativeHandle() = new Geom_Line(L->GetLin());
+		SetCurveHandle(NativeHandle());
 	};
 
 	XGeom_Line::XGeom_Line(Handle(Geom_Line) pos) {
 		NativeHandle() = pos;
+		SetCurveHandle(NativeHandle());
 	};
 	//! Constructs a line passing through point P and parallel to vector V
 	//! (P and V are, respectively, the origin and the unit
 	//! vector of the positioning axis of the line).
 	XGeom_Line::XGeom_Line(xgp_Pnt^ P, xgp_Dir^ V) {
 		NativeHandle() = new Geom_Line(P->GetPnt(), V->GetDir());
+		SetCurveHandle(NativeHandle());
+	};
+
+	void XGeom_Line::SetLineHandle(Handle(Geom_Line) pos) {
+		NativeHandle() = pos;
+		SetCurveHandle(NativeHandle());
 	};
 
 	Handle(Geom_Line) XGeom_Line::GetHLine() {

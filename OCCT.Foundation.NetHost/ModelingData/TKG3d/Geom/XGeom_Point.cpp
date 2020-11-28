@@ -15,25 +15,59 @@
 // commercial license or contractual agreement.
 
 
-#include <Geom_Point.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_Type.hxx>
+#include <XGeom_Point.h>
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Point,Geom_Geometry)
+namespace TKG3d {
+	XGeom_Point::XGeom_Point() {
+		//NativeHandle() = new Geom_Point();
+	};
 
-typedef Geom_Point         Point;
+	XGeom_Point::XGeom_Point(Handle(Geom_Point) pos) {
+		NativeHandle() = pos;
+		SetGeomHandle(NativeHandle());
+	};
 
-Standard_Real Geom_Point::Distance (const Handle(Geom_Point)& Other) const {
+	void XGeom_Point::SetNativeHandle(Handle(Geom_Point) pos) {
+		NativeHandle() = pos; 
+		SetGeomHandle(NativeHandle());
+	};
 
-  gp_Pnt P1 = this->Pnt ();
-  gp_Pnt P2 = Other->Pnt ();
-  return P1.Distance (P2);
-}
+	Handle(Geom_Point) XGeom_Point::GetPoint() {
+		return NativeHandle();
+	};
 
+	//! returns the Coordinates of <me>.
+	void XGeom_Point::Coord(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+		NativeHandle()->Coord(X, Y, Z);
+	};
 
-Standard_Real Geom_Point::SquareDistance (const Handle(Geom_Point)& Other) const {
+	//! returns a non transient copy of <me>
+	xgp_Pnt^ XGeom_Point::Pnt() {
+		return gcnew xgp_Pnt(NativeHandle()->Pnt());
+	};
 
-  gp_Pnt P1 = this->Pnt ();
-  gp_Pnt P2 = Other->Pnt ();
-  return P1.SquareDistance (P2);
+	//! returns the X coordinate of <me>.
+	Standard_Real XGeom_Point::X() {
+		return NativeHandle()->X();
+	};
+
+	//! returns  the Y coordinate of <me>.
+	Standard_Real XGeom_Point::Y() {
+		return NativeHandle()->Y();
+	};
+
+	//! returns the Z coordinate of <me>.
+	Standard_Real XGeom_Point::Z() {
+		return NativeHandle()->Z();
+	};
+
+	//! Computes the distance between <me> and <Other>.
+	Standard_Real XGeom_Point::Distance(XGeom_Point^ Other) {
+		return NativeHandle()->Distance(Other->GetPoint());
+	};
+
+	//! Computes the square distance between <me> and <Other>.
+	Standard_Real XGeom_Point::SquareDistance(XGeom_Point^ Other) {
+		return NativeHandle()->SquareDistance(Other->GetPoint());
+	};
 }

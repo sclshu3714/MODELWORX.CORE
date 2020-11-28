@@ -85,7 +85,7 @@ namespace TKG3d
 		//!
 		~XGeom_Surface();
 
-		void SetGeom_SurfaceHandle(Handle(Geom_Surface) handle);
+		void SetSurfaceHandle(Handle(Geom_Surface) handle);
 
 		//!
 		Handle(Geom_Surface) GetSurface();

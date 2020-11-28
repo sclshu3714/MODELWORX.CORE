@@ -88,6 +88,8 @@ namespace TKG3d {
 		//! vector of the positioning axis of the line).
 		XGeom_Line(xgp_Pnt^ P, xgp_Dir^ V);
 
+		void SetLineHandle(Handle(Geom_Line) pos);
+
 		Handle(Geom_Line) GetHLine();
 
 		//! Set <me> so that <me> has the same geometric properties as L.

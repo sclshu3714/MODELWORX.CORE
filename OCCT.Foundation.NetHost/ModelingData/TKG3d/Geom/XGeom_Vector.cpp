@@ -23,6 +23,12 @@ namespace TKG3d {
 
 	XGeom_Vector::XGeom_Vector(Handle(Geom_Vector) pos) {
 		NativeHandle() = pos;
+		SetGeomHandle(NativeHandle());
+	};
+
+	void XGeom_Vector::SetVectorHandle(Handle(Geom_Vector) handle) {
+		NativeHandle() = handle;
+		SetGeomHandle(NativeHandle());
 	};
 
 	Handle(Geom_Vector) XGeom_Vector::GetVector() {
