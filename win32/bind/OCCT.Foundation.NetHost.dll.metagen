@@ -4377,6 +4377,73 @@ Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeField
     XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
     XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
     XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
+Class NCollection_Haft<opencascade::handle<Geom_Vector> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Vector: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_Vector>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetVectorHandle(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
+    GetVector(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, HideBySig
+    Reversed(): PrivateScope, Public, HideBySig
+    Angle(XGeom_Vector): PrivateScope, Public, HideBySig
+    AngleWithRef(XGeom_Vector, XGeom_Vector): PrivateScope, Public, HideBySig
+    Coord(Double, Double, Double): PrivateScope, Public, HideBySig
+    Magnitude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SquareMagnitude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    X(): PrivateScope, Public, HideBySig
+    Y(): PrivateScope, Public, HideBySig
+    Z(): PrivateScope, Public, HideBySig
+    Cross(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Crossed(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    CrossCross(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    CrossCrossed(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Dot(XGeom_Vector): PrivateScope, Public, HideBySig
+    DotCross(XGeom_Vector, XGeom_Vector): PrivateScope, Public, HideBySig
+    Vec(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Vector(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_Direction> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Direction: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Vector
+    Void .ctor(TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetDir(xgp_Dir): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
+    Dir(): PrivateScope, Public, HideBySig
+    Magnitude(): PrivateScope, Public, Virtual, HideBySig
+    SquareMagnitude(): PrivateScope, Public, Virtual, HideBySig
+    Cross(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig
+    CrossCross(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig
+    Crossed(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig
+    CrossCrossed(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Direction(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Ellipse> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4533,42 +4600,6 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Value(Double, Double): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class NCollection_Haft<opencascade::handle<Geom_Vector> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG3d.XGeom_Vector: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKG3d.XGeom_Geometry
-    Void .ctor(opencascade.handle<Geom_Vector>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    opencascade.handle<Standard_Transient> IHandle 'get set' : 
-  Methods:
-    SetVectorHandle(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
-    GetVector(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
-    Reverse(): PrivateScope, Public, HideBySig
-    Reversed(): PrivateScope, Public, HideBySig
-    Angle(XGeom_Vector): PrivateScope, Public, HideBySig
-    AngleWithRef(XGeom_Vector, XGeom_Vector): PrivateScope, Public, HideBySig
-    Coord(Double, Double, Double): PrivateScope, Public, HideBySig
-    Magnitude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SquareMagnitude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    X(): PrivateScope, Public, HideBySig
-    Y(): PrivateScope, Public, HideBySig
-    Z(): PrivateScope, Public, HideBySig
-    Cross(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Crossed(XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    CrossCross(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    CrossCrossed(XGeom_Vector, XGeom_Vector): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Dot(XGeom_Vector): PrivateScope, Public, HideBySig
-    DotCross(XGeom_Vector, XGeom_Vector): PrivateScope, Public, HideBySig
-    Vec(): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Vector(): PrivateScope, Public, HideBySig
 Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

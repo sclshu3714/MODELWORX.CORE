@@ -283,6 +283,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Direction.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
@@ -438,6 +439,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Direction.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />

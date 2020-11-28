@@ -15,131 +15,117 @@
 // commercial license or contractual agreement.
 
 
-#include <Geom_Direction.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_Vector.hxx>
-#include <gp.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_Type.hxx>
+#include <XGeom_Direction.h>
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Direction,Geom_Vector)
+namespace TKG3d {
+	//! Creates a unit vector with it 3 cartesian coordinates.
+		//!
+		//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.
+	XGeom_Direction::XGeom_Direction(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+		NativeHandle() = new Geom_Direction(X, Y, Z);
+		SetVectorHandle(NativeHandle());
+	};
 
-typedef Geom_Direction         Direction;
-typedef Geom_Vector            Vector;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
+	//! Creates a transient copy of <me>.
+	XGeom_Direction::XGeom_Direction(xgp_Dir^ V) {
+		NativeHandle() = new Geom_Direction(V->GetDir());
+		SetVectorHandle(NativeHandle());
+	};
 
+	//! Sets <me> to X,Y,Z coordinates.
+	//!
+	//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.
+	void XGeom_Direction::SetCoord(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+		NativeHandle()->SetCoord(X, Y, Z);
+	};
 
+	//! Converts the gp_Dir unit vector V into this unit vector.
+	void XGeom_Direction::SetDir(xgp_Dir^ V) {
+		NativeHandle()->SetDir(V->GetDir());
+	};
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
+	//! Changes the X coordinate of <me>.
+	//!
+	//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.
+	void XGeom_Direction::SetX(Standard_Real X) {
+		NativeHandle()->SetX(X);
+	};
 
-Handle(Geom_Geometry) Geom_Direction::Copy() const {
+	//! Changes the Y coordinate of <me>.
+	//!
+	//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.
+	void XGeom_Direction::SetY(Standard_Real Y) {
+		NativeHandle()->SetY(Y);
+	};
 
-  Handle(Geom_Direction) D;
-  D = new Direction (gpVec);
-  return D; 
-}
-
-//=======================================================================
-//function : Geom_Direction
-//purpose  : 
-//=======================================================================
-
-Geom_Direction::Geom_Direction (const Standard_Real X, const Standard_Real Y, const Standard_Real Z) {
-
-   Standard_Real D = sqrt (X * X + Y * Y + Z * Z);
-   Standard_ConstructionError_Raise_if (D <= gp::Resolution(),
-                                        "Geom_Direction() - input vector has zero length");
-   gpVec = gp_Vec (X/D, Y/D, Z/D);
-}
-
-Geom_Direction::Geom_Direction (const gp_Dir& V)  { gpVec = V; }
-
-void Geom_Direction::SetDir (const gp_Dir& V)     { gpVec = V; }
-
-gp_Dir Geom_Direction::Dir () const               {  return gpVec; }
-
-Standard_Real Geom_Direction::Magnitude () const           { return 1.0; }
-
-Standard_Real Geom_Direction::SquareMagnitude () const     { return 1.0; }
-
-void Geom_Direction::SetCoord (const Standard_Real X, const Standard_Real Y, const Standard_Real Z) {
-
-  Standard_Real D = Sqrt (X * X + Y * Y + Z * Z);
-  Standard_ConstructionError_Raise_if (D <= gp::Resolution(),
-                                       "Geom_Direction::SetCoord() - input vector has zero length");
-  gpVec = gp_Vec(X/D, Y/D, Z/D);
-}
+	//! Changes the Z coordinate of <me>.
+	//!
+	//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.
+	void XGeom_Direction::SetZ(Standard_Real Z) {
+		NativeHandle()->SetZ(Z);
+	};
 
 
-void Geom_Direction::SetX (const Standard_Real X) {
+	//! Returns the non transient direction with the same
+	//! coordinates as <me>.
+	xgp_Dir^ XGeom_Direction::Dir() {
+		return gcnew xgp_Dir(NativeHandle()->Dir());
+	};
 
-  Standard_Real D = Sqrt (X * X + gpVec.Y() * gpVec.Y() + gpVec.Z() * gpVec.Z());
-  Standard_ConstructionError_Raise_if (D <= gp::Resolution(),
-                                       "Geom_Direction::SetX() - input vector has zero length");
-  gpVec = gp_Vec (X/D, gpVec.Y()/D, gpVec.Z()/D);
-}
+	//! returns 1.0 which is the magnitude of any unit vector.
+	Standard_Real XGeom_Direction::Magnitude() {
+		return NativeHandle()->Magnitude();
+	};
 
-
-void Geom_Direction::SetY (const Standard_Real Y) {
-
-  Standard_Real D = Sqrt (gpVec.X() * gpVec.X() + Y * Y + gpVec.Z() * gpVec.Z());
-  Standard_ConstructionError_Raise_if (D <= gp::Resolution(),
-                                       "Geom_Direction::SetY() - input vector has zero length");
-  gpVec = gp_Vec (gpVec.X()/D, Y/D, gpVec.Z()/D);
-}
-
-
-void Geom_Direction::SetZ (const Standard_Real Z) {
-
-  Standard_Real D = Sqrt (gpVec.X() * gpVec.X() + gpVec.Y() * gpVec.Y() + Z * Z);
-  Standard_ConstructionError_Raise_if (D <= gp::Resolution(),
-                                       "Geom_Direction::SetZ() - input vector has zero length");
-  gpVec = gp_Vec (gpVec.X()/D, gpVec.Y()/D, Z/D);
-}
+	//! returns 1.0 which is the square magnitude of any unit vector.
+	Standard_Real XGeom_Direction::SquareMagnitude() {
+		return NativeHandle()->SquareMagnitude();
+	};
 
 
-void Geom_Direction::Cross (const Handle(Geom_Vector)& Other) {
-
-  gp_Dir V (gpVec.Crossed(Other->Vec()));
-  gpVec = V;
-}
-
-
-void Geom_Direction::CrossCross (
-const Handle(Geom_Vector)& V1, const Handle(Geom_Vector)& V2) {
-
-  gp_Dir V (gpVec.CrossCrossed (V1->Vec(), V2->Vec()));
-  gpVec = V;
-}
+	//! Computes the cross product between <me> and <Other>.
+	//!
+	//! Raised if the two vectors are parallel because it is
+	//! not possible to have a direction with null length.
+	void XGeom_Direction::Cross(XGeom_Vector^ Other) {
+		return NativeHandle()->Cross(Other->GetVector());
+	};
 
 
-Handle(Geom_Vector) Geom_Direction::Crossed (const Handle(Geom_Vector)& Other)
-const {
-
-   gp_Dir V (gpVec.Crossed (Other->Vec()));
-   return new Direction (V);
-}
-
-
-Handle(Geom_Vector) Geom_Direction::CrossCrossed (
-const Handle(Geom_Vector)& V1, const Handle(Geom_Vector)& V2) const {
-
-  gp_Dir V (gpVec.CrossCrossed (V1->Vec(), V2->Vec()));
-  return new Direction (V);
-}
+	//! Computes the triple vector product  <me> ^(V1 ^ V2).
+	//!
+	//! Raised if V1 and V2 are parallel or <me> and (V1 ^ V2) are
+	//! parallel
+	void XGeom_Direction::CrossCross(XGeom_Vector^ V1, XGeom_Vector^ V2) {
+		NativeHandle()->CrossCross(V1->GetVector(), V2->GetVector());
+	};
 
 
-void Geom_Direction::Transform (const gp_Trsf& T) { 
+	//! Computes the cross product between <me> and <Other>.
+	//! A new direction is returned.
+	//!
+	//! Raised if the two vectors are parallel because it is
+	//! not possible to have a direction with null length.
+	XGeom_Vector^ XGeom_Direction::Crossed(XGeom_Vector^ Other) {
+		return gcnew XGeom_Vector(NativeHandle()->Crossed(Other->GetVector()));
+	};
 
-  gp_Dir V (gpVec);
-  V.Transform (T);
-  gpVec = V;
+
+	//! Computes the triple vector product <me> ^(V1 ^ V2).
+	//!
+	//! Raised if V1 and V2 are parallel or <me> and (V1 ^ V2) are
+	//! parallel
+	XGeom_Vector^ XGeom_Direction::CrossCrossed(XGeom_Vector^ V1, XGeom_Vector^ V2) {
+		return gcnew XGeom_Vector(NativeHandle()->CrossCrossed(V1->GetVector(), V2->GetVector()));
+	};
+
+	//! Applies the transformation T to this unit vector, then normalizes it.
+	void XGeom_Direction::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this unit vector.
+	XGeom_Geometry^ XGeom_Direction::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
