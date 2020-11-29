@@ -14,15 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrimAPI_MakeSweep_HeaderFile
-#define _BRepPrimAPI_MakeSweep_HeaderFile
+#ifndef _XBRepPrimAPI_MakeSweep_HeaderFile
+#define _XBRepPrimAPI_MakeSweep_HeaderFile
+#pragma once
+#include <BRepPrimAPI_MakeSweep.hxx>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <BRepBuilderAPI_MakeShape.hxx>
-class TopoDS_Shape;
+
 
 
 //! The abstract class MakeSweep is
@@ -41,40 +44,38 @@ class TopoDS_Shape;
 //! -      The rotational sweep    called a Revol
 //! Swept constructions along complex profiles such as BSpline curves
 //! are also available in the BRepOffsetAPI package..
-class BRepPrimAPI_MakeSweep  : public BRepBuilderAPI_MakeShape
-{
-public:
+//! 
+using namespace TKBRep;	
+using namespace TKTopAlgo;
+namespace TKPrim {
+	ref class TKBRep::XTopoDS_Shape;
+	public ref class XBRepPrimAPI_MakeSweep : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
+		void SetMakeSweepHandle(BRepPrimAPI_MakeSweep* pos);
 
-  
-  //! Returns the  TopoDS  Shape of the bottom of the sweep.
-  Standard_EXPORT virtual TopoDS_Shape FirstShape() = 0;
-  
-  //! Returns the TopoDS Shape of the top of the sweep.
-  Standard_EXPORT virtual TopoDS_Shape LastShape() = 0;
+		//! Returns the  TopoDS  Shape of the bottom of the sweep.
+		virtual XTopoDS_Shape^ FirstShape();
 
+		//! Returns the TopoDS Shape of the top of the sweep.
+		virtual XTopoDS_Shape^ LastShape();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeSweep*>(handle);
+			}
+		}
 
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepPrimAPI_MakeSweep_HeaderFile
+	private:
+		BRepPrimAPI_MakeSweep* NativeHandle;
+	};
+}
+#endif // _XBRepPrimAPI_MakeSweep_HeaderFile
