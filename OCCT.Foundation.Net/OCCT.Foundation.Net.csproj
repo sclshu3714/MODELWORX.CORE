@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationFramework\TKLCAF\TDataStd\TDataStd_Integer.cs" />
     <Compile Include="DataExchange\TKXSBase\IFSelect\IFSelect_ReturnStatus.cs" />
     <Compile Include="Enums\OCCTEnum.cs" />
     <Compile Include="Events\OperationEvents.cs" />
@@ -59,7 +60,8 @@
     <Compile Include="ModelingData\TKG3d\TopAbs\TopAbs_ShapeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ApplicationFramework\" />
+    <Folder Include="ApplicationFramework\TKLCAF\TDF\" />
+    <Folder Include="ApplicationFramework\TKLCAF\TDocStd\" />
     <Folder Include="ModelingAlgorithms\" />
   </ItemGroup>
   <ItemGroup>

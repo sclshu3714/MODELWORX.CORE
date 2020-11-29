@@ -1,519 +1,253 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-
-#include <BRepBuilderAPI_MakeFace.hxx>
-#include <Geom_Surface.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Torus.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Wire.hxx>
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace()
-{
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const TopoDS_Face& F)
-: myMakeFace(F)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Pln& P)
-: myMakeFace(P)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cylinder& C)
-: myMakeFace(C)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cone& C)
-: myMakeFace(C)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Sphere& S)
-: myMakeFace(S)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Torus& T)
-: myMakeFace(T)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const Handle(Geom_Surface)& S,
-                                                 const Standard_Real TolDegen)
-: myMakeFace(S, TolDegen)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Pln& P,
-				   const Standard_Real UMin,
-				   const Standard_Real UMax,
-				   const Standard_Real VMin,
-				   const Standard_Real VMax)
-: myMakeFace(P,UMin,UMax,VMin,VMax)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cylinder& C,
-				   const Standard_Real UMin,
-				   const Standard_Real UMax,
-				   const Standard_Real VMin,
-				   const Standard_Real VMax)
-: myMakeFace(C,UMin,UMax,VMin,VMax)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cone& C,
-				   const Standard_Real UMin,
-				   const Standard_Real UMax,
-				   const Standard_Real VMin,
-				   const Standard_Real VMax)
-: myMakeFace(C,UMin,UMax,VMin,VMax)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Sphere& S,
-				   const Standard_Real UMin,
-				   const Standard_Real UMax,
-				   const Standard_Real VMin,
-				   const Standard_Real VMax)
-: myMakeFace(S,UMin,UMax,VMin,VMax)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Torus& T,
-				   const Standard_Real UMin,
-				   const Standard_Real UMax,
-				   const Standard_Real VMin,
-				   const Standard_Real VMax)
-: myMakeFace(T,UMin,UMax,VMin,VMax)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace (const Handle(Geom_Surface)& S,
-                                                  const Standard_Real UMin,
-                                                  const Standard_Real UMax,
-                                                  const Standard_Real VMin,
-                                                  const Standard_Real VMax,
-                                                  const Standard_Real TolDegen)
-: myMakeFace (S, UMin, UMax, VMin, VMax, TolDegen)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const TopoDS_Wire& W,
-				   const Standard_Boolean OnlyPlane)
-: myMakeFace(W,OnlyPlane)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Pln& P,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(P,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cylinder& C,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(C,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Cone& C,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(C,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Sphere& S,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(S,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const gp_Torus& T,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(T,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const Handle(Geom_Surface)& S,
-				   const TopoDS_Wire& W,
-				   const Standard_Boolean Inside)
-: myMakeFace(S,W,Inside)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeFace
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::BRepBuilderAPI_MakeFace(const TopoDS_Face& F,
-				   const TopoDS_Wire& W)
-: myMakeFace(F,W)
-{
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void BRepBuilderAPI_MakeFace::Init(const TopoDS_Face& F)
-{
-  myMakeFace.Init(F);
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeFace::Init(const Handle(Geom_Surface)& S,
-                                    const Standard_Boolean Bound,
-                                    const Standard_Real TolDegen)
-{
-  myMakeFace.Init(S, Bound, TolDegen);
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeFace::Init (const Handle(Geom_Surface)& SS,
-                                     const Standard_Real Um,
-                                     const Standard_Real UM,
-                                     const Standard_Real Vm,
-                                     const Standard_Real VM,
-                                     const Standard_Real TolDegen)
-{
-  myMakeFace.Init (SS, Um, UM, Vm, VM, TolDegen);
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeFace::Add(const TopoDS_Wire& W)
-{
-  myMakeFace.Add(W);
-  if ( myMakeFace.IsDone()) {
-    Done();
-    myShape = myMakeFace.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Face
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Face&  BRepBuilderAPI_MakeFace::Face()const 
-{
-  return myMakeFace.Face();
-}
-
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeFace::operator TopoDS_Face() const
-{
-  return Face();
-}
-
-//=======================================================================
-//function : IsDone
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepBuilderAPI_MakeFace::IsDone() const
-{
-  return myMakeFace.IsDone();
-}
-
-
-//=======================================================================
-//function : Error
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_FaceError BRepBuilderAPI_MakeFace::Error() const
-{
-  switch ( myMakeFace.Error()) {
-
-  case BRepLib_FaceDone:
-    return BRepBuilderAPI_FaceDone;
-
-  case BRepLib_NoFace:
-    return BRepBuilderAPI_NoFace;
-
-  case BRepLib_NotPlanar:
-    return BRepBuilderAPI_NotPlanar;
-
-  case BRepLib_CurveProjectionFailed:
-    return BRepBuilderAPI_CurveProjectionFailed;
-
-  case BRepLib_ParametersOutOfRange:
-    return BRepBuilderAPI_ParametersOutOfRange;
-
-  }
-
-  // Portage WNT
-  return BRepBuilderAPI_FaceDone;
+#include <XBRepBuilderAPI_MakeFace.h>
+namespace TKTopAlgo {
+
+	//! Not done.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace() {
+		NativeHandle = new BRepBuilderAPI_MakeFace();
+	};
+
+	//! Load a face. Usefull to add wires.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Face^ F) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(F->GetFace());
+	};
+
+	//! Make a face from a plane.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(P->GetPln());
+	};
+
+	//! Make a face from a cylinder.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder());
+	};
+
+	//! Make a face from a cone.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone());
+	};
+
+	//! Make a face from a sphere.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere());
+	};
+
+	//! Make a face from a torus.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus());
+	};
+
+	//! Make a face from a Surface. Accepts tolerance value (TolDegen)
+	//! for resolution of degenerated edges.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XGeom_Surface^ S, Standard_Real TolDegen) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSurface(), TolDegen);
+	};
+
+	//! Make a face from a plane.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(P->GetPln(), UMin, UMax, VMin, VMax);
+	};
+
+	//! Make a face from a cylinder.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), UMin, UMax, VMin, VMax);
+	};
+
+	//! Make a face from a cone.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), UMin, UMax, VMin, VMax);
+	};
+
+	//! Make a face from a sphere.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), UMin, UMax, VMin, VMax);
+	};
+
+	//! Make a face from a torus.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), UMin, UMax, VMin, VMax);
+	};
+
+	//! Make a face from a Surface. Accepts tolerance value (TolDegen)
+	//! for resolution of degenerated edges.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Real TolDegen) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSurface(), UMin, UMax, VMin, VMax, TolDegen);
+	};
+
+	//! Find a surface from the wire and make a face.
+	//! if <OnlyPlane> is true, the computed surface will be
+	//! a plane. If it is not possible to find a plane, the
+	//! flag NotDone will be set.
+	//! Standard_Boolean OnlyPlane = Standard_False
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Wire^ W, Standard_Boolean OnlyPlane) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(W->GetWire(), OnlyPlane);
+	};
+
+	//! Make a face from a plane and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(P->GetPln(), W->GetWire(), Inside);
+	};
+
+	//! Make a face from a cylinder and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), W->GetWire(), Inside);
+	};
+
+	//! Make a face from a cone and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), W->GetWire(), Inside);
+	};
+
+	//! Make a face from a sphere and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), W->GetWire(), Inside);
+	};
+
+	//! Make a face from a torus and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), W->GetWire(), Inside);
+	};
+
+	//! Make a face from a Surface and a wire.
+	//! Standard_Boolean Inside = Standard_True
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XGeom_Surface^ S, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSurface(), W->GetWire(), Inside);
+	};
+
+	//! Adds the wire <W> in the face <F>
+	//! A general method to create a face is to give
+	//! -      a surface S as the support (the geometric domain) of the face,
+	//! -      and a wire W to bound it.
+	//! The bounds of the face can also be defined by four parameter values
+	//! umin, umax, vmin, vmax which determine isoparametric limitations on
+	//! the parametric space of the surface. In this way, a patch is
+	//! defined. The parameter values are optional. If they are omitted, the
+	//! natural bounds of the surface are used. A wire is automatically
+	//! built using the defined bounds. Up to four edges and four vertices
+	//! are created with this wire (no edge is created when the
+	//! corresponding parameter value is infinite).
+	//! Wires can then be added using the function Add to define other
+	//! restrictions on the face. These restrictions represent holes. More
+	//! than one wire may be added by this way, provided that the wires do
+	//! not cross each other and that they define only one area on the
+	//! surface. (Be careful, however, as this is not checked).
+	//! Forbidden addition of wires
+	//! Note that in this schema, the third case is valid if edges of the
+	//! wire W are declared internal to the face. As a result, these edges
+	//! are no longer bounds of the face.
+	//! A default tolerance (Precision::Confusion()) is given to the face,
+	//! this tolerance may be increased during construction of the face
+	//! using various algorithms.
+	//! Rules applied to the arguments
+	//! For the surface:
+	//! -      The surface must not be a 'null handle'.
+	//! -      If the surface is a trimmed surface, the basis surface is used.
+	//! -      For the wire: the wire is composed of connected edges, each
+	//! edge having a parametric curve description in the parametric
+	//! domain of the surface; in other words, as a pcurve.
+	//! For the parameters:
+	//! -      The parameter values must be in the parametric range of the
+	//! surface (or the basis surface, if the surface is trimmed). If this
+	//! condition is not satisfied, the face is not built, and the Error
+	//! function will return BRepBuilderAPI_ParametersOutOfRange.
+	//! -      The bounding parameters p1 and p2 are adjusted on a periodic
+	//! surface in a given parametric direction by adding or subtracting
+	//! the period to obtain p1 in the parametric range of the surface and
+	//! such p2, that p2 - p1 <= Period, where Period is the period of the
+	//! surface in this parametric direction.
+	//! -      A parameter value may be infinite. There will be no edge and
+	//! no vertex in the corresponding direction.
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Face^ F, XTopoDS_Wire^ W) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(F->GetFace(), W->GetWire());
+	};
+
+	//! Initializes (or reinitializes) the
+	//! construction of a face by creating a new object which is a copy of
+	//! the face F, in order to add wires to it, using the function Add.
+	//! Note: this complete copy of the geometry is only required if you
+	//! want to work on the geometries of the two faces independently.
+	void XBRepBuilderAPI_MakeFace::Init(XTopoDS_Face^ F) {
+		NativeHandle->Init(F->GetFace());
+	};
+
+	//! Initializes (or reinitializes) the construction of a face on
+	//! the surface S. If Bound is true, a wire is
+	//! automatically created from the natural bounds of the
+	//! surface S and added to the face in order to bound it. If
+	//! Bound is false, no wire is added. This option is used
+	//! when real bounds are known. These will be added to
+	//! the face after this initialization, using the function Add.
+	//! TolDegen parameter is used for resolution of degenerated edges
+	//! if calculation of natural bounds is turned on.
+	void XBRepBuilderAPI_MakeFace::Init(XGeom_Surface^ S, Standard_Boolean Bound, Standard_Real TolDegen) {
+		NativeHandle->Init(S->GetSurface(), Bound, TolDegen);
+	};
+
+	//! Initializes (or reinitializes) the construction of a face on
+	//! the surface S, limited in the u parametric direction by
+	//! the two parameter values UMin and UMax and in the
+	//! v parametric direction by the two parameter values VMin and VMax.
+	//! Warning
+	//! Error returns:
+	//! -      BRepBuilderAPI_ParametersOutOfRange
+	//! when the parameters given are outside the bounds of the
+	//! surface or the basis surface of a trimmed surface.
+	//! TolDegen parameter is used for resolution of degenerated edges.
+	void XBRepBuilderAPI_MakeFace::Init(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Real TolDegen) {
+		NativeHandle->Init(S->GetSurface(), UMin, UMax, VMin, VMax, TolDegen);
+	};
+
+	//! Adds the wire W to the constructed face as a hole.
+	//! Warning
+	//! W must not cross the other bounds of the face, and all
+	//! the bounds must define only one area on the surface.
+	//! (Be careful, however, as this is not checked.)
+	//! Example
+	//! // a cylinder
+	//! gp_Cylinder C = ..;
+	//! // a wire
+	//! TopoDS_Wire W = ...;
+	//! BRepBuilderAPI_MakeFace MF(C);
+	//! MF.Add(W);
+	//! TopoDS_Face F = MF;
+	void XBRepBuilderAPI_MakeFace::Add(XTopoDS_Wire^ W) {
+		NativeHandle->Add(W->GetWire());
+	};
+
+	//! Returns true if this algorithm has a valid face.
+	Standard_Boolean XBRepBuilderAPI_MakeFace::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the construction status
+	//! BRepBuilderAPI_FaceDone if the face is built, or
+	//! -   another value of the BRepBuilderAPI_FaceError
+	//! enumeration indicating why the construction failed, in
+	//! particular when the given parameters are outside the
+	//! bounds of the surface.
+	BRepBuilderAPI_FaceError XBRepBuilderAPI_MakeFace::Error() {
+		return NativeHandle->Error();
+	};
+
+	//! Returns the constructed face.
+	//! Exceptions
+	//! StdFail_NotDone if no face is built.
+	XTopoDS_Face^ XBRepBuilderAPI_MakeFace::Face() {
+		return gcnew XTopoDS_Face(NativeHandle->Face());
+	};
+	XBRepBuilderAPI_MakeFace::operator XTopoDS_Face^() {
+		return gcnew XTopoDS_Face(NativeHandle->Face());
+	};
+
+	BRepBuilderAPI_MakeFace XBRepBuilderAPI_MakeFace::GetMakeFace() {
+		return *NativeHandle;
+	};
+
+	void XBRepBuilderAPI_MakeFace::SetMakeFaceHandle(BRepBuilderAPI_MakeFace* pos) {
+		NativeHandle = pos;
+	};
 }

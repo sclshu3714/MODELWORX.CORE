@@ -906,6 +906,9 @@
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.h">
       <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1205,6 +1208,9 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.cpp">
       <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

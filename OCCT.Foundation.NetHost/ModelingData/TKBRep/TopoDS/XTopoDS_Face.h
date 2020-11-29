@@ -45,6 +45,9 @@ namespace TKBRep {
         //! Undefined Face.
         XTopoDS_Face();
 
+        //! Undefined Face.
+        XTopoDS_Face(TopoDS_Face pos);
+
         //!
         TopoDS_Face GetFace();
 
