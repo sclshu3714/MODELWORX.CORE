@@ -8,4 +8,8 @@ namespace TKBRep {
         NativeHandle = new TopoDS_Wire();
         SetShapeHandle(*NativeHandle);
     };
+
+    TopoDS_Wire XTopoDS_Wire::GetWire() {
+        return *NativeHandle;
+    };
 }

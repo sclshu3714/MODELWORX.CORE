@@ -14,8 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Edge_HeaderFile
-#define _TopoDS_Edge_HeaderFile
+#ifndef _XTopoDS_Edge_HeaderFile
+#define _XTopoDS_Edge_HeaderFile
+#pragma once
+#include <TopoDS_Edge.hxx>
+#include <XTopoDS_Shape.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -32,38 +36,33 @@
 //! - has an orientation for the underlying edge, in terms
 //! of its geometry (as opposed to orientation in
 //! relation to other shapes).
-class TopoDS_Edge  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_Edge : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Undefined Edge.
-    TopoDS_Edge();
+     //!   DEFINE_STANDARD_ALLOC
 
 
+        //! Undefined Edge.
+        XTopoDS_Edge();
 
+        //!
+        TopoDS_Edge GetEdge();
 
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Edge.lxx>
-
-
-
-
-
-#endif // _TopoDS_Edge_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Edge*>(shape);
+            }
+        }
+    private:
+        TopoDS_Edge* NativeHandle;
+    };
+}
+#endif // _XTopoDS_Edge_HeaderFile

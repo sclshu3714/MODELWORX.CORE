@@ -47,6 +47,9 @@ namespace TKBRep {
         //! Loads this shape with the shape aShape
         void Shape(XTopoDS_Shape^ aShape);
 
+        //!
+        TopoDS_HShape GetHShape();
+
         //! Returns a reference to a constant TopoDS_Shape based on this shape.
         XTopoDS_Shape^ Shape();
 

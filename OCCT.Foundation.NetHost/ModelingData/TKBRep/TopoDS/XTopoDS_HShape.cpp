@@ -33,6 +33,11 @@ namespace TKBRep {
         NativeHandle()->Shape(aShape->GetShape());
     };
 
+    //!
+    TopoDS_HShape XTopoDS_HShape::GetHShape() {
+        return *NativeHandle();
+    };
+
     //! Returns a reference to a constant TopoDS_Shape based on this shape.
     XTopoDS_Shape^ XTopoDS_HShape::Shape() {
         return gcnew XTopoDS_Shape(NativeHandle()->Shape());

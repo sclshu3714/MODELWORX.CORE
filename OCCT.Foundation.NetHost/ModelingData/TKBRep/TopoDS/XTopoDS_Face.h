@@ -14,8 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Face_HeaderFile
-#define _TopoDS_Face_HeaderFile
+#ifndef _XTopoDS_Face_HeaderFile
+#define _XTopoDS_Face_HeaderFile
+#pragma once
+#include <TopoDS_Face.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -31,38 +34,33 @@
 //! placement in the local coordinate system
 //! - has an orientation for the underlying face, in terms
 //! of its geometry (as opposed to orientation in relation to other shapes).
-class TopoDS_Face  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_Face : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Undefined Face.
-    TopoDS_Face();
+        //!    DEFINE_STANDARD_ALLOC
 
 
+        //! Undefined Face.
+        XTopoDS_Face();
 
+        //!
+        TopoDS_Face GetFace();
 
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Face.lxx>
-
-
-
-
-
-#endif // _TopoDS_Face_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Face*>(shape);
+            }
+        }
+    private:
+        TopoDS_Face* NativeHandle;
+    };
+}
+#endif // _XTopoDS_Face_HeaderFile

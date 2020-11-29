@@ -46,6 +46,9 @@ namespace TKBRep {
         //! Constructs an Undefined Compound.
         XTopoDS_Compound();
 
+        //!
+        TopoDS_Compound GetCompound();
+
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>

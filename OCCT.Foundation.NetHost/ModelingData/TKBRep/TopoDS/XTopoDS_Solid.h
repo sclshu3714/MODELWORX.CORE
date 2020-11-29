@@ -43,6 +43,8 @@ namespace TKBRep {
         //! Constructs an Undefined Solid.
         XTopoDS_Solid();
 
+        TopoDS_Solid GetSolid();
+
         /// <summary>
        /// ±¾µØ¾ä±ú
        /// </summary>

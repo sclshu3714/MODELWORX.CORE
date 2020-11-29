@@ -4167,6 +4167,7 @@ Class TKBRep.XTopoDS_Iterator: AutoLayout, AnsiClass, Class, Public, BeforeField
     TopoDS_Iterator* IHandle 'get set' : 
   Methods:
     Initialize(XTopoDS_Shape, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    GetIterator(TopoDS_Iterator*): PrivateScope, Public, HideBySig
     More(): PrivateScope, Public, HideBySig
     Next(): PrivateScope, Public, HideBySig
     Value(): PrivateScope, Public, HideBySig
@@ -4274,14 +4275,66 @@ Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetWire(TopoDS_Wire*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Shell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetShell(TopoDS_Shell*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Solid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetSolid(TopoDS_Solid*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetCompSolid(TopoDS_CompSolid*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
+    GetCompound(TopoDS_Compound*): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Builder* IHandle 'get set' : 
+  Methods:
+    SetBuilderHandle(TopoDS_Builder*): PrivateScope, Public, HideBySig
+    MakeWire(XTopoDS_Wire): PrivateScope, Public, HideBySig
+    MakeShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
+    MakeSolid(XTopoDS_Solid): PrivateScope, Public, HideBySig
+    MakeCompSolid(XTopoDS_CompSolid): PrivateScope, Public, HideBySig
+    MakeCompound(XTopoDS_Compound): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Remove(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TopoDS_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -4311,12 +4364,22 @@ Struct XTopAbs_State: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldI
     XTopAbs_State TopAbs_OUT = 1 : Public, Static, Literal, HasDefault
     XTopAbs_State TopAbs_ON = 2 : Public, Static, Literal, HasDefault
     XTopAbs_State TopAbs_UNKNOWN = 3 : Public, Static, Literal, HasDefault
-Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
+    GetEdge(TopoDS_Edge*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Face: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetFace(TopoDS_Face*): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<TopoDS_HShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4336,35 +4399,12 @@ Class TKBRep.XTopoDS_HShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Methods:
     Shape(): PrivateScope, Public, HideBySig
     Shape(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    GetHShape(TopoDS_HShape*): PrivateScope, Public, HideBySig
     ChangeShape(): PrivateScope, Public, HideBySig
     get_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     ~XTopoDS_HShape(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKBRep.XTopoDS_Shell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Solid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

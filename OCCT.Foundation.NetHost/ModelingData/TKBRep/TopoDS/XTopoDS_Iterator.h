@@ -73,6 +73,8 @@ namespace TKBRep {
         //! Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True
         void Initialize(XTopoDS_Shape^ S, Standard_Boolean cumOri, const Standard_Boolean cumLoc);
 
+        TopoDS_Iterator  GetIterator();
+
         //! Returns true if there is another sub-shape in the
         //! shape which this iterator is scanning.
         Standard_Boolean More();

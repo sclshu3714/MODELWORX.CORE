@@ -8,4 +8,7 @@ namespace TKBRep {
         NativeHandle = new TopoDS_Shell();
         SetShapeHandle(*NativeHandle);
     };
+    TopoDS_Shell XTopoDS_Shell::GetShell() {
+        return *NativeHandle;
+    };
 }

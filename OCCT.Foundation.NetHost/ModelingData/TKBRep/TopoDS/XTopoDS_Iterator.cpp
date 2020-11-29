@@ -31,6 +31,10 @@ namespace TKBRep {
         NativeHandle->Initialize(S->GetShape(), cumOri, cumLoc);
     };
 
+    TopoDS_Iterator XTopoDS_Iterator::GetIterator() {
+        return *NativeHandle;
+    };
+
     //! Returns true if there is another sub-shape in the
     //! shape which this iterator is scanning.
     Standard_Boolean XTopoDS_Iterator::More() {
