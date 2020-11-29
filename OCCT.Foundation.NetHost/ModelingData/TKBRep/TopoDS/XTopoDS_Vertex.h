@@ -14,8 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Vertex_HeaderFile
-#define _TopoDS_Vertex_HeaderFile
+#ifndef _XTopoDS_Vertex_HeaderFile
+#define _XTopoDS_Vertex_HeaderFile
+#pragma once
+#include <TopoDS_Vertex.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -32,38 +35,37 @@
 //! - has an orientation for the underlying vertex, in
 //! terms of its geometry (as opposed to orientation in
 //! relation to other shapes).
-class TopoDS_Vertex  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_Vertex : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Undefined Vertex.
-    TopoDS_Vertex();
+        //! DEFINE_STANDARD_ALLOC
 
 
+        //! Undefined Vertex.
+        XTopoDS_Vertex();
 
 
-protected:
+        //! Undefined Face.
+        XTopoDS_Vertex(TopoDS_Vertex pos);
 
+        //!
+        TopoDS_Vertex GetVertex();
 
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Vertex.lxx>
-
-
-
-
-
-#endif // _TopoDS_Vertex_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Vertex*>(shape);
+            }
+        }
+    private:
+        TopoDS_Vertex* NativeHandle;
+    };
+}
+#endif // _XTopoDS_Vertex_HeaderFile

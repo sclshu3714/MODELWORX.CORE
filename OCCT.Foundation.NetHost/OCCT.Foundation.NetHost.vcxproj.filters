@@ -328,6 +328,18 @@
     <Filter Include="头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI">
       <UniqueIdentifier>{8b724d06-7b25-46ae-b3cc-756de1bfb4a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingData\TKG2d">
+      <UniqueIdentifier>{6ac8fd46-07e8-454a-9718-5a2cddeb0ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKG2d\Geom2d">
+      <UniqueIdentifier>{30bcb9c5-5646-413a-869a-d2b1198e741c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKG2d">
+      <UniqueIdentifier>{9bc18ae0-5e4f-4b83-889a-c4f4299e82ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKG2d\Geom2d">
+      <UniqueIdentifier>{9f949608-1243-4470-8f1a-e9781887ca73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -909,6 +921,18 @@
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.h">
       <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Vertex.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.h">
+      <Filter>头文件\ModelingData\TKG2d\Geom2d</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.h">
+      <Filter>头文件\ModelingData\TKG2d\Geom2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1211,6 +1235,15 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.cpp">
       <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Vertex.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.cpp">
+      <Filter>源文件\ModelingData\TKG2d\Geom2d</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp">
+      <Filter>源文件\ModelingData\TKG2d\Geom2d</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

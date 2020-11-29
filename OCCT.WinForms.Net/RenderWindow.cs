@@ -16,6 +16,8 @@ using TKV3d;
 using TKernel;
 using TKG3d;
 using TKMath;
+using TKTopAlgo;
+using TKBRep;
 
 namespace OCCT.WinForms.Net
 {
@@ -780,8 +782,12 @@ namespace OCCT.WinForms.Net
             context.RemoveAll(true);
             xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));
             XGeom_Circle OutCircle = new XGeom_Circle(ax2, 1.2);
+           
             XGeom_Circle InCircle = new XGeom_Circle(ax2, 1.0);
 
+
+           
+            //XBRepBuilderAPI_MakeFace makeFace = new XBRepBuilderAPI_MakeFace(OutCircle.Circ(), 1);
         }
 
 

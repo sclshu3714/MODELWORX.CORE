@@ -4586,6 +4586,99 @@ Class TKBRep.XTopoDS_HShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     set_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     ~XTopoDS_HShape(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetVertex(TopoDS_Vertex*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG2d.XGeom2d_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetGeometryHandle(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
+    GetGeometry(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
+    Mirror(xgp_Ax2d): PrivateScope, Public, HideBySig
+    Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Translate(xgp_Vec2d): PrivateScope, Public, HideBySig
+    Transform(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
+    Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
+    Translated(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Translated(xgp_Vec2d): PrivateScope, Public, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XGeom2d_Geometry(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom2d_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG2d.XGeom2d_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG2d.XGeom2d_Geometry
+    Void .ctor(opencascade.handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetCurveHandle(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
+    GetCurve(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    TransformedParameter(Double, xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ParametricTransformation(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reversed(): PrivateScope, Public, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D0(Double, xgp_Pnt2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D1(Double, xgp_Pnt2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D2(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D3(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(Double): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom2d_Curve(): PrivateScope, Public, HideBySig
+Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4690,17 +4783,6 @@ Class TKG3d.XGeom_Circle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XGeom_Circle(): PrivateScope, Public, HideBySig
-Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<Geom_Vector> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
