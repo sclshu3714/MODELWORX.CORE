@@ -286,6 +286,36 @@
     <Filter Include="头文件\FoundationClasses\TKMath\GeomAbs">
       <UniqueIdentifier>{41d69480-2440-4cc3-9d3c-6a3926a35970}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKPrim">
+      <UniqueIdentifier>{54698e54-7fa2-4a56-9b8a-573d507a3faa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKPrim">
+      <UniqueIdentifier>{a378106d-a33d-4c8c-a399-04f6a51f2228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI">
+      <UniqueIdentifier>{fa122542-d6b9-4804-96a1-4fb3b621ecea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI">
+      <UniqueIdentifier>{cebca70a-7f7b-44ce-83fc-760c622c1016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKTopAlgo">
+      <UniqueIdentifier>{36241e61-6233-4e9c-9ff4-b23ec731fe04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI">
+      <UniqueIdentifier>{1a970617-e894-4b44-b503-87533de55165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKTopAlgo">
+      <UniqueIdentifier>{7f46a2e6-9155-42df-b835-53e4d1647552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI">
+      <UniqueIdentifier>{1b2ee77f-81a1-413d-bc92-08f31dadcc97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep\TopTools">
+      <UniqueIdentifier>{a9843f00-fcbf-4bb0-b3b5-af57a55b1624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep\TopTools">
+      <UniqueIdentifier>{ad18f5f3-c02c-4bf8-adb8-f51a48953daf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -849,6 +879,12 @@
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.h">
       <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopTools\XTopTools_ListOfShape.h">
+      <Filter>头文件\ModelingData\TKBRep\TopTools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1136,6 +1172,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.cpp">
       <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
