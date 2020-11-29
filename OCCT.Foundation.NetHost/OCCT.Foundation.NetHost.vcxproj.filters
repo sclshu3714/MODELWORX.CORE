@@ -933,6 +933,9 @@
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.h">
       <Filter>头文件\ModelingData\TKG2d\Geom2d</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeWire.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1244,6 +1247,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp">
       <Filter>源文件\ModelingData\TKG2d\Geom2d</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeWire.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

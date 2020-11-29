@@ -23,11 +23,12 @@
 #include <NCollection_List.hxx>
 namespace TKBRep {
 	ref class XTopoDS_Shape;
-	typedef NCollection_List<TopoDS_Shape> TopTools_ListOfShape;
-	typedef NCollection_List<TopoDS_Shape>::Iterator TopTools_ListIteratorOfListOfShape;
+	/*typedef NCollection_List<TopoDS_Shape> TopTools_ListOfShape;
+	typedef NCollection_List<TopoDS_Shape>::Iterator TopTools_ListIteratorOfListOfShape;*/
 	public ref class XTopTools_ListOfShape {
 	public:
 		XTopTools_ListOfShape(TopTools_ListOfShape TListOfShape) {
+			NListOfShape = new TopTools_ListOfShape(TListOfShape);
 			ListOfShape = gcnew List<XTopoDS_Shape^>();
 			TopTools_ListIteratorOfListOfShape Iterator(TListOfShape);
 			for (TopTools_ListIteratorOfListOfShape Iterator(TListOfShape); Iterator.More(); Iterator.Next())
@@ -40,7 +41,12 @@ namespace TKBRep {
 			return ListOfShape;
 		};
 
+		TopTools_ListOfShape TListOfShapes() {
+			return *NListOfShape;
+		}
+
 	private:
+		TopTools_ListOfShape* NListOfShape;
 		List<XTopoDS_Shape^>^ ListOfShape;
 	};
 }

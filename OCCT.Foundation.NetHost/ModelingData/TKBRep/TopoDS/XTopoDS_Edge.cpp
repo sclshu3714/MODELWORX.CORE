@@ -9,6 +9,11 @@ namespace TKBRep {
         SetShapeHandle(*NativeHandle);
     };
 
+    XTopoDS_Edge::XTopoDS_Edge(TopoDS_Edge pos) {
+        NativeHandle = &pos;
+        SetShapeHandle(*NativeHandle);
+    };
+
     //!
     TopoDS_Edge XTopoDS_Edge::GetEdge() {
         return *NativeHandle;

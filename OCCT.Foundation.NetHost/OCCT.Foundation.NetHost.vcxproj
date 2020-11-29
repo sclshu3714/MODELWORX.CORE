@@ -285,6 +285,7 @@
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.h" />
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeWire.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.h" />
@@ -461,6 +462,7 @@
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSweep.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeWire.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.cpp" />

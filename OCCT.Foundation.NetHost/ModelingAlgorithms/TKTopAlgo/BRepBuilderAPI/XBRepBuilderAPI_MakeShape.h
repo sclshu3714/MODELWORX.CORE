@@ -76,10 +76,10 @@ namespace TKTopAlgo {
 		/// ±¾µØ¾ä±ú
 		/// </summary>
 		virtual property BRepBuilderAPI_MakeShape* IHandle {
-			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+			BRepBuilderAPI_MakeShape* get() {// Standard_OVERRIDE {
 				return NativeHandle;
 			}
-			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+			void set(BRepBuilderAPI_MakeShape* handle) {// Standard_OVERRIDE {
 				NativeHandle = static_cast<BRepBuilderAPI_MakeShape*>(handle);
 			}
 		}

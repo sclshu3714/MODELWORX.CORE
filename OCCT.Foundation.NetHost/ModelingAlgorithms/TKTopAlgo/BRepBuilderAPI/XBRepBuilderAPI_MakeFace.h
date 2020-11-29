@@ -262,7 +262,7 @@ namespace TKTopAlgo {
 		void Add(XTopoDS_Wire^ W);
 
 		//! Returns true if this algorithm has a valid face.
-		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone();// Standard_OVERRIDE;
 
 		//! Returns the construction status
 		//! BRepBuilderAPI_FaceDone if the face is built, or
