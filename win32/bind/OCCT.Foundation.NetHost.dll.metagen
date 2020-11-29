@@ -4275,6 +4275,48 @@ Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKBO.XBRepAlgoAPI_Cut: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKBRep.XTopoDS_Shape, TKBRep.XTopoDS_Shape, BOPAlgo_PaveFiller*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Shape, TKBRep.XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BOPAlgo_PaveFiller*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    BRepAlgoAPI_Cut* IHandle 'get set' : 
+  Methods:
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepAlgoAPI_Cut*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XTopAbs_Orientation TopAbs_FORWARD = 0 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_REVERSED = 1 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_INTERNAL = 2 : Public, Static, Literal, HasDefault
+    XTopAbs_Orientation TopAbs_EXTERNAL = 3 : Public, Static, Literal, HasDefault
+Struct XTopAbs_ShapeEnum: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XTopAbs_ShapeEnum TopAbs_COMPOUND = 0 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_COMPSOLID = 1 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SOLID = 2 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SHELL = 3 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_FACE = 4 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_WIRE = 5 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_EDGE = 6 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_VERTEX = 7 : Public, Static, Literal, HasDefault
+    XTopAbs_ShapeEnum TopAbs_SHAPE = 8 : Public, Static, Literal, HasDefault
+Struct XTopAbs_State: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XTopAbs_State TopAbs_IN = 0 : Public, Static, Literal, HasDefault
+    XTopAbs_State TopAbs_OUT = 1 : Public, Static, Literal, HasDefault
+    XTopAbs_State TopAbs_ON = 2 : Public, Static, Literal, HasDefault
+    XTopAbs_State TopAbs_UNKNOWN = 3 : Public, Static, Literal, HasDefault
 Class TKBRep.XTopTools_ListOfShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(NCollection_List<TopoDS_Shape>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -4322,35 +4364,6 @@ Class TKPrim.XBRepPrimAPI_MakePrism: AutoLayout, AnsiClass, Class, Public, Befor
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XTopAbs_Orientation TopAbs_FORWARD = 0 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_REVERSED = 1 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_INTERNAL = 2 : Public, Static, Literal, HasDefault
-    XTopAbs_Orientation TopAbs_EXTERNAL = 3 : Public, Static, Literal, HasDefault
-Struct XTopAbs_ShapeEnum: AutoLayout, AnsiClass, Class, Public, Sealed, Serializable, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XTopAbs_ShapeEnum TopAbs_COMPOUND = 0 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_COMPSOLID = 1 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SOLID = 2 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SHELL = 3 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_FACE = 4 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_WIRE = 5 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_EDGE = 6 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_VERTEX = 7 : Public, Static, Literal, HasDefault
-    XTopAbs_ShapeEnum TopAbs_SHAPE = 8 : Public, Static, Literal, HasDefault
-Struct XTopAbs_State: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XTopAbs_State TopAbs_IN = 0 : Public, Static, Literal, HasDefault
-    XTopAbs_State TopAbs_OUT = 1 : Public, Static, Literal, HasDefault
-    XTopAbs_State TopAbs_ON = 2 : Public, Static, Literal, HasDefault
-    XTopAbs_State TopAbs_UNKNOWN = 3 : Public, Static, Literal, HasDefault
 Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

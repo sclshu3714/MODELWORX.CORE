@@ -316,6 +316,18 @@
     <Filter Include="源文件\ModelingData\TKBRep\TopTools">
       <UniqueIdentifier>{ad18f5f3-c02c-4bf8-adb8-f51a48953daf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO">
+      <UniqueIdentifier>{3d0c1ca8-fcbf-4688-97ad-4b97af2d43fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO">
+      <UniqueIdentifier>{c9c50b77-09af-4b0c-be02-565304bcc3d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI">
+      <UniqueIdentifier>{c2aba044-99dd-401e-915a-736180d45edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI">
+      <UniqueIdentifier>{8b724d06-7b25-46ae-b3cc-756de1bfb4a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -891,6 +903,9 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakePrism.h">
       <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1187,6 +1202,9 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakePrism.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
