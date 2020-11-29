@@ -14,14 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Shell_HeaderFile
-#define _TopoDS_Shell_HeaderFile
+#ifndef _XTopoDS_Shell_HeaderFile
+#define _XTopoDS_Shell_HeaderFile
+#pragma once
+#include <TopoDS_Shell.hxx>
+#include <XTopoDS_Shape.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
-#include <TopoDS_Shape.hxx>
 
 
 //! Describes a shell which
@@ -31,38 +33,29 @@
 //! placement in the local coordinate system
 //! - has an orientation for the underlying shell, in terms
 //! of its geometry (as opposed to orientation in relation to other shapes).
-class TopoDS_Shell  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_Shell : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs an Undefined Shell.
-    TopoDS_Shell();
+        //! DEFINE_STANDARD_ALLOC
 
 
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Shell.lxx>
-
-
-
-
-
-#endif // _TopoDS_Shell_HeaderFile
+        //! Constructs an Undefined Shell.
+        XTopoDS_Shell();
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Shell*>(shape);
+            }
+        }
+    private:
+        TopoDS_Shell* NativeHandle;
+    };
+}
+#endif 

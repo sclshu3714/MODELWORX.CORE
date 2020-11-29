@@ -14,14 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Compound_HeaderFile
-#define _TopoDS_Compound_HeaderFile
+#ifndef _XTopoDS_Compound_HeaderFile
+#define _XTopoDS_Compound_HeaderFile
+#pragma once
+#include <TopoDS_Compound.hxx>
+#include <XTopoDS_Shape.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
-#include <TopoDS_Shape.hxx>
 
 
 //! Describes a compound which
@@ -33,38 +35,30 @@
 //! terms of its geometry (as opposed to orientation in
 //! relation to other shapes).
 //! Casts shape S to the more specialized return type, Compound.
-class TopoDS_Compound  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_Compound : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs an Undefined Compound.
-    TopoDS_Compound();
+        //! DEFINE_STANDARD_ALLOC
 
 
+        //! Constructs an Undefined Compound.
+        XTopoDS_Compound();
 
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Compound.lxx>
-
-
-
-
-
-#endif // _TopoDS_Compound_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Compound*>(shape);
+            }
+        }
+    private:
+        TopoDS_Compound* NativeHandle;
+    };
+}
+#endif // _XTopoDS_Compound_HeaderFile

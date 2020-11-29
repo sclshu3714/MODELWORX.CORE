@@ -14,9 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#include <XTopoDS_HShape.h>
 
-#include <Standard_Type.hxx>
-#include <TopoDS_HShape.hxx>
-#include <TopoDS_Shape.hxx>
+namespace TKBRep {
 
-IMPLEMENT_STANDARD_RTTIEXT(TopoDS_HShape,Standard_Transient)
+    //! Constructs an empty shape object
+    XTopoDS_HShape::XTopoDS_HShape() {
+        NativeHandle() = new TopoDS_HShape();
+    };
+
+    //! Constructs a shape object defined by the shape aShape.
+    XTopoDS_HShape::XTopoDS_HShape(XTopoDS_Shape^ aShape) {
+        NativeHandle() = new TopoDS_HShape(aShape->GetShape());
+    };
+
+    //! Loads this shape with the shape aShape
+    void XTopoDS_HShape::Shape(XTopoDS_Shape^ aShape) {
+        NativeHandle()->Shape(aShape->GetShape());
+    };
+
+    //! Returns a reference to a constant TopoDS_Shape based on this shape.
+    XTopoDS_Shape^ XTopoDS_HShape::Shape() {
+        return gcnew XTopoDS_Shape(NativeHandle()->Shape());
+    };
+
+
+    //! Exchanges the TopoDS_Shape object defining this
+    //! shape for another one referencing the same underlying shape
+    //! Accesses the list of shapes within the underlying
+    //! shape referenced by the TopoDS_Shape object.
+    //! Returns a reference to a TopoDS_Shape based on
+    //! this shape. The TopoDS_Shape can be modified.
+    XTopoDS_Shape^ XTopoDS_HShape::ChangeShape() {
+        return gcnew XTopoDS_Shape(NativeHandle()->ChangeShape());
+    };
+}

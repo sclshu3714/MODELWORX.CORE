@@ -816,6 +816,30 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Direction.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShape.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Iterator.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_HShape.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shell.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Solid.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1070,6 +1094,30 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Direction.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShape.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Iterator.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_HShape.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shell.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Solid.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

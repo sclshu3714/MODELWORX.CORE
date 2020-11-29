@@ -14,71 +14,69 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_HShape_HeaderFile
-#define _TopoDS_HShape_HeaderFile
+#ifndef _XTopoDS_HShape_HeaderFile
+#define _XTopoDS_HShape_HeaderFile
+#pragma once       
+#include "NCollection_Haft.h"
+#include <TopoDS_HShape.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
-
-#include <TopoDS_Shape.hxx>
 #include <Standard_Transient.hxx>
-class TopoDS_Shape;
 
 
-class TopoDS_HShape;
-DEFINE_STANDARD_HANDLE(TopoDS_HShape, Standard_Transient)
+//class TopoDS_HShape;
+//DEFINE_STANDARD_HANDLE(TopoDS_HShape, Standard_Transient)
 
-//! Class to manipulate a Shape with  handle.
-class TopoDS_HShape : public Standard_Transient
-{
+namespace TKBRep {
+    ref class XTopoDS_Shape;
+    //! Class to manipulate a Shape with  handle.
+   public ref class XTopoDS_HShape //: public Standard_Transient
+    {
 
-public:
-
-  
-  //! Constructs an empty shape object
-    TopoDS_HShape();
-  
-  //! Constructs a shape object defined by the shape aShape.
-    TopoDS_HShape(const TopoDS_Shape& aShape);
-  
-  //! Loads this shape with the shape aShape
-    void Shape (const TopoDS_Shape& aShape);
-  
-  //! Returns a reference to a constant TopoDS_Shape based on this shape.
-    const TopoDS_Shape& Shape() const;
-  
-
-  //! Exchanges the TopoDS_Shape object defining this
-  //! shape for another one referencing the same underlying shape
-  //! Accesses the list of shapes within the underlying
-  //! shape referenced by the TopoDS_Shape object.
-  //! Returns a reference to a TopoDS_Shape based on
-  //! this shape. The TopoDS_Shape can be modified.
-    TopoDS_Shape& ChangeShape();
+    public:
 
 
+        //! Constructs an empty shape object
+        XTopoDS_HShape();
+
+        //! Constructs a shape object defined by the shape aShape.
+        XTopoDS_HShape(XTopoDS_Shape^ aShape);
+
+        //! Loads this shape with the shape aShape
+        void Shape(XTopoDS_Shape^ aShape);
+
+        //! Returns a reference to a constant TopoDS_Shape based on this shape.
+        XTopoDS_Shape^ Shape();
 
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_HShape,Standard_Transient)
-
-protected:
+        //! Exchanges the TopoDS_Shape object defining this
+        //! shape for another one referencing the same underlying shape
+        //! Accesses the list of shapes within the underlying
+        //! shape referenced by the TopoDS_Shape object.
+        //! Returns a reference to a TopoDS_Shape based on
+        //! this shape. The TopoDS_Shape can be modified.
+        XTopoDS_Shape^ ChangeShape();
 
 
 
 
-private:
+       //! DEFINE_STANDARD_RTTIEXT(TopoDS_HShape, Standard_Transient)
 
-
-  TopoDS_Shape myShape;
-
-
-};
-
-
-#include <TopoDS_HShape.lxx>
-
-
-
-
-
-#endif // _TopoDS_HShape_HeaderFile
+            /// <summary>
+            /// ±¾µØ¾ä±ú
+            /// </summary>
+        virtual property Handle(TopoDS_HShape) IHandle {
+            Handle(TopoDS_HShape) get() {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_HShape) shape) {
+                NativeHandle() = shape;
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_HShape)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_HShape_HeaderFile

@@ -14,14 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Wire_HeaderFile
-#define _TopoDS_Wire_HeaderFile
+#ifndef _XTopoDS_Wire_HeaderFile
+#define _XTopoDS_Wire_HeaderFile
+#pragma once
+#include <TopoDS_Wire.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TopoDS_Shape.hxx>
+
 
 
 //! Describes a wire which
@@ -31,38 +34,31 @@
 //! placement in the local coordinate system
 //! - has an orientation for the underlying wire, in terms
 //! of its geometry (as opposed to orientation in relation to other shapes).
-class TopoDS_Wire  : public TopoDS_Shape
-{
-public:
+//! 
+namespace TKBRep {
+    public ref class XTopoDS_Wire : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Undefined Wire.
-    TopoDS_Wire();
+       //! DEFINE_STANDARD_ALLOC
 
 
+        //! Undefined Wire.
+        XTopoDS_Wire();
 
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_Wire.lxx>
-
-
-
-
-
-#endif // _TopoDS_Wire_HeaderFile
+        /// <summary>
+      /// ±¾µØ¾ä±ú
+      /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_Wire*>(shape);
+            }
+        }
+    private:
+        TopoDS_Wire* NativeHandle;
+    };
+}
+#endif // _XTopoDS_Wire_HeaderFile

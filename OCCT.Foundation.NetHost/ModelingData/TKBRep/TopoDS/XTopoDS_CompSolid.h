@@ -14,14 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_CompSolid_HeaderFile
-#define _TopoDS_CompSolid_HeaderFile
-
+#ifndef _XTopoDS_CompSolid_HeaderFile
+#define _XTopoDS_CompSolid_HeaderFile
+#pragma once
+#include <TopoDS_CompSolid.hxx>
+#include <XTopoDS_Shape.h>
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
-#include <TopoDS_Shape.hxx>
 
 
 //! Describes a composite solid which
@@ -33,38 +33,30 @@
 //! solid, in terms of its geometry (as opposed to
 //! orientation in relation to other shapes).
 //! Casts shape S to the more specialized return type, CompSolid.
-class TopoDS_CompSolid  : public TopoDS_Shape
-{
-public:
+namespace TKBRep {
+    public ref class XTopoDS_CompSolid : public XTopoDS_Shape
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs an Undefined CompSolid.
-    TopoDS_CompSolid();
+        //! DEFINE_STANDARD_ALLOC
 
 
+        //! Constructs an Undefined CompSolid.
+        XTopoDS_CompSolid();
 
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <TopoDS_CompSolid.lxx>
-
-
-
-
-
-#endif // _TopoDS_CompSolid_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Shape* IHandle {
+            TopoDS_Shape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopoDS_Shape* shape) Standard_OVERRIDE {
+                NativeHandle = static_cast<TopoDS_CompSolid*>(shape);
+            }
+        }
+    private:
+        TopoDS_CompSolid* NativeHandle;
+    };
+}
+#endif // _XTopoDS_CompSolid_HeaderFile

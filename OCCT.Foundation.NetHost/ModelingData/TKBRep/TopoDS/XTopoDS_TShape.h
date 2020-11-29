@@ -14,21 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TShape_HeaderFile
-#define _TopoDS_TShape_HeaderFile
+#ifndef _XTopoDS_TShape_HeaderFile
+#define _XTopoDS_TShape_HeaderFile
+#pragma once
+#include <NCollection_Haft.h>
+#include "TopoDS_TShape.hxx"   
+#include <XTopAbs.h>
+#include <XTopAbs_ShapeEnum.h>
+#include "XTopoDS_Iterator.h"
+
 
 #include <Standard_Type.hxx>
-#include <TopAbs.hxx>
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopoDS_ListOfShape.hxx>
 
-class TopoDS_Iterator;
-class TopoDS_Builder;
 
-// resolve name collisions with X11 headers
-#ifdef Convex
-  #undef Convex
-#endif
+class TopoDS_Builder;
 
 //! A TShape  is a topological  structure describing a
 //! set of points in a 2D or 3D space.
@@ -55,130 +55,105 @@ class TopoDS_Builder;
 //! Users have no direct access to the classes derived
 //! from TShape.  They  handle them with   the classes
 //! derived from Shape.
-class TopoDS_TShape : public Standard_Transient
-{
 
-public:
-
-  //! Returns the free flag.
-  Standard_Boolean Free() const { return ((myFlags & TopoDS_TShape_Flags_Free) != 0); }
-
-  //! Sets the free flag.
-  void Free (Standard_Boolean theIsFree) { setFlag (TopoDS_TShape_Flags_Free, theIsFree); }
-
-  //! Returns the locked flag.
-  Standard_Boolean Locked() const { return ((myFlags & TopoDS_TShape_Flags_Locked) != 0); }
-
-  //! Sets the locked flag.
-  void Locked (Standard_Boolean theIsLocked) { setFlag (TopoDS_TShape_Flags_Locked, theIsLocked); }
-
-  //! Returns the modification flag.
-  Standard_Boolean Modified() const { return ((myFlags & TopoDS_TShape_Flags_Modified) != 0); }
-
-  //! Sets the modification flag.
-  void Modified (Standard_Boolean theIsModified)
-  {
-    setFlag (TopoDS_TShape_Flags_Modified, theIsModified);
-    if (theIsModified)
+namespace TKBRep {
+    ref class XTopoDS_Iterator;
+    public ref class XTopoDS_TShape //: public Standard_Transient
     {
-      setFlag (TopoDS_TShape_Flags_Checked, false); // when a TShape is modified it is also unchecked
-    }
-  }
 
-  //! Returns the checked flag.
-  Standard_Boolean Checked() const { return ((myFlags & TopoDS_TShape_Flags_Checked) != 0); }
+    public:
 
-  //! Sets the checked flag.
-  void Checked (Standard_Boolean theIsChecked) { setFlag (TopoDS_TShape_Flags_Checked, theIsChecked); }
-
-  //! Returns the orientability flag.
-  Standard_Boolean Orientable() const { return ((myFlags & TopoDS_TShape_Flags_Orientable) != 0); }
-
-  //! Sets the orientability flag.
-  void Orientable (Standard_Boolean theIsOrientable) { setFlag (TopoDS_TShape_Flags_Orientable, theIsOrientable); }
-
-  //! Returns the closedness flag.
-  Standard_Boolean Closed() const { return ((myFlags & TopoDS_TShape_Flags_Closed) != 0); }
-
-  //! Sets the closedness flag.
-  void Closed (Standard_Boolean theIsClosed) { setFlag (TopoDS_TShape_Flags_Closed, theIsClosed); }
-
-  //! Returns the infinity flag.
-  Standard_Boolean Infinite() const { return ((myFlags & TopoDS_TShape_Flags_Infinite) != 0); }
-
-  //! Sets the infinity flag.
-  void Infinite (Standard_Boolean theIsInfinite) { setFlag (TopoDS_TShape_Flags_Infinite, theIsInfinite); }
-
-  //! Returns the convexness flag.
-  Standard_Boolean Convex() const { return ((myFlags & TopoDS_TShape_Flags_Convex) != 0); }
-
-  //! Sets the convexness flag.
-  void Convex (Standard_Boolean theIsConvex) { setFlag (TopoDS_TShape_Flags_Convex, theIsConvex); }
-
-  //! Returns the type as a term of the ShapeEnum enum :
-  //! VERTEX, EDGE, WIRE, FACE, ....
-  Standard_EXPORT virtual TopAbs_ShapeEnum ShapeType() const = 0;
-  
-  //! Returns a copy  of the  TShape  with no sub-shapes.
-  Standard_EXPORT virtual Handle(TopoDS_TShape) EmptyCopy() const = 0;
-
-  //! Returns the number of direct sub-shapes (children).
-  //! @sa TopoDS_Iterator for accessing sub-shapes
-  Standard_Integer NbChildren() const { return myShapes.Size(); }
-
-  //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const;
-
-friend class TopoDS_Iterator;
-friend class TopoDS_Builder;
+        XTopoDS_TShape(Handle(TopoDS_TShape) pos);
 
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TShape,Standard_Transient)
+        Handle(TopoDS_TShape) GetTShape();
 
-protected:
+        void SetTShapeHandle(Handle(TopoDS_TShape) pos);
 
-  //! Constructs an empty TShape.
-  //! Free       : True
-  //! Modified   : True
-  //! Checked    : False
-  //! Orientable : True
-  //! Closed     : False
-  //! Infinite   : False
-  //! Convex     : False
-  TopoDS_TShape()
-  : myFlags (TopoDS_TShape_Flags_Free
-           | TopoDS_TShape_Flags_Modified
-           | TopoDS_TShape_Flags_Orientable) {}
+        //! Returns the free flag.
+        Standard_Boolean Free();
 
-private:
+        //! Sets the free flag.
+        void Free(Standard_Boolean theIsFree);
 
-  // Defined mask values
-  enum TopoDS_TShape_Flags
-  {
-    TopoDS_TShape_Flags_Free       = 0x001,
-    TopoDS_TShape_Flags_Modified   = 0x002,
-    TopoDS_TShape_Flags_Checked    = 0x004,
-    TopoDS_TShape_Flags_Orientable = 0x008,
-    TopoDS_TShape_Flags_Closed     = 0x010,
-    TopoDS_TShape_Flags_Infinite   = 0x020,
-    TopoDS_TShape_Flags_Convex     = 0x040,
-    TopoDS_TShape_Flags_Locked     = 0x080
-  };
+        //! Returns the locked flag.
+        Standard_Boolean Locked();
 
-  //! Set bit flag.
-  void setFlag (TopoDS_TShape_Flags theFlag,
-                Standard_Boolean    theIsOn)
-  {
-    if (theIsOn) myFlags |=  (Standard_Integer )theFlag;
-    else         myFlags &= ~(Standard_Integer )theFlag;
-  }
+        //! Sets the locked flag.
+        void Locked(Standard_Boolean theIsLocked);
 
-private:
+        //! Returns the modification flag.
+        Standard_Boolean Modified();
 
-  TopoDS_ListOfShape myShapes;
-  Standard_Integer   myFlags;
-};
+        //! Sets the modification flag.
+        void Modified(Standard_Boolean theIsModified);
 
-DEFINE_STANDARD_HANDLE(TopoDS_TShape, Standard_Transient)
+        //! Returns the checked flag.
+        Standard_Boolean Checked();
 
-#endif // _TopoDS_TShape_HeaderFile
+        //! Sets the checked flag.
+        void Checked(Standard_Boolean theIsChecked);
+
+        //! Returns the orientability flag.
+        Standard_Boolean Orientable();
+
+        //! Sets the orientability flag.
+        void Orientable(Standard_Boolean theIsOrientable);
+
+        //! Returns the closedness flag.
+        Standard_Boolean Closed();
+
+        //! Sets the closedness flag.
+        void Closed(Standard_Boolean theIsClosed);
+
+        //! Returns the infinity flag.
+        Standard_Boolean Infinite();
+
+        //! Sets the infinity flag.
+        void Infinite(Standard_Boolean theIsInfinite);
+
+        //! Returns the convexness flag.
+        Standard_Boolean Convex();
+
+        //! Sets the convexness flag.
+        void Convex(Standard_Boolean theIsConvex);
+
+        //! Returns the type as a term of the ShapeEnum enum :
+        //! VERTEX, EDGE, WIRE, FACE, ....
+        virtual XTopAbs_ShapeEnum ShapeType();
+
+        //! Returns a copy  of the  TShape  with no sub-shapes.
+        virtual XTopoDS_TShape^ EmptyCopy();
+
+        //! Returns the number of direct sub-shapes (children).
+        //! @sa TopoDS_Iterator for accessing sub-shapes
+        Standard_Integer NbChildren();
+
+        //! Dumps the content of me into the stream
+        //! Standard_Integer theDepth = -1
+        void DumpJson(Standard_OStream theOStream, Standard_Integer theDepth);
+
+        //friend class TopoDS_Iterator;
+        //friend class TopoDS_Builder;
+
+
+        //! DEFINE_STANDARD_RTTIEXT(TopoDS_TShape, Standard_Transient)
+
+            /// <summary>
+            /// ±¾µØ¾ä±ú
+            /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape) {
+                NativeHandle() = shape;
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TShape)> NativeHandle;
+    };
+
+    //! DEFINE_STANDARD_HANDLE(TopoDS_TShape, Standard_Transient)
+}
+#endif // _XTopoDS_TShape_HeaderFile

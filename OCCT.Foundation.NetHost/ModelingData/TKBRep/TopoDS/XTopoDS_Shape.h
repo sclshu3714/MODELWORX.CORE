@@ -22,6 +22,7 @@
 #include "NCollection_Haft.h"
 #include <XTopAbs_Orientation.h>
 #include <XTopAbs_ShapeEnum.h>
+#include <XTopoDS_TShape.h>
 //! Describes a shape which
 //! - references an underlying shape with the potential
 //! to be given a location and an orientation
@@ -35,6 +36,7 @@
 using namespace TKMath;
 namespace TKBRep {
     ref class TKMath::XTopLoc_Location;
+    ref class XTopoDS_TShape;
     public ref class XTopoDS_Shape
     {
     public:
@@ -51,6 +53,9 @@ namespace TKBRep {
 
         ~XTopoDS_Shape();
 
+        void SetShapeHandle(TopoDS_Shape pos);
+
+        void SetShapeHandle(TopoDS_Shape* pos);
         #ifndef OCCT_NO_RVALUE_REFERENCE
 
         //! Generalized moveructor, accepting also sub-classes
@@ -99,7 +104,7 @@ namespace TKBRep {
         XTopoDS_Shape^ Oriented(XTopAbs_Orientation theOrient);
 
         //! Returns a handle to the actual shape implementation.
-        Handle(TopoDS_TShape) TShape();
+        XTopoDS_TShape^ TShape();
 
         //! Returns the value of the TopAbs_ShapeEnum
         //! enumeration that corresponds to this shape, for
@@ -230,7 +235,7 @@ namespace TKBRep {
         //! and no sub-shapes.
         XTopoDS_Shape^ EmptyCopied();
 
-        void TShape(Handle(TopoDS_TShape) theTShape);
+        void TShape(XTopoDS_TShape^ theTShape);
 
         void TShape(XTopoDS_Shape^ theTShape);
 
@@ -241,11 +246,12 @@ namespace TKBRep {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TopoDS_Shape* Handle
-        {
+       virtual property TopoDS_Shape* IHandle {
             TopoDS_Shape* get() {
                 return NativeHandle;
             }
+            void set(TopoDS_Shape* shape) {
+                NativeHandle = shape;            }
         }
     private:
         TopoDS_Shape* NativeHandle;

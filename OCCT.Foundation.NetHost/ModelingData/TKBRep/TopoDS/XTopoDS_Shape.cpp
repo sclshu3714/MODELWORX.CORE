@@ -20,6 +20,14 @@ namespace TKBRep {
         NativeHandle = NULL;
     };
 
+    void XTopoDS_Shape::SetShapeHandle(TopoDS_Shape pos) {
+        NativeHandle = &pos;
+    };
+
+    void XTopoDS_Shape::SetShapeHandle(TopoDS_Shape* pos) {
+        NativeHandle = pos;
+    };
+
 #ifndef OCCT_NO_RVALUE_REFERENCE
 
     //! Generalized moveructor, accepting also sub-classes
@@ -81,8 +89,8 @@ namespace TKBRep {
     };
 
     //! Returns a handle to the actual shape implementation.
-    Handle(TopoDS_TShape) XTopoDS_Shape::TShape() {
-             return NativeHandle->TShape();
+    XTopoDS_TShape^ XTopoDS_Shape::TShape() {
+        return gcnew XTopoDS_TShape(NativeHandle->TShape());
     };
 
     //! Returns the value of the TopAbs_ShapeEnum
@@ -273,12 +281,12 @@ namespace TKBRep {
         return gcnew XTopoDS_Shape(NativeHandle->EmptyCopied());
     };
 
-    void XTopoDS_Shape::TShape(const Handle(TopoDS_TShape) theTShape) {
-        NativeHandle->TShape(theTShape);
+    void XTopoDS_Shape::TShape(XTopoDS_TShape^ theTShape) {
+        NativeHandle->TShape(theTShape->GetTShape());
     };
 
     void XTopoDS_Shape::TShape(XTopoDS_Shape^ theTShape) {
-        NativeHandle->TShape(theTShape->TShape());
+        NativeHandle->TShape(theTShape->TShape()->GetTShape());
     };
 
     //! Dumps the content of me into the stream

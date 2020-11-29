@@ -1,0 +1,11 @@
+#include <XTopoDS_Shell.h>
+
+namespace TKBRep {
+
+
+    //! Undefined Wire.
+    XTopoDS_Shell::XTopoDS_Shell() : XTopoDS_Shape() {
+        NativeHandle = new TopoDS_Shell();
+        SetShapeHandle(*NativeHandle);
+    };
+}

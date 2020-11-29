@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Iterator_HeaderFile
-#define _TopoDS_Iterator_HeaderFile
+#ifndef _XTopoDS_Iterator_HeaderFile
+#define _XTopoDS_Iterator_HeaderFile
+#pragma once
+#include <TopoDS_Iterator.hxx>
+#include "XTopLoc_Location.h"
+#include "NCollection_Haft.h"
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,7 +33,6 @@
 #include <Standard_Boolean.hxx>
 class Standard_NoMoreObject;
 class Standard_NoSuchObject;
-class TopoDS_Shape;
 
 
 //! Iterates on the underlying shape underlying a given
@@ -36,76 +40,69 @@ class TopoDS_Shape;
 //! component sub-shapes. Each component shape is
 //! returned as a TopoDS_Shape with an orientation,
 //! and a compound of the original values and the relative values.
-class TopoDS_Iterator 
-{
-public:
+//! 
+namespace TKBRep {
+    ref class XTopoDS_Shape;
+    public ref class XTopoDS_Iterator
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Creates an empty Iterator.
-    TopoDS_Iterator();
-  
-  //! Creates an Iterator on <S> sub-shapes.
-  //! Note:
-  //! - If cumOri is true, the function composes all
-  //! sub-shapes with the orientation of S.
-  //! - If cumLoc is true, the function multiplies all
-  //! sub-shapes by the location of S, i.e. it applies to
-  //! each sub-shape the transformation that is associated with S.
-    TopoDS_Iterator(const TopoDS_Shape& S, const Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True);
-  
-  //! Initializes this iterator with shape S.
-  //! Note:
-  //! - If cumOri is true, the function composes all
-  //! sub-shapes with the orientation of S.
-  //! - If cumLoc is true, the function multiplies all
-  //! sub-shapes by the location of S, i.e. it applies to
-  //! each sub-shape the transformation that is associated with S.
-  Standard_EXPORT void Initialize (const TopoDS_Shape& S, const Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True);
-  
-  //! Returns true if there is another sub-shape in the
-  //! shape which this iterator is scanning.
-    Standard_Boolean More() const;
-  
-  //! Moves on to the next sub-shape in the shape which
-  //! this iterator is scanning.
-  //! Exceptions
-  //! Standard_NoMoreObject if there are no more sub-shapes in the shape.
-  Standard_EXPORT void Next();
-  
-  //! Returns the current sub-shape in the shape which
-  //! this iterator is scanning.
-  //! Exceptions
-  //! Standard_NoSuchObject if there is no current sub-shape.
-    const TopoDS_Shape& Value() const;
+       //! DEFINE_STANDARD_ALLOC
 
 
+        //! Creates an empty Iterator.
+        XTopoDS_Iterator();
 
+        //! Creates an Iterator on <S> sub-shapes.
+        //! Note:
+        //! - If cumOri is true, the function composes all
+        //! sub-shapes with the orientation of S.
+        //! - If cumLoc is true, the function multiplies all
+        //! sub-shapes by the location of S, i.e. it applies to
+        //! each sub-shape the transformation that is associated with S.
+        //! Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True
+        XTopoDS_Iterator(XTopoDS_Shape^ S, Standard_Boolean cumOri, Standard_Boolean cumLoc);
 
-protected:
+        //! Initializes this iterator with shape S.
+        //! Note:
+        //! - If cumOri is true, the function composes all
+        //! sub-shapes with the orientation of S.
+        //! - If cumLoc is true, the function multiplies all
+        //! sub-shapes by the location of S, i.e. it applies to
+        //! each sub-shape the transformation that is associated with S.
+        //! Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True
+        void Initialize(XTopoDS_Shape^ S, Standard_Boolean cumOri, const Standard_Boolean cumLoc);
 
+        //! Returns true if there is another sub-shape in the
+        //! shape which this iterator is scanning.
+        Standard_Boolean More();
 
+        //! Moves on to the next sub-shape in the shape which
+        //! this iterator is scanning.
+        //! Exceptions
+        //! Standard_NoMoreObject if there are no more sub-shapes in the shape.
+        void Next();
 
+        //! Returns the current sub-shape in the shape which
+        //! this iterator is scanning.
+        //! Exceptions
+        //! Standard_NoSuchObject if there is no current sub-shape.
+        XTopoDS_Shape^ Value();
 
-
-private:
-
-
-
-  TopoDS_Shape myShape;
-  TopoDS_ListIteratorOfListOfShape myShapes;
-  TopAbs_Orientation myOrientation;
-  TopLoc_Location myLocation;
-
-
-};
-
-
-#include <TopoDS_Iterator.lxx>
-
-
-
-
-
-#endif // _TopoDS_Iterator_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopoDS_Iterator* IHandle {
+            TopoDS_Iterator* get() {
+                return NativeHandle;
+            }
+            void set(TopoDS_Iterator* shape) {
+                NativeHandle = shape;
+            }
+        }
+    private:
+        TopoDS_Iterator* NativeHandle;
+        //NCollection_Haft<Handle(TopoDS_Iterator)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_Iterator_HeaderFile
