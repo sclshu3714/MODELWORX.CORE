@@ -29,6 +29,10 @@ namespace TKG2d {
 		SetGeometryHandle(pos);
 	};
 
+	Handle(Geom2d_Geometry) XGeom2d_Curve::GetGeometry() {
+		return NativeHandle();
+	};
+
 	Handle(Geom2d_Curve) XGeom2d_Curve::GetCurve() {
 		return NativeHandle();
 	};

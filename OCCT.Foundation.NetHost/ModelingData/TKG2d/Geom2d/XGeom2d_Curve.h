@@ -89,7 +89,9 @@ namespace TKG2d {
 
 		void SetCurveHandle(Handle(Geom2d_Curve) pos);
 
-		Handle(Geom2d_Curve) GetCurve();
+		virtual Handle(Geom2d_Geometry) GetGeometry() Standard_OVERRIDE;
+
+		virtual Handle(Geom2d_Curve) GetCurve();
 
 		//! Changes the direction of parametrization of <me>.
 		//! The "FirstParameter" and the "LastParameter" are not changed

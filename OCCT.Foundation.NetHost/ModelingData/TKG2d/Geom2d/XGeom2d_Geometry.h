@@ -79,7 +79,7 @@ namespace TKG2d {
 
 		void SetGeometryHandle(Handle(Geom2d_Geometry) pos);
 
-		Handle(Geom2d_Geometry) GetGeometry();
+		virtual Handle(Geom2d_Geometry) GetGeometry();
 
 		//! Performs the symmetrical transformation of a Geometry
 		//! with respect to the point P which is the center of the
