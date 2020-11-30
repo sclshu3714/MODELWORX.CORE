@@ -51,6 +51,8 @@ namespace TKTopAlgo {
 
 		void SetMakeShapeHandle(BRepBuilderAPI_MakeShape handle);
 
+		virtual BRepBuilderAPI_MakeShape GetMakeShape();
+
 		//! This is  called by  Shape().  It does  nothing but
 		//! may be redefined.
 		virtual void Build();

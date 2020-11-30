@@ -912,9 +912,6 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSweep.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClInclude>
-    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakePrism.h">
-      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
-    </ClInclude>
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.h">
       <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClInclude>
@@ -935,6 +932,9 @@
     </ClInclude>
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeWire.h">
       <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakePrism.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,14 @@ namespace TKPrim {
 		SetMakeShapeHandle(*NativeHandle);
 	};
 
+	BRepPrimAPI_MakeSweep* XBRepPrimAPI_MakeSweep::GetMakeSweep() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape XBRepPrimAPI_MakeSweep::GetMakeShape() {
+		return *NativeHandle;
+	};
+
 	//! Returns the  TopoDS  Shape of the bottom of the sweep.
 	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::FirstShape() {
 		return gcnew XTopoDS_Shape(NativeHandle->FirstShape());

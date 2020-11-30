@@ -11,6 +11,10 @@ namespace TKTopAlgo {
 		Initialize(NativeHandle);
 	};
 
+	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeEdge::GetMakeShape() {
+		return *NativeHandle;
+	};
+
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(BRepBuilderAPI_MakeEdge* pos) {
 		NativeHandle = pos;
 		Initialize(NativeHandle);

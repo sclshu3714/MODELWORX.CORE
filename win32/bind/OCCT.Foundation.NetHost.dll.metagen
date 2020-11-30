@@ -4379,6 +4379,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShape: AutoLayout, AnsiClass, Class, Public,
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     SetMakeShapeHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, HideBySig
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Build(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Shape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -4394,6 +4395,8 @@ Class TKPrim.XBRepPrimAPI_MakeSweep: AutoLayout, AnsiClass, Class, Public, Befor
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     SetMakeSweepHandle(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig
+    GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
     FirstShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     LastShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
@@ -4406,6 +4409,9 @@ Class TKPrim.XBRepPrimAPI_MakePrism: AutoLayout, AnsiClass, Class, Public, Befor
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     SetMakePrismHandle(BRepPrimAPI_MakePrism*): PrivateScope, Public, HideBySig
+    GetMakePrism(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
     Prism(BRepSweep_Prism*): PrivateScope, Public, HideBySig
     Build(): PrivateScope, Public, Virtual, HideBySig
     FirstShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
@@ -4695,6 +4701,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, 
   Methods:
     Initialize(BRepBuilderAPI_MakeEdge*): PrivateScope, Public, HideBySig
     SetMakeEdgeHandle(BRepBuilderAPI_MakeEdge*): PrivateScope, Public, HideBySig
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
     Init(XGeom2d_Curve, XGeom_Surface, XTopoDS_Vertex, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
     Init(XGeom2d_Curve, XGeom_Surface, xgp_Pnt, xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig
     Init(XGeom2d_Curve, XGeom_Surface, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, HideBySig
@@ -4761,8 +4768,9 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, 
     Error(): PrivateScope, Public, HideBySig
     Face(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
-    GetMakeFace(BRepBuilderAPI_MakeFace*): PrivateScope, Public, HideBySig
     SetMakeFaceHandle(BRepBuilderAPI_MakeFace*): PrivateScope, Public, HideBySig
+    GetMakeFace(BRepBuilderAPI_MakeFace*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4787,6 +4795,8 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     Edge(): PrivateScope, Public, HideBySig
     Vertex(): PrivateScope, Public, HideBySig
+    GetMakeWire(BRepBuilderAPI_MakeWire*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Shell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

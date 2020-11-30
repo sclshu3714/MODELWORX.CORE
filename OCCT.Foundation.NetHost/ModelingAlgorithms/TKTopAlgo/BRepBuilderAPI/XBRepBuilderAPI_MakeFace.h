@@ -278,9 +278,11 @@ namespace TKTopAlgo {
 		XTopoDS_Face^ Face();
 		operator XTopoDS_Face^();
 
-		BRepBuilderAPI_MakeFace GetMakeFace();
-
 		void SetMakeFaceHandle(BRepBuilderAPI_MakeFace* pos);
+
+		virtual BRepBuilderAPI_MakeFace GetMakeFace();
+
+		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

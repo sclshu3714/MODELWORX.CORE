@@ -124,6 +124,8 @@ namespace TKTopAlgo {
 
 		void SetMakeEdgeHandle(BRepBuilderAPI_MakeEdge* pos);
 
+		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+
 		XBRepBuilderAPI_MakeEdge(XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
 		XBRepBuilderAPI_MakeEdge(xgp_Pnt^ P1, xgp_Pnt^ P2);

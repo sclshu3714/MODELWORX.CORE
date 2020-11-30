@@ -6,6 +6,18 @@ namespace TKPrim {
 		NativeHandle = pos;
 	};
 
+	BRepPrimAPI_MakePrism* XBRepPrimAPI_MakePrism::GetMakePrism() {
+		return NativeHandle;
+	};
+
+	BRepPrimAPI_MakeSweep* XBRepPrimAPI_MakePrism::GetMakeSweep() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape XBRepPrimAPI_MakePrism::GetMakeShape() {
+		return *NativeHandle;
+	};
+
 	//! Builds the prism of base S and vector V. If C is true,
 	//! S is copied. If Canonize is true then generated surfaces
 	//! are attempted to be canonized in simple types

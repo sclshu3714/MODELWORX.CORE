@@ -56,6 +56,10 @@ namespace TKPrim {
 		//! DEFINE_STANDARD_ALLOC
 		void SetMakeSweepHandle(BRepPrimAPI_MakeSweep* pos);
 
+		virtual BRepPrimAPI_MakeSweep* GetMakeSweep();
+
+		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+
 		//! Returns the  TopoDS  Shape of the bottom of the sweep.
 		virtual XTopoDS_Shape^ FirstShape();
 

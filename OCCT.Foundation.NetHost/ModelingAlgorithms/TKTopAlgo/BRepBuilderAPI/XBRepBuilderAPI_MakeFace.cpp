@@ -250,4 +250,8 @@ namespace TKTopAlgo {
 	void XBRepBuilderAPI_MakeFace::SetMakeFaceHandle(BRepBuilderAPI_MakeFace* pos) {
 		NativeHandle = pos;
 	};
+
+	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeFace::GetMakeShape() {
+		return *NativeHandle;
+	};
 }

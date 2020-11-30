@@ -158,4 +158,12 @@ namespace TKTopAlgo {
 	XTopoDS_Vertex^ XBRepBuilderAPI_MakeWire::Vertex() {
 		return gcnew XTopoDS_Vertex(NativeHandle->Vertex());
 	};
+
+	BRepBuilderAPI_MakeWire XBRepBuilderAPI_MakeWire::GetMakeWire() {
+		return *NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeWire::GetMakeShape() {
+		return *NativeHandle;
+	};
 }

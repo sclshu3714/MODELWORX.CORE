@@ -67,6 +67,12 @@ namespace TKPrim {
 
 		void SetMakePrismHandle(BRepPrimAPI_MakePrism* pos);
 
+		virtual BRepPrimAPI_MakePrism* GetMakePrism();
+
+		virtual BRepPrimAPI_MakeSweep* GetMakeSweep() Standard_OVERRIDE;
+
+		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+
 		//! Builds the prism of base S and vector V. If C is true,
 		//! S is copied. If Canonize is true then generated surfaces
 		//! are attempted to be canonized in simple types
