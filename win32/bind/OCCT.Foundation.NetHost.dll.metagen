@@ -1366,6 +1366,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    UnsetWidth(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetMaterial(handle<AIS_InteractiveObject>*, Graphic3d_MaterialAspect*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     UnsetMaterial(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     SetTransparency(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -1426,6 +1427,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    Select(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Select(NCollection_Array1<gp_Pnt2d>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Select(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ShiftSelect(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -1511,7 +1513,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     UnsetColor(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Width(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetWidth(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    UnsetWidth(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetInteractiveContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DisplayStatus(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
     Status(handle<AIS_InteractiveObject>*, TCollection_ExtendedString*): PrivateScope, Public, HideBySig
     IsDisplayed(handle<AIS_InteractiveObject>*, Int32): PrivateScope, Public, HideBySig
@@ -1593,7 +1595,6 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     DetectedCurrentOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
     AddSelect(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
     AddSelect(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
-    Select(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
 Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Mat, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1694,7 +1695,7 @@ Class TKV3d.XGraphic3d_PresentationAttributes: AutoLayout, AnsiClass, Class, Pub
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    GetPresentationAttributes(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig
+    GetPresentationAttributes(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetNativeHandle(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, HideBySig
     Method(): PrivateScope, Public, HideBySig
     SetMethod(XAspect_TypeOfHighlightMethod): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -1728,7 +1729,7 @@ Class TKV3d.XGraphic3d_AspectLine3d: AutoLayout, AnsiClass, Class, Public, Befor
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    GetAspectLine3d(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig
+    GetAspectLine3d(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetNativeHandle(handle<Graphic3d_AspectLine3d>*): PrivateScope, Public, HideBySig
     Type(): PrivateScope, Public, HideBySig
     SetType(XAspect_TypeOfLine): PrivateScope, Public, HideBySig
@@ -1756,7 +1757,7 @@ Class TKV3d.XPrs3d_LineAspect: AutoLayout, AnsiClass, Class, Public, BeforeField
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetNativeHandle(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
-    GetLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    GetLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetColor(XQuantity_Color): PrivateScope, Public, HideBySig
     SetTypeOfLine(XAspect_TypeOfLine): PrivateScope, Public, HideBySig
     SetWidth(Double IsConst): PrivateScope, Public, HideBySig
@@ -1853,7 +1854,8 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XPrs3d_Drawer(): PrivateScope, Public, HideBySig
-    GetDrawer(handle<Prs3d_Drawer>*): PrivateScope, Public, HideBySig
+    GetDrawer(handle<Prs3d_Drawer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetPresentationAttributes(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, Virtual, HideBySig
     SetTypeOfDeflection(XAspect_TypeOfDeflection): PrivateScope, Public, HideBySig
     TypeOfDeflection(): PrivateScope, Public, HideBySig
     HasOwnTypeOfDeflection(): PrivateScope, Public, HideBySig
@@ -2064,7 +2066,7 @@ Class TKV3d.XGraphic3d_MaterialAspect: AutoLayout, AnsiClass, Class, Public, Bef
     MaterialType(Int32 IsConst): PrivateScope, Public, Static, HideBySig
     MaterialFromName(String): PrivateScope, Public, Static, HideBySig
     MaterialFromName(String, XGraphic3d_NameOfMaterial): PrivateScope, Public, Static, HideBySig
-    GetMaterialAspect(Graphic3d_MaterialAspect*): PrivateScope, Public, HideBySig
+    GetMaterialAspect(Graphic3d_MaterialAspect*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Name(): PrivateScope, Public, HideBySig
     RequestedName(): PrivateScope, Public, HideBySig
     StringName(): PrivateScope, Public, HideBySig
@@ -2114,7 +2116,7 @@ Class TKV3d.XPrsMgr_PresentableObject: AutoLayout, AnsiClass, Class, Public, Bef
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetBaseNativeHandle(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig
-    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, HideBySig
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Presentations(): PrivateScope, Public, HideBySig
     ZLayer(): PrivateScope, Public, HideBySig
     SetZLayer(Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -2215,6 +2217,8 @@ Class TKV3d.XSelectMgr_SelectableObject: AutoLayout, AnsiClass, Class, Public, B
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetSelectMgr_SelectableObjectNativeHandle(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, HideBySig
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     ComputeSelection(handle<SelectMgr_Selection>* IsImplicitlyDereferenced, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     AcceptShapeDecomposition(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     RecomputePrimitives(Int32 IsConst): PrivateScope, Public, HideBySig
@@ -2261,7 +2265,9 @@ Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, Before
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetNativeHandle(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
-    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
+    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     Type(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Signature(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Redisplay(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -3116,7 +3122,7 @@ Class NCollection_Haft<opencascade::handle<TDocStd_Application> >: AutoLayout, A
     op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKLCAF.XTDocStd_Application: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TDocStd_Application*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<TDocStd_Application>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
@@ -3126,6 +3132,7 @@ Class TKLCAF.XTDocStd_Application: AutoLayout, AnsiClass, Class, Public, BeforeF
     IsDriverLoaded(): PrivateScope, Public, HideBySig
     MessageDriver(handle<Message_Messenger>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetNativeHandle(handle<TDocStd_Application>*): PrivateScope, Public, HideBySig
+    GetTDocStd_Application(handle<TDocStd_Application>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Resources(handle<Resource_Manager>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     ResourcesName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DefineFormat(TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, TCollection_AsciiString* IsImplicitlyDereferenced, handle<PCDM_RetrievalDriver>* IsImplicitlyDereferenced, handle<PCDM_StorageDriver>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -3197,10 +3204,12 @@ Class TKXCAF.XXCAFApp_Application: AutoLayout, AnsiClass, Class, Public, BeforeF
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    GetXCAFApp_Application(handle<XCAFApp_Application>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetTDocStd_Application(handle<TDocStd_Application>*): PrivateScope, Public, Virtual, HideBySig
     ResourcesName(): PrivateScope, Public, Virtual, HideBySig
     InitDocument(handle<TDocStd_Document>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     InitDocument(XTDocStd_Document): PrivateScope, Public, Virtual, HideBySig
-    GetApplication(handle<XCAFApp_Application>*): PrivateScope, Public, Static, HideBySig
+    GetApplication(): PrivateScope, Public, Static, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XXCAFApp_Application(): PrivateScope, Public, HideBySig
@@ -5250,7 +5259,10 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
-    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, HideBySig
+    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     SetComponent(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     Axis2Placement(handle<Geom_Axis2Placement>*): PrivateScope, Public, HideBySig
     SetAxis2Placement(handle<Geom_Axis2Placement>*, XAIS_TypeOfAxis): PrivateScope, Public, HideBySig
@@ -5292,6 +5304,10 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    GetShape(handle<AIS_Shape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     Signature(): PrivateScope, Public, Virtual, HideBySig
     Type(): PrivateScope, Public, Virtual, HideBySig
     AcceptShapeDecomposition(): PrivateScope, Public, Virtual, HideBySig

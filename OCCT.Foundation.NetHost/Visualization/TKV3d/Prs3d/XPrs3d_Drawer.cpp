@@ -18,6 +18,10 @@ namespace TKV3d {
         return NativeHandle();
     };
 
+    Handle(Graphic3d_PresentationAttributes) XPrs3d_Drawer::GetPresentationAttributes() {
+        return NativeHandle();
+    };
+
     //! Sets the type of chordal deflection.
     //! This indicates whether the deflection value is absolute or relative to the size of the object.
     void XPrs3d_Drawer::SetTypeOfDeflection(XAspect_TypeOfDeflection theTypeOfDeflection) {

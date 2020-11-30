@@ -7,13 +7,18 @@ namespace TKLCAF {
     };
 
     //! Constructs the new instance and registers it in CDM_Session
-    XTDocStd_Application::XTDocStd_Application(TDocStd_Application* pos) {
-        NativeHandle() = new TDocStd_Application(*pos);
+    XTDocStd_Application::XTDocStd_Application(Handle(TDocStd_Application) pos) {
+        NativeHandle() = pos;
     };
 
     void XTDocStd_Application::SetNativeHandle(Handle(TDocStd_Application) pos) {
         NativeHandle() = pos;
     };
+
+    Handle(TDocStd_Application) XTDocStd_Application::GetTDocStd_Application() {
+        return NativeHandle();
+    };
+
     //! Check if meta data driver was successfully loaded
     //! by the application constructor
     Standard_Boolean XTDocStd_Application::IsDriverLoaded() {

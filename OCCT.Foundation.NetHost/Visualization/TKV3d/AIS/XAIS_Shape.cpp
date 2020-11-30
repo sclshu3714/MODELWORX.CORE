@@ -13,6 +13,23 @@ namespace TKV3d {
     XAIS_Shape::XAIS_Shape(Handle(AIS_Shape) pos) {
         NativeHandle() = pos;
     };
+
+    Handle(AIS_Shape) XAIS_Shape::GetShape() {
+        return NativeHandle();
+    };
+
+    Handle(AIS_InteractiveObject) XAIS_Shape::GetInteractiveObject() {
+        return NativeHandle();
+    };
+
+    Handle(SelectMgr_SelectableObject) XAIS_Shape::GetSelectableObject() {
+        return NativeHandle();
+    };
+
+    Handle(PrsMgr_PresentableObject) XAIS_Shape::GetPresentableObject() {
+        return NativeHandle();
+    };
+
     //! Returns index 0. This value refers to SHAPE from TopAbs_ShapeEnum
     Standard_Integer XAIS_Shape::Signature() {
         return NativeHandle()->Signature();

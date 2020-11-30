@@ -60,7 +60,7 @@ namespace TKV3d {
 
 		void SetNativeHandle(Handle(Prs3d_LineAspect) theAspect);
 
-		Handle(Prs3d_LineAspect) GetLineAspect();
+		virtual Handle(Prs3d_LineAspect) GetLineAspect();
 
 		//! Sets the line color defined at the time of construction.
 		//! Default value: Quantity_NOC_YELLOW

@@ -58,7 +58,12 @@ namespace TKV3d
 		//!
 		void SetNativeHandle(Handle(AIS_InteractiveObject) pos);
 
-		Handle(AIS_InteractiveObject) GetInteractiveObject();
+		virtual Handle(AIS_InteractiveObject) GetInteractiveObject();
+
+		virtual Handle(SelectMgr_SelectableObject) GetSelectableObject() Standard_OVERRIDE;
+
+		virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
+
 
 		//! Returns the kind of Interactive Object; AIS_KOI_None by default.
 		virtual XAIS_KindOfInteractive Type();

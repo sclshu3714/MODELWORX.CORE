@@ -28,6 +28,14 @@ namespace TKV3d {
 		return NativeHandle();
 	};
 
+	Handle(SelectMgr_SelectableObject) XAIS_InteractiveObject::GetSelectableObject() {
+		return NativeHandle();
+	};
+
+	Handle(PrsMgr_PresentableObject) XAIS_InteractiveObject::GetPresentableObject() {
+		return NativeHandle();
+	};
+
 	//! Returns the kind of Interactive Object; AIS_KOI_None by default.
 	XAIS_KindOfInteractive XAIS_InteractiveObject::Type() {
 		return safe_cast<XAIS_KindOfInteractive>(NativeHandle()->Type());

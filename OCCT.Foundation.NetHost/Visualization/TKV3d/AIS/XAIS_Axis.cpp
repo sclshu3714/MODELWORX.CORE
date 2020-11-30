@@ -43,6 +43,18 @@ namespace TKV3d {
 		return NativeHandle();
 	};
 
+	Handle(AIS_InteractiveObject) XAIS_Axis::GetInteractiveObject() {
+		return NativeHandle();
+	};
+
+	Handle(SelectMgr_SelectableObject) XAIS_Axis::GetSelectableObject() {
+		return NativeHandle();
+	};
+
+	Handle(PrsMgr_PresentableObject) XAIS_Axis::GetPresentableObject() {
+		return NativeHandle();
+	};
+
 	//! Sets the coordinates of the lin aComponent.
 	void XAIS_Axis::SetComponent(Handle(Geom_Line) aComponent) {
 		NativeHandle()->SetComponent(aComponent);

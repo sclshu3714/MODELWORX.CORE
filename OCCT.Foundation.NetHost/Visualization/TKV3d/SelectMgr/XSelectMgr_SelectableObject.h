@@ -59,6 +59,10 @@ namespace TKV3d {
         //! 
         void SetSelectMgr_SelectableObjectNativeHandle(Handle(SelectMgr_SelectableObject) pos);
 
+        virtual Handle(SelectMgr_SelectableObject) GetSelectableObject();
+
+        virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
+
         //! Clears all selections of the object
         virtual ~XSelectMgr_SelectableObject();
 

@@ -52,6 +52,10 @@ namespace TKXCAF {
 		//! ================================
 		XXCAFApp_Application(Handle(XCAFApp_Application) pos);
 
+		virtual Handle(XCAFApp_Application) GetXCAFApp_Application();
+
+		virtual Handle(TDocStd_Application) GetTDocStd_Application() Standard_OVERRIDE;
+
 		//! methods from TDocStd_Application
 		//! ================================
 		virtual Standard_CString ResourcesName() Standard_OVERRIDE;
@@ -67,7 +71,7 @@ namespace TKXCAF {
 		//! This is the only valid method to get XCAFApp_Application
 		//! object, and it should be called at least once before
 		//! any actions with documents in order to init application
-		static Handle(XCAFApp_Application) GetApplication();
+		static XXCAFApp_Application^ GetApplication();
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

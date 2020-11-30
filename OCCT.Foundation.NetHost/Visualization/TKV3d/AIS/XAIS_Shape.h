@@ -81,6 +81,15 @@ namespace TKV3d {
         XAIS_Shape(XTopoDS_Shape^ shap);
 
         XAIS_Shape(Handle(AIS_Shape) pos);
+
+        virtual Handle(AIS_Shape) GetShape();
+
+        virtual Handle(AIS_InteractiveObject) GetInteractiveObject() Standard_OVERRIDE;
+
+        virtual Handle(SelectMgr_SelectableObject) GetSelectableObject() Standard_OVERRIDE;
+
+        virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
+
         //! Returns index 0. This value refers to SHAPE from TopAbs_ShapeEnum
         virtual Standard_Integer Signature() Standard_OVERRIDE;
 

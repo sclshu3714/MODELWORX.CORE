@@ -87,6 +87,8 @@ namespace TKV3d
         //! Constructs the interactive context object defined by the principal viewer MainViewer.
         XAIS_InteractiveContext(Handle(AIS_InteractiveContext) pos);
 
+        virtual Handle(AIS_InteractiveContext)  GetInteractiveContext();
+
         //! Destructor.
         virtual ~XAIS_InteractiveContext();
 

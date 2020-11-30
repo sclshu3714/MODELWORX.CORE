@@ -66,7 +66,13 @@ namespace TKV3d {
 		//! as a component of a shape.
 		const Handle(Geom_Line) Component();
 
-		Handle(AIS_Axis) GetAxis();
+		virtual Handle(AIS_Axis) GetAxis();
+
+		virtual Handle(AIS_InteractiveObject) GetInteractiveObject() Standard_OVERRIDE;
+
+		virtual Handle(SelectMgr_SelectableObject) GetSelectableObject() Standard_OVERRIDE;
+
+		virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
 
 		//! Sets the coordinates of the lin aComponent.
 		void SetComponent(Handle(Geom_Line) aComponent);

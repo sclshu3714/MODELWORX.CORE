@@ -31,13 +31,21 @@ namespace TKXCAF {
 		SetNativeHandle(NativeHandle());
 	};
 
+	Handle(XCAFApp_Application) XXCAFApp_Application::GetXCAFApp_Application() {
+		return NativeHandle();
+	};
+
+	Handle(TDocStd_Application) XXCAFApp_Application::GetTDocStd_Application() {
+		return NativeHandle();
+	};
+
 	//=======================================================================
 	//function : GetApplication
 	//purpose  : 
 	//=======================================================================
-	Handle(XCAFApp_Application) XXCAFApp_Application::GetApplication()
+	XXCAFApp_Application^ XXCAFApp_Application::GetApplication()
 	{
-		return XCAFApp_Application::GetApplication();
+		return gcnew XXCAFApp_Application(XCAFApp_Application::GetApplication());
 	}
 
 	//=======================================================================

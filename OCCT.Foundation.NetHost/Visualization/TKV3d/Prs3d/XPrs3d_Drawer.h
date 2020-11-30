@@ -70,7 +70,9 @@ namespace TKV3d {
         //! Default constructor.
         XPrs3d_Drawer(Handle(Prs3d_Drawer) pos);
 
-        Handle(Prs3d_Drawer) GetDrawer();
+        virtual Handle(Prs3d_Drawer) GetDrawer();
+
+        virtual Handle(Graphic3d_PresentationAttributes) GetPresentationAttributes() Standard_OVERRIDE;
 
         //! Sets the type of chordal deflection.
         //! This indicates whether the deflection value is absolute or relative to the size of the object.

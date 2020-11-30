@@ -76,7 +76,7 @@ namespace TKV3d {
         //! 
         void SetBaseNativeHandle(Handle(PrsMgr_PresentableObject) pos);
 
-        Handle(PrsMgr_PresentableObject) GetPresentableObject();
+        virtual Handle(PrsMgr_PresentableObject) GetPresentableObject();
 
         //! Return presentations.
         PrsMgr_Presentations& Presentations();

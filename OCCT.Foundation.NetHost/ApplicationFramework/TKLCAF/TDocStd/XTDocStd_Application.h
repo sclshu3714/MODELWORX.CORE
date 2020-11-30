@@ -89,7 +89,7 @@ namespace TKLCAF {
         XTDocStd_Application();
 
         //! Constructs the new instance and registers it in CDM_Session
-        XTDocStd_Application(TDocStd_Application* pos);
+        XTDocStd_Application(Handle(TDocStd_Application) pos);
 
         //! Check if meta data driver was successfully loaded
         //! by the application constructor
@@ -101,6 +101,10 @@ namespace TKLCAF {
 
         //!
         void SetNativeHandle(Handle(TDocStd_Application) pos);
+
+
+        virtual Handle(TDocStd_Application) GetTDocStd_Application();
+
         //! Returns resource manager defining supported persistent formats.
         //!
         //! Default implementation loads resource file with name ResourcesName(),

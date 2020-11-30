@@ -96,6 +96,11 @@ namespace TKV3d {
         NativeHandle() = pos;
     };
 
+    Handle(AIS_InteractiveContext)  XAIS_InteractiveContext::GetInteractiveContext() {
+        return NativeHandle();
+    };
+
+
     //=======================================================================
     //function : ~AIS_InteractiveContext
     //purpose  :

@@ -50,7 +50,7 @@ namespace TKV3d {
         //! The supported line widths vary by 1-pixel units.
         XGraphic3d_AspectLine3d(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, Standard_Real theWidth);
 
-        Handle(Graphic3d_AspectLine3d) GetAspectLine3d();
+        virtual Handle(Graphic3d_AspectLine3d) GetAspectLine3d();
 
         //! 
         void SetNativeHandle(Handle(Graphic3d_AspectLine3d) theAspect);
