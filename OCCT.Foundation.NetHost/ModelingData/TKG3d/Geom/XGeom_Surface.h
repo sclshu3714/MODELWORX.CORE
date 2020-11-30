@@ -108,7 +108,7 @@ namespace TKG3d
 		//! is the same point as
 		//!
 		//! me->Value(U,V)
-		virtual Standard_Real^ UReversedParameter(Standard_Real U);
+		virtual Standard_Real UReversedParameter(Standard_Real U);
 
 
 		//! Reverses the V direction of parametrization of <me>.
@@ -129,7 +129,7 @@ namespace TKG3d
 		//! is the same point as
 		//!
 		//! me->Value(U,V)
-		virtual Standard_Real^ VReversedParameter(Standard_Real V);
+		virtual Standard_Real VReversedParameter(Standard_Real V);
 
 		//! Computes the  parameters on the  transformed  surface for
 		//! the transform of the point of parameters U,V on <me>.
@@ -182,7 +182,7 @@ namespace TKG3d
 		//! the u parametric direction, for each parameter v, the
 		//! distance between the points P(uFirst, v) and
 		//! P(uLast, v) is less than or equal to gp::Resolution().
-		virtual Standard_Boolean^ IsUClosed();
+		virtual Standard_Boolean IsUClosed();
 
 		//! Checks whether this surface is closed in the u
 		//! parametric direction.
@@ -192,7 +192,7 @@ namespace TKG3d
 		//! each parameter u, the distance between the points
 		//! P(u, vFirst) and P(u, vLast) is less than
 		//! or equal to gp::Resolution().
-		virtual Standard_Boolean^ IsVClosed();
+		virtual Standard_Boolean IsVClosed();
 
 		//! Checks if this surface is periodic in the u
 		//! parametric direction. Returns true if:
@@ -202,12 +202,12 @@ namespace TKG3d
 		//! v) (or the points P (u, v) and P (u, v +
 		//! T)) is less than or equal to gp::Resolution().
 		//! Note: T is the parametric period in the u parametric direction.
-		virtual Standard_Boolean^ IsUPeriodic();
+		virtual Standard_Boolean IsUPeriodic();
 
 		//! Returns the period of this surface in the u
 		//! parametric direction.
 		//! raises if the surface is not uperiodic.
-		virtual Standard_Real^ UPeriod();
+		virtual Standard_Real UPeriod();
 
 		//! Checks if this surface is periodic in the v
 		//! parametric direction. Returns true if:
@@ -217,11 +217,11 @@ namespace TKG3d
 		//! v) (or the points P (u, v) and P (u, v +
 		//! T)) is less than or equal to gp::Resolution().
 		//! Note: T is the parametric period in the v parametric direction.
-		virtual Standard_Boolean^ IsVPeriodic();
+		virtual Standard_Boolean IsVPeriodic();
 
 		//! Returns the period of this surface in the v parametric direction.
 		//! raises if the surface is not vperiodic.
-		virtual Standard_Real^ VPeriod();
+		virtual Standard_Real VPeriod();
 
 		//! Computes the U isoparametric curve.
 		virtual Handle(Geom_Curve) UIso(Standard_Real U);
@@ -246,12 +246,12 @@ namespace TKG3d
 		//! Returns the order of continuity of the surface in the
 		//! U parametric direction.
 		//! Raised if N < 0.
-		virtual Standard_Boolean^ IsCNu(Standard_Integer N);
+		virtual Standard_Boolean IsCNu(Standard_Integer N);
 
 		//! Returns the order of continuity of the surface in the
 		//! V parametric direction.
 		//! Raised if N < 0.
-		virtual Standard_Boolean^ IsCNv(Standard_Integer N);
+		virtual Standard_Boolean IsCNv(Standard_Integer N);
 
 		//! Computes the point of parameter U,V on the surface.
 		//!

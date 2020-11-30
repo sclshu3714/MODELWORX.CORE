@@ -24,8 +24,8 @@ namespace TKMath
 
     //! Creates a cylinder of radius Radius, whose axis is the "main
     //! Axis" of A3. A3 is the local coordinate system of the cylinder.   Raises ConstructionErrord if R < 0.0
-    xgp_Cylinder::xgp_Cylinder(xgp_Ax3^ A3, Standard_Real^ Radius) {
-        NativeHandle = new gp_Cylinder(A3->GetAx3(), *Radius);
+    xgp_Cylinder::xgp_Cylinder(xgp_Ax3^ A3, Standard_Real Radius) {
+        NativeHandle = new gp_Cylinder(A3->GetAx3(), Radius);
     };
 
     //ÊÍ·Å
@@ -66,8 +66,8 @@ namespace TKMath
     //! Modifies the radius of this cylinder.
     //! Exceptions
     //! Standard_ConstructionError if R is negative.
-    void xgp_Cylinder::SetRadius(Standard_Real^ R) {
-        NativeHandle->SetRadius(*R);
+    void xgp_Cylinder::SetRadius(Standard_Real R) {
+        NativeHandle->SetRadius(R);
     };
 
     //! Reverses the   U   parametrization of   the cylinder
@@ -83,7 +83,7 @@ namespace TKMath
     };
 
     //! Returns true if the local coordinate system of this cylinder is right-handed.
-    Standard_Boolean^ xgp_Cylinder::Direct() {
+    Standard_Boolean xgp_Cylinder::Direct() {
         return NativeHandle->Direct();
     };
 
@@ -113,7 +113,7 @@ namespace TKMath
     };
 
     //! Returns the radius of the cylinder.
-    Standard_Real^ xgp_Cylinder::Radius() {
+    Standard_Real xgp_Cylinder::Radius() {
         return NativeHandle->Radius();
     };
 
@@ -163,26 +163,26 @@ namespace TKMath
         return gcnew xgp_Cylinder(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Cylinder::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Cylinder::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a cylinder. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Cylinder^ xgp_Cylinder::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Cylinder(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Cylinder^ xgp_Cylinder::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Cylinder(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Cylinder::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Cylinder::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a cylinder. S is the scaling value.
     //! The absolute value of S is used to scale the cylinder
-    xgp_Cylinder^ xgp_Cylinder::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Cylinder(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Cylinder^ xgp_Cylinder::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Cylinder(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Cylinder::Transform(xgp_Trsf^ T) {

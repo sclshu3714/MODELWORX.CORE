@@ -73,7 +73,7 @@ namespace TKMath
         //! It is possible to create an ellipse with
         //! MajorRadius = MinorRadius.
         //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-        xgp_Elips2d(xgp_Ax2d^ MajorAxis, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius, Standard_Boolean^ Sense);
+        xgp_Elips2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense);
 
         //! Creates an ellipse with radii MajorRadius and
         //! MinorRadius, positioned in the plane by coordinate system A where:
@@ -90,7 +90,7 @@ namespace TKMath
         //! It is possible to create an ellipse with
         //! MajorRadius = MinorRadius.
         //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-        xgp_Elips2d(xgp_Ax22d^ A, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius);
+        xgp_Elips2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
 
         //ÊÍ·Å
@@ -107,11 +107,11 @@ namespace TKMath
 
         //! Changes the value of the major radius.
         //! Raises ConstructionError if MajorRadius < MinorRadius.
-        void SetMajorRadius(Standard_Real^ MajorRadius);
+        void SetMajorRadius(Standard_Real MajorRadius);
 
         //! Changes the value of the minor radius.
         //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-        void SetMinorRadius(Standard_Real^ MinorRadius);
+        void SetMinorRadius(Standard_Real MinorRadius);
 
         //! Modifies this ellipse, by redefining its local coordinate system so that
         //! it becomes A.
@@ -132,7 +132,7 @@ namespace TKMath
         void SetYAxis(xgp_Ax2d^ A);
 
         //! Computes the area of the ellipse.
-        Standard_Real^ Area();
+        Standard_Real Area();
 
 
         //! Returns the coefficients of the implicit equation of the ellipse.
@@ -165,12 +165,12 @@ namespace TKMath
         //! If f is the distance between the center of the ellipse and
         //! the Focus1 then the eccentricity e = f / MajorRadius.
         //! Returns 0 if MajorRadius = 0.
-        Standard_Real^ Eccentricity();
+        Standard_Real Eccentricity();
 
 
         //! Returns the distance between the center of the ellipse
         //! and focus1 or focus2.
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
 
         //! Returns the first focus of the ellipse. This focus is on the
@@ -186,16 +186,16 @@ namespace TKMath
         xgp_Pnt2d^ Location();
 
         //! Returns the major radius of the Ellipse.
-        Standard_Real^ MajorRadius();
+        Standard_Real MajorRadius();
 
         //! Returns the minor radius of the Ellipse.
-        Standard_Real^ MinorRadius();
+        Standard_Real MinorRadius();
 
 
         //! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
         //! of the ellipse.
         //! Returns 0 if MajorRadius = 0
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
         //! Returns the major axis of the ellipse.
         xgp_Ax22d^ Axis();
@@ -213,7 +213,7 @@ namespace TKMath
 
         //! Returns true if the local coordinate system is direct
         //! and false in the other case.
-        Standard_Boolean^ IsDirect();
+        Standard_Boolean IsDirect();
 
         void Mirror(xgp_Pnt2d^ P);
 
@@ -229,15 +229,15 @@ namespace TKMath
         //! to an axis placement which is the axis of the symmetry.
         xgp_Elips2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        xgp_Elips2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Elips2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Scales a ellipse. S is the scaling value.
-        xgp_Elips2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Elips2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

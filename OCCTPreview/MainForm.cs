@@ -42,5 +42,16 @@ namespace OCCTPreview
             index = index == 0 ? 1 : 0;
             render.SetDisplayMode(index);
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            render.AddDisk();
+            render.ZoomAllView();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            render.RemoveAll(true);
+        }
     }
 }

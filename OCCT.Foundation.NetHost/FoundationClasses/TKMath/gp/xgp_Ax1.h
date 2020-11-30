@@ -68,21 +68,21 @@ namespace TKMath
         //! or equal to <LinearTolerance> and
         //! . the distance between <Other>.Location() and <me> is lower
         //! or equal to LinearTolerance.
-        Standard_Boolean^ IsCoaxial(xgp_Ax1^ Other, Standard_Real^ AngularTolerance, Standard_Real^ LinearTolerance);
+        Standard_Boolean IsCoaxial(xgp_Ax1^ Other, Standard_Real AngularTolerance, Standard_Real LinearTolerance);
 
 
         //! Returns True if the direction of the <me> and <Other>
         //! are normal to each other.
         //! That is, if the angle between the two axes is equal to Pi/2.
         //! Note: the tolerance criterion is given by AngularTolerance..
-        Standard_Boolean^ IsNormal(xgp_Ax1^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsNormal(xgp_Ax1^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if the direction of <me> and <Other> are
         //! parallel with opposite orientation. That is, if the angle
         //! between the two axes is equal to Pi.
         //! Note: the tolerance criterion is given by AngularTolerance.
-        Standard_Boolean IsOpposite(xgp_Ax1^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsOpposite(xgp_Ax1^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if the direction of <me> and <Other> are
@@ -90,13 +90,13 @@ namespace TKMath
         //! is, if the angle between the two axes is equal to 0 or Pi.
         //! Note: the tolerance criterion is given by
         //! AngularTolerance.
-        Standard_Boolean^ IsParallel(xgp_Ax1^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsParallel(xgp_Ax1^ Other, Standard_Real AngularTolerance);
 
 
         //! Computes the angular value, in radians, between <me>.Direction() and
         //! <Other>.Direction(). Returns the angle between 0 and 2*PI
         //! radians.
-        Standard_Real^ Angle(xgp_Ax1^ Other);
+        Standard_Real Angle(xgp_Ax1^ Other);
 
         //! Reverses the unit vector of this axis.
         //! and  assigns the result to this axis.
@@ -144,23 +144,23 @@ namespace TKMath
 
         //! Rotates this axis at an angle Ang (in radians) about the axis A1
         //! and assigns the result to this axis.
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
         //! Rotates this axis at an angle Ang (in radians) about the axis A1
         //! and creates a new one.
-        xgp_Ax1^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Ax1^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Applies a scaling transformation to this axis with:
         //! -   scale factor S, and
         //! -   center P and assigns the result to this axis.
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Applies a scaling transformation to this axis with:
         //! -   scale factor S, and
         //! -   center P and creates a new axis.
-        xgp_Ax1^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Ax1^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         //! Applies the transformation T to this axis.
         //! and assigns the result to this axis.

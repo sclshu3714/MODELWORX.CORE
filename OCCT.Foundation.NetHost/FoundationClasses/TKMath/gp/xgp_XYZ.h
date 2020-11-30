@@ -40,7 +40,7 @@ namespace TKMath
         xgp_XYZ(gp_XYZ pos);
 
         //! creates an XYZ with given coordinates
-        xgp_XYZ(Standard_Real^ X, Standard_Real^ Y, Standard_Real^ Z);
+        xgp_XYZ(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
         //ÊÍ·Å
         ~xgp_XYZ();
@@ -49,7 +49,7 @@ namespace TKMath
 
         //! For this XYZ object, assigns
         //! the values X, Y and Z to its three coordinates
-        void SetCoord(Standard_Real^ X, Standard_Real^ Y, Standard_Real^ Z);
+        void SetCoord(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
 
         //! modifies the coordinate of range Index
@@ -57,16 +57,16 @@ namespace TKMath
         //! Index = 2 => Y is modified
         //! Index = 3 => Z is modified
         //! Raises OutOfRange if Index != {1, 2, 3}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! Assigns the given value to the X coordinate
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the Y coordinate
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! Assigns the given value to the Z coordinate
-        void SetZ(Standard_Real^ Z);
+        void SetZ(Standard_Real Z);
 
         //! returns the gp_XYZ
         gp_XYZ GetXYZ();
@@ -76,11 +76,11 @@ namespace TKMath
         //! Index = 3 => Z is returned
         //!
         //! Raises OutOfRange if Index != {1, 2, 3}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
-        Standard_Real^ ChangeCoord(Standard_Integer^ theIndex);
+        Standard_Real ChangeCoord(Standard_Integer theIndex);
 
-        void Coord(Standard_Real^ X, Standard_Real^ Y, Standard_Real^ Z);
+        void Coord(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
         //! Returns a ptr to coordinates location.
         //! Is useful for algorithms, but DOES NOT PERFORM
@@ -93,19 +93,19 @@ namespace TKMath
         inline Standard_Real ChangeData() { return (x); }
 
         //! Returns the X coordinate
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! Returns the Y coordinate
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! Returns the Z coordinate
-        Standard_Real^ Z();
+        Standard_Real Z();
 
         //! computes Sqrt (X*X + Y*Y + Z*Z) where X, Y and Z are the three coordinates of this XYZ object.
-        Standard_Real^ Modulus();
+        Standard_Real Modulus();
 
         //! Computes X*X + Y*Y + Z*Z where X, Y and Z are the three coordinates of this XYZ object.
-        Standard_Real^ SquareModulus();
+        Standard_Real SquareModulus();
 
 
         //! Returns True if he coordinates of this XYZ object are
@@ -114,7 +114,7 @@ namespace TKMath
         //! abs(<me>.X() - Other.X()) <= Tolerance and
         //! abs(<me>.Y() - Other.Y()) <= Tolerance and
         //! abs(<me>.Z() - Other.Z()) <= Tolerance.
-        Standard_Boolean^ IsEqual(xgp_XYZ^ Other, Standard_Real^ Tolerance);
+        Standard_Boolean IsEqual(xgp_XYZ^ Other, Standard_Real Tolerance);
 
 
         //! <me>.X() = <me>.X() + Other.X()
@@ -155,12 +155,12 @@ namespace TKMath
 
         //! Computes the magnitude of the cross product between <me> and
         //! Right. Returns || <me> ^ Right ||
-        Standard_Real^ CrossMagnitude(xgp_XYZ^ Right);
+        Standard_Real CrossMagnitude(xgp_XYZ^ Right);
 
 
         //! Computes the square magnitude of the cross product between <me> and
         //! Right. Returns || <me> ^ Right ||**2
-        Standard_Real^ CrossSquareMagnitude(xgp_XYZ^ Right);
+        Standard_Real CrossSquareMagnitude(xgp_XYZ^ Right);
 
         //! Triple vector product
         //! Computes <me> = <me>.Cross(Coord1.Cross(Coord2))
@@ -171,32 +171,32 @@ namespace TKMath
         xgp_XYZ^ CrossCrossed(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2);
 
         //! divides <me> by a real.
-        void Divide(Standard_Real^ Scalar);
-        void operator /= (Standard_Real^ Scalar) {
+        void Divide(Standard_Real Scalar);
+        void operator /= (Standard_Real Scalar) {
             Divide(Scalar);
         }
 
         //! divides <me> by a real.
-        xgp_XYZ^ Divided(Standard_Real^ Scalar);
-        xgp_XYZ^ operator / (Standard_Real^ Scalar) {
+        xgp_XYZ^ Divided(Standard_Real Scalar);
+        xgp_XYZ^ operator / (Standard_Real Scalar) {
             return Divided(Scalar);
         }
 
         //! computes the scalar product between <me> and Other
-        Standard_Real^ Dot(xgp_XYZ^ Other);
-        Standard_Real^ operator * (xgp_XYZ^ Other) {
+        Standard_Real Dot(xgp_XYZ^ Other);
+        Standard_Real operator * (xgp_XYZ^ Other) {
             return Dot(Other);
         }
 
         //! computes the triple scalar product
-        Standard_Real^ DotCross(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2);
+        Standard_Real DotCross(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2);
 
 
         //! <me>.X() = <me>.X() * Scalar;
         //! <me>.Y() = <me>.Y() * Scalar;
         //! <me>.Z() = <me>.Z() * Scalar;
-        void Multiply(Standard_Real^ Scalar);
-        void operator *= (Standard_Real^ Scalar) {
+        void Multiply(Standard_Real Scalar);
+        void operator *= (Standard_Real Scalar) {
             Multiply(Scalar);
         }
 
@@ -219,8 +219,8 @@ namespace TKMath
         //! New.X() = <me>.X() * Scalar;
         //! New.Y() = <me>.Y() * Scalar;
         //! New.Z() = <me>.Z() * Scalar;
-        xgp_XYZ^ Multiplied(Standard_Real^ Scalar);
-        xgp_XYZ^ operator * (Standard_Real^ Scalar) {
+        xgp_XYZ^ Multiplied(Standard_Real Scalar);
+        xgp_XYZ^ operator * (Standard_Real Scalar) {
             return Multiplied(Scalar);
         }
 
@@ -283,27 +283,27 @@ namespace TKMath
 
         //! <me> is set to the following linear form :
         //! A1 * XYZ1 + A2 * XYZ2 + A3 * XYZ3 + XYZ4
-        void SetLinearForm(Standard_Real^ A1, xgp_XYZ^ XYZ1, Standard_Real^ A2, xgp_XYZ^ XYZ2, Standard_Real^ A3, xgp_XYZ^ XYZ3, xgp_XYZ^ XYZ4);
+        void SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, Standard_Real A3, xgp_XYZ^ XYZ3, xgp_XYZ^ XYZ4);
 
 
         //! <me> is set to the following linear form :
         //! A1 * XYZ1 + A2 * XYZ2 + A3 * XYZ3
-        void SetLinearForm(Standard_Real^ A1, xgp_XYZ^ XYZ1, Standard_Real^ A2, xgp_XYZ^ XYZ2, Standard_Real^ A3, xgp_XYZ^ XYZ3);
+        void SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, Standard_Real A3, xgp_XYZ^ XYZ3);
 
 
         //! <me> is set to the following linear form :
         //! A1 * XYZ1 + A2 * XYZ2 + XYZ3
-        void SetLinearForm(Standard_Real^ A1, xgp_XYZ^ XYZ1, Standard_Real^ A2, xgp_XYZ^ XYZ2, xgp_XYZ^ XYZ3);
+        void SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, xgp_XYZ^ XYZ3);
 
 
         //! <me> is set to the following linear form :
         //! A1 * XYZ1 + A2 * XYZ2
-        void SetLinearForm(Standard_Real^ A1, xgp_XYZ^ XYZ1, Standard_Real^ A2, xgp_XYZ^ XYZ2);
+        void SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2);
 
 
         //! <me> is set to the following linear form :
         //! A1 * XYZ1 + XYZ2
-        void SetLinearForm(Standard_Real^ A1, xgp_XYZ^ XYZ1, xgp_XYZ^ XYZ2);
+        void SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, xgp_XYZ^ XYZ2);
 
 
         //! <me> is set to the following linear form :

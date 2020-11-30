@@ -78,37 +78,37 @@ namespace TKMath
     //! or equal to <LinearTolerance> and
     //! . the distance between <Other>.Location() and <me> is lower
     //! or equal to LinearTolerance.
-    Standard_Boolean^ xgp_Ax2d::IsCoaxial(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance, Standard_Real^ LinearTolerance) {
-        return NativeHandle->IsCoaxial(Other->GetAx2d(), *AngularTolerance, *LinearTolerance);
+    Standard_Boolean xgp_Ax2d::IsCoaxial(xgp_Ax2d^ Other, Standard_Real AngularTolerance, Standard_Real LinearTolerance) {
+        return NativeHandle->IsCoaxial(Other->GetAx2d(), AngularTolerance, LinearTolerance);
     };
 
     //! Returns true if this axis and the axis Other are normal to
     //! each other. That is, if the angle between the two axes is equal to Pi/2 or -Pi/2.
     //! Note: the tolerance criterion is given by AngularTolerance.
-    Standard_Boolean^ xgp_Ax2d::IsNormal(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetAx2d(), *AngularTolerance);
+    Standard_Boolean xgp_Ax2d::IsNormal(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsNormal(Other->GetAx2d(), AngularTolerance);
     };
 
     //! Returns true if this axis and the axis Other are parallel,
     //! and have opposite orientations. That is, if the angle
     //! between the two axes is equal to Pi or -Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
-    Standard_Boolean^ xgp_Ax2d::IsOpposite(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetAx2d(), *AngularTolerance);
+    Standard_Boolean xgp_Ax2d::IsOpposite(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsOpposite(Other->GetAx2d(), AngularTolerance);
     };
 
     //! Returns true if this axis and the axis Other are parallel,
     //! and have either the same or opposite orientations. That
     //! is, if the angle between the two axes is equal to 0, Pi or -Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
-    Standard_Boolean^ xgp_Ax2d::IsParallel(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetAx2d(), *AngularTolerance);
+    Standard_Boolean xgp_Ax2d::IsParallel(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsParallel(Other->GetAx2d(), AngularTolerance);
     };
 
 
     //! Computes the angle, in radians, between this axis and
     //! the axis Other. The value of the angle is between -Pi and Pi.
-    Standard_Real^ xgp_Ax2d::Angle(xgp_Ax2d^ Other) {
+    Standard_Real xgp_Ax2d::Angle(xgp_Ax2d^ Other) {
         return NativeHandle->Angle(Other->GetAx2d());
     };
 
@@ -148,28 +148,28 @@ namespace TKMath
         return gcnew xgp_Ax2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Ax2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Ax2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates an axis placement. <P> is the center of the
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
-    xgp_Ax2d^ xgp_Ax2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Ax2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Ax2d^ xgp_Ax2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Ax2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Ax2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Ax2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
     //! Applies a scaling transformation on the axis placement.
     //! The "Location" point of the axisplacement is modified.
     //! The "Direction" is reversed if the scale is negative.
-    xgp_Ax2d^ xgp_Ax2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Ax2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Ax2d^ xgp_Ax2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Ax2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Ax2d::Transform(xgp_Trsf2d^ T) {

@@ -30,8 +30,8 @@ namespace TKMath
     //! It is not forbidden to create a torus with
     //! MajorRadius = MinorRadius = 0.0
     //! Raises ConstructionError if MinorRadius < 0.0 or if MajorRadius < 0.0
-    xgp_Torus::xgp_Torus(xgp_Ax3^ A3, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius) {
-        NativeHandle = new gp_Torus(A3->GetAx3(), *MajorRadius, *MinorRadius);
+    xgp_Torus::xgp_Torus(xgp_Ax3^ A3, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+        NativeHandle = new gp_Torus(A3->GetAx3(), MajorRadius, MinorRadius);
     };
 
     // Õ∑≈
@@ -66,15 +66,15 @@ namespace TKMath
 
     //! Assigns value to the major radius  of this torus.
     //! Raises ConstructionError if MajorRadius - MinorRadius <= Resolution()
-    void xgp_Torus::SetMajorRadius(Standard_Real^ MajorRadius) {
-        NativeHandle->SetMajorRadius(*MajorRadius);
+    void xgp_Torus::SetMajorRadius(Standard_Real MajorRadius) {
+        NativeHandle->SetMajorRadius(MajorRadius);
     };
 
     //! Assigns value to the  minor radius of this torus.
     //! Raises ConstructionError if MinorRadius < 0.0 or if
     //! MajorRadius - MinorRadius <= Resolution from gp.
-    void xgp_Torus::SetMinorRadius(Standard_Real^ MinorRadius) {
-        NativeHandle->SetMinorRadius(*MinorRadius);
+    void xgp_Torus::SetMinorRadius(Standard_Real MinorRadius) {
+        NativeHandle->SetMinorRadius(MinorRadius);
     };
 
     //! Changes the local coordinate system of the surface.
@@ -88,7 +88,7 @@ namespace TKMath
     };
 
     //! Computes the area of the torus.
-    Standard_Real^ xgp_Torus::Area() {
+    Standard_Real xgp_Torus::Area() {
         return NativeHandle->Area();
     };
 
@@ -105,7 +105,7 @@ namespace TKMath
     };
 
     //! returns true if the Ax3, the local coordinate system of this torus, is right handed.
-    Standard_Boolean^ xgp_Torus::Direct() {
+    Standard_Boolean xgp_Torus::Direct() {
         return NativeHandle->Direct();
     };
 
@@ -146,17 +146,17 @@ namespace TKMath
     };
 
     //! returns the major radius of the torus.
-    Standard_Real^ xgp_Torus::MajorRadius() {
+    Standard_Real xgp_Torus::MajorRadius() {
         return NativeHandle->MajorRadius();
     };
 
     //! returns the minor radius of the torus.
-    Standard_Real^ xgp_Torus::MinorRadius() {
+    Standard_Real xgp_Torus::MinorRadius() {
         return NativeHandle->MinorRadius();
     };
 
     //! Computes the volume of the torus.
-    Standard_Real^ xgp_Torus::Volume() {
+    Standard_Real xgp_Torus::Volume() {
         return NativeHandle->Volume();
     };
 
@@ -206,26 +206,26 @@ namespace TKMath
         return gcnew xgp_Torus(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Torus::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Torus::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a torus. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Torus^ xgp_Torus::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Torus(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Torus^ xgp_Torus::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Torus(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Torus::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Torus::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a torus. S is the scaling value.
     //! The absolute value of S is used to scale the torus
-    xgp_Torus^ xgp_Torus::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Torus(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Torus^ xgp_Torus::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Torus(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Torus::Transform(xgp_Trsf^ T) {

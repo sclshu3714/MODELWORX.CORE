@@ -81,10 +81,10 @@ namespace TKV3d
 		//! corresponding AIS_InteractiveContext instance for cases when it
 		//! is accessible. This method just redirects call to myCTXPtr,
 		//! so this class field must be up to date for proper result.
-		void Redisplay(Standard_Boolean^ AllModes);
+		void Redisplay(Standard_Boolean AllModes);
 
 		//! Indicates whether the Interactive Object has a pointer to an interactive context.
-		Standard_Boolean^ HasInteractiveContext();
+		Standard_Boolean HasInteractiveContext();
 
 		//! Returns the context pointer to the interactive context.
 		AIS_InteractiveContext* InteractiveContext();
@@ -95,7 +95,7 @@ namespace TKV3d
 
 		//! Returns true if the object has an owner attributed to it.
 		//! The owner can be a shape for a set of sub-shapes or a sub-shape for sub-shapes which it is composed of, and takes the form of a transient.
-		Standard_Boolean^ HasOwner();
+		Standard_Boolean HasOwner();
 
 		//! Returns the owner of the Interactive Object.
 		//! The owner can be a shape for a set of sub-shapes or
@@ -122,7 +122,7 @@ namespace TKV3d
 		Handle(AIS_InteractiveContext) GetContext();
 
 		//! Returns TRUE when this object has a presentation in the current DisplayMode()
-		Standard_Boolean^ HasPresentation();
+		Standard_Boolean HasPresentation();
 
 		//! Returns the current presentation of this object according to the current DisplayMode()
 		Handle(Prs3d_Presentation) Presentation();

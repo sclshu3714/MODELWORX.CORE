@@ -38,8 +38,8 @@ namespace TKMath
     //! V, which is:
     //! -   right-handed if Sense is true (default value), or
     //! -   left-handed if Sense is false
-    xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean^ Sense) {
-        NativeHandle = new gp_Ax22d(P->GetPnt2d(), V->GetDir2d(), *Sense);
+    xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean Sense) {
+        NativeHandle = new gp_Ax22d(P->GetPnt2d(), V->GetDir2d(), Sense);
     };
 
 
@@ -47,8 +47,8 @@ namespace TKMath
     //! A and its "X Direction" is the unit vector of A, which   is:
     //! -   right-handed if Sense is true (default value), or
     //! -   left-handed if Sense is false.
-    xgp_Ax22d::xgp_Ax22d(xgp_Ax2d^ A, Standard_Boolean^ Sense) {
-        NativeHandle = new gp_Ax22d(A->GetAx2d(), *Sense);
+    xgp_Ax22d::xgp_Ax22d(xgp_Ax2d^ A, Standard_Boolean Sense) {
+        NativeHandle = new gp_Ax22d(A->GetAx2d(), Sense);
     };
 
     //! ÊÍ·Å
@@ -181,20 +181,20 @@ namespace TKMath
         return gcnew xgp_Ax22d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Ax22d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Ax22d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates an axis placement. <A1> is the axis of the
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
-    xgp_Ax22d^ xgp_Ax22d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Ax22d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Ax22d^ xgp_Ax22d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Ax22d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Ax22d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Ax22d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
@@ -205,8 +205,8 @@ namespace TKMath
     //! . the main direction of the axis placement is not changed.
     //! . The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
-    xgp_Ax22d^ xgp_Ax22d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Ax22d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Ax22d^ xgp_Ax22d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Ax22d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Ax22d::Transform(xgp_Trsf2d^ T) {

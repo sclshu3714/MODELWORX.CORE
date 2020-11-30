@@ -44,7 +44,7 @@ namespace TKMath
         xgp_XY(gp_XY pos);
 
         //! a number pair defined by the XY coordinates
-        xgp_XY(Standard_Real^ X, Standard_Real^ Y);
+        xgp_XY(Standard_Real X, Standard_Real Y);
 
         //ÊÍ·Å
         ~xgp_XY();
@@ -55,17 +55,17 @@ namespace TKMath
         //! Index = 1 => X is modified
         //! Index = 2 => Y is modified
         //! Raises OutOfRange if Index != {1, 2}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! For this number pair, assigns
         //! the values X and Y to its coordinates
-        void SetCoord(Standard_Real^ X, Standard_Real^ Y);
+        void SetCoord(Standard_Real X, Standard_Real Y);
 
         //! Assigns the given value to the X coordinate of this number pair.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the Y  coordinate of this number pair.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! returns the gp_XY
         gp_XY GetXY();
@@ -73,24 +73,24 @@ namespace TKMath
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned
         //! Raises OutOfRange if Index != {1, 2}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
-        Standard_Real^ ChangeCoord(Standard_Integer^ theIndex);
+        Standard_Real ChangeCoord(Standard_Integer theIndex);
 
         //! For this number pair, returns its coordinates X and Y.
-        void Coord(Standard_Real^ X, Standard_Real^ Y);
+        void Coord(Standard_Real X, Standard_Real Y);
 
         //! Returns the X coordinate of this number pair.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! Returns the Y coordinate of this number pair.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! Computes Sqrt (X*X + Y*Y) where X and Y are the two coordinates of this number pair.
-        Standard_Real^ Modulus();
+        Standard_Real Modulus();
 
         //! Computes X*X + Y*Y where X and Y are the two coordinates of this number pair.
-        Standard_Real^ SquareModulus();
+        Standard_Real SquareModulus();
 
 
         //! Returns true if the coordinates of this number pair are
@@ -99,7 +99,7 @@ namespace TKMath
         //! abs(<me>.X() - Other.X()) <= Tolerance and
         //! abs(<me>.Y() - Other.Y()) <= Tolerance and
         //! computations
-        Standard_Boolean^ IsEqual(xgp_XY^ Other, Standard_Real^ Tolerance);
+        Standard_Boolean IsEqual(xgp_XY^ Other, Standard_Real Tolerance);
 
         //! Computes the sum of this number pair and number pair Other
         //! <me>.X() = <me>.X() + Other.X()
@@ -119,44 +119,44 @@ namespace TKMath
 
 
         //! Real D = <me>.X() * Other.Y() - <me>.Y() * Other.X()
-        Standard_Real^ Crossed(xgp_XY^ Right);
-        Standard_Real^ operator ^ (xgp_XY^ Right) {
+        Standard_Real Crossed(xgp_XY^ Right);
+        Standard_Real operator ^ (xgp_XY^ Right) {
             return Crossed(Right);
         }
 
 
         //! computes the magnitude of the cross product between <me> and
         //! Right. Returns || <me> ^ Right ||
-        Standard_Real^ CrossMagnitude(xgp_XY^ Right);
+        Standard_Real CrossMagnitude(xgp_XY^ Right);
 
 
         //! computes the square magnitude of the cross product between <me> and
         //! Right. Returns || <me> ^ Right ||**2
-        Standard_Real^ CrossSquareMagnitude(xgp_XY^ Right);
+        Standard_Real CrossSquareMagnitude(xgp_XY^ Right);
 
         //! divides <me> by a real.
-        void Divide(Standard_Real^ Scalar);
-        void operator /= (Standard_Real^ Scalar) {
+        void Divide(Standard_Real Scalar);
+        void operator /= (Standard_Real Scalar) {
             Divide(Scalar);
         }
 
         //! Divides <me> by a real.
-        xgp_XY^ Divided(Standard_Real^ Scalar);
-        xgp_XY^ operator / (Standard_Real^ Scalar) {
+        xgp_XY^ Divided(Standard_Real Scalar);
+        xgp_XY^ operator / (Standard_Real Scalar) {
             return Divided(Scalar);
         }
 
         //! Computes the scalar product between <me> and Other
-        Standard_Real^ Dot(xgp_XY^ Other);
-        Standard_Real^ operator * (xgp_XY^ Other) {
+        Standard_Real Dot(xgp_XY^ Other);
+        Standard_Real operator * (xgp_XY^ Other) {
             return Dot(Other);
         }
 
 
         //! <me>.X() = <me>.X() * Scalar;
         //! <me>.Y() = <me>.Y() * Scalar;
-        void Multiply(Standard_Real^ Scalar);
-        void operator *= (Standard_Real^ Scalar) {
+        void Multiply(Standard_Real Scalar);
+        void operator *= (Standard_Real Scalar) {
             Multiply(Scalar);
         }
 
@@ -177,8 +177,8 @@ namespace TKMath
 
         //! New.X() = <me>.X() * Scalar;
         //! New.Y() = <me>.Y() * Scalar;
-        xgp_XY^ Multiplied(Standard_Real^ Scalar);
-        xgp_XY^ operator * (Standard_Real^ Scalar) {
+        xgp_XY^ Multiplied(Standard_Real Scalar);
+        xgp_XY^ operator * (Standard_Real Scalar) {
             return Multiplied(Scalar);
         }
 
@@ -222,19 +222,19 @@ namespace TKMath
         //! Computes  the following linear combination and
         //! assigns the result to this number pair:
         //! A1 * XY1 + A2 * XY2
-        void SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, Standard_Real^ A2, xgp_XY^ XY2);
+        void SetLinearForm(Standard_Real A1, xgp_XY^ XY1, Standard_Real A2, xgp_XY^ XY2);
 
 
         //! --  Computes  the following linear combination and
         //! assigns the result to this number pair:
         //! A1 * XY1 + A2 * XY2 + XY3
-        void SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, Standard_Real^ A2, xgp_XY^ XY2, xgp_XY^ XY3);
+        void SetLinearForm(Standard_Real A1, xgp_XY^ XY1, Standard_Real A2, xgp_XY^ XY2, xgp_XY^ XY3);
 
 
         //! Computes  the following linear combination and
         //! assigns the result to this number pair:
         //! A1 * XY1 + XY2
-        void SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, xgp_XY^ XY2);
+        void SetLinearForm(Standard_Real A1, xgp_XY^ XY1, xgp_XY^ XY2);
 
 
         //! Computes  the following linear combination and

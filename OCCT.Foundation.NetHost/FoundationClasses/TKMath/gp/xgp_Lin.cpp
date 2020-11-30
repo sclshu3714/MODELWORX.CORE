@@ -102,35 +102,35 @@ namespace TKMath
     };
 
     //! Computes the angle between two lines in radians.
-    Standard_Real^ xgp_Lin::Angle(xgp_Lin^ Other){
+    Standard_Real xgp_Lin::Angle(xgp_Lin^ Other){
         return NativeHandle->Angle(Other->GetLin());
     };
 
     //! Returns true if this line contains the point P, that is, if the
     //! distance between point P and this line is less than or
     //! equal to LinearTolerance..
-    Standard_Boolean^ xgp_Lin::Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance){ 
-        return NativeHandle->Contains(P->GetPnt(), *LinearTolerance);
+    Standard_Boolean xgp_Lin::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance){ 
+        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
     };
 
     //! Computes the distance between <me> and the point P.
-    Standard_Real^ xgp_Lin::Distance(xgp_Pnt^ P){
+    Standard_Real xgp_Lin::Distance(xgp_Pnt^ P){
         return NativeHandle->Distance(P->GetPnt());
     };
 
     //! Computes the distance between two lines.
-    Standard_Real^ xgp_Lin::Distance(xgp_Lin^ Other){
+    Standard_Real xgp_Lin::Distance(xgp_Lin^ Other){
         return NativeHandle->Distance(Other->GetLin());
     };
 
 
     //! Computes the square distance between <me> and the point P.
-    Standard_Real^ xgp_Lin::SquareDistance(xgp_Pnt^ P){
+    Standard_Real xgp_Lin::SquareDistance(xgp_Pnt^ P){
         return NativeHandle->SquareDistance(P->GetPnt());
     };
 
     //! Computes the square distance between two lines.
-    Standard_Real^ xgp_Lin::SquareDistance(xgp_Lin^ Other){
+    Standard_Real xgp_Lin::SquareDistance(xgp_Lin^ Other){
         return NativeHandle->SquareDistance(Other->GetLin());
     };
 
@@ -181,27 +181,27 @@ namespace TKMath
         return gcnew xgp_Lin(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Lin::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang){ 
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Lin::Rotate(xgp_Ax1^ A1, Standard_Real Ang){ 
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a line. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Lin^ xgp_Lin::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang){  
-        return gcnew xgp_Lin(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Lin^ xgp_Lin::Rotated(xgp_Ax1^ A1, Standard_Real Ang){  
+        return gcnew xgp_Lin(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Lin::Scale(xgp_Pnt^ P, Standard_Real^ S){ 
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Lin::Scale(xgp_Pnt^ P, Standard_Real S){ 
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a line. S is the scaling value.
     //! The "Location" point (origin) of the line is modified.
     //! The "Direction" is reversed if the scale is negative.
-    xgp_Lin^ xgp_Lin::Scaled(xgp_Pnt^ P, Standard_Real^ S){ 
-        return gcnew xgp_Lin(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Lin^ xgp_Lin::Scaled(xgp_Pnt^ P, Standard_Real S){ 
+        return gcnew xgp_Lin(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Lin::Transform(xgp_Trsf^ T){  

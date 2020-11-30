@@ -87,7 +87,7 @@ namespace TKMath
         //! It is not forbidden to create a torus with
         //! MajorRadius = MinorRadius = 0.0
         //! Raises ConstructionError if MinorRadius < 0.0 or if MajorRadius < 0.0
-        xgp_Torus(xgp_Ax3^ A3, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius);
+        xgp_Torus(xgp_Ax3^ A3, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
         //ÊÍ·Å
         ~xgp_Torus();
@@ -107,12 +107,12 @@ namespace TKMath
 
         //! Assigns value to the major radius  of this torus.
         //! Raises ConstructionError if MajorRadius - MinorRadius <= Resolution()
-        void SetMajorRadius(Standard_Real^ MajorRadius);
+        void SetMajorRadius(Standard_Real MajorRadius);
 
         //! Assigns value to the  minor radius of this torus.
         //! Raises ConstructionError if MinorRadius < 0.0 or if
         //! MajorRadius - MinorRadius <= Resolution from gp.
-        void SetMinorRadius(Standard_Real^ MinorRadius);
+        void SetMinorRadius(Standard_Real MinorRadius);
 
         //! Changes the local coordinate system of the surface.
         void SetPosition(xgp_Ax3^ A3);
@@ -121,7 +121,7 @@ namespace TKMath
         gp_Torus GetTorus();
 
         //! Computes the area of the torus.
-        Standard_Real^ Area();
+        Standard_Real Area();
 
         //! Reverses the   U   parametrization of   the  torus
         //! reversing the YAxis.
@@ -132,7 +132,7 @@ namespace TKMath
         void VReverse();
 
         //! returns true if the Ax3, the local coordinate system of this torus, is right handed.
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
         //! returns the symmetry axis of the torus.
         xgp_Ax1^ Axis();
@@ -163,13 +163,13 @@ namespace TKMath
         xgp_Ax3^ Position();
 
         //! returns the major radius of the torus.
-        Standard_Real^ MajorRadius();
+        Standard_Real MajorRadius();
 
         //! returns the minor radius of the torus.
-        Standard_Real^ MinorRadius();
+        Standard_Real MinorRadius();
 
         //! Computes the volume of the torus.
-        Standard_Real^ Volume();
+        Standard_Real Volume();
 
         //! returns the axis X of the torus.
         xgp_Ax1^ XAxis();
@@ -201,19 +201,19 @@ namespace TKMath
         //! of the symmetry : (Location, XDirection, YDirection).
         xgp_Torus^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a torus. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Torus^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Torus^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a torus. S is the scaling value.
         //! The absolute value of S is used to scale the torus
-        xgp_Torus^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Torus^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

@@ -53,12 +53,12 @@ namespace TKV3d {
 	//! corresponding AIS_InteractiveContext instance for cases when it
 	//! is accessible. This method just redirects call to myCTXPtr,
 	//! so this class field must be up to date for proper result.
-	void XAIS_InteractiveObject::Redisplay(Standard_Boolean^ AllModes) {
-		NativeHandle()->Redisplay(*AllModes);
+	void XAIS_InteractiveObject::Redisplay(Standard_Boolean AllModes) {
+		NativeHandle()->Redisplay(AllModes);
 	};
 
 	//! Indicates whether the Interactive Object has a pointer to an interactive context.
-	Standard_Boolean^ XAIS_InteractiveObject::HasInteractiveContext() {
+	Standard_Boolean XAIS_InteractiveObject::HasInteractiveContext() {
 		return NativeHandle()->HasInteractiveContext();
 	};
 
@@ -69,7 +69,7 @@ namespace TKV3d {
 
 	//! Returns true if the object has an owner attributed to it.
 	//! The owner can be a shape for a set of sub-shapes or a sub-shape for sub-shapes which it is composed of, and takes the form of a transient.
-	Standard_Boolean^ XAIS_InteractiveObject::HasOwner() {
+	Standard_Boolean XAIS_InteractiveObject::HasOwner() {
 		return NativeHandle()->HasOwner();
 	};
 
@@ -115,7 +115,7 @@ namespace TKV3d {
 
 
 	//! Returns TRUE when this object has a presentation in the current DisplayMode()
-	Standard_Boolean^ XAIS_InteractiveObject::HasPresentation() {
+	Standard_Boolean XAIS_InteractiveObject::HasPresentation() {
 		return NativeHandle()->HasPresentation();
 	};
 

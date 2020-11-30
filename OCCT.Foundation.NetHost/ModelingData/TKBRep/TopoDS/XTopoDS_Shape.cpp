@@ -46,7 +46,7 @@ namespace TKBRep {
     //! Returns true if this shape is null. In other words, it
     //! references no underlying shape with the potential to
     //! be given a location and an orientation.
-    Standard_Boolean^ XTopoDS_Shape::IsNull() {
+    Standard_Boolean XTopoDS_Shape::IsNull() {
         return NativeHandle->IsNull();
     };
 
@@ -103,7 +103,7 @@ namespace TKBRep {
     };
 
     //! Returns the free flag.
-    Standard_Boolean^ XTopoDS_Shape::Free() {
+    Standard_Boolean XTopoDS_Shape::Free() {
         return NativeHandle->Free();
     };
 
@@ -113,7 +113,7 @@ namespace TKBRep {
     };
 
     //! Returns the locked flag.
-    Standard_Boolean^ XTopoDS_Shape::Locked() {
+    Standard_Boolean XTopoDS_Shape::Locked() {
         return NativeHandle->Locked();
     };
 
@@ -123,7 +123,7 @@ namespace TKBRep {
     };
 
     //! Returns the modification flag.
-    Standard_Boolean^ XTopoDS_Shape::Modified() {
+    Standard_Boolean XTopoDS_Shape::Modified() {
         return NativeHandle->Modified();
     };
 
@@ -133,7 +133,7 @@ namespace TKBRep {
     };
 
     //! Returns the checked flag.
-    Standard_Boolean^ XTopoDS_Shape::Checked() {
+    Standard_Boolean XTopoDS_Shape::Checked() {
         return NativeHandle->Checked();
     };
 
@@ -143,7 +143,7 @@ namespace TKBRep {
     };
 
     //! Returns the orientability flag.
-    Standard_Boolean^ XTopoDS_Shape::Orientable() {
+    Standard_Boolean XTopoDS_Shape::Orientable() {
         return NativeHandle->Orientable();
     };
 
@@ -153,7 +153,7 @@ namespace TKBRep {
     };
 
     //! Returns the closedness flag.
-    Standard_Boolean^ XTopoDS_Shape::Closed() {
+    Standard_Boolean XTopoDS_Shape::Closed() {
         return NativeHandle->Closed();
     };
 
@@ -163,7 +163,7 @@ namespace TKBRep {
     };
 
     //! Returns the infinity flag.
-    Standard_Boolean^ XTopoDS_Shape::Infinite() {
+    Standard_Boolean XTopoDS_Shape::Infinite() {
         return NativeHandle->Infinite();
     };
 
@@ -173,7 +173,7 @@ namespace TKBRep {
     };
 
     //! Returns the convexness flag.
-    Standard_Boolean^ XTopoDS_Shape::Convex() {
+    Standard_Boolean XTopoDS_Shape::Convex() {
         return NativeHandle->Convex();
     };
 
@@ -233,28 +233,28 @@ namespace TKBRep {
 
     //! Returns the number of direct sub-shapes (children).
     //! @sa TopoDS_Iterator for accessing sub-shapes
-    Standard_Integer^ XTopoDS_Shape::NbChildren() {
+    Standard_Integer XTopoDS_Shape::NbChildren() {
         return NativeHandle->NbChildren();
     };
 
     //! Returns True if two shapes  are partners, i.e.  if
     //! they   share   the   same  TShape.  Locations  and
     //! Orientations may differ.
-    Standard_Boolean^ XTopoDS_Shape::IsPartner(XTopoDS_Shape^ theOther) {
+    Standard_Boolean XTopoDS_Shape::IsPartner(XTopoDS_Shape^ theOther) {
         return NativeHandle->IsPartner(theOther->GetShape());
     };
 
     //! Returns True if two shapes are same, i.e.  if they
     //! share  the  same TShape  with the same  Locations.
     //! Orientations may differ.
-    Standard_Boolean^ XTopoDS_Shape::IsSame(XTopoDS_Shape^ theOther) {
+    Standard_Boolean XTopoDS_Shape::IsSame(XTopoDS_Shape^ theOther) {
         return NativeHandle->IsSame(theOther->GetShape());
     };
 
     //! Returns True if two shapes are equal, i.e. if they
     //! share the same TShape with  the same Locations and
     //! Orientations.
-    Standard_Boolean^ XTopoDS_Shape::IsEqual(XTopoDS_Shape^ theOther) {
+    Standard_Boolean XTopoDS_Shape::IsEqual(XTopoDS_Shape^ theOther) {
         return NativeHandle->IsEqual(theOther->GetShape());
     };
 
@@ -263,7 +263,7 @@ namespace TKBRep {
     //! TShape and the Location. The Orientation is not used.
     //! @param theUpperBound the upper bound of the range a computing hash code must be within
     //! @return a computed hash code, in the range [1, theUpperBound]
-    Standard_Integer^ XTopoDS_Shape::HashCode(Standard_Integer theUpperBound) {
+    Standard_Integer XTopoDS_Shape::HashCode(Standard_Integer theUpperBound) {
         return NativeHandle->HashCode(theUpperBound);
     };
 

@@ -17,8 +17,8 @@
 #ifndef _xgp_TrsfForm_HeaderFile
 #define _xgp_TrsfForm_HeaderFile
 //! Identifies the type of a geometric transformation.
-[FlagsAttribute]
-[Serializable]
+//[FlagsAttribute]
+//[Serializable]
 public enum class xgp_TrsfForm
 {
   gp_Identity,     //!< No transformation (matrix is identity)

@@ -49,7 +49,7 @@ namespace TKG3d {
 	//! is the same point as
 	//!
 	//! me->Value(U,V)
-	Standard_Real^ XGeom_Surface::UReversedParameter(Standard_Real U) {
+	Standard_Real XGeom_Surface::UReversedParameter(Standard_Real U) {
 		return NativeHandle()->UReversedParameter(U);
 	};
 
@@ -76,7 +76,7 @@ namespace TKG3d {
 	//! is the same point as
 	//!
 	//! me->Value(U,V)
-	Standard_Real^ XGeom_Surface::VReversedParameter(Standard_Real V) {
+	Standard_Real XGeom_Surface::VReversedParameter(Standard_Real V) {
 		return NativeHandle()->VReversedParameter(V);
 	};
 
@@ -137,7 +137,7 @@ namespace TKG3d {
 	//! the u parametric direction, for each parameter v, the
 	//! distance between the points P(uFirst, v) and
 	//! P(uLast, v) is less than or equal to gp::Resolution().
-	Standard_Boolean^ XGeom_Surface::IsUClosed() {
+	Standard_Boolean XGeom_Surface::IsUClosed() {
 		return NativeHandle()->IsUClosed();
 	};
 
@@ -149,7 +149,7 @@ namespace TKG3d {
 	//! each parameter u, the distance between the points
 	//! P(u, vFirst) and P(u, vLast) is less than
 	//! or equal to gp::Resolution().
-	Standard_Boolean^ XGeom_Surface::IsVClosed() {
+	Standard_Boolean XGeom_Surface::IsVClosed() {
 		return NativeHandle()->IsVClosed();
 	};
 
@@ -161,14 +161,14 @@ namespace TKG3d {
 	//! v) (or the points P (u, v) and P (u, v +
 	//! T)) is less than or equal to gp::Resolution().
 	//! Note: T is the parametric period in the u parametric direction.
-	Standard_Boolean^ XGeom_Surface::IsUPeriodic() {
+	Standard_Boolean XGeom_Surface::IsUPeriodic() {
 		return NativeHandle()->IsUPeriodic();
 	};
 
 	//! Returns the period of this surface in the u
 	//! parametric direction.
 	//! raises if the surface is not uperiodic.
-	Standard_Real^ XGeom_Surface::UPeriod() {
+	Standard_Real XGeom_Surface::UPeriod() {
 		return NativeHandle()->UPeriod();
 	};
 
@@ -180,13 +180,13 @@ namespace TKG3d {
 	//! v) (or the points P (u, v) and P (u, v +
 	//! T)) is less than or equal to gp::Resolution().
 	//! Note: T is the parametric period in the v parametric direction.
-	Standard_Boolean^ XGeom_Surface::IsVPeriodic() {
+	Standard_Boolean XGeom_Surface::IsVPeriodic() {
 		return NativeHandle()->IsVPeriodic();
 	};
 
 	//! Returns the period of this surface in the v parametric direction.
 	//! raises if the surface is not vperiodic.
-	Standard_Real^ XGeom_Surface::VPeriod() {
+	Standard_Real XGeom_Surface::VPeriod() {
 		return NativeHandle()->VPeriod();
 	};
 
@@ -219,14 +219,14 @@ namespace TKG3d {
 	//! Returns the order of continuity of the surface in the
 	//! U parametric direction.
 	//! Raised if N < 0.
-	Standard_Boolean^ XGeom_Surface::IsCNu(Standard_Integer N) {
+	Standard_Boolean XGeom_Surface::IsCNu(Standard_Integer N) {
 		return NativeHandle()->IsCNu(N);
 	};
 
 	//! Returns the order of continuity of the surface in the
 	//! V parametric direction.
 	//! Raised if N < 0.
-	Standard_Boolean^ XGeom_Surface::IsCNv(Standard_Integer N) {
+	Standard_Boolean XGeom_Surface::IsCNv(Standard_Integer N) {
 		return NativeHandle()->IsCNv(N);
 	};
 

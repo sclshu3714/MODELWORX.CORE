@@ -97,7 +97,7 @@ namespace TKMath
         //! It is yet  possible to create an Hyperbola with
         //! MajorRadius <= MinorRadius.
         //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
-        xgp_Hypr2d(xgp_Ax2d^ MajorAxis, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius, Standard_Boolean^ Sense);
+        xgp_Hypr2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense);
 
 
         //! a hyperbola with radii MajorRadius and
@@ -115,7 +115,7 @@ namespace TKMath
         //! It is yet  possible to create an Hyperbola with
         //! MajorRadius <= MinorRadius.
         //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
-        xgp_Hypr2d(xgp_Ax22d^ A, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius);
+        xgp_Hypr2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
 
         //ÊÍ·Å
@@ -135,13 +135,13 @@ namespace TKMath
         //! Exceptions
         //! Standard_ConstructionError if MajorRadius or
         //! MinorRadius is negative.
-        void SetMajorRadius(Standard_Real^ MajorRadius);
+        void SetMajorRadius(Standard_Real MajorRadius);
 
         //! Modifies the major or minor radius of this hyperbola.
         //! Exceptions
         //! Standard_ConstructionError if MajorRadius or
         //! MinorRadius is negative.
-        void SetMinorRadius(Standard_Real^ MinorRadius);
+        void SetMinorRadius(Standard_Real MinorRadius);
 
         //! Modifies this hyperbola, by redefining its local
         //! coordinate system so that it becomes A.
@@ -211,12 +211,12 @@ namespace TKMath
         //! Returns the excentricity of the hyperbola (e > 1).
         //! If f is the distance between the location of the hyperbola
         //! and the Focus1 then the eccentricity e = f / MajorRadius. Raises DomainError if MajorRadius = 0.0.
-        Standard_Real^ Eccentricity();
+        Standard_Real Eccentricity();
 
 
         //! Computes the focal distance. It is the distance between the
         //! "Location" of the hyperbola and "Focus1" or "Focus2".
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
 
         //! Returns the first focus of the hyperbola. This focus is on the
@@ -237,12 +237,12 @@ namespace TKMath
 
         //! Returns the major radius of the hyperbola (it is the radius
         //! corresponding to the "XAxis" of the hyperbola).
-        Standard_Real^ MajorRadius();
+        Standard_Real MajorRadius();
 
 
         //! Returns the minor radius of the hyperbola (it is the radius
         //! corresponding to the "YAxis" of the hyperbola).
-        Standard_Real^ MinorRadius();
+        Standard_Real MinorRadius();
 
 
         //! Returns the branch of hyperbola obtained by doing the
@@ -254,7 +254,7 @@ namespace TKMath
         //! Returns p = (e * e - 1) * MajorRadius where e is the
         //! eccentricity of the hyperbola.
         //! Raises DomainError if MajorRadius = 0.0
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
         //! Returns the axisplacement of the hyperbola.
         xgp_Ax22d^ Axis();
@@ -285,7 +285,7 @@ namespace TKMath
 
         //! Returns true if the local coordinate system is direct
         //! and false in the other case.
-        Standard_Boolean^ IsDirect();
+        Standard_Boolean IsDirect();
 
         void Mirror(xgp_Pnt2d^ P);
 
@@ -301,21 +301,21 @@ namespace TKMath
         //! respect to an axis placement which is the axis of the symmetry.
         xgp_Hypr2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Rotates an hyperbola. P is the center of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Hypr2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Hypr2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Scales an hyperbola. <S> is the scaling value.
         //! If <S> is positive only the location point is
         //! modified. But if <S> is negative the "XAxis" is
         //! reversed and the "YAxis" too.
-        xgp_Hypr2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Hypr2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

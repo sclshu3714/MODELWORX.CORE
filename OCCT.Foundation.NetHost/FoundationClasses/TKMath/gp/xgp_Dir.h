@@ -21,7 +21,10 @@
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
 #include "xgp_Trsf.h"
-
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+#include <Standard_TypeDef.hxx>
+#include <Standard_Handle.hxx>
 
 //! Describes a unit vector in 3D space. This unit vector is also called "Direction".
 //! See Also
@@ -67,7 +70,7 @@ namespace TKMath
         //! X, Y ,Z are the new coordinates it is not possible to
         //! construct the direction and the method raises the
         //! exception ConstructionError.
-        xgp_Dir(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        xgp_Dir(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
 
         //ÊÍ·Å
@@ -90,21 +93,21 @@ namespace TKMath
         //! -   the modulus of the number triple formed by the new
         //! value Xi and the two other coordinates of this vector
         //! that were not directly modified.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! For this unit vector,  assigns the values Xv, Yv and Zv to its three coordinates.
         //! Remember that all the coordinates of a unit vector are
         //! implicitly modified when any single one is changed directly.
-        void SetCoord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        void SetCoord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
         //! Assigns the given value to the X coordinate of this   unit vector.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the Y coordinate of this   unit vector.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! Assigns the given value to the Z  coordinate of this   unit vector.
-        void SetZ(Standard_Real^ Z);
+        void SetZ(Standard_Real Z);
 
         //! Assigns the three coordinates of Coord to this unit vector.
         void SetXYZ(xgp_XYZ^ Coord);
@@ -117,19 +120,19 @@ namespace TKMath
         //! Index = 3 => Z is returned
         //! Exceptions
         //! Standard_OutOfRange if Index is not 1, 2, or 3.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
         //! Returns for the  unit vector  its three coordinates Xv, Yv, and Zv.
-        void Coord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        void Coord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
         //! Returns the X coordinate for a  unit vector.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! Returns the Y coordinate for a  unit vector.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! Returns the Z coordinate for a  unit vector.
-        Standard_Real^ Z();
+        Standard_Real Z();
 
         //! for this unit vector, returns  its three coordinates as a number triplea.
         xgp_XYZ^ XYZ();
@@ -137,27 +140,27 @@ namespace TKMath
 
         //! Returns True if the angle between the two directions is
         //! lower or equal to AngularTolerance.
-        Standard_Boolean^ IsEqual(xgp_Dir^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsEqual(xgp_Dir^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if  the angle between this unit vector and the unit vector Other is equal to Pi/2 (normal).
-        Standard_Boolean^ IsNormal(xgp_Dir^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsNormal(xgp_Dir^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if  the angle between this unit vector and the unit vector Other is equal to  Pi (opposite).
-        Standard_Boolean^ IsOpposite(xgp_Dir^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsOpposite(xgp_Dir^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns true if the angle between this unit vector and the
         //! unit vector Other is equal to 0 or to Pi.
         //! Note: the tolerance criterion is given by AngularTolerance.
-        Standard_Boolean^ IsParallel(xgp_Dir^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsParallel(xgp_Dir^ Other, Standard_Real AngularTolerance);
 
 
         //! Computes the angular value in radians between <me> and
         //! <Other>. This value is always positive in 3D space.
         //! Returns the angle in the range [0, PI]
-        Standard_Real^ Angle(xgp_Dir^ Other);
+        Standard_Real Angle(xgp_Dir^ Other);
 
 
         //! Computes the angular value between <me> and <Other>.
@@ -168,7 +171,7 @@ namespace TKMath
         //! Returns the angular value in the range -PI and PI (in radians). Raises  DomainError if <me> and <Other> are not parallel this exception is raised
         //! when <VRef> is in the same plane as <me> and <Other>
         //! The tolerance criterion is Resolution from package gp.
-        Standard_Real^ AngleWithRef(xgp_Dir^ Other, xgp_Dir^ VRef);
+        Standard_Real AngleWithRef(xgp_Dir^ Other, xgp_Dir^ VRef);
 
         //! Computes the cross product between two directions
         //! Raises the exception ConstructionError if the two directions
@@ -202,8 +205,8 @@ namespace TKMath
         xgp_Dir^ CrossCrossed(xgp_Dir^ V1, xgp_Dir^ V2);
 
         //! Computes the scalar product
-        Standard_Real^ Dot(xgp_Dir^ Other);
-        Standard_Real^ operator * (xgp_Dir^ Other) {
+        Standard_Real Dot(xgp_Dir^ Other);
+        Standard_Real operator * (xgp_Dir^ Other) {
             return Dot(Other);
         }
 
@@ -213,7 +216,7 @@ namespace TKMath
         //! The computed vector V1' = V1 ^ V2 is not normalized
         //! to create a unitary vector. So this method never
         //! raises an exception even if V1 and V2 are parallel.
-        Standard_Real^ DotCross(xgp_Dir^ V1, xgp_Dir^ V2);
+        Standard_Real DotCross(xgp_Dir^ V1, xgp_Dir^ V2);
 
         void Reverse();
 
@@ -251,12 +254,12 @@ namespace TKMath
         //! the plane of the symmetry : (Location, XDirection, YDirection).
         xgp_Dir^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a direction. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Dir^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Dir^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
         void Transform(xgp_Trsf^ T);
 

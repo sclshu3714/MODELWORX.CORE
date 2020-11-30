@@ -91,7 +91,7 @@ namespace TKMath
         //! Creates a plane from its cartesian equation :
         //! A * X + B * Y + C * Z + D = 0.0
         //! Raises ConstructionError if Sqrt (A*A + B*B + C*C) <= Resolution from gp.
-        xgp_Pln(Standard_Real^ A, Standard_Real^ B, Standard_Real^ C, Standard_Real^ D);
+        xgp_Pln(Standard_Real A, Standard_Real B, Standard_Real C, Standard_Real D);
 
         //! ÊÍ·Å
         ~xgp_Pln();
@@ -127,7 +127,7 @@ namespace TKMath
         void VReverse();
 
         //! returns true if the Ax3 is right handed.
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
         //! Returns the plane's normal Axis.
         xgp_Ax1^ Axis();
@@ -139,25 +139,25 @@ namespace TKMath
         xgp_Ax3^ Position();
 
         //! Computes the distance between <me> and the point <P>.
-        Standard_Real^ Distance(xgp_Pnt^ P);
+        Standard_Real Distance(xgp_Pnt^ P);
 
         //! Computes the distance between <me> and the line <L>.
-        Standard_Real^ Distance(xgp_Lin^ L);
+        Standard_Real Distance(xgp_Lin^ L);
 
         //! Computes the distance between two planes.
-        Standard_Real^ Distance(xgp_Pln^ Other);
+        Standard_Real Distance(xgp_Pln^ Other);
 
 
         //! Computes the square distance between <me> and the point <P>.
-        Standard_Real^ SquareDistance(xgp_Pnt^ P);
+        Standard_Real SquareDistance(xgp_Pnt^ P);
 
 
         //! Computes the square distance between <me> and the line <L>.
-        Standard_Real^ SquareDistance(xgp_Lin^ L);
+        Standard_Real SquareDistance(xgp_Lin^ L);
 
 
         //! Computes the square distance between two planes.
-        Standard_Real^ SquareDistance(xgp_Pln^ Other);
+        Standard_Real SquareDistance(xgp_Pln^ Other);
 
         //! Returns the X axis of the plane.
         xgp_Ax1^ XAxis();
@@ -173,7 +173,7 @@ namespace TKMath
         //! AngularTolerance, and the distance between the origin
         //! of line L and this plane is less than or equal to
         //! LinearTolerance.
-        Standard_Boolean^ Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance);
+        Standard_Boolean Contains(xgp_Pnt^ P, Standard_Real LinearTolerance);
 
         //! Returns true if this plane contains the line L. This means that
         //! -   the distance between point P and this plane is less
@@ -183,7 +183,7 @@ namespace TKMath
         //! AngularTolerance, and the distance between the origin
         //! of line L and this plane is less than or equal to
         //! LinearTolerance.
-        Standard_Boolean^ Contains(xgp_Lin^ L, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+        Standard_Boolean Contains(xgp_Lin^ L, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
         void Mirror(xgp_Pnt^ P);
 
@@ -219,18 +219,18 @@ namespace TKMath
         //! plane was right handed, else it is the opposite.
         xgp_Pln^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! rotates a plane. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Pln^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Pln^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a plane. S is the scaling value.
-        xgp_Pln^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Pln^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

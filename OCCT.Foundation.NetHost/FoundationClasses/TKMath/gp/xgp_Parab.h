@@ -75,7 +75,7 @@ namespace TKMath
         //! the parabola
         //! Raises ConstructionError if Focal < 0.0
         //! Raised if Focal < 0.0
-        xgp_Parab(xgp_Ax2^ A2, Standard_Real^ Focal);
+        xgp_Parab(xgp_Ax2^ A2, Standard_Real Focal);
 
 
         //! D is the directrix of the parabola and F the focus point.
@@ -107,7 +107,7 @@ namespace TKMath
 
         //! Changes the focal distance of the parabola.
         //! Raises ConstructionError if Focal < 0.0
-        void SetFocal(Standard_Real^ Focal);
+        void SetFocal(Standard_Real Focal);
 
 
         //! Changes the location of the parabola. It is the vertex of
@@ -137,7 +137,7 @@ namespace TKMath
 
         //! Returns the distance between the vertex and the focus
         //! of the parabola.
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
         //! -   Computes the focus of the parabola.
         xgp_Pnt^ Focus();
@@ -151,7 +151,7 @@ namespace TKMath
         //! Computes the parameter of the parabola.
         //! It is the distance between the focus and the directrix of
         //! the parabola. This distance is twice the focal length.
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
 
         //! Returns the local coordinate system of the parabola.
@@ -191,20 +191,20 @@ namespace TKMath
         //! the plane of the symmetry (Location, XDirection, YDirection).
         xgp_Parab^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a parabola. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Parab^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Parab^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a parabola. S is the scaling value.
         //! If S is negative the direction of the symmetry axis
         //! XAxis is reversed and the direction of the YAxis too.
-        xgp_Parab^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Parab^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

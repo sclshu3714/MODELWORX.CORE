@@ -50,7 +50,7 @@ namespace TKMath
 
 
         //! Creates a  point with its 2 cartesian's coordinates : Xp, Yp.
-        xgp_Pnt2d(Standard_Real^ Xp, Standard_Real^ Yp);
+        xgp_Pnt2d(Standard_Real Xp, Standard_Real Yp);
 
 
         //ÊÍ·Å
@@ -62,16 +62,16 @@ namespace TKMath
         //! Index = 1 => X is modified
         //! Index = 2 => Y is modified
         //! Raises OutOfRange if Index != {1, 2}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! For this point, assigns the values Xp and Yp to its two coordinates
-        void SetCoord(Standard_Real^ Xp, Standard_Real^ Yp);
+        void SetCoord(Standard_Real Xp, Standard_Real Yp);
 
         //! Assigns the given value to the X  coordinate of this point.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the Y  coordinate of this point.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! Assigns the two coordinates of Coord to this point.
         void SetXY(xgp_XY^ Coord);
@@ -83,16 +83,16 @@ namespace TKMath
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned
         //! Raises OutOfRange if Index != {1, 2}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
         //! For this point returns its two coordinates as a number pair.
-        void Coord(Standard_Real^ Xp, Standard_Real^ Yp);
+        void Coord(Standard_Real Xp, Standard_Real Yp);
 
         //! For this point, returns its X  coordinate.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! For this point, returns its Y coordinate.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! For this point, returns its two coordinates as a number pair.
         xgp_XY^ XY();
@@ -108,13 +108,13 @@ namespace TKMath
         //! Comparison
         //! Returns True if the distance between the two
         //! points is lower or equal to LinearTolerance.
-        Standard_Boolean^ IsEqual(xgp_Pnt2d^ Other, Standard_Real^ LinearTolerance);
+        Standard_Boolean IsEqual(xgp_Pnt2d^ Other, Standard_Real LinearTolerance);
 
         //! Computes the distance between two points.
-        Standard_Real^ Distance(xgp_Pnt2d^ Other);
+        Standard_Real Distance(xgp_Pnt2d^ Other);
 
         //! Computes the square distance between two points.
-        Standard_Real^ SquareDistance(xgp_Pnt2d^ Other);
+        Standard_Real SquareDistance(xgp_Pnt2d^ Other);
 
 
         //! Performs the symmetrical transformation of a point
@@ -134,15 +134,15 @@ namespace TKMath
         //! Ang is the angular value of the rotation in radians.
         xgp_Pnt2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
         //! Scales a point. S is the scaling value.
-        xgp_Pnt2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Pnt2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
         //! Transforms a point with the transformation T.
-        xgp_Pnt2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Pnt2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

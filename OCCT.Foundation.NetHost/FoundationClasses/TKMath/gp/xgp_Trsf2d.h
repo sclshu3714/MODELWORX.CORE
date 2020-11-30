@@ -90,12 +90,12 @@ namespace TKMath
         //! Changes the transformation into a rotation.
         //! P is the rotation's center and Ang is the angular value of the
         //! rotation in radian.
-        void SetRotation(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void SetRotation(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Changes the transformation into a scale.
         //! P is the center of the scale and S is the scaling value.
-        void SetScale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void SetScale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Changes a transformation allowing passage from the coordinate
@@ -123,14 +123,14 @@ namespace TKMath
         void SetTranslationPart(xgp_Vec2d^ V);
 
         //! Modifies the scale factor.
-        void SetScaleFactor(Standard_Real^ S);
+        void SetScaleFactor(Standard_Real S);
 
         //! Returns the gp_Trsf2d
         gp_Trsf2d GetTrsf2d();
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative..
-        Standard_Boolean^ IsNegative();
+        Standard_Boolean IsNegative();
 
 
         //! Returns the nature of the transformation. It can be  an
@@ -141,7 +141,7 @@ namespace TKMath
         int^ Form();
 
         //! Returns the scale factor.
-        Standard_Real^ ScaleFactor();
+        Standard_Real ScaleFactor();
 
 
         //! Returns the translation part of the transformation's matrix
@@ -162,13 +162,13 @@ namespace TKMath
 
         //! Returns the angle corresponding to the rotational component
         //! of the transformation matrix (operation opposite to SetRotation()).
-        Standard_Real^ RotationPart();
+        Standard_Real RotationPart();
 
 
         //! Returns the coefficients of the transformation's matrix.
         //! It is a 2 rows * 3 columns matrix.
         //! Raises OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-        Standard_Real^ Value(Standard_Integer^ Row, Standard_Integer^ Col);
+        Standard_Real Value(Standard_Integer Row, Standard_Integer Col);
 
         void Invert();
 
@@ -197,7 +197,7 @@ namespace TKMath
         //! <me> = T * <me>
         void PreMultiply(xgp_Trsf2d^ T);
 
-        void Power(Standard_Integer^ N);
+        void Power(Standard_Integer N);
 
 
         //! Computes the following composition of transformations
@@ -207,9 +207,9 @@ namespace TKMath
         //!
         //! Raises if N < 0 and if the matrix of the transformation not
         //! inversible.
-        xgp_Trsf2d^ Powered(Standard_Integer^ N);
+        xgp_Trsf2d^ Powered(Standard_Integer N);
 
-        void Transforms(Standard_Real^ X, Standard_Real^ Y);
+        void Transforms(Standard_Real X, Standard_Real Y);
 
         //! Transforms  a doublet XY with a Trsf2d
         void Transforms(xgp_XY^ Coord);
@@ -224,7 +224,7 @@ namespace TKMath
         //! The method Value(i,j) will return aij.
         //! Raises ConstructionError if the determinant of the aij is null.
         //! If the matrix as not a uniform scale it will be orthogonalized before future using.
-        void SetValues(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23);
+        void SetValues(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23);
 
         /// <summary>
         /// ±¾µØ¾ä±ú

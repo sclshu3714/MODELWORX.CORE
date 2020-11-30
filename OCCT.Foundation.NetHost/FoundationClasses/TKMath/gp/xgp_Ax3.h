@@ -166,7 +166,7 @@ namespace TKMath
         //! Computes the angular value between the main direction of
         //! <me> and the main direction of <Other>. Returns the angle
         //! between 0 and PI in radians.
-        Standard_Real^ Angle(xgp_Ax3^ Other);
+        Standard_Real Angle(xgp_Ax3^ Other);
 
 
         //! Returns the main axis of <me>. It is the "Location" point
@@ -199,7 +199,7 @@ namespace TKMath
 
         //! Returns  True if  the  coordinate  system is right-handed. i.e.
         //! XDirection().Crossed(YDirection()).Dot(Direction()) > 0
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
 
         //! Returns True if
@@ -209,7 +209,7 @@ namespace TKMath
         //! <me> is lower or equal to LinearTolerance and
         //! . the main direction of <me> and the main direction of
         //! <Other> are parallel (same or opposite orientation).
-        Standard_Boolean^ IsCoplanar(xgp_Ax3^ Other, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsCoplanar(xgp_Ax3^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
         //! Returns True if
         //! . the distance between <me> and the "Location" point of A1
@@ -217,7 +217,7 @@ namespace TKMath
         //! . the distance between A1 and the "Location" point of <me>
         //! is lower or equal to LinearTolerance and
         //! . the main direction of <me> and the direction of A1 are normal.
-        Standard_Boolean^ IsCoplanar(xgp_Ax1^ A1, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsCoplanar(xgp_Ax1^ A1, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
         void Mirror(xgp_Pnt^ P);
 
@@ -256,15 +256,15 @@ namespace TKMath
         //! the "XDirection" and the "YDirection" after transformation.
         xgp_Ax3^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates an axis placement. <A1> is the axis of the
         //! rotation . Ang is the angular value of the rotation
         //! in radians.
-        xgp_Ax3^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Ax3^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Applies a scaling transformation on the axis placement.
@@ -274,7 +274,7 @@ namespace TKMath
         //! . the main direction of the axis placement is not changed.
         //! . The "XDirection" and the "YDirection" are reversed.
         //! So the axis placement stay right handed.
-        xgp_Ax3^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Ax3^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

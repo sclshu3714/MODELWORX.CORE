@@ -47,6 +47,7 @@
 #include "xgp_Mat.h"
 #include "xgp_XYZ.h"
 #include "xgp_Quaternion.h"
+#include <xgp_TrsfForm.h>
 
 namespace TKMath
 {
@@ -122,7 +123,7 @@ namespace TKMath
         //! Changes the transformation into a rotation.
         //! A1 is the rotation axis and Ang is the angular value of the
         //! rotation in radians.
-        void SetRotation(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void SetRotation(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Changes the transformation into a rotation defined by quaternion.
@@ -134,7 +135,7 @@ namespace TKMath
         //! Changes the transformation into a scale.
         //! P is the center of the scale and S is the scaling value.
         //! Raises ConstructionError  If <S> is null.
-        void SetScale(xgp_Pnt^ P, Standard_Real^ S);
+        void SetScale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Modifies this transformation so that it transforms the
@@ -210,10 +211,10 @@ namespace TKMath
 
         //! Modifies the scale factor.
         //! Raises ConstructionError  If S is null.
-        void SetScaleFactor(Standard_Real^ S);
+        void SetScaleFactor(Standard_Real S);
 
         //! gp_TrsfForm
-        void SetTrsfForm(int^ gp_TrsfForm);
+        void SetTrsfForm(xgp_TrsfForm gp_TrsfForm);
 
         //! Sets the coefficients  of the transformation.  The
         //! transformation  of the  point  x,y,z is  the point
@@ -226,14 +227,14 @@ namespace TKMath
         //! The method Value(i,j) will return aij.
         //! Raises ConstructionError if the determinant of  the aij is null.
         //! The matrix is orthogonalized before future using.
-        void SetValues(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a14, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23, Standard_Real^ a24, Standard_Real^ a31, Standard_Real^ a32, Standard_Real^ a33, Standard_Real^ a34);
+        void SetValues(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a14, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a24, Standard_Real a31, Standard_Real a32, Standard_Real a33, Standard_Real a34);
 
         //! Returns the gp_Trsf
         gp_Trsf GetTrsf();
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative.
-        Standard_Boolean^ IsNegative();
+        Standard_Boolean IsNegative();
 
 
         //! Returns the nature of the transformation. It can be: an
@@ -244,7 +245,7 @@ namespace TKMath
         int^ Form();
 
         //! Returns the scale factor.
-        Standard_Real^ ScaleFactor();
+        Standard_Real ScaleFactor();
 
 
         //! Returns the translation part of the transformation's matrix
@@ -258,7 +259,7 @@ namespace TKMath
         //! Note that this rotation is defined only by the vectorial part of
         //! the transformation; generally you would need to check also the
         //! translational part to obtain the axis (xgp_Ax1) of rotation.
-        Standard_Boolean^ GetRotation(xgp_XYZ^ theAxis, Standard_Real theAngle);
+        Standard_Boolean GetRotation(xgp_XYZ^ theAxis, Standard_Real theAngle);
 
 
         //! Returns quaternion representing rotational part of the transformation.
@@ -283,7 +284,7 @@ namespace TKMath
         //! It is a 3 rows * 4 columns matrix.
         //! This coefficient includes the scale factor.
         //! Raises OutOfRanged if Row < 1 or Row > 3 or Col < 1 or Col > 4
-        Standard_Real^ Value(Standard_Integer^ Row, Standard_Integer^ Col);
+        Standard_Real Value(Standard_Integer Row, Standard_Integer Col);
 
         void Invert();
 
@@ -321,7 +322,7 @@ namespace TKMath
         //! <me> = T * <me>
         void PreMultiply(xgp_Trsf^ T);
 
-        void Power(Standard_Integer^ N);
+        void Power(Standard_Integer N);
 
 
         //! Computes the following composition of transformations
@@ -331,9 +332,9 @@ namespace TKMath
         //!
         //! Raises if N < 0 and if the matrix of the transformation not
         //! inversible.
-        xgp_Trsf^ Powered(Standard_Integer^ N);
+        xgp_Trsf^ Powered(Standard_Integer N);
 
-        void Transforms(Standard_Real^ X, Standard_Real^ Y, Standard_Real^ Z);
+        void Transforms(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
         //! Transformation of a triplet XYZ with a Trsf
         void Transforms(xgp_XYZ^ Coord);

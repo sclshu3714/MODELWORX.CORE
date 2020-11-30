@@ -46,8 +46,8 @@ namespace TKMath
     //! Assigns the two coordinates of Value to the column of range
     //! Col of this matrix
     //! Raises OutOfRange if Col < 1 or Col > 2.
-    void xgp_Mat2d::SetCol(Standard_Integer^ Col, xgp_XY^ Value) {
-        NativeHandle->SetCol(*Col, Value->GetXY());
+    void xgp_Mat2d::SetCol(Standard_Integer Col, xgp_XY^ Value) {
+        NativeHandle->SetCol(Col, Value->GetXY());
     };
 
     //! Assigns the number pairs Col1, Col2 to the two columns of   this matrix
@@ -60,8 +60,8 @@ namespace TKMath
     //! <me>.Value (1, 1) = X1
     //! <me>.Value (2, 2) = X2
     //! The other coefficients of the matrix are not modified.
-    void xgp_Mat2d::SetDiagonal(Standard_Real^ X1, Standard_Real^ X2) {
-        NativeHandle->SetDiagonal(*X1, *X2);
+    void xgp_Mat2d::SetDiagonal(Standard_Real X1, Standard_Real X2) {
+        NativeHandle->SetDiagonal(X1, X2);
     };
 
     //! Modifies this matrix, so that it represents the Identity matrix.
@@ -72,14 +72,14 @@ namespace TKMath
 
     //! Modifies this matrix, so that it representso a rotation. Ang is the angular
     //! value in radian of the rotation.
-    void xgp_Mat2d::SetRotation(Standard_Real^ Ang) {
-        NativeHandle->SetRotation(*Ang);
+    void xgp_Mat2d::SetRotation(Standard_Real Ang) {
+        NativeHandle->SetRotation(Ang);
     };
 
     //! Assigns the two coordinates of Value to the row of index Row of this matrix.
     //! Raises OutOfRange if Row < 1 or Row > 2.
-    void xgp_Mat2d::SetRow(Standard_Integer^ Row, xgp_XY^ Value) {
-        NativeHandle->SetRow(*Row, Value->GetXY());
+    void xgp_Mat2d::SetRow(Standard_Integer Row, xgp_XY^ Value) {
+        NativeHandle->SetRow(Row, Value->GetXY());
     };
 
     //! Assigns the number pairs Row1, Row2 to the two rows of this matrix.
@@ -91,14 +91,14 @@ namespace TKMath
     //! represents a scaling transformation, where S is the scale   factor :
     //! | S    0.0 |
     //! <me> =  | 0.0   S  |
-    void xgp_Mat2d::SetScale(Standard_Real^ S) {
-        NativeHandle->SetScale(*S);
+    void xgp_Mat2d::SetScale(Standard_Real S) {
+        NativeHandle->SetScale(S);
     };
 
     //! Assigns <Value> to the coefficient of row Row, column Col of this matrix.
     //! Raises OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 2
-    void xgp_Mat2d::SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value) {
-        NativeHandle->SetValue(*Row, *Col, *Value);
+    void xgp_Mat2d::SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value) {
+        NativeHandle->SetValue(Row, Col, Value);
     };
 
     //! Returns the gp_Mat2d
@@ -108,12 +108,12 @@ namespace TKMath
 
     //! Returns the column of Col index.
     //! Raises OutOfRange if Col < 1 or Col > 2
-    xgp_XY^ xgp_Mat2d::Column(Standard_Integer^ Col) {
-        return gcnew xgp_XY(NativeHandle->Column(*Col));
+    xgp_XY^ xgp_Mat2d::Column(Standard_Integer Col) {
+        return gcnew xgp_XY(NativeHandle->Column(Col));
     };
 
     //! Computes the determinant of the matrix.
-    Standard_Real^ xgp_Mat2d::Determinant() {
+    Standard_Real xgp_Mat2d::Determinant() {
         return  NativeHandle->Determinant();
     };
 
@@ -124,22 +124,22 @@ namespace TKMath
 
     //! Returns the row of index Row.
     //! Raised if Row < 1 or Row > 2
-    xgp_XY^ xgp_Mat2d::Row(Standard_Integer^ Row) {
-        return gcnew xgp_XY(NativeHandle->Row(*Row));
+    xgp_XY^ xgp_Mat2d::Row(Standard_Integer Row) {
+        return gcnew xgp_XY(NativeHandle->Row(Row));
     };
 
     //! Returns the coefficient of range (Row, Col)
     //! Raises OutOfRange
     //! if Row < 1 or Row > 2 or Col < 1 or Col > 2
-    Standard_Real^ xgp_Mat2d::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_Mat2d::Value(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->Value(Row, Col);
     };
 
     //! Returns the coefficient of range (Row, Col)
     //! Raises OutOfRange
     //! if Row < 1 or Row > 2 or Col < 1 or Col > 2
-    Standard_Real^ xgp_Mat2d::ChangeValue(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->ChangeValue(*Row, *Col);
+    Standard_Real xgp_Mat2d::ChangeValue(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->ChangeValue(Row, Col);
     };
 
 
@@ -147,7 +147,7 @@ namespace TKMath
     //! The Gauss LU decomposition is used to invert the matrix
     //! so the matrix is considered as singular if the largest
     //! pivot found is lower or equal to Resolution from gp.
-    Standard_Boolean^ xgp_Mat2d::IsSingular() {
+    Standard_Boolean xgp_Mat2d::IsSingular() {
         return NativeHandle->IsSingular();
     };
 
@@ -166,14 +166,14 @@ namespace TKMath
         return gcnew xgp_Mat2d(NativeHandle->Added(Other->GetMat2d()));
     };
 
-    void xgp_Mat2d::Divide(Standard_Real^ Scalar) {
-        NativeHandle->Divide(*Scalar);
+    void xgp_Mat2d::Divide(Standard_Real Scalar) {
+        NativeHandle->Divide(Scalar);
     };
 
 
     //! Divides all the coefficients of the matrix by a scalar.
-    xgp_Mat2d^ xgp_Mat2d::Divided(Standard_Real^ Scalar) {
-        return gcnew xgp_Mat2d(NativeHandle->Divided(*Scalar));
+    xgp_Mat2d^ xgp_Mat2d::Divided(Standard_Real Scalar) {
+        return gcnew xgp_Mat2d(NativeHandle->Divided(Scalar));
     };
 
     void xgp_Mat2d::Invert() {
@@ -203,19 +203,19 @@ namespace TKMath
         NativeHandle->PreMultiply(Other->GetMat2d());
     };
 
-    xgp_Mat2d^ xgp_Mat2d::Multiplied(Standard_Real^ Scalar) {
-        return gcnew xgp_Mat2d(NativeHandle->Multiplied(*Scalar));
+    xgp_Mat2d^ xgp_Mat2d::Multiplied(Standard_Real Scalar) {
+        return gcnew xgp_Mat2d(NativeHandle->Multiplied(Scalar));
     };
 
 
     //! Multiplies all the coefficients of the matrix by a scalar.
-    void xgp_Mat2d::Multiply(Standard_Real^ Scalar) {
-        NativeHandle->Multiply(*Scalar);
+    void xgp_Mat2d::Multiply(Standard_Real Scalar) {
+        NativeHandle->Multiply(Scalar);
     };
 
 
-    void xgp_Mat2d::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_Mat2d::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -224,8 +224,8 @@ namespace TKMath
     //! if N < 0 <me> = <me>.Invert() *...........* <me>.Invert().
     //! If N < 0 an exception can be raised if the matrix is not
     //! inversible
-    xgp_Mat2d^ xgp_Mat2d::Powered(Standard_Integer^ N) {
-        return gcnew xgp_Mat2d(NativeHandle->Powered(*N));
+    xgp_Mat2d^ xgp_Mat2d::Powered(Standard_Integer N) {
+        return gcnew xgp_Mat2d(NativeHandle->Powered(N));
     };
 
     void xgp_Mat2d::Subtract(xgp_Mat2d^ Other) {

@@ -10,7 +10,7 @@ namespace TKMath
        //! example, to avoid division by zero in geometric
        //! computations. In the documentation, tolerance criterion is
        //! always referred to as gp::Resolution().
-    Standard_Real^ xgp::Resolution() {
+    Standard_Real xgp::Resolution() {
         return gp::Resolution();
     };
 

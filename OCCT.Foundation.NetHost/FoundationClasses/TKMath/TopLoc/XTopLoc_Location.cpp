@@ -49,7 +49,7 @@ namespace TKMath {
     };
 
     //! Returns true if this location is equal to the Identity transformation.
-    Standard_Boolean^ XTopLoc_Location::IsIdentity() {
+    Standard_Boolean XTopLoc_Location::IsIdentity() {
         return NativeHandle->IsIdentity();
     };
 
@@ -71,7 +71,7 @@ namespace TKMath {
     //! elementary datum.
     //! Exceptions
     //! Standard_NoSuchObject if this location is empty.
-    Standard_Integer^ XTopLoc_Location::FirstPower() {
+    Standard_Integer XTopLoc_Location::FirstPower() {
         return NativeHandle->FirstPower();
     };
 
@@ -125,7 +125,7 @@ namespace TKMath {
     //! retrieve the object easily, and is in the range [1, theUpperBound].
     //! @param theUpperBound the upper bound of the range a computing hash code must be within
     //! @return a computed hash code, in the range [1, theUpperBound]
-    Standard_Integer^ XTopLoc_Location::HashCode(Standard_Integer theUpperBound) {
+    Standard_Integer XTopLoc_Location::HashCode(Standard_Integer theUpperBound) {
         return NativeHandle->HashCode(theUpperBound);
     };
 
@@ -133,7 +133,7 @@ namespace TKMath {
     //! have the same elementary data, i.e. contain the same
     //! series of TopLoc_Datum3D and respective powers.
     //! This method is an alias for operator ==.
-    Standard_Boolean^ XTopLoc_Location::IsEqual(XTopLoc_Location^ Other) {
+    Standard_Boolean XTopLoc_Location::IsEqual(XTopLoc_Location^ Other) {
         return NativeHandle->IsEqual(Other->GetLocation());
     };
 
@@ -141,7 +141,7 @@ namespace TKMath {
     //! not have the same elementary data, i.e. do not
     //! contain the same series of TopLoc_Datum3D and respective powers.
     //! This method is an alias for operator !=.
-    Standard_Boolean^ XTopLoc_Location::IsDifferent(XTopLoc_Location^ Other) {
+    Standard_Boolean XTopLoc_Location::IsDifferent(XTopLoc_Location^ Other) {
         return NativeHandle->IsDifferent(Other->GetLocation());
     };
 

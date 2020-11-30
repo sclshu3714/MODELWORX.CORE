@@ -410,7 +410,7 @@ namespace TKV3d {
     //function : IsHilighted
     //purpose  : Returns true if the objects global status is set to highlighted.
     //=======================================================================
-    Standard_Boolean^ XAIS_InteractiveContext::IsHilighted(Handle(AIS_InteractiveObject) theObj)
+    Standard_Boolean XAIS_InteractiveContext::IsHilighted(Handle(AIS_InteractiveObject) theObj)
     {
         return  NativeHandle()->IsHilighted(theObj);
     };
@@ -419,7 +419,7 @@ namespace TKV3d {
     //function : IsHilighted
     //purpose  : Returns true if the owner is highlighted with selection style.
     //=======================================================================
-    Standard_Boolean^ XAIS_InteractiveContext::IsHilighted(Handle(SelectMgr_EntityOwner) theOwner)
+    Standard_Boolean XAIS_InteractiveContext::IsHilighted(Handle(SelectMgr_EntityOwner) theOwner)
     {
         return  NativeHandle()->IsHilighted(theOwner);
     };
@@ -436,7 +436,7 @@ namespace TKV3d {
     //function : HighlightStyle
     //purpose  :
     //=======================================================================
-    Standard_Boolean^ XAIS_InteractiveContext::HighlightStyle(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle)
+    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle)
     {
         return  NativeHandle()->HighlightStyle(theObj, theStyle);
     };
@@ -445,7 +445,7 @@ namespace TKV3d {
     //function : HighlightStyle
     //purpose  :
     //=======================================================================
-    Standard_Boolean^ XAIS_InteractiveContext::HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, Handle(Prs3d_Drawer) theStyle)
+    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, Handle(Prs3d_Drawer) theStyle)
     {
         return  NativeHandle()->HighlightStyle(theOwner, theStyle);
     };
@@ -1216,7 +1216,7 @@ namespace TKV3d {
     //function : PlaneSize
     //purpose  :
     //=======================================================================
-    Standard_Boolean^ XAIS_InteractiveContext::PlaneSize(Standard_Real theX, Standard_Real theY)
+    Standard_Boolean XAIS_InteractiveContext::PlaneSize(Standard_Real theX, Standard_Real theY)
     {
         return NativeHandle()->PlaneSize(theX, theY);
     };

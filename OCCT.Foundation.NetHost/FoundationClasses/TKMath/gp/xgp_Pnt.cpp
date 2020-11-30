@@ -28,8 +28,8 @@ namespace TKMath
     };
 
     //! Creates a  point with its 3 cartesian's coordinates : Xp, Yp, Zp.
-    xgp_Pnt::xgp_Pnt(Standard_Real^ Xp, Standard_Real^ Yp, Standard_Real^ Zp) {
-        NativeHandle = new gp_Pnt(*Xp, *Yp, *Zp);
+    xgp_Pnt::xgp_Pnt(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp) {
+        NativeHandle = new gp_Pnt(Xp, Yp, Zp);
     };
 
     //ÊÍ·Å
@@ -52,28 +52,28 @@ namespace TKMath
     //! Index = 2 => Y is modified
     //! Index = 3 => Z is modified
     //! Raised if Index != {1, 2, 3}.
-    void xgp_Pnt::SetCoord(Standard_Integer^ Index, Standard_Real^ Xi) {
-        NativeHandle->SetCoord(*Index, *Xi);
+    void xgp_Pnt::SetCoord(Standard_Integer Index, Standard_Real Xi) {
+        NativeHandle->SetCoord(Index, Xi);
     };
 
     //! For this point, assigns  the values Xp, Yp and Zp to its three coordinates.
-    void xgp_Pnt::SetCoord(Standard_Real^ Xp, Standard_Real^ Yp, Standard_Real^ Zp) {
-        NativeHandle->SetCoord(*Xp, *Yp, *Zp);
+    void xgp_Pnt::SetCoord(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp) {
+        NativeHandle->SetCoord(Xp, Yp, Zp);
     };
 
     //! Assigns the given value to the X coordinate of this point.
-    void xgp_Pnt::SetX(Standard_Real^ X) {
-        NativeHandle->SetX(*X);
+    void xgp_Pnt::SetX(Standard_Real X) {
+        NativeHandle->SetX(X);
     };
 
     //! Assigns the given value to the Y coordinate of this point.
-    void xgp_Pnt::SetY(Standard_Real^ Y) {
-        NativeHandle->SetY(*Y);
+    void xgp_Pnt::SetY(Standard_Real Y) {
+        NativeHandle->SetY(Y);
     };
 
     //! Assigns the given value to the Z coordinate of this point.
-    void xgp_Pnt::SetZ(Standard_Real^ Z) {
-        NativeHandle->SetZ(*Z);
+    void xgp_Pnt::SetZ(Standard_Real Z) {
+        NativeHandle->SetZ(Z);
     };
 
     //! Assigns the three coordinates of Coord to this point.
@@ -92,8 +92,8 @@ namespace TKMath
     //! Index = 3 => Z is returned
     //! Raises OutOfRange if Index != {1, 2, 3}.
     //! Raised if Index != {1, 2, 3}.
-    Standard_Real^ xgp_Pnt::Coord(Standard_Integer^ Index) {
-        return NativeHandle->Coord(*Index);
+    Standard_Real xgp_Pnt::Coord(Standard_Integer Index) {
+        return NativeHandle->Coord(Index);
     };
 
     //! For this point gives its three coordinates Xp, Yp and Zp.
@@ -102,17 +102,17 @@ namespace TKMath
     };
 
     //! For this point, returns its X coordinate.
-    Standard_Real^ xgp_Pnt::X() {
+    Standard_Real xgp_Pnt::X() {
         return NativeHandle->X();
     };
 
     //! For this point, returns its Y coordinate.
-    Standard_Real^ xgp_Pnt::Y() {
+    Standard_Real xgp_Pnt::Y() {
         return NativeHandle->Y();
     };
 
     //! For this point, returns its Z coordinate.
-    Standard_Real^ xgp_Pnt::Z() {
+    Standard_Real xgp_Pnt::Z() {
         return NativeHandle->Z();
     };
 
@@ -135,24 +135,24 @@ namespace TKMath
 
     //! Assigns the result of the following expression to this point
     //! (Alpha*this + Beta*P) / (Alpha + Beta)
-    void xgp_Pnt::BaryCenter(Standard_Real^ Alpha, xgp_Pnt^ P, Standard_Real^ Beta) {
-        NativeHandle->BaryCenter(*Alpha, P->GetPnt(), *Beta);
+    void xgp_Pnt::BaryCenter(Standard_Real Alpha, xgp_Pnt^ P, Standard_Real Beta) {
+        NativeHandle->BaryCenter(Alpha, P->GetPnt(), Beta);
     };
 
     //! Comparison
     //! Returns True if the distance between the two points is
     //! lower or equal to LinearTolerance.
-    Standard_Boolean^ xgp_Pnt::IsEqual(xgp_Pnt^ Other, Standard_Real^ LinearTolerance) {
-        return NativeHandle->IsEqual(Other->GetPnt(), *LinearTolerance);
+    Standard_Boolean xgp_Pnt::IsEqual(xgp_Pnt^ Other, Standard_Real LinearTolerance) {
+        return NativeHandle->IsEqual(Other->GetPnt(), LinearTolerance);
     };
 
     //! Computes the distance between two points.
-    Standard_Real^ xgp_Pnt::Distance(xgp_Pnt^ Other) {
+    Standard_Real xgp_Pnt::Distance(xgp_Pnt^ Other) {
         return NativeHandle->Distance(Other->GetPnt());
     };
 
     //! Computes the square distance between two points.
-    Standard_Real^ xgp_Pnt::SquareDistance(xgp_Pnt^ Other) {
+    Standard_Real xgp_Pnt::SquareDistance(xgp_Pnt^ Other) {
         return NativeHandle->SquareDistance(Other->GetPnt());
     };
 
@@ -195,22 +195,22 @@ namespace TKMath
         return gcnew xgp_Pnt(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Pnt::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Pnt::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
     //! Scales a point. S is the scaling value.
-    xgp_Pnt^ xgp_Pnt::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Pnt(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Pnt^ xgp_Pnt::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Pnt(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Pnt::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Pnt::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
     //! Transforms a point with the transformation T.
-    xgp_Pnt^ xgp_Pnt::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Pnt(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Pnt^ xgp_Pnt::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Pnt(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Pnt::Transform(xgp_Trsf^ T) {

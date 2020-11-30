@@ -31,7 +31,7 @@ namespace TKMath
         //! @param theEnd   second quaternion
         //! @param theT normalized interpolation coefficient within 0..1 range,
         //!             with 0 pointing to theStart and 1 to theEnd.
-        static xgp_Quaternion^ Interpolate(xgp_Quaternion ^theQStart, xgp_Quaternion^ theQEnd, Standard_Real^ theT) {
+        static xgp_Quaternion^ Interpolate(xgp_Quaternion ^theQStart, xgp_Quaternion^ theQEnd, Standard_Real theT) {
             xgp_Quaternion^ aResult;
             xgp_QuaternionNLerp aLerp(theQStart, theQEnd);
             aLerp.Interpolate(theT, aResult);
@@ -57,7 +57,7 @@ namespace TKMath
         void InitFromUnit(xgp_Quaternion^ theQStart, xgp_Quaternion^ theQEnd) {
             myQStart = theQStart;
             myQEnd = theQEnd;
-            Standard_Real^ anInner = myQStart->Dot(myQEnd);
+            Standard_Real anInner = myQStart->Dot(myQEnd);
             if (*anInner < 0.0) {
                 myQEnd = -myQEnd;
             }
@@ -65,7 +65,7 @@ namespace TKMath
         }
 
         //! Set interpolated quaternion for theT position (from 0.0 to 1.0)
-        void Interpolate(Standard_Real^ theT, xgp_Quaternion^ theResultQ) {
+        void Interpolate(Standard_Real theT, xgp_Quaternion^ theResultQ) {
             theResultQ = *myQStart + myQEnd * theT;
         }
 

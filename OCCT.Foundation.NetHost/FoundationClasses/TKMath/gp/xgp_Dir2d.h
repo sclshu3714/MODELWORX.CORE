@@ -60,7 +60,7 @@ namespace TKMath
         xgp_Dir2d(xgp_XY^ Coord);
 
         //! Creates a Direction with its 2 cartesian coordinates. Raises ConstructionError if Sqrt(Xv*Xv + Yv*Yv) <= Resolution from gp.
-        xgp_Dir2d(Standard_Real^ Xv, Standard_Real^ Yv);
+        xgp_Dir2d(Standard_Real Xv, Standard_Real Yv);
 
         //ÊÍ·Å
         ~xgp_Dir2d();
@@ -83,7 +83,7 @@ namespace TKMath
         //! value Xi and the other coordinate of this vector that
         //! was not directly modified.
         //! Raises OutOfRange if Index != {1, 2}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
 
         //! For this unit vector, assigns:
@@ -100,7 +100,7 @@ namespace TKMath
         //! value Xi and the other coordinate of this vector that
         //! was not directly modified.
         //! Raises OutOfRange if Index != {1, 2}.
-        void SetCoord(Standard_Real^ Xv, Standard_Real^ Yv);
+        void SetCoord(Standard_Real Xv, Standard_Real Yv);
 
 
         //! Assigns the given value to the X coordinate of this unit   vector,
@@ -115,7 +115,7 @@ namespace TKMath
         //! -   the modulus of the number pair formed from the new
         //! X or Y coordinate and the other coordinate of this
         //! vector that was not directly modified.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
 
         //! Assigns  the given value to the Y coordinate of this unit   vector,
@@ -130,7 +130,7 @@ namespace TKMath
         //! -   the modulus of the number pair formed from the new
         //! X or Y coordinate and the other coordinate of this
         //! vector that was not directly modified.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
 
         //! Assigns:
@@ -155,17 +155,17 @@ namespace TKMath
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned
         //! Raises OutOfRange if Index != {1, 2}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
         //! For this unit vector returns its two coordinates Xv and Yv.
         //! Raises OutOfRange if Index != {1, 2}.
-        void Coord(Standard_Real^ Xv, Standard_Real^ Yv);
+        void Coord(Standard_Real Xv, Standard_Real Yv);
 
         //! For this unit vector, returns its X coordinate.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! For this unit vector, returns its Y coordinate.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! For this unit vector, returns its two coordinates as a number pair.
         //! Comparison between Directions
@@ -176,42 +176,42 @@ namespace TKMath
         //! Returns True if the two vectors have the same direction
         //! i.e. the angle between this unit vector and the
         //! unit vector Other is less than or equal to AngularTolerance.
-        Standard_Boolean^ IsEqual(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsEqual(xgp_Dir2d^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if the angle between this unit vector and the
         //! unit vector Other is equal to Pi/2 or -Pi/2 (normal)
         //! i.e. Abs(Abs(<me>.Angle(Other)) - PI/2.) <= AngularTolerance
-        Standard_Boolean^ IsNormal(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsNormal(xgp_Dir2d^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if the angle between this unit vector and the
         //! unit vector Other is equal to Pi or -Pi (opposite).
         //! i.e.  PI - Abs(<me>.Angle(Other)) <= AngularTolerance
-        Standard_Boolean^ IsOpposite(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsOpposite(xgp_Dir2d^ Other, Standard_Real AngularTolerance);
 
 
         //! returns true if if the angle between this unit vector and unit
         //! vector Other is equal to 0, Pi or -Pi.
         //! i.e.  Abs(Angle(<me>, Other)) <= AngularTolerance or
         //! PI - Abs(Angle(<me>, Other)) <= AngularTolerance
-        Standard_Boolean^ IsParallel(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsParallel(xgp_Dir2d^ Other, Standard_Real AngularTolerance);
 
 
         //! Computes the angular value in radians between <me> and
         //! <Other>. Returns the angle in the range [-PI, PI].
-        Standard_Real^ Angle(xgp_Dir2d^ Other);
+        Standard_Real Angle(xgp_Dir2d^ Other);
 
 
         //! Computes the cross product between two directions.
-        Standard_Real^ Crossed(xgp_Dir2d^ Right);
-        Standard_Real^ operator ^ (xgp_Dir2d^ Right) {
+        Standard_Real Crossed(xgp_Dir2d^ Right);
+        Standard_Real operator ^ (xgp_Dir2d^ Right) {
             return Crossed(Right);
         }
 
         //! Computes the scalar product
-        Standard_Real^ Dot(xgp_Dir2d^ Other);
-        Standard_Real^ operator * (xgp_Dir2d^ Other) {
+        Standard_Real Dot(xgp_Dir2d^ Other);
+        Standard_Real operator * (xgp_Dir2d^ Other) {
             return Dot(Other);
         }
 
@@ -239,12 +239,12 @@ namespace TKMath
         //! of the symmetry.
         xgp_Dir2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(Standard_Real^ Ang);
+        void Rotate(Standard_Real Ang);
 
 
         //! Rotates a direction.  Ang is the angular value of
         //! the rotation in radians.
-        xgp_Dir2d^ Rotated(Standard_Real^ Ang);
+        xgp_Dir2d^ Rotated(Standard_Real Ang);
 
         void Transform(xgp_Trsf2d^ T);
 

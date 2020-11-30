@@ -29,8 +29,8 @@ namespace TKMath
 
 
     //! Creates a  point with its 2 cartesian's coordinates : Xp, Yp.
-    xgp_Pnt2d::xgp_Pnt2d(Standard_Real^ Xp, Standard_Real^ Yp) {
-        NativeHandle = new gp_Pnt2d(*Xp, *Yp);
+    xgp_Pnt2d::xgp_Pnt2d(Standard_Real Xp, Standard_Real Yp) {
+        NativeHandle = new gp_Pnt2d(Xp, Yp);
     };
 
 
@@ -53,23 +53,23 @@ namespace TKMath
     //! Index = 1 => X is modified
     //! Index = 2 => Y is modified
     //! Raises OutOfRange if Index != {1, 2}.
-    void xgp_Pnt2d::SetCoord(Standard_Integer^ Index, Standard_Real^ Xi) {
-        NativeHandle->SetCoord(*Index, *Xi);
+    void xgp_Pnt2d::SetCoord(Standard_Integer Index, Standard_Real Xi) {
+        NativeHandle->SetCoord(Index, Xi);
     };
 
     //! For this point, assigns the values Xp and Yp to its two coordinates
-    void xgp_Pnt2d::SetCoord(Standard_Real^ Xp, Standard_Real^ Yp) {
-        NativeHandle->SetCoord(*Xp, *Yp);
+    void xgp_Pnt2d::SetCoord(Standard_Real Xp, Standard_Real Yp) {
+        NativeHandle->SetCoord(Xp, Yp);
     };
 
     //! Assigns the given value to the X  coordinate of this point.
-    void xgp_Pnt2d::SetX(Standard_Real^ X) {
-        NativeHandle->SetX(*X);
+    void xgp_Pnt2d::SetX(Standard_Real X) {
+        NativeHandle->SetX(X);
     };
 
     //! Assigns the given value to the Y  coordinate of this point.
-    void xgp_Pnt2d::SetY(Standard_Real^ Y) {
-        NativeHandle->SetY(*Y);
+    void xgp_Pnt2d::SetY(Standard_Real Y) {
+        NativeHandle->SetY(Y);
     };
 
     //! Assigns the two coordinates of Coord to this point.
@@ -86,22 +86,22 @@ namespace TKMath
     //! Index = 1 => X is returned
     //! Index = 2 => Y is returned
     //! Raises OutOfRange if Index != {1, 2}.
-    Standard_Real^ xgp_Pnt2d::Coord(Standard_Integer^ Index) {
-        return NativeHandle->Coord(*Index);
+    Standard_Real xgp_Pnt2d::Coord(Standard_Integer Index) {
+        return NativeHandle->Coord(Index);
     };
 
     //! For this point returns its two coordinates as a number pair.
-    void xgp_Pnt2d::Coord(Standard_Real^ Xp, Standard_Real^ Yp) {
-        return NativeHandle->SetCoord(*Xp, *Yp);
+    void xgp_Pnt2d::Coord(Standard_Real Xp, Standard_Real Yp) {
+        return NativeHandle->SetCoord(Xp, Yp);
     };
 
     //! For this point, returns its X  coordinate.
-    Standard_Real^ xgp_Pnt2d::X() {
+    Standard_Real xgp_Pnt2d::X() {
         return NativeHandle->X();
     };
 
     //! For this point, returns its Y coordinate.
-    Standard_Real^ xgp_Pnt2d::Y() {
+    Standard_Real xgp_Pnt2d::Y() {
         return NativeHandle->Y();
     };
 
@@ -125,17 +125,17 @@ namespace TKMath
     //! Comparison
     //! Returns True if the distance between the two
     //! points is lower or equal to LinearTolerance.
-    Standard_Boolean^ xgp_Pnt2d::IsEqual(xgp_Pnt2d^ Other, Standard_Real^ LinearTolerance) {
-        return NativeHandle->IsEqual(Other->GetPnt2d(), *LinearTolerance);
+    Standard_Boolean xgp_Pnt2d::IsEqual(xgp_Pnt2d^ Other, Standard_Real LinearTolerance) {
+        return NativeHandle->IsEqual(Other->GetPnt2d(), LinearTolerance);
     };
 
     //! Computes the distance between two points.
-    Standard_Real^ xgp_Pnt2d::Distance(xgp_Pnt2d^ Other) {
+    Standard_Real xgp_Pnt2d::Distance(xgp_Pnt2d^ Other) {
         return NativeHandle->Distance(Other->GetPnt2d());
     };
 
     //! Computes the square distance between two points.
-    Standard_Real^ xgp_Pnt2d::SquareDistance(xgp_Pnt2d^ Other) {
+    Standard_Real xgp_Pnt2d::SquareDistance(xgp_Pnt2d^ Other) {
         return NativeHandle->SquareDistance(Other->GetPnt2d());
     };
 
@@ -165,22 +165,22 @@ namespace TKMath
         return gcnew xgp_Pnt2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Pnt2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Pnt2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
     //! Scales a point. S is the scaling value.
-    xgp_Pnt2d^ xgp_Pnt2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Pnt2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Pnt2d^ xgp_Pnt2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Pnt2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Pnt2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Pnt2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
     //! Transforms a point with the transsformation T.
-    xgp_Pnt2d^ xgp_Pnt2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Pnt2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Pnt2d^ xgp_Pnt2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Pnt2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Pnt2d::Transform(xgp_Trsf2d^ T) {

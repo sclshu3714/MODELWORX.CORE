@@ -76,7 +76,7 @@ namespace TKMath
         //! A2 locates the circle and gives its orientation in 3D space.
         //! Warnings :
         //! It is not forbidden to create a circle with Radius = 0.0  Raises ConstructionError if Radius < 0.0
-        xgp_Circ(xgp_Ax2^ A2, Standard_Real^ Radius);
+        xgp_Circ(xgp_Ax2^ A2, Standard_Real Radius);
 
         //! ÊÍ·Å
         ~xgp_Circ();
@@ -104,10 +104,10 @@ namespace TKMath
         //! Warning. Thisnamespace TKMath  {  public ref class does not prevent the creation of a circle where Radius is null.
         //! Exceptions
         //! Standard_ConstructionError if Radius is negative.
-        void SetRadius(Standard_Real^ Radius);
+        void SetRadius(Standard_Real Radius);
 
         //! Computes the area of the circle.
-        Standard_Real^ Area();
+        Standard_Real Area();
 
 
         //! Returns the main axis of the circle.
@@ -116,7 +116,7 @@ namespace TKMath
         xgp_Ax1^ Axis();
 
         //! Computes the circumference of the circle.
-        Standard_Real^ Length();
+        Standard_Real Length();
 
 
         //! Returns the center of the circle. It is the
@@ -130,7 +130,7 @@ namespace TKMath
         xgp_Ax2^ Position();
 
         //! Returns the radius of this circle.
-        Standard_Real^ Radius();
+        Standard_Real Radius();
 
 
         //! Returns the "XAxis" of the circle.
@@ -147,17 +147,17 @@ namespace TKMath
 
         //! Computes the minimum of distance between the point P and
         //! any point on the circumference of the circle.
-        Standard_Real^ Distance(xgp_Pnt^ P);
+        Standard_Real Distance(xgp_Pnt^ P);
 
 
         //! Computes the square distance between <me> and the point P.
-        Standard_Real^ SquareDistance(xgp_Pnt^ P);
+        Standard_Real SquareDistance(xgp_Pnt^ P);
 
 
         //! Returns True if the point P is on the circumference.
         //! The distance between <me> and <P> must be lower or
         //! equal to LinearTolerance.
-        Standard_Boolean^ Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance);
+        Standard_Boolean Contains(xgp_Pnt^ P, Standard_Real LinearTolerance);
 
         void Mirror(xgp_Pnt^ P);
 
@@ -183,14 +183,14 @@ namespace TKMath
         //! of the symmetry : (Location, XDirection, YDirection).
         xgp_Circ^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a circle. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Circ^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Circ^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a circle. S is the scaling value.
@@ -198,7 +198,7 @@ namespace TKMath
         //! If S is negative the radius stay positive but
         //! the "XAxis" and the "YAxis" are  reversed as for
         //! an ellipse.
-        xgp_Circ^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Circ^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

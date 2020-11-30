@@ -72,7 +72,7 @@ namespace TKMath
         //! Warnings : It is possible to have FocalLength = 0. In this case,
         //! the parabola looks like a line, which is parallel to the symmetry-axis.
         //! Raises ConstructionError if FocalLength < 0.0
-        xgp_Parab2d(xgp_Ax2d^ theMirrorAxis, Standard_Real^ theFocalLength, Standard_Boolean^ theSense);
+        xgp_Parab2d(xgp_Ax2d^ theMirrorAxis, Standard_Real theFocalLength, Standard_Boolean theSense);
 
 
         //! Creates a parabola with its vertex point, its axis of symmetry
@@ -80,7 +80,7 @@ namespace TKMath
         //! Warnings : It is possible to have FocalLength = 0. In this case,
         //! the parabola looks like a line, which is parallel to the symmetry-axis.
         //! Raises ConstructionError if Focal < 0.0
-        xgp_Parab2d(xgp_Ax22d^ theAxes, Standard_Real^ theFocalLength);
+        xgp_Parab2d(xgp_Ax22d^ theAxes, Standard_Real theFocalLength);
 
 
         //! Creates a parabola with the directrix and the focus point.
@@ -94,7 +94,7 @@ namespace TKMath
         //! by theSense parameter. If theSense == TRUE (by default) then right-handed
         //! coordinate system is used, otherwise - left-handed. Result parabola will look
         //! like a line, which is perpendicular to the directrix.
-        xgp_Parab2d(xgp_Ax2d^ theDirectrix,  xgp_Pnt2d^ theFocus, Standard_Boolean^ theSense);
+        xgp_Parab2d(xgp_Ax2d^ theDirectrix,  xgp_Pnt2d^ theFocus, Standard_Boolean theSense);
 
 
         //! 
@@ -109,7 +109,7 @@ namespace TKMath
         //! Changes the focal distance of the parabola
         //! Warnings : It is possible to have Focal = 0.
         //! Raises ConstructionError if Focal < 0.0
-        void SetFocal(Standard_Real^ Focal);
+        void SetFocal(Standard_Real Focal);
 
 
         //! Changes the "Location" point of the parabola. It is the
@@ -148,7 +148,7 @@ namespace TKMath
 
         //! Returns the distance between the vertex and the focus
         //! of the parabola.
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
         //! Returns the focus of the parabola.
         xgp_Pnt2d^ Focus();
@@ -169,7 +169,7 @@ namespace TKMath
 
         //! Returns the distance between the focus and the
         //! directrix of the parabola.
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
         void Reverse();
 
@@ -184,7 +184,7 @@ namespace TKMath
 
         //! Returns true if the local coordinate system is direct
         //! and false in the other case.
-        Standard_Boolean^ IsDirect();
+        Standard_Boolean IsDirect();
 
         void Mirror(xgp_Pnt2d^ P);
 
@@ -200,20 +200,20 @@ namespace TKMath
         //! to an axis placement which is the axis of the symmetry.
         xgp_Parab2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Rotates a parabola. P is the center of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Parab2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Parab2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Scales a parabola. S is the scaling value.
         //! If S is negative the direction of the symmetry axis
         //! "XAxis" is reversed and the direction of the "YAxis" too.
-        xgp_Parab2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Parab2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

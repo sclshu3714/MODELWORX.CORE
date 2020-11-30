@@ -38,8 +38,8 @@ namespace TKMath
     //! X, Y ,Z are the new coordinates it is not possible to
     //! construct the direction and the method raises the
     //! exception ConstructionError.
-    xgp_Dir::xgp_Dir(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv) {
-        NativeHandle = new gp_Dir(*Xv, *Yv, *Zv);
+    xgp_Dir::xgp_Dir(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv) {
+        NativeHandle = new gp_Dir(Xv, Yv, Zv);
     };
 
 
@@ -73,30 +73,30 @@ namespace TKMath
     //! -   the modulus of the number triple formed by the new
     //! value Xi and the two other coordinates of this vector
     //! that were not directly modified.
-    void xgp_Dir::SetCoord(Standard_Integer^ Index, Standard_Real^ Xi) {
-        NativeHandle->SetCoord(*Index, *Xi);
+    void xgp_Dir::SetCoord(Standard_Integer Index, Standard_Real Xi) {
+        NativeHandle->SetCoord(Index, Xi);
     };
 
     //! For this unit vector,  assigns the values Xv, Yv and Zv to its three coordinates.
     //! Remember that all the coordinates of a unit vector are
     //! implicitly modified when any single one is changed directly.
-    void xgp_Dir::SetCoord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv) {
-        NativeHandle->SetCoord(*Xv, *Yv, *Zv);
+    void xgp_Dir::SetCoord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv) {
+        NativeHandle->SetCoord(Xv, Yv, Zv);
     };
 
     //! Assigns the given value to the X coordinate of this   unit vector.
-    void xgp_Dir::SetX(Standard_Real^ X) {
-        NativeHandle->SetX(*X);
+    void xgp_Dir::SetX(Standard_Real X) {
+        NativeHandle->SetX(X);
     };
 
     //! Assigns the given value to the Y coordinate of this   unit vector.
-    void xgp_Dir::SetY(Standard_Real^ Y) {
-        NativeHandle->SetY(*Y);
+    void xgp_Dir::SetY(Standard_Real Y) {
+        NativeHandle->SetY(Y);
     };
 
     //! Assigns the given value to the Z  coordinate of this   unit vector.
-    void xgp_Dir::SetZ(Standard_Real^ Z) {
-        NativeHandle->SetZ(*Z);
+    void xgp_Dir::SetZ(Standard_Real Z) {
+        NativeHandle->SetZ(Z);
     };
 
     //! Assigns the three coordinates of Coord to this unit vector.
@@ -114,27 +114,27 @@ namespace TKMath
     //! Index = 3 => Z is returned
     //! Exceptions
     //! Standard_OutOfRange if Index is not 1, 2, or 3.
-    Standard_Real^ xgp_Dir::Coord(Standard_Integer^ Index) {
-       return NativeHandle->Coord(*Index);
+    Standard_Real xgp_Dir::Coord(Standard_Integer Index) {
+       return NativeHandle->Coord(Index);
     };
 
     //! Returns for the  unit vector  its three coordinates Xv, Yv, and Zv.
-    void xgp_Dir::Coord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv) {
-        NativeHandle->SetCoord(*Xv, *Yv, *Zv);
+    void xgp_Dir::Coord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv) {
+        NativeHandle->SetCoord(Xv, Yv, Zv);
     };
 
     //! Returns the X coordinate for a  unit vector.
-    Standard_Real^ xgp_Dir::X() {
+    Standard_Real xgp_Dir::X() {
         return NativeHandle->X();
     };
 
     //! Returns the Y coordinate for a  unit vector.
-    Standard_Real^ xgp_Dir::Y() {
+    Standard_Real xgp_Dir::Y() {
         return NativeHandle->Y();
     };
 
     //! Returns the Z coordinate for a  unit vector.
-    Standard_Real^ xgp_Dir::Z() {
+    Standard_Real xgp_Dir::Z() {
         return NativeHandle->Z();
     };
 
@@ -146,35 +146,35 @@ namespace TKMath
 
     //! Returns True if the angle between the two directions is
     //! lower or equal to AngularTolerance.
-    Standard_Boolean^ xgp_Dir::IsEqual(xgp_Dir^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetDir(), *AngularTolerance);
+    Standard_Boolean xgp_Dir::IsEqual(xgp_Dir^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsEqual(Other->GetDir(), AngularTolerance);
     };
 
 
     //! Returns True if  the angle between this unit vector and the unit vector Other is equal to Pi/2 (normal).
-    Standard_Boolean^ xgp_Dir::IsNormal(xgp_Dir^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetDir(), *AngularTolerance);
+    Standard_Boolean xgp_Dir::IsNormal(xgp_Dir^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsNormal(Other->GetDir(), AngularTolerance);
     };
 
 
     //! Returns True if  the angle between this unit vector and the unit vector Other is equal to  Pi (opposite).
-    Standard_Boolean^ xgp_Dir::IsOpposite(xgp_Dir^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetDir(), *AngularTolerance);
+    Standard_Boolean xgp_Dir::IsOpposite(xgp_Dir^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsOpposite(Other->GetDir(), AngularTolerance);
     };
 
 
     //! Returns true if the angle between this unit vector and the
     //! unit vector Other is equal to 0 or to Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
-    Standard_Boolean^ xgp_Dir::IsParallel(xgp_Dir^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetDir(), *AngularTolerance);
+    Standard_Boolean xgp_Dir::IsParallel(xgp_Dir^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsParallel(Other->GetDir(), AngularTolerance);
     };
 
 
     //! Computes the angular value in radians between <me> and
     //! <Other>. This value is always positive in 3D space.
     //! Returns the angle in the range [0, PI]
-    Standard_Real^ xgp_Dir::Angle(xgp_Dir^ Other) {
+    Standard_Real xgp_Dir::Angle(xgp_Dir^ Other) {
         return NativeHandle->Angle(Other->GetDir());
     };
 
@@ -187,7 +187,7 @@ namespace TKMath
     //! Returns the angular value in the range -PI and PI (in radians). Raises  DomainError if <me> and <Other> are not parallel this exception is raised
     //! when <VRef> is in the same plane as <me> and <Other>
     //! The tolerance criterion is Resolution from package gp.
-    Standard_Real^ xgp_Dir::AngleWithRef(xgp_Dir^ Other, xgp_Dir^ VRef) {
+    Standard_Real xgp_Dir::AngleWithRef(xgp_Dir^ Other, xgp_Dir^ VRef) {
         return NativeHandle->AngleWithRef(Other->GetDir(), VRef->GetDir());
     };
 
@@ -227,7 +227,7 @@ namespace TKMath
     };
 
     //! Computes the scalar product
-    Standard_Real^ xgp_Dir::Dot(xgp_Dir^ Other) {
+    Standard_Real xgp_Dir::Dot(xgp_Dir^ Other) {
         return NativeHandle->Dot(Other->GetDir());
     };
 
@@ -237,7 +237,7 @@ namespace TKMath
     //! The computed vector V1' = V1 ^ V2 is not normalized
     //! to create a unitary vector. So this method never
     //! raises an exception even if V1 and V2 are parallel.
-    Standard_Real^ xgp_Dir::DotCross(xgp_Dir^ V1, xgp_Dir^ V2) {
+    Standard_Real xgp_Dir::DotCross(xgp_Dir^ V1, xgp_Dir^ V2) {
         return NativeHandle->DotCross(V1->GetDir(), V2->GetDir());
     };
 
@@ -291,15 +291,15 @@ namespace TKMath
         return gcnew xgp_Dir(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Dir::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Dir::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a direction. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Dir^ xgp_Dir::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Dir(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Dir^ xgp_Dir::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Dir(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
     void xgp_Dir::Transform(xgp_Trsf^ T) {

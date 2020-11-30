@@ -56,7 +56,7 @@ namespace TKMath
         xgp_Vec(xgp_XYZ^ Coord);
 
         //! Creates a point with its three cartesian coordinates.
-        xgp_Vec(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        xgp_Vec(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
 
         //! Creates a vector from two points. The length of the vector
@@ -74,20 +74,20 @@ namespace TKMath
         //! Index = 2 => Y is modified
         //! Index = 3 => Z is modified
         //! Raised if Index != {1, 2, 3}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! For this vector, assigns
         //! -   the values Xv, Yv and Zv to its three coordinates.
-        void SetCoord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        void SetCoord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
         //! Assigns the given value to the X coordinate of this vector.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the X coordinate of this vector.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! Assigns the given value to the X coordinate of this vector.
-        void SetZ(Standard_Real^ Z);
+        void SetZ(Standard_Real Z);
 
         //! Assigns the three coordinates of Coord to this vector.
         void SetXYZ(xgp_XYZ^ Coord);
@@ -99,19 +99,19 @@ namespace TKMath
         //! Index = 2 => Y is returned
         //! Index = 3 => Z is returned
         //! Raised if Index != {1, 2, 3}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
         //! For this vector returns its three coordinates Xv, Yv, and Zvinline
-        void Coord(Standard_Real^ Xv, Standard_Real^ Yv, Standard_Real^ Zv);
+        void Coord(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv);
 
         //! For this vector, returns its X coordinate.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! For this vector, returns its Y coordinate.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! For this vector, returns its Z  coordinate.
-        Standard_Real^ Z();
+        Standard_Real Z();
 
         //! For this vector, returns
         //! -   its three coordinates as a number triple
@@ -121,19 +121,19 @@ namespace TKMath
         //! Returns True if the two vectors have the same magnitude value
         //! and the same direction. The precision values are LinearTolerance
         //! for the magnitude and AngularTolerance for the direction.
-         Standard_Boolean^ IsEqual(xgp_Vec^ Other, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+         Standard_Boolean IsEqual(xgp_Vec^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
 
         //! Returns True if abs(<me>.Angle(Other) - PI/2.) <= AngularTolerance
         //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
         //! Other.Magnitude() <= Resolution from gp
-        Standard_Boolean^ IsNormal(xgp_Vec^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsNormal(xgp_Vec^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if PI - <me>.Angle(Other) <= AngularTolerance
         //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
         //! Other.Magnitude() <= Resolution from gp
-        Standard_Boolean^ IsOpposite(xgp_Vec^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsOpposite(xgp_Vec^ Other, Standard_Real AngularTolerance);
 
 
         //! Returns True if Angle(<me>, Other) <= AngularTolerance or
@@ -142,7 +142,7 @@ namespace TKMath
         //! a plane but two vectors with opposite directions are considered
         //! as parallel. Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
         //! Other.Magnitude() <= Resolution from gp
-        Standard_Boolean^ IsParallel(xgp_Vec^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsParallel(xgp_Vec^ Other, Standard_Real AngularTolerance);
 
 
         //! Computes the angular value between <me> and <Other>
@@ -150,7 +150,7 @@ namespace TKMath
         //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution from gp or
         //! Other.Magnitude() <= Resolution because the angular value is
         //! indefinite if one of the vectors has a null magnitude.
-        Standard_Real^ Angle(xgp_Vec^ Other);
+        Standard_Real Angle(xgp_Vec^ Other);
 
         //! Computes the angle, in radians, between this vector and
         //! vector Other. The result is a value between -Pi and Pi.
@@ -166,13 +166,13 @@ namespace TKMath
         //! Standard_DomainError if this vector, the vector Other,
         //! and the vector VRef are coplanar, unless this vector and
         //! the vector Other are parallel.
-        Standard_Real^ AngleWithRef(xgp_Vec^ Other, xgp_Vec^ VRef);
+        Standard_Real AngleWithRef(xgp_Vec^ Other, xgp_Vec^ VRef);
 
         //! Computes the magnitude of this vector.
-        Standard_Real^ Magnitude();
+        Standard_Real Magnitude();
 
         //! Computes the square magnitude of this vector.
-        Standard_Real^ SquareMagnitude();
+        Standard_Real SquareMagnitude();
 
         //! Adds two vectors
         void Add(xgp_Vec^ Other);
@@ -200,26 +200,26 @@ namespace TKMath
         }
 
         //! Multiplies a vector by a scalar
-        void Multiply(Standard_Real^ Scalar);
-        void operator *= (Standard_Real^ Scalar) {
+        void Multiply(Standard_Real Scalar);
+        void operator *= (Standard_Real Scalar) {
             Multiply(Scalar);
         }
 
         //! Multiplies a vector by a scalar
-         xgp_Vec^ Multiplied(Standard_Real^ Scalar);
-         xgp_Vec^ operator * (Standard_Real^ Scalar) {
+         xgp_Vec^ Multiplied(Standard_Real Scalar);
+         xgp_Vec^ operator * (Standard_Real Scalar) {
             return Multiplied(Scalar);
         }
 
         //! Divides a vector by a scalar
-        void Divide(Standard_Real^ Scalar);
-        void operator /= (Standard_Real^ Scalar) {
+        void Divide(Standard_Real Scalar);
+        void operator /= (Standard_Real Scalar) {
             Divide(Scalar);
         }
 
         //! Divides a vector by a scalar
-         xgp_Vec^ Divided(Standard_Real^ Scalar);
-         xgp_Vec^ operator / (Standard_Real^ Scalar) {
+         xgp_Vec^ Divided(Standard_Real Scalar);
+         xgp_Vec^ operator / (Standard_Real Scalar) {
             return Divided(Scalar);
         }
 
@@ -239,13 +239,13 @@ namespace TKMath
         //! Computes the magnitude of the cross
         //! product between <me> and Right.
         //! Returns || <me> ^ Right ||
-        Standard_Real^ CrossMagnitude(xgp_Vec^ Right);
+        Standard_Real CrossMagnitude(xgp_Vec^ Right);
 
 
         //! Computes the square magnitude of
         //! the cross product between <me> and Right.
         //! Returns || <me> ^ Right ||**2
-        Standard_Real^ CrossSquareMagnitude(xgp_Vec^ Right);
+        Standard_Real CrossSquareMagnitude(xgp_Vec^ Right);
 
         //! Computes the triple vector product.
         //! <me> ^= (V1 ^ V2)
@@ -256,13 +256,13 @@ namespace TKMath
          xgp_Vec^ CrossCrossed(xgp_Vec^ V1, xgp_Vec^ V2);
 
         //! computes the scalar product
-        Standard_Real^ Dot(xgp_Vec^ Other);
-        Standard_Real^ operator * (xgp_Vec^ Other) {
+        Standard_Real Dot(xgp_Vec^ Other);
+        Standard_Real operator * (xgp_Vec^ Other) {
             return Dot(Other);
         }
 
         //! Computes the triple scalar product <me> * (V1 ^ V2).
-        Standard_Real^ DotCross(xgp_Vec^ V1, xgp_Vec^ V2);
+        Standard_Real DotCross(xgp_Vec^ V1, xgp_Vec^ V2);
 
         //! normalizes a vector
         //! Raises an exception if the magnitude of the vector is
@@ -286,26 +286,26 @@ namespace TKMath
 
         //! <me> is set to the following linear form :
         //! A1 * V1 + A2 * V2 + A3 * V3 + V4
-        void SetLinearForm(Standard_Real^ A1, xgp_Vec^ V1, Standard_Real^ A2, xgp_Vec^ V2, Standard_Real^ A3, xgp_Vec^ V3, xgp_Vec^ V4);
+        void SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, Standard_Real A3, xgp_Vec^ V3, xgp_Vec^ V4);
 
 
         //! <me> is set to the following linear form :
         //! A1 * V1 + A2 * V2 + A3 * V3
-        void SetLinearForm(Standard_Real^ A1, xgp_Vec^ V1, Standard_Real^ A2, xgp_Vec^ V2, Standard_Real^ A3, xgp_Vec^ V3);
+        void SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, Standard_Real A3, xgp_Vec^ V3);
 
 
         //! <me> is set to the following linear form :
         //! A1 * V1 + A2 * V2 + V3
-        void SetLinearForm(Standard_Real^ A1, xgp_Vec^ V1, Standard_Real^ A2, xgp_Vec^ V2, xgp_Vec^ V3);
+        void SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, xgp_Vec^ V3);
 
 
         //! <me> is set to the following linear form :
         //! A1 * V1 + A2 * V2
-        void SetLinearForm(Standard_Real^ A1, xgp_Vec^ V1, Standard_Real^ A2, xgp_Vec^ V2);
+        void SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2);
 
 
         //! <me> is set to the following linear form : A1 * V1 + V2
-        void SetLinearForm(Standard_Real^ A1, xgp_Vec^ V1, xgp_Vec^ V2);
+        void SetLinearForm(Standard_Real A1, xgp_Vec^ V1, xgp_Vec^ V2);
 
 
         //! <me> is set to the following linear form : V1 + V2
@@ -335,17 +335,17 @@ namespace TKMath
         //! the plane of the symmetry : (Location, XDirection, YDirection).
           xgp_Vec^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a vector. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-         xgp_Vec^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+         xgp_Vec^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(Standard_Real^ S);
+        void Scale(Standard_Real S);
 
         //! Scales a vector. S is the scaling value.
-         xgp_Vec^ Scaled(Standard_Real^ S);
+         xgp_Vec^ Scaled(Standard_Real S);
 
         //! Transforms a vector with the transformation T.
          void Transform(xgp_Trsf^ T);

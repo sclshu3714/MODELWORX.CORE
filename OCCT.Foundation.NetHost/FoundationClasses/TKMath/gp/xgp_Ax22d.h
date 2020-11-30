@@ -79,14 +79,14 @@ namespace TKMath
         //! V, which is:
         //! -   right-handed if Sense is true (default value), or
         //! -   left-handed if Sense is false
-        xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean^ Sense);
+        xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean Sense);
 
 
         //! Creates -   a coordinate system where its origin is the origin of
         //! A and its "X Direction" is the unit vector of A, which   is:
         //! -   right-handed if Sense is true (default value), or
         //! -   left-handed if Sense is false.
-        xgp_Ax22d(xgp_Ax2d^ A, Standard_Boolean^ Sense);
+        xgp_Ax22d(xgp_Ax2d^ A, Standard_Boolean Sense);
 
         //!  Õ∑≈
         ~xgp_Ax22d();
@@ -178,15 +178,15 @@ namespace TKMath
         //! the "XDirection" and the "YDirection" after transformation.
         xgp_Ax22d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Rotates an axis placement. <A1> is the axis of the
         //! rotation . Ang is the angular value of the rotation
         //! in radians.
-        xgp_Ax22d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Ax22d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Applies a scaling transformation on the axis placement.
@@ -196,7 +196,7 @@ namespace TKMath
         //! . the main direction of the axis placement is not changed.
         //! . The "XDirection" and the "YDirection" are reversed.
         //! So the axis placement stay right handed.
-        xgp_Ax22d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Ax22d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

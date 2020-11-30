@@ -71,7 +71,7 @@ namespace TKMath
 
         //! Creates a cylinder of radius Radius, whose axis is the "main
         //! Axis" of A3. A3 is the local coordinate system of the cylinder.   Raises ConstructionErrord if R < 0.0
-        xgp_Cylinder(xgp_Ax3^ A3, Standard_Real^ Radius);
+        xgp_Cylinder(xgp_Ax3^ A3, Standard_Real Radius);
 
         //ÊÍ·Å
         ~xgp_Cylinder();
@@ -95,7 +95,7 @@ namespace TKMath
         //! Modifies the radius of this cylinder.
         //! Exceptions
         //! Standard_ConstructionError if R is negative.
-        void SetRadius(Standard_Real^ R);
+        void SetRadius(Standard_Real R);
 
         //! Reverses the   U   parametrization of   the cylinder
         //! reversing the YAxis.
@@ -106,7 +106,7 @@ namespace TKMath
         void VReverse();
 
         //! Returns true if the local coordinate system of this cylinder is right-handed.
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
         //! Returns the symmetry axis of the cylinder.
         xgp_Ax1^ Axis();
@@ -126,7 +126,7 @@ namespace TKMath
         xgp_Ax3^ Position();
 
         //! Returns the radius of the cylinder.
-        Standard_Real^ Radius();
+        Standard_Real Radius();
 
         //! Returns the axis X of the cylinder.
         xgp_Ax1^ XAxis();
@@ -158,19 +158,19 @@ namespace TKMath
         //! of the symmetry : (Location, XDirection, YDirection).
         xgp_Cylinder^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a cylinder. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Cylinder^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Cylinder^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a cylinder. S is the scaling value.
         //! The absolute value of S is used to scale the cylinder
-        xgp_Cylinder^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Cylinder^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

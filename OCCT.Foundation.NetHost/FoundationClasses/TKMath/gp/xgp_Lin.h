@@ -113,25 +113,25 @@ namespace TKMath
         xgp_Ax1^ Position();
 
         //! Computes the angle between two lines in radians.
-        Standard_Real^ Angle(xgp_Lin^ Other);
+        Standard_Real Angle(xgp_Lin^ Other);
 
         //! Returns true if this line contains the point P, that is, if the
         //! distance between point P and this line is less than or
         //! equal to LinearTolerance..
-        Standard_Boolean^ Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance);
+        Standard_Boolean Contains(xgp_Pnt^ P, Standard_Real LinearTolerance);
 
         //! Computes the distance between <me> and the point P.
-        Standard_Real^ Distance(xgp_Pnt^ P);
+        Standard_Real Distance(xgp_Pnt^ P);
 
         //! Computes the distance between two lines.
-        Standard_Real^ Distance(xgp_Lin^ Other);
+        Standard_Real Distance(xgp_Lin^ Other);
 
 
         //! Computes the square distance between <me> and the point P.
-        Standard_Real^ SquareDistance(xgp_Pnt^ P);
+        Standard_Real SquareDistance(xgp_Pnt^ P);
 
         //! Computes the square distance between two lines.
-        Standard_Real^ SquareDistance(xgp_Lin^ Other);
+        Standard_Real SquareDistance(xgp_Lin^ Other);
 
 
         //! Computes the line normal to the direction of <me>, passing
@@ -166,20 +166,20 @@ namespace TKMath
         //! (Location, XDirection, YDirection).
         xgp_Lin^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a line. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Lin^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Lin^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a line. S is the scaling value.
         //! The "Location" point (origin) of the line is modified.
         //! The "Direction" is reversed if the scale is negative.
-        xgp_Lin^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Lin^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

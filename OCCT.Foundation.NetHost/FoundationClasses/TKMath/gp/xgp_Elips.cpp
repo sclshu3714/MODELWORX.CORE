@@ -30,8 +30,8 @@ namespace TKMath
     //! It is not forbidden to create an ellipse with MajorRadius =
     //! MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.
-    xgp_Elips::xgp_Elips(xgp_Ax2^ A2, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius) {
-        NativeHandle = new gp_Elips(A2->GetAx2(), *MajorRadius, *MinorRadius);
+    xgp_Elips::xgp_Elips(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+        NativeHandle = new gp_Elips(A2->GetAx2(), MajorRadius, MinorRadius);
     };
 
     // Õ∑≈
@@ -75,16 +75,16 @@ namespace TKMath
     //! The major radius of the ellipse is on the "XAxis" (major axis)
     //! of the ellipse.
     //! Raises ConstructionError if MajorRadius < MinorRadius.
-    void xgp_Elips::SetMajorRadius(Standard_Real^ MajorRadius) {
-        NativeHandle->SetMajorRadius(*MajorRadius);
+    void xgp_Elips::SetMajorRadius(Standard_Real MajorRadius) {
+        NativeHandle->SetMajorRadius(MajorRadius);
     };
 
 
     //! The minor radius of the ellipse is on the "YAxis" (minor axis)
     //! of the ellipse.
     //! Raises ConstructionError if MinorRadius > MajorRadius or MinorRadius < 0.
-    void xgp_Elips::SetMinorRadius(Standard_Real^ MinorRadius) {
-        NativeHandle->SetMinorRadius(*MinorRadius);
+    void xgp_Elips::SetMinorRadius(Standard_Real MinorRadius) {
+        NativeHandle->SetMinorRadius(MinorRadius);
     };
 
     //! Modifies this ellipse, by redefining its local coordinate
@@ -94,7 +94,7 @@ namespace TKMath
     };
 
     //! Computes the area of the Ellipse.
-    Standard_Real^ xgp_Elips::Area() {
+    Standard_Real xgp_Elips::Area() {
         return NativeHandle->Area();
     };
 
@@ -137,14 +137,14 @@ namespace TKMath
     //! If f is the distance between the center of the ellipse and
     //! the Focus1 then the eccentricity e = f / MajorRadius.
     //! Raises ConstructionError if MajorRadius = 0.0
-    Standard_Real^ xgp_Elips::Eccentricity() {
+    Standard_Real xgp_Elips::Eccentricity() {
          return NativeHandle->Eccentricity();
     };
 
 
     //! Computes the focal distance. It is the distance between the
     //! two focus focus1 and focus2 of the ellipse.
-    Standard_Real^ xgp_Elips::Focal() {
+    Standard_Real xgp_Elips::Focal() {
         return NativeHandle->Focal();
     };
 
@@ -170,12 +170,12 @@ namespace TKMath
     };
 
     //! Returns the major radius of the ellipse.
-    Standard_Real^ xgp_Elips::MajorRadius() {
+    Standard_Real xgp_Elips::MajorRadius() {
         return NativeHandle->MajorRadius();
     };
 
     //! Returns the minor radius of the ellipse.
-    Standard_Real^ xgp_Elips::MinorRadius() {
+    Standard_Real xgp_Elips::MinorRadius() {
         return NativeHandle->MinorRadius();
     };
 
@@ -183,7 +183,7 @@ namespace TKMath
     //! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
     //! of the ellipse.
     //! Returns 0 if MajorRadius = 0
-    Standard_Real^ xgp_Elips::Parameter() {
+    Standard_Real xgp_Elips::Parameter() {
         return NativeHandle->Parameter();
     };
 
@@ -242,25 +242,25 @@ namespace TKMath
         return gcnew xgp_Elips(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Elips::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Elips::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates an ellipse. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Elips^ xgp_Elips::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Elips(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Elips^ xgp_Elips::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Elips(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Elips::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Elips::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales an ellipse. S is the scaling value.
-    xgp_Elips^ xgp_Elips::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Elips(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Elips^ xgp_Elips::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Elips(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Elips::Transform(xgp_Trsf^ T) {

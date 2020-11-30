@@ -23,8 +23,8 @@ namespace TKMath
     };
 
     //! a number pair defined by the XY coordinates
-    xgp_XY::xgp_XY(Standard_Real^ X, Standard_Real^ Y) {
-        NativeHandle = new gp_XY(*X, *Y);
+    xgp_XY::xgp_XY(Standard_Real X, Standard_Real Y) {
+        NativeHandle = new gp_XY(X, Y);
     };
 
     //ÊÍ·Å
@@ -46,24 +46,24 @@ namespace TKMath
     //! Index = 1 => X is modified
     //! Index = 2 => Y is modified
     //! Raises OutOfRange if Index != {1, 2}.
-    void xgp_XY::SetCoord(Standard_Integer^ Index, Standard_Real^ Xi) {
-        NativeHandle->SetCoord(*Index, *Xi);
+    void xgp_XY::SetCoord(Standard_Integer Index, Standard_Real Xi) {
+        NativeHandle->SetCoord(Index, Xi);
     };
 
     //! For this number pair, assigns
     //! the values X and Y to its coordinates
-    void xgp_XY::SetCoord(Standard_Real^ X, Standard_Real^ Y) {
-        NativeHandle->SetCoord(*X, *Y);
+    void xgp_XY::SetCoord(Standard_Real X, Standard_Real Y) {
+        NativeHandle->SetCoord(X, Y);
     };
 
     //! Assigns the given value to the X coordinate of this number pair.
-    void xgp_XY::SetX(Standard_Real^ X) {
-        NativeHandle->SetX(*X);
+    void xgp_XY::SetX(Standard_Real X) {
+        NativeHandle->SetX(X);
     };
 
     //! Assigns the given value to the Y  coordinate of this number pair.
-    void xgp_XY::SetY(Standard_Real^ Y) {
-        NativeHandle->SetY(*Y);
+    void xgp_XY::SetY(Standard_Real Y) {
+        NativeHandle->SetY(Y);
     };
 
     //! returns the gp_XY
@@ -75,36 +75,36 @@ namespace TKMath
     //! Index = 1 => X is returned
     //! Index = 2 => Y is returned
     //! Raises OutOfRange if Index != {1, 2}.
-    Standard_Real^ xgp_XY::Coord(Standard_Integer^ Index) {
-       return NativeHandle->Coord(*Index);
+    Standard_Real xgp_XY::Coord(Standard_Integer Index) {
+       return NativeHandle->Coord(Index);
     };
 
-    Standard_Real^ xgp_XY::ChangeCoord(Standard_Integer^ theIndex) {
-        return  NativeHandle->ChangeCoord(*theIndex);
+    Standard_Real xgp_XY::ChangeCoord(Standard_Integer theIndex) {
+        return  NativeHandle->ChangeCoord(theIndex);
     };
 
     //! For this number pair, returns its coordinates X and Y.
-    void xgp_XY::Coord(Standard_Real^ X, Standard_Real^ Y) {
-        NativeHandle->SetCoord(*X, *Y);
+    void xgp_XY::Coord(Standard_Real X, Standard_Real Y) {
+        NativeHandle->SetCoord(X, Y);
     };
 
     //! Returns the X coordinate of this number pair.
-    Standard_Real^ xgp_XY::X() {
+    Standard_Real xgp_XY::X() {
         return  NativeHandle->X();
     };
 
     //! Returns the Y coordinate of this number pair.
-    Standard_Real^ xgp_XY::Y() {
+    Standard_Real xgp_XY::Y() {
         return  NativeHandle->Y();
     };
 
     //! Computes Sqrt (X*X + Y*Y) where X and Y are the two coordinates of this number pair.
-    Standard_Real^ xgp_XY::Modulus() {
+    Standard_Real xgp_XY::Modulus() {
         return  NativeHandle->Modulus();
     };
 
     //! Computes X*X + Y*Y where X and Y are the two coordinates of this number pair.
-    Standard_Real^ xgp_XY::SquareModulus() {
+    Standard_Real xgp_XY::SquareModulus() {
         return NativeHandle->SquareModulus();
     };
 
@@ -115,8 +115,8 @@ namespace TKMath
     //! abs(<me>.X() - Other.X()) <= Tolerance and
     //! abs(<me>.Y() - Other.Y()) <= Tolerance and
     //! computations
-    Standard_Boolean^ xgp_XY::IsEqual(xgp_XY^ Other, Standard_Real^ Tolerance) {
-        return NativeHandle->IsEqual(Other->GetXY(), *Tolerance);
+    Standard_Boolean xgp_XY::IsEqual(xgp_XY^ Other, Standard_Real Tolerance) {
+        return NativeHandle->IsEqual(Other->GetXY(), Tolerance);
     };
 
     //! Computes the sum of this number pair and number pair Other
@@ -135,44 +135,44 @@ namespace TKMath
 
 
     //! Real D = <me>.X() * Other.Y() - <me>.Y() * Other.X()
-    Standard_Real^ xgp_XY::Crossed(xgp_XY^ Right) {
+    Standard_Real xgp_XY::Crossed(xgp_XY^ Right) {
         return NativeHandle->Crossed(Right->GetXY());
     };
 
 
     //! computes the magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||
-    Standard_Real^ xgp_XY::CrossMagnitude(xgp_XY^ Right) {
+    Standard_Real xgp_XY::CrossMagnitude(xgp_XY^ Right) {
         return NativeHandle->CrossMagnitude(Right->GetXY());
     };
 
 
     //! computes the square magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||**2
-    Standard_Real^ xgp_XY::CrossSquareMagnitude(xgp_XY^ Right) {
+    Standard_Real xgp_XY::CrossSquareMagnitude(xgp_XY^ Right) {
         return NativeHandle->CrossSquareMagnitude(Right->GetXY());
     };
 
     //! divides <me> by a real.
-    void xgp_XY::Divide(Standard_Real^ Scalar) {
-        return NativeHandle->Divide(*Scalar);
+    void xgp_XY::Divide(Standard_Real Scalar) {
+        return NativeHandle->Divide(Scalar);
     };
 
     //! Divides <me> by a real.
-    xgp_XY^ xgp_XY::Divided(Standard_Real^ Scalar) {
-        return gcnew xgp_XY(NativeHandle->Divided(*Scalar));
+    xgp_XY^ xgp_XY::Divided(Standard_Real Scalar) {
+        return gcnew xgp_XY(NativeHandle->Divided(Scalar));
     };
 
     //! Computes the scalar product between <me> and Other
-    Standard_Real^ xgp_XY::Dot(xgp_XY^ Other) {
+    Standard_Real xgp_XY::Dot(xgp_XY^ Other) {
         return NativeHandle->Dot(Other->GetXY());
     };
 
 
     //! <me>.X() = <me>.X() * Scalar;
     //! <me>.Y() = <me>.Y() * Scalar;
-    void xgp_XY::Multiply(Standard_Real^ Scalar) {
-        NativeHandle->Multiply(*Scalar);
+    void xgp_XY::Multiply(Standard_Real Scalar) {
+        NativeHandle->Multiply(Scalar);
     };
 
 
@@ -190,8 +190,8 @@ namespace TKMath
 
     //! New.X() = <me>.X() * Scalar;
     //! New.Y() = <me>.Y() * Scalar;
-    xgp_XY^ xgp_XY::Multiplied(Standard_Real^ Scalar) {
-        return gcnew xgp_XY(NativeHandle->Multiplied(*Scalar));
+    xgp_XY^ xgp_XY::Multiplied(Standard_Real Scalar) {
+        return gcnew xgp_XY(NativeHandle->Multiplied(Scalar));
     };
 
 
@@ -240,24 +240,24 @@ namespace TKMath
     //! Computes  the following linear combination and
     //! assigns the result to this number pair:
     //! A1 * XY1 + A2 * XY2
-    void xgp_XY::SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, Standard_Real^ A2, xgp_XY^ XY2) {
-        NativeHandle->SetLinearForm(*A1, XY1->GetXY(), *A2, XY2->GetXY());
+    void xgp_XY::SetLinearForm(Standard_Real A1, xgp_XY^ XY1, Standard_Real A2, xgp_XY^ XY2) {
+        NativeHandle->SetLinearForm(A1, XY1->GetXY(), A2, XY2->GetXY());
     };
 
 
     //! --  Computes  the following linear combination and
     //! assigns the result to this number pair:
     //! A1 * XY1 + A2 * XY2 + XY3
-    void xgp_XY::SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, Standard_Real^ A2, xgp_XY^ XY2, xgp_XY^ XY3) {
-        NativeHandle->SetLinearForm(*A1, XY1->GetXY(), *A2, XY2->GetXY(), XY3->GetXY());
+    void xgp_XY::SetLinearForm(Standard_Real A1, xgp_XY^ XY1, Standard_Real A2, xgp_XY^ XY2, xgp_XY^ XY3) {
+        NativeHandle->SetLinearForm(A1, XY1->GetXY(), A2, XY2->GetXY(), XY3->GetXY());
     };
 
 
     //! Computes  the following linear combination and
     //! assigns the result to this number pair:
     //! A1 * XY1 + XY2
-    void xgp_XY::SetLinearForm(Standard_Real^ A1, xgp_XY^ XY1, xgp_XY^ XY2) {
-        NativeHandle->SetLinearForm(*A1, XY1->GetXY(), XY2->GetXY());
+    void xgp_XY::SetLinearForm(Standard_Real A1, xgp_XY^ XY1, xgp_XY^ XY2) {
+        NativeHandle->SetLinearForm(A1, XY1->GetXY(), XY2->GetXY());
     };
 
 

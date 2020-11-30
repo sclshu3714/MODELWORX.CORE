@@ -40,7 +40,7 @@ namespace TKMath
         xgp_Mat(gp_Mat pos);
 
         //! Creates a matrix.
-        xgp_Mat(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23, Standard_Real^ a31, Standard_Real^ a32, Standard_Real^ a33);
+        xgp_Mat(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a31, Standard_Real a32, Standard_Real a33);
 
         //! Creates a matrix.
         //! Col1, Col2, Col3 are the 3 columns of the matrix.
@@ -55,7 +55,7 @@ namespace TKMath
         //! Assigns the three coordinates of Value to the column of index
         //! Col of this matrix.
         //! Raises OutOfRange if Col < 1 or Col > 3.
-         void SetCol(Standard_Integer^ Col, xgp_XYZ^ Value);
+         void SetCol(Standard_Integer Col, xgp_XYZ^ Value);
 
         //! Assigns the number triples Col1, Col2, Col3 to the three
         //! columns of this matrix.
@@ -78,7 +78,7 @@ namespace TKMath
         //! <me>.Value (2, 2) = X2
         //! <me>.Value (3, 3) = X3
         //! The other coefficients of the matrix are not modified.
-        void SetDiagonal(Standard_Real^ X1, Standard_Real^ X2, Standard_Real^ X3);
+        void SetDiagonal(Standard_Real X1, Standard_Real X2, Standard_Real X3);
 
 
         //! Modifies this matrix so that applying it to any number
@@ -96,11 +96,11 @@ namespace TKMath
         //! radians and the XYZ axis gives the direction of the
         //! rotation.
         //! Raises ConstructionError if XYZ.Modulus() <= Resolution()
-         void SetRotation(xgp_XYZ^ Axis, Standard_Real^ Ang);
+         void SetRotation(xgp_XYZ^ Axis, Standard_Real Ang);
 
         //! Assigns the three coordinates of Value to the row of index
         //! Row of this matrix. Raises OutOfRange if Row < 1 or Row > 3.
-         void SetRow(Standard_Integer^ Row, xgp_XYZ^ Value);
+         void SetRow(Standard_Integer Row, xgp_XYZ^ Value);
 
         //! Assigns the number triples Row1, Row2, Row3 to the three
         //! rows of this matrix.
@@ -112,40 +112,40 @@ namespace TKMath
         //! | S    0.0  0.0 |
         //! <me> =  | 0.0   S   0.0 |
         //! | 0.0  0.0   S  |
-        void SetScale(Standard_Real^ S);
+        void SetScale(Standard_Real S);
 
         //! Assigns <Value> to the coefficient of row Row, column Col of   this matrix.
         //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-        void SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value);
+        void SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value);
 
         //! Returns the gp_Mat
         gp_Mat GetMat();
 
         //! Returns the column of Col index.
         //! Raises OutOfRange if Col < 1 or Col > 3
-         xgp_XYZ^ Column(Standard_Integer^ Col);
+         xgp_XYZ^ Column(Standard_Integer Col);
 
         //! Computes the determinant of the matrix.
-        Standard_Real^ Determinant();
+        Standard_Real Determinant();
 
         //! Returns the main diagonal of the matrix.
          xgp_XYZ^ Diagonal();
 
         //! returns the row of Row index.
         //! Raises OutOfRange if Row < 1 or Row > 3
-         xgp_XYZ^ Row(Standard_Integer^ Row);
+         xgp_XYZ^ Row(Standard_Integer Row);
 
         //! Returns the coefficient of range (Row, Col)
         //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-        Standard_Real^ Value(Standard_Integer^ Row, Standard_Integer^ Col);
-        /*Standard_Real^ operator() (Standard_Integer^ Row, Standard_Integer^ Col) {
+        Standard_Real Value(Standard_Integer Row, Standard_Integer Col);
+        /*Standard_Real operator() (Standard_Integer Row, Standard_Integer Col) {
             return Value(Row, Col);
         }*/
 
         //! Returns the coefficient of range (Row, Col)
         //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-        Standard_Real^ ChangeValue(Standard_Integer^ Row, Standard_Integer^ Col);
-        Standard_Real^ operator() (Standard_Integer^ Row, Standard_Integer^ Col) {
+        Standard_Real ChangeValue(Standard_Integer Row, Standard_Integer Col);
+        Standard_Real operator() (Standard_Integer Row, Standard_Integer Col) {
             return ChangeValue(Row, Col);
         }
 
@@ -153,7 +153,7 @@ namespace TKMath
         //! The Gauss LU decomposition is used to invert the matrix
         //! (see Math package) so the matrix is considered as singular if
         //! the largest pivot found is lower or equal to Resolution from gp.
-        Standard_Boolean^ IsSingular();
+        Standard_Boolean IsSingular();
 
         void Add(xgp_Mat^ Other);
         void operator += (xgp_Mat^ Other) {
@@ -168,14 +168,14 @@ namespace TKMath
             return Added(Other);
         }
 
-        void Divide(Standard_Real^ Scalar);
-        void operator /= (Standard_Real^ Scalar) {
+        void Divide(Standard_Real Scalar);
+        void operator /= (Standard_Real Scalar) {
             Divide(Scalar);
         }
 
         //! Divides all the coefficients of the matrix by Scalar
-         xgp_Mat^ Divided(Standard_Real^ Scalar);
-         xgp_Mat^ operator / (Standard_Real^ Scalar) {
+         xgp_Mat^ Divided(Standard_Real Scalar);
+         xgp_Mat^ operator / (Standard_Real Scalar) {
             return Divided(Scalar);
         }
 
@@ -209,19 +209,19 @@ namespace TKMath
 
         void PreMultiply(xgp_Mat^ Other);
 
-         xgp_Mat^ Multiplied(Standard_Real^ Scalar);
-         xgp_Mat^ operator * (Standard_Real^ Scalar) {
+         xgp_Mat^ Multiplied(Standard_Real Scalar);
+         xgp_Mat^ operator * (Standard_Real Scalar) {
             return Multiplied(Scalar);
         }
 
 
         //! Multiplies all the coefficients of the matrix by Scalar
-        void Multiply(Standard_Real^ Scalar);
-        void operator *= (Standard_Real^ Scalar) {
+        void Multiply(Standard_Real Scalar);
+        void operator *= (Standard_Real Scalar) {
             Multiply(Scalar);
         }
 
-         void Power(Standard_Integer^ N);
+         void Power(Standard_Integer N);
 
 
         //! Computes <me> = <me> * <me> * .......* <me>,   N time.
@@ -229,7 +229,7 @@ namespace TKMath
         //! if N < 0 <me> = <me>.Invert() *...........* <me>.Invert().
         //! If N < 0 an exception will be raised if the matrix is not
         //! inversible
-         xgp_Mat^ Powered(Standard_Integer^ N);
+         xgp_Mat^ Powered(Standard_Integer N);
 
         void Subtract(xgp_Mat^ Other);
         void operator -= (xgp_Mat^ Other) {

@@ -85,8 +85,8 @@ namespace TKMath
     //! Changes the transformation into a rotation.
     //! A1 is the rotation axis and Ang is the angular value of the
     //! rotation in radians.
-    void xgp_Trsf::SetRotation(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->SetRotation(A1->GetAx1(), *Ang);
+    void xgp_Trsf::SetRotation(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->SetRotation(A1->GetAx1(), Ang);
     };
 
 
@@ -101,8 +101,8 @@ namespace TKMath
     //! Changes the transformation into a scale.
     //! P is the center of the scale and S is the scaling value.
     //! Raises ConstructionError  If <S> is null.
-    void xgp_Trsf::SetScale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->SetScale(P->GetPnt(), *S);
+    void xgp_Trsf::SetScale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->SetScale(P->GetPnt(), S);
     };
 
 
@@ -193,12 +193,12 @@ namespace TKMath
 
     //! Modifies the scale factor.
     //! Raises ConstructionError  If S is null.
-    void xgp_Trsf::SetScaleFactor(Standard_Real^ S) {
-        NativeHandle->SetScaleFactor(*S);
+    void xgp_Trsf::SetScaleFactor(Standard_Real S) {
+        NativeHandle->SetScaleFactor(S);
     };
 
-    void xgp_Trsf::SetTrsfForm(int^ trsfForm) {
-        gp_TrsfForm tf = (gp_TrsfForm)*trsfForm;
+    void xgp_Trsf::SetTrsfForm(xgp_TrsfForm trsfForm) {
+        gp_TrsfForm tf =  safe_cast<gp_TrsfForm>(trsfForm);
         NativeHandle->SetForm(tf);
     };
 
@@ -213,8 +213,8 @@ namespace TKMath
     //! The method Value(i,j) will return aij.
     //! Raises ConstructionError if the determinant of  the aij is null.
     //! The matrix is orthogonalized before future using.
-    void xgp_Trsf::SetValues(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a14, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23, Standard_Real^ a24, Standard_Real^ a31, Standard_Real^ a32, Standard_Real^ a33, Standard_Real^ a34) {
-        NativeHandle->SetValues(*a11, *a12, *a13, *a14, *a21, *a22, *a23, *a24, *a31, *a32, *a33, *a34);
+    void xgp_Trsf::SetValues(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a14, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a24, Standard_Real a31, Standard_Real a32, Standard_Real a33, Standard_Real a34) {
+        NativeHandle->SetValues(a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34);
     };
 
     //! Returns the gp_Trsf
@@ -224,7 +224,7 @@ namespace TKMath
 
     //! Returns true if the determinant of the vectorial part of
     //! this transformation is negative.
-    Standard_Boolean^ xgp_Trsf::IsNegative() {
+    Standard_Boolean xgp_Trsf::IsNegative() {
         return NativeHandle->IsNegative();
     };
 
@@ -240,7 +240,7 @@ namespace TKMath
     };
 
     //! Returns the scale factor.
-    Standard_Real^ xgp_Trsf::ScaleFactor() {
+    Standard_Real xgp_Trsf::ScaleFactor() {
         return NativeHandle->ScaleFactor();
     };
 
@@ -258,7 +258,7 @@ namespace TKMath
     //! Note that this rotation is defined only by the vectorial part of
     //! the transformation; generally you would need to check also the
     //! translational part to obtain the axis (xgp_Ax1) of rotation.
-    Standard_Boolean^ xgp_Trsf::GetRotation(xgp_XYZ^ theAxis, Standard_Real theAngle) {
+    Standard_Boolean xgp_Trsf::GetRotation(xgp_XYZ^ theAxis, Standard_Real theAngle) {
         return NativeHandle->GetRotation(theAxis->GetXYZ(), theAngle);
     };
 
@@ -291,8 +291,8 @@ namespace TKMath
     //! It is a 3 rows * 4 columns matrix.
     //! This coefficient includes the scale factor.
     //! Raises OutOfRanged if Row < 1 or Row > 3 or Col < 1 or Col > 4
-    Standard_Real^ xgp_Trsf::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_Trsf::Value(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->Value(Row, Col);
     };
 
     void xgp_Trsf::Invert() {
@@ -335,8 +335,8 @@ namespace TKMath
         NativeHandle->PreMultiply(T->GetTrsf());
     };
 
-    void xgp_Trsf::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_Trsf::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -347,12 +347,12 @@ namespace TKMath
     //!
     //! Raises if N < 0 and if the matrix of the transformation not
     //! inversible.
-    xgp_Trsf^ xgp_Trsf::Powered(Standard_Integer^ N) {
-        return gcnew xgp_Trsf(NativeHandle->Powered(*N));
+    xgp_Trsf^ xgp_Trsf::Powered(Standard_Integer N) {
+        return gcnew xgp_Trsf(NativeHandle->Powered(N));
     };
 
-    void xgp_Trsf::Transforms(Standard_Real^ X, Standard_Real^ Y, Standard_Real^ Z) {
-        NativeHandle->Transforms(gp_XYZ (*X, *Y, *Z));
+    void xgp_Trsf::Transforms(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+        NativeHandle->Transforms(gp_XYZ (X, Y, Z));
     };
 
     //! Transformation of a triplet XYZ with a Trsf

@@ -77,7 +77,7 @@ namespace TKBRep {
         //! Returns true if this shape is null. In other words, it
         //! references no underlying shape with the potential to
         //! be given a location and an orientation.
-        Standard_Boolean^ IsNull();
+        Standard_Boolean IsNull();
 
         //! Destroys the reference to the underlying shape
         //! stored in this shape. As a result, this shape becomes null.
@@ -114,49 +114,49 @@ namespace TKBRep {
         XTopAbs_ShapeEnum ShapeType();
 
         //! Returns the free flag.
-        Standard_Boolean^ Free();
+        Standard_Boolean Free();
 
         //! Sets the free flag.
         void Free(Standard_Boolean theIsFree);
 
         //! Returns the locked flag.
-        Standard_Boolean^ Locked();
+        Standard_Boolean Locked();
 
         //! Sets the locked flag.
         void Locked(Standard_Boolean theIsLocked);
 
         //! Returns the modification flag.
-        Standard_Boolean^ Modified();
+        Standard_Boolean Modified();
 
         //! Sets the modification flag.
         void Modified(Standard_Boolean theIsModified);
 
         //! Returns the checked flag.
-        Standard_Boolean^ Checked();
+        Standard_Boolean Checked();
 
         //! Sets the checked flag.
         void Checked(Standard_Boolean theIsChecked);
 
         //! Returns the orientability flag.
-        Standard_Boolean^ Orientable();
+        Standard_Boolean Orientable();
 
         //! Sets the orientability flag.
         void Orientable(Standard_Boolean theIsOrientable);
 
         //! Returns the closedness flag.
-        Standard_Boolean^ Closed();
+        Standard_Boolean Closed();
 
         //! Sets the closedness flag.
         void Closed(Standard_Boolean theIsClosed);
 
         //! Returns the infinity flag.
-        Standard_Boolean^ Infinite();
+        Standard_Boolean Infinite();
 
         //! Sets the infinity flag.
         void Infinite(Standard_Boolean theIsInfinite);
 
         //! Returns the convexness flag.
-        Standard_Boolean^ Convex();
+        Standard_Boolean Convex();
 
         //! Sets the convexness flag.
         void Convex(Standard_Boolean theIsConvex);
@@ -196,34 +196,34 @@ namespace TKBRep {
 
         //! Returns the number of direct sub-shapes (children).
         //! @sa TopoDS_Iterator for accessing sub-shapes
-        Standard_Integer^ NbChildren();
+        Standard_Integer NbChildren();
 
         //! Returns True if two shapes  are partners, i.e.  if
         //! they   share   the   same  TShape.  Locations  and
         //! Orientations may differ.
-        Standard_Boolean^ IsPartner(XTopoDS_Shape^ theOther);
+        Standard_Boolean IsPartner(XTopoDS_Shape^ theOther);
 
         //! Returns True if two shapes are same, i.e.  if they
         //! share  the  same TShape  with the same  Locations.
         //! Orientations may differ.
-        Standard_Boolean^ IsSame(XTopoDS_Shape^ theOther);
+        Standard_Boolean IsSame(XTopoDS_Shape^ theOther);
 
         //! Returns True if two shapes are equal, i.e. if they
         //! share the same TShape with  the same Locations and
         //! Orientations.
-        Standard_Boolean^ IsEqual(XTopoDS_Shape^ theOther);
+        Standard_Boolean IsEqual(XTopoDS_Shape^ theOther);
 
-        Standard_Boolean^ operator == (XTopoDS_Shape^ theOther) { return IsEqual(theOther); }
+        Standard_Boolean operator == (XTopoDS_Shape^ theOther) { return IsEqual(theOther); }
 
         //! Negation of the IsEqual method.
-        Standard_Boolean^ IsNotEqual(XTopoDS_Shape^ theOther) { return !IsEqual(theOther); }
-        Standard_Boolean^ operator != (XTopoDS_Shape^ theOther) { return IsNotEqual(theOther); }
+        Standard_Boolean IsNotEqual(XTopoDS_Shape^ theOther) { return !IsEqual(theOther); }
+        Standard_Boolean operator != (XTopoDS_Shape^ theOther) { return IsNotEqual(theOther); }
 
         //! Returns a hashed value denoting <me>. This value is in the range [1, theUpperBound]. It is computed from the
         //! TShape and the Location. The Orientation is not used.
         //! @param theUpperBound the upper bound of the range a computing hash code must be within
         //! @return a computed hash code, in the range [1, theUpperBound]
-        Standard_Integer^ HashCode(Standard_Integer theUpperBound);
+        Standard_Integer HashCode(Standard_Integer theUpperBound);
 
         //! Replace   <me> by  a  new   Shape with the    same
         //! Orientation and Location and a new TShape with the

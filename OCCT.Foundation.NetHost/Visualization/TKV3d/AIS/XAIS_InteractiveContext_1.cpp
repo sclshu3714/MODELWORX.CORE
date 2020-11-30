@@ -311,7 +311,7 @@ namespace TKV3d
 
     //! returns True if other entities were detected in the last mouse detection
         //! @sa HilightPreviousDetected()/HilightNextDetected().
-    Standard_Boolean^ XAIS_InteractiveContext::HasNextDetected() {
+    Standard_Boolean XAIS_InteractiveContext::HasNextDetected() {
         return NativeHandle()->HasNextDetected();
     };
 

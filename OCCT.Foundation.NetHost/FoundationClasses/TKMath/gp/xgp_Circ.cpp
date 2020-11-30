@@ -25,8 +25,8 @@ namespace TKMath
     //! A2 locates the circle and gives its orientation in 3D space.
     //! Warnings :
     //! It is not forbidden to create a circle with Radius = 0.0  Raises ConstructionError if Radius < 0.0
-    xgp_Circ::xgp_Circ(xgp_Ax2^ A2, Standard_Real^ Radius) {
-        NativeHandle = new gp_Circ(A2->GetAx2(), *Radius);
+    xgp_Circ::xgp_Circ(xgp_Ax2^ A2, Standard_Real Radius) {
+        NativeHandle = new gp_Circ(A2->GetAx2(), Radius);
     };
 
     //! ÊÍ·Å
@@ -71,12 +71,12 @@ namespace TKMath
     //! Warning. Thisnamespace TKMath  {  public ref class does not prevent the creation of a circle where Radius is null.
     //! Exceptions
     //! Standard_ConstructionError if Radius is negative.
-    void xgp_Circ::SetRadius(Standard_Real^ Radius) {
-        NativeHandle->SetRadius(*Radius);
+    void xgp_Circ::SetRadius(Standard_Real Radius) {
+        NativeHandle->SetRadius(Radius);
     };
 
     //! Computes the area of the circle.
-    Standard_Real^ xgp_Circ::Area() {
+    Standard_Real xgp_Circ::Area() {
         return  NativeHandle->Area();
     };
 
@@ -89,7 +89,7 @@ namespace TKMath
     };
 
     //! Computes the circumference of the circle.
-    Standard_Real^ xgp_Circ::Length() {
+    Standard_Real xgp_Circ::Length() {
         return NativeHandle->Length();
     };
 
@@ -109,7 +109,7 @@ namespace TKMath
     };
 
     //! Returns the radius of this circle.
-    Standard_Real^ xgp_Circ::Radius() {
+    Standard_Real xgp_Circ::Radius() {
         return NativeHandle->Radius();
     };
 
@@ -132,13 +132,13 @@ namespace TKMath
 
     //! Computes the minimum of distance between the point P and
     //! any point on the circumference of the circle.
-    Standard_Real^ xgp_Circ::Distance(xgp_Pnt^ P) {
+    Standard_Real xgp_Circ::Distance(xgp_Pnt^ P) {
         return NativeHandle->Distance(P->GetPnt());
     };
 
 
     //! Computes the square distance between <me> and the point P.
-    Standard_Real^ xgp_Circ::SquareDistance(xgp_Pnt^ P) {
+    Standard_Real xgp_Circ::SquareDistance(xgp_Pnt^ P) {
         return NativeHandle->SquareDistance(P->GetPnt());
     };
 
@@ -146,8 +146,8 @@ namespace TKMath
     //! Returns True if the point P is on the circumference.
     //! The distance between <me> and <P> must be lower or
     //! equal to LinearTolerance.
-    Standard_Boolean^ xgp_Circ::Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt(), *LinearTolerance);
+    Standard_Boolean xgp_Circ::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance) {
+        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
     };
 
     void xgp_Circ::Mirror(xgp_Pnt^ P) {
@@ -186,19 +186,19 @@ namespace TKMath
         return gcnew xgp_Circ(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Circ::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), * Ang);
+    void xgp_Circ::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a circle. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Circ^ xgp_Circ::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Circ(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Circ^ xgp_Circ::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Circ(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Circ::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Circ::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
@@ -207,8 +207,8 @@ namespace TKMath
     //! If S is negative the radius stay positive but
     //! the "XAxis" and the "YAxis" are  reversed as for
     //! an ellipse.
-    xgp_Circ^ xgp_Circ::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Circ(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Circ^ xgp_Circ::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Circ(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Circ::Transform(xgp_Trsf^ T) {

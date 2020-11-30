@@ -32,8 +32,8 @@ namespace TKMath
     //! It is yet  possible to create an Hyperbola with
     //! MajorRadius <= MinorRadius.
     //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
-    xgp_Hypr2d::xgp_Hypr2d(xgp_Ax2d^ MajorAxis, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius, Standard_Boolean^ Sense) {
-        NativeHandle = new gp_Hypr2d(MajorAxis->GetAx2d(), *MajorRadius, *MinorRadius, *Sense);
+    xgp_Hypr2d::xgp_Hypr2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
+        NativeHandle = new gp_Hypr2d(MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
     };
 
 
@@ -52,8 +52,8 @@ namespace TKMath
     //! It is yet  possible to create an Hyperbola with
     //! MajorRadius <= MinorRadius.
     //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
-    xgp_Hypr2d::xgp_Hypr2d(xgp_Ax22d^ A, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius) {
-        NativeHandle = new gp_Hypr2d(A->GetAx22d(), *MajorRadius, *MinorRadius);
+    xgp_Hypr2d::xgp_Hypr2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+        NativeHandle = new gp_Hypr2d(A->GetAx22d(), MajorRadius, MinorRadius);
     };
 
 
@@ -86,16 +86,16 @@ namespace TKMath
     //! Exceptions
     //! Standard_ConstructionError if MajorRadius or
     //! MinorRadius is negative.
-    void xgp_Hypr2d::SetMajorRadius(Standard_Real^ MajorRadius) {
-        NativeHandle->SetMajorRadius(*MajorRadius);
+    void xgp_Hypr2d::SetMajorRadius(Standard_Real MajorRadius) {
+        NativeHandle->SetMajorRadius(MajorRadius);
     };
 
     //! Modifies the major or minor radius of this hyperbola.
     //! Exceptions
     //! Standard_ConstructionError if MajorRadius or
     //! MinorRadius is negative.
-    void xgp_Hypr2d::SetMinorRadius(Standard_Real^ MinorRadius) {
-        NativeHandle->SetMinorRadius(*MinorRadius);
+    void xgp_Hypr2d::SetMinorRadius(Standard_Real MinorRadius) {
+        NativeHandle->SetMinorRadius(MinorRadius);
     };
 
     //! Modifies this hyperbola, by redefining its local
@@ -186,14 +186,14 @@ namespace TKMath
     //! Returns the excentricity of the hyperbola (e > 1).
     //! If f is the distance between the location of the hyperbola
     //! and the Focus1 then the eccentricity e = f / MajorRadius. Raises DomainError if MajorRadius = 0.0.
-    Standard_Real^ xgp_Hypr2d::Eccentricity() {
+    Standard_Real xgp_Hypr2d::Eccentricity() {
         return NativeHandle->Eccentricity();
     };
 
 
     //! Computes the focal distance. It is the distance between the
     //! "Location" of the hyperbola and "Focus1" or "Focus2".
-    Standard_Real^ xgp_Hypr2d::Focal() {
+    Standard_Real xgp_Hypr2d::Focal() {
         return NativeHandle->Focal();
     };
 
@@ -222,14 +222,14 @@ namespace TKMath
 
     //! Returns the major radius of the hyperbola (it is the radius
     //! corresponding to the "XAxis" of the hyperbola).
-    Standard_Real^ xgp_Hypr2d::MajorRadius() {
+    Standard_Real xgp_Hypr2d::MajorRadius() {
         return NativeHandle->MajorRadius();
     };
 
 
     //! Returns the minor radius of the hyperbola (it is the radius
     //! corresponding to the "YAxis" of the hyperbola).
-    Standard_Real^ xgp_Hypr2d::MinorRadius() {
+    Standard_Real xgp_Hypr2d::MinorRadius() {
         return NativeHandle->MinorRadius();
     };
 
@@ -245,7 +245,7 @@ namespace TKMath
     //! Returns p = (e * e - 1) * MajorRadius where e is the
     //! eccentricity of the hyperbola.
     //! Raises DomainError if MajorRadius = 0.0
-    Standard_Real^ xgp_Hypr2d::Parameter() {
+    Standard_Real xgp_Hypr2d::Parameter() {
         return NativeHandle->Parameter();
     };
 
@@ -288,7 +288,7 @@ namespace TKMath
 
     //! Returns true if the local coordinate system is direct
     //! and false in the other case.
-    Standard_Boolean^ xgp_Hypr2d::IsDirect() {
+    Standard_Boolean xgp_Hypr2d::IsDirect() {
         return NativeHandle->IsDirect();
     };
 
@@ -314,19 +314,19 @@ namespace TKMath
         return gcnew xgp_Hypr2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Hypr2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Hypr2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates an hyperbola. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Hypr2d^ xgp_Hypr2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Hypr2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Hypr2d^ xgp_Hypr2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Hypr2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Hypr2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Hypr2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
@@ -334,8 +334,8 @@ namespace TKMath
     //! If <S> is positive only the location point is
     //! modified. But if <S> is negative the "XAxis" is
     //! reversed and the "YAxis" too.
-    xgp_Hypr2d^ xgp_Hypr2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Hypr2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Hypr2d^ xgp_Hypr2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Hypr2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Hypr2d::Transform(xgp_Trsf2d^ T) {

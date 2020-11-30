@@ -30,8 +30,8 @@ namespace TKMath
     //! It is possible to create an ellipse with
     //! MajorRadius = MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-    xgp_Elips2d::xgp_Elips2d(xgp_Ax2d^ MajorAxis, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius, Standard_Boolean^ Sense) {
-        NativeHandle = new gp_Elips2d(MajorAxis->GetAx2d(), *MajorRadius, *MinorRadius, *Sense);
+    xgp_Elips2d::xgp_Elips2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
+        NativeHandle = new gp_Elips2d(MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
     };
 
     //! Creates an ellipse with radii MajorRadius and
@@ -49,8 +49,8 @@ namespace TKMath
     //! It is possible to create an ellipse with
     //! MajorRadius = MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-    xgp_Elips2d::xgp_Elips2d(xgp_Ax22d^ A, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius) {
-        NativeHandle = new gp_Elips2d(A->GetAx22d(), *MajorRadius, *MinorRadius);
+    xgp_Elips2d::xgp_Elips2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+        NativeHandle = new gp_Elips2d(A->GetAx22d(), MajorRadius, MinorRadius);
     };
 
 
@@ -80,14 +80,14 @@ namespace TKMath
 
     //! Changes the value of the major radius.
     //! Raises ConstructionError if MajorRadius < MinorRadius.
-    void xgp_Elips2d::SetMajorRadius(Standard_Real^ MajorRadius) {
-        NativeHandle->SetMajorRadius(*MajorRadius);
+    void xgp_Elips2d::SetMajorRadius(Standard_Real MajorRadius) {
+        NativeHandle->SetMajorRadius(MajorRadius);
     };
 
     //! Changes the value of the minor radius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
-    void xgp_Elips2d::SetMinorRadius(Standard_Real^ MinorRadius) {
-        NativeHandle->SetMinorRadius(*MinorRadius);
+    void xgp_Elips2d::SetMinorRadius(Standard_Real MinorRadius) {
+        NativeHandle->SetMinorRadius(MinorRadius);
     };
 
     //! Modifies this ellipse, by redefining its local coordinate system so that
@@ -115,7 +115,7 @@ namespace TKMath
     };
 
     //! Computes the area of the ellipse.
-    Standard_Real^ xgp_Elips2d::Area() {
+    Standard_Real xgp_Elips2d::Area() {
         return NativeHandle->Area();
     };
 
@@ -156,14 +156,14 @@ namespace TKMath
     //! If f is the distance between the center of the ellipse and
     //! the Focus1 then the eccentricity e = f / MajorRadius.
     //! Returns 0 if MajorRadius = 0.
-    Standard_Real^ xgp_Elips2d::Eccentricity() {
+    Standard_Real xgp_Elips2d::Eccentricity() {
         return NativeHandle->Eccentricity();
     };
 
 
     //! Returns the distance between the center of the ellipse
     //! and focus1 or focus2.
-    Standard_Real^ xgp_Elips2d::Focal() {
+    Standard_Real xgp_Elips2d::Focal() {
         return NativeHandle->Focal();
     };
 
@@ -187,12 +187,12 @@ namespace TKMath
     };
 
     //! Returns the major radius of the Ellipse.
-    Standard_Real^ xgp_Elips2d::MajorRadius() {
+    Standard_Real xgp_Elips2d::MajorRadius() {
         return NativeHandle->MajorRadius();
     };
 
     //! Returns the minor radius of the Ellipse.
-    Standard_Real^ xgp_Elips2d::MinorRadius() {
+    Standard_Real xgp_Elips2d::MinorRadius() {
         return NativeHandle->MinorRadius();
     };
 
@@ -200,7 +200,7 @@ namespace TKMath
     //! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
     //! of the ellipse.
     //! Returns 0 if MajorRadius = 0
-    Standard_Real^ xgp_Elips2d::Parameter() {
+    Standard_Real xgp_Elips2d::Parameter() {
         return NativeHandle->Parameter();
     };
 
@@ -230,7 +230,7 @@ namespace TKMath
 
     //! Returns true if the local coordinate system is direct
     //! and false in the other case.
-    Standard_Boolean^ xgp_Elips2d::IsDirect() {
+    Standard_Boolean xgp_Elips2d::IsDirect() {
         return NativeHandle->IsDirect();
     };
 
@@ -256,22 +256,22 @@ namespace TKMath
         return gcnew xgp_Elips2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Elips2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Elips2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
-    xgp_Elips2d^ xgp_Elips2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Elips2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Elips2d^ xgp_Elips2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Elips2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Elips2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Elips2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
     //! Scales a ellipse. S is the scaling value.
-    xgp_Elips2d^ xgp_Elips2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Elips2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Elips2d^ xgp_Elips2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Elips2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Elips2d::Transform(xgp_Trsf2d^ T) {

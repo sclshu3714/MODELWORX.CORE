@@ -61,24 +61,24 @@ namespace TKMath
 		return gcnew xgp_Pnt(tmp);
 	}
 
-	Standard_Boolean^ xgp_Ax1::IsCoaxial(xgp_Ax1^ Other, Standard_Real^ AngularTolerance, Standard_Real^ LinearTolerance) {
-		return NativeHandle->IsCoaxial(Other->GetAx1(), *AngularTolerance, *LinearTolerance);
+	Standard_Boolean xgp_Ax1::IsCoaxial(xgp_Ax1^ Other, Standard_Real AngularTolerance, Standard_Real LinearTolerance) {
+		return NativeHandle->IsCoaxial(Other->GetAx1(), AngularTolerance, LinearTolerance);
 	}
 
-	Standard_Boolean^ xgp_Ax1::IsNormal(xgp_Ax1^ Other, Standard_Real^ AngularTolerance) {
-		return NativeHandle->IsNormal(Other->GetAx1(), *AngularTolerance);
+	Standard_Boolean xgp_Ax1::IsNormal(xgp_Ax1^ Other, Standard_Real AngularTolerance) {
+		return NativeHandle->IsNormal(Other->GetAx1(), AngularTolerance);
 	}
 
 
-	Standard_Boolean xgp_Ax1::IsOpposite(xgp_Ax1^ Other, Standard_Real^ AngularTolerance) {
-		return NativeHandle->IsOpposite(Other->GetAx1(), *AngularTolerance);
+	Standard_Boolean xgp_Ax1::IsOpposite(xgp_Ax1^ Other, Standard_Real AngularTolerance) {
+		return NativeHandle->IsOpposite(Other->GetAx1(), AngularTolerance);
 	}
 
-	Standard_Boolean^ xgp_Ax1::IsParallel(xgp_Ax1^ Other, Standard_Real^ AngularTolerance) {
-		return NativeHandle->IsParallel(Other->GetAx1(), *AngularTolerance);
+	Standard_Boolean xgp_Ax1::IsParallel(xgp_Ax1^ Other, Standard_Real AngularTolerance) {
+		return NativeHandle->IsParallel(Other->GetAx1(), AngularTolerance);
 	}
 
-	Standard_Real^ xgp_Ax1::Angle(xgp_Ax1^ Other) {
+	Standard_Real xgp_Ax1::Angle(xgp_Ax1^ Other) {
 		return NativeHandle->Angle(Other->GetAx1());
 	}
 	void xgp_Ax1::Reverse() {
@@ -109,20 +109,20 @@ namespace TKMath
 		return gcnew xgp_Ax1(NativeHandle->Mirrored(A2->GetAx2()));
 	}
 
-	void xgp_Ax1::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-		NativeHandle->Rotate(A1->GetAx1(), *Ang);
+	void xgp_Ax1::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+		NativeHandle->Rotate(A1->GetAx1(), Ang);
 	}
 
-	xgp_Ax1^ xgp_Ax1::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-		return gcnew xgp_Ax1(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+	xgp_Ax1^ xgp_Ax1::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+		return gcnew xgp_Ax1(NativeHandle->Rotated(A1->GetAx1(), Ang));
 	}
 
-	void xgp_Ax1::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-		NativeHandle->Scale(P->GetPnt(), *S);
+	void xgp_Ax1::Scale(xgp_Pnt^ P, Standard_Real S) {
+		NativeHandle->Scale(P->GetPnt(), S);
 	}
 
-	xgp_Ax1^ xgp_Ax1::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-		return gcnew xgp_Ax1(NativeHandle->Scaled(P->GetPnt(),*S));
+	xgp_Ax1^ xgp_Ax1::Scaled(xgp_Pnt^ P, Standard_Real S) {
+		return gcnew xgp_Ax1(NativeHandle->Scaled(P->GetPnt(),S));
 	}
 
 	void xgp_Ax1::Transform(xgp_Trsf^ T) {

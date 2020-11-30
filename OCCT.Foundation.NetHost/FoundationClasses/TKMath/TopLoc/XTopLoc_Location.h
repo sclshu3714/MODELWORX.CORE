@@ -61,7 +61,7 @@ namespace TKMath {
         TopLoc_Location GetLocation();
 
         //! Returns true if this location is equal to the Identity transformation.
-        Standard_Boolean^ IsIdentity();
+        Standard_Boolean IsIdentity();
 
         //! Resets this location to the Identity transformation.
         void Identity();
@@ -77,7 +77,7 @@ namespace TKMath {
         //! elementary datum.
         //! Exceptions
         //! Standard_NoSuchObject if this location is empty.
-        Standard_Integer^ FirstPower();
+        Standard_Integer FirstPower();
 
         //! Returns  a Location representing  <me> without the
         //! first datum. We have the relation :
@@ -126,14 +126,14 @@ namespace TKMath {
         //! retrieve the object easily, and is in the range [1, theUpperBound].
         //! @param theUpperBound the upper bound of the range a computing hash code must be within
         //! @return a computed hash code, in the range [1, theUpperBound]
-        Standard_Integer^ HashCode(Standard_Integer theUpperBound);
+        Standard_Integer HashCode(Standard_Integer theUpperBound);
 
         //! Returns true if this location and the location Other
         //! have the same elementary data, i.e. contain the same
         //! series of TopLoc_Datum3D and respective powers.
         //! This method is an alias for operator ==.
-        Standard_Boolean^ IsEqual(XTopLoc_Location^ Other);
-        Standard_Boolean^ operator == (XTopLoc_Location^ Other)
+        Standard_Boolean IsEqual(XTopLoc_Location^ Other);
+        Standard_Boolean operator == (XTopLoc_Location^ Other)
         {
             return IsEqual(Other);
         }
@@ -142,8 +142,8 @@ namespace TKMath {
         //! not have the same elementary data, i.e. do not
         //! contain the same series of TopLoc_Datum3D and respective powers.
         //! This method is an alias for operator !=.
-        Standard_Boolean^ IsDifferent(XTopLoc_Location^ Other);
-        Standard_Boolean^ operator != (XTopLoc_Location^ Other)
+        Standard_Boolean IsDifferent(XTopLoc_Location^ Other);
+        Standard_Boolean operator != (XTopLoc_Location^ Other)
         {
             return IsDifferent(Other);
         }
@@ -170,7 +170,7 @@ namespace TKMath {
     //! @param theLocation the location which hash code is to be computed
     //! @param theUpperBound the upper bound of the range a computing hash code must be within
     //! @return a computed hash code, in the range [1, theUpperBound]
-    inline Standard_Integer^ HashCode(XTopLoc_Location^ theLocation, Standard_Integer theUpperBound)
+    inline Standard_Integer HashCode(XTopLoc_Location^ theLocation, Standard_Integer theUpperBound)
     {
         return theLocation->GetLocation().HashCode(theUpperBound);
     }

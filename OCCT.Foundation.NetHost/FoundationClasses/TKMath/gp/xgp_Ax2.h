@@ -155,7 +155,7 @@ namespace TKMath
         //! Computes the angular value, in radians, between the main direction of
         //! <me> and the main direction of <Other>. Returns the angle
         //! between 0 and PI in radians.
-        Standard_Real^ Angle(xgp_Ax2^ Other);
+        Standard_Real Angle(xgp_Ax2^ Other);
 
         //ªÒ»°gp_Ax2
         gp_Ax2 GetAx2();
@@ -180,7 +180,7 @@ namespace TKMath
         //! Returns the "YDirection" of <me>.
         xgp_Dir^ YDirection();
 
-        Standard_Boolean^ IsCoplanar(xgp_Ax2^ Other, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsCoplanar(xgp_Ax2^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
 
         //! Returns True if
@@ -188,7 +188,7 @@ namespace TKMath
         //! is lower of equal to LinearTolerance and
         //! . the main direction of <me> and the direction of A1 are normal.
         //! Note: the tolerance criterion for angular equality is given by AngularTolerance.
-        Standard_Boolean^ IsCoplanar(xgp_Ax1^ A1, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsCoplanar(xgp_Ax1^ A1, Standard_Real LinearTolerance, Standard_Real AngularTolerance);
 
 
         //! Performs a symmetrical transformation of this coordinate
@@ -300,15 +300,15 @@ namespace TKMath
         //! coordinate system.
         xgp_Ax2^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates an axis placement. <A1> is the axis of the
         //! rotation . Ang is the angular value of the rotation
         //! in radians.
-        xgp_Ax2^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Ax2^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Applies a scaling transformation on the axis placement.
@@ -318,7 +318,7 @@ namespace TKMath
         //! . the main direction of the axis placement is not changed.
         //! . The "XDirection" and the "YDirection" are reversed.
         //! So the axis placement stay right handed.
-        xgp_Ax2^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Ax2^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

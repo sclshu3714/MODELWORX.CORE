@@ -87,7 +87,7 @@ namespace TKMath
         //! Raises ConstructionError
         //! * if Radius is lower than 0.0
         //! * Abs(Ang) < Resolution from gp  or Abs(Ang) >= (PI/2) - Resolution.
-        xgp_Cone(xgp_Ax3^ A3, Standard_Real^ Ang, Standard_Real^ Radius);
+        xgp_Cone(xgp_Ax3^ A3, Standard_Real Ang, Standard_Real Radius);
 
 
         // Õ∑≈
@@ -115,14 +115,14 @@ namespace TKMath
         //! Changes the radius of the cone in the reference plane of
         //! the cone.
         //! Raised if R < 0.0
-        void SetRadius(Standard_Real^ R);
+        void SetRadius(Standard_Real R);
 
 
         //! Changes the semi-angle of the cone.
         //! Semi-angle can be negative. Its absolute value
         //! Abs(Ang) is in range ]0,PI/2[.
         //! Raises ConstructionError if Abs(Ang) < Resolution from gp or Abs(Ang) >= PI/2 - Resolution
-        void SetSemiAngle(Standard_Real^ Ang);
+        void SetSemiAngle(Standard_Real Ang);
 
 
         //! Computes the cone's top. The Apex of the cone is on the
@@ -137,7 +137,7 @@ namespace TKMath
         void VReverse();
 
         //! Returns true if the local coordinate system of this cone is right-handed.
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
         //! returns the symmetry axis of the cone.
         xgp_Ax1^ Axis();
@@ -158,11 +158,11 @@ namespace TKMath
 
 
         //! Returns the radius of the cone in the reference plane.
-        Standard_Real^ RefRadius();
+        Standard_Real RefRadius();
 
         //! Returns the half-angle at the apex of this cone.
         //! Attention! Semi-angle can be negative.
-        Standard_Real^ SemiAngle();
+        Standard_Real SemiAngle();
 
         //! Returns the XAxis of the reference plane.
         xgp_Ax1^ XAxis();
@@ -194,19 +194,19 @@ namespace TKMath
         //! of the symmetry : (Location, XDirection, YDirection).
         xgp_Cone^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a cone. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Cone^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Cone^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a cone. S is the scaling value.
         //! The absolute value of S is used to scale the cone
-        xgp_Cone^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Cone^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

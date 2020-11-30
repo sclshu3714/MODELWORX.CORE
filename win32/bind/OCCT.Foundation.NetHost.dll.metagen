@@ -340,7 +340,7 @@ Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_XYZ, TKMath.xgp_XYZ, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Mat): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Mat*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -349,47 +349,47 @@ Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Mat* Handle 'get ' : 
   Methods:
-    SetCol(ValueType Int32 IsBoxed, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetCol(Int32, xgp_XYZ): PrivateScope, Public, HideBySig
     SetCols(xgp_XYZ, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
     SetCross(xgp_XYZ): PrivateScope, Public, HideBySig
-    SetDiagonal(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetDiagonal(Double, Double, Double): PrivateScope, Public, HideBySig
     SetDot(xgp_XYZ): PrivateScope, Public, HideBySig
     SetIdentity(): PrivateScope, Public, HideBySig
-    SetRotation(xgp_XYZ, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetRow(ValueType Int32 IsBoxed, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetRotation(xgp_XYZ, Double): PrivateScope, Public, HideBySig
+    SetRow(Int32, xgp_XYZ): PrivateScope, Public, HideBySig
     SetRows(xgp_XYZ, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetScale(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetScale(Double): PrivateScope, Public, HideBySig
+    SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
     GetMat(gp_Mat*): PrivateScope, Public, HideBySig
-    Column(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Column(Int32): PrivateScope, Public, HideBySig
     Determinant(): PrivateScope, Public, HideBySig
     Diagonal(): PrivateScope, Public, HideBySig
-    Row(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    ChangeValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Row(Int32): PrivateScope, Public, HideBySig
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
+    ChangeValue(Int32, Int32): PrivateScope, Public, HideBySig
+    op_FunctionCall(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName
     IsSingular(): PrivateScope, Public, HideBySig
     Add(xgp_Mat): PrivateScope, Public, HideBySig
     op_AdditionAssignment(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
     Added(xgp_Mat): PrivateScope, Public, HideBySig
     op_Addition(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiplied(Double): PrivateScope, Public, HideBySig
     Multiplied(xgp_Mat): PrivateScope, Public, HideBySig
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
     Multiply(xgp_Mat): PrivateScope, Public, HideBySig
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
     op_MultiplicationAssignment(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
     PreMultiply(xgp_Mat): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Subtract(xgp_Mat): PrivateScope, Public, HideBySig
     op_SubtractionAssignment(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
     Subtracted(xgp_Mat): PrivateScope, Public, HideBySig
@@ -400,7 +400,7 @@ Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XYZ*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -409,15 +409,15 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_XYZ* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetZ(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
     GetXYZ(gp_XYZ*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    ChangeCoord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
+    ChangeCoord(Int32): PrivateScope, Public, HideBySig
     GetData(): PrivateScope, Public, HideBySig
     ChangeData(): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
@@ -425,7 +425,7 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Z(): PrivateScope, Public, HideBySig
     Modulus(): PrivateScope, Public, HideBySig
     SquareModulus(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_XYZ, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_XYZ, Double): PrivateScope, Public, HideBySig
     Add(xgp_XYZ): PrivateScope, Public, HideBySig
     op_AdditionAssignment(xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName
     Added(xgp_XYZ): PrivateScope, Public, HideBySig
@@ -438,24 +438,24 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     CrossSquareMagnitude(xgp_XYZ): PrivateScope, Public, HideBySig
     CrossCross(xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
     CrossCrossed(xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Dot(xgp_XYZ): PrivateScope, Public, HideBySig
     op_Multiply(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName
     DotCross(xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
     Multiply(xgp_Mat): PrivateScope, Public, HideBySig
     Multiply(xgp_XYZ): PrivateScope, Public, HideBySig
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_Mat): PrivateScope, Public, HideBySig, SpecialName
     op_MultiplicationAssignment(xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
     Multiplied(xgp_Mat): PrivateScope, Public, HideBySig
     Multiplied(xgp_XYZ): PrivateScope, Public, HideBySig
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiplied(Double): PrivateScope, Public, HideBySig
     Normalize(): PrivateScope, Public, HideBySig
     Normalized(): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
@@ -465,16 +465,16 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Subtracted(xgp_XYZ): PrivateScope, Public, HideBySig
     op_Subtraction(xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName
     SetLinearForm(xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ, ValueType Double IsBoxed, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XYZ, Double, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XYZ, Double, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XYZ, Double, xgp_XYZ, Double, xgp_XYZ): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XYZ, Double, xgp_XYZ, Double, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Pnt2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -484,30 +484,30 @@ Class TKMath.xgp_Pnt2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Pnt2d* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
     SetXY(xgp_XY): PrivateScope, Public, HideBySig
     GetPnt2d(gp_Pnt2d*): PrivateScope, Public, HideBySig
     Coord(): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     XY(): PrivateScope, Public, HideBySig
     ChangeCoord(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -531,10 +531,10 @@ Class TKMath.xgp_Ax2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetAx2d(gp_Ax2d*): PrivateScope, Public, HideBySig
     Location(): PrivateScope, Public, HideBySig
     Direction(): PrivateScope, Public, HideBySig
-    IsCoaxial(xgp_Ax2d, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Ax2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Ax2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Ax2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsCoaxial(xgp_Ax2d, Double, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Ax2d, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Ax2d, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Ax2d, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Ax2d): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
@@ -542,10 +542,10 @@ Class TKMath.xgp_Ax2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -566,8 +566,8 @@ Class TKMath.xgp_GTrsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     gp_GTrsf2d* Handle 'get ' : 
   Methods:
     GetGTrsf2d(gp_GTrsf2d*): PrivateScope, Public, HideBySig
-    SetAffinity(xgp_Ax2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetAffinity(xgp_Ax2d, Double): PrivateScope, Public, HideBySig
+    SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
     SetTranslationPart(xgp_XY): PrivateScope, Public, HideBySig
     SetTrsf2d(xgp_Trsf2d): PrivateScope, Public, HideBySig
     SetVectorialPart(xgp_Mat2d): PrivateScope, Public, HideBySig
@@ -576,8 +576,8 @@ Class TKMath.xgp_GTrsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Form(): PrivateScope, Public, HideBySig
     TranslationPart(): PrivateScope, Public, HideBySig
     VectorialPart(): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
+    op_FunctionCall(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
     Multiplied(xgp_GTrsf2d): PrivateScope, Public, HideBySig
@@ -585,8 +585,8 @@ Class TKMath.xgp_GTrsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Multiply(xgp_GTrsf2d): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_GTrsf2d): PrivateScope, Public, HideBySig, SpecialName
     PreMultiply(xgp_GTrsf2d): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Transforms(Double, Double): PrivateScope, Public, HideBySig
     Transforms(xgp_XY): PrivateScope, Public, HideBySig
     Transformed(xgp_XY): PrivateScope, Public, HideBySig
@@ -603,44 +603,44 @@ Class TKMath.xgp_Mat2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Mat2d* Handle 'get ' : 
   Methods:
-    SetCol(ValueType Int32 IsBoxed, xgp_XY): PrivateScope, Public, HideBySig
+    SetCol(Int32, xgp_XY): PrivateScope, Public, HideBySig
     SetCols(xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
-    SetDiagonal(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetDiagonal(Double, Double): PrivateScope, Public, HideBySig
     SetIdentity(): PrivateScope, Public, HideBySig
-    SetRotation(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetRow(ValueType Int32 IsBoxed, xgp_XY): PrivateScope, Public, HideBySig
+    SetRotation(Double): PrivateScope, Public, HideBySig
+    SetRow(Int32, xgp_XY): PrivateScope, Public, HideBySig
     SetRows(xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
-    SetScale(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetScale(Double): PrivateScope, Public, HideBySig
+    SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
     GetMat2d(gp_Mat2d*): PrivateScope, Public, HideBySig
-    Column(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Column(Int32): PrivateScope, Public, HideBySig
     Determinant(): PrivateScope, Public, HideBySig
     Diagonal(): PrivateScope, Public, HideBySig
-    Row(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    ChangeValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Row(Int32): PrivateScope, Public, HideBySig
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
+    ChangeValue(Int32, Int32): PrivateScope, Public, HideBySig
+    op_FunctionCall(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName
     IsSingular(): PrivateScope, Public, HideBySig
     Add(xgp_Mat2d): PrivateScope, Public, HideBySig
     op_AdditionAssignment(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
     Added(xgp_Mat2d): PrivateScope, Public, HideBySig
     op_Addition(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiplied(Double): PrivateScope, Public, HideBySig
     Multiplied(xgp_Mat2d): PrivateScope, Public, HideBySig
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
     Multiply(xgp_Mat2d): PrivateScope, Public, HideBySig
     PreMultiply(xgp_Mat2d): PrivateScope, Public, HideBySig
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Subtract(xgp_Mat2d): PrivateScope, Public, HideBySig
     op_SubtractionAssignment(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
     Subtracted(xgp_Mat2d): PrivateScope, Public, HideBySig
@@ -650,7 +650,7 @@ Class TKMath.xgp_Mat2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XY*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -659,19 +659,19 @@ Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_XY* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
     GetXY(gp_XY*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    ChangeCoord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
+    ChangeCoord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     Modulus(): PrivateScope, Public, HideBySig
     SquareModulus(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_XY, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_XY, Double): PrivateScope, Public, HideBySig
     Add(xgp_XY): PrivateScope, Public, HideBySig
     op_AdditionAssignment(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
     Added(xgp_XY): PrivateScope, Public, HideBySig
@@ -680,23 +680,23 @@ Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     op_ExclusiveOr(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
     CrossMagnitude(xgp_XY): PrivateScope, Public, HideBySig
     CrossSquareMagnitude(xgp_XY): PrivateScope, Public, HideBySig
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Dot(xgp_XY): PrivateScope, Public, HideBySig
     op_Multiply(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
     Multiply(xgp_Mat2d): PrivateScope, Public, HideBySig
     Multiply(xgp_XY): PrivateScope, Public, HideBySig
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_Mat2d): PrivateScope, Public, HideBySig, SpecialName
     op_MultiplicationAssignment(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
     Multiplied(xgp_Mat2d): PrivateScope, Public, HideBySig
     Multiplied(xgp_XY): PrivateScope, Public, HideBySig
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiplied(Double): PrivateScope, Public, HideBySig
     Normalize(): PrivateScope, Public, HideBySig
     Normalized(): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
@@ -704,16 +704,16 @@ Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     op_Subtraction(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
     op_UnaryNegation(): PrivateScope, Public, HideBySig, SpecialName
     SetLinearForm(xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XY, ValueType Double IsBoxed, xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_XY, ValueType Double IsBoxed, xgp_XY): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XY, Double, xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_XY, Double, xgp_XY): PrivateScope, Public, HideBySig
     Subtract(xgp_XY): PrivateScope, Public, HideBySig
     op_SubtractionAssignment(xgp_XY): PrivateScope, Public, HideBySig, SpecialName
     Subtracted(xgp_XY): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Dir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -724,21 +724,21 @@ Class TKMath.xgp_Dir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Dir2d* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
     SetXY(xgp_XY): PrivateScope, Public, HideBySig
     GetDir2d(gp_Dir2d*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     XY(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Dir2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Dir2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Dir2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Dir2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Dir2d, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Dir2d, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Dir2d, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Dir2d, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Dir2d): PrivateScope, Public, HideBySig
     Crossed(xgp_Dir2d): PrivateScope, Public, HideBySig
     op_ExclusiveOr(xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName
@@ -751,15 +751,15 @@ Class TKMath.xgp_Dir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Dir2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Dir2d): PrivateScope, Public, HideBySig
-    Rotate(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(Double): PrivateScope, Public, HideBySig
+    Rotated(Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Vec2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -770,21 +770,21 @@ Class TKMath.xgp_Vec2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Vec2d* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
     SetXY(xgp_XY): PrivateScope, Public, HideBySig
     GetVec2d(gp_Vec2d*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     XY(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Vec2d, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Vec2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Vec2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Vec2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Vec2d, Double, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Vec2d, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Vec2d, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Vec2d, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Vec2d): PrivateScope, Public, HideBySig
     Magnitude(): PrivateScope, Public, HideBySig
     SquareMagnitude(): PrivateScope, Public, HideBySig
@@ -796,17 +796,17 @@ Class TKMath.xgp_Vec2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     op_ExclusiveOr(xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName
     CrossMagnitude(xgp_Vec2d): PrivateScope, Public, HideBySig
     CrossSquareMagnitude(xgp_Vec2d): PrivateScope, Public, HideBySig
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Dot(xgp_Vec2d): PrivateScope, Public, HideBySig
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName
     GetNormal(): PrivateScope, Public, HideBySig
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Multiplied(Double): PrivateScope, Public, HideBySig
     Normalize(): PrivateScope, Public, HideBySig
     Normalized(): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
@@ -817,17 +817,17 @@ Class TKMath.xgp_Vec2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     op_SubtractionAssignment(xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName
     Subtracted(xgp_Vec2d): PrivateScope, Public, HideBySig
     SetLinearForm(xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec2d, ValueType Double IsBoxed, xgp_Vec2d): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec2d, ValueType Double IsBoxed, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec2d, Double, xgp_Vec2d): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec2d, Double, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirror(xgp_Vec2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Vec2d): PrivateScope, Public, HideBySig
-    Rotate(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(Double): PrivateScope, Public, HideBySig
+    Rotated(Double): PrivateScope, Public, HideBySig
+    Scale(Double): PrivateScope, Public, HideBySig
+    Scaled(Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
@@ -844,14 +844,14 @@ Class TKMath.xgp_Trsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     SetMirror(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetMirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    SetRotation(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetScale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRotation(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    SetScale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     SetTransformation(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetTransformation(xgp_Ax2d, xgp_Ax2d): PrivateScope, Public, HideBySig
     SetTranslation(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
     SetTranslation(xgp_Vec2d): PrivateScope, Public, HideBySig
     SetTranslationPart(xgp_Vec2d): PrivateScope, Public, HideBySig
-    SetScaleFactor(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetScaleFactor(Double): PrivateScope, Public, HideBySig
     GetTrsf2d(gp_Trsf2d*): PrivateScope, Public, HideBySig
     IsNegative(): PrivateScope, Public, HideBySig
     Form(): PrivateScope, Public, HideBySig
@@ -860,7 +860,7 @@ Class TKMath.xgp_Trsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     VectorialPart(): PrivateScope, Public, HideBySig
     HVectorialPart(): PrivateScope, Public, HideBySig
     RotationPart(): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
     Multiplied(xgp_Trsf2d): PrivateScope, Public, HideBySig
@@ -868,11 +868,11 @@ Class TKMath.xgp_Trsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Multiply(xgp_Trsf2d): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_Trsf2d): PrivateScope, Public, HideBySig, SpecialName
     PreMultiply(xgp_Trsf2d): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Transforms(xgp_XY): PrivateScope, Public, HideBySig
-    Transforms(ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValues(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Transforms(Double, Double): PrivateScope, Public, HideBySig
+    SetValues(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Ax2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -900,18 +900,18 @@ Class TKMath.xgp_Ax2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Location(): PrivateScope, Public, HideBySig
     XDirection(): PrivateScope, Public, HideBySig
     YDirection(): PrivateScope, Public, HideBySig
-    IsCoplanar(xgp_Ax1, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsCoplanar(xgp_Ax2, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsCoplanar(xgp_Ax1, Double, Double): PrivateScope, Public, HideBySig
+    IsCoplanar(xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -922,7 +922,7 @@ Class TKMath.xgp_Ax2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Vec: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -933,23 +933,23 @@ Class TKMath.xgp_Vec: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Vec* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetZ(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
     SetXYZ(xgp_XYZ): PrivateScope, Public, HideBySig
     GetVec(gp_Vec*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     Z(): PrivateScope, Public, HideBySig
     XYZ(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Vec, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Vec, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Vec, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Vec, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Vec, Double, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Vec, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Vec, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Vec, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Vec): PrivateScope, Public, HideBySig
     AngleWithRef(xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
     Magnitude(): PrivateScope, Public, HideBySig
@@ -963,15 +963,15 @@ Class TKMath.xgp_Vec: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Subtracted(xgp_Vec): PrivateScope, Public, HideBySig
     op_UnaryNegation(): PrivateScope, Public, HideBySig, SpecialName
     op_Subtraction(xgp_Vec): PrivateScope, Public, HideBySig, SpecialName
-    Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Multiplied(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Multiply(Double): PrivateScope, Public, HideBySig
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Multiplied(Double): PrivateScope, Public, HideBySig
     op_Multiply(xgp_Vec): PrivateScope, Public, HideBySig, SpecialName
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divide(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_DivisionAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Divided(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    op_Division(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divide(Double): PrivateScope, Public, HideBySig
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Divided(Double): PrivateScope, Public, HideBySig
+    op_Division(Double): PrivateScope, Public, HideBySig, SpecialName
     Cross(xgp_Vec): PrivateScope, Public, HideBySig
     op_ExclusiveOrAssignment(xgp_Vec): PrivateScope, Public, HideBySig, SpecialName
     Crossed(xgp_Vec): PrivateScope, Public, HideBySig
@@ -987,27 +987,27 @@ Class TKMath.xgp_Vec: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
     SetLinearForm(xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec): PrivateScope, Public, HideBySig
-    SetLinearForm(ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec, ValueType Double IsBoxed, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec, Double, xgp_Vec): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec, Double, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec, Double, xgp_Vec, Double, xgp_Vec): PrivateScope, Public, HideBySig
+    SetLinearForm(Double, xgp_Vec, Double, xgp_Vec, Double, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Vec): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Vec): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(Double): PrivateScope, Public, HideBySig
+    Scaled(Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1018,23 +1018,23 @@ Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Dir* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetZ(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
     SetXYZ(xgp_XYZ): PrivateScope, Public, HideBySig
     GetDir(gp_Dir*): PrivateScope, Public, HideBySig
-    Coord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Double, Double, Double): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     Z(): PrivateScope, Public, HideBySig
     XYZ(): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Dir, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Dir, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Dir, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Dir, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Dir, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Dir, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Dir, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Dir, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Dir): PrivateScope, Public, HideBySig
     AngleWithRef(xgp_Dir, xgp_Dir): PrivateScope, Public, HideBySig
     Cross(xgp_Dir): PrivateScope, Public, HideBySig
@@ -1055,8 +1055,8 @@ Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Dir): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
@@ -1077,10 +1077,10 @@ Class TKMath.xgp_Ax1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     Direction(): PrivateScope, Public, HideBySig
     Location(): PrivateScope, Public, HideBySig
-    IsCoaxial(xgp_Ax1, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsNormal(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsOpposite(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsParallel(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsCoaxial(xgp_Ax1, Double, Double): PrivateScope, Public, HideBySig
+    IsNormal(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    IsOpposite(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    IsParallel(xgp_Ax1, Double): PrivateScope, Public, HideBySig
     Angle(xgp_Ax1): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
@@ -1090,10 +1090,10 @@ Class TKMath.xgp_Ax1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -1131,18 +1131,18 @@ Class TKMath.xgp_Ax3: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     XDirection(): PrivateScope, Public, HideBySig
     YDirection(): PrivateScope, Public, HideBySig
     Direct(): PrivateScope, Public, HideBySig
-    IsCoplanar(xgp_Ax1, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsCoplanar(xgp_Ax3, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    IsCoplanar(xgp_Ax1, Double, Double): PrivateScope, Public, HideBySig
+    IsCoplanar(xgp_Ax3, Double, Double): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -1153,11 +1153,11 @@ Class TKMath.xgp_Ax3: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Quaternion: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Mat): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Vec, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Vec, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec, TKMath.xgp_Vec, TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec, TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Quaternion): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Quaternion*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Quaternion*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1170,14 +1170,14 @@ Class TKMath.xgp_Quaternion: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     IsEqual(xgp_Quaternion): PrivateScope, Public, HideBySig
     SetRotation(xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
     SetRotation(xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
-    SetVectorAndAngle(xgp_Vec, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetVectorAndAngle(xgp_Vec, Double): PrivateScope, Public, HideBySig
     GetVectorAndAngle(xgp_Vec, Double): PrivateScope, Public, HideBySig
     SetMatrix(xgp_Mat): PrivateScope, Public, HideBySig
     GetMatrix(): PrivateScope, Public, HideBySig
-    SetEulerAngles(ValueType Int32 IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetEulerAngles(xgp_EulerSequence, Double, Double, Double): PrivateScope, Public, HideBySig
     GetEulerAngles(ValueType Int32 IsBoxed, Double, Double, Double): PrivateScope, Public, HideBySig
     Set(xgp_Quaternion): PrivateScope, Public, HideBySig
-    Set(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Set(Double, Double, Double, Double): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     Z(): PrivateScope, Public, HideBySig
@@ -1189,13 +1189,13 @@ Class TKMath.xgp_Quaternion: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Inverted(): PrivateScope, Public, HideBySig
     SquareNorm(): PrivateScope, Public, HideBySig
     Norm(): PrivateScope, Public, HideBySig
-    Scale(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Scale(Double): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_Quaternion): PrivateScope, Public, HideBySig, SpecialName
-    op_MultiplicationAssignment(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
-    Scaled(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    Scaled(Double): PrivateScope, Public, HideBySig
     op_Multiply(xgp_Vec): PrivateScope, Public, HideBySig, SpecialName
     op_Multiply(xgp_Quaternion): PrivateScope, Public, HideBySig, SpecialName
-    op_Multiply(ValueType Double IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
     StabilizeLength(): PrivateScope, Public, HideBySig
     Normalize(): PrivateScope, Public, HideBySig
     Normalized(): PrivateScope, Public, HideBySig
@@ -1230,8 +1230,8 @@ Class TKMath.xgp_Trsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetMirror(xgp_Ax1): PrivateScope, Public, HideBySig
     SetMirror(xgp_Pnt): PrivateScope, Public, HideBySig
     SetRotation(xgp_Quaternion): PrivateScope, Public, HideBySig
-    SetRotation(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetScale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRotation(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    SetScale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     SetDisplacement(xgp_Ax3, xgp_Ax3): PrivateScope, Public, HideBySig
     SetTransformation(xgp_Quaternion, xgp_Vec): PrivateScope, Public, HideBySig
     SetTransformation(xgp_Ax3): PrivateScope, Public, HideBySig
@@ -1239,9 +1239,9 @@ Class TKMath.xgp_Trsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetTranslation(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     SetTranslation(xgp_Vec): PrivateScope, Public, HideBySig
     SetTranslationPart(xgp_Vec): PrivateScope, Public, HideBySig
-    SetScaleFactor(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetTrsfForm(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    SetValues(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetScaleFactor(Double): PrivateScope, Public, HideBySig
+    SetTrsfForm(xgp_TrsfForm): PrivateScope, Public, HideBySig
+    SetValues(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     GetTrsf(gp_Trsf*): PrivateScope, Public, HideBySig
     IsNegative(): PrivateScope, Public, HideBySig
     Form(): PrivateScope, Public, HideBySig
@@ -1251,7 +1251,7 @@ Class TKMath.xgp_Trsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetRotation(xgp_XYZ, Double): PrivateScope, Public, HideBySig
     VectorialPart(): PrivateScope, Public, HideBySig
     HVectorialPart(): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
     Multiplied(xgp_Trsf): PrivateScope, Public, HideBySig
@@ -1259,15 +1259,15 @@ Class TKMath.xgp_Trsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Multiply(xgp_Trsf): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName
     PreMultiply(xgp_Trsf): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Transforms(xgp_XYZ): PrivateScope, Public, HideBySig
-    Transforms(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Transforms(Double, Double, Double): PrivateScope, Public, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Pnt: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1277,23 +1277,23 @@ Class TKMath.xgp_Pnt: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Pnt* Handle 'get ' : 
   Methods:
-    SetCoord(ValueType Double IsBoxed, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetCoord(ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetX(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetY(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetZ(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetCoord(Int32, Double): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
     SetXYZ(xgp_XYZ): PrivateScope, Public, HideBySig
     GetPnt(gp_Pnt*): PrivateScope, Public, HideBySig
     Coord(): PrivateScope, Public, HideBySig
     Coord(Double, Double, Double): PrivateScope, Public, HideBySig
-    Coord(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
     Y(): PrivateScope, Public, HideBySig
     Z(): PrivateScope, Public, HideBySig
     XYZ(): PrivateScope, Public, HideBySig
     ChangeCoord(): PrivateScope, Public, HideBySig
-    BaryCenter(ValueType Double IsBoxed, xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    IsEqual(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    BaryCenter(Double, xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    IsEqual(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Pnt): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
@@ -1302,10 +1302,10 @@ Class TKMath.xgp_Pnt: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -1604,9 +1604,9 @@ Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     gp_GTrsf* Handle 'get ' : 
   Methods:
     GetGTrsf(gp_GTrsf*): PrivateScope, Public, HideBySig
-    SetAffinity(xgp_Ax2, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetAffinity(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetValue(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetAffinity(xgp_Ax2, Double): PrivateScope, Public, HideBySig
+    SetAffinity(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
     SetVectorialPart(xgp_Mat): PrivateScope, Public, HideBySig
     SetTranslationPart(xgp_XYZ): PrivateScope, Public, HideBySig
     SetTrsf(xgp_Trsf): PrivateScope, Public, HideBySig
@@ -1616,8 +1616,8 @@ Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetForm(): PrivateScope, Public, HideBySig
     TranslationPart(): PrivateScope, Public, HideBySig
     VectorialPart(): PrivateScope, Public, HideBySig
-    Value(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    op_FunctionCall(ValueType Int32 IsBoxed, ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    Value(Int32, Int32): PrivateScope, Public, HideBySig
+    op_FunctionCall(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName
     Invert(): PrivateScope, Public, HideBySig
     Inverted(): PrivateScope, Public, HideBySig
     Multiplied(xgp_GTrsf): PrivateScope, Public, HideBySig
@@ -1625,8 +1625,8 @@ Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Multiply(xgp_GTrsf): PrivateScope, Public, HideBySig
     op_MultiplicationAssignment(xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName
     PreMultiply(xgp_GTrsf): PrivateScope, Public, HideBySig
-    Power(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
-    Powered(ValueType Int32 IsBoxed): PrivateScope, Public, HideBySig
+    Power(Int32): PrivateScope, Public, HideBySig
+    Powered(Int32): PrivateScope, Public, HideBySig
     Transforms(Double, Double, Double): PrivateScope, Public, HideBySig
     Transforms(xgp_XYZ): PrivateScope, Public, HideBySig
     Trsf(): PrivateScope, Public, HideBySig
@@ -2262,7 +2262,7 @@ Class TKV3d.XAIS_InteractiveObject: AutoLayout, AnsiClass, Class, Public, Before
     GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
     Type(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Signature(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Redisplay(ValueType Boolean IsBoxed): PrivateScope, Public, HideBySig
+    Redisplay(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     HasInteractiveContext(): PrivateScope, Public, HideBySig
     InteractiveContext(): PrivateScope, Public, HideBySig
     SetContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -2348,6 +2348,49 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XTPrsStd_AISPresentation(): PrivateScope, Public, HideBySig
+Struct xgp_EulerSequence: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    xgp_EulerSequence gp_EulerAngles = 0 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_YawPitchRoll = 1 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_XYZ = 2 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_XZY = 3 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_YZX = 4 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_YXZ = 5 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_ZXY = 6 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_ZYX = 7 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_XYZ = 8 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_XZY = 9 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_YZX = 10 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_YXZ = 11 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_ZXY = 12 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_ZYX = 13 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_XYX = 14 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_XZX = 15 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_YZY = 16 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_YXY = 17 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_ZYZ = 18 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Extrinsic_ZXZ = 19 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_XYX = 20 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_XZX = 21 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_YZY = 22 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_YXY = 23 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_ZXZ = 24 : Public, Static, Literal, HasDefault
+    xgp_EulerSequence gp_Intrinsic_ZYZ = 25 : Public, Static, Literal, HasDefault
+Struct xgp_TrsfForm: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    xgp_TrsfForm gp_Identity = 0 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Rotation = 1 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Translation = 2 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_PntMirror = 3 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Ax1Mirror = 4 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Ax2Mirror = 5 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Scale = 6 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_CompoundTrsf = 7 : Public, Static, Literal, HasDefault
+    xgp_TrsfForm gp_Other = 8 : Public, Static, Literal, HasDefault
 Struct XAspect_TypeOfFacingModel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -3383,8 +3426,8 @@ Class TKMath.xgp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     OY2d(): PrivateScope, Public, Static, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax2d, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Ax22d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Ax22d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3410,10 +3453,10 @@ Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3423,7 +3466,7 @@ Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax2, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3436,7 +3479,7 @@ Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
-    SetRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
     Area(): PrivateScope, Public, HideBySig
     Axis(): PrivateScope, Public, HideBySig
     Length(): PrivateScope, Public, HideBySig
@@ -3447,17 +3490,17 @@ Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     YAxis(): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Pnt): PrivateScope, Public, HideBySig
-    Contains(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Contains(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3467,8 +3510,8 @@ Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax22d, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax2d, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3482,10 +3525,10 @@ Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetXAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig
     SetYAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
-    SetRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
     Area(): PrivateScope, Public, HideBySig
     Coefficients(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
-    Contains(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Contains(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Length(): PrivateScope, Public, HideBySig
@@ -3502,10 +3545,10 @@ Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3515,7 +3558,7 @@ Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax3, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax3, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cone): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cone*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3528,8 +3571,8 @@ Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
-    SetRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetSemiAngle(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
+    SetSemiAngle(Double): PrivateScope, Public, HideBySig
     Apex(): PrivateScope, Public, HideBySig
     UReverse(): PrivateScope, Public, HideBySig
     VReverse(): PrivateScope, Public, HideBySig
@@ -3548,10 +3591,10 @@ Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3561,7 +3604,7 @@ Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax3, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax3, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cylinder): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cylinder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3574,7 +3617,7 @@ Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
-    SetRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
     UReverse(): PrivateScope, Public, HideBySig
     VReverse(): PrivateScope, Public, HideBySig
     Direct(): PrivateScope, Public, HideBySig
@@ -3591,10 +3634,10 @@ Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3604,7 +3647,7 @@ Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax2, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3616,8 +3659,8 @@ Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetElips(gp_Elips*): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
-    SetMajorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetMinorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetMajorRadius(Double): PrivateScope, Public, HideBySig
+    SetMinorRadius(Double): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
     Area(): PrivateScope, Public, HideBySig
     Axis(): PrivateScope, Public, HideBySig
@@ -3640,10 +3683,10 @@ Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3653,8 +3696,8 @@ Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax22d, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax2d, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3665,8 +3708,8 @@ Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     GetElips2d(gp_Elips2d*): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    SetMajorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetMinorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetMajorRadius(Double): PrivateScope, Public, HideBySig
+    SetMinorRadius(Double): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig
     SetXAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetYAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
@@ -3692,10 +3735,10 @@ Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3705,7 +3748,7 @@ Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Hypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax2, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Hypr): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Hypr*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3717,8 +3760,8 @@ Class TKMath.xgp_Hypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetHypr(gp_Hypr*): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
-    SetMajorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetMinorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetMajorRadius(Double): PrivateScope, Public, HideBySig
+    SetMinorRadius(Double): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
     Asymptote1(): PrivateScope, Public, HideBySig
     Asymptote2(): PrivateScope, Public, HideBySig
@@ -3745,10 +3788,10 @@ Class TKMath.xgp_Hypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3758,8 +3801,8 @@ Class TKMath.xgp_Hypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Hypr2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax22d, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax2d, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Hypr2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Hypr2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3770,8 +3813,8 @@ Class TKMath.xgp_Hypr2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     GetHypr2d(gp_Hypr2d*): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    SetMajorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetMinorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetMajorRadius(Double): PrivateScope, Public, HideBySig
+    SetMinorRadius(Double): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig
     SetXAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetYAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
@@ -3801,10 +3844,10 @@ Class TKMath.xgp_Hypr2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3834,7 +3877,7 @@ Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Location(): PrivateScope, Public, HideBySig
     Position(): PrivateScope, Public, HideBySig
     Angle(xgp_Lin): PrivateScope, Public, HideBySig
-    Contains(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Contains(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Distance(xgp_Lin): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Lin): PrivateScope, Public, HideBySig
@@ -3846,10 +3889,10 @@ Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3859,7 +3902,7 @@ Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Lin2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3881,7 +3924,7 @@ Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Location(): PrivateScope, Public, HideBySig
     Position(): PrivateScope, Public, HideBySig
     Angle(xgp_Lin2d): PrivateScope, Public, HideBySig
-    Contains(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Contains(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Distance(xgp_Lin2d): PrivateScope, Public, HideBySig
     Distance(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SquareDistance(xgp_Lin2d): PrivateScope, Public, HideBySig
@@ -3891,10 +3934,10 @@ Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3905,7 +3948,7 @@ Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Parab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax1, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax2, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Parab): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Parab*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3916,7 +3959,7 @@ Class TKMath.xgp_Parab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     GetParab(gp_Parab*): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
-    SetFocal(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetFocal(Double): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
     Axis(): PrivateScope, Public, HideBySig
@@ -3934,10 +3977,10 @@ Class TKMath.xgp_Parab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -3947,9 +3990,9 @@ Class TKMath.xgp_Parab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Parab2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax2d, TKMath.xgp_Pnt2d, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax22d, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(TKMath.xgp_Ax2d, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, TKMath.xgp_Pnt2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Parab2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Parab2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3959,7 +4002,7 @@ Class TKMath.xgp_Parab2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     gp_Parab2d* Handle 'get ' : 
   Methods:
     GetParab2d(gp_Parab2d*): PrivateScope, Public, HideBySig
-    SetFocal(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetFocal(Double): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SetMirrorAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig
@@ -3978,10 +4021,10 @@ Class TKMath.xgp_Parab2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
@@ -3991,7 +4034,7 @@ Class TKMath.xgp_Parab2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Pln: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(System.ValueType, System.ValueType, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax3): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pln): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4021,18 +4064,18 @@ Class TKMath.xgp_Pln: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SquareDistance(xgp_Pnt): PrivateScope, Public, HideBySig
     XAxis(): PrivateScope, Public, HideBySig
     YAxis(): PrivateScope, Public, HideBySig
-    Contains(xgp_Lin, ValueType Double IsBoxed, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Contains(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Contains(xgp_Lin, Double, Double): PrivateScope, Public, HideBySig
+    Contains(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -4042,7 +4085,7 @@ Class TKMath.xgp_Pln: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Sphere: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax3, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax3, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Sphere): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Sphere*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4054,7 +4097,7 @@ Class TKMath.xgp_Sphere: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetSphere(gp_Sphere*): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
-    SetRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetRadius(Double): PrivateScope, Public, HideBySig
     Area(): PrivateScope, Public, HideBySig
     Coefficients(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     UReverse(): PrivateScope, Public, HideBySig
@@ -4072,10 +4115,10 @@ Class TKMath.xgp_Sphere: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -4085,7 +4128,7 @@ Class TKMath.xgp_Sphere: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Torus: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(TKMath.xgp_Ax3, System.ValueType, System.ValueType): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax3, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Torus): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Torus*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4096,8 +4139,8 @@ Class TKMath.xgp_Torus: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
-    SetMajorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    SetMinorRadius(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetMajorRadius(Double): PrivateScope, Public, HideBySig
+    SetMinorRadius(Double): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
     GetTorus(gp_Torus*): PrivateScope, Public, HideBySig
     Area(): PrivateScope, Public, HideBySig
@@ -4119,10 +4162,10 @@ Class TKMath.xgp_Torus: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Mirrored(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirrored(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirrored(xgp_Pnt): PrivateScope, Public, HideBySig
-    Rotate(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Rotated(xgp_Ax1, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Rotate(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Rotated(xgp_Ax1, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt, Double): PrivateScope, Public, HideBySig
     Transform(xgp_Trsf): PrivateScope, Public, HideBySig
     Transformed(xgp_Trsf): PrivateScope, Public, HideBySig
     Translate(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
@@ -4285,6 +4328,7 @@ Class TKBO.XBRepAlgoAPI_Cut: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     BRepAlgoAPI_Cut* IHandle 'get set' : 
   Methods:
+    Shape(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepAlgoAPI_Cut*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
@@ -4466,6 +4510,208 @@ Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetWire(TopoDS_Wire*): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetVertex(TopoDS_Vertex*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetCurveHandle(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reversed(): PrivateScope, Public, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(Double): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetEdge(TopoDS_Edge*): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG2d.XGeom2d_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetGeometryHandle(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
+    GetGeometry(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
+    Mirror(xgp_Ax2d): PrivateScope, Public, HideBySig
+    Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Translate(xgp_Vec2d): PrivateScope, Public, HideBySig
+    Transform(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
+    Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
+    Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
+    Translated(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Translated(xgp_Vec2d): PrivateScope, Public, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XGeom2d_Geometry(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom2d_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG2d.XGeom2d_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG2d.XGeom2d_Geometry
+    Void .ctor(opencascade.handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetCurveHandle(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
+    GetCurve(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    TransformedParameter(Double, xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ParametricTransformation(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reversed(): PrivateScope, Public, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D0(Double, xgp_Pnt2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D1(Double, xgp_Pnt2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D2(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    D3(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(Double): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom2d_Curve(): PrivateScope, Public, HideBySig
+Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Curve): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepBuilderAPI_MakeEdge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    Initialize(BRepBuilderAPI_MakeEdge*): PrivateScope, Public, HideBySig
+    SetMakeEdgeHandle(BRepBuilderAPI_MakeEdge*): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface, XTopoDS_Vertex, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface, xgp_Pnt, xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface, xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XGeom_Surface): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve, XTopoDS_Vertex, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve, xgp_Pnt, xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve, xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom_Curve): PrivateScope, Public, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Error(): PrivateScope, Public, HideBySig
+    Edge(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    Vertex1(): PrivateScope, Public, HideBySig
+    Vertex2(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKBRep.XTopoDS_Face, TKBRep.XTopoDS_Wire): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4505,26 +4751,6 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, 
     SetMakeFaceHandle(BRepBuilderAPI_MakeFace*): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetEdge(TopoDS_Edge*): PrivateScope, Public, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetVertex(TopoDS_Vertex*): PrivateScope, Public, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKBRep.XTopoDS_Wire, TKBRep.XTopoDS_Edge): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4623,125 +4849,6 @@ Class TKBRep.XTopoDS_HShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     set_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     ~XTopoDS_HShape(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG2d.XGeom2d_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(opencascade.handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    opencascade.handle<Standard_Transient> IHandle 'get set' : 
-  Methods:
-    SetGeometryHandle(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
-    GetGeometry(handle<Geom2d_Geometry>*): PrivateScope, Public, HideBySig
-    Mirror(xgp_Ax2d): PrivateScope, Public, HideBySig
-    Mirror(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotate(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
-    Scale(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
-    Translate(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Translate(xgp_Vec2d): PrivateScope, Public, HideBySig
-    Transform(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Mirrored(xgp_Ax2d): PrivateScope, Public, HideBySig
-    Mirrored(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Rotated(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
-    Scaled(xgp_Pnt2d, Double): PrivateScope, Public, HideBySig
-    Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
-    Translated(xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
-    Translated(xgp_Vec2d): PrivateScope, Public, HideBySig
-    Copy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGeom2d_Geometry(): PrivateScope, Public, HideBySig
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class NCollection_Haft<opencascade::handle<Geom2d_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG2d.XGeom2d_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKG2d.XGeom2d_Geometry
-    Void .ctor(opencascade.handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    opencascade.handle<Standard_Transient> IHandle 'get set' : 
-  Methods:
-    SetCurveHandle(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
-    GetCurve(handle<Geom2d_Curve>*): PrivateScope, Public, HideBySig
-    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    TransformedParameter(Double, xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    ParametricTransformation(xgp_Trsf2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Reversed(): PrivateScope, Public, HideBySig
-    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D0(Double, xgp_Pnt2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D1(Double, xgp_Pnt2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D2(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D3(Double, xgp_Pnt2d, xgp_Vec2d, xgp_Vec2d, xgp_Vec2d): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Value(Double): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom2d_Curve(): PrivateScope, Public, HideBySig
-Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
-Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKG3d.XGeom_Geometry
-    Void .ctor(opencascade.handle<Geom_Curve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    opencascade.handle<Standard_Transient> IHandle 'get set' : 
-  Methods:
-    SetCurveHandle(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
-    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
-    Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Reversed(): PrivateScope, Public, HideBySig
-    FirstParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    LastParameter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Period(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Continuity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Value(Double): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

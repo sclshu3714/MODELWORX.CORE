@@ -31,8 +31,8 @@ namespace TKMath
     //! Raises ConstructionError
     //! * if Radius is lower than 0.0
     //! * Abs(Ang) < Resolution from gp  or Abs(Ang) >= (PI/2) - Resolution.
-    xgp_Cone::xgp_Cone(xgp_Ax3^ A3, Standard_Real^ Ang, Standard_Real^ Radius) {
-        NativeHandle = new gp_Cone(A3->GetAx3(), *Ang, *Radius);
+    xgp_Cone::xgp_Cone(xgp_Ax3^ A3, Standard_Real Ang, Standard_Real Radius) {
+        NativeHandle = new gp_Cone(A3->GetAx3(), Ang, Radius);
     };
 
 
@@ -77,8 +77,8 @@ namespace TKMath
     //! Changes the radius of the cone in the reference plane of
     //! the cone.
     //! Raised if R < 0.0
-    void xgp_Cone::SetRadius(Standard_Real^ R) {
-        NativeHandle->SetRadius(*R);
+    void xgp_Cone::SetRadius(Standard_Real R) {
+        NativeHandle->SetRadius(R);
     };
 
 
@@ -86,8 +86,8 @@ namespace TKMath
     //! Semi-angle can be negative. Its absolute value
     //! Abs(Ang) is in range ]0,PI/2[.
     //! Raises ConstructionError if Abs(Ang) < Resolution from gp or Abs(Ang) >= PI/2 - Resolution
-    void xgp_Cone::SetSemiAngle(Standard_Real^ Ang) {
-        NativeHandle->SetSemiAngle(*Ang);
+    void xgp_Cone::SetSemiAngle(Standard_Real Ang) {
+        NativeHandle->SetSemiAngle(Ang);
     };
 
 
@@ -109,7 +109,7 @@ namespace TKMath
     };
 
     //! Returns true if the local coordinate system of this cone is right-handed.
-    Standard_Boolean^ xgp_Cone::Direct() {
+    Standard_Boolean xgp_Cone::Direct() {
         return NativeHandle->Direct();
     };
 
@@ -140,13 +140,13 @@ namespace TKMath
 
 
     //! Returns the radius of the cone in the reference plane.
-    Standard_Real^ xgp_Cone::RefRadius() {
+    Standard_Real xgp_Cone::RefRadius() {
         return NativeHandle->RefRadius();
     };
 
     //! Returns the half-angle at the apex of this cone.
     //! Attention! Semi-angle can be negative.
-    Standard_Real^ xgp_Cone::SemiAngle() {
+    Standard_Real xgp_Cone::SemiAngle() {
         return NativeHandle->SemiAngle();
     };
 
@@ -196,26 +196,26 @@ namespace TKMath
         return gcnew xgp_Cone(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Cone::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Cone::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a cone. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Cone^ xgp_Cone::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Cone(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Cone^ xgp_Cone::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Cone(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Cone::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Cone::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a cone. S is the scaling value.
     //! The absolute value of S is used to scale the cone
-    xgp_Cone^ xgp_Cone::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Cone(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Cone^ xgp_Cone::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Cone(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Cone::Transform(xgp_Trsf^ T) {

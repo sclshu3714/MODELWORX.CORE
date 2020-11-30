@@ -33,8 +33,8 @@
 //! Two specific values are provided for most frequently used
 //! conventions: classic Euler angles (intrinsic ZXZ) and
 //! yaw-pitch-roll (intrinsic ZYX).
-[FlagsAttribute]
-[Serializable]
+//[FlagsAttribute]
+//[Serializable]
 public enum class xgp_EulerSequence
 {
   //! Classic Euler angles, alias to Intrinsic_ZXZ

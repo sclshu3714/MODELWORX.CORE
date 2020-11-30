@@ -21,8 +21,8 @@ namespace TKMath
     };
 
     //! Creates quaternion directly from component values
-    xgp_Quaternion::xgp_Quaternion(Standard_Real^ x, Standard_Real^ y, Standard_Real^ z, Standard_Real^ w) {
-        NativeHandle = new gp_Quaternion(*x, *y, *z, *w);
+    xgp_Quaternion::xgp_Quaternion(Standard_Real x, Standard_Real y, Standard_Real z, Standard_Real w) {
+        NativeHandle = new gp_Quaternion(x, y, z, w);
     };
 
     //! Creates copy of another quaternion
@@ -47,8 +47,8 @@ namespace TKMath
 
     //! Creates quaternion representing rotation on angle
     //! theAngle around vector theAxis
-    xgp_Quaternion::xgp_Quaternion(xgp_Vec^ theAxis, Standard_Real^ theAngle) {
-        NativeHandle = new gp_Quaternion(theAxis->GetVec(), *theAngle);
+    xgp_Quaternion::xgp_Quaternion(xgp_Vec^ theAxis, Standard_Real theAngle) {
+        NativeHandle = new gp_Quaternion(theAxis->GetVec(), theAngle);
     };
 
     //! Creates quaternion from rotation matrix 3*3
@@ -77,7 +77,7 @@ namespace TKMath
     };
 
     //! Simple equal test without precision
-    Standard_Boolean^ xgp_Quaternion::IsEqual(xgp_Quaternion^ theOther) {
+    Standard_Boolean xgp_Quaternion::IsEqual(xgp_Quaternion^ theOther) {
         return NativeHandle->IsEqual(theOther->GetQuaternion());
     };
 
@@ -98,8 +98,8 @@ namespace TKMath
     };
 
     //! Create a unit quaternion from Axis+Angle representation
-    void xgp_Quaternion::SetVectorAndAngle(xgp_Vec^ theAxis, Standard_Real^ theAngle) {
-        NativeHandle->SetVectorAndAngle(theAxis->GetVec(), *theAngle);
+    void xgp_Quaternion::SetVectorAndAngle(xgp_Vec^ theAxis, Standard_Real theAngle) {
+        NativeHandle->SetVectorAndAngle(theAxis->GetVec(), theAngle);
     };
 
     //! Convert a quaternion to Axis+Angle representation,
@@ -124,8 +124,8 @@ namespace TKMath
 
     //! Create a unit quaternion representing rotation defined
     //! by generalized Euler angles
-    void xgp_Quaternion::SetEulerAngles(int^ EulerSequence, Standard_Real^ theAlpha, Standard_Real^ theBeta, Standard_Real^ theGamma) {
-        NativeHandle->SetEulerAngles((gp_EulerSequence)*EulerSequence, *theAlpha, *theBeta, *theGamma);
+    void xgp_Quaternion::SetEulerAngles(xgp_EulerSequence EulerSequence, Standard_Real theAlpha, Standard_Real theBeta, Standard_Real theGamma) {
+        NativeHandle->SetEulerAngles(safe_cast<gp_EulerSequence>(EulerSequence), theAlpha, theBeta, theGamma);
     };
 
     //! Returns Euler angles describing current rotation
@@ -133,27 +133,27 @@ namespace TKMath
         NativeHandle->GetEulerAngles((gp_EulerSequence)*EulerSequence, theAlpha, theBeta, theGamma);
     };
 
-    void xgp_Quaternion::Set(Standard_Real^ x, Standard_Real^ y, Standard_Real^ z, Standard_Real^ w) {
-        NativeHandle->Set(*x, *y, *z, *w);
+    void xgp_Quaternion::Set(Standard_Real x, Standard_Real y, Standard_Real z, Standard_Real w) {
+        NativeHandle->Set(x, y, z, w);
     };
 
     void xgp_Quaternion::Set(xgp_Quaternion^ theQuaternion) {
         NativeHandle->Set(theQuaternion->GetQuaternion());
     };
 
-    Standard_Real^ xgp_Quaternion::X() {
+    Standard_Real xgp_Quaternion::X() {
         return NativeHandle->X();
     };
 
-    Standard_Real^ xgp_Quaternion::Y() {
+    Standard_Real xgp_Quaternion::Y() {
         return NativeHandle->Y();
     };
 
-    Standard_Real^ xgp_Quaternion::Z() {
+    Standard_Real xgp_Quaternion::Z() {
         return NativeHandle->Z();
     };
 
-    Standard_Real^ xgp_Quaternion::W() {
+    Standard_Real xgp_Quaternion::W() {
         return NativeHandle->W();
     };
 
@@ -183,24 +183,24 @@ namespace TKMath
     };
 
     //! Returns square norm of quaternion
-    Standard_Real^ xgp_Quaternion::SquareNorm() {
+    Standard_Real xgp_Quaternion::SquareNorm() {
         return NativeHandle->SquareNorm();
     };
 
     //! Returns norm of quaternion
-    Standard_Real^ xgp_Quaternion::Norm() {
+    Standard_Real xgp_Quaternion::Norm() {
         return NativeHandle->Norm();
     };
 
     //! Scale all components by quaternion by theScale; note that
     //! rotation is not changed by this operation (except 0-scaling)
-    void xgp_Quaternion::Scale(Standard_Real^ theScale) {
-        NativeHandle->Scale(*theScale);
+    void xgp_Quaternion::Scale(Standard_Real theScale) {
+        NativeHandle->Scale(theScale);
     };
 
     //! Returns scaled quaternion
-    xgp_Quaternion^ xgp_Quaternion::Scaled(Standard_Real^ theScale) {
-        return gcnew xgp_Quaternion(NativeHandle->Scaled(*theScale));
+    xgp_Quaternion^ xgp_Quaternion::Scaled(Standard_Real theScale) {
+        return gcnew xgp_Quaternion(NativeHandle->Scaled(theScale));
     };
 
     //! Stabilize quaternion length within 1 - 1/4.
@@ -268,12 +268,12 @@ namespace TKMath
 
 
     //! Computes inner product / scalar product / Dot
-    Standard_Real^ xgp_Quaternion::Dot(xgp_Quaternion^ theOther) {
+    Standard_Real xgp_Quaternion::Dot(xgp_Quaternion^ theOther) {
              return NativeHandle->Dot(theOther->GetQuaternion());
     };
 
     //! Return rotation angle from -PI to PI
-    Standard_Real^ xgp_Quaternion::GetRotationAngle() {
+    Standard_Real xgp_Quaternion::GetRotationAngle() {
         return NativeHandle->GetRotationAngle();
     };
 

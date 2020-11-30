@@ -43,8 +43,8 @@ namespace TKMath
     //! Creates a plane from its cartesian equation :
     //! A * X + B * Y + C * Z + D = 0.0
     //! Raises ConstructionError if Sqrt (A*A + B*B + C*C) <= Resolution from gp.
-    xgp_Pln::xgp_Pln(Standard_Real^ A, Standard_Real^ B, Standard_Real^ C, Standard_Real^ D) {
-        NativeHandle = new gp_Pln(*A, *B, *C, *D);
+    xgp_Pln::xgp_Pln(Standard_Real A, Standard_Real B, Standard_Real C, Standard_Real D) {
+        NativeHandle = new gp_Pln(A, B, C, D);
     };
 
     //! ÊÍ·Å
@@ -103,7 +103,7 @@ namespace TKMath
     };
 
     //! returns true if the Ax3 is right handed.
-    Standard_Boolean^ xgp_Pln::Direct() {
+    Standard_Boolean xgp_Pln::Direct() {
         return NativeHandle->Direct();
     };
 
@@ -123,35 +123,35 @@ namespace TKMath
     };
 
     //! Computes the distance between <me> and the point <P>.
-    Standard_Real^ xgp_Pln::Distance(xgp_Pnt^ P) {
+    Standard_Real xgp_Pln::Distance(xgp_Pnt^ P) {
         return NativeHandle->Distance(P->GetPnt());
     };
 
     //! Computes the distance between <me> and the line <L>.
-    Standard_Real^ xgp_Pln::Distance(xgp_Lin^ L) {
+    Standard_Real xgp_Pln::Distance(xgp_Lin^ L) {
         return NativeHandle->Distance(L->GetLin());
     };
 
     //! Computes the distance between two planes.
-    Standard_Real^ xgp_Pln::Distance(xgp_Pln^ Other) {
+    Standard_Real xgp_Pln::Distance(xgp_Pln^ Other) {
         return NativeHandle->Distance(Other->GetPln());
     };
 
 
     //! Computes the square distance between <me> and the point <P>.
-    Standard_Real^ xgp_Pln::SquareDistance(xgp_Pnt^ P) {
+    Standard_Real xgp_Pln::SquareDistance(xgp_Pnt^ P) {
         return NativeHandle->SquareDistance(P->GetPnt());
     };
 
 
     //! Computes the square distance between <me> and the line <L>.
-    Standard_Real^ xgp_Pln::SquareDistance(xgp_Lin^ L) {
+    Standard_Real xgp_Pln::SquareDistance(xgp_Lin^ L) {
         return NativeHandle->SquareDistance(L->GetLin());
     };
 
 
     //! Computes the square distance between two planes.
-    Standard_Real^ xgp_Pln::SquareDistance(xgp_Pln^ Other) {
+    Standard_Real xgp_Pln::SquareDistance(xgp_Pln^ Other) {
         return NativeHandle->SquareDistance(Other->GetPln());
     };
 
@@ -173,8 +173,8 @@ namespace TKMath
     //! AngularTolerance, and the distance between the origin
     //! of line L and this plane is less than or equal to
     //! LinearTolerance.
-    Standard_Boolean^ xgp_Pln::Contains(xgp_Pnt^ P, Standard_Real^ LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt(), *LinearTolerance);
+    Standard_Boolean xgp_Pln::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance) {
+        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
     };
 
     //! Returns true if this plane contains the line L. This means that
@@ -185,8 +185,8 @@ namespace TKMath
     //! AngularTolerance, and the distance between the origin
     //! of line L and this plane is less than or equal to
     //! LinearTolerance.
-    Standard_Boolean^ xgp_Pln::Contains(xgp_Lin^ L, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance) {
-        return NativeHandle->Contains(L->GetLin(), *LinearTolerance, *AngularTolerance);
+    Standard_Boolean xgp_Pln::Contains(xgp_Lin^ L, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
+        return NativeHandle->Contains(L->GetLin(), LinearTolerance, AngularTolerance);
     };
 
     void xgp_Pln::Mirror(xgp_Pnt^ P) {
@@ -235,25 +235,25 @@ namespace TKMath
         return gcnew xgp_Pln(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Pln::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Pln::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! rotates a plane. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Pln^ xgp_Pln::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Pln(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Pln^ xgp_Pln::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Pln(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Pln::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Pln::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a plane. S is the scaling value.
-    xgp_Pln^ xgp_Pln::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Pln(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Pln^ xgp_Pln::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Pln(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Pln::Transform(xgp_Trsf^ T) {

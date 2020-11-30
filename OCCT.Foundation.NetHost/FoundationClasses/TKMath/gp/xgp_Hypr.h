@@ -112,7 +112,7 @@ namespace TKMath
         //! Standard_ConstructionError if MajorAxis or MinorAxis is negative.
         //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
         //! Raised if MajorRadius < 0.0 or MinorRadius < 0.0
-        xgp_Hypr(xgp_Ax2^ A2, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius);
+        xgp_Hypr(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
 
         //ÊÍ·Å
@@ -140,13 +140,13 @@ namespace TKMath
         //! Modifies the major  radius of this hyperbola.
         //! Exceptions
         //! Standard_ConstructionError if MajorRadius is negative.
-        void SetMajorRadius(Standard_Real^ MajorRadius);
+        void SetMajorRadius(Standard_Real MajorRadius);
 
 
         //! Modifies the minor  radius of this hyperbola.
         //! Exceptions
         //! Standard_ConstructionError if MinorRadius is negative.
-        void SetMinorRadius(Standard_Real^ MinorRadius);
+        void SetMinorRadius(Standard_Real MinorRadius);
 
         //! Modifies this hyperbola, by redefining its local coordinate
         //! system so that it becomes A2.
@@ -200,12 +200,12 @@ namespace TKMath
         //! Returns the excentricity of the hyperbola (e > 1).
         //! If f is the distance between the location of the hyperbola
         //! and the Focus1 then the eccentricity e = f / MajorRadius. Raises DomainError if MajorRadius = 0.0
-        Standard_Real^ Eccentricity();
+        Standard_Real Eccentricity();
 
 
         //! Computes the focal distance. It is the distance between the
         //! the two focus of the hyperbola.
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
 
         //! Returns the first focus of the hyperbola. This focus is on the
@@ -225,12 +225,12 @@ namespace TKMath
 
         //! Returns the major radius of the hyperbola. It is the radius
         //! on the "XAxis" of the hyperbola.
-        Standard_Real^ MajorRadius();
+        Standard_Real MajorRadius();
 
 
         //! Returns the minor radius of the hyperbola. It is the radius
         //! on the "YAxis" of the hyperbola.
-        Standard_Real^ MinorRadius();
+        Standard_Real MinorRadius();
 
 
         //! Returns the branch of hyperbola obtained by doing the
@@ -242,7 +242,7 @@ namespace TKMath
         //! Returns p = (e * e - 1) * MajorRadius where e is the
         //! eccentricity of the hyperbola.
         //! Raises DomainError if MajorRadius = 0.0
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
         //! Returns the coordinate system of the hyperbola.
         xgp_Ax2^ Position();
@@ -284,18 +284,18 @@ namespace TKMath
         //! of the symmetry (Location, XDirection, YDirection).
         xgp_Hypr^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates an hyperbola. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Hypr^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Hypr^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales an hyperbola. S is the scaling value.
-        xgp_Hypr^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Hypr^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

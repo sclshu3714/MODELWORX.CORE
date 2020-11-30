@@ -61,15 +61,15 @@ namespace TKMath
     //! Changes the transformation into a rotation.
     //! P is the rotation's center and Ang is the angular value of the
     //! rotation in radian.
-    void xgp_Trsf2d::SetRotation(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->SetRotation(P->GetPnt2d(), *Ang);
+    void xgp_Trsf2d::SetRotation(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->SetRotation(P->GetPnt2d(), Ang);
     };
 
 
     //! Changes the transformation into a scale.
     //! P is the center of the scale and S is the scaling value.
-    void xgp_Trsf2d::SetScale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->SetScale(P->GetPnt2d(), *S);
+    void xgp_Trsf2d::SetScale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->SetScale(P->GetPnt2d(), S);
     };
 
 
@@ -108,8 +108,8 @@ namespace TKMath
     };
 
     //! Modifies the scale factor.
-    void xgp_Trsf2d::SetScaleFactor(Standard_Real^ S) {
-        NativeHandle->SetScaleFactor(*S);
+    void xgp_Trsf2d::SetScaleFactor(Standard_Real S) {
+        NativeHandle->SetScaleFactor(S);
     };
 
     //! Returns the gp_Trsf2d
@@ -119,7 +119,7 @@ namespace TKMath
 
     //! Returns true if the determinant of the vectorial part of
     //! this transformation is negative..
-    Standard_Boolean^ xgp_Trsf2d::IsNegative() {
+    Standard_Boolean xgp_Trsf2d::IsNegative() {
         return NativeHandle->IsNegative();
     };
 
@@ -134,7 +134,7 @@ namespace TKMath
     };
 
     //! Returns the scale factor.
-    Standard_Real^ xgp_Trsf2d::ScaleFactor() {
+    Standard_Real xgp_Trsf2d::ScaleFactor() {
         return  NativeHandle->ScaleFactor();
     };
 
@@ -163,7 +163,7 @@ namespace TKMath
 
     //! Returns the angle corresponding to the rotational component
     //! of the transformation matrix (operation opposite to SetRotation()).
-    Standard_Real^ xgp_Trsf2d::RotationPart() {
+    Standard_Real xgp_Trsf2d::RotationPart() {
         return NativeHandle->RotationPart();
     };
 
@@ -171,8 +171,8 @@ namespace TKMath
     //! Returns the coefficients of the transformation's matrix.
     //! It is a 2 rows * 3 columns matrix.
     //! Raises OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-    Standard_Real^ xgp_Trsf2d::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_Trsf2d::Value(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->Value(Row, Col);
     };
 
     void xgp_Trsf2d::Invert() {
@@ -206,8 +206,8 @@ namespace TKMath
         NativeHandle->PreMultiply(T->GetTrsf2d());
     };
 
-    void xgp_Trsf2d::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_Trsf2d::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -218,12 +218,12 @@ namespace TKMath
     //!
     //! Raises if N < 0 and if the matrix of the transformation not
     //! inversible.
-    xgp_Trsf2d^ xgp_Trsf2d::Powered(Standard_Integer^ N) {
-        return gcnew xgp_Trsf2d(NativeHandle->Powered(*N));
+    xgp_Trsf2d^ xgp_Trsf2d::Powered(Standard_Integer N) {
+        return gcnew xgp_Trsf2d(NativeHandle->Powered(N));
     };
 
-    void xgp_Trsf2d::Transforms(Standard_Real^ X, Standard_Real^ Y) {
-        NativeHandle->Transforms(gp_XY(*X, *Y));
+    void xgp_Trsf2d::Transforms(Standard_Real X, Standard_Real Y) {
+        NativeHandle->Transforms(gp_XY(X, Y));
     };
 
     //! Transforms  a doublet XY with a Trsf2d
@@ -241,7 +241,7 @@ namespace TKMath
     //! The method Value(i,j) will return aij.
     //! Raises ConstructionError if the determinant of the aij is null.
     //! If the matrix as not a uniform scale it will be orthogonalized before future using.
-    void xgp_Trsf2d::SetValues(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23) {
-        NativeHandle->SetValues(*a11, *a12, *a13, *a21, *a22, *a23);
+    void xgp_Trsf2d::SetValues(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23) {
+        NativeHandle->SetValues(a11, a12, a13, a21, a22, a23);
     };
 };

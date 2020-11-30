@@ -63,8 +63,8 @@ namespace TKMath
     //! the orthogonal projection of P on the axis A1 or the
     //! plane A2, the vectors HP and HP' satisfy:
     //! HP' = Ratio * HP.
-    void xgp_GTrsf::SetAffinity(xgp_Ax1^ A1, Standard_Real^ Ratio) {
-        NativeHandle->SetAffinity(A1->GetAx1(), *Ratio);
+    void xgp_GTrsf::SetAffinity(xgp_Ax1^ A1, Standard_Real Ratio) {
+        NativeHandle->SetAffinity(A1->GetAx1(), Ratio);
     };
 
     //! Changes this transformation into an affinity of ratio Ratio
@@ -75,16 +75,16 @@ namespace TKMath
     //! the orthogonal projection of P on the axis A1 or the
     //! plane A2, the vectors HP and HP' satisfy:
     //! HP' = Ratio * HP.
-    void xgp_GTrsf::SetAffinity(xgp_Ax2^ A2, Standard_Real^ Ratio) {
-        NativeHandle->SetAffinity(A2->GetAx2(), *Ratio);
+    void xgp_GTrsf::SetAffinity(xgp_Ax2^ A2, Standard_Real Ratio) {
+        NativeHandle->SetAffinity(A2->GetAx2(), Ratio);
     };
 
 
     //! Replaces  the coefficient (Row, Col) of the matrix representing
     //! this transformation by Value.  Raises OutOfRange
     //! if  Row < 1 or Row > 3 or Col < 1 or Col > 4
-    void xgp_GTrsf::SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value) {
-        NativeHandle->SetValue(*Row, *Col, *Value);
+    void xgp_GTrsf::SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value) {
+        NativeHandle->SetValue(Row, Col, Value);
     };
 
     //! Replaces the vectorial part of this transformation by Matrix.
@@ -106,7 +106,7 @@ namespace TKMath
 
     //! Returns true if the determinant of the vectorial part of
     //! this transformation is negative.
-    Standard_Boolean^ xgp_GTrsf::IsNegative() {
+    Standard_Boolean xgp_GTrsf::IsNegative() {
         return NativeHandle->IsNegative();
     };
 
@@ -119,7 +119,7 @@ namespace TKMath
     //! than or equal to gp::Resolution().
     //! Warning
     //! If this transformation is singular, it cannot be inverted.
-    Standard_Boolean^ xgp_GTrsf::IsSingular() {
+    Standard_Boolean xgp_GTrsf::IsSingular() {
         return NativeHandle->IsSingular();
     };
 
@@ -161,8 +161,8 @@ namespace TKMath
 
     //! Returns the coefficients of the global matrix of transformation.
     //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 4
-    Standard_Real^ xgp_GTrsf::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return  NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_GTrsf::Value(Standard_Integer Row, Standard_Integer Col) {
+        return  NativeHandle->Value(Row, Col);
     };
 
     void xgp_GTrsf::Invert() {
@@ -210,8 +210,8 @@ namespace TKMath
         NativeHandle->PreMultiply(T->GetGTrsf());
     };
 
-    void xgp_GTrsf::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_GTrsf::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -228,8 +228,8 @@ namespace TKMath
     //!
     //! Raises an exception if N < 0 and if the matrix of the
     //! transformation not inversible.
-    xgp_GTrsf^ xgp_GTrsf::Powered(Standard_Integer^ N) {
-        return gcnew xgp_GTrsf(NativeHandle->Powered(*N));
+    xgp_GTrsf^ xgp_GTrsf::Powered(Standard_Integer N) {
+        return gcnew xgp_GTrsf(NativeHandle->Powered(N));
     };
 
     void xgp_GTrsf::Transforms(xgp_XYZ^ Coord) {

@@ -98,29 +98,29 @@ namespace TKMath
         //! or equal to <LinearTolerance> and
         //! . the distance between <Other>.Location() and <me> is lower
         //! or equal to LinearTolerance.
-        Standard_Boolean^ IsCoaxial(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance, Standard_Real^ LinearTolerance);
+        Standard_Boolean IsCoaxial(xgp_Ax2d^ Other, Standard_Real AngularTolerance, Standard_Real LinearTolerance);
 
         //! Returns true if this axis and the axis Other are normal to
         //! each other. That is, if the angle between the two axes is equal to Pi/2 or -Pi/2.
         //! Note: the tolerance criterion is given by AngularTolerance.
-        Standard_Boolean^ IsNormal(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsNormal(xgp_Ax2d^ Other, Standard_Real AngularTolerance);
 
         //! Returns true if this axis and the axis Other are parallel,
         //! and have opposite orientations. That is, if the angle
         //! between the two axes is equal to Pi or -Pi.
         //! Note: the tolerance criterion is given by AngularTolerance.
-        Standard_Boolean^ IsOpposite(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsOpposite(xgp_Ax2d^ Other, Standard_Real AngularTolerance);
 
         //! Returns true if this axis and the axis Other are parallel,
         //! and have either the same or opposite orientations. That
         //! is, if the angle between the two axes is equal to 0, Pi or -Pi.
         //! Note: the tolerance criterion is given by AngularTolerance.
-        Standard_Boolean^ IsParallel(xgp_Ax2d^ Other, Standard_Real^ AngularTolerance);
+        Standard_Boolean IsParallel(xgp_Ax2d^ Other, Standard_Real AngularTolerance);
 
 
         //! Computes the angle, in radians, between this axis and
         //! the axis Other. The value of the angle is between -Pi and Pi.
-        Standard_Real^ Angle(xgp_Ax2d^ Other);
+        Standard_Real Angle(xgp_Ax2d^ Other);
 
         //! Reverses the direction of <me> and assigns the result to this axis.
         void Reverse();
@@ -146,21 +146,21 @@ namespace TKMath
         //! is the axis of the symmetry.
         xgp_Ax2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Rotates an axis placement. <P> is the center of the
         //! rotation . Ang is the angular value of the rotation
         //! in radians.
-        xgp_Ax2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Ax2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Applies a scaling transformation on the axis placement.
         //! The "Location" point of the axisplacement is modified.
         //! The "Direction" is reversed if the scale is negative.
-        xgp_Ax2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Ax2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

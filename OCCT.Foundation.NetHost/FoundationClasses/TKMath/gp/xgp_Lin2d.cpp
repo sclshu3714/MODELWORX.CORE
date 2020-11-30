@@ -38,8 +38,8 @@ namespace TKMath
 
     //! Creates the line from the equation A*X + B*Y + C = 0.0 Raises ConstructionError if Sqrt(A*A + B*B) <= Resolution from gp.
     //! Raised if Sqrt(A*A + B*B) <= Resolution from gp.
-    xgp_Lin2d::xgp_Lin2d(Standard_Real^ A, Standard_Real^ B, Standard_Real^ C) {
-        NativeHandle = new gp_Lin2d(*A, *B, *C);
+    xgp_Lin2d::xgp_Lin2d(Standard_Real A, Standard_Real B, Standard_Real C) {
+        NativeHandle = new gp_Lin2d(A, B, C);
     };
 
 
@@ -117,37 +117,37 @@ namespace TKMath
     };
 
     //! Computes the angle between two lines in radians.
-    Standard_Real^ xgp_Lin2d::Angle(xgp_Lin2d^ Other) {
+    Standard_Real xgp_Lin2d::Angle(xgp_Lin2d^ Other) {
         return NativeHandle->Angle(Other->GetLin2d());
     };
 
     //! Returns true if this line contains the point P, that is, if the
     //! distance between point P and this line is less than or
     //! equal to LinearTolerance.
-    Standard_Boolean^ xgp_Lin2d::Contains(xgp_Pnt2d^ P, Standard_Real^ LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt2d(), *LinearTolerance);
+    Standard_Boolean xgp_Lin2d::Contains(xgp_Pnt2d^ P, Standard_Real LinearTolerance) {
+        return NativeHandle->Contains(P->GetPnt2d(), LinearTolerance);
     };
 
 
     //! Computes the distance between <me> and the point <P>.
-    Standard_Real^ xgp_Lin2d::Distance(xgp_Pnt2d^ P) {
+    Standard_Real xgp_Lin2d::Distance(xgp_Pnt2d^ P) {
         return NativeHandle->Distance(P->GetPnt2d());
     };
 
     //! Computes the distance between two lines.
-    Standard_Real^ xgp_Lin2d::Distance(xgp_Lin2d^ Other) {
+    Standard_Real xgp_Lin2d::Distance(xgp_Lin2d^ Other) {
         return NativeHandle->Distance(Other->GetLin2d());
     };
 
 
     //! Computes the square distance between <me> and the point
     //! <P>.
-    Standard_Real^ xgp_Lin2d::SquareDistance(xgp_Pnt2d^ P) {
+    Standard_Real xgp_Lin2d::SquareDistance(xgp_Pnt2d^ P) {
         return NativeHandle->SquareDistance(P->GetPnt2d());
     };
 
     //! Computes the square distance between two lines.
-    Standard_Real^ xgp_Lin2d::SquareDistance(xgp_Lin2d^ Other) {
+    Standard_Real xgp_Lin2d::SquareDistance(xgp_Lin2d^ Other) {
         return NativeHandle->SquareDistance(Other->GetLin2d());
     };
 
@@ -182,26 +182,26 @@ namespace TKMath
         return gcnew xgp_Lin2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Lin2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Lin2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates a line. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Lin2d^ xgp_Lin2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Lin2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Lin2d^ xgp_Lin2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Lin2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Lin2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Lin2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
     //! Scales a line. S is the scaling value. Only the
     //! origin of the line is modified.
-    xgp_Lin2d^ xgp_Lin2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Lin2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Lin2d^ xgp_Lin2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Lin2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Lin2d::Transform(xgp_Trsf2d^ T) {

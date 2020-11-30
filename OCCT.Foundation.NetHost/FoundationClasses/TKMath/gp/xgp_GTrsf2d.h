@@ -101,13 +101,13 @@ namespace TKMath
         //! transforms any point P into a point P' such that if H is
         //! the orthogonal projection of P on the axis A, the vectors
         //! HP and HP' satisfy: HP' = Ratio * HP.
-        void SetAffinity(xgp_Ax2d^ A, Standard_Real^ Ratio);
+        void SetAffinity(xgp_Ax2d^ A, Standard_Real Ratio);
 
 
         //! Replaces   the coefficient (Row, Col) of the matrix representing
         //! this transformation by Value,
         //! Raises OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-        void SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value);
+        void SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value);
 
         //! Replacesthe translation part of this
         //! transformation by the coordinates of the number pair Coord.
@@ -124,7 +124,7 @@ namespace TKMath
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative.
-        Standard_Boolean^ IsNegative();
+        Standard_Boolean IsNegative();
 
         //! Returns true if this transformation is singular (and
         //! therefore, cannot be inverted).
@@ -134,7 +134,7 @@ namespace TKMath
         //! than or equal to gp::Resolution().
         //! Warning
         //! If this transformation is singular, it cannot be inverted.
-        Standard_Boolean^ IsSingular();
+        Standard_Boolean IsSingular();
 
 
         //! Returns the nature of the transformation.  It can be
@@ -156,8 +156,8 @@ namespace TKMath
 
         //! Returns the coefficients of the global matrix of transformation.
         //! Raised OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-        Standard_Real^ Value(Standard_Integer^ Row, Standard_Integer^ Col);
-        Standard_Real^ operator() (Standard_Integer^ Row, Standard_Integer^ Col) {
+        Standard_Real Value(Standard_Integer Row, Standard_Integer Col);
+        Standard_Real operator() (Standard_Integer Row, Standard_Integer Col) {
             return Value(Row, Col);
         }
 
@@ -199,7 +199,7 @@ namespace TKMath
         //! this = T * this
         void PreMultiply(xgp_GTrsf2d^ T);
 
-        void Power(Standard_Integer^ N);
+        void Power(Standard_Integer N);
 
 
         //! Computes the following composition of transformations
@@ -209,7 +209,7 @@ namespace TKMath
         //!
         //! Raises an exception if N < 0 and if the matrix of the
         //! transformation is not inversible.
-        xgp_GTrsf2d^ Powered(Standard_Integer^ N);
+        xgp_GTrsf2d^ Powered(Standard_Integer N);
 
         void Transforms(xgp_XY^ Coord);
 

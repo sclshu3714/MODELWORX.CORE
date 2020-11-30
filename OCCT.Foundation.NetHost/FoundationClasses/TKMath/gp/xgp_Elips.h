@@ -77,7 +77,7 @@ namespace TKMath
         //! It is not forbidden to create an ellipse with MajorRadius =
         //! MinorRadius.
         //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.
-        xgp_Elips(xgp_Ax2^ A2, Standard_Real^ MajorRadius, Standard_Real^ MinorRadius);
+        xgp_Elips(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
         //ÊÍ·Å
         ~xgp_Elips();
@@ -106,20 +106,20 @@ namespace TKMath
         //! The major radius of the ellipse is on the "XAxis" (major axis)
         //! of the ellipse.
         //! Raises ConstructionError if MajorRadius < MinorRadius.
-        void SetMajorRadius(Standard_Real^ MajorRadius);
+        void SetMajorRadius(Standard_Real MajorRadius);
 
 
         //! The minor radius of the ellipse is on the "YAxis" (minor axis)
         //! of the ellipse.
         //! Raises ConstructionError if MinorRadius > MajorRadius or MinorRadius < 0.
-        void SetMinorRadius(Standard_Real^ MinorRadius);
+        void SetMinorRadius(Standard_Real MinorRadius);
 
         //! Modifies this ellipse, by redefining its local coordinate
         //! so that it becomes A2e.
         void SetPosition(xgp_Ax2^ A2);
 
         //! Computes the area of the Ellipse.
-        Standard_Real^ Area();
+        Standard_Real Area();
 
 
         //! Computes the axis normal to the plane of the ellipse.
@@ -154,12 +154,12 @@ namespace TKMath
         //! If f is the distance between the center of the ellipse and
         //! the Focus1 then the eccentricity e = f / MajorRadius.
         //! Raises ConstructionError if MajorRadius = 0.0
-        Standard_Real^ Eccentricity();
+        Standard_Real Eccentricity();
 
 
         //! Computes the focal distance. It is the distance between the
         //! two focus focus1 and focus2 of the ellipse.
-        Standard_Real^ Focal();
+        Standard_Real Focal();
 
 
         //! Returns the first focus of the ellipse. This focus is on the
@@ -177,16 +177,16 @@ namespace TKMath
         xgp_Pnt^ Location();
 
         //! Returns the major radius of the ellipse.
-        Standard_Real^ MajorRadius();
+        Standard_Real MajorRadius();
 
         //! Returns the minor radius of the ellipse.
-        Standard_Real^ MinorRadius();
+        Standard_Real MinorRadius();
 
 
         //! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
         //! of the ellipse.
         //! Returns 0 if MajorRadius = 0
-        Standard_Real^ Parameter();
+        Standard_Real Parameter();
 
         //! Returns the coordinate system of the ellipse.
         xgp_Ax2^ Position();
@@ -225,18 +225,18 @@ namespace TKMath
         //! of the symmetry (Location, XDirection, YDirection).
         xgp_Elips^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates an ellipse. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Elips^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Elips^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales an ellipse. S is the scaling value.
-        xgp_Elips^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Elips^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

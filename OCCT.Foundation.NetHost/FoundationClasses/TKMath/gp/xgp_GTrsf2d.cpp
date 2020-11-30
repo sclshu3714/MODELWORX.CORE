@@ -61,16 +61,16 @@ namespace TKMath
     //! transforms any point P into a point P' such that if H is
     //! the orthogonal projection of P on the axis A, the vectors
     //! HP and HP' satisfy: HP' = Ratio * HP.
-    void xgp_GTrsf2d::SetAffinity(xgp_Ax2d^ A, Standard_Real^ Ratio) {
-        NativeHandle->SetAffinity(A->GetAx2d(), *Ratio);
+    void xgp_GTrsf2d::SetAffinity(xgp_Ax2d^ A, Standard_Real Ratio) {
+        NativeHandle->SetAffinity(A->GetAx2d(), Ratio);
     };
 
 
     //! Replaces   the coefficient (Row, Col) of the matrix representing
     //! this transformation by Value,
     //! Raises OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-    void xgp_GTrsf2d::SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value) {
-        NativeHandle->SetValue(*Row, *Col, *Value);
+    void xgp_GTrsf2d::SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value) {
+        NativeHandle->SetValue(Row, Col, Value);
     };
 
     //! Replacesthe translation part of this
@@ -94,7 +94,7 @@ namespace TKMath
 
     //! Returns true if the determinant of the vectorial part of
     //! this transformation is negative.
-    Standard_Boolean^ xgp_GTrsf2d::IsNegative() {
+    Standard_Boolean xgp_GTrsf2d::IsNegative() {
         return NativeHandle->IsNegative();
     };
 
@@ -106,7 +106,7 @@ namespace TKMath
     //! than or equal to gp::Resolution().
     //! Warning
     //! If this transformation is singular, it cannot be inverted.
-    Standard_Boolean^ xgp_GTrsf2d::IsSingular() {
+    Standard_Boolean xgp_GTrsf2d::IsSingular() {
         return NativeHandle->IsSingular();
     };
 
@@ -137,8 +137,8 @@ namespace TKMath
 
     //! Returns the coefficients of the global matrix of transformation.
     //! Raised OutOfRange if Row < 1 or Row > 2 or Col < 1 or Col > 3
-    Standard_Real^ xgp_GTrsf2d::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return  NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_GTrsf2d::Value(Standard_Integer Row, Standard_Integer Col) {
+        return  NativeHandle->Value(Row, Col);
     };
 
 
@@ -184,8 +184,8 @@ namespace TKMath
         NativeHandle->PreMultiply(T->GetGTrsf2d());
     };
 
-    void xgp_GTrsf2d::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_GTrsf2d::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -196,8 +196,8 @@ namespace TKMath
     //!
     //! Raises an exception if N < 0 and if the matrix of the
     //! transformation is not inversible.
-    xgp_GTrsf2d^ xgp_GTrsf2d::Powered(Standard_Integer^ N) {
-        return gcnew xgp_GTrsf2d(NativeHandle->Powered(*N));
+    xgp_GTrsf2d^ xgp_GTrsf2d::Powered(Standard_Integer N) {
+        return gcnew xgp_GTrsf2d(NativeHandle->Powered(N));
     };
 
     void xgp_GTrsf2d::Transforms(xgp_XY^ Coord) {

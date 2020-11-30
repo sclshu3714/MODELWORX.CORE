@@ -23,8 +23,8 @@ namespace TKMath
     };
 
     //! Creates a matrix.
-    xgp_Mat::xgp_Mat(Standard_Real^ a11, Standard_Real^ a12, Standard_Real^ a13, Standard_Real^ a21, Standard_Real^ a22, Standard_Real^ a23, Standard_Real^ a31, Standard_Real^ a32, Standard_Real^ a33) {
-        NativeHandle = new gp_Mat(*a11, *a12, *a13, *a21, *a22, *a23, *a31, *a32, *a33);
+    xgp_Mat::xgp_Mat(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a31, Standard_Real a32, Standard_Real a33) {
+        NativeHandle = new gp_Mat(a11, a12, a13, a21, a22, a23, a31, a32, a33);
     };
 
     //! Creates a matrix.
@@ -52,8 +52,8 @@ namespace TKMath
     //! Assigns the three coordinates of Value to the column of index
     //! Col of this matrix.
     //! Raises OutOfRange if Col < 1 or Col > 3.
-    void xgp_Mat::SetCol(Standard_Integer^ Col, xgp_XYZ^ Value) {
-        NativeHandle->SetCol(*Col, Value->GetXYZ());
+    void xgp_Mat::SetCol(Standard_Integer Col, xgp_XYZ^ Value) {
+        NativeHandle->SetCol(Col, Value->GetXYZ());
     };
 
     //! Assigns the number triples Col1, Col2, Col3 to the three
@@ -81,8 +81,8 @@ namespace TKMath
     //! <me>.Value (2, 2) = X2
     //! <me>.Value (3, 3) = X3
     //! The other coefficients of the matrix are not modified.
-    void xgp_Mat::SetDiagonal(Standard_Real^ X1, Standard_Real^ X2, Standard_Real^ X3) {
-        NativeHandle->SetDiagonal(*X1, *X2, *X3);
+    void xgp_Mat::SetDiagonal(Standard_Real X1, Standard_Real X2, Standard_Real X3) {
+        NativeHandle->SetDiagonal(X1, X2, X3);
     };
 
 
@@ -105,14 +105,14 @@ namespace TKMath
     //! radians and the XYZ axis gives the direction of the
     //! rotation.
     //! Raises ConstructionError if XYZ.Modulus() <= Resolution()
-    void xgp_Mat::SetRotation(xgp_XYZ^ Axis, Standard_Real^ Ang) {
-        NativeHandle->SetRotation(Axis->GetXYZ(), *Ang);
+    void xgp_Mat::SetRotation(xgp_XYZ^ Axis, Standard_Real Ang) {
+        NativeHandle->SetRotation(Axis->GetXYZ(), Ang);
     };
 
     //! Assigns the three coordinates of Value to the row of index
     //! Row of this matrix. Raises OutOfRange if Row < 1 or Row > 3.
-    void xgp_Mat::SetRow(Standard_Integer^ Row, xgp_XYZ^ Value) {
-        NativeHandle->SetRow(*Row, Value->GetXYZ());
+    void xgp_Mat::SetRow(Standard_Integer Row, xgp_XYZ^ Value) {
+        NativeHandle->SetRow(Row, Value->GetXYZ());
     };
 
     //! Assigns the number triples Row1, Row2, Row3 to the three
@@ -127,14 +127,14 @@ namespace TKMath
     //! | S    0.0  0.0 |
     //! <me> =  | 0.0   S   0.0 |
     //! | 0.0  0.0   S  |
-    void xgp_Mat::SetScale(Standard_Real^ S) {
-        NativeHandle->SetScale(*S);
+    void xgp_Mat::SetScale(Standard_Real S) {
+        NativeHandle->SetScale(S);
     };
 
     //! Assigns <Value> to the coefficient of row Row, column Col of   this matrix.
     //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-    void xgp_Mat::SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value) {
-        NativeHandle->SetValue(*Row, *Col, *Value);
+    void xgp_Mat::SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value) {
+        NativeHandle->SetValue(Row, Col, Value);
     };
 
     //! Returns the gp_Mat
@@ -144,12 +144,12 @@ namespace TKMath
 
     //! Returns the column of Col index.
     //! Raises OutOfRange if Col < 1 or Col > 3
-    xgp_XYZ^ xgp_Mat::Column(Standard_Integer^ Col) {
-        return gcnew xgp_XYZ(NativeHandle->Column(*Col));
+    xgp_XYZ^ xgp_Mat::Column(Standard_Integer Col) {
+        return gcnew xgp_XYZ(NativeHandle->Column(Col));
     };
 
     //! Computes the determinant of the matrix.
-    Standard_Real^ xgp_Mat::Determinant() {
+    Standard_Real xgp_Mat::Determinant() {
         return NativeHandle->Determinant();
     };
 
@@ -160,27 +160,27 @@ namespace TKMath
 
     //! returns the row of Row index.
     //! Raises OutOfRange if Row < 1 or Row > 3
-    xgp_XYZ^ xgp_Mat::Row(Standard_Integer^ Row) {
-        return gcnew xgp_XYZ(NativeHandle->Row(*Row));
+    xgp_XYZ^ xgp_Mat::Row(Standard_Integer Row) {
+        return gcnew xgp_XYZ(NativeHandle->Row(Row));
     };
 
     //! Returns the coefficient of range (Row, Col)
     //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-    Standard_Real^ xgp_Mat::Value(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->Value(*Row, *Col);
+    Standard_Real xgp_Mat::Value(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->Value(Row, Col);
     };
 
     //! Returns the coefficient of range (Row, Col)
     //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 3
-    Standard_Real^ xgp_Mat::ChangeValue(Standard_Integer^ Row, Standard_Integer^ Col) {
-        return NativeHandle->ChangeValue(*Row, *Col);
+    Standard_Real xgp_Mat::ChangeValue(Standard_Integer Row, Standard_Integer Col) {
+        return NativeHandle->ChangeValue(Row, Col);
     };
 
 
     //! The Gauss LU decomposition is used to invert the matrix
     //! (see Math package) so the matrix is considered as singular if
     //! the largest pivot found is lower or equal to Resolution from gp.
-    Standard_Boolean^ xgp_Mat::IsSingular() {
+    Standard_Boolean xgp_Mat::IsSingular() {
         return NativeHandle->IsSingular();
     };
 
@@ -196,13 +196,13 @@ namespace TKMath
         return gcnew xgp_Mat(NativeHandle->Added(Other->GetMat()));
     };
 
-    void xgp_Mat::Divide(Standard_Real^ Scalar) {
-        NativeHandle->Divide(*Scalar);
+    void xgp_Mat::Divide(Standard_Real Scalar) {
+        NativeHandle->Divide(Scalar);
     };
 
     //! Divides all the coefficients of the matrix by Scalar
-    xgp_Mat^ xgp_Mat::Divided(Standard_Real^ Scalar) {
-        return gcnew xgp_Mat(NativeHandle->Divided(*Scalar));
+    xgp_Mat^ xgp_Mat::Divided(Standard_Real Scalar) {
+        return gcnew xgp_Mat(NativeHandle->Divided(Scalar));
     };
 
     void xgp_Mat::Invert() {
@@ -239,18 +239,18 @@ namespace TKMath
         NativeHandle->PreMultiply(Other->GetMat());
     };
 
-    xgp_Mat^ xgp_Mat::Multiplied(Standard_Real^ Scalar) {
-        return gcnew xgp_Mat(NativeHandle->Multiplied(*Scalar));
+    xgp_Mat^ xgp_Mat::Multiplied(Standard_Real Scalar) {
+        return gcnew xgp_Mat(NativeHandle->Multiplied(Scalar));
     };
 
 
     //! Multiplies all the coefficients of the matrix by Scalar
-    void xgp_Mat::Multiply(Standard_Real^ Scalar) {
-        NativeHandle->Multiply(*Scalar);
+    void xgp_Mat::Multiply(Standard_Real Scalar) {
+        NativeHandle->Multiply(Scalar);
     };
 
-    void xgp_Mat::Power(Standard_Integer^ N) {
-        NativeHandle->Power(*N);
+    void xgp_Mat::Power(Standard_Integer N) {
+        NativeHandle->Power(N);
     };
 
 
@@ -259,8 +259,8 @@ namespace TKMath
     //! if N < 0 <me> = <me>.Invert() *...........* <me>.Invert().
     //! If N < 0 an exception will be raised if the matrix is not
     //! inversible
-    xgp_Mat^ xgp_Mat::Powered(Standard_Integer^ N) {
-        return gcnew xgp_Mat(NativeHandle->Powered(*N));
+    xgp_Mat^ xgp_Mat::Powered(Standard_Integer N) {
+        return gcnew xgp_Mat(NativeHandle->Powered(N));
     };
 
     void xgp_Mat::Subtract(xgp_Mat^ Other) {

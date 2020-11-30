@@ -103,7 +103,7 @@ namespace TKMath
         //! the orthogonal projection of P on the axis A1 or the
         //! plane A2, the vectors HP and HP' satisfy:
         //! HP' = Ratio * HP.
-        void SetAffinity(xgp_Ax1^ A1, Standard_Real^ Ratio);
+        void SetAffinity(xgp_Ax1^ A1, Standard_Real Ratio);
 
         //! Changes this transformation into an affinity of ratio Ratio
         //! with respect to  the plane defined by the origin, the "X Direction" and
@@ -113,13 +113,13 @@ namespace TKMath
         //! the orthogonal projection of P on the axis A1 or the
         //! plane A2, the vectors HP and HP' satisfy:
         //! HP' = Ratio * HP.
-        void SetAffinity(xgp_Ax2^ A2, Standard_Real^ Ratio);
+        void SetAffinity(xgp_Ax2^ A2, Standard_Real Ratio);
 
 
         //! Replaces  the coefficient (Row, Col) of the matrix representing
         //! this transformation by Value.  Raises OutOfRange
         //! if  Row < 1 or Row > 3 or Col < 1 or Col > 4
-        void SetValue(Standard_Integer^ Row, Standard_Integer^ Col, Standard_Real^ Value);
+        void SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value);
 
         //! Replaces the vectorial part of this transformation by Matrix.
         void SetVectorialPart(xgp_Mat^ Matrix);
@@ -134,7 +134,7 @@ namespace TKMath
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative.
-        Standard_Boolean^ IsNegative();
+        Standard_Boolean IsNegative();
 
 
         //! Returns true if this transformation is singular (and
@@ -145,7 +145,7 @@ namespace TKMath
         //! than or equal to gp::Resolution().
         //! Warning
         //! If this transformation is singular, it cannot be inverted.
-        Standard_Boolean^ IsSingular();
+        Standard_Boolean IsSingular();
 
 
         //! Returns the nature of the transformation.  It can be an
@@ -176,8 +176,8 @@ namespace TKMath
 
         //! Returns the coefficients of the global matrix of transformation.
         //! Raises OutOfRange if Row < 1 or Row > 3 or Col < 1 or Col > 4
-        Standard_Real^ Value(Standard_Integer^ Row, Standard_Integer^ Col);
-        Standard_Real^ operator() (Standard_Integer^ Row, Standard_Integer^ Col) {
+        Standard_Real Value(Standard_Integer Row, Standard_Integer Col);
+        Standard_Real operator() (Standard_Integer Row, Standard_Integer Col) {
             return Value(Row, Col);
         }
 
@@ -222,7 +222,7 @@ namespace TKMath
         //! this = T * this
         void PreMultiply(xgp_GTrsf^ T);
 
-        void Power(Standard_Integer^ N);
+        void Power(Standard_Integer N);
 
 
         //! Computes:
@@ -238,7 +238,7 @@ namespace TKMath
         //!
         //! Raises an exception if N < 0 and if the matrix of the
         //! transformation not inversible.
-        xgp_GTrsf^ Powered(Standard_Integer^ N);
+        xgp_GTrsf^ Powered(Standard_Integer N);
 
         void Transforms(xgp_XYZ^ Coord);
 

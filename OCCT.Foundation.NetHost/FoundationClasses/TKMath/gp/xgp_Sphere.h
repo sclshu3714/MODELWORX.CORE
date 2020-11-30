@@ -74,7 +74,7 @@ namespace TKMath
         //! Warnings :
         //! It is not forbidden to create a sphere with null radius.
         //! Raises ConstructionError if Radius < 0.0
-        xgp_Sphere(xgp_Ax3^ A3, Standard_Real^ Radius);
+        xgp_Sphere(xgp_Ax3^ A3, Standard_Real Radius);
 
         //ÊÍ·Å
         ~xgp_Sphere();
@@ -95,11 +95,11 @@ namespace TKMath
         //! Warnings :
         //! It is not forbidden to create a sphere with null radius.
         //! Raises ConstructionError if R < 0.0
-        void SetRadius(Standard_Real^ R);
+        void SetRadius(Standard_Real R);
 
 
         //! Computes the aera of the sphere.
-        Standard_Real^ Area();
+        Standard_Real Area();
 
 
         //! Computes the coefficients of the implicit equation of the quadric
@@ -118,7 +118,7 @@ namespace TKMath
 
         //! Returns true if the local coordinate system of this sphere
         //! is right-handed.
-        Standard_Boolean^ Direct();
+        Standard_Boolean Direct();
 
         //! --- Purpose ;
         //! Returns the center of the sphere.
@@ -129,10 +129,10 @@ namespace TKMath
         xgp_Ax3^ Position();
 
         //! Returns the radius of the sphere.
-        Standard_Real^ Radius();
+        Standard_Real Radius();
 
         //! Computes the volume of the sphere
-        Standard_Real^ Volume();
+        Standard_Real Volume();
 
         //! Returns the axis X of the sphere.
         xgp_Ax1^ XAxis();
@@ -164,19 +164,19 @@ namespace TKMath
         //! of the symmetry : (Location, XDirection, YDirection).
         xgp_Sphere^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Rotates a sphere. A1 is the axis of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Sphere^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Sphere^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
 
         //! Scales a sphere. S is the scaling value.
         //! The absolute value of S is used to scale the sphere
-        xgp_Sphere^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Sphere^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

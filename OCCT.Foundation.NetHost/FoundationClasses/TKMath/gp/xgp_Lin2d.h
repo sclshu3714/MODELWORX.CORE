@@ -77,7 +77,7 @@ namespace TKMath
 
         //! Creates the line from the equation A*X + B*Y + C = 0.0 Raises ConstructionError if Sqrt(A*A + B*B) <= Resolution from gp.
         //! Raised if Sqrt(A*A + B*B) <= Resolution from gp.
-        xgp_Lin2d(Standard_Real^ A, Standard_Real^ B, Standard_Real^ C);
+        xgp_Lin2d(Standard_Real A, Standard_Real B, Standard_Real C);
 
 
         //ÊÍ·Å
@@ -126,27 +126,27 @@ namespace TKMath
         xgp_Ax2d^ Position();
 
         //! Computes the angle between two lines in radians.
-        Standard_Real^ Angle(xgp_Lin2d^ Other);
+        Standard_Real Angle(xgp_Lin2d^ Other);
 
         //! Returns true if this line contains the point P, that is, if the
         //! distance between point P and this line is less than or
         //! equal to LinearTolerance.
-        Standard_Boolean^ Contains(xgp_Pnt2d^ P, Standard_Real^ LinearTolerance);
+        Standard_Boolean Contains(xgp_Pnt2d^ P, Standard_Real LinearTolerance);
 
 
         //! Computes the distance between <me> and the point <P>.
-        Standard_Real^ Distance(xgp_Pnt2d^ P);
+        Standard_Real Distance(xgp_Pnt2d^ P);
 
         //! Computes the distance between two lines.
-        Standard_Real^ Distance(xgp_Lin2d^ Other);
+        Standard_Real Distance(xgp_Lin2d^ Other);
 
 
         //! Computes the square distance between <me> and the point
         //! <P>.
-        Standard_Real^ SquareDistance(xgp_Pnt2d^ P);
+        Standard_Real SquareDistance(xgp_Pnt2d^ P);
 
         //! Computes the square distance between two lines.
-        Standard_Real^ SquareDistance(xgp_Lin2d^ Other);
+        Standard_Real SquareDistance(xgp_Lin2d^ Other);
 
 
         //! Computes the line normal to the direction of <me>,
@@ -169,19 +169,19 @@ namespace TKMath
         //! of the symmetry.
         xgp_Lin2d^ Mirrored(xgp_Ax2d^ A);
 
-        void Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        void Rotate(xgp_Pnt2d^ P, Standard_Real Ang);
 
 
         //! Rotates a line. P is the center of the rotation.
         //! Ang is the angular value of the rotation in radians.
-        xgp_Lin2d^ Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang);
+        xgp_Lin2d^ Rotated(xgp_Pnt2d^ P, Standard_Real Ang);
 
-        void Scale(xgp_Pnt2d^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt2d^ P, Standard_Real S);
 
 
         //! Scales a line. S is the scaling value. Only the
         //! origin of the line is modified.
-        xgp_Lin2d^ Scaled(xgp_Pnt2d^ P, Standard_Real^ S);
+        xgp_Lin2d^ Scaled(xgp_Pnt2d^ P, Standard_Real S);
 
         void Transform(xgp_Trsf2d^ T);
 

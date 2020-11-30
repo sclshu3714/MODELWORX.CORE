@@ -24,6 +24,7 @@
 #define _xgp_Quaternion_HeaderFile
 #pragma once
 #include <gp_Quaternion.hxx>
+#include <xgp_EulerSequence.h>
 #include "xgp_Vec.h"
 #include "xgp_Mat.h"
 
@@ -47,7 +48,7 @@ namespace TKMath
         xgp_Quaternion(gp_Quaternion pos);
 
         //! Creates quaternion directly from component values
-        xgp_Quaternion(Standard_Real^ x, Standard_Real^ y, Standard_Real^ z, Standard_Real^ w);
+        xgp_Quaternion(Standard_Real x, Standard_Real y, Standard_Real z, Standard_Real w);
 
         //! Creates copy of another quaternion
         xgp_Quaternion(xgp_Quaternion^ theToCopy);
@@ -65,7 +66,7 @@ namespace TKMath
 
         //! Creates quaternion representing rotation on angle
         //! theAngle around vector theAxis
-        xgp_Quaternion(xgp_Vec^ theAxis, Standard_Real^ theAngle);
+        xgp_Quaternion(xgp_Vec^ theAxis, Standard_Real theAngle);
 
         //! Creates quaternion from rotation matrix 3*3
         //! (which should be orthonormal skew-symmetric matrix)
@@ -79,7 +80,7 @@ namespace TKMath
         gp_Quaternion GetQuaternion();
 
         //! Simple equal test without precision
-        Standard_Boolean^ IsEqual(xgp_Quaternion^ theOther);
+        Standard_Boolean IsEqual(xgp_Quaternion^ theOther);
 
         //! Sets quaternion to shortest-arc rotation producing
         //! vector theVecTo from vector theVecFrom.
@@ -94,7 +95,7 @@ namespace TKMath
         void SetRotation(xgp_Vec^ theVecFrom, xgp_Vec^ theVecTo, xgp_Vec^ theHelpCrossVec);
 
         //! Create a unit quaternion from Axis+Angle representation
-        void SetVectorAndAngle(xgp_Vec^ theAxis, Standard_Real^ theAngle);
+        void SetVectorAndAngle(xgp_Vec^ theAxis, Standard_Real theAngle);
 
         //! Convert a quaternion to Axis+Angle representation,
         //! preserve the axis direction and angle from -PI to +PI
@@ -112,22 +113,22 @@ namespace TKMath
 
         //! Create a unit quaternion representing rotation defined
         //! by generalized Euler angles
-        void SetEulerAngles(int^ EulerSequence, Standard_Real^ theAlpha, Standard_Real^ theBeta, Standard_Real^ theGamma);
+        void SetEulerAngles(xgp_EulerSequence EulerSequence, Standard_Real theAlpha, Standard_Real theBeta, Standard_Real theGamma);
 
         //! Returns Euler angles describing current rotation
         void GetEulerAngles(int^ EulerSequence, Standard_Real theAlpha, Standard_Real theBeta, Standard_Real theGamma);
 
-        void Set(Standard_Real^ x, Standard_Real^ y, Standard_Real^ z, Standard_Real^ w);
+        void Set(Standard_Real x, Standard_Real y, Standard_Real z, Standard_Real w);
 
         void Set(xgp_Quaternion^ theQuaternion);
 
-        Standard_Real^ X();
+        Standard_Real X();
 
-        Standard_Real^ Y();
+        Standard_Real Y();
 
-        Standard_Real^ Z();
+        Standard_Real Z();
 
-        Standard_Real^ W();
+        Standard_Real W();
 
         //! Make identity quaternion (zero-rotation)
         void SetIdent();
@@ -145,21 +146,21 @@ namespace TKMath
         xgp_Quaternion^ Inverted();
 
         //! Returns square norm of quaternion
-        Standard_Real^ SquareNorm();
+        Standard_Real SquareNorm();
 
         //! Returns norm of quaternion
-        Standard_Real^ Norm();
+        Standard_Real Norm();
 
         //! Scale all components by quaternion by theScale; note that
         //! rotation is not changed by this operation (except 0-scaling)
-        void Scale(Standard_Real^ theScale);
-        void operator *= (Standard_Real^ theScale) {
+        void Scale(Standard_Real theScale);
+        void operator *= (Standard_Real theScale) {
             Scale(theScale);
         }
 
         //! Returns scaled quaternion
-        xgp_Quaternion^ Scaled(Standard_Real^ theScale);
-        xgp_Quaternion^ operator * (Standard_Real^ theScale) {
+        xgp_Quaternion^ Scaled(Standard_Real theScale);
+        xgp_Quaternion^ operator * (Standard_Real theScale) {
             return Scaled(theScale);
         }
 
@@ -226,10 +227,10 @@ namespace TKMath
         }
 
         //! Computes inner product / scalar product / Dot
-        Standard_Real^ Dot(xgp_Quaternion^ theOther);
+        Standard_Real Dot(xgp_Quaternion^ theOther);
 
         //! Return rotation angle from -PI to PI
-        Standard_Real^ GetRotationAngle();
+        Standard_Real GetRotationAngle();
 
         //! Rotates vector by quaternion as rotation operator
         xgp_Vec^ Multiply(xgp_Vec^ theVec);

@@ -131,7 +131,7 @@ namespace TKMath
     //! Computes the angular value, in radians, between the main direction of
     //! <me> and the main direction of <Other>. Returns the angle
     //! between 0 and PI in radians.
-    Standard_Real^ xgp_Ax2::Angle(xgp_Ax2^ Other) {
+    Standard_Real xgp_Ax2::Angle(xgp_Ax2^ Other) {
        return NativeHandle->Angle(Other->GetAx2());
     };
 
@@ -170,8 +170,8 @@ namespace TKMath
         return gcnew  xgp_Dir(NativeHandle->YDirection());
     };
 
-    Standard_Boolean^ xgp_Ax2::IsCoplanar(xgp_Ax2^ Other, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsCoplanar(Other->GetAx2(), *LinearTolerance, *AngularTolerance);
+    Standard_Boolean xgp_Ax2::IsCoplanar(xgp_Ax2^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
+        return NativeHandle->IsCoplanar(Other->GetAx2(), LinearTolerance, AngularTolerance);
     };
 
 
@@ -180,8 +180,8 @@ namespace TKMath
     //! is lower of equal to LinearTolerance and
     //! . the main direction of <me> and the direction of A1 are normal.
     //! Note: the tolerance criterion for angular equality is given by AngularTolerance.
-    Standard_Boolean^ xgp_Ax2::IsCoplanar(xgp_Ax1^ A1, Standard_Real^ LinearTolerance, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsCoplanar(A1->GetAx1(), *LinearTolerance, *AngularTolerance);
+    Standard_Boolean xgp_Ax2::IsCoplanar(xgp_Ax1^ A1, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
+        return NativeHandle->IsCoplanar(A1->GetAx1(), LinearTolerance, AngularTolerance);
     };
 
 
@@ -306,20 +306,20 @@ namespace TKMath
         return gcnew xgp_Ax2(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Ax2::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Ax2::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates an axis placement. <A1> is the axis of the
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
-    xgp_Ax2^ xgp_Ax2::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Ax2(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Ax2^ xgp_Ax2::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Ax2(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Ax2::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Ax2::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
@@ -330,8 +330,8 @@ namespace TKMath
     //! . the main direction of the axis placement is not changed.
     //! . The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
-    xgp_Ax2^ xgp_Ax2::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Ax2(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Ax2^ xgp_Ax2::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Ax2(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Ax2::Transform(xgp_Trsf^ T) {

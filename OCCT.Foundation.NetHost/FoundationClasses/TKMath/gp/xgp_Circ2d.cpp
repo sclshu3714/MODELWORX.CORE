@@ -26,8 +26,8 @@ namespace TKMath
     //! Warnings :
     //! It is not forbidden to create a circle with Radius = 0.0   Raises ConstructionError if Radius < 0.0.
     //! Raised if Radius < 0.0.
-    xgp_Circ2d::xgp_Circ2d(xgp_Ax2d^ XAxis, Standard_Real^ Radius, Standard_Boolean^ Sense) {
-        NativeHandle = new gp_Circ2d(XAxis->GetAx2d(), *Radius, *Sense);
+    xgp_Circ2d::xgp_Circ2d(xgp_Ax2d^ XAxis, Standard_Real Radius, Standard_Boolean Sense) {
+        NativeHandle = new gp_Circ2d(XAxis->GetAx2d(), Radius, Sense);
     };
 
 
@@ -37,8 +37,8 @@ namespace TKMath
     //! Warnings :
     //! It is not forbidden to create a circle with Radius = 0.0 Raises ConstructionError if Radius < 0.0.
     //! Raised if Radius < 0.0.
-    xgp_Circ2d::xgp_Circ2d(xgp_Ax22d^ Axis, Standard_Real^ Radius) {
-        NativeHandle = new gp_Circ2d(Axis->GetAx22d(), *Radius);
+    xgp_Circ2d::xgp_Circ2d(xgp_Ax22d^ Axis, Standard_Real Radius) {
+        NativeHandle = new gp_Circ2d(Axis->GetAx22d(), Radius);
     };
 
     //ÊÍ·Å
@@ -84,12 +84,12 @@ namespace TKMath
     //! Radius is null.
     //! Exceptions
     //! Standard_ConstructionError if Radius is negative.
-    void xgp_Circ2d::SetRadius(Standard_Real^ Radius) {
-        NativeHandle->SetRadius(*Radius);
+    void xgp_Circ2d::SetRadius(Standard_Real Radius) {
+        NativeHandle->SetRadius(Radius);
     };
 
     //! Computes the area of the circle.
-    Standard_Real^ xgp_Circ2d::Area() {
+    Standard_Real xgp_Circ2d::Area() {
         return  NativeHandle->Area();
     };
 
@@ -105,25 +105,25 @@ namespace TKMath
     //! Returns True if the distance between P and any point on
     //! the circumference of the circle is lower of equal to
     //! <LinearTolerance>.
-    Standard_Boolean^ xgp_Circ2d::Contains(xgp_Pnt2d^ P, Standard_Real^ LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt2d(), *LinearTolerance);
+    Standard_Boolean xgp_Circ2d::Contains(xgp_Pnt2d^ P, Standard_Real LinearTolerance) {
+        return NativeHandle->Contains(P->GetPnt2d(), LinearTolerance);
     };
 
 
     //! Computes the minimum of distance between the point P and any
     //! point on the circumference of the circle.
-    Standard_Real^ xgp_Circ2d::Distance(xgp_Pnt2d^ P) {
+    Standard_Real xgp_Circ2d::Distance(xgp_Pnt2d^ P) {
         return NativeHandle->Distance(P->GetPnt2d());
     };
 
 
     //! Computes the square distance between <me> and the point P.
-    Standard_Real^ xgp_Circ2d::SquareDistance(xgp_Pnt2d^ P) {
+    Standard_Real xgp_Circ2d::SquareDistance(xgp_Pnt2d^ P) {
         return NativeHandle->SquareDistance(P->GetPnt2d());
     };
 
     //! computes the circumference of the circle.
-    Standard_Real^ xgp_Circ2d::Length() {
+    Standard_Real xgp_Circ2d::Length() {
         return NativeHandle->Length();
     };
 
@@ -133,7 +133,7 @@ namespace TKMath
     };
 
     //! Returns the radius value of the circle.
-    Standard_Real^ xgp_Circ2d::Radius() {
+    Standard_Real xgp_Circ2d::Radius() {
         return NativeHandle->Radius();
     };
 
@@ -176,7 +176,7 @@ namespace TKMath
 
     //! Returns true if the local coordinate system is direct
     //! and false in the other case.
-    Standard_Boolean^ xgp_Circ2d::IsDirect() {
+    Standard_Boolean xgp_Circ2d::IsDirect() {
         return NativeHandle->IsDirect();
     };
 
@@ -202,19 +202,19 @@ namespace TKMath
         return gcnew xgp_Circ2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Circ2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Circ2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates a circle. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Circ2d^ xgp_Circ2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Circ2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Circ2d^ xgp_Circ2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Circ2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Circ2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Circ2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
@@ -223,8 +223,8 @@ namespace TKMath
     //! If S is negative the radius stay positive but
     //! the "XAxis" and the "YAxis" are  reversed as for
     //! an ellipse.
-    xgp_Circ2d^ xgp_Circ2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Circ2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Circ2d^ xgp_Circ2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Circ2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Circ2d::Transform(xgp_Trsf2d^ T) {

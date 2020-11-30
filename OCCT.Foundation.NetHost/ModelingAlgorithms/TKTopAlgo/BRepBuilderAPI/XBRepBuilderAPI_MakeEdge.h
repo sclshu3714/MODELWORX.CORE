@@ -116,9 +116,13 @@ namespace TKTopAlgo {
 	public:
 
 		//!DEFINE_STANDARD_ALLOC
-
+		void Initialize(BRepBuilderAPI_MakeEdge* pos);
 
 		XBRepBuilderAPI_MakeEdge();
+
+		XBRepBuilderAPI_MakeEdge(BRepBuilderAPI_MakeEdge* pos);
+
+		void SetMakeEdgeHandle(BRepBuilderAPI_MakeEdge* pos);
 
 		XBRepBuilderAPI_MakeEdge(XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
@@ -279,7 +283,7 @@ namespace TKTopAlgo {
 		void Init(XGeom2d_Curve^ C, XGeom_Surface^ S, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2);
 
 		//! Returns true if the edge is built.
-		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone();// Standard_OVERRIDE;
 
 		//! Returns the construction status
 		//! -   BRepBuilderAPI_EdgeDone if the edge is built, or
@@ -291,7 +295,7 @@ namespace TKTopAlgo {
 		//! Returns the constructed edge.
 		//! Exceptions StdFail_NotDone if the edge is not built.
 		XTopoDS_Edge^ Edge();
-		operator XTopoDS_Edge();
+		operator XTopoDS_Edge^();
 
 		//! Returns the first vertex of the edge. May be Null.
 		XTopoDS_Vertex^ Vertex1();

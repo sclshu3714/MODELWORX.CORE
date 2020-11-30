@@ -54,7 +54,7 @@ namespace TKMath
         xgp_Pnt(gp_Pnt pos);
 
         //! Creates a  point with its 3 cartesian's coordinates : Xp, Yp, Zp.
-        xgp_Pnt(Standard_Real^ Xp, Standard_Real^ Yp, Standard_Real^ Zp);
+        xgp_Pnt(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp);
 
         //! ÊÍ·Å
         ~xgp_Pnt();
@@ -66,19 +66,19 @@ namespace TKMath
         //! Index = 2 => Y is modified
         //! Index = 3 => Z is modified
         //! Raised if Index != {1, 2, 3}.
-        void SetCoord(Standard_Integer^ Index, Standard_Real^ Xi);
+        void SetCoord(Standard_Integer Index, Standard_Real Xi);
 
         //! For this point, assigns  the values Xp, Yp and Zp to its three coordinates.
-        void SetCoord(Standard_Real^ Xp, Standard_Real^ Yp, Standard_Real^ Zp);
+        void SetCoord(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp);
 
         //! Assigns the given value to the X coordinate of this point.
-        void SetX(Standard_Real^ X);
+        void SetX(Standard_Real X);
 
         //! Assigns the given value to the Y coordinate of this point.
-        void SetY(Standard_Real^ Y);
+        void SetY(Standard_Real Y);
 
         //! Assigns the given value to the Z coordinate of this point.
-        void SetZ(Standard_Real^ Z);
+        void SetZ(Standard_Real Z);
 
         //! Assigns the three coordinates of Coord to this point.
         void SetXYZ(xgp_XYZ^ Coord);
@@ -92,19 +92,19 @@ namespace TKMath
         //! Index = 3 => Z is returned
         //! Raises OutOfRange if Index != {1, 2, 3}.
         //! Raised if Index != {1, 2, 3}.
-        Standard_Real^ Coord(Standard_Integer^ Index);
+        Standard_Real Coord(Standard_Integer Index);
 
         //! For this point gives its three coordinates Xp, Yp and Zp.
         void Coord(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp);
 
         //! For this point, returns its X coordinate.
-        Standard_Real^ X();
+        Standard_Real X();
 
         //! For this point, returns its Y coordinate.
-        Standard_Real^ Y();
+        Standard_Real Y();
 
         //! For this point, returns its Z coordinate.
-        Standard_Real^ Z();
+        Standard_Real Z();
 
         //! For this point, returns its three coordinates as a XYZ object.
         xgp_XYZ^ XYZ();
@@ -119,18 +119,18 @@ namespace TKMath
 
         //! Assigns the result of the following expression to this point
         //! (Alpha*this + Beta*P) / (Alpha + Beta)
-        void BaryCenter(Standard_Real^ Alpha, xgp_Pnt^ P, Standard_Real^ Beta);
+        void BaryCenter(Standard_Real Alpha, xgp_Pnt^ P, Standard_Real Beta);
 
         //! Comparison
         //! Returns True if the distance between the two points is
         //! lower or equal to LinearTolerance.
-        Standard_Boolean^ IsEqual(xgp_Pnt^ Other, Standard_Real^ LinearTolerance);
+        Standard_Boolean IsEqual(xgp_Pnt^ Other, Standard_Real LinearTolerance);
 
         //! Computes the distance between two points.
-        Standard_Real^ Distance(xgp_Pnt^ Other);
+        Standard_Real Distance(xgp_Pnt^ Other);
 
         //! Computes the square distance between two points.
-        Standard_Real^ SquareDistance(xgp_Pnt^ Other);
+        Standard_Real SquareDistance(xgp_Pnt^ Other);
 
 
         //! Performs the symmetrical transformation of a point
@@ -159,15 +159,15 @@ namespace TKMath
         //! Ang is the angular value of the rotation in radians.
          xgp_Pnt^ Mirrored(xgp_Ax2^ A2);
 
-        void Rotate(xgp_Ax1^ A1, Standard_Real^ Ang);
+        void Rotate(xgp_Ax1^ A1, Standard_Real Ang);
 
         //! Scales a point. S is the scaling value.
-        xgp_Pnt^ Rotated(xgp_Ax1^ A1, Standard_Real^ Ang);
+        xgp_Pnt^ Rotated(xgp_Ax1^ A1, Standard_Real Ang);
 
-        void Scale(xgp_Pnt^ P, Standard_Real^ S);
+        void Scale(xgp_Pnt^ P, Standard_Real S);
 
         //! Transforms a point with the transformation T.
-        xgp_Pnt^ Scaled(xgp_Pnt^ P, Standard_Real^ S);
+        xgp_Pnt^ Scaled(xgp_Pnt^ P, Standard_Real S);
 
         void Transform(xgp_Trsf^ T);
 

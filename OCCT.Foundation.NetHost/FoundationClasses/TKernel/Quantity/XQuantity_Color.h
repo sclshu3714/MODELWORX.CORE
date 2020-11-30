@@ -148,8 +148,8 @@ namespace TKernel {
 
         //! Returns Standard_True if the distance between <me> and
         //! <Other> is greater than Epsilon ().
-        Standard_Boolean^ IsDifferent(XQuantity_Color^ Other);
-        Standard_Boolean^ operator != (XQuantity_Color^ Other)
+        Standard_Boolean IsDifferent(XQuantity_Color^ Other);
+        Standard_Boolean operator != (XQuantity_Color^ Other)
         {
             return IsDifferent(Other);
         }
@@ -160,8 +160,8 @@ namespace TKernel {
         //! Two colors are considered to be equal if their
         //! distance is no greater than Epsilon().
         //! These methods are aliases of operator != and operator ==.
-        Standard_Boolean^ IsEqual(XQuantity_Color^ Other);
-        Standard_Boolean^ operator == (XQuantity_Color^ Other)
+        Standard_Boolean IsEqual(XQuantity_Color^ Other);
+        Standard_Boolean operator == (XQuantity_Color^ Other)
         {
             return IsEqual(Other);
         }

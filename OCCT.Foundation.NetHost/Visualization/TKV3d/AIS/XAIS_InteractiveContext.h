@@ -284,19 +284,19 @@ namespace TKV3d
 
         //! Returns highlight style of the object if it is marked as highlighted via global status
         //! @param theObj [in] the object to check
-        Standard_Boolean^ HighlightStyle(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle);
+        Standard_Boolean HighlightStyle(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle);
 
         //! Returns highlight style of the owner if it is selected
         //! @param theOwner [in] the owner to check
-        Standard_Boolean^ HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, Handle(Prs3d_Drawer) theStyle);
+        Standard_Boolean HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, Handle(Prs3d_Drawer) theStyle);
 
         //! Returns true if the object is marked as highlighted via its global status
         //! @param theObj [in] the object to check
-        Standard_Boolean^ IsHilighted(Handle(AIS_InteractiveObject) theObj);
+        Standard_Boolean IsHilighted(Handle(AIS_InteractiveObject) theObj);
 
         //! Returns true if the owner is marked as selected
         //! @param theOwner [in] the owner to check
-        Standard_Boolean^ IsHilighted(Handle(SelectMgr_EntityOwner) theOwner);
+        Standard_Boolean IsHilighted(Handle(SelectMgr_EntityOwner) theOwner);
 
         //! Updates the display in the viewer to take dynamic detection into account.
         //! On dynamic detection by the mouse cursor, sensitive primitives are highlighted.
@@ -420,7 +420,7 @@ namespace TKV3d
 
         //! returns True if other entities were detected in the last mouse detection
         //! @sa HilightPreviousDetected()/HilightNextDetected().
-        Standard_Boolean^ HasNextDetected();
+        Standard_Boolean HasNextDetected();
 
         //! If more than 1 object is detected by the selector, only the "best" owner is hilighted at the mouse position.
         //! This Method allows the user to hilight one after another the other detected entities.
@@ -870,7 +870,7 @@ namespace TKV3d
         void SetPlaneSize(Standard_Real theSize, Standard_Boolean theToUpdateViewer);
 
         //! Returns true if the length in the X direction XSize is the same as that in the Y direction YSize.
-        Standard_Boolean^ PlaneSize(Standard_Real XSize, Standard_Real YSize);
+        Standard_Boolean PlaneSize(Standard_Real XSize, Standard_Real YSize);
 
     public: //! @name tessellation deviation properties for automatic triangulation
 

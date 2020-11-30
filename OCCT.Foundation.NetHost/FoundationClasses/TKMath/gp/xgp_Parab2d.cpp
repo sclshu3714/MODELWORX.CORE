@@ -26,8 +26,8 @@ namespace TKMath
     //! Warnings : It is possible to have FocalLength = 0. In this case,
     //! the parabola looks like a line, which is parallel to the symmetry-axis.
     //! Raises ConstructionError if FocalLength < 0.0
-    xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theMirrorAxis, Standard_Real^ theFocalLength, Standard_Boolean^ theSense) {
-        NativeHandle = new gp_Parab2d(theMirrorAxis->GetAx2d(), *theFocalLength, *theSense);
+    xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theMirrorAxis, Standard_Real theFocalLength, Standard_Boolean theSense) {
+        NativeHandle = new gp_Parab2d(theMirrorAxis->GetAx2d(), theFocalLength, theSense);
     };
 
 
@@ -36,8 +36,8 @@ namespace TKMath
     //! Warnings : It is possible to have FocalLength = 0. In this case,
     //! the parabola looks like a line, which is parallel to the symmetry-axis.
     //! Raises ConstructionError if Focal < 0.0
-    xgp_Parab2d::xgp_Parab2d(xgp_Ax22d^ theAxes, Standard_Real^ theFocalLength) {
-        NativeHandle = new gp_Parab2d(theAxes->GetAx22d(), *theFocalLength);
+    xgp_Parab2d::xgp_Parab2d(xgp_Ax22d^ theAxes, Standard_Real theFocalLength) {
+        NativeHandle = new gp_Parab2d(theAxes->GetAx22d(), theFocalLength);
     };
 
 
@@ -52,8 +52,8 @@ namespace TKMath
     //! by theSense parameter. If theSense == TRUE (by default) then right-handed
     //! coordinate system is used, otherwise - left-handed. Result parabola will look
     //! like a line, which is perpendicular to the directrix.
-    xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theDirectrix, xgp_Pnt2d^ theFocus, Standard_Boolean^ theSense) {
-        NativeHandle = new gp_Parab2d(theDirectrix->GetAx2d(), theFocus->GetPnt2d(), *theSense);
+    xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theDirectrix, xgp_Pnt2d^ theFocus, Standard_Boolean theSense) {
+        NativeHandle = new gp_Parab2d(theDirectrix->GetAx2d(), theFocus->GetPnt2d(), theSense);
     };
 
 
@@ -79,8 +79,8 @@ namespace TKMath
     //! Changes the focal distance of the parabola
     //! Warnings : It is possible to have Focal = 0.
     //! Raises ConstructionError if Focal < 0.0
-    void xgp_Parab2d::SetFocal(Standard_Real^ Focal) {
-        NativeHandle->SetFocal(*Focal);
+    void xgp_Parab2d::SetFocal(Standard_Real Focal) {
+        NativeHandle->SetFocal(Focal);
     };
 
 
@@ -130,7 +130,7 @@ namespace TKMath
 
     //! Returns the distance between the vertex and the focus
     //! of the parabola.
-    Standard_Real^ xgp_Parab2d::Focal() {
+    Standard_Real xgp_Parab2d::Focal() {
         return NativeHandle->Focal();
     };
 
@@ -161,7 +161,7 @@ namespace TKMath
 
     //! Returns the distance between the focus and the
     //! directrix of the parabola.
-    Standard_Real^ xgp_Parab2d::Parameter() {
+    Standard_Real xgp_Parab2d::Parameter() {
         return NativeHandle->Parameter();
     };
 
@@ -182,7 +182,7 @@ namespace TKMath
 
     //! Returns true if the local coordinate system is direct
     //! and false in the other case.
-    Standard_Boolean^ xgp_Parab2d::IsDirect() {
+    Standard_Boolean xgp_Parab2d::IsDirect() {
         return NativeHandle->IsDirect();
     };
 
@@ -208,27 +208,27 @@ namespace TKMath
         return gcnew xgp_Parab2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Parab2d::Rotate(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), *Ang);
+    void xgp_Parab2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
+        NativeHandle->Rotate(P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates a parabola. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Parab2d^ xgp_Parab2d::Rotated(xgp_Pnt2d^ P, Standard_Real^ Ang) {
-        return gcnew xgp_Parab2d(NativeHandle->Rotated(P->GetPnt2d(), *Ang));
+    xgp_Parab2d^ xgp_Parab2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
+        return gcnew xgp_Parab2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
     };
 
-    void xgp_Parab2d::Scale(xgp_Pnt2d^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt2d(), *S);
+    void xgp_Parab2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt2d(), S);
     };
 
 
     //! Scales a parabola. S is the scaling value.
     //! If S is negative the direction of the symmetry axis
     //! "XAxis" is reversed and the direction of the "YAxis" too.
-    xgp_Parab2d^ xgp_Parab2d::Scaled(xgp_Pnt2d^ P, Standard_Real^ S) {
-        return gcnew xgp_Parab2d(NativeHandle->Scaled(P->GetPnt2d(), *S));
+    xgp_Parab2d^ xgp_Parab2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
+        return gcnew xgp_Parab2d(NativeHandle->Scaled(P->GetPnt2d(), S));
     };
 
     void xgp_Parab2d::Transform(xgp_Trsf2d^ T) {

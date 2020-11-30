@@ -37,4 +37,7 @@ namespace TKBO {
 		NativeHandle = new BRepAlgoAPI_Cut(S1->GetShape(), S2->GetShape(), aDSF, bFWD);
 	};
 
+	XTopoDS_Shape^ XBRepAlgoAPI_Cut::Shape() {
+		return gcnew XTopoDS_Shape(NativeHandle->Shape());
+	};
 }

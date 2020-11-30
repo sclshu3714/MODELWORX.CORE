@@ -33,8 +33,8 @@ namespace TKMath
     };
 
     //! Creates a Direction with its 2 cartesian coordinates. Raises ConstructionError if Sqrt(Xv*Xv + Yv*Yv) <= Resolution from gp.
-    xgp_Dir2d::xgp_Dir2d(Standard_Real^ Xv, Standard_Real^ Yv) {
-        NativeHandle = new gp_Dir2d(*Xv, *Yv);
+    xgp_Dir2d::xgp_Dir2d(Standard_Real Xv, Standard_Real Yv) {
+        NativeHandle = new gp_Dir2d(Xv, Yv);
     };
 
     //ÊÍ·Å
@@ -68,8 +68,8 @@ namespace TKMath
     //! value Xi and the other coordinate of this vector that
     //! was not directly modified.
     //! Raises OutOfRange if Index != {1, 2}.
-    void xgp_Dir2d::SetCoord(Standard_Integer^ Index, Standard_Real^ Xi) {
-        NativeHandle->SetCoord(*Index, *Xi);
+    void xgp_Dir2d::SetCoord(Standard_Integer Index, Standard_Real Xi) {
+        NativeHandle->SetCoord(Index, Xi);
     };
 
 
@@ -87,8 +87,8 @@ namespace TKMath
     //! value Xi and the other coordinate of this vector that
     //! was not directly modified.
     //! Raises OutOfRange if Index != {1, 2}.
-    void xgp_Dir2d::SetCoord(Standard_Real^ Xv, Standard_Real^ Yv) {
-        NativeHandle->SetCoord(*Xv, *Yv);
+    void xgp_Dir2d::SetCoord(Standard_Real Xv, Standard_Real Yv) {
+        NativeHandle->SetCoord(Xv, Yv);
     };
 
 
@@ -104,8 +104,8 @@ namespace TKMath
     //! -   the modulus of the number pair formed from the new
     //! X or Y coordinate and the other coordinate of this
     //! vector that was not directly modified.
-    void xgp_Dir2d::SetX(Standard_Real^ X) {
-        NativeHandle->SetX(*X);
+    void xgp_Dir2d::SetX(Standard_Real X) {
+        NativeHandle->SetX(X);
     };
 
 
@@ -121,8 +121,8 @@ namespace TKMath
     //! -   the modulus of the number pair formed from the new
     //! X or Y coordinate and the other coordinate of this
     //! vector that was not directly modified.
-    void xgp_Dir2d::SetY(Standard_Real^ Y) {
-        NativeHandle->SetY(*Y);
+    void xgp_Dir2d::SetY(Standard_Real Y) {
+        NativeHandle->SetY(Y);
     };
 
 
@@ -152,23 +152,23 @@ namespace TKMath
     //! Index = 1 => X is returned
     //! Index = 2 => Y is returned
     //! Raises OutOfRange if Index != {1, 2}.
-    Standard_Real^ xgp_Dir2d::Coord(Standard_Integer^ Index) {
-        return NativeHandle->Coord(*Index);
+    Standard_Real xgp_Dir2d::Coord(Standard_Integer Index) {
+        return NativeHandle->Coord(Index);
     };
 
     //! For this unit vector returns its two coordinates Xv and Yv.
     //! Raises OutOfRange if Index != {1, 2}.
-    void xgp_Dir2d::Coord(Standard_Real^ Xv, Standard_Real^ Yv) {
-        return NativeHandle->SetCoord(*Xv, *Yv);
+    void xgp_Dir2d::Coord(Standard_Real Xv, Standard_Real Yv) {
+        return NativeHandle->SetCoord(Xv, Yv);
     };
 
     //! For this unit vector, returns its X coordinate.
-    Standard_Real^ xgp_Dir2d::X() {
+    Standard_Real xgp_Dir2d::X() {
         return NativeHandle->X();
     };
 
     //! For this unit vector, returns its Y coordinate.
-    Standard_Real^ xgp_Dir2d::Y() {
+    Standard_Real xgp_Dir2d::Y() {
         return NativeHandle->Y();
     };
 
@@ -183,24 +183,24 @@ namespace TKMath
     //! Returns True if the two vectors have the same direction
     //! i.e. the angle between this unit vector and the
     //! unit vector Other is less than or equal to AngularTolerance.
-    Standard_Boolean^ xgp_Dir2d::IsEqual(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetDir2d(), *AngularTolerance);
+    Standard_Boolean xgp_Dir2d::IsEqual(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsEqual(Other->GetDir2d(), AngularTolerance);
     };
 
 
     //! Returns True if the angle between this unit vector and the
     //! unit vector Other is equal to Pi/2 or -Pi/2 (normal)
     //! i.e. Abs(Abs(<me>.Angle(Other)) - PI/2.) <= AngularTolerance
-    Standard_Boolean^ xgp_Dir2d::IsNormal(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetDir2d(), *AngularTolerance);
+    Standard_Boolean xgp_Dir2d::IsNormal(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsNormal(Other->GetDir2d(), AngularTolerance);
     };
 
 
     //! Returns True if the angle between this unit vector and the
     //! unit vector Other is equal to Pi or -Pi (opposite).
     //! i.e.  PI - Abs(<me>.Angle(Other)) <= AngularTolerance
-    Standard_Boolean^ xgp_Dir2d::IsOpposite(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetDir2d(), *AngularTolerance);
+    Standard_Boolean xgp_Dir2d::IsOpposite(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsOpposite(Other->GetDir2d(), AngularTolerance);
     };
 
 
@@ -208,26 +208,26 @@ namespace TKMath
     //! vector Other is equal to 0, Pi or -Pi.
     //! i.e.  Abs(Angle(<me>, Other)) <= AngularTolerance or
     //! PI - Abs(Angle(<me>, Other)) <= AngularTolerance
-    Standard_Boolean^ xgp_Dir2d::IsParallel(xgp_Dir2d^ Other, Standard_Real^ AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetDir2d(), *AngularTolerance);
+    Standard_Boolean xgp_Dir2d::IsParallel(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
+        return NativeHandle->IsParallel(Other->GetDir2d(), AngularTolerance);
     };
 
 
     //! Computes the angular value in radians between <me> and
     //! <Other>. Returns the angle in the range [-PI, PI].
-    Standard_Real^ xgp_Dir2d::Angle(xgp_Dir2d^ Other) {
+    Standard_Real xgp_Dir2d::Angle(xgp_Dir2d^ Other) {
         return NativeHandle->Angle(Other->GetDir2d());
     };
 
 
     //! Computes the cross product between two directions.
-    Standard_Real^ xgp_Dir2d::Crossed(xgp_Dir2d^ Right) {
+    Standard_Real xgp_Dir2d::Crossed(xgp_Dir2d^ Right) {
         return NativeHandle->Crossed(Right->GetDir2d());
     };
 
 
     //! Computes the scalar product
-    Standard_Real^ xgp_Dir2d::Dot(xgp_Dir2d^ Other) {
+    Standard_Real xgp_Dir2d::Dot(xgp_Dir2d^ Other) {
         return NativeHandle->Dot(Other->GetDir2d());
     };
 
@@ -266,15 +266,15 @@ namespace TKMath
         return gcnew xgp_Dir2d(NativeHandle->Mirrored(A->GetAx2d()));
     };
 
-    void xgp_Dir2d::Rotate(Standard_Real^ Ang) {
-        NativeHandle->Rotate(*Ang);
+    void xgp_Dir2d::Rotate(Standard_Real Ang) {
+        NativeHandle->Rotate(Ang);
     };
 
 
     //! Rotates a direction.  Ang is the angular value of
     //! the rotation in radians.
-    xgp_Dir2d^ xgp_Dir2d::Rotated(Standard_Real^ Ang) {
-        return gcnew xgp_Dir2d(NativeHandle->Rotated(*Ang));
+    xgp_Dir2d^ xgp_Dir2d::Rotated(Standard_Real Ang) {
+        return gcnew xgp_Dir2d(NativeHandle->Rotated(Ang));
     };
 
     void xgp_Dir2d::Transform(xgp_Trsf2d^ T) {

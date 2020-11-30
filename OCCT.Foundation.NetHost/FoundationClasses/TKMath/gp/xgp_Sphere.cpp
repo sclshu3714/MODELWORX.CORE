@@ -27,8 +27,8 @@ namespace TKMath
     //! Warnings :
     //! It is not forbidden to create a sphere with null radius.
     //! Raises ConstructionError if Radius < 0.0
-    xgp_Sphere::xgp_Sphere(xgp_Ax3^ A3, Standard_Real^ Radius) {
-        NativeHandle = new gp_Sphere(A3->GetAx3(), *Radius);
+    xgp_Sphere::xgp_Sphere(xgp_Ax3^ A3, Standard_Real Radius) {
+        NativeHandle = new gp_Sphere(A3->GetAx3(), Radius);
     };
 
     // Õ∑≈
@@ -64,13 +64,13 @@ namespace TKMath
     //! Warnings :
     //! It is not forbidden to create a sphere with null radius.
     //! Raises ConstructionError if R < 0.0
-    void xgp_Sphere::SetRadius(Standard_Real^ R) {
-        NativeHandle->SetRadius(*R);
+    void xgp_Sphere::SetRadius(Standard_Real R) {
+        NativeHandle->SetRadius(R);
     };
 
 
     //! Computes the aera of the sphere.
-    Standard_Real^ xgp_Sphere::Area() {
+    Standard_Real xgp_Sphere::Area() {
         return NativeHandle->Area();
     };
 
@@ -97,7 +97,7 @@ namespace TKMath
 
     //! Returns true if the local coordinate system of this sphere
     //! is right-handed.
-    Standard_Boolean^ xgp_Sphere::Direct() {
+    Standard_Boolean xgp_Sphere::Direct() {
         return NativeHandle->Direct();
     };
 
@@ -114,12 +114,12 @@ namespace TKMath
     };
 
     //! Returns the radius of the sphere.
-    Standard_Real^ xgp_Sphere::Radius() {
+    Standard_Real xgp_Sphere::Radius() {
         return  NativeHandle->Radius();
     };
 
     //! Computes the volume of the sphere
-    Standard_Real^ xgp_Sphere::Volume() {
+    Standard_Real xgp_Sphere::Volume() {
         return NativeHandle->Volume();
     };
 
@@ -169,26 +169,26 @@ namespace TKMath
         return gcnew xgp_Sphere(NativeHandle->Mirrored(A2->GetAx2()));
     };
 
-    void xgp_Sphere::Rotate(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), *Ang);
+    void xgp_Sphere::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
+        NativeHandle->Rotate(A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a sphere. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
-    xgp_Sphere^ xgp_Sphere::Rotated(xgp_Ax1^ A1, Standard_Real^ Ang) {
-        return gcnew xgp_Sphere(NativeHandle->Rotated(A1->GetAx1(), *Ang));
+    xgp_Sphere^ xgp_Sphere::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
+        return gcnew xgp_Sphere(NativeHandle->Rotated(A1->GetAx1(), Ang));
     };
 
-    void xgp_Sphere::Scale(xgp_Pnt^ P, Standard_Real^ S) {
-        NativeHandle->Scale(P->GetPnt(), *S);
+    void xgp_Sphere::Scale(xgp_Pnt^ P, Standard_Real S) {
+        NativeHandle->Scale(P->GetPnt(), S);
     };
 
 
     //! Scales a sphere. S is the scaling value.
     //! The absolute value of S is used to scale the sphere
-    xgp_Sphere^ xgp_Sphere::Scaled(xgp_Pnt^ P, Standard_Real^ S) {
-        return gcnew xgp_Sphere(NativeHandle->Scaled(P->GetPnt(), *S));
+    xgp_Sphere^ xgp_Sphere::Scaled(xgp_Pnt^ P, Standard_Real S) {
+        return gcnew xgp_Sphere(NativeHandle->Scaled(P->GetPnt(), S));
     };
 
     void xgp_Sphere::Transform(xgp_Trsf^ T) {
