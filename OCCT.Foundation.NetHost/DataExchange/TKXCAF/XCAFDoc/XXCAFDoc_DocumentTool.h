@@ -143,6 +143,10 @@ namespace TKXCAF {
 
 		void Paste(XTDF_Attribute^ into, Handle(TDF_RelocationTable)& RT) Standard_OVERRIDE;
 
+		Handle(XCAFDoc_DocumentTool) GetDocumentTool();
+		//£¡
+		virtual Handle(TDF_Attribute) GetAttribute() Standard_OVERRIDE;
+
 		//! DEFINE_STANDARD_RTTIEXT(XCAFDoc_DocumentTool, TDF_Attribute)
 		//! 
 		/// <summary>

@@ -22,6 +22,11 @@ namespace TKLCAF {
 		return NativeHandle();
 	};
 
+	//£¡
+	Handle(TDF_Attribute) XTDataStd_Name::GetAttribute() {
+		return NativeHandle();
+	};
+
 	//! class methods working on the name itself
 	//! ========================================
 	//! Returns the GUID for name attributes.

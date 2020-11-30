@@ -9,8 +9,8 @@ namespace TKXCAF {
 
     //! Create (if not exist) ShapeTool from XCAFDoc on <L>.
     //! static 
-    Handle(XCAFDoc_ShapeTool) XXCAFDoc_ShapeTool::Set(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::Set(L->GetLabel());
+    XXCAFDoc_ShapeTool^ XXCAFDoc_ShapeTool::Set(XTDF_Label^ L) {
+        return gcnew XXCAFDoc_ShapeTool(XCAFDoc_ShapeTool::Set(L->GetLabel()));
     };
 
     //! Creates an empty tool
@@ -25,6 +25,15 @@ namespace TKXCAF {
     //! Attaches to label XCAFDoc::LabelShapes()
     XXCAFDoc_ShapeTool::XXCAFDoc_ShapeTool(Handle(XCAFDoc_ShapeTool) pos) {
         NativeHandle() = pos;
+    };
+
+    Handle(XCAFDoc_ShapeTool) XXCAFDoc_ShapeTool::GetShapeTool() {
+        return  NativeHandle();
+    };
+
+    //£¡
+    Handle(TDF_Attribute) XXCAFDoc_ShapeTool::GetAttribute() {
+        return  NativeHandle();
     };
 
     //! Returns True if the label is a label of top-level shape,

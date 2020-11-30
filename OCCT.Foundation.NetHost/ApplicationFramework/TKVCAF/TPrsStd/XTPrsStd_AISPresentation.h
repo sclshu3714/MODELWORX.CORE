@@ -74,6 +74,9 @@ namespace TKVCAF {
 
 		Handle(TPrsStd_AISPresentation) GetAISPresentation();
 
+		//£¡
+		virtual Handle(TDF_Attribute) GetAttribute() Standard_OVERRIDE;
+
 		//! Returns the GUID for TPrsStd_AISPresentation attributes.
 		static const XStandard_GUID^ GetID();
 

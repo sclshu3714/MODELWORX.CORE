@@ -179,7 +179,7 @@ namespace TKLCAF {
         XTDF_Label^ Label();
 
         //£¡
-        Handle(TDF_Attribute) GetAttribute();
+        virtual Handle(TDF_Attribute) GetAttribute();
 
         //! Returns the transaction index in which the
         //! attribute has been created or modified.

@@ -127,7 +127,7 @@ namespace TKXCAF {
         static XStandard_GUID^ GetID();
 
         //! Create (if not exist) ShapeTool from XCAFDoc on <L>.
-        static Handle(XCAFDoc_ShapeTool) Set(XTDF_Label^ L);
+        static XXCAFDoc_ShapeTool^ Set(XTDF_Label^ L);
 
         //! Creates an empty tool
         //! Creates a tool to work with a document <Doc>
@@ -138,6 +138,11 @@ namespace TKXCAF {
         //! Creates a tool to work with a document <Doc>
         //! Attaches to label XCAFDoc::LabelShapes()
         XXCAFDoc_ShapeTool(Handle(XCAFDoc_ShapeTool) pos);
+
+        Handle(XCAFDoc_ShapeTool) GetShapeTool();
+
+        //£¡
+        virtual Handle(TDF_Attribute) GetAttribute() Standard_OVERRIDE;
 
         //! Returns True if the label is a label of top-level shape,
         //! as opposed to component of assembly or subshape

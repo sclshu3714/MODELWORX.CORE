@@ -91,7 +91,10 @@ namespace TKLCAF {
 
 		XTDataStd_Integer(Handle(TDataStd_Integer) pos);
 
-		Handle(TDataStd_Integer) GetInteger();
+		virtual Handle(TDataStd_Integer) GetInteger();
+
+		//£¡
+		virtual Handle(TDF_Attribute) GetAttribute() Standard_OVERRIDE;
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

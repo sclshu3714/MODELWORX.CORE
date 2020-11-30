@@ -15,6 +15,11 @@ namespace TKVCAF {
 		return NativeHandle();
 	};
 
+	//£¡
+	Handle(TDF_Attribute) XTPrsStd_AISPresentation::GetAttribute() {
+		return NativeHandle();
+	};
+
 	//! Returns the GUID for TPrsStd_AISPresentation attributes.
 	//! static 
 	const XStandard_GUID^ XTPrsStd_AISPresentation::GetID() {

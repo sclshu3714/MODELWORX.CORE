@@ -83,4 +83,9 @@ namespace TKLCAF {
 	Handle(TDataStd_Integer) XTDataStd_Integer::GetInteger() {
 		return NativeHandle();
 	};
+
+	//£¡
+	Handle(TDF_Attribute) XTDataStd_Integer::GetAttribute() {
+		return NativeHandle();
+	};
 }

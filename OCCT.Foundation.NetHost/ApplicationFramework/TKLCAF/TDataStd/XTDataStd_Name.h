@@ -60,6 +60,9 @@ namespace TKLCAF {
 
 		Handle(TDataStd_Name) GetName();
 
+		//£¡
+		virtual Handle(TDF_Attribute) GetAttribute() Standard_OVERRIDE;
+
 		//! class methods working on the name itself
 		//! ========================================
 		//! Returns the GUID for name attributes.

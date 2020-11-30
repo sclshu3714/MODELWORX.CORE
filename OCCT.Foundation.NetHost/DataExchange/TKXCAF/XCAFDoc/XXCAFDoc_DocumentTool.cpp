@@ -156,4 +156,12 @@ namespace TKXCAF {
 	void XXCAFDoc_DocumentTool::Paste(XTDF_Attribute^ into, Handle(TDF_RelocationTable)& RT) {
 		NativeHandle()->Paste(into->GetAttribute(), RT);
 	};
+
+	Handle(XCAFDoc_DocumentTool) XXCAFDoc_DocumentTool::GetDocumentTool() {
+		return NativeHandle();
+	};
+	//£¡
+	Handle(TDF_Attribute) XXCAFDoc_DocumentTool::GetAttribute() {
+		return NativeHandle();
+	};
 }

@@ -113,7 +113,7 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     SetID(Standard_GUID* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetNativeHandle(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig
     Label(): PrivateScope, Public, HideBySig
-    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, HideBySig
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Transaction(): PrivateScope, Public, HideBySig
     UntilTransaction(): PrivateScope, Public, HideBySig
     IsValid(): PrivateScope, Public, HideBySig
@@ -185,7 +185,8 @@ Class TKLCAF.XTDataStd_Integer: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     NewEmpty(): PrivateScope, Public, Virtual, HideBySig
     Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
-    GetInteger(handle<TDataStd_Integer>*): PrivateScope, Public, HideBySig
+    GetInteger(handle<TDataStd_Integer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XTDataStd_Integer(): PrivateScope, Public, HideBySig
@@ -284,6 +285,7 @@ Class TKLCAF.XTDataStd_Name: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     GetName(handle<TDataStd_Name>*): PrivateScope, Public, HideBySig
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     GetID(): PrivateScope, Public, Static, HideBySig
     Set(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
     Set(XTDF_Label, XStandard_GUID, XTCollection_ExtendedString): PrivateScope, Public, Static, HideBySig
@@ -2291,6 +2293,7 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     GetAISPresentation(handle<TPrsStd_AISPresentation>*): PrivateScope, Public, HideBySig
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     GetID(): PrivateScope, Public, Static, HideBySig
     Set(XTDF_Attribute): PrivateScope, Public, Static, HideBySig
     Set(handle<TPrsStd_AISPresentation>*, handle<TDF_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
@@ -3239,7 +3242,9 @@ Class TKXCAF.XXCAFDoc_ShapeTool: AutoLayout, AnsiClass, Class, Public, BeforeFie
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     GetID(): PrivateScope, Public, Static, HideBySig
-    Set(handle<XCAFDoc_ShapeTool>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
+    Set(XTDF_Label): PrivateScope, Public, Static, HideBySig
+    GetShapeTool(handle<XCAFDoc_ShapeTool>*): PrivateScope, Public, HideBySig
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     IsTopLevel(XTDF_Label): PrivateScope, Public, HideBySig
     IsFree(XTDF_Label): PrivateScope, Public, Static, HideBySig
     IsShape(XTDF_Label): PrivateScope, Public, Static, HideBySig
@@ -3351,6 +3356,8 @@ Class TKXCAF.XXCAFDoc_DocumentTool: AutoLayout, AnsiClass, Class, Public, Before
     Restore(XTDF_Attribute): PrivateScope, Public, Virtual, HideBySig
     NewEmpty(): PrivateScope, Public, Virtual, HideBySig
     Paste(XTDF_Attribute, handle<TDF_RelocationTable>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
+    GetDocumentTool(handle<XCAFDoc_DocumentTool>*): PrivateScope, Public, HideBySig
+    GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XXCAFDoc_DocumentTool(): PrivateScope, Public, HideBySig
