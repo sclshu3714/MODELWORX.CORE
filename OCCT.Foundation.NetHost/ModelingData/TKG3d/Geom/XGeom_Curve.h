@@ -88,7 +88,11 @@ namespace TKG3d {
 
 		void SetCurveHandle(Handle(Geom_Curve) pos);
 
-		Handle(Geom_Curve) GetCurve();
+		//!
+		virtual Handle(Geom_Curve) GetCurve();
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		//! Changes the direction of parametrization of <me>.
 		//! The "FirstParameter" and the "LastParameter" are not changed

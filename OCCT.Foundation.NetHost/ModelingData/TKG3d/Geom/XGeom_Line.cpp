@@ -53,6 +53,15 @@ namespace TKG3d {
 		return NativeHandle();
 	};
 
+	Handle(Geom_Curve) XGeom_Line::GetCurve() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Line::GetGeometry() {
+		return NativeHandle();
+	};
+
 	//! Set <me> so that <me> has the same geometric properties as L.
 	void XGeom_Line::SetLin(xgp_Lin^ L) {
 		NativeHandle()->SetLin(L->GetLin());

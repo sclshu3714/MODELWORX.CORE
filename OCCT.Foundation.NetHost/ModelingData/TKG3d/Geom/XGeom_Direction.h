@@ -20,6 +20,7 @@
 #include <Geom_Direction.hxx>
 #include <NCollection_Haft.h>  
 #include <XGeom_Geometry.h>
+#include <Geom_Curve.hxx>
 #include <XGeom_Vector.h>
 #include <xgp_Dir.h>
 #include <xgp_Trsf.h>	
@@ -30,7 +31,7 @@
 #include <Geom_Vector.hxx>
 #include <Standard_Real.hxx>
 class Standard_ConstructionError;
-
+class Geom_Curve;
 
 using namespace TKMath;
 //class Geom_Direction;
@@ -58,6 +59,12 @@ namespace TKG3d {
 
 		//! Creates a transient copy of <me>.
 		XGeom_Direction(xgp_Dir^ V);
+
+		//!
+		virtual Handle(Geom_Vector) GetVector() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		//! Sets <me> to X,Y,Z coordinates.
 		//!

@@ -16,7 +16,7 @@ namespace OCCT.TKMath.GP
         public gp_Circ2d(gp_Ax22d Axis, double Radius) : base(Axis, Radius) {
 
         }
-        public gp_Circ2d(gp_Ax2d XAxis, double Radius, double Sense) : base(XAxis, Radius, Sense) {
+        public gp_Circ2d(gp_Ax2d XAxis, double Radius, bool Sense) : base(XAxis, Radius, Sense) {
 
         }
     }

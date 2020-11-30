@@ -52,7 +52,11 @@ namespace TKG3d {
 
 		void SetVectorHandle(Handle(Geom_Vector) handle);
 
-		Handle(Geom_Vector) GetVector();
+		virtual Handle(Geom_Vector) GetVector();
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
+
 		//! Reverses the vector <me>.
 		void Reverse();
 

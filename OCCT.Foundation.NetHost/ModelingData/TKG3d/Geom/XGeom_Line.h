@@ -92,6 +92,12 @@ namespace TKG3d {
 
 		Handle(Geom_Line) GetHLine();
 
+		//!
+		virtual Handle(Geom_Curve) GetCurve() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
+
 		//! Set <me> so that <me> has the same geometric properties as L.
 		void SetLin(xgp_Lin^ L);
 

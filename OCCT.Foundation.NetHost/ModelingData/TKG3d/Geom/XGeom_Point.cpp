@@ -36,6 +36,11 @@ namespace TKG3d {
 		return NativeHandle();
 	};
 
+	//!
+	Handle(Geom_Geometry) XGeom_Point::GetGeometry() {
+		return NativeHandle();
+	};
+
 	//! returns the Coordinates of <me>.
 	void XGeom_Point::Coord(Standard_Real X, Standard_Real Y, Standard_Real Z) {
 		NativeHandle()->Coord(X, Y, Z);

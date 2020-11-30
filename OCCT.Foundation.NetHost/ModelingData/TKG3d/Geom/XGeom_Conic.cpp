@@ -31,6 +31,17 @@ namespace TKG3d {
 		return NativeHandle();
 	};
 
+	//!
+	Handle(Geom_Curve) XGeom_Conic::GetCurve() {
+		return NativeHandle();
+	};
+
+
+	//!
+	Handle(Geom_Geometry) XGeom_Conic::GetGeometry() {
+		return NativeHandle();
+	};
+
 	void XGeom_Conic::SetConicHandle(Handle(Geom_Conic) pos) {
 		NativeHandle() = pos; 
 		SetCurveHandle(NativeHandle());

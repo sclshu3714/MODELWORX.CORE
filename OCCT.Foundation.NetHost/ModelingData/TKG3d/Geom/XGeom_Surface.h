@@ -88,7 +88,10 @@ namespace TKG3d
 		void SetSurfaceHandle(Handle(Geom_Surface) handle);
 
 		//!
-		Handle(Geom_Surface) GetSurface();
+		virtual Handle(Geom_Surface) GetSurface();
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		//! Reverses the U direction of parametrization of <me>.
 		//! The bounds of the surface are not modified.

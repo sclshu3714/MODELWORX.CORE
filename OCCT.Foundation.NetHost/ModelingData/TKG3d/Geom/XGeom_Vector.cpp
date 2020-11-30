@@ -34,6 +34,12 @@ namespace TKG3d {
 	Handle(Geom_Vector) XGeom_Vector::GetVector() {
 		return NativeHandle();
 	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Vector::GetGeometry() {
+		return NativeHandle();
+	};
+
 	//! Reverses the vector <me>.
 	void XGeom_Vector::Reverse() {
 		NativeHandle()->Reverse();

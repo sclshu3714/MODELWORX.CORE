@@ -32,6 +32,16 @@ namespace TKG3d {
 		SetVectorHandle(NativeHandle());
 	};
 
+	//!
+	Handle(Geom_Geometry) XGeom_Direction::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Vector) XGeom_Direction::GetVector() {
+		return NativeHandle();
+	};
+
 	//! Sets <me> to X,Y,Z coordinates.
 	//!
 	//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.

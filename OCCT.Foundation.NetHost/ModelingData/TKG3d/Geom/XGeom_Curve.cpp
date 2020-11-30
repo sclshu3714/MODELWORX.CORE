@@ -44,6 +44,11 @@ namespace TKG3d {
 		return NativeHandle();
 	};
 
+	//!
+	Handle(Geom_Geometry) XGeom_Curve::GetGeometry() {
+		return NativeHandle();
+	};
+
 	//! Changes the direction of parametrization of <me>.
 	//! The "FirstParameter" and the "LastParameter" are not changed
 	//! but the orientation  of the curve is modified. If the curve

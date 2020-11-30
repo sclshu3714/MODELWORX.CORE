@@ -114,6 +114,14 @@ namespace TKG3d {
 		//! MinorRadius are equal.
 		XGeom_Ellipse(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
+		//!
+		virtual Handle(Geom_Conic) GetConic() Standard_OVERRIDE;
+		//!
+		virtual Handle(Geom_Curve) GetCurve() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
+
 		//! Converts the gp_Elips ellipse E into this ellipse.
 		void SetElips(xgp_Elips^ E);
 

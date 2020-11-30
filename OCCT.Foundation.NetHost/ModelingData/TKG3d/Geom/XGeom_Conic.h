@@ -75,7 +75,13 @@ namespace TKG3d {
 
 		XGeom_Conic(Handle(Geom_Conic) pos);
 
-		Handle(Geom_Conic) GetConic();
+		virtual Handle(Geom_Conic) GetConic();
+
+		//!
+		virtual Handle(Geom_Curve) GetCurve() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		void SetConicHandle(Handle(Geom_Conic) pos);
 

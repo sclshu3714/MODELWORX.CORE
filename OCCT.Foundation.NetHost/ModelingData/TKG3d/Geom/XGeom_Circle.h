@@ -102,6 +102,14 @@ namespace TKG3d {
 
 		Handle(Geom_Circle) GetCircle();
 
+		virtual Handle(Geom_Conic) GetConic() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Curve) GetCurve() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
+
 		void SetCircleHandle(Handle(Geom_Circle) pos);
 
 

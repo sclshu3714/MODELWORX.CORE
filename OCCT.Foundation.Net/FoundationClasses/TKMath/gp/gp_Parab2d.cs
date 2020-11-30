@@ -17,11 +17,11 @@ namespace OCCT.TKMath.GP
             : base(theAxes, theFocalLength) {
 
         }
-        public gp_Parab2d(gp_Ax2d theDirectrix, gp_Pnt2d theFocus, double theSense)
+        public gp_Parab2d(gp_Ax2d theDirectrix, gp_Pnt2d theFocus, bool theSense)
             : base(theDirectrix, theFocus, theSense) {
 
         }
-        public gp_Parab2d(gp_Ax2d theMirrorAxis, double theFocalLength, double theSense)
+        public gp_Parab2d(gp_Ax2d theMirrorAxis, double theFocalLength, bool theSense)
             : base(theMirrorAxis, theFocalLength, theSense) {
 
         }

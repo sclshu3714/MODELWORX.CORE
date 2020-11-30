@@ -4425,7 +4425,7 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetGeomHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
-    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
     Mirror(xgp_Pnt): PrivateScope, Public, HideBySig
@@ -4461,7 +4461,8 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetSurfaceHandle(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
-    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     UReverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     UReversed(handle<Geom_Surface>*): PrivateScope, Public, HideBySig
     UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -4535,7 +4536,8 @@ Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetCurveHandle(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
-    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     Reverse(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -4863,7 +4865,9 @@ Class TKG3d.XGeom_Conic: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    GetConic(handle<Geom_Conic>*): PrivateScope, Public, HideBySig
+    GetConic(handle<Geom_Conic>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetConicHandle(handle<Geom_Conic>*): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
@@ -4896,6 +4900,9 @@ Class TKG3d.XGeom_Circle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     GetCircle(handle<Geom_Circle>*): PrivateScope, Public, HideBySig
+    GetConic(handle<Geom_Conic>*): PrivateScope, Public, Virtual, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetCircleHandle(handle<Geom_Circle>*): PrivateScope, Public, HideBySig
     SetCirc(xgp_Circ): PrivateScope, Public, HideBySig
     SetRadius(Double): PrivateScope, Public, HideBySig
@@ -4932,7 +4939,8 @@ Class TKG3d.XGeom_Vector: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetVectorHandle(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
-    GetVector(handle<Geom_Vector>*): PrivateScope, Public, HideBySig
+    GetVector(handle<Geom_Vector>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
     Angle(XGeom_Vector): PrivateScope, Public, HideBySig
@@ -4967,6 +4975,8 @@ Class TKG3d.XGeom_Direction: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    GetVector(handle<Geom_Vector>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
     SetDir(xgp_Dir): PrivateScope, Public, HideBySig
     SetX(Double): PrivateScope, Public, HideBySig
@@ -4998,6 +5008,9 @@ Class TKG3d.XGeom_Ellipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    GetConic(handle<Geom_Conic>*): PrivateScope, Public, Virtual, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetElips(xgp_Elips): PrivateScope, Public, HideBySig
     SetMajorRadius(Double): PrivateScope, Public, HideBySig
     SetMinorRadius(Double): PrivateScope, Public, HideBySig
@@ -5044,6 +5057,8 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     SetLineHandle(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     GetHLine(handle<Geom_Line>*): PrivateScope, Public, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetLin(xgp_Lin): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
@@ -5086,6 +5101,7 @@ Class TKG3d.XGeom_Point: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     SetNativeHandle(handle<Geom_Point>*): PrivateScope, Public, HideBySig
     GetPoint(handle<Geom_Point>*): PrivateScope, Public, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     Coord(Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Pnt(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     X(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask

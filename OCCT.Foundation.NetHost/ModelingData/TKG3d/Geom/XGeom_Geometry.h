@@ -71,7 +71,9 @@ namespace TKG3d
 		void SetGeomHandle(Handle(Geom_Geometry) pos);
 
 		//!
-		Handle(Geom_Geometry) GetGeometry();
+		virtual Handle(Geom_Geometry) GetGeometry();
+
+
 
 		//! Performs the symmetrical transformation of a Geometry
 		//! with respect to the point P which is the center of the

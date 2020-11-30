@@ -45,6 +45,20 @@ namespace TKG3d {
 		IHandle = new  Geom_Ellipse(A2->GetAx2(), MajorRadius, MinorRadius);
 	};
 
+	Handle(Geom_Conic) XGeom_Ellipse::GetConic() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Curve) XGeom_Ellipse::GetCurve() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Ellipse::GetGeometry() {
+		return NativeHandle();
+	};
+
 	//! Converts the gp_Elips ellipse E into this ellipse.
 	void XGeom_Ellipse::SetElips(xgp_Elips^ E) {
 		NativeHandle()->SetElips(E->GetElips());

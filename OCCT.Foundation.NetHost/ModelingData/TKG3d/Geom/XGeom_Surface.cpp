@@ -27,6 +27,11 @@ namespace TKG3d {
 		return NativeHandle();// Handle(Geom_Geometry)(NativeHandle);
 	};
 
+	//!
+	Handle(Geom_Geometry) XGeom_Surface::GetGeometry() {
+		return NativeHandle();// Handle(Geom_Geometry)(NativeHandle);
+	};
+
 	//! Reverses the U direction of parametrization of <me>.
 	//! The bounds of the surface are not modified.
 	void XGeom_Surface::UReverse() {

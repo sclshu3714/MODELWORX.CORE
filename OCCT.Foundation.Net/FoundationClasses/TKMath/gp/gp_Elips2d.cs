@@ -17,7 +17,7 @@ namespace OCCT.TKMath.GP
             : base(A, MajorRadius, MinorRadius) {
 
         }
-        public gp_Elips2d(gp_Ax2d MajorAxis, double MajorRadius, double MinorRadius, double Sense) 
+        public gp_Elips2d(gp_Ax2d MajorAxis, double MajorRadius, double MinorRadius, bool Sense) 
             : base(MajorAxis, MajorRadius, MinorRadius, Sense) {
 
         }

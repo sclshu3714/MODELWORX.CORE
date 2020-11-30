@@ -20,6 +20,7 @@
 #include <Geom_Point.hxx>
 #include <NCollection_Haft.h> 
 #include <XGeom_Geometry.h>
+#include <Geom_Curve.hxx>
 #include <xgp_Pnt.h>
 
 #include <Standard.hxx>
@@ -27,7 +28,7 @@
 
 #include <Geom_Geometry.hxx>
 #include <Standard_Real.hxx>
-class gp_Pnt;
+class Geom_Curve;
 
 
 //class Geom_Point;
@@ -50,6 +51,10 @@ namespace TKG3d {
 		void SetNativeHandle(Handle(Geom_Point) pos);
 
 		Handle(Geom_Point) GetPoint();
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
+
 		//! returns the Coordinates of <me>.
 		virtual void Coord(Standard_Real X, Standard_Real Y, Standard_Real Z);
 
