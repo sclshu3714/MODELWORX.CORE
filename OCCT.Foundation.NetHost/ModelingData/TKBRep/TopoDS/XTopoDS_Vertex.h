@@ -51,7 +51,9 @@ namespace TKBRep {
         XTopoDS_Vertex(TopoDS_Vertex pos);
 
         //!
-        TopoDS_Vertex GetVertex();
+        virtual TopoDS_Vertex GetVertex();
+        //!
+        virtual TopoDS_Shape GetShape() Standard_OVERRIDE;
 
         /// <summary>
         /// ±¾µØ¾ä±ú

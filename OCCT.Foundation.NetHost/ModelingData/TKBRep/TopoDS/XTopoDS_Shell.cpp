@@ -11,4 +11,8 @@ namespace TKBRep {
     TopoDS_Shell XTopoDS_Shell::GetShell() {
         return *NativeHandle;
     };
+    //!
+    TopoDS_Shape XTopoDS_Shell::GetShape() {
+        return *NativeHandle;
+    };
 }

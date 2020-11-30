@@ -49,6 +49,8 @@ namespace TKBRep {
         XTopoDS_Wire(TopoDS_Wire pos);
 
         TopoDS_Wire GetWire();
+        //!
+        virtual TopoDS_Shape GetShape() Standard_OVERRIDE;
         /// <summary>
       /// ±¾µØ¾ä±ú
       /// </summary>

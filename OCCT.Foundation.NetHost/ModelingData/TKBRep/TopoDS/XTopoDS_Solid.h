@@ -45,6 +45,9 @@ namespace TKBRep {
 
         TopoDS_Solid GetSolid();
 
+        //!
+        virtual TopoDS_Shape GetShape() Standard_OVERRIDE;
+
         /// <summary>
        /// ±¾µØ¾ä±ú
        /// </summary>

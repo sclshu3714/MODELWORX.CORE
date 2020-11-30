@@ -12,4 +12,9 @@ namespace TKBRep {
     TopoDS_Compound XTopoDS_Compound::GetCompound() {
         return *NativeHandle;
     };
+
+    //!
+    TopoDS_Shape XTopoDS_Compound::GetShape() {
+        return *NativeHandle;
+    };
 }

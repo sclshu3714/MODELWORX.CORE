@@ -12,4 +12,9 @@ namespace TKBRep {
     TopoDS_Solid XTopoDS_Solid::GetSolid() {
         return *NativeHandle;
     };
+
+    //!
+    TopoDS_Shape XTopoDS_Solid::GetShape() {
+        return *NativeHandle;
+    };
 }

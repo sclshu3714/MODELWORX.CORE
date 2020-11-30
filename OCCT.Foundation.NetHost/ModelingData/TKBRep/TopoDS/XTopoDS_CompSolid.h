@@ -45,7 +45,10 @@ namespace TKBRep {
         XTopoDS_CompSolid();
 
         //!
-        TopoDS_CompSolid GetCompSolid();
+        virtual TopoDS_CompSolid GetCompSolid();
+
+        //!
+        virtual TopoDS_Shape GetShape() Standard_OVERRIDE;
 
         /// <summary>
         /// ±¾µØ¾ä±ú

@@ -20,4 +20,9 @@ namespace TKBRep {
     TopoDS_Vertex XTopoDS_Vertex::GetVertex() {
         return *NativeHandle;
     };
+
+    //!
+    TopoDS_Shape XTopoDS_Vertex::GetShape() {
+        return *NativeHandle;
+    };
 }

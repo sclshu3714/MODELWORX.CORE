@@ -66,7 +66,7 @@ namespace TKBRep {
         XTopoDS_TShape(Handle(TopoDS_TShape) pos);
 
 
-        Handle(TopoDS_TShape) GetTShape();
+        virtual Handle(TopoDS_TShape) GetTShape();
 
         void SetTShapeHandle(Handle(TopoDS_TShape) pos);
 

@@ -13,4 +13,8 @@ namespace TKBRep {
     TopoDS_CompSolid XTopoDS_CompSolid::GetCompSolid() {
         return *NativeHandle;
     };
+
+    TopoDS_Shape XTopoDS_CompSolid::GetShape() {
+        return *NativeHandle;
+    };
 }
