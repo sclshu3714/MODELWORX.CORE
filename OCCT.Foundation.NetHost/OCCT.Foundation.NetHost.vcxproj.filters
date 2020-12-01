@@ -942,6 +942,27 @@
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_FaceError.h">
       <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_PipeError.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_ShapeModification.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_ShellError.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_TransitionMode.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_WireError.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeSolid.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeOneAxis.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1259,6 +1280,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.cpp">
       <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeSolid.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeOneAxis.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

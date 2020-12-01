@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_TransitionMode_HeaderFile
-#define _BRepBuilderAPI_TransitionMode_HeaderFile
+#ifndef _XBRepBuilderAPI_TransitionMode_HeaderFile
+#define _XBRepBuilderAPI_TransitionMode_HeaderFile
 
 //! Option to manage  discontinuities in  Sweep
-enum BRepBuilderAPI_TransitionMode
+public enum class XBRepBuilderAPI_TransitionMode
 {
-BRepBuilderAPI_Transformed,
-BRepBuilderAPI_RightCorner,
-BRepBuilderAPI_RoundCorner
+	BRepBuilderAPI_Transformed,
+	BRepBuilderAPI_RightCorner,
+	BRepBuilderAPI_RoundCorner
 };
 
-#endif // _BRepBuilderAPI_TransitionMode_HeaderFile
+#endif // _XBRepBuilderAPI_TransitionMode_HeaderFile

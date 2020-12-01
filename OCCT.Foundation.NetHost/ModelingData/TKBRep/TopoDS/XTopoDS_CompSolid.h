@@ -44,6 +44,7 @@ namespace TKBRep {
         //! Constructs an Undefined CompSolid.
         XTopoDS_CompSolid();
 
+        XTopoDS_CompSolid(TopoDS_CompSolid* pos);
         //!
         virtual TopoDS_CompSolid* GetCompSolid();
 

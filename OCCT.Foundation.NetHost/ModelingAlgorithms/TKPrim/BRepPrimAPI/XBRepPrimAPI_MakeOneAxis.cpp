@@ -1,105 +1,59 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrimAPI_MakeOneAxis.h>
 
+namespace TKPrim {
 
-#include <BRepBuilderAPI.hxx>
-#include <BRepPrim_OneAxis.hxx>
-#include <BRepPrimAPI_MakeOneAxis.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
+	void XBRepPrimAPI_MakeOneAxis::SetMakeOneAxisHandle(BRepPrimAPI_MakeOneAxis* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : Face
-//purpose  : 
-//=======================================================================
-const TopoDS_Face&  BRepPrimAPI_MakeOneAxis::Face()
-{
-  Build();
-  return ((BRepPrim_OneAxis*) OneAxis())->LateralFace();
-}
+	BRepPrimAPI_MakeOneAxis* XBRepPrimAPI_MakeOneAxis::GetMakeOneAxis() {
+		return NativeHandle;
+	};
 
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeOneAxis::GetMakeShape() {
+		return NativeHandle;
+	};
 
-//=======================================================================
-//function : Shell
-//purpose  : 
-//=======================================================================
+	//! The inherited commands should provide the algorithm.
+	//! Returned as a pointer.
+	Object^ XBRepPrimAPI_MakeOneAxis::OneAxis() {
+		return XStandard_Helper::toObject(NativeHandle->OneAxis());
+	};
 
-const TopoDS_Shell&  BRepPrimAPI_MakeOneAxis::Shell()
-{
-  Build();
-  return ((BRepPrim_OneAxis*) OneAxis())->Shell();
-}
+	//! Stores the solid in myShape.
+	void XBRepPrimAPI_MakeOneAxis::Build() {
+		NativeHandle->Build();
+	};
 
-//=======================================================================
-//function : Build
-//purpose  : 
-//=======================================================================
+	//! Returns the lateral face of the rotational primitive.
+	XTopoDS_Face^ XBRepPrimAPI_MakeOneAxis::Face() {
+		TopoDS_Face* aFace = new TopoDS_Face(NativeHandle->Face());
+		return gcnew XTopoDS_Face(aFace);
+	};
+	XBRepPrimAPI_MakeOneAxis::operator XTopoDS_Face^() {
+		TopoDS_Face* aFace = new TopoDS_Face(NativeHandle->Face());
+		return gcnew XTopoDS_Face(aFace);
+	};
 
-void BRepPrimAPI_MakeOneAxis::Build()
-{
-  BRep_Builder B;
-  B.MakeSolid(TopoDS::Solid(myShape));
-  B.Add(myShape,((BRepPrim_OneAxis*) OneAxis())->Shell());
-  Done();
-}
+	//! Returns the constructed rotational primitive as a shell.
+	XTopoDS_Shell^ XBRepPrimAPI_MakeOneAxis::Shell() {
+		TopoDS_Shell* aShell = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(aShell);
+	};
+	XBRepPrimAPI_MakeOneAxis::operator XTopoDS_Shell^() {
+		TopoDS_Shell* aShell = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(aShell);
+	};
 
-//=======================================================================
-//function : Solid
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Solid&  BRepPrimAPI_MakeOneAxis::Solid()
-{
-  Build();
-  return TopoDS::Solid(myShape);
-}
-
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeOneAxis::operator TopoDS_Face()
-{
-  return Face();
-}
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeOneAxis::operator TopoDS_Shell()
-{
-  return Shell();
-}
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeOneAxis::operator TopoDS_Solid()
-{
-  return Solid();
+	//! Returns the constructed rotational primitive as a solid.
+	XTopoDS_Solid^ XBRepPrimAPI_MakeOneAxis::Solid() {
+		TopoDS_Solid* aSolid = new TopoDS_Solid(NativeHandle->Solid());
+		return gcnew XTopoDS_Solid(aSolid);
+	};
+	XBRepPrimAPI_MakeOneAxis::operator XTopoDS_Solid^() {
+		TopoDS_Solid* aSolid = new TopoDS_Solid(NativeHandle->Solid());
+		return gcnew XTopoDS_Solid(aSolid);
+	};
 }
 

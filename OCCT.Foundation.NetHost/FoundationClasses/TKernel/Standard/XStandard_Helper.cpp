@@ -32,4 +32,11 @@ namespace TKernel {
         System::String^ sString = gcnew System::String(AString.ToCString());
         return sString;
     };
+
+    Object^ XStandard_Helper::toObject(Standard_Address SAddress) {
+        GCHandle gcHandle = GCHandle::FromIntPtr(IntPtr(SAddress));
+        Object^ ObjectResult = gcHandle.Target;
+        gcHandle.Free();
+        return ObjectResult;
+    };
 }

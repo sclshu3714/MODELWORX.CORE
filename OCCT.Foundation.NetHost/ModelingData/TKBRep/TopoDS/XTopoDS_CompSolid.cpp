@@ -6,7 +6,12 @@ namespace TKBRep {
     //! Undefined Wire.
     XTopoDS_CompSolid::XTopoDS_CompSolid() : XTopoDS_Shape() {
         NativeHandle = new TopoDS_CompSolid();
-        SetShapeHandle(*NativeHandle);
+        SetShapeHandle(NativeHandle);
+    };
+
+    XTopoDS_CompSolid::XTopoDS_CompSolid(TopoDS_CompSolid* pos) {
+        NativeHandle = pos;
+        SetShapeHandle(NativeHandle);
     };
 
     //!

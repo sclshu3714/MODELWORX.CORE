@@ -44,6 +44,8 @@ namespace TKBRep {
         //! Constructs an Undefined Shell.
         XTopoDS_Shell();
 
+        XTopoDS_Shell(TopoDS_Shell* pos);
+
         TopoDS_Shell* GetShell();
 
         //!

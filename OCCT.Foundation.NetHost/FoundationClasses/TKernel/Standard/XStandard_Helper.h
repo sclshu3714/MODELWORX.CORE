@@ -5,6 +5,8 @@
 #include <TCollection_AsciiString.hxx>
 
 using namespace System;
+using namespace System::Runtime;
+using namespace System::Runtime::InteropServices;
 namespace TKernel {
 
 	public ref class XStandard_Helper
@@ -16,6 +18,7 @@ namespace TKernel {
 		static Standard_CString toCString(TCollection_AsciiString AsciiString);
 		static String^ toString(TCollection_AsciiString AsciiString);
 		static String^ toString(Standard_CString CString);
+		static Object^ toObject(Standard_Address SAddress);
 	};
 }
 #endif _XStandard_Helper_HeaderFile

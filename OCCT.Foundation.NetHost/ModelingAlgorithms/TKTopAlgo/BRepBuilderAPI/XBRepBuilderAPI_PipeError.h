@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_PipeError_HeaderFile
-#define _BRepBuilderAPI_PipeError_HeaderFile
+#ifndef _XBRepBuilderAPI_PipeError_HeaderFile
+#define _XBRepBuilderAPI_PipeError_HeaderFile
 
 //! Errors that can occur at (shell)pipe construction.
-enum BRepBuilderAPI_PipeError
+public enum class XBRepBuilderAPI_PipeError
 {
-BRepBuilderAPI_PipeDone,
-BRepBuilderAPI_PipeNotDone,
-BRepBuilderAPI_PlaneNotIntersectGuide,
-BRepBuilderAPI_ImpossibleContact
+	BRepBuilderAPI_PipeDone,
+	BRepBuilderAPI_PipeNotDone,
+	BRepBuilderAPI_PlaneNotIntersectGuide,
+	BRepBuilderAPI_ImpossibleContact
 };
 
-#endif // _BRepBuilderAPI_PipeError_HeaderFile
+#endif // _XBRepBuilderAPI_PipeError_HeaderFile

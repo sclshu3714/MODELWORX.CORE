@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_ShapeModification_HeaderFile
-#define _BRepBuilderAPI_ShapeModification_HeaderFile
+#ifndef _XBRepBuilderAPI_ShapeModification_HeaderFile
+#define _XBRepBuilderAPI_ShapeModification_HeaderFile
 
 //! Lists the possible types of modification to a shape
 //! following a topological operation: Preserved, Deleted,
@@ -25,13 +25,13 @@
 //! each API function. The MakeShape class then uses this
 //! to determine what has happened to the shapes which
 //! constitute the list of operands.
-enum BRepBuilderAPI_ShapeModification
+public enum class XBRepBuilderAPI_ShapeModification
 {
-BRepBuilderAPI_Preserved,
-BRepBuilderAPI_Deleted,
-BRepBuilderAPI_Trimmed,
-BRepBuilderAPI_Merged,
-BRepBuilderAPI_BoundaryModified
+	BRepBuilderAPI_Preserved,
+	BRepBuilderAPI_Deleted,
+	BRepBuilderAPI_Trimmed,
+	BRepBuilderAPI_Merged,
+	BRepBuilderAPI_BoundaryModified
 };
 
-#endif // _BRepBuilderAPI_ShapeModification_HeaderFile
+#endif // _XBRepBuilderAPI_ShapeModification_HeaderFile

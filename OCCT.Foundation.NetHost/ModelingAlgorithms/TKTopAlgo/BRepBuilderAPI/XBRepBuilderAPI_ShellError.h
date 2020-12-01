@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_ShellError_HeaderFile
-#define _BRepBuilderAPI_ShellError_HeaderFile
+#ifndef _XBRepBuilderAPI_ShellError_HeaderFile
+#define _XBRepBuilderAPI_ShellError_HeaderFile
 
 //! Indicates the outcome of the construction of a face, i.e.
 //! whether it is successful or not, as explained below:
@@ -26,12 +26,12 @@
 //! -   BRepBuilderAPI_DisconnectedShell not yet used
 //! -   BRepBuilderAPI_ShellParametersOutOfRange
 //! The parameters given to limit the surface are out of its bounds.
-enum BRepBuilderAPI_ShellError
+public enum class XBRepBuilderAPI_ShellError
 {
-BRepBuilderAPI_ShellDone,
-BRepBuilderAPI_EmptyShell,
-BRepBuilderAPI_DisconnectedShell,
-BRepBuilderAPI_ShellParametersOutOfRange
+	BRepBuilderAPI_ShellDone,
+	BRepBuilderAPI_EmptyShell,
+	BRepBuilderAPI_DisconnectedShell,
+	BRepBuilderAPI_ShellParametersOutOfRange
 };
 
-#endif // _BRepBuilderAPI_ShellError_HeaderFile
+#endif // _XBRepBuilderAPI_ShellError_HeaderFile

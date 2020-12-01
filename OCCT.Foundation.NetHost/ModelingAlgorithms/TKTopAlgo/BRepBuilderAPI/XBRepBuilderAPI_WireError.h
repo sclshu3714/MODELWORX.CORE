@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_WireError_HeaderFile
-#define _BRepBuilderAPI_WireError_HeaderFile
+#ifndef _XBRepBuilderAPI_WireError_HeaderFile
+#define _XBRepBuilderAPI_WireError_HeaderFile
 
 //! Indicates the outcome of wire
 //! construction, i.e. whether it is successful or not, as explained below:
@@ -27,12 +27,12 @@
 //! The last edge which you attempted to add was not connected to the wire.
 //! -      BRepBuilderAPI_NonManifoldWire
 //! The wire with some singularity.
-enum BRepBuilderAPI_WireError
+public enum class XBRepBuilderAPI_WireError
 {
-BRepBuilderAPI_WireDone,
-BRepBuilderAPI_EmptyWire,
-BRepBuilderAPI_DisconnectedWire,
-BRepBuilderAPI_NonManifoldWire
+	BRepBuilderAPI_WireDone,
+	BRepBuilderAPI_EmptyWire,
+	BRepBuilderAPI_DisconnectedWire,
+	BRepBuilderAPI_NonManifoldWire
 };
 
-#endif // _BRepBuilderAPI_WireError_HeaderFile
+#endif // _XBRepBuilderAPI_WireError_HeaderFile
