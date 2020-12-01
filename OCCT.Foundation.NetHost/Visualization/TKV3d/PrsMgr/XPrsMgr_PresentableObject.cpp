@@ -154,10 +154,8 @@ namespace TKV3d {
 
     //! @name presentation attributes
 
-  //! Returns the attributes settings.
-    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::Attributes() {
-        if (NativeHandle().IsNull())
-            return gcnew XPrs3d_Drawer();
+    //! Returns the attributes settings.
+    XPrs3d_Drawer^ XPrsMgr_PresentableObject::Attributes() {
         return gcnew XPrs3d_Drawer(NativeHandle()->Attributes());
     };
 
@@ -168,7 +166,7 @@ namespace TKV3d {
 
     //! Returns the hilight attributes settings.
     //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalSelected and Prs3d_TypeOfHighlight_Selected defined within AIS_InteractiveContext.
-    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::HilightAttributes() {
+    XPrs3d_Drawer^ XPrsMgr_PresentableObject::HilightAttributes() {
         return gcnew XPrs3d_Drawer(NativeHandle()->HilightAttributes());
     };
 
@@ -179,7 +177,7 @@ namespace TKV3d {
 
     //! Returns the hilight attributes settings.
     //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalDynamic and Prs3d_TypeOfHighlight_Dynamic defined within AIS_InteractiveContext.
-    const XPrs3d_Drawer^ XPrsMgr_PresentableObject::DynamicHilightAttributes() {
+    XPrs3d_Drawer^ XPrsMgr_PresentableObject::DynamicHilightAttributes() {
         return gcnew XPrs3d_Drawer(NativeHandle()->DynamicHilightAttributes());
     };
 

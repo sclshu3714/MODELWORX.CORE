@@ -170,21 +170,21 @@ namespace TKV3d {
     public: //! @name presentation attributes
 
       //! Returns the attributes settings.
-        const XPrs3d_Drawer^ Attributes();
+        XPrs3d_Drawer^ Attributes();
 
         //! Initializes the drawing tool theDrawer.
         virtual void SetAttributes(XPrs3d_Drawer^ theDrawer);
 
         //! Returns the hilight attributes settings.
         //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalSelected and Prs3d_TypeOfHighlight_Selected defined within AIS_InteractiveContext.
-        const XPrs3d_Drawer^ HilightAttributes();
+        XPrs3d_Drawer^ HilightAttributes();
 
         //! Initializes the hilight drawing tool theDrawer.
         virtual void SetHilightAttributes(XPrs3d_Drawer^ theDrawer);
 
         //! Returns the hilight attributes settings.
         //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalDynamic and Prs3d_TypeOfHighlight_Dynamic defined within AIS_InteractiveContext.
-        const XPrs3d_Drawer^ DynamicHilightAttributes();
+        XPrs3d_Drawer^ DynamicHilightAttributes();
 
         //! Initializes the dynamic hilight drawing tool.
         virtual void SetDynamicHilightAttributes(XPrs3d_Drawer^ theDrawer);

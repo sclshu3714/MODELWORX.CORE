@@ -808,6 +808,21 @@ namespace OCCT.WinForms.Net
             xgp_Vec sVec = new xgp_Vec(0, 0, 1 * 200);
             XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
             XAIS_Shape WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
+
+            // get drawer
+            XPrs3d_Drawer aDrawer = WAIS_EC.Attributes();
+            // default attributes
+            float aRed = 0.0f;
+            float aGreen = 0.0f;
+            float aBlue = 0.0f;
+            float aWidth = 1.0f;
+            XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
+            // turn boundaries on/off
+            bool isBoundaryDraw = true;
+            aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
+            XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+            XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
+            aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
             context.Display(WAIS_EC, true);
 
             //xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));

@@ -4,15 +4,18 @@ namespace TKV3d {
         //! edges and vertices.
     XAIS_Shape::XAIS_Shape(TopoDS_Shape shap) {
         NativeHandle() = new AIS_Shape(shap);
+        SetNativeHandle(NativeHandle());
     };
 
     XAIS_Shape::XAIS_Shape(XTopoDS_Shape^ XShap) {
         TopoDS_Shape* Shape = new TopoDS_Shape(*XShap->GetShape());
         NativeHandle() = new AIS_Shape(*Shape);
+        SetNativeHandle(NativeHandle());
     };
 
     XAIS_Shape::XAIS_Shape(Handle(AIS_Shape) pos) {
         NativeHandle() = new AIS_Shape(*pos);
+        SetNativeHandle(NativeHandle());
     };
 
     Handle(AIS_Shape) XAIS_Shape::GetShape() {
