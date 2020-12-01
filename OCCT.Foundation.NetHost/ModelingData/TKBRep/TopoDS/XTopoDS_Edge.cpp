@@ -6,12 +6,12 @@ namespace TKBRep {
     //! Undefined Wire.
     XTopoDS_Edge::XTopoDS_Edge() : XTopoDS_Shape() {
         NativeHandle = new TopoDS_Edge();
-        SetShapeHandle(*NativeHandle);
+        SetShapeHandle(NativeHandle);
     };
 
-    XTopoDS_Edge::XTopoDS_Edge(TopoDS_Edge pos) {
-        NativeHandle = &pos;
-        SetShapeHandle(*NativeHandle);
+    XTopoDS_Edge::XTopoDS_Edge(TopoDS_Edge* pos) {
+        NativeHandle = new TopoDS_Edge(*pos);
+        SetShapeHandle(NativeHandle);
     };
 
     //!

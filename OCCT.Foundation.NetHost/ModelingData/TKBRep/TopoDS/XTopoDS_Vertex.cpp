@@ -10,8 +10,8 @@ namespace TKBRep {
     };
 
     //! Undefined Face.
-    XTopoDS_Vertex::XTopoDS_Vertex(TopoDS_Vertex pos) {
-        NativeHandle = &pos;
+    XTopoDS_Vertex::XTopoDS_Vertex(TopoDS_Vertex* pos) {
+        NativeHandle = new TopoDS_Vertex(*pos);
         SetShapeHandle(*NativeHandle);
     };
 

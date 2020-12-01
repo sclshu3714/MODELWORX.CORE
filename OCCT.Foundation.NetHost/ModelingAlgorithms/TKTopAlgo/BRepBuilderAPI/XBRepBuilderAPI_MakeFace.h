@@ -94,7 +94,7 @@ namespace TKTopAlgo {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		void Initialize(BRepBuilderAPI_MakeFace* pos);
 
 		//! Not done.
 		XBRepBuilderAPI_MakeFace();

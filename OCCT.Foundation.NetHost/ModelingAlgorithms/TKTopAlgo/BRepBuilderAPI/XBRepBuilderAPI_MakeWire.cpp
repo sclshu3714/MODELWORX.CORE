@@ -12,30 +12,30 @@ namespace TKTopAlgo {
 		//! least one edge is added to the wire under construction.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire() {
 		NativeHandle = new BRepBuilderAPI_MakeWire();
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(BRepBuilderAPI_MakeWire* pos) {
-		NativeHandle = pos;
-		SetMakeShapeHandle(*NativeHandle);
+		NativeHandle = new BRepBuilderAPI_MakeWire(*pos);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a Wire from an edge.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Edge^ E) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(E->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a Wire from two edges.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Edge^ E1, XTopoDS_Edge^ E2) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(E1->GetEdge(), E2->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a Wire from three edges.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Edge^ E1, XTopoDS_Edge^ E2, XTopoDS_Edge^ E3) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(E1->GetEdge(), E2->GetEdge(), E3->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a Wire from four edges.
@@ -61,19 +61,19 @@ namespace TKTopAlgo {
 	//! will raise an error, until a new connectable edge is added.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Edge^ E1, XTopoDS_Edge^ E2, XTopoDS_Edge^ E3, XTopoDS_Edge^ E4) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(E1->GetEdge(), E2->GetEdge(), E3->GetEdge(),E4->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a Wire from a Wire. Usefull for adding later.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Wire^ W) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(W->GetWire());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Add an edge to a wire.
 	XBRepBuilderAPI_MakeWire::XBRepBuilderAPI_MakeWire(XTopoDS_Wire^ W, XTopoDS_Edge^ E) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(W->GetWire(), E->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Adds the edge E to the wire under construction.
@@ -91,13 +91,13 @@ namespace TKTopAlgo {
 	//! connectable edge is added.
 	void XBRepBuilderAPI_MakeWire::Add(XTopoDS_Edge^ E) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(E->GetEdge());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Add the edges of <W> to the current wire.
 	void XBRepBuilderAPI_MakeWire::Add(XTopoDS_Wire^ W) {
 		NativeHandle = new BRepBuilderAPI_MakeWire(W->GetWire());
-		SetMakeShapeHandle(*NativeHandle);
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Adds  the edges of <L>   to the current  wire.  The
@@ -131,11 +131,13 @@ namespace TKTopAlgo {
 	//! under construction already built.
 	//! Exceptions StdFail_NotDone if a wire is not built.
 	XTopoDS_Wire^ XBRepBuilderAPI_MakeWire::Wire() {
-		return gcnew XTopoDS_Wire(NativeHandle->Wire());
+		TopoDS_Wire* wire = new TopoDS_Wire(NativeHandle->Wire());
+		return gcnew XTopoDS_Wire(wire);
 	};
 
 	XBRepBuilderAPI_MakeWire::operator XTopoDS_Wire^() {
-		return gcnew XTopoDS_Wire(NativeHandle->Wire());
+		TopoDS_Wire* wire = new TopoDS_Wire(NativeHandle->Wire());
+		return gcnew XTopoDS_Wire(wire);
 	};
 
 	//! Returns the last edge added to the wire under construction.
@@ -146,7 +148,8 @@ namespace TKTopAlgo {
 	//! wire under construction, or if the last edge which you
 	//! tried to add was not connectable..
 	XTopoDS_Edge^ XBRepBuilderAPI_MakeWire::Edge() {
-		return gcnew XTopoDS_Edge(NativeHandle->Edge());
+		TopoDS_Edge* edge = new TopoDS_Edge(NativeHandle->Edge());
+		return gcnew XTopoDS_Edge(edge);
 	};
 
 	//! Returns the last vertex of the last edge added to the
@@ -156,7 +159,8 @@ namespace TKTopAlgo {
 	//! under construction, or if the last edge which you tried to
 	//! add was not connectableR
 	XTopoDS_Vertex^ XBRepBuilderAPI_MakeWire::Vertex() {
-		return gcnew XTopoDS_Vertex(NativeHandle->Vertex());
+		TopoDS_Vertex* vertex = new TopoDS_Vertex(NativeHandle->Vertex());
+		return gcnew XTopoDS_Vertex(vertex);
 	};
 
 	BRepBuilderAPI_MakeWire XBRepBuilderAPI_MakeWire::GetMakeWire() {

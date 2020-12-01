@@ -3,7 +3,7 @@
 namespace TKTopAlgo {
 
 	void XBRepBuilderAPI_MakeEdge::Initialize(BRepBuilderAPI_MakeEdge* pos) {
-		SetMakeShapeHandle(*pos);
+		SetMakeShapeHandle(pos);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge() {
@@ -263,15 +263,18 @@ namespace TKTopAlgo {
 	//! Returns the constructed edge.
 	//! Exceptions StdFail_NotDone if the edge is not built.
 	XTopoDS_Edge^ XBRepBuilderAPI_MakeEdge::Edge() {
-		return gcnew XTopoDS_Edge(NativeHandle->Edge());
+		TopoDS_Edge* edge = new TopoDS_Edge(NativeHandle->Edge());
+		return gcnew XTopoDS_Edge(edge);
 	};
 	XBRepBuilderAPI_MakeEdge::operator XTopoDS_Edge^() {
-		return gcnew XTopoDS_Edge(NativeHandle->Edge());
+		TopoDS_Edge* edge = new TopoDS_Edge(NativeHandle->Edge());
+		return gcnew XTopoDS_Edge(edge);
 	};
 
 	//! Returns the first vertex of the edge. May be Null.
 	XTopoDS_Vertex^ XBRepBuilderAPI_MakeEdge::Vertex1() {
-		return gcnew XTopoDS_Vertex(NativeHandle->Vertex1());
+		TopoDS_Vertex* vertex = new TopoDS_Vertex(NativeHandle->Vertex1());
+		return gcnew XTopoDS_Vertex(vertex);
 	};
 
 	//! Returns the second vertex of the edge. May be Null.
@@ -285,6 +288,7 @@ namespace TKTopAlgo {
 	//! Exceptions
 	//! StdFail_NotDone if the edge is not built.
 	XTopoDS_Vertex^ XBRepBuilderAPI_MakeEdge::Vertex2() {
-		return gcnew XTopoDS_Vertex(NativeHandle->Vertex2());
+		TopoDS_Vertex* vertex = new TopoDS_Vertex(NativeHandle->Vertex2());
+		return gcnew XTopoDS_Vertex(vertex);
 	};
 }

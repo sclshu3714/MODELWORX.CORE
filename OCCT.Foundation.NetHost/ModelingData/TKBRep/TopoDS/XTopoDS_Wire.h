@@ -46,7 +46,7 @@ namespace TKBRep {
         //! Undefined Wire.
         XTopoDS_Wire();
 
-        XTopoDS_Wire(TopoDS_Wire pos);
+        XTopoDS_Wire(TopoDS_Wire* pos);
 
         TopoDS_Wire GetWire();
         //!

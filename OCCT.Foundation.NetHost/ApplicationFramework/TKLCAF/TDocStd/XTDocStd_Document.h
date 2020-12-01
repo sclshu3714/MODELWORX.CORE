@@ -90,7 +90,7 @@ namespace TKLCAF {
         XTDocStd_Document(XTCollection_ExtendedString^ astorageformat);
 
         //!
-        Handle(TDocStd_Document) GetDocument();
+        virtual Handle(TDocStd_Document) GetDocument();
 
         //! the document is saved in a file.
         Standard_Boolean IsSaved();

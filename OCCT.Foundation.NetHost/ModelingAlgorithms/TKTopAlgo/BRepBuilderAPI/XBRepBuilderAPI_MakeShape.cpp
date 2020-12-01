@@ -6,8 +6,8 @@ namespace TKTopAlgo {
 		//NativeHandle() = new BRepBuilderAPI_MakeShape();
 	};
 
-	void XBRepBuilderAPI_MakeShape::SetMakeShapeHandle(BRepBuilderAPI_MakeShape handle) {
-		NativeHandle = &handle;
+	void XBRepBuilderAPI_MakeShape::SetMakeShapeHandle(BRepBuilderAPI_MakeShape* handle) {
+		NativeHandle = handle;
 	};
 
 	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeShape::GetMakeShape() {
@@ -23,19 +23,23 @@ namespace TKTopAlgo {
 	//! Returns a shape built by the shape construction algorithm.
 	//! Raises exception StdFail_NotDone if the shape was not built.
 	XTopoDS_Shape^ XBRepBuilderAPI_MakeShape::Shape() {
-		return gcnew XTopoDS_Shape(NativeHandle->Shape());
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(Shape);
 	};
 
 	XBRepBuilderAPI_MakeShape::operator XTopoDS_Shape^()
 	{
-		return gcnew XTopoDS_Shape(NativeHandle->Shape());
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(Shape);
 	}
 
 
 	//! Returns the  list   of shapes generated   from the
 	//! shape <S>.
 	XTopTools_ListOfShape^ XBRepBuilderAPI_MakeShape::Generated(XTopoDS_Shape^ S) {
-		return gcnew XTopTools_ListOfShape(NativeHandle->Generated(S->GetShape()));
+		TopoDS_Shape* Shape = new TopoDS_Shape(S->GetShape());
+		TopTools_ListOfShape* ListOfShape = new TopTools_ListOfShape(NativeHandle->Generated(*Shape));
+		return gcnew XTopTools_ListOfShape(*ListOfShape);
 	};
 
 	//! Returns the list  of shapes modified from the shape

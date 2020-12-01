@@ -85,7 +85,9 @@ namespace TKLCAF {
         //! Constructs an empty label object.
         XTDF_Label(TDF_Label pos);
 
-        void SetNativeHandle(TDF_Label* pos) { NativeHandle = pos; }
+        void SetNativeHandle(TDF_Label* pos) { 
+            NativeHandle = new TDF_Label(*pos);
+        }
 
         //!  Returns the TDF_Label
         TDF_Label GetLabel();

@@ -48,7 +48,7 @@ namespace TKBRep {
 
 
         //! Undefined Face.
-        XTopoDS_Vertex(TopoDS_Vertex pos);
+        XTopoDS_Vertex(TopoDS_Vertex* pos);
 
         //!
         virtual TopoDS_Vertex GetVertex();

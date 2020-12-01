@@ -3,7 +3,8 @@
 namespace TKPrim {
 
 	void XBRepPrimAPI_MakePrism::SetMakePrismHandle(BRepPrimAPI_MakePrism* pos) {
-		NativeHandle = pos;
+		NativeHandle = new BRepPrimAPI_MakePrism(*pos);
+		SetMakeSweepHandle(NativeHandle);
 	};
 
 	BRepPrimAPI_MakePrism* XBRepPrimAPI_MakePrism::GetMakePrism() {

@@ -3064,7 +3064,7 @@ Class TKLCAF.XTDocStd_Document: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     Get(handle<TDocStd_Document>*, XTDF_Label): PrivateScope, Public, Static, HideBySig
-    GetDocument(handle<TDocStd_Document>*): PrivateScope, Public, HideBySig
+    GetDocument(handle<TDocStd_Document>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsSaved(): PrivateScope, Public, HideBySig
     IsChanged(): PrivateScope, Public, HideBySig
     SetSaved(): PrivateScope, Public, HideBySig
@@ -4769,6 +4769,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, 
   Properties:
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
+    Initialize(BRepBuilderAPI_MakeFace*): PrivateScope, Public, HideBySig
     Init(XGeom_Surface, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     Init(XGeom_Surface, Boolean(HasFieldMarshal), Double): PrivateScope, Public, HideBySig
     Init(XTopoDS_Face): PrivateScope, Public, HideBySig

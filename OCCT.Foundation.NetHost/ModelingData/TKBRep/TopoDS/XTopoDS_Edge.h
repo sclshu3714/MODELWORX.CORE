@@ -47,7 +47,7 @@ namespace TKBRep {
         //! Undefined Edge.
         XTopoDS_Edge();
 
-        XTopoDS_Edge(TopoDS_Edge pos);
+        XTopoDS_Edge(TopoDS_Edge* pos);
 
         //!
         virtual TopoDS_Edge GetEdge();

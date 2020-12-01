@@ -49,7 +49,7 @@ namespace TKTopAlgo {
 
 		XBRepBuilderAPI_MakeShape();
 
-		void SetMakeShapeHandle(BRepBuilderAPI_MakeShape handle);
+		void SetMakeShapeHandle(BRepBuilderAPI_MakeShape* handle);
 
 		virtual BRepBuilderAPI_MakeShape GetMakeShape();
 
