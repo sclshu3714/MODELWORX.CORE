@@ -793,25 +793,21 @@ namespace OCCT.WinForms.Net
         public void AddDisk() {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             context.RemoveAll(true);
-            xgp_Circ c = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0),new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
-            XTopoDS_Edge Ec = new XBRepBuilderAPI_MakeEdge(c).Edge();
-            //XAIS_Shape WAIS_EC = new XAIS_Shape(Ec);
-            //WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE4));
-            //context.Display(WAIS_EC, true);
+            xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0),new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
+            XTopoDS_Wire RWc = new XBRepBuilderAPI_MakeWire(REc).Wire();
+            XBRepBuilderAPI_MakeFace aRMakeFace = new XBRepBuilderAPI_MakeFace(RWc, false);
 
-            XTopoDS_Wire Wc = new XBRepBuilderAPI_MakeWire(Ec).Wire();
-            XAIS_Shape WAIS_EC = new XAIS_Shape(Wc);
-            WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BISQUE3));
-            context.Display(WAIS_EC, true);
+            xgp_Circ Cr = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 60.0);
+            XTopoDS_Edge rEc = new XBRepBuilderAPI_MakeEdge(Cr).Edge();
+            XTopoDS_Wire rWc = new XBRepBuilderAPI_MakeWire(rEc).Wire();
+            XBRepBuilderAPI_MakeFace arMakeFace = new XBRepBuilderAPI_MakeFace(rWc, false);
 
-            XBRepBuilderAPI_MakeFace aMakeFace = new XBRepBuilderAPI_MakeFace(Wc, false);
-            //XTopoDS_Shape S4 = new XBRepBuilderAPI_MakePrism(F, new xgp_Vec(0.0, 0.0, 100.0));
-            WAIS_EC = new XAIS_Shape(aMakeFace.Shape());
-            context.Display(WAIS_EC, true);
+            XBRepAlgoAPI_Cut PipeProfile = new XBRepAlgoAPI_Cut(aRMakeFace.Shape(), arMakeFace.Shape());
 
-            xgp_Vec sVec = new xgp_Vec(1 * 2, 0, 0);
-            XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(aMakeFace.Shape(), sVec, false, false);
-            WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
+            xgp_Vec sVec = new xgp_Vec(0, 0, 1 * 200);
+            XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
+            XAIS_Shape WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
             context.Display(WAIS_EC, true);
 
             //xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));
