@@ -33,14 +33,18 @@ namespace TKBRep {
     //! Exceptions
     //! - TopoDS_FrozenShape if S is not free and cannot be modified.
     //! - TopoDS__UnCompatibleShapes if S and C are not compatible.
-    void XTopoDS_Builder::Add(XTopoDS_Shape^ S, XTopoDS_Shape^ C) {
-        NativeHandle->Add(S->GetShape(), C->GetShape());
+    void XTopoDS_Builder::Add(XTopoDS_Shape^ XS, XTopoDS_Shape^ XC) {
+        TopoDS_Shape* S = new TopoDS_Shape(*XS->GetShape());
+        TopoDS_Shape* C = new TopoDS_Shape(*XC->GetShape());
+        NativeHandle->Add(*S, *C);
     };
 
     //! Remove the Shape C from the Shape S.
     //! Exceptions
     //! TopoDS_FrozenShape if S is frozen and cannot be modified.
-    void XTopoDS_Builder::Remove(XTopoDS_Shape^ S, XTopoDS_Shape^ C) {
-        NativeHandle->Remove(S->GetShape(), C->GetShape());
+    void XTopoDS_Builder::Remove(XTopoDS_Shape^ XS, XTopoDS_Shape^ XC) {
+        TopoDS_Shape* S = new TopoDS_Shape(*XS->GetShape());
+        TopoDS_Shape* C = new TopoDS_Shape(*XC->GetShape());
+        NativeHandle->Remove(*S, *C);
     };
 }

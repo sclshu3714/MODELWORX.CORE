@@ -186,6 +186,8 @@ namespace TKTopAlgo {
 		//! tried to add was not connectable..
 		XTopoDS_Edge^ Edge();
 
+
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 		//! Returns the last vertex of the last edge added to the
 		//! wire under construction.
 		//! Warning

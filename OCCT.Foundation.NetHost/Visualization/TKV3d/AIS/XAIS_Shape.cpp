@@ -6,12 +6,13 @@ namespace TKV3d {
         NativeHandle() = new AIS_Shape(shap);
     };
 
-    XAIS_Shape::XAIS_Shape(XTopoDS_Shape^ shap) {
-        NativeHandle() = new AIS_Shape(shap->GetShape());
+    XAIS_Shape::XAIS_Shape(XTopoDS_Shape^ XShap) {
+        TopoDS_Shape* Shape = new TopoDS_Shape(*XShap->GetShape());
+        NativeHandle() = new AIS_Shape(*Shape);
     };
 
     XAIS_Shape::XAIS_Shape(Handle(AIS_Shape) pos) {
-        NativeHandle() = pos;
+        NativeHandle() = new AIS_Shape(*pos);
     };
 
     Handle(AIS_Shape) XAIS_Shape::GetShape() {
@@ -52,12 +53,14 @@ namespace TKV3d {
 
     //! Returns this shape object.
     XTopoDS_Shape^ XAIS_Shape::Shape() {
-        return gcnew XTopoDS_Shape(NativeHandle()->Shape());
+        TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle()->Shape());
+        return gcnew XTopoDS_Shape(Shape);
     };
 
     //! Constructs an instance of the shape object theShape.
     void XAIS_Shape::SetShape(XTopoDS_Shape^ theShape) {
-        NativeHandle()->SetShape(theShape->GetShape());
+        TopoDS_Shape* Shape = new TopoDS_Shape(*theShape->GetShape());
+        NativeHandle()->SetShape(*Shape);
     };
 
     //! Sets a local value for deviation coefficient for this specific shape.
@@ -281,6 +284,6 @@ namespace TKV3d {
     //! Compute HLR presentation for specified shape.
     //! static 
     void XAIS_Shape::computeHlrPresentation(const Handle(Prs3d_Projector)& theProjector, Handle(Prs3d_Presentation)& thePrs, XTopoDS_Shape^ theShape, XPrs3d_Drawer^ theDrawer) {
-        AIS_Shape::computeHlrPresentation(theProjector, thePrs, theShape->GetShape(), theDrawer->GetDrawer());
+        AIS_Shape::computeHlrPresentation(theProjector, thePrs, *theShape->GetShape(), theDrawer->GetDrawer());
     };
 }

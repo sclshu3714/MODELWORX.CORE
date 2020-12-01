@@ -73,6 +73,8 @@ namespace TKPrim {
 
 		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
 
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+
 		//! Builds the prism of base S and vector V. If C is true,
 		//! S is copied. If Canonize is true then generated surfaces
 		//! are attempted to be canonized in simple types

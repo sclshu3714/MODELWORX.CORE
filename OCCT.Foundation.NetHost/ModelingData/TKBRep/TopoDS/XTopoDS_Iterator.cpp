@@ -16,7 +16,7 @@ namespace TKBRep {
     //! each sub-shape the transformation that is associated with S.
     //! Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True
     XTopoDS_Iterator::XTopoDS_Iterator(XTopoDS_Shape^ S, Standard_Boolean cumOri, Standard_Boolean cumLoc) {
-        NativeHandle = new TopoDS_Iterator(S->GetShape(), cumOri, cumLoc);
+        NativeHandle = new TopoDS_Iterator(*S->GetShape(), cumOri, cumLoc);
     };
 
     //! Initializes this iterator with shape S.
@@ -28,7 +28,7 @@ namespace TKBRep {
     //! each sub-shape the transformation that is associated with S.
     //! Standard_Boolean cumOri = Standard_True, const Standard_Boolean cumLoc = Standard_True
     void XTopoDS_Iterator::Initialize(XTopoDS_Shape^ S, Standard_Boolean cumOri, const Standard_Boolean cumLoc) {
-        NativeHandle->Initialize(S->GetShape(), cumOri, cumLoc);
+        NativeHandle->Initialize(*S->GetShape(), cumOri, cumLoc);
     };
 
     TopoDS_Iterator XTopoDS_Iterator::GetIterator() {

@@ -72,7 +72,7 @@ namespace TKBRep {
         #endif
 
         //!
-        virtual TopoDS_Shape GetShape();
+        virtual TopoDS_Shape* GetShape();
 
         //! Returns true if this shape is null. In other words, it
         //! references no underlying shape with the potential to

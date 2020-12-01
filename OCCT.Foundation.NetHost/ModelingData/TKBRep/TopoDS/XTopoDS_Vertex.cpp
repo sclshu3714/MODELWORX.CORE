@@ -22,7 +22,7 @@ namespace TKBRep {
     };
 
     //!
-    TopoDS_Shape XTopoDS_Vertex::GetShape() {
-        return *NativeHandle;
+    TopoDS_Shape* XTopoDS_Vertex::GetShape() {
+        return NativeHandle;
     };
 }

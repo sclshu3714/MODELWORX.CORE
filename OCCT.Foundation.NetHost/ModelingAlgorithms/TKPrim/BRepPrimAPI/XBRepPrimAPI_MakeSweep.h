@@ -60,6 +60,8 @@ namespace TKPrim {
 
 		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
 
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+
 		//! Returns the  TopoDS  Shape of the bottom of the sweep.
 		virtual XTopoDS_Shape^ FirstShape();
 

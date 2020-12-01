@@ -39,8 +39,8 @@ namespace TKBRep {
 #endif
 
     //!
-    TopoDS_Shape XTopoDS_Shape::GetShape() {
-        return *NativeHandle;
+    TopoDS_Shape* XTopoDS_Shape::GetShape() {
+        return NativeHandle;
     };
 
     //! Returns true if this shape is null. In other words, it
@@ -241,21 +241,21 @@ namespace TKBRep {
     //! they   share   the   same  TShape.  Locations  and
     //! Orientations may differ.
     Standard_Boolean XTopoDS_Shape::IsPartner(XTopoDS_Shape^ theOther) {
-        return NativeHandle->IsPartner(theOther->GetShape());
+        return NativeHandle->IsPartner(*theOther->GetShape());
     };
 
     //! Returns True if two shapes are same, i.e.  if they
     //! share  the  same TShape  with the same  Locations.
     //! Orientations may differ.
     Standard_Boolean XTopoDS_Shape::IsSame(XTopoDS_Shape^ theOther) {
-        return NativeHandle->IsSame(theOther->GetShape());
+        return NativeHandle->IsSame(*theOther->GetShape());
     };
 
     //! Returns True if two shapes are equal, i.e. if they
     //! share the same TShape with  the same Locations and
     //! Orientations.
     Standard_Boolean XTopoDS_Shape::IsEqual(XTopoDS_Shape^ theOther) {
-        return NativeHandle->IsEqual(theOther->GetShape());
+        return NativeHandle->IsEqual(*theOther->GetShape());
     };
 
 

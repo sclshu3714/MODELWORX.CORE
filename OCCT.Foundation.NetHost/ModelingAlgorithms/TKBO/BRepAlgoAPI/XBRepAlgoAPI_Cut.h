@@ -66,7 +66,8 @@ namespace TKBO {
 		//! const Standard_Boolean bFWD = Standard_True
 		XBRepAlgoAPI_Cut(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2, BOPAlgo_PaveFiller aDSF, Standard_Boolean bFWD);
 
-		XTopoDS_Shape^ Shape();
+		//! 获取图形
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 
 		/// <summary>
 		/// 本地句柄

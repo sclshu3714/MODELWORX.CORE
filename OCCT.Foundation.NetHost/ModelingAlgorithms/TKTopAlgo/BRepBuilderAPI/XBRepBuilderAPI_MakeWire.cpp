@@ -152,6 +152,12 @@ namespace TKTopAlgo {
 		return gcnew XTopoDS_Edge(edge);
 	};
 
+
+	XTopoDS_Shape^ XBRepBuilderAPI_MakeWire::Shape() {
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(*Shape);
+	};
+
 	//! Returns the last vertex of the last edge added to the
 	//! wire under construction.
 	//! Warning

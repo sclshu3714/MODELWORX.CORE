@@ -19,12 +19,19 @@ namespace TKPrim {
 		return *NativeHandle;
 	};
 
+	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::Shape() {
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(*Shape);
+	};
+
 	//! Builds the prism of base S and vector V. If C is true,
 	//! S is copied. If Canonize is true then generated surfaces
 	//! are attempted to be canonized in simple types
 	//! const Standard_Boolean Copy = Standard_False, const Standard_Boolean Canonize = Standard_True
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Vec^ V, Standard_Boolean Copy, Standard_Boolean Canonize) {
-		NativeHandle = new BRepPrimAPI_MakePrism(S->GetShape(), V->GetVec(), Copy, Canonize);
+		TopoDS_Shape* shape = new TopoDS_Shape(*S->GetShape());
+		gp_Vec* gpVec = new gp_Vec(V->GetVec());
+		NativeHandle = new BRepPrimAPI_MakePrism(*shape, *gpVec, Copy, Canonize);
 	};
 
 	//! Builds a semi-infinite or an infinite prism of base S.
@@ -35,7 +42,7 @@ namespace TKPrim {
 	//! are attempted to be canonized in simple types
 	//!  const Standard_Boolean Inf = Standard_True, const Standard_Boolean Copy = Standard_False, const Standard_Boolean Canonize = Standard_True
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Dir^ D, Standard_Boolean Inf, Standard_Boolean Copy, Standard_Boolean Canonize) {
-		NativeHandle = new BRepPrimAPI_MakePrism(S->GetShape(), D->GetDir(), Inf, Copy, Canonize);
+		NativeHandle = new BRepPrimAPI_MakePrism(*S->GetShape(), D->GetDir(), Inf, Copy, Canonize);
 	};
 
 	//! Returns the internal sweeping algorithm.
@@ -65,24 +72,24 @@ namespace TKPrim {
 
 	//! Returns ListOfShape from TopTools.
 	XTopTools_ListOfShape^ XBRepPrimAPI_MakePrism::Generated(XTopoDS_Shape^ S) {
-		return gcnew XTopTools_ListOfShape(NativeHandle->Generated(S->GetShape()));
+		return gcnew XTopTools_ListOfShape(NativeHandle->Generated(*S->GetShape()));
 	};
 
 	//! Returns true if the shape S has been deleted.
 	Standard_Boolean XBRepPrimAPI_MakePrism::IsDeleted(XTopoDS_Shape^ S) {
-		return NativeHandle->IsDeleted(S->GetShape());
+		return NativeHandle->IsDeleted(*S->GetShape());
 	};
 
 	//! Returns the TopoDS Shape of the bottom  of the  prism.
 	//! generated  with  theShape (subShape of the  generating shape).
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::FirstShape(XTopoDS_Shape^ theShape) {
-		return gcnew XTopoDS_Shape(NativeHandle->FirstShape(theShape->GetShape()));
+		return gcnew XTopoDS_Shape(NativeHandle->FirstShape(*theShape->GetShape()));
 	};
 
 	//! Returns the  TopoDS  Shape of the top  of  the  prism.
 	//! generated  with  theShape (subShape of the  generating shape).
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::LastShape(XTopoDS_Shape^ theShape) {
-		return gcnew XTopoDS_Shape(NativeHandle->LastShape(theShape->GetShape()));
+		return gcnew XTopoDS_Shape(NativeHandle->LastShape(*theShape->GetShape()));
 	};
 
 }

@@ -793,40 +793,68 @@ namespace OCCT.WinForms.Net
         public void AddDisk() {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             context.RemoveAll(true);
-            xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));
-            XGeom_Circle OutCircle = new XGeom_Circle(ax2, 1.2);
-           
-            XGeom_Circle InCircle = new XGeom_Circle(ax2, 1.0);
+            xgp_Circ c = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0),new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            XTopoDS_Edge Ec = new XBRepBuilderAPI_MakeEdge(c).Edge();
+            XAIS_Shape WAIS_EC = new XAIS_Shape(Ec);
+            WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE4));
+            context.Display(WAIS_EC, true);
 
-            double theWidth = 0.2d;
+            XTopoDS_Wire Wc = new XBRepBuilderAPI_MakeWire(Ec).Wire();
+            WAIS_EC = new XAIS_Shape(Wc);
+            WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BISQUE3));
+            context.Display(WAIS_EC, true);
 
-            xgp_Ax1 ax1 = ax2.Axis();
-            xgp_Pnt sPnt = ax2.Location(); //拉伸轴的起点
-            xgp_Dir sDir = ax2.Direction();//拉伸轴的方向
-            double X = Convert.ToDouble(sDir.X());
-            double Y = Convert.ToDouble(sDir.Y());
-            double Z = Convert.ToDouble(sDir.Z());
-            xgp_Vec sVec = new xgp_Vec(X * theWidth, Y * theWidth, Z * theWidth);
-            //out 
-            double R = 1.2d;
-            XGeom_Circle L = new XGeom_Circle(ax2, R);
-            XBRepBuilderAPI_MakeEdge OutEc = new XBRepBuilderAPI_MakeEdge(L);
-            XBRepBuilderAPI_MakeWire OutWc = new XBRepBuilderAPI_MakeWire(OutEc.Edge());
-            XBRepBuilderAPI_MakeFace OutCFace = new XBRepBuilderAPI_MakeFace(OutWc.Wire(), false);
-            //in
-            double r = 1.0d;
-            XGeom_Circle l = new XGeom_Circle(ax2, r);
-            XBRepBuilderAPI_MakeEdge InEc = new XBRepBuilderAPI_MakeEdge(l);
-            XBRepBuilderAPI_MakeWire InWc = new XBRepBuilderAPI_MakeWire(InEc.Edge());
-            XBRepBuilderAPI_MakeFace InCFace = new XBRepBuilderAPI_MakeFace(InWc.Wire(), false);
-            //cut
-            XBRepAlgoAPI_Cut PipeProfile = new XBRepAlgoAPI_Cut(OutCFace.Shape(), InCFace.Shape());
-            
-            XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
-            XTopoDS_Shape DiskShape = BRPA_MP.Shape();
-            XAIS_Shape WAIS_PipeFace = new XAIS_Shape(DiskShape);
+            XTopoDS_Face F = new XBRepBuilderAPI_MakeFace(Wc, false).Face();
+            //XTopoDS_Shape S4 = new XBRepBuilderAPI_MakePrism(F, new xgp_Vec(0.0, 0.0, 100.0));
+            WAIS_EC = new XAIS_Shape(F);
+            context.Display(WAIS_EC, true);
 
-            context.Display(WAIS_PipeFace, true);
+            //xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));
+            //double theWidth = 0.2d;
+            //xgp_Ax1 ax1 = ax2.Axis();
+            //xgp_Pnt sPnt = ax2.Location(); //拉伸轴的起点
+            //xgp_Dir sDir = ax2.Direction();//拉伸轴的方向
+            //double X = Convert.ToDouble(sDir.X());
+            //double Y = Convert.ToDouble(sDir.Y());
+            //double Z = Convert.ToDouble(sDir.Z());
+            //xgp_Vec sVec = new xgp_Vec(X * theWidth, Y * theWidth, Z * theWidth);
+            ////out 
+            //double R = 1.2d;
+            //XGeom_Circle L = new XGeom_Circle(ax2, R);
+            //XBRepBuilderAPI_MakeEdge OutEc = new XBRepBuilderAPI_MakeEdge(L);
+            //XBRepBuilderAPI_MakeWire OutWc = new XBRepBuilderAPI_MakeWire(OutEc.Edge());
+            //xgp_Ax3 A3 = new xgp_Ax3(sPnt, sDir);
+            //double Ang = Math.PI * 2;
+            //double Radius = 1.2;
+            //xgp_Cone cone = new xgp_Cone(A3, Ang, Radius);
+            //XBRepBuilderAPI_MakeFace OutCFace = new XBRepBuilderAPI_MakeFace(cone);
+            //OutCFace.Build();
+            //XAIS_Shape WAIS_EC = new XAIS_Shape(OutEc.Edge());
+            //context.Display(WAIS_EC, true);
+
+            //XAIS_Shape WAIS_WC = new XAIS_Shape(OutCFace.Face());
+            //context.Display(WAIS_WC, true);
+            //context.SetDisplayMode(0, true);
+            ////in
+            //double r = 1.0d;
+            //XGeom_Circle l = new XGeom_Circle(ax2, r);
+            //XBRepBuilderAPI_MakeEdge InEc = new XBRepBuilderAPI_MakeEdge(l);
+            //XBRepBuilderAPI_MakeWire InWc = new XBRepBuilderAPI_MakeWire(InEc.Edge());
+            //XBRepBuilderAPI_MakeFace InCFace = new XBRepBuilderAPI_MakeFace(InWc.Wire(), false);
+
+            //XAIS_Shape WAIS_OutCFace = new XAIS_Shape(OutCFace.Shape());
+            //context.Display(WAIS_OutCFace, true);
+            //XAIS_Shape WAIS_InCFace = new XAIS_Shape(InCFace.Shape());
+            //context.Display(WAIS_InCFace, true);
+
+            ////cut
+            //XBRepAlgoAPI_Cut PipeProfile = new XBRepAlgoAPI_Cut(OutCFace.Shape(), InCFace.Shape());
+
+            //XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
+            //XTopoDS_Shape DiskShape = BRPA_MP.Shape();
+            //XAIS_Shape WAIS_PipeFace = new XAIS_Shape(DiskShape);
+
+            //context.Display(WAIS_PipeFace, true);
         }
 
 

@@ -299,6 +299,8 @@ namespace TKTopAlgo {
 		XTopoDS_Edge^ Edge();
 		operator XTopoDS_Edge^();
 
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+
 		//! Returns the first vertex of the edge. May be Null.
 		XTopoDS_Vertex^ Vertex1();
 

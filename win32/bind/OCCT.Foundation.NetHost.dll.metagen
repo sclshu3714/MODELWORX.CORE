@@ -4283,7 +4283,7 @@ Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Methods:
     SetShapeHandle(TopoDS_Shape*): PrivateScope, Public, HideBySig
     SetShapeHandle(TopoDS_Shape*): PrivateScope, Public, HideBySig
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsNull(): PrivateScope, Public, HideBySig
     Nullify(): PrivateScope, Public, HideBySig
     Location(XTopLoc_Location): PrivateScope, Public, HideBySig
@@ -4344,7 +4344,7 @@ Class TKBO.XBRepAlgoAPI_Cut: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     BRepAlgoAPI_Cut* IHandle 'get set' : 
   Methods:
-    Shape(): PrivateScope, Public, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepAlgoAPI_Cut*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
@@ -4406,6 +4406,7 @@ Class TKPrim.XBRepPrimAPI_MakeSweep: AutoLayout, AnsiClass, Class, Public, Befor
     SetMakeSweepHandle(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig
     GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     FirstShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     LastShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
@@ -4421,6 +4422,7 @@ Class TKPrim.XBRepPrimAPI_MakePrism: AutoLayout, AnsiClass, Class, Public, Befor
     GetMakePrism(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig
     GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     Prism(BRepSweep_Prism*): PrivateScope, Public, HideBySig
     Build(): PrivateScope, Public, Virtual, HideBySig
     FirstShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
@@ -4521,7 +4523,7 @@ Class TKBRep.XTopoDS_Face: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetFace(TopoDS_Face*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4532,7 +4534,7 @@ Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetWire(TopoDS_Wire*): PrivateScope, Public, HideBySig
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4543,7 +4545,7 @@ Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetVertex(TopoDS_Vertex*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4591,7 +4593,7 @@ Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetEdge(TopoDS_Edge*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4727,6 +4729,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, 
     Error(): PrivateScope, Public, HideBySig
     Edge(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     Vertex1(): PrivateScope, Public, HideBySig
     Vertex2(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
@@ -4781,6 +4784,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, 
     SetMakeFaceHandle(BRepBuilderAPI_MakeFace*): PrivateScope, Public, HideBySig
     GetMakeFace(BRepBuilderAPI_MakeFace*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4804,6 +4808,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     Wire(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     Edge(): PrivateScope, Public, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
     Vertex(): PrivateScope, Public, HideBySig
     GetMakeWire(BRepBuilderAPI_MakeWire*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetMakeShape(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig
@@ -4816,7 +4821,7 @@ Class TKBRep.XTopoDS_Shell: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetShell(TopoDS_Shell*): PrivateScope, Public, HideBySig
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Solid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4826,7 +4831,7 @@ Class TKBRep.XTopoDS_Solid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetSolid(TopoDS_Solid*): PrivateScope, Public, HideBySig
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4836,7 +4841,7 @@ Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetCompSolid(TopoDS_CompSolid*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -4846,7 +4851,7 @@ Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeField
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
     GetCompound(TopoDS_Compound*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

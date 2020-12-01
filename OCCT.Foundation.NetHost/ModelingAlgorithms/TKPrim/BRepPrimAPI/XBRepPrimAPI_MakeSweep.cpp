@@ -24,4 +24,9 @@ namespace TKPrim {
 	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::LastShape() {
 		return gcnew XTopoDS_Shape(NativeHandle->LastShape());
 	};
+
+	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::Shape() {
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(*Shape);
+	};
 }

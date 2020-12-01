@@ -284,6 +284,8 @@ namespace TKTopAlgo {
 
 		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
 
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>

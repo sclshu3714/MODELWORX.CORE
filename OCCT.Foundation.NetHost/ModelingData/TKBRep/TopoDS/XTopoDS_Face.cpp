@@ -20,7 +20,7 @@ namespace TKBRep {
         return *NativeHandle;
     };
 
-    TopoDS_Shape XTopoDS_Face::GetShape() {
-        return *NativeHandle;
+    TopoDS_Shape* XTopoDS_Face::GetShape() {
+        return NativeHandle;
     }
 }

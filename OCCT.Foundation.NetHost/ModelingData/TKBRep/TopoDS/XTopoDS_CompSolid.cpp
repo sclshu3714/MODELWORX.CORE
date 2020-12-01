@@ -14,7 +14,7 @@ namespace TKBRep {
         return *NativeHandle;
     };
 
-    TopoDS_Shape XTopoDS_CompSolid::GetShape() {
-        return *NativeHandle;
+    TopoDS_Shape* XTopoDS_CompSolid::GetShape() {
+        return NativeHandle;
     };
 }

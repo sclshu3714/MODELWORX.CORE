@@ -271,6 +271,11 @@ namespace TKTopAlgo {
 		return gcnew XTopoDS_Edge(edge);
 	};
 
+	XTopoDS_Shape^ XBRepBuilderAPI_MakeEdge::Shape() {
+		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(*Shape);
+	};
+
 	//! Returns the first vertex of the edge. May be Null.
 	XTopoDS_Vertex^ XBRepBuilderAPI_MakeEdge::Vertex1() {
 		TopoDS_Vertex* vertex = new TopoDS_Vertex(NativeHandle->Vertex1());

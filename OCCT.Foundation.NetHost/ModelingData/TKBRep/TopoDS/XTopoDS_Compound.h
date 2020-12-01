@@ -50,7 +50,7 @@ namespace TKBRep {
         virtual TopoDS_Compound GetCompound();
 
         //!
-        virtual TopoDS_Shape GetShape() Standard_OVERRIDE;
+        virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;
 
         /// <summary>
         /// ±¾µØ¾ä±ú

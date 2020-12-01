@@ -25,12 +25,12 @@ namespace TKBRep {
 
     //! Constructs a shape object defined by the shape aShape.
     XTopoDS_HShape::XTopoDS_HShape(XTopoDS_Shape^ aShape) {
-        NativeHandle() = new TopoDS_HShape(aShape->GetShape());
+        NativeHandle() = new TopoDS_HShape(*aShape->GetShape());
     };
 
     //! Loads this shape with the shape aShape
     void XTopoDS_HShape::Shape(XTopoDS_Shape^ aShape) {
-        NativeHandle()->Shape(aShape->GetShape());
+        NativeHandle()->Shape(*aShape->GetShape());
     };
 
     //!

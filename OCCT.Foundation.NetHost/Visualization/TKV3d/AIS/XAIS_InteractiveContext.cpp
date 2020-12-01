@@ -259,8 +259,8 @@ namespace TKV3d {
     //! Displays the object in this Context using default Display Mode.
         //! This will be the object's default display mode, if there is one. Otherwise, it will be the context mode.
         //! The Interactive Object's default selection mode is activated if GetAutoActivateSelection() is TRUE. In general, this is 0.
-    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
-        NativeHandle()->Display(theIObj->GetInteractiveObject(), theToUpdateViewer);
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theXIObj, Standard_Boolean theToUpdateViewer) {
+        NativeHandle()->Display(theXIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //! Sets status, display mode and selection mode for specified Object
