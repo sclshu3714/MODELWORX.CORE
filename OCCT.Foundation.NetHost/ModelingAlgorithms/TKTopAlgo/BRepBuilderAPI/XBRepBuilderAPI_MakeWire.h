@@ -196,9 +196,9 @@ namespace TKTopAlgo {
 		//! add was not connectableR
 		XTopoDS_Vertex^ Vertex();
 
-		virtual BRepBuilderAPI_MakeWire GetMakeWire();
+		virtual BRepBuilderAPI_MakeWire* GetMakeWire();
 
-		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

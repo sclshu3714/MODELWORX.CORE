@@ -3,7 +3,7 @@
 namespace TKPrim {
 
 	void XBRepPrimAPI_MakePrism::SetMakePrismHandle(BRepPrimAPI_MakePrism* pos) {
-		NativeHandle = new BRepPrimAPI_MakePrism(*pos);
+		NativeHandle = pos;
 		SetMakeSweepHandle(NativeHandle);
 	};
 
@@ -15,13 +15,13 @@ namespace TKPrim {
 		return NativeHandle;
 	};
 
-	BRepBuilderAPI_MakeShape XBRepPrimAPI_MakePrism::GetMakeShape() {
-		return *NativeHandle;
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakePrism::GetMakeShape() {
+		return NativeHandle;
 	};
 
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::Shape() {
 		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
-		return gcnew XTopoDS_Shape(*Shape);
+		return gcnew XTopoDS_Shape(Shape);
 	};
 
 	//! Builds the prism of base S and vector V. If C is true,
@@ -31,7 +31,8 @@ namespace TKPrim {
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Vec^ V, Standard_Boolean Copy, Standard_Boolean Canonize) {
 		TopoDS_Shape* shape = new TopoDS_Shape(*S->GetShape());
 		gp_Vec* gpVec = new gp_Vec(V->GetVec());
-		NativeHandle = new BRepPrimAPI_MakePrism(*shape, *gpVec, Copy, Canonize);
+		NativeHandle = new BRepPrimAPI_MakePrism(*shape, *gpVec, Copy, Canonize); 
+		SetMakeSweepHandle(NativeHandle);
 	};
 
 	//! Builds a semi-infinite or an infinite prism of base S.
@@ -43,6 +44,7 @@ namespace TKPrim {
 	//!  const Standard_Boolean Inf = Standard_True, const Standard_Boolean Copy = Standard_False, const Standard_Boolean Canonize = Standard_True
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Dir^ D, Standard_Boolean Inf, Standard_Boolean Copy, Standard_Boolean Canonize) {
 		NativeHandle = new BRepPrimAPI_MakePrism(*S->GetShape(), D->GetDir(), Inf, Copy, Canonize);
+		SetMakeSweepHandle(NativeHandle);
 	};
 
 	//! Returns the internal sweeping algorithm.
@@ -57,7 +59,8 @@ namespace TKPrim {
 
 	//! Returns the  TopoDS  Shape of the bottom of the prism.
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::FirstShape() {
-		return gcnew XTopoDS_Shape(NativeHandle->FirstShape());
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->FirstShape());
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 	//! Returns the TopoDS Shape of the top of the prism.
@@ -67,7 +70,8 @@ namespace TKPrim {
 	//! LastShape returns the copy of S translated by V at the
 	//! time of construction.
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::LastShape() {
-		return gcnew XTopoDS_Shape(NativeHandle->LastShape());
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->LastShape());
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 	//! Returns ListOfShape from TopTools.
@@ -83,13 +87,15 @@ namespace TKPrim {
 	//! Returns the TopoDS Shape of the bottom  of the  prism.
 	//! generated  with  theShape (subShape of the  generating shape).
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::FirstShape(XTopoDS_Shape^ theShape) {
-		return gcnew XTopoDS_Shape(NativeHandle->FirstShape(*theShape->GetShape()));
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->FirstShape(*theShape->GetShape()));
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 	//! Returns the  TopoDS  Shape of the top  of  the  prism.
 	//! generated  with  theShape (subShape of the  generating shape).
 	XTopoDS_Shape^ XBRepPrimAPI_MakePrism::LastShape(XTopoDS_Shape^ theShape) {
-		return gcnew XTopoDS_Shape(NativeHandle->LastShape(*theShape->GetShape()));
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->LastShape(*theShape->GetShape()));
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 }

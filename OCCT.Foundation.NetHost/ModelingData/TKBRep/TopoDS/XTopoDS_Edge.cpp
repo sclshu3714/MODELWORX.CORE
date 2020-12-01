@@ -15,8 +15,8 @@ namespace TKBRep {
     };
 
     //!
-    TopoDS_Edge XTopoDS_Edge::GetEdge() {
-        return *NativeHandle;
+    TopoDS_Edge* XTopoDS_Edge::GetEdge() {
+        return NativeHandle;
     };
 
     //!

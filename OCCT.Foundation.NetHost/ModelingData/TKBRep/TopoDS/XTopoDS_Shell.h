@@ -44,7 +44,7 @@ namespace TKBRep {
         //! Constructs an Undefined Shell.
         XTopoDS_Shell();
 
-        TopoDS_Shell GetShell();
+        TopoDS_Shell* GetShell();
 
         //!
         virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;

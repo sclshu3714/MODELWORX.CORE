@@ -48,6 +48,7 @@
 #include <BRepBuilderAPI_EdgeError.hxx>
 #include <XTopoDS_Edge.h>
 #include <XGeom2d_Curve.h>
+#include <XBRepBuilderAPI_EdgeError.h>
 
 class StdFail_NotDone;
 class TopoDS_Vertex;
@@ -124,7 +125,9 @@ namespace TKTopAlgo {
 
 		void SetMakeEdgeHandle(BRepBuilderAPI_MakeEdge* pos);
 
-		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+		virtual BRepBuilderAPI_MakeEdge* GetMakeEdge();
+
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
 		XBRepBuilderAPI_MakeEdge(XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
@@ -291,7 +294,7 @@ namespace TKTopAlgo {
 		//! -   BRepBuilderAPI_EdgeDone if the edge is built, or
 		//! -   another value of the BRepBuilderAPI_EdgeError
 		//! enumeration indicating the reason of construction failure.
-		BRepBuilderAPI_EdgeError Error();
+		XBRepBuilderAPI_EdgeError Error();
 
 
 		//! Returns the constructed edge.

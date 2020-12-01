@@ -795,18 +795,23 @@ namespace OCCT.WinForms.Net
             context.RemoveAll(true);
             xgp_Circ c = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0),new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
             XTopoDS_Edge Ec = new XBRepBuilderAPI_MakeEdge(c).Edge();
-            XAIS_Shape WAIS_EC = new XAIS_Shape(Ec);
-            WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE4));
-            context.Display(WAIS_EC, true);
+            //XAIS_Shape WAIS_EC = new XAIS_Shape(Ec);
+            //WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE4));
+            //context.Display(WAIS_EC, true);
 
             XTopoDS_Wire Wc = new XBRepBuilderAPI_MakeWire(Ec).Wire();
-            WAIS_EC = new XAIS_Shape(Wc);
+            XAIS_Shape WAIS_EC = new XAIS_Shape(Wc);
             WAIS_EC.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BISQUE3));
             context.Display(WAIS_EC, true);
 
-            XTopoDS_Face F = new XBRepBuilderAPI_MakeFace(Wc, false).Face();
+            XBRepBuilderAPI_MakeFace aMakeFace = new XBRepBuilderAPI_MakeFace(Wc, false);
             //XTopoDS_Shape S4 = new XBRepBuilderAPI_MakePrism(F, new xgp_Vec(0.0, 0.0, 100.0));
-            WAIS_EC = new XAIS_Shape(F);
+            WAIS_EC = new XAIS_Shape(aMakeFace.Shape());
+            context.Display(WAIS_EC, true);
+
+            xgp_Vec sVec = new xgp_Vec(1 * 2, 0, 0);
+            XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(aMakeFace.Shape(), sVec, false, false);
+            WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
             context.Display(WAIS_EC, true);
 
             //xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));

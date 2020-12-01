@@ -43,7 +43,7 @@ namespace TKBRep {
         //! Constructs an Undefined Solid.
         XTopoDS_Solid();
 
-        TopoDS_Solid GetSolid();
+        TopoDS_Solid* GetSolid();
 
         //!
         virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;

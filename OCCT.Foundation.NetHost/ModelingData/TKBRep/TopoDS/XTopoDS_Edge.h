@@ -50,7 +50,7 @@ namespace TKBRep {
         XTopoDS_Edge(TopoDS_Edge* pos);
 
         //!
-        virtual TopoDS_Edge GetEdge();
+        virtual TopoDS_Edge* GetEdge();
 
         //!
         virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;

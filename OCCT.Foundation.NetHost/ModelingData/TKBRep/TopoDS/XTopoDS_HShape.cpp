@@ -40,7 +40,8 @@ namespace TKBRep {
 
     //! Returns a reference to a constant TopoDS_Shape based on this shape.
     XTopoDS_Shape^ XTopoDS_HShape::Shape() {
-        return gcnew XTopoDS_Shape(NativeHandle()->Shape());
+        TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle()->Shape());
+        return gcnew XTopoDS_Shape(aShape);
     };
 
 
@@ -51,6 +52,7 @@ namespace TKBRep {
     //! Returns a reference to a TopoDS_Shape based on
     //! this shape. The TopoDS_Shape can be modified.
     XTopoDS_Shape^ XTopoDS_HShape::ChangeShape() {
-        return gcnew XTopoDS_Shape(NativeHandle()->ChangeShape());
+        TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle()->ChangeShape());
+        return gcnew XTopoDS_Shape(aShape);
     };
 }

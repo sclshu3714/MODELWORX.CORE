@@ -7,11 +7,6 @@ namespace TKBRep {
     };
 
     //! Creates a NULL Shape referring to nothing.
-    XTopoDS_Shape::XTopoDS_Shape(TopoDS_Shape pos) {
-        NativeHandle = &pos;
-    };
-
-    //! Creates a NULL Shape referring to nothing.
     XTopoDS_Shape::XTopoDS_Shape(TopoDS_Shape* pos) {
         NativeHandle = pos;
     };
@@ -62,14 +57,15 @@ namespace TKBRep {
     };
 
     //! Sets the shape local coordinate system.
-    void XTopoDS_Shape::Location(XTopLoc_Location^ theLoc) {
+    void XTopoDS_Shape::Location(XTopLoc_Location^% theLoc) {
         NativeHandle->Location(theLoc->GetLocation());
     };
 
     //! Returns a  shape  similar to <me> with   the local
     //! coordinate system set to <Loc>.
     XTopoDS_Shape^ XTopoDS_Shape::Located(XTopLoc_Location^ theLoc) {
-        return gcnew XTopoDS_Shape(NativeHandle->Located(theLoc->GetLocation()));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Located(theLoc->GetLocation()));
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Returns the shape orientation.
@@ -85,7 +81,8 @@ namespace TKBRep {
     //! Returns  a    shape  similar  to  <me>   with  the
     //! orientation set to <Or>.
     XTopoDS_Shape^ XTopoDS_Shape::Oriented(XTopAbs_Orientation theOrient) {
-        return gcnew XTopoDS_Shape(NativeHandle->Oriented(safe_cast<TopAbs_Orientation>(theOrient)));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Oriented(safe_cast<TopAbs_Orientation>(theOrient)));
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Returns a handle to the actual shape implementation.
@@ -189,7 +186,8 @@ namespace TKBRep {
 
     //! Returns a shape similar to <me> with a location multiplied by thePosition.
     XTopoDS_Shape^ XTopoDS_Shape::Moved(XTopLoc_Location^ thePosition) {
-        return gcnew XTopoDS_Shape(NativeHandle->Moved(thePosition->GetLocation()));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Moved(thePosition->GetLocation()));
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Reverses the orientation, using the Reverse method
@@ -202,7 +200,8 @@ namespace TKBRep {
     //! orientation  reversed, using  the   Reverse method
     //! from the TopAbs package.
     XTopoDS_Shape^ XTopoDS_Shape::Reversed() {
-        return gcnew XTopoDS_Shape(NativeHandle->Reversed());
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Reversed());
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Complements the orientation, using the  Complement
@@ -215,7 +214,8 @@ namespace TKBRep {
     //! orientation complemented,  using   the  Complement
     //! method from the TopAbs package.
     XTopoDS_Shape^ XTopoDS_Shape::Complemented() {
-        return gcnew XTopoDS_Shape(NativeHandle->Complemented());
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Complemented());
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Updates the Shape Orientation by composition with theOrient,
@@ -228,7 +228,8 @@ namespace TKBRep {
     //! orientation composed with theOrient, using the
     //! Compose method from the TopAbs package.
     XTopoDS_Shape^ XTopoDS_Shape::Composed(XTopAbs_Orientation theOrient) {
-        return gcnew XTopoDS_Shape(NativeHandle->Composed(safe_cast<TopAbs_Orientation>(theOrient)));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Composed(safe_cast<TopAbs_Orientation>(theOrient)));
+        return gcnew XTopoDS_Shape(shape);
     };
 
     //! Returns the number of direct sub-shapes (children).
@@ -278,7 +279,8 @@ namespace TKBRep {
     //! Location and  a new TShape  with the same geometry
     //! and no sub-shapes.
     XTopoDS_Shape^ XTopoDS_Shape::EmptyCopied() {
-        return gcnew XTopoDS_Shape(NativeHandle->EmptyCopied());
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->EmptyCopied());
+        return gcnew XTopoDS_Shape(shape);
     };
 
     void XTopoDS_Shape::TShape(XTopoDS_TShape^ theTShape) {

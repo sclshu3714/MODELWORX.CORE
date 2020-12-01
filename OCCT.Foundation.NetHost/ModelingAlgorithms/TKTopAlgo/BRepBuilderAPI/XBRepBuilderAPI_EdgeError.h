@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_EdgeError_HeaderFile
-#define _BRepBuilderAPI_EdgeError_HeaderFile
+#ifndef _XBRepBuilderAPI_EdgeError_HeaderFile
+#define _XBRepBuilderAPI_EdgeError_HeaderFile
 
 //! Indicates the outcome of the
 //! construction of an edge, i.e. whether it has been successful or
@@ -41,15 +41,15 @@
 //! -      BRepBuilderAPI_LineThroughIdenticPoints
 //! Two identical points were given to define a line (construction
 //! of an edge without curve); gp::Resolution is used for the    confusion test.
-enum BRepBuilderAPI_EdgeError
+public enum class XBRepBuilderAPI_EdgeError
 {
-BRepBuilderAPI_EdgeDone,
-BRepBuilderAPI_PointProjectionFailed,
-BRepBuilderAPI_ParameterOutOfRange,
-BRepBuilderAPI_DifferentPointsOnClosedCurve,
-BRepBuilderAPI_PointWithInfiniteParameter,
-BRepBuilderAPI_DifferentsPointAndParameter,
-BRepBuilderAPI_LineThroughIdenticPoints
+	BRepBuilderAPI_EdgeDone,
+	BRepBuilderAPI_PointProjectionFailed,
+	BRepBuilderAPI_ParameterOutOfRange,
+	BRepBuilderAPI_DifferentPointsOnClosedCurve,
+	BRepBuilderAPI_PointWithInfiniteParameter,
+	BRepBuilderAPI_DifferentsPointAndParameter,
+	BRepBuilderAPI_LineThroughIdenticPoints
 };
 
-#endif // _BRepBuilderAPI_EdgeError_HeaderFile
+#endif // _XBRepBuilderAPI_EdgeError_HeaderFile

@@ -12,7 +12,7 @@ namespace TKTopAlgo {
 
 	//! Load a face. Usefull to add wires.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Face^ F) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(F->GetFace());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*F->GetFace());
 		Initialize(NativeHandle);
 	};
 
@@ -96,7 +96,7 @@ namespace TKTopAlgo {
 	//! flag NotDone will be set.
 	//! Standard_Boolean OnlyPlane = Standard_False
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Wire^ XW, Standard_Boolean OnlyPlane) {
-		TopoDS_Wire* W = new TopoDS_Wire(XW->GetWire());
+		TopoDS_Wire* W = new TopoDS_Wire(*XW->GetWire());
 		NativeHandle = new BRepBuilderAPI_MakeFace(*W, OnlyPlane);
 		Initialize(NativeHandle);
 	};
@@ -105,7 +105,7 @@ namespace TKTopAlgo {
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ XP, XTopoDS_Wire^ XW, Standard_Boolean Inside) {
 		gp_Pln* P = new gp_Pln(XP->GetPln());
-		TopoDS_Wire* W = new TopoDS_Wire(XW->GetWire());
+		TopoDS_Wire* W = new TopoDS_Wire(*XW->GetWire());
 		NativeHandle = new BRepBuilderAPI_MakeFace(*P, *W, Inside);
 		Initialize(NativeHandle);
 	};
@@ -113,35 +113,35 @@ namespace TKTopAlgo {
 	//! Make a face from a cylinder and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a cone and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a sphere and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a torus and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a Surface and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XGeom_Surface^ S, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSurface(), W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSurface(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
@@ -189,7 +189,7 @@ namespace TKTopAlgo {
 	//! -      A parameter value may be infinite. There will be no edge and
 	//! no vertex in the corresponding direction.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Face^ F, XTopoDS_Wire^ W) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(F->GetFace(), W->GetWire());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*F->GetFace(), *W->GetWire());
 		Initialize(NativeHandle);
 	};
 
@@ -199,7 +199,7 @@ namespace TKTopAlgo {
 	//! Note: this complete copy of the geometry is only required if you
 	//! want to work on the geometries of the two faces independently.
 	void XBRepBuilderAPI_MakeFace::Init(XTopoDS_Face^ F) {
-		NativeHandle->Init(F->GetFace());
+		NativeHandle->Init(*F->GetFace());
 	};
 
 	//! Initializes (or reinitializes) the construction of a face on
@@ -243,7 +243,7 @@ namespace TKTopAlgo {
 	//! MF.Add(W);
 	//! TopoDS_Face F = MF;
 	void XBRepBuilderAPI_MakeFace::Add(XTopoDS_Wire^ W) {
-		NativeHandle->Add(W->GetWire());
+		NativeHandle->Add(*W->GetWire());
 	};
 
 	//! Returns true if this algorithm has a valid face.
@@ -257,8 +257,8 @@ namespace TKTopAlgo {
 	//! enumeration indicating why the construction failed, in
 	//! particular when the given parameters are outside the
 	//! bounds of the surface.
-	BRepBuilderAPI_FaceError XBRepBuilderAPI_MakeFace::Error() {
-		return NativeHandle->Error();
+	XBRepBuilderAPI_FaceError XBRepBuilderAPI_MakeFace::Error() {
+		return safe_cast<XBRepBuilderAPI_FaceError>(NativeHandle->Error());
 	};
 
 	//! Returns the constructed face.
@@ -266,27 +266,27 @@ namespace TKTopAlgo {
 	//! StdFail_NotDone if no face is built.
 	XTopoDS_Face^ XBRepBuilderAPI_MakeFace::Face() {
 		TopoDS_Face* face = new TopoDS_Face(NativeHandle->Face());
-		return gcnew XTopoDS_Face(*face);
+		return gcnew XTopoDS_Face(face);
 	};
 	XBRepBuilderAPI_MakeFace::operator XTopoDS_Face^() {
 		TopoDS_Face* face = new TopoDS_Face(NativeHandle->Face());
-		return gcnew XTopoDS_Face(*face);
+		return gcnew XTopoDS_Face(face);
 	};
 
 	XTopoDS_Shape^ XBRepBuilderAPI_MakeFace::Shape() {
 		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
-		return gcnew XTopoDS_Shape(*Shape);
+		return gcnew XTopoDS_Shape(Shape);
 	};
 
-	BRepBuilderAPI_MakeFace XBRepBuilderAPI_MakeFace::GetMakeFace() {
-		return *NativeHandle;
+	BRepBuilderAPI_MakeFace* XBRepBuilderAPI_MakeFace::GetMakeFace() {
+		return NativeHandle;
 	};
 
 	void XBRepBuilderAPI_MakeFace::SetMakeFaceHandle(BRepBuilderAPI_MakeFace* pos) {
 		NativeHandle = pos;
 	};
 
-	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeFace::GetMakeShape() {
-		return *NativeHandle;
+	BRepBuilderAPI_MakeShape* XBRepBuilderAPI_MakeFace::GetMakeShape() {
+		return NativeHandle;
 	};
 }

@@ -33,7 +33,8 @@ namespace TKBRep {
 			TopTools_ListIteratorOfListOfShape Iterator(TListOfShape);
 			for (TopTools_ListIteratorOfListOfShape Iterator(TListOfShape); Iterator.More(); Iterator.Next())
 			{
-				XTopoDS_Shape^ shape = gcnew XTopoDS_Shape(Iterator.Value());
+				TopoDS_Shape* OfShape = new TopoDS_Shape(Iterator.Value());
+				XTopoDS_Shape^ shape = gcnew XTopoDS_Shape(OfShape);
 				ListOfShape->Add(shape);
 			}
 		};

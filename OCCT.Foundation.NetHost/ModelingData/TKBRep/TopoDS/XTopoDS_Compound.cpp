@@ -9,8 +9,8 @@ namespace TKBRep {
         SetShapeHandle(*NativeHandle);
     };
     //!
-    TopoDS_Compound XTopoDS_Compound::GetCompound() {
-        return *NativeHandle;
+    TopoDS_Compound* XTopoDS_Compound::GetCompound() {
+        return NativeHandle;
     };
 
     //!

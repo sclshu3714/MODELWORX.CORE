@@ -6,27 +6,27 @@ namespace TKBRep {
 
     //! Make an empty Wire.
     void XTopoDS_Builder::MakeWire(XTopoDS_Wire^ W) {
-        NativeHandle->MakeWire(W->GetWire());
+        NativeHandle->MakeWire(*W->GetWire());
     };
 
     //! Make an empty Shell.
     void XTopoDS_Builder::MakeShell(XTopoDS_Shell^ S) {
-        NativeHandle->MakeShell(S->GetShell());
+        NativeHandle->MakeShell(*S->GetShell());
     };
 
     //! Make a Solid covering the whole 3D space.
     void XTopoDS_Builder::MakeSolid(XTopoDS_Solid^ S) {
-        NativeHandle->MakeSolid(S->GetSolid());
+        NativeHandle->MakeSolid(*S->GetSolid());
     };
 
     //! Make an empty Composite Solid.
     void XTopoDS_Builder::MakeCompSolid(XTopoDS_CompSolid^ C) {
-        NativeHandle->MakeCompSolid(C->GetCompSolid());
+        NativeHandle->MakeCompSolid(*C->GetCompSolid());
     };
 
     //! Make an empty Compound.
     void XTopoDS_Builder::MakeCompound(XTopoDS_Compound^ C) {
-        NativeHandle->MakeCompound(C->GetCompound());
+        NativeHandle->MakeCompound(*C->GetCompound());
     };
 
     //! Add the Shape C in the Shape S.

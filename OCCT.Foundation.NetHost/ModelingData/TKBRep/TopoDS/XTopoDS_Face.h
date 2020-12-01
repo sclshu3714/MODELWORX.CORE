@@ -46,10 +46,10 @@ namespace TKBRep {
         XTopoDS_Face();
 
         //! Undefined Face.
-        XTopoDS_Face(TopoDS_Face pos);
+        XTopoDS_Face(TopoDS_Face* pos);
 
         //!
-        virtual  TopoDS_Face GetFace();
+        virtual  TopoDS_Face* GetFace();
 
         //!
         virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;

@@ -54,6 +54,7 @@ namespace TKBRep {
     //! Exceptions
     //! Standard_NoSuchObject if there is no current sub-shape.
     XTopoDS_Shape^ XTopoDS_Iterator::Value() {
-        return gcnew XTopoDS_Shape(NativeHandle->Value());
+        TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->Value());
+        return gcnew XTopoDS_Shape(aShape);
     };
 }

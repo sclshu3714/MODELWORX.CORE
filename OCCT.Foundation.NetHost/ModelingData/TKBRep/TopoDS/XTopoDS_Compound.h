@@ -47,7 +47,7 @@ namespace TKBRep {
         XTopoDS_Compound();
 
         //!
-        virtual TopoDS_Compound GetCompound();
+        virtual TopoDS_Compound* GetCompound();
 
         //!
         virtual TopoDS_Shape* GetShape() Standard_OVERRIDE;

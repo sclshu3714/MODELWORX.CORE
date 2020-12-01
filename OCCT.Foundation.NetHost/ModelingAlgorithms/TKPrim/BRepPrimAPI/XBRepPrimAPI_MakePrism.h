@@ -71,7 +71,7 @@ namespace TKPrim {
 
 		virtual BRepPrimAPI_MakeSweep* GetMakeSweep() Standard_OVERRIDE;
 
-		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
 		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 

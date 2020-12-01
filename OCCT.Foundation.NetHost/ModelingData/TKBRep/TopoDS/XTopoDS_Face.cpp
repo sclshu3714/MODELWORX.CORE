@@ -10,14 +10,14 @@ namespace TKBRep {
     };
 
     //! Undefined Face.
-    XTopoDS_Face::XTopoDS_Face(TopoDS_Face pos) {
-        NativeHandle = &pos;
-        SetShapeHandle(*NativeHandle);
+    XTopoDS_Face::XTopoDS_Face(TopoDS_Face* pos) {
+        NativeHandle = pos;
+        SetShapeHandle(NativeHandle);
     };
 
     //!
-    TopoDS_Face XTopoDS_Face::GetFace() {
-        return *NativeHandle;
+    TopoDS_Face* XTopoDS_Face::GetFace() {
+        return NativeHandle;
     };
 
     TopoDS_Shape* XTopoDS_Face::GetShape() {

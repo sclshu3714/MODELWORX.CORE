@@ -11,22 +11,24 @@ namespace TKPrim {
 		return NativeHandle;
 	};
 
-	BRepBuilderAPI_MakeShape XBRepPrimAPI_MakeSweep::GetMakeShape() {
-		return *NativeHandle;
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeSweep::GetMakeShape() {
+		return NativeHandle;
 	};
 
 	//! Returns the  TopoDS  Shape of the bottom of the sweep.
 	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::FirstShape() {
-		return gcnew XTopoDS_Shape(NativeHandle->FirstShape());
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->FirstShape());
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 	//! Returns the TopoDS Shape of the top of the sweep.
 	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::LastShape() {
-		return gcnew XTopoDS_Shape(NativeHandle->LastShape());
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->LastShape());
+		return gcnew XTopoDS_Shape(aShape);
 	};
 
 	XTopoDS_Shape^ XBRepPrimAPI_MakeSweep::Shape() {
 		TopoDS_Shape* Shape = new TopoDS_Shape(NativeHandle->Shape());
-		return gcnew XTopoDS_Shape(*Shape);
+		return gcnew XTopoDS_Shape(Shape);
 	};
 }

@@ -40,6 +40,7 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_FaceError.hxx>
+#include <XBRepBuilderAPI_FaceError.h>
 class StdFail_NotDone;
 //class TopoDS_Face;
 //class gp_Pln;
@@ -270,7 +271,7 @@ namespace TKTopAlgo {
 		//! enumeration indicating why the construction failed, in
 		//! particular when the given parameters are outside the
 		//! bounds of the surface.
-		BRepBuilderAPI_FaceError Error();
+		XBRepBuilderAPI_FaceError Error();
 
 		//! Returns the constructed face.
 		//! Exceptions
@@ -280,9 +281,9 @@ namespace TKTopAlgo {
 
 		void SetMakeFaceHandle(BRepBuilderAPI_MakeFace* pos);
 
-		virtual BRepBuilderAPI_MakeFace GetMakeFace();
+		virtual BRepBuilderAPI_MakeFace* GetMakeFace();
 
-		virtual BRepBuilderAPI_MakeShape GetMakeShape() Standard_OVERRIDE;
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
 		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 

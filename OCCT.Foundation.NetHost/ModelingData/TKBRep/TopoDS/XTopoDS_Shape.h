@@ -46,9 +46,6 @@ namespace TKBRep {
         XTopoDS_Shape(void);
 
         //! Creates a NULL Shape referring to nothing.
-        XTopoDS_Shape(TopoDS_Shape pos);
-
-        //! Creates a NULL Shape referring to nothing.
         XTopoDS_Shape(TopoDS_Shape* pos);
 
         ~XTopoDS_Shape();
@@ -87,7 +84,7 @@ namespace TKBRep {
         XTopLoc_Location^ Location();
 
         //! Sets the shape local coordinate system.
-        void Location(XTopLoc_Location^ theLoc);
+        void Location(XTopLoc_Location^% theLoc);
 
         //! Returns a  shape  similar to <me> with   the local
         //! coordinate system set to <Loc>.

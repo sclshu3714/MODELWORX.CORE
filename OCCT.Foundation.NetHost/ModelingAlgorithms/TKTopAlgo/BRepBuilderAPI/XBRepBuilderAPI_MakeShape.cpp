@@ -10,8 +10,8 @@ namespace TKTopAlgo {
 		NativeHandle = handle;// new BRepBuilderAPI_MakeShape(*handle);
 	};
 
-	BRepBuilderAPI_MakeShape XBRepBuilderAPI_MakeShape::GetMakeShape() {
-		return *NativeHandle;
+	BRepBuilderAPI_MakeShape* XBRepBuilderAPI_MakeShape::GetMakeShape() {
+		return NativeHandle;
 	};
 
 	//! This is  called by  Shape().  It does  nothing but

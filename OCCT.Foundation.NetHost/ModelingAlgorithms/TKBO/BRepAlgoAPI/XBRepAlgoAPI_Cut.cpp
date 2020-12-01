@@ -43,6 +43,6 @@ namespace TKBO {
 
 	XTopoDS_Shape^ XBRepAlgoAPI_Cut::Shape() {
 		TopoDS_Shape* S1 = new TopoDS_Shape(NativeHandle->Shape());
-		return gcnew XTopoDS_Shape(*S1);
+		return gcnew XTopoDS_Shape(S1);
 	};
 }
