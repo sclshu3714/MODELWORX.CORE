@@ -58,13 +58,13 @@ namespace TKBRep {
 
     //! Sets the shape local coordinate system.
     void XTopoDS_Shape::Location(XTopLoc_Location^% theLoc) {
-        NativeHandle->Location(theLoc->GetLocation());
+        NativeHandle->Location(*theLoc->GetLocation());
     };
 
     //! Returns a  shape  similar to <me> with   the local
     //! coordinate system set to <Loc>.
     XTopoDS_Shape^ XTopoDS_Shape::Located(XTopLoc_Location^ theLoc) {
-        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Located(theLoc->GetLocation()));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Located(*theLoc->GetLocation()));
         return gcnew XTopoDS_Shape(shape);
     };
 
@@ -181,12 +181,12 @@ namespace TKBRep {
 
     //! Multiplies the Shape location by thePosition.
     void XTopoDS_Shape::Move(XTopLoc_Location^ thePosition) {
-        NativeHandle->Move(thePosition->GetLocation());
+        NativeHandle->Move(*thePosition->GetLocation());
     };
 
     //! Returns a shape similar to <me> with a location multiplied by thePosition.
     XTopoDS_Shape^ XTopoDS_Shape::Moved(XTopLoc_Location^ thePosition) {
-        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Moved(thePosition->GetLocation()));
+        TopoDS_Shape* shape = new TopoDS_Shape(NativeHandle->Moved(*thePosition->GetLocation()));
         return gcnew XTopoDS_Shape(shape);
     };
 

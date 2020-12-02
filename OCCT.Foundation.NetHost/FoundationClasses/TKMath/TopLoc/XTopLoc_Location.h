@@ -58,7 +58,7 @@ namespace TKMath {
         ~XTopLoc_Location();
 
         //!
-        TopLoc_Location GetLocation();
+        virtual TopLoc_Location* GetLocation();
 
         //! Returns true if this location is equal to the Identity transformation.
         Standard_Boolean IsIdentity();
@@ -172,11 +172,11 @@ namespace TKMath {
     //! @return a computed hash code, in the range [1, theUpperBound]
     inline Standard_Integer HashCode(XTopLoc_Location^ theLocation, Standard_Integer theUpperBound)
     {
-        return theLocation->GetLocation().HashCode(theUpperBound);
+        return theLocation->GetLocation()->HashCode(theUpperBound);
     }
 
     inline void ShallowDump(XTopLoc_Location^ me, Standard_OStream S) {
-        me->GetLocation().ShallowDump(S);
+        me->GetLocation()->ShallowDump(S);
     }
 };
 

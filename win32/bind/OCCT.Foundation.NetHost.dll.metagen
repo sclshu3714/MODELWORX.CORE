@@ -1328,7 +1328,7 @@ Class TKMath.XTopLoc_Location: AutoLayout, AnsiClass, Class, Public, BeforeField
   Properties:
     TopLoc_Location* Handle 'get ' : 
   Methods:
-    GetLocation(TopLoc_Location*): PrivateScope, Public, HideBySig
+    GetLocation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsIdentity(): PrivateScope, Public, HideBySig
     Identity(): PrivateScope, Public, HideBySig
     FirstDatum(handle<TopLoc_Datum3D>*): PrivateScope, Public, HideBySig
@@ -4485,6 +4485,77 @@ Class TKPrim.XBRepPrimAPI_MakePrism: AutoLayout, AnsiClass, Class, Public, Befor
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetWire(): PrivateScope, Public, HideBySig
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_CompSolid*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetCompSolid(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Compound*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetCompound(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TopoDS_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Builder* IHandle 'get set' : 
+  Methods:
+    SetTopoDSBuilderHandle(TopoDS_Builder*): PrivateScope, Public, HideBySig
+    GetTopoDSBuilder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    MakeWire(XTopoDS_Wire): PrivateScope, Public, HideBySig
+    MakeShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
+    MakeSolid(XTopoDS_Solid): PrivateScope, Public, HideBySig
+    MakeCompSolid(XTopoDS_CompSolid): PrivateScope, Public, HideBySig
+    MakeCompound(XTopoDS_Compound): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Remove(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TopoDS_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetEdge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetVertex(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4567,28 +4638,6 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Value(Double, Double): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetWire(): PrivateScope, Public, HideBySig
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetVertex(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4626,17 +4675,6 @@ Class TKG3d.XGeom_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Value(Double): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetEdge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4710,6 +4748,159 @@ Class TKG2d.XGeom2d_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XGeom2d_Curve(): PrivateScope, Public, HideBySig
+Class TKBRep.XBRep_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Builder
+    Void .ctor(BRep_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Builder* IHandle 'get set' : 
+  Methods:
+    SetBRepBuilderHandle(BRep_Builder*): PrivateScope, Public, HideBySig
+    GetBRepBuilder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetTopoDSBuilder(): PrivateScope, Public, Virtual, HideBySig
+    MakeFace(XTopoDS_Face, handle<Poly_Triangulation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    MakeFace(XTopoDS_Face, XGeom_Surface, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    MakeFace(XTopoDS_Face, XGeom_Surface, Double): PrivateScope, Public, HideBySig
+    MakeFace(XTopoDS_Face): PrivateScope, Public, HideBySig
+    UpdateFace(XTopoDS_Face, Double): PrivateScope, Public, HideBySig
+    UpdateFace(XTopoDS_Face, handle<Poly_Triangulation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateFace(XTopoDS_Face, XGeom_Surface, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    NaturalRestriction(XTopoDS_Face, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, handle<Poly_Polygon3D>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, XGeom_Curve, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, XGeom_Curve, Double): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XTopoDS_Face): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XTopoDS_Face): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon3D>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, handle<Poly_Polygon3D>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XGeom2d_Curve, XTopoDS_Face, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom2d_Curve, XTopoDS_Face, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom_Curve, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    UpdateEdge(XTopoDS_Edge, XGeom_Curve, Double): PrivateScope, Public, HideBySig
+    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location, XGeomAbs_Shape): PrivateScope, Public, HideBySig
+    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face, XGeomAbs_Shape): PrivateScope, Public, HideBySig
+    SameParameter(XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SameRange(XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Degenerated(XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Range(XTopoDS_Edge, XTopoDS_Face, Double, Double): PrivateScope, Public, HideBySig
+    Range(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, Double, Double): PrivateScope, Public, HideBySig
+    Range(XTopoDS_Edge, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Transfert(XTopoDS_Edge, XTopoDS_Edge, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Transfert(XTopoDS_Edge, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    MakeVertex(XTopoDS_Vertex, xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    MakeVertex(XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, Double): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, Double, Double, XTopoDS_Face, Double): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, Double, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, Double): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, Double, XTopoDS_Edge, XTopoDS_Face, Double): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, Double, XTopoDS_Edge, Double): PrivateScope, Public, HideBySig
+    UpdateVertex(XTopoDS_Vertex, xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Builder*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKPrim.XBRepPrim_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(BRepPrim_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepPrim_Builder* IHandle 'get set' : 
+  Methods:
+    SetBRepPrimBuilderHandle(BRepPrim_Builder*): PrivateScope, Public, HideBySig
+    GetBRepPrimBuilder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Builder(): PrivateScope, Public, HideBySig
+    MakeShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
+    MakeFace(XTopoDS_Face, xgp_Pln): PrivateScope, Public, HideBySig
+    MakeWire(XTopoDS_Wire): PrivateScope, Public, HideBySig
+    MakeDegeneratedEdge(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, xgp_Circ): PrivateScope, Public, HideBySig
+    MakeEdge(XTopoDS_Edge, xgp_Lin): PrivateScope, Public, HideBySig
+    SetPCurve(XTopoDS_Edge, XTopoDS_Face, xgp_Circ2d): PrivateScope, Public, HideBySig
+    SetPCurve(XTopoDS_Edge, XTopoDS_Face, xgp_Lin2d, xgp_Lin2d): PrivateScope, Public, HideBySig
+    SetPCurve(XTopoDS_Edge, XTopoDS_Face, xgp_Lin2d): PrivateScope, Public, HideBySig
+    MakeVertex(XTopoDS_Vertex, xgp_Pnt): PrivateScope, Public, HideBySig
+    ReverseFace(XTopoDS_Face): PrivateScope, Public, HideBySig
+    AddEdgeVertex(XTopoDS_Edge, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    AddEdgeVertex(XTopoDS_Edge, XTopoDS_Vertex, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetParameters(XTopoDS_Edge, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    AddWireEdge(XTopoDS_Wire, XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    AddFaceWire(XTopoDS_Face, XTopoDS_Wire): PrivateScope, Public, HideBySig
+    AddShellFace(XTopoDS_Shell, XTopoDS_Face): PrivateScope, Public, HideBySig
+    CompleteEdge(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    CompleteWire(XTopoDS_Wire): PrivateScope, Public, HideBySig
+    CompleteFace(XTopoDS_Face): PrivateScope, Public, HideBySig
+    CompleteShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BRepPrim_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
+Class TKPrim.XBRepPrim_GWedge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepPrim_GWedge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepPrim_GWedge* IHandle 'get set' : 
+  Methods:
+    SetGWedgeHandle(BRepPrim_GWedge*): PrivateScope, Public, HideBySig
+    GetGWedge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Axes(): PrivateScope, Public, HideBySig
+    GetXMin(): PrivateScope, Public, HideBySig
+    GetYMin(): PrivateScope, Public, HideBySig
+    GetZMin(): PrivateScope, Public, HideBySig
+    GetZ2Min(): PrivateScope, Public, HideBySig
+    GetX2Min(): PrivateScope, Public, HideBySig
+    GetXMax(): PrivateScope, Public, HideBySig
+    GetYMax(): PrivateScope, Public, HideBySig
+    GetZMax(): PrivateScope, Public, HideBySig
+    GetZ2Max(): PrivateScope, Public, HideBySig
+    GetX2Max(): PrivateScope, Public, HideBySig
+    Open(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Close(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    IsInfinite(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Shell(): PrivateScope, Public, HideBySig
+    HasFace(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Face(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Plane(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    HasWire(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Wire(XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    HasEdge(XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Edge(XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Line(XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    HasVertex(XBRepPrim_Direction, XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Vertex(XBRepPrim_Direction, XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    Point(XBRepPrim_Direction, XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepPrim_GWedge*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XBRepPrim_Direction: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XBRepPrim_Direction BRepPrim_XMin = 0 : Public, Static, Literal, HasDefault
+    XBRepPrim_Direction BRepPrim_XMax = 1 : Public, Static, Literal, HasDefault
+    XBRepPrim_Direction BRepPrim_YMin = 2 : Public, Static, Literal, HasDefault
+    XBRepPrim_Direction BRepPrim_YMax = 3 : Public, Static, Literal, HasDefault
+    XBRepPrim_Direction BRepPrim_ZMin = 4 : Public, Static, Literal, HasDefault
+    XBRepPrim_Direction BRepPrim_ZMax = 5 : Public, Static, Literal, HasDefault
 Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4776,17 +4967,6 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, 
     Vertex2(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Struct XBRepBuilderAPI_EdgeError: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -4849,17 +5029,6 @@ Struct XBRepBuilderAPI_FaceError: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XBRepBuilderAPI_FaceError BRepBuilderAPI_NotPlanar = 2 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_CurveProjectionFailed = 3 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_ParametersOutOfRange = 4 : Public, Static, Literal, HasDefault
-Class TKBRep.XTopoDS_CompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_CompSolid*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetCompSolid(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKBRep.XTopoDS_Solid, TKBRep.XTopoDS_Shell): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4909,32 +5078,6 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Compound*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetCompound(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Builder* IHandle 'get set' : 
-  Methods:
-    SetBuilderHandle(TopoDS_Builder*): PrivateScope, Public, HideBySig
-    MakeWire(XTopoDS_Wire): PrivateScope, Public, HideBySig
-    MakeShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
-    MakeSolid(XTopoDS_Solid): PrivateScope, Public, HideBySig
-    MakeCompSolid(XTopoDS_CompSolid): PrivateScope, Public, HideBySig
-    MakeCompound(XTopoDS_Compound): PrivateScope, Public, HideBySig
-    Add(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
-    Remove(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(TopoDS_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class NCollection_Haft<opencascade::handle<TopoDS_HShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

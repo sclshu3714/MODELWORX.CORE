@@ -294,7 +294,7 @@ namespace TKXCAF {
     //! Adds a component given by its label and location to the assembly
     //! Note: assembly must be IsAssembly() or IsSimpleShape()
     XTDF_Label^ XXCAFDoc_ShapeTool::AddComponent(XTDF_Label^ assembly, XTDF_Label^ comp, XTopLoc_Location^ Loc) {
-        return gcnew XTDF_Label(NativeHandle()->AddComponent(assembly->GetLabel(), comp->GetLabel(), Loc->GetLocation()));
+        return gcnew XTDF_Label(NativeHandle()->AddComponent(assembly->GetLabel(), comp->GetLabel(), *Loc->GetLocation()));
     };
 
     //! Adds a shape (located) as a component to the assembly

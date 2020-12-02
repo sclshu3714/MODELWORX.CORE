@@ -616,7 +616,7 @@ namespace TKV3d {
     //=======================================================================
     void XAIS_InteractiveContext::SetLocation(Handle(AIS_InteractiveObject) theIObj, XTopLoc_Location^ theLoc)
     {
-        NativeHandle()->SetLocation(theIObj, theLoc->GetLocation());
+        NativeHandle()->SetLocation(theIObj, *theLoc->GetLocation());
     };
 
     //=======================================================================

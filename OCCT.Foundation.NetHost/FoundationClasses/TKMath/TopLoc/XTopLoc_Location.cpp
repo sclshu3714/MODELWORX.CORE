@@ -44,8 +44,8 @@ namespace TKMath {
     };
 
     //!
-    TopLoc_Location XTopLoc_Location::GetLocation() {
-        return *NativeHandle;
+    TopLoc_Location* XTopLoc_Location::GetLocation() {
+        return NativeHandle;
     };
 
     //! Returns true if this location is equal to the Identity transformation.
@@ -101,17 +101,17 @@ namespace TKMath {
     //! Returns <me> * <Other>, the  elementary datums are
     //! concatenated.
     XTopLoc_Location^ XTopLoc_Location::Multiplied(XTopLoc_Location^ Other) {
-        return gcnew XTopLoc_Location(NativeHandle->Multiplied(Other->GetLocation()));
+        return gcnew XTopLoc_Location(NativeHandle->Multiplied(*Other->GetLocation()));
     };
 
     //! Returns  <me> / <Other>.
     XTopLoc_Location^ XTopLoc_Location::Divided(XTopLoc_Location^ Other) {
-        return gcnew XTopLoc_Location(NativeHandle->Divided(Other->GetLocation()));
+        return gcnew XTopLoc_Location(NativeHandle->Divided(*Other->GetLocation()));
     };
 
     //! Returns <Other>.Inverted() * <me>.
     XTopLoc_Location^ XTopLoc_Location::Predivided(XTopLoc_Location^ Other) {
-        return gcnew XTopLoc_Location(NativeHandle->Predivided(Other->GetLocation()));
+        return gcnew XTopLoc_Location(NativeHandle->Predivided(*Other->GetLocation()));
     };
 
     //! Returns me at the power <pwr>.   If <pwr>  is zero
@@ -134,7 +134,7 @@ namespace TKMath {
     //! series of TopLoc_Datum3D and respective powers.
     //! This method is an alias for operator ==.
     Standard_Boolean XTopLoc_Location::IsEqual(XTopLoc_Location^ Other) {
-        return NativeHandle->IsEqual(Other->GetLocation());
+        return NativeHandle->IsEqual(*Other->GetLocation());
     };
 
     //! Returns true if this location and the location Other do
@@ -142,7 +142,7 @@ namespace TKMath {
     //! contain the same series of TopLoc_Datum3D and respective powers.
     //! This method is an alias for operator !=.
     Standard_Boolean XTopLoc_Location::IsDifferent(XTopLoc_Location^ Other) {
-        return NativeHandle->IsDifferent(Other->GetLocation());
+        return NativeHandle->IsDifferent(*Other->GetLocation());
     };
 
     //! Dumps the content of me into the stream

@@ -987,6 +987,9 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Direction.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\BRep\XBRep_Builder.h">
+      <Filter>头文件\ModelingData\TKBRep\BRep</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1316,6 +1319,9 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_GWedge.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\BRep\XBRep_Builder.cpp">
+      <Filter>源文件\ModelingData\TKBRep\BRep</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

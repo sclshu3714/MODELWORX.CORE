@@ -20,10 +20,13 @@
 #include <BRep_Builder.hxx>
 #include <XStandard_Helper.h>
 #include <XTopoDS_Builder.h>
-#include <XGeom_Surface.h>
 #include <XTopoDS_Edge.h>
-#include <XGeom_Curve.h>
 #include <XTopoDS_Vertex.h>
+#include <XTopoDS_Face.h>
+#include <XGeom_Surface.h>
+#include <XGeom_Curve.h>
+#include <xgp_Pnt2d.h>
+#include <xgp_Pnt.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -85,6 +88,8 @@ namespace TKBRep {
     ref class TKG3d::XGeom_Surface;
     ref class TKG3d::XGeom_Curve;
     ref class TKG2d::XGeom2d_Curve;
+    ref class TKMath::xgp_Pnt2d;
+    ref class TKMath::xgp_Pnt;
     public ref class XBRep_Builder : public XTopoDS_Builder
     {
     public:
@@ -94,7 +99,7 @@ namespace TKBRep {
         //! Creates from a Builder.
         XBRep_Builder(BRep_Builder* pos);
 
-        void SetBuilderHandle(BRep_Builder* pos);
+        void SetBRepBuilderHandle(BRep_Builder* pos);
 
         virtual BRep_Builder* GetBRepBuilder();
 
