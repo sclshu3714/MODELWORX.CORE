@@ -81,6 +81,8 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		XBRepPrim_GWedge();
+
 		XBRepPrim_GWedge(BRepPrim_GWedge* handle);
 
 
@@ -213,10 +215,10 @@ namespace TKPrim {
 		/// ±¾µØ¾ä±ú
 		/// </summary>
 		virtual property BRepPrim_GWedge* IHandle {
-			BRepPrim_GWedge* get() Standard_OVERRIDE {
+			BRepPrim_GWedge* get() {// Standard_OVERRIDE {
 				return NativeHandle;
 			}
-			void set(BRepPrim_GWedge* handle) Standard_OVERRIDE {
+			void set(BRepPrim_GWedge* handle) {// Standard_OVERRIDE {
 				NativeHandle = static_cast<BRepPrim_GWedge*>(handle);
 			}
 		}

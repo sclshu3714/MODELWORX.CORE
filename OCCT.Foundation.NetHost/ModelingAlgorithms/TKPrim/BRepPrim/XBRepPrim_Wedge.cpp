@@ -1,54 +1,70 @@
-// Created on: 1995-01-09
-// Created by: Modelistation
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrim_Wedge.h>
+
+namespace TKPrim {
 
 
-#include <BRepPrim_Wedge.hxx>
-#include <gp_Ax2.hxx>
-#include <Standard_DomainError.hxx>
+	XBRepPrim_Wedge::XBRepPrim_Wedge(BRepPrim_Wedge* handle) {
+		NativeHandle = handle;
+		SetGWedgeHandle(handle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Wedge
-//purpose  : 
-//=======================================================================
-BRepPrim_Wedge::BRepPrim_Wedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz) :
-BRepPrim_GWedge(BRepPrim_Builder(),Axes,dx,dy,dz)
-{
-}
 
-//=======================================================================
-//function : BRepPrim_Wedge
-//purpose  : 
-//=======================================================================
+	void XBRepPrim_Wedge::SetBRepPrimWedgeHandle(BRepPrim_Wedge* handle) {
+		NativeHandle = handle;
+		SetGWedgeHandle(handle);
+	};
 
- BRepPrim_Wedge::BRepPrim_Wedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real ltx) :
-BRepPrim_GWedge(BRepPrim_Builder(),Axes,dx,dy,dz,ltx)
-{
-}
 
-//=======================================================================
-//function : BRepPrim_Wedge
-//purpose  : 
-//=======================================================================
+	BRepPrim_Wedge* XBRepPrim_Wedge::GetBRepPrimWedge() {
+		return NativeHandle;
+	};
 
- BRepPrim_Wedge::BRepPrim_Wedge(const gp_Ax2& Axes, 
-				const Standard_Real xmin, const Standard_Real ymin, const Standard_Real zmin, 
-				const Standard_Real z2min, const Standard_Real x2min,
-				const Standard_Real xmax, const Standard_Real ymax, const Standard_Real zmax, 
-				const Standard_Real z2max, const Standard_Real x2max) :
-BRepPrim_GWedge(BRepPrim_Builder(),Axes,xmin,ymin,zmin,z2min,x2min,xmax,ymax,zmax,z2max,x2max)
-{
+	BRepPrim_GWedge* XBRepPrim_Wedge::GetGWedge() {
+		return NativeHandle;
+	};
+
+	//! Creates a  Wedge  algorithm.   <Axes> is  the axis
+	//! system for the primitive.
+	//!
+	//! XMin, YMin, ZMin are set to 0
+	//! XMax, YMax, ZMax are set to dx, dy, dz
+	//! Z2Min = ZMin
+	//! Z2Max = ZMax
+	//! X2Min = XMin
+	//! X2Max = XMax
+	//! The result is a box
+	//! dx,dy,dz should be positive
+	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz) {
+		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), dx, dy, dz);
+		SetGWedgeHandle(NativeHandle);
+	};
+
+	//! Creates  a Wedge  primitive. <Axes> is   the  axis
+	//! system for the primitive.
+	//!
+	//! XMin, YMin, ZMin are set to 0
+	//! XMax, YMax, ZMax are set to dx, dy, dz
+	//! Z2Min = ZMin
+	//! Z2Max = ZMax
+	//! X2Min = ltx
+	//! X2Max = ltx
+	//! The result is a STEP right angular wedge
+	//! dx,dy,dz should be positive
+	//! ltx should not be negative
+	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx) {
+		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), dx, dy, dz, ltx);
+		SetGWedgeHandle(NativeHandle);
+	};
+
+	//! Create  a Wedge primitive.   <Axes>  is  the  axis
+	//! system for the primitive.
+	//!
+	//! all the fields are set to the corresponding value
+	//! XYZMax - XYZMin should be positive
+	//! ZX2Max - ZX2Min should not be negative
+	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real xmin, Standard_Real ymin, Standard_Real zmin, Standard_Real z2min, Standard_Real x2min, Standard_Real xmax, Standard_Real ymax, Standard_Real zmax, Standard_Real z2max, Standard_Real x2max) {
+		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), xmin, ymin, zmin, z2min, x2min, xmax, ymax, zmax, z2max, x2max);
+		SetGWedgeHandle(NativeHandle);
+	};
 }
 

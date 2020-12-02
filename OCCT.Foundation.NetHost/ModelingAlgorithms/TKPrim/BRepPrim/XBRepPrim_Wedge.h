@@ -14,83 +14,91 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_Wedge_HeaderFile
-#define _BRepPrim_Wedge_HeaderFile
+#ifndef _XBRepPrim_Wedge_HeaderFile
+#define _XBRepPrim_Wedge_HeaderFile
+#pragma once
+#include <BRepPrim_Wedge.hxx>
+#include <XBRepPrim_GWedge.h>
+#include <XStandard_Helper.h>
+#include <xgp_Ax2.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <BRepPrim_GWedge.hxx>
 #include <Standard_Real.hxx>
 class Standard_DomainError;
-class gp_Ax2;
+
+using namespace TKMath;
+namespace TKPrim {
+	ref class TKMath::xgp_Ax2;
+	//! Provides constructors without Builders.
+	public ref class XBRepPrim_Wedge : public XBRepPrim_GWedge
+	{
+	public:
+
+		//! DEFINE_STANDARD_ALLOC
 
 
-//! Provides constructors without Builders.
-class BRepPrim_Wedge  : public BRepPrim_GWedge
-{
-public:
-
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Creates a  Wedge  algorithm.   <Axes> is  the axis
-  //! system for the primitive.
-  //!
-  //! XMin, YMin, ZMin are set to 0
-  //! XMax, YMax, ZMax are set to dx, dy, dz
-  //! Z2Min = ZMin
-  //! Z2Max = ZMax
-  //! X2Min = XMin
-  //! X2Max = XMax
-  //! The result is a box
-  //! dx,dy,dz should be positive
-  Standard_EXPORT BRepPrim_Wedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz);
-  
-  //! Creates  a Wedge  primitive. <Axes> is   the  axis
-  //! system for the primitive.
-  //!
-  //! XMin, YMin, ZMin are set to 0
-  //! XMax, YMax, ZMax are set to dx, dy, dz
-  //! Z2Min = ZMin
-  //! Z2Max = ZMax
-  //! X2Min = ltx
-  //! X2Max = ltx
-  //! The result is a STEP right angular wedge
-  //! dx,dy,dz should be positive
-  //! ltx should not be negative
-  Standard_EXPORT BRepPrim_Wedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real ltx);
-  
-  //! Create  a Wedge primitive.   <Axes>  is  the  axis
-  //! system for the primitive.
-  //!
-  //! all the fields are set to the corresponding value
-  //! XYZMax - XYZMin should be positive
-  //! ZX2Max - ZX2Min should not be negative
-  Standard_EXPORT BRepPrim_Wedge(const gp_Ax2& Axes, const Standard_Real xmin, const Standard_Real ymin, const Standard_Real zmin, const Standard_Real z2min, const Standard_Real x2min, const Standard_Real xmax, const Standard_Real ymax, const Standard_Real zmax, const Standard_Real z2max, const Standard_Real x2max);
+		XBRepPrim_Wedge(BRepPrim_Wedge* handle);
 
 
+		void SetBRepPrimWedgeHandle(BRepPrim_Wedge* handle);
 
 
-protected:
+		virtual BRepPrim_Wedge* GetBRepPrimWedge();
 
+		virtual BRepPrim_GWedge* GetGWedge() Standard_OVERRIDE;
 
+		//! Creates a  Wedge  algorithm.   <Axes> is  the axis
+		//! system for the primitive.
+		//!
+		//! XMin, YMin, ZMin are set to 0
+		//! XMax, YMax, ZMax are set to dx, dy, dz
+		//! Z2Min = ZMin
+		//! Z2Max = ZMax
+		//! X2Min = XMin
+		//! X2Max = XMax
+		//! The result is a box
+		//! dx,dy,dz should be positive
+		XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz);
 
+		//! Creates  a Wedge  primitive. <Axes> is   the  axis
+		//! system for the primitive.
+		//!
+		//! XMin, YMin, ZMin are set to 0
+		//! XMax, YMax, ZMax are set to dx, dy, dz
+		//! Z2Min = ZMin
+		//! Z2Max = ZMax
+		//! X2Min = ltx
+		//! X2Max = ltx
+		//! The result is a STEP right angular wedge
+		//! dx,dy,dz should be positive
+		//! ltx should not be negative
+		XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx);
 
+		//! Create  a Wedge primitive.   <Axes>  is  the  axis
+		//! system for the primitive.
+		//!
+		//! all the fields are set to the corresponding value
+		//! XYZMax - XYZMin should be positive
+		//! ZX2Max - ZX2Min should not be negative
+		XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real xmin, Standard_Real ymin, Standard_Real zmin, Standard_Real z2min, Standard_Real x2min, Standard_Real xmax, Standard_Real ymax, Standard_Real zmax, Standard_Real z2max, Standard_Real x2max);
 
-private:
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_GWedge* IHandle {
+			BRepPrim_GWedge* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_GWedge* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_Wedge*>(handle);
+			}
+		}
 
-
-
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepPrim_Wedge_HeaderFile
+	private:
+		BRepPrim_Wedge* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_Wedge_HeaderFile

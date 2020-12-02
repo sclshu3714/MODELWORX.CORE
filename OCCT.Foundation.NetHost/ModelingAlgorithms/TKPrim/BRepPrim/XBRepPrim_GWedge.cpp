@@ -2,6 +2,8 @@
 namespace TKPrim {
 	//! DEFINE_STANDARD_ALLOC
 
+	XBRepPrim_GWedge::XBRepPrim_GWedge() {};
+
 	XBRepPrim_GWedge::XBRepPrim_GWedge(BRepPrim_GWedge* handle) {
 		NativeHandle = handle;
 	};
