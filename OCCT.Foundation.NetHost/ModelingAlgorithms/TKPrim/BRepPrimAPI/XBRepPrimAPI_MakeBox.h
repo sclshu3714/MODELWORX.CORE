@@ -14,8 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrimAPI_MakeBox_HeaderFile
-#define _BRepPrimAPI_MakeBox_HeaderFile
+#ifndef _XBRepPrimAPI_MakeBox_HeaderFile
+#define _XBRepPrimAPI_MakeBox_HeaderFile
+#pragma once
+#include <BRepPrimAPI_MakeBox.hxx>
+#include <XStandard_Helper.h>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <XTopoDS_Face.h>
+#include <XTopoDS_Shell.h>
+#include <XTopoDS_Solid.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -40,92 +50,102 @@ class TopoDS_Face;
 //! -   defining the construction of a box,
 //! -   implementing the construction algorithm, and
 //! -   consulting the result.
-class BRepPrimAPI_MakeBox  : public BRepBuilderAPI_MakeShape
-{
-public:
+using namespace TKBRep;
+using namespace TKTopAlgo;
+using namespace TKernel;
+using namespace TKMath;
+namespace TKPrim {
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax2;
+	ref class TKBRep::XTopoDS_Face;
+	ref class TKBRep::XTopoDS_Shell;
+	ref class TKBRep::XTopoDS_Solid;
+	ref class  TKernel::XStandard_Helper;
+	public ref class XBRepPrimAPI_MakeBox : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
+		XBRepPrimAPI_MakeBox(BRepPrimAPI_MakeBox* handle);
 
-  
-  //! Make a box with a corner at 0,0,0 and the other dx,dy,dz
-  Standard_EXPORT BRepPrimAPI_MakeBox(const Standard_Real dx, const Standard_Real dy, const Standard_Real dz);
-  
-  //! Make a box with a corner at P and size dx, dy, dz.
-  Standard_EXPORT BRepPrimAPI_MakeBox(const gp_Pnt& P, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz);
-  
-  //! Make a box with corners P1,P2.
-  Standard_EXPORT BRepPrimAPI_MakeBox(const gp_Pnt& P1, const gp_Pnt& P2);
-  
-  //! Ax2 is the left corner and the axis.
-  //! Constructs a box such that its sides are parallel to the axes of
-  //! -   the global coordinate system, or
-  //! -   the local coordinate system Axis. and
-  //! -   with a corner at (0, 0, 0) and of size (dx, dy, dz), or
-  //! -   with a corner at point P and of size (dx, dy, dz), or
-  //! -   with corners at points P1 and P2.
-  //! Exceptions
-  //! Standard_DomainError if: dx, dy, dz are less than or equal to
-  //! Precision::Confusion(), or
-  //! -   the vector joining the points P1 and P2 has a
-  //! component projected onto the global coordinate
-  //! system less than or equal to Precision::Confusion().
-  //! In these cases, the box would be flat.
-  Standard_EXPORT BRepPrimAPI_MakeBox(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz);
-  
-  //! Returns the internal algorithm.
-  Standard_EXPORT BRepPrim_Wedge& Wedge();
-  
-  //! Stores the solid in myShape.
-  Standard_EXPORT virtual void Build() Standard_OVERRIDE;
-  
-  //! Returns the constructed box as a shell.
-  Standard_EXPORT const TopoDS_Shell& Shell();
-Standard_EXPORT operator TopoDS_Shell();
-  
-  //! Returns the constructed box as a solid.
-  Standard_EXPORT const TopoDS_Solid& Solid();
-Standard_EXPORT operator TopoDS_Solid();
-  
-  //! Returns ZMin face
-  Standard_EXPORT const TopoDS_Face& BottomFace();
-  
-  //! Returns XMin face
-  Standard_EXPORT const TopoDS_Face& BackFace();
-  
-  //! Returns XMax face
-  Standard_EXPORT const TopoDS_Face& FrontFace();
-  
-  //! Returns YMin face
-  Standard_EXPORT const TopoDS_Face& LeftFace();
-  
-  //! Returns YMax face
-  Standard_EXPORT const TopoDS_Face& RightFace();
-  
-  //! Returns ZMax face
-  Standard_EXPORT const TopoDS_Face& TopFace();
+		void SetMakeBoxHandle(BRepPrimAPI_MakeBox* handle);
+
+		virtual BRepPrimAPI_MakeBox* GetMakeOneAxis();
+
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
 
+		//! Make a box with a corner at 0,0,0 and the other dx,dy,dz
+		XBRepPrimAPI_MakeBox(Standard_Real dx, Standard_Real dy, Standard_Real dz);
 
+		//! Make a box with a corner at P and size dx, dy, dz.
+		XBRepPrimAPI_MakeBox(xgp_Pnt^ P, Standard_Real dx, Standard_Real dy, Standard_Real dz);
 
-protected:
+		//! Make a box with corners P1,P2.
+		XBRepPrimAPI_MakeBox(xgp_Pnt^ P1, xgp_Pnt^ P2);
 
+		//! Ax2 is the left corner and the axis.
+		//! Constructs a box such that its sides are parallel to the axes of
+		//! -   the global coordinate system, or
+		//! -   the local coordinate system Axis. and
+		//! -   with a corner at (0, 0, 0) and of size (dx, dy, dz), or
+		//! -   with a corner at point P and of size (dx, dy, dz), or
+		//! -   with corners at points P1 and P2.
+		//! Exceptions
+		//! Standard_DomainError if: dx, dy, dz are less than or equal to
+		//! Precision::Confusion(), or
+		//! -   the vector joining the points P1 and P2 has a
+		//! component projected onto the global coordinate
+		//! system less than or equal to Precision::Confusion().
+		//! In these cases, the box would be flat.
+		XBRepPrimAPI_MakeBox(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz);
 
+		//! Returns the internal algorithm.
+		BRepPrim_Wedge& Wedge();
 
+		//! Stores the solid in myShape.
+		virtual void Build() Standard_OVERRIDE;
 
+		//! Returns the constructed box as a shell.
+		XTopoDS_Shell^ Shell();
+		operator XTopoDS_Shell^();
 
-private:
+		//! Returns the constructed box as a solid.
+		XTopoDS_Solid^ Solid();
+		operator XTopoDS_Solid^();
 
+		//! Returns ZMin face
+		XTopoDS_Face^ BottomFace();
 
+		//! Returns XMin face
+		XTopoDS_Face^ BackFace();
 
-  BRepPrim_Wedge myWedge;
+		//! Returns XMax face
+		XTopoDS_Face^ FrontFace();
 
+		//! Returns YMin face
+		XTopoDS_Face^ LeftFace();
 
-};
+		//! Returns YMax face
+		XTopoDS_Face^ RightFace();
 
+		//! Returns ZMax face
+		XTopoDS_Face^ TopFace();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeBox*>(handle);
+			}
+		}
 
-
-
-
-
-#endif // _BRepPrimAPI_MakeBox_HeaderFile
+	private:
+		BRepPrimAPI_MakeBox* NativeHandle;
+	};
+}
+#endif // _XBRepPrimAPI_MakeBox_HeaderFile

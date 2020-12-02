@@ -62,7 +62,9 @@
   <ItemGroup>
     <Folder Include="ApplicationFramework\TKLCAF\TDF\" />
     <Folder Include="ApplicationFramework\TKLCAF\TDocStd\" />
-    <Folder Include="ModelingAlgorithms\" />
+    <Folder Include="ModelingAlgorithms\TKBO\" />
+    <Folder Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\" />
+    <Folder Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OCCT.Foundation.NetHost\OCCT.Foundation.NetHost.vcxproj">

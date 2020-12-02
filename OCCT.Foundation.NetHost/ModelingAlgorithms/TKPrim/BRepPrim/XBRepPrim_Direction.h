@@ -1,6 +1,6 @@
-// Created on: 1993-02-04
-// Created by: Laurent BOURESCHE
-// Copyright (c) 1993-1999 Matra Datavision
+// Created on: 1991-07-24
+// Created by: Christophe MARION
+// Copyright (c) 1991-1999 Matra Datavision
 // Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
@@ -14,14 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-//function : Builder
-//purpose  : 
-//=======================================================================
+#ifndef _XBRepPrim_Direction_HeaderFile
+#define _XBRepPrim_Direction_HeaderFile
 
-inline const BRep_Builder&  BRepSweep_Builder::Builder()const 
+
+public enum class XBRepPrim_Direction
 {
-  return myBuilder;
-}
+	BRepPrim_XMin,
+	BRepPrim_XMax,
+	BRepPrim_YMin,
+	BRepPrim_YMax,
+	BRepPrim_ZMin,
+	BRepPrim_ZMax
+};
 
-
+#endif // _XBRepPrim_Direction_HeaderFile

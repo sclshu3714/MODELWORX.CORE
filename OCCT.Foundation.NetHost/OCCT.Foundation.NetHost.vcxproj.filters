@@ -340,6 +340,18 @@
     <Filter Include="源文件\ModelingData\TKG2d\Geom2d">
       <UniqueIdentifier>{9f949608-1243-4470-8f1a-e9781887ca73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKPrim\BRepPrim">
+      <UniqueIdentifier>{920c341a-feb1-41ac-90c2-018b7b79097a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep\BRep">
+      <UniqueIdentifier>{7b377b6d-0f49-459e-93c9-db870d877698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep\BRep">
+      <UniqueIdentifier>{2b7564d9-a7fc-4a5c-bbb7-c26f4b816bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKPrim\BRepPrim">
+      <UniqueIdentifier>{2e226e97-cad6-443c-b5d0-b5f371f46d05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -963,6 +975,18 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeOneAxis.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Builder.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_GWedge.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Direction.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1286,6 +1310,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeOneAxis.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Builder.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_GWedge.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

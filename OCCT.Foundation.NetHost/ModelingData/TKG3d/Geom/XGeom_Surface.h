@@ -57,15 +57,14 @@
 #include "xgp_Ax2.h"
 #include "xgp_Vec.h"
 #include "xgp_Trsf.h"
-
+class Standard_RangeError;
+class Standard_NoSuchObject;
+class Geom_UndefinedDerivative;
+class Geom_UndefinedValue;
 
 using namespace TKMath;
 namespace TKG3d
 {
-	class Standard_RangeError;
-	class Standard_NoSuchObject;
-	class Geom_UndefinedDerivative;
-	class Geom_UndefinedValue;
 	ref class TKMath::xgp_Pnt;
 	ref class TKMath::xgp_Ax1;
 	ref class TKMath::xgp_Ax2;

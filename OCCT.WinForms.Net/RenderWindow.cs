@@ -779,7 +779,7 @@ namespace OCCT.WinForms.Net
                 bool isBoundaryDraw = true;
                 aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
                 XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
-                XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
+                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();//  new XPrs3d_LineAspect(aColor, aLineType, aWidth);
                 aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
                 context.Display(anInteractive, true);
                 OCCTView.SetDisplayMode(1);
@@ -788,6 +788,67 @@ namespace OCCT.WinForms.Net
             //mainAISContext()->UpdateCurrentViewer();
         }
         #endregion
+
+        /// <summary>
+        /// 图形显示边框
+        /// </summary>
+        /// <param name="anInteractive"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw) {
+            XPrs3d_Drawer aDrawer = anInteractive.Attributes();
+            aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
+            if (IsBoundaryDraw) {
+                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();
+                aBoundaryAspect.SetColor(new XQuantity_Color(0.0, 0.0, 0.0, XQuantity_TypeOfColor.Quantity_TOC_RGB));
+                aBoundaryAspect.SetTypeOfLine(XAspect_TypeOfLine.Aspect_TOL_SOLID);
+                aBoundaryAspect.SetWidth(1.0);
+            }
+        }
+
+        /// <summary>
+        /// 绘制磁盘图形
+        /// </summary>
+        /// <param name="Axis">坐标轴</param>
+        /// <param name="OuterRadius">外径</param>
+        /// <param name="InnerRadius">内径</param>
+        /// <param name="Thickness">厚度</param>
+        /// <param name="Message">绘图返回消息，当Message!=null时，绘图出错，显示错误信息</param>
+        /// <returns></returns>
+        public XAIS_Shape MakeDisk(xgp_Ax2 Axis, double OuterRadius, double InnerRadius, double Thickness, ref string Message) {
+            if (OuterRadius <= InnerRadius)
+            {
+                Message = "外径必须大于内径！";
+                return null;                
+            }
+            //绘制外圆
+            xgp_Circ OuterCirc = new xgp_Circ(Axis, OuterRadius);
+            XTopoDS_Edge OuterEdge = new XBRepBuilderAPI_MakeEdge(OuterCirc).Edge();
+            XTopoDS_Wire OuterWire = new XBRepBuilderAPI_MakeWire(OuterEdge).Wire();
+            XBRepBuilderAPI_MakeFace OuterFace = new XBRepBuilderAPI_MakeFace(OuterWire, false);
+            if(!OuterFace.IsDone())
+                Message = OuterFace.Error().ToString();
+            //绘制内圆
+            xgp_Circ InnerCirc = new xgp_Circ(Axis, InnerRadius);
+            XTopoDS_Edge InnerEdge = new XBRepBuilderAPI_MakeEdge(InnerCirc).Edge();
+            XTopoDS_Wire InnerWire = new XBRepBuilderAPI_MakeWire(InnerEdge).Wire();
+            XBRepBuilderAPI_MakeFace InnerFace = new XBRepBuilderAPI_MakeFace(InnerWire, false);
+            if (!InnerFace.IsDone())
+                Message = InnerFace.Error().ToString();
+            //布尔运算Cut
+            XBRepAlgoAPI_Cut Section = new XBRepAlgoAPI_Cut(OuterFace.Shape(), InnerFace.Shape());
+            if (Section.Shape().IsNull())
+                Message = "XBRepAlgoAPI_Cut 出错。";
+            if (Thickness > 0) { //拉伸方向
+                xgp_Vec drawVec = new xgp_Vec(Axis.Direction().X() * Thickness, Axis.Direction().Y() * Thickness, Axis.Direction().Z() * Thickness);
+                XBRepPrimAPI_MakePrism MakePrismDisk = new XBRepPrimAPI_MakePrism(Section.Shape(), drawVec, false, false);
+                XAIS_Shape DiskShape = new XAIS_Shape(MakePrismDisk.Shape());
+                return DiskShape;
+            }
+            else {
+                XAIS_Shape DiskShape = new XAIS_Shape(Section.Shape());
+                return DiskShape;
+            }
+        }
 
         #region 测试基本图形
         public void AddDisk() {
@@ -808,21 +869,7 @@ namespace OCCT.WinForms.Net
             xgp_Vec sVec = new xgp_Vec(0, 0, 1 * 200);
             XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
             XAIS_Shape WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
-
-            // get drawer
-            XPrs3d_Drawer aDrawer = WAIS_EC.Attributes();
-            // default attributes
-            float aRed = 0.0f;
-            float aGreen = 0.0f;
-            float aBlue = 0.0f;
-            float aWidth = 1.0f;
-            XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
-            // turn boundaries on/off
-            bool isBoundaryDraw = true;
-            aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
-            XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
-            XPrs3d_LineAspect aBoundaryAspect = new XPrs3d_LineAspect(aColor, aLineType, aWidth);
-            aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
+            SetFaceBoundaryAspect(WAIS_EC, true);
             context.Display(WAIS_EC, true);
 
             //xgp_Ax2 ax2 = new xgp_Ax2(new xgp_Pnt(0,0,0), new xgp_Dir(1,0,0));

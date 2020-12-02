@@ -1,8 +1,17 @@
 #include <XTopoDS_Builder.h>
 namespace TKBRep {
-    void XTopoDS_Builder::SetBuilderHandle(TopoDS_Builder* pos) {
+
+    XTopoDS_Builder::XTopoDS_Builder(TopoDS_Builder* pos) {
         NativeHandle = pos;
     };
+
+    void XTopoDS_Builder::SetTopoDSBuilderHandle(TopoDS_Builder* pos) {
+        NativeHandle = pos;
+    };
+
+    TopoDS_Builder* XTopoDS_Builder::GetTopoDSBuilder() {
+        return NativeHandle;
+    }
 
     //! Make an empty Wire.
     void XTopoDS_Builder::MakeWire(XTopoDS_Wire^ W) {

@@ -87,9 +87,13 @@ namespace TKBRep {
     public ref class XTopoDS_Builder
     {
     public:
-
         //! DEFINE_STANDARD_ALLOC
-        void SetBuilderHandle(TopoDS_Builder* pos);
+        //! 
+        XTopoDS_Builder(TopoDS_Builder* pos);
+        
+        void SetTopoDSBuilderHandle(TopoDS_Builder* pos);
+
+        virtual TopoDS_Builder* GetTopoDSBuilder();
 
         //! Make an empty Wire.
         void XTopoDS_Builder::MakeWire(XTopoDS_Wire^ W);
