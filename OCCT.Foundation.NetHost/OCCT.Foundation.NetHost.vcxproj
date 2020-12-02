@@ -287,6 +287,7 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Builder.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Direction.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_GWedge.h" />
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_OneAxis.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_EdgeError.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_FaceError.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.h" />
@@ -477,6 +478,7 @@
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSweep.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Builder.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_GWedge.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_OneAxis.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.cpp" />

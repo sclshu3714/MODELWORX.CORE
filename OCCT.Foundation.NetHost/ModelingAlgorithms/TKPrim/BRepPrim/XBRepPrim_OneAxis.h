@@ -14,32 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_OneAxis_HeaderFile
-#define _BRepPrim_OneAxis_HeaderFile
+#ifndef _XBRepPrim_OneAxis_HeaderFile
+#define _XBRepPrim_OneAxis_HeaderFile
+#pragma once
+#include <BRepPrim_OneAxis.hxx>
+#include <XStandard_Helper.h>
+#include <XBRepPrim_Builder.h>
+#include <XTopoDS_Shell.h>
+#include <XTopoDS_Vertex.h>
+#include <XTopoDS_Edge.h>
+#include <XTopoDS_Wire.h>
+#include <XTopoDS_Face.h>
+#include <xgp_Ax2.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
-#include <BRepPrim_Builder.hxx>
-#include <gp_Ax2.hxx>
 #include <Standard_Real.hxx>
-#include <TopoDS_Shell.hxx>
 #include <Standard_Boolean.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
+
 class Standard_DomainError;
 class Standard_OutOfRange;
-class BRepPrim_Builder;
-class gp_Ax2;
-class TopoDS_Face;
-class TopoDS_Edge;
-class gp_Pnt2d;
-class TopoDS_Shell;
-class TopoDS_Wire;
-class TopoDS_Vertex;
 
 
 //! Algorithm to  build  primitives with  one  axis of
@@ -73,247 +68,238 @@ class TopoDS_Vertex;
 //! - The TopFace and the BottomFace.
 //!
 //! - The StartFace and the EndFace.
-class BRepPrim_OneAxis 
-{
-public:
+//! 
+using namespace TKMath;
+using namespace TKBRep;
+namespace TKPrim {
+	ref class XBRepPrim_Builder;
+	ref class TKBRep::XTopoDS_Face;
+	ref class TKBRep::XTopoDS_Edge;
+	ref class TKBRep::XTopoDS_Shell;
+	ref class TKBRep::XTopoDS_Wire;
+	ref class TKBRep::XTopoDS_Vertex;
+	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Pnt2d;
+	public ref class XBRepPrim_OneAxis
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
 
-  
-  //! The MeridianOffset is added  to the  parameters on
-  //! the meridian curve and  to  the  V values  of  the
-  //! pcurves. This is  used for the sphere for example,
-  //! to give a range on the meridian  edge which is not
-  //! VMin, VMax.
-  Standard_EXPORT void SetMeridianOffset (const Standard_Real MeridianOffset = 0);
-  
-  //! Returns the Ax2 from <me>.
-  Standard_EXPORT const gp_Ax2& Axes() const;
-  
-  Standard_EXPORT void Axes (const gp_Ax2& A);
-  
-  Standard_EXPORT Standard_Real Angle() const;
-  
-  Standard_EXPORT void Angle (const Standard_Real A);
-  
-  Standard_EXPORT Standard_Real VMin() const;
-  
-  Standard_EXPORT void VMin (const Standard_Real V);
-  
-  Standard_EXPORT Standard_Real VMax() const;
-  
-  Standard_EXPORT void VMax (const Standard_Real V);
-  
-  //! Returns a face with  no edges.  The surface is the
-  //! lateral surface with normals pointing outward. The
-  //! U parameter is the angle with the  origin on the X
-  //! axis. The  V parameter is   the  parameter of  the
-  //! meridian.
-  Standard_EXPORT virtual TopoDS_Face MakeEmptyLateralFace() const = 0;
-  
-  //! Returns  an  edge with  a 3D curve   made from the
-  //! meridian  in the XZ  plane rotated by <Ang> around
-  //! the Z-axis. Ang may be 0 or myAngle.
-  Standard_EXPORT virtual TopoDS_Edge MakeEmptyMeridianEdge (const Standard_Real Ang) const = 0;
-  
-  //! Sets the  parametric curve of the  edge <E> in the
-  //! face  <F> to be  the   2d representation  of   the
-  //! meridian.
-  Standard_EXPORT virtual void SetMeridianPCurve (TopoDS_Edge& E, const TopoDS_Face& F) const = 0;
-  
-  //! Returns the meridian point at parameter <V> in the
-  //! plane XZ.
-  Standard_EXPORT virtual gp_Pnt2d MeridianValue (const Standard_Real V) const = 0;
-  
-  //! Returns True if the point of  parameter <V> on the
-  //! meridian is on the Axis. Default implementation is
-  //! Abs(MeridianValue(V).X()) < Precision::Confusion()
-  Standard_EXPORT virtual Standard_Boolean MeridianOnAxis (const Standard_Real V) const;
-  
-  //! Returns True  if the  meridian is  closed. Default
-  //! implementation                                  is
-  //! MeridianValue(VMin).IsEqual(MeridianValue(VMax),
-  //! Precision::Confusion())
-  Standard_EXPORT virtual Standard_Boolean MeridianClosed() const;
-  
-  //! Returns  True   if  VMax    is  infinite.  Default
-  //! Precision::IsPositiveInfinite(VMax);
-  Standard_EXPORT virtual Standard_Boolean VMaxInfinite() const;
-  
-  //! Returns  True   if  VMin    is  infinite.  Default
-  //! Precision::IsNegativeInfinite(VMax);
-  Standard_EXPORT virtual Standard_Boolean VMinInfinite() const;
-  
-  //! Returns True if  there is  a top  face.
-  //!
-  //! That is neither : VMaxInfinite()
-  //! MeridianClosed()
-  //! MeridianOnAxis(VMax)
-  Standard_EXPORT virtual Standard_Boolean HasTop() const;
-  
-  //! Returns   True if there is   a bottom  face.
-  //!
-  //! That is neither : VMinInfinite()
-  //! MeridianClosed()
-  //! MeridianOnAxis(VMin)
-  Standard_EXPORT virtual Standard_Boolean HasBottom() const;
-  
-  //! Returns True if  there are Start   and  End faces.
-  //!
-  //! That is : 2*PI  - Angle > Precision::Angular()
-  Standard_EXPORT virtual Standard_Boolean HasSides() const;
-  
-  //! Returns the Shell containing all the  Faces of the
-  //! primitive.
-  Standard_EXPORT const TopoDS_Shell& Shell();
-  
-  //! Returns  the lateral Face.   It is oriented toward
-  //! the outside of the primitive.
-  Standard_EXPORT const TopoDS_Face& LateralFace();
-  
-  //! Returns the   top planar  Face.    It  is Oriented
-  //! toward the +Z axis (outside).
-  Standard_EXPORT const TopoDS_Face& TopFace();
-  
-  //! Returns  the Bottom planar Face.   It is  Oriented
-  //! toward the -Z axis (outside).
-  Standard_EXPORT const TopoDS_Face& BottomFace();
-  
-  //! Returns  the  Face   starting   the slice, it   is
-  //! oriented toward the exterior of the primitive.
-  Standard_EXPORT const TopoDS_Face& StartFace();
-  
-  //! Returns the Face ending the slice, it  is oriented
-  //! toward the exterior of the primitive.
-  Standard_EXPORT const TopoDS_Face& EndFace();
-  
-  //! Returns  the wire in the lateral face.
-  Standard_EXPORT const TopoDS_Wire& LateralWire();
-  
-  //! Returns the   wire in the   lateral  face with the
-  //! start edge.
-  Standard_EXPORT const TopoDS_Wire& LateralStartWire();
-  
-  //! Returns the wire with in lateral face with the end
-  //! edge.
-  Standard_EXPORT const TopoDS_Wire& LateralEndWire();
-  
-  //! Returns the wire in the top face.
-  Standard_EXPORT const TopoDS_Wire& TopWire();
-  
-  //! Returns the wire in the bottom face.
-  Standard_EXPORT const TopoDS_Wire& BottomWire();
-  
-  //! Returns the wire  in the  start face.
-  Standard_EXPORT const TopoDS_Wire& StartWire();
-  
-  //! Returns  the wire   in the  start   face  with the
-  //! AxisEdge.
-  Standard_EXPORT const TopoDS_Wire& AxisStartWire();
-  
-  //! Returns the Wire in   the end face.
-  Standard_EXPORT const TopoDS_Wire& EndWire();
-  
-  //! Returns  the Wire  in  the   end   face  with  the
-  //! AxisEdge.
-  Standard_EXPORT const TopoDS_Wire& AxisEndWire();
-  
-  //! Returns the Edge built along the Axis and oriented
-  //! on +Z of the Axis.
-  Standard_EXPORT const TopoDS_Edge& AxisEdge();
-  
-  //! Returns the   Edge at angle 0.
-  Standard_EXPORT const TopoDS_Edge& StartEdge();
-  
-  //! Returns the  Edge at  angle Angle.  If !HasSides()
-  //! the StartEdge and the EndEdge are the same edge.
-  Standard_EXPORT const TopoDS_Edge& EndEdge();
-  
-  //! Returns the linear Edge between start Face and top
-  //! Face.
-  Standard_EXPORT const TopoDS_Edge& StartTopEdge();
-  
-  //! Returns the linear  Edge between  start  Face  and
-  //! bottom Face.
-  Standard_EXPORT const TopoDS_Edge& StartBottomEdge();
-  
-  //! Returns the linear Edge  between end Face and  top
-  //! Face.
-  Standard_EXPORT const TopoDS_Edge& EndTopEdge();
-  
-  //! Returns  the  linear  Edge  between end  Face  and
-  //! bottom Face.
-  Standard_EXPORT const TopoDS_Edge& EndBottomEdge();
-  
-  //! Returns the edge at VMax. If  MeridianClosed() the
-  //! TopEdge and the BottomEdge are the same edge.
-  Standard_EXPORT const TopoDS_Edge& TopEdge();
-  
-  //! Returns the edge  at VMin. If MeridianClosed() the
-  //! TopEdge and the BottomEdge are the same edge.
-  Standard_EXPORT const TopoDS_Edge& BottomEdge();
-  
-  //! Returns the Vertex at the Top altitude on the axis.
-  Standard_EXPORT const TopoDS_Vertex& AxisTopVertex();
-  
-  //! Returns the Vertex  at the Bottom  altitude on the
-  //! axis.
-  Standard_EXPORT const TopoDS_Vertex& AxisBottomVertex();
-  
-  //! Returns the vertex (0,VMax)
-  Standard_EXPORT const TopoDS_Vertex& TopStartVertex();
-  
-  //! Returns the vertex (angle,VMax)
-  Standard_EXPORT const TopoDS_Vertex& TopEndVertex();
-  
-  //! Returns the vertex (0,VMin)
-  Standard_EXPORT const TopoDS_Vertex& BottomStartVertex();
-  
-  //! Returns the vertex (angle,VMax)
-  Standard_EXPORT const TopoDS_Vertex& BottomEndVertex();
-  Standard_EXPORT virtual ~BRepPrim_OneAxis();
+		XBRepPrim_OneAxis(BRepPrim_OneAxis* handle);
 
+		void SetOneAxisHandle(BRepPrim_OneAxis* handle);
 
+		virtual BRepPrim_OneAxis* GetOneAxis();
 
+		//! The MeridianOffset is added  to the  parameters on
+		//! the meridian curve and  to  the  V values  of  the
+		//! pcurves. This is  used for the sphere for example,
+		//! to give a range on the meridian  edge which is not
+		//! VMin, VMax.
+		//! Standard_Real MeridianOffset
+		void SetMeridianOffset(Standard_Real MeridianOffset);
 
-protected:
+		//! Returns the Ax2 from <me>.
+		xgp_Ax2^ Axes();
 
-  
-  //! Creates a OneAxis algorithm.  <B> is used to build
-  //! the Topology. The angle defaults to 2*PI.
-  Standard_EXPORT BRepPrim_OneAxis(const BRepPrim_Builder& B, const gp_Ax2& A, const Standard_Real VMin, const Standard_Real VMax);
+		void Axes(xgp_Ax2^ A);
 
+		Standard_Real Angle();
 
-  BRepPrim_Builder myBuilder;
+		void Angle(Standard_Real A);
 
+		Standard_Real VMin();
 
-private:
+		void VMin(Standard_Real V);
 
+		Standard_Real VMax();
 
+		void VMax(Standard_Real V);
 
-  gp_Ax2 myAxes;
-  Standard_Real myAngle;
-  Standard_Real myVMin;
-  Standard_Real myVMax;
-  Standard_Real myMeridianOffset;
-  TopoDS_Shell myShell;
-  Standard_Boolean ShellBuilt;
-  TopoDS_Vertex myVertices[6];
-  Standard_Boolean VerticesBuilt[6];
-  TopoDS_Edge myEdges[9];
-  Standard_Boolean EdgesBuilt[9];
-  TopoDS_Wire myWires[9];
-  Standard_Boolean WiresBuilt[9];
-  TopoDS_Face myFaces[5];
-  Standard_Boolean FacesBuilt[5];
+		//! Returns a face with  no edges.  The surface is the
+		//! lateral surface with normals pointing outward. The
+		//! U parameter is the angle with the  origin on the X
+		//! axis. The  V parameter is   the  parameter of  the
+		//! meridian.
+		virtual XTopoDS_Face^ MakeEmptyLateralFace();
 
+		//! Returns  an  edge with  a 3D curve   made from the
+		//! meridian  in the XZ  plane rotated by <Ang> around
+		//! the Z-axis. Ang may be 0 or myAngle.
+		virtual XTopoDS_Edge^ MakeEmptyMeridianEdge(Standard_Real Ang);
 
-};
+		//! Sets the  parametric curve of the  edge <E> in the
+		//! face  <F> to be  the   2d representation  of   the
+		//! meridian.
+		virtual void SetMeridianPCurve(XTopoDS_Edge^ E, XTopoDS_Face^ F);
 
+		//! Returns the meridian point at parameter <V> in the
+		//! plane XZ.
+		virtual xgp_Pnt2d^ MeridianValue(Standard_Real V);
 
+		//! Returns True if the point of  parameter <V> on the
+		//! meridian is on the Axis. Default implementation is
+		//! Abs(MeridianValue(V).X()) < Precision::Confusion()
+		virtual Standard_Boolean MeridianOnAxis(Standard_Real V);
 
+		//! Returns True  if the  meridian is  closed. Default
+		//! implementation                                  is
+		//! MeridianValue(VMin).IsEqual(MeridianValue(VMax),
+		//! Precision::Confusion())
+		virtual Standard_Boolean MeridianClosed();
 
+		//! Returns  True   if  VMax    is  infinite.  Default
+		//! Precision::IsPositiveInfinite(VMax);
+		virtual Standard_Boolean VMaxInfinite();
 
+		//! Returns  True   if  VMin    is  infinite.  Default
+		//! Precision::IsNegativeInfinite(VMax);
+		virtual Standard_Boolean VMinInfinite();
 
+		//! Returns True if  there is  a top  face.
+		//!
+		//! That is neither : VMaxInfinite()
+		//! MeridianClosed()
+		//! MeridianOnAxis(VMax)
+		virtual Standard_Boolean HasTop();
 
-#endif // _BRepPrim_OneAxis_HeaderFile
+		//! Returns   True if there is   a bottom  face.
+		//!
+		//! That is neither : VMinInfinite()
+		//! MeridianClosed()
+		//! MeridianOnAxis(VMin)
+		virtual Standard_Boolean HasBottom();
+
+		//! Returns True if  there are Start   and  End faces.
+		//!
+		//! That is : 2*PI  - Angle > Precision::Angular()
+		virtual Standard_Boolean HasSides();
+
+		//! Returns the Shell containing all the  Faces of the
+		//! primitive.
+		XTopoDS_Shell^ Shell();
+
+		//! Returns  the lateral Face.   It is oriented toward
+		//! the outside of the primitive.
+		XTopoDS_Face^ LateralFace();
+
+		//! Returns the   top planar  Face.    It  is Oriented
+		//! toward the +Z axis (outside).
+		XTopoDS_Face^ TopFace();
+
+		//! Returns  the Bottom planar Face.   It is  Oriented
+		//! toward the -Z axis (outside).
+		XTopoDS_Face^ BottomFace();
+
+		//! Returns  the  Face   starting   the slice, it   is
+		//! oriented toward the exterior of the primitive.
+		XTopoDS_Face^ StartFace();
+
+		//! Returns the Face ending the slice, it  is oriented
+		//! toward the exterior of the primitive.
+		XTopoDS_Face^ EndFace();
+
+		//! Returns  the wire in the lateral face.
+		XTopoDS_Wire^ LateralWire();
+
+		//! Returns the   wire in the   lateral  face with the
+		//! start edge.
+		XTopoDS_Wire^ LateralStartWire();
+
+		//! Returns the wire with in lateral face with the end
+		//! edge.
+		XTopoDS_Wire^ LateralEndWire();
+
+		//! Returns the wire in the top face.
+		XTopoDS_Wire^ TopWire();
+
+		//! Returns the wire in the bottom face.
+		XTopoDS_Wire^ BottomWire();
+
+		//! Returns the wire  in the  start face.
+		XTopoDS_Wire^ StartWire();
+
+		//! Returns  the wire   in the  start   face  with the
+		//! AxisEdge.
+		XTopoDS_Wire^ AxisStartWire();
+
+		//! Returns the Wire in   the end face.
+		XTopoDS_Wire^ EndWire();
+
+		//! Returns  the Wire  in  the   end   face  with  the
+		//! AxisEdge.
+		XTopoDS_Wire^ AxisEndWire();
+
+		//! Returns the Edge built along the Axis and oriented
+		//! on +Z of the Axis.
+		XTopoDS_Edge^ AxisEdge();
+
+		//! Returns the   Edge at angle 0.
+		XTopoDS_Edge^ StartEdge();
+
+		//! Returns the  Edge at  angle Angle.  If !HasSides()
+		//! the StartEdge and the EndEdge are the same edge.
+		XTopoDS_Edge^ EndEdge();
+
+		//! Returns the linear Edge between start Face and top
+		//! Face.
+		XTopoDS_Edge^ StartTopEdge();
+
+		//! Returns the linear  Edge between  start  Face  and
+		//! bottom Face.
+		XTopoDS_Edge^ StartBottomEdge();
+
+		//! Returns the linear Edge  between end Face and  top
+		//! Face.
+		XTopoDS_Edge^ EndTopEdge();
+
+		//! Returns  the  linear  Edge  between end  Face  and
+		//! bottom Face.
+		XTopoDS_Edge^ EndBottomEdge();
+
+		//! Returns the edge at VMax. If  MeridianClosed() the
+		//! TopEdge and the BottomEdge are the same edge.
+		XTopoDS_Edge^ TopEdge();
+
+		//! Returns the edge  at VMin. If MeridianClosed() the
+		//! TopEdge and the BottomEdge are the same edge.
+		XTopoDS_Edge^ BottomEdge();
+
+		//! Returns the Vertex at the Top altitude on the axis.
+		XTopoDS_Vertex^ AxisTopVertex();
+
+		//! Returns the Vertex  at the Bottom  altitude on the
+		//! axis.
+		XTopoDS_Vertex^ AxisBottomVertex();
+
+		//! Returns the vertex (0,VMax)
+		XTopoDS_Vertex^ TopStartVertex();
+
+		//! Returns the vertex (angle,VMax)
+		XTopoDS_Vertex^ TopEndVertex();
+
+		//! Returns the vertex (0,VMin)
+		XTopoDS_Vertex^ BottomStartVertex();
+
+		//! Returns the vertex (angle,VMax)
+		XTopoDS_Vertex^ BottomEndVertex();
+		virtual ~XBRepPrim_OneAxis();
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_OneAxis* IHandle {
+			BRepPrim_OneAxis* get() { //Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_OneAxis* handle) { //Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_OneAxis*>(handle);
+			}
+		}
+
+	private:
+		BRepPrim_OneAxis* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_OneAxis_HeaderFile

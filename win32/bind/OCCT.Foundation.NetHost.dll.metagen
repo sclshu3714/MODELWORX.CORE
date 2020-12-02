@@ -4901,6 +4901,68 @@ Struct XBRepPrim_Direction: AutoLayout, AnsiClass, Class, Public, Sealed, Before
     XBRepPrim_Direction BRepPrim_YMax = 3 : Public, Static, Literal, HasDefault
     XBRepPrim_Direction BRepPrim_ZMin = 4 : Public, Static, Literal, HasDefault
     XBRepPrim_Direction BRepPrim_ZMax = 5 : Public, Static, Literal, HasDefault
+Class TKPrim.XBRepPrim_OneAxis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(BRepPrim_OneAxis*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    BRepPrim_OneAxis* IHandle 'get set' : 
+  Methods:
+    SetOneAxisHandle(BRepPrim_OneAxis*): PrivateScope, Public, HideBySig
+    GetOneAxis(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetMeridianOffset(Double): PrivateScope, Public, HideBySig
+    Axes(xgp_Ax2): PrivateScope, Public, HideBySig
+    Axes(): PrivateScope, Public, HideBySig
+    Angle(Double): PrivateScope, Public, HideBySig
+    Angle(): PrivateScope, Public, HideBySig
+    VMin(Double): PrivateScope, Public, HideBySig
+    VMin(): PrivateScope, Public, HideBySig
+    VMax(Double): PrivateScope, Public, HideBySig
+    VMax(): PrivateScope, Public, HideBySig
+    MakeEmptyLateralFace(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    MakeEmptyMeridianEdge(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetMeridianPCurve(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    MeridianValue(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    MeridianOnAxis(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    MeridianClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    VMaxInfinite(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    VMinInfinite(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasTop(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasBottom(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    HasSides(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Shell(): PrivateScope, Public, HideBySig
+    LateralFace(): PrivateScope, Public, HideBySig
+    TopFace(): PrivateScope, Public, HideBySig
+    BottomFace(): PrivateScope, Public, HideBySig
+    StartFace(): PrivateScope, Public, HideBySig
+    EndFace(): PrivateScope, Public, HideBySig
+    LateralWire(): PrivateScope, Public, HideBySig
+    LateralStartWire(): PrivateScope, Public, HideBySig
+    LateralEndWire(): PrivateScope, Public, HideBySig
+    TopWire(): PrivateScope, Public, HideBySig
+    BottomWire(): PrivateScope, Public, HideBySig
+    StartWire(): PrivateScope, Public, HideBySig
+    AxisStartWire(): PrivateScope, Public, HideBySig
+    EndWire(): PrivateScope, Public, HideBySig
+    AxisEndWire(): PrivateScope, Public, HideBySig
+    AxisEdge(): PrivateScope, Public, HideBySig
+    StartEdge(): PrivateScope, Public, HideBySig
+    EndEdge(): PrivateScope, Public, HideBySig
+    StartTopEdge(): PrivateScope, Public, HideBySig
+    StartBottomEdge(): PrivateScope, Public, HideBySig
+    EndTopEdge(): PrivateScope, Public, HideBySig
+    EndBottomEdge(): PrivateScope, Public, HideBySig
+    TopEdge(): PrivateScope, Public, HideBySig
+    BottomEdge(): PrivateScope, Public, HideBySig
+    AxisTopVertex(): PrivateScope, Public, HideBySig
+    AxisBottomVertex(): PrivateScope, Public, HideBySig
+    TopStartVertex(): PrivateScope, Public, HideBySig
+    TopEndVertex(): PrivateScope, Public, HideBySig
+    BottomStartVertex(): PrivateScope, Public, HideBySig
+    BottomEndVertex(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BRepPrim_OneAxis*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
