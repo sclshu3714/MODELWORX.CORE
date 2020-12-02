@@ -1335,5 +1335,8 @@
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Wedge.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

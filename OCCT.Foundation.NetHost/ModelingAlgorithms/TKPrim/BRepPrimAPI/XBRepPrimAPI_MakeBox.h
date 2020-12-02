@@ -20,6 +20,7 @@
 #include <BRepPrimAPI_MakeBox.hxx>
 #include <XStandard_Helper.h>
 #include <XBRepBuilderAPI_MakeShape.h>
+#include <XBRepPrim_Wedge.h>
 #include <XTopoDS_Face.h>
 #include <XTopoDS_Shell.h>
 #include <XTopoDS_Solid.h>
@@ -30,19 +31,10 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
-#include <BRepPrim_Wedge.hxx>
-#include <BRepBuilderAPI_MakeShape.hxx>
 #include <Standard_Real.hxx>
 class Standard_DomainError;
 class Standard_OutOfRange;
 class StdFail_NotDone;
-class gp_Pnt;
-class gp_Ax2;
-class BRepPrim_Wedge;
-class TopoDS_Shell;
-class TopoDS_Solid;
-class TopoDS_Face;
 
 
 //! Describes functions to build parallelepiped boxes.
@@ -55,6 +47,7 @@ using namespace TKTopAlgo;
 using namespace TKernel;
 using namespace TKMath;
 namespace TKPrim {
+	ref class XBRepPrim_Wedge;
 	ref class TKMath::xgp_Pnt;
 	ref class TKMath::xgp_Ax2;
 	ref class TKBRep::XTopoDS_Face;
@@ -101,7 +94,7 @@ namespace TKPrim {
 		XBRepPrimAPI_MakeBox(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz);
 
 		//! Returns the internal algorithm.
-		BRepPrim_Wedge& Wedge();
+		XBRepPrim_Wedge^ Wedge();
 
 		//! Stores the solid in myShape.
 		virtual void Build() Standard_OVERRIDE;

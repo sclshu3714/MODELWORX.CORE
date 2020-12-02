@@ -474,6 +474,7 @@
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeOneAxis.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakePrism.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSweep.cpp" />
