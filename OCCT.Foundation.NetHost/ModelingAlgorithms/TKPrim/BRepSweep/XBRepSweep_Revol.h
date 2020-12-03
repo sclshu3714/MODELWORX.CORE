@@ -14,8 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepSweep_Revol_HeaderFile
-#define _BRepSweep_Revol_HeaderFile
+#ifndef _XBRepSweep_Revol_HeaderFile
+#define _XBRepSweep_Revol_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepSweep_Revol.hxx>
+#include <XTopoDS_Shape.h>
+#include <XTopLoc_Location.h>
+#include <xgp_Ax1.h>
+#include <TopoDS_Shape.hxx>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -25,80 +32,87 @@
 #include <Standard_Boolean.hxx>
 #include <Standard_Real.hxx>
 class Standard_ConstructionError;
-class TopoDS_Shape;
-class gp_Ax1;
 class Sweep_NumShape;
-class TopLoc_Location;
+class TopoDS_Shape;
 
+using namespace TKBRep;
+using namespace TKMath;
+namespace TKPrim {
+	//! Provides natural constructors to build BRepSweep
+	//! rotated swept Primitives.
+	ref class TKBRep::XTopoDS_Shape;
+	ref class TKMath::xgp_Ax1;
+	ref class TKMath::XTopLoc_Location;
+	public ref class XBRepSweep_Revol
+	{
+	public:
 
-//! Provides natural constructors to build BRepSweep
-//! rotated swept Primitives.
-class BRepSweep_Revol 
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
 
-  DEFINE_STANDARD_ALLOC
+		XBRepSweep_Revol();
 
-  
-  //! Builds the Revol of meridian S axis A  and angle D. If
-  //! C is true S is copied.
-  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape& S, const gp_Ax1& A, const Standard_Real D, const Standard_Boolean C = Standard_False);
-  
-  //! Builds the Revol of meridian S  axis A and angle 2*Pi.
-  //! If C is true S is copied.
-  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape& S, const gp_Ax1& A, const Standard_Boolean C = Standard_False);
-  
-  //! Returns the TopoDS Shape attached to the Revol.
-  Standard_EXPORT TopoDS_Shape Shape();
-  
-  //! Returns    the  TopoDS  Shape   generated  with  aGenS
-  //! (subShape  of the generating shape).
-  Standard_EXPORT TopoDS_Shape Shape (const TopoDS_Shape& aGenS);
-  
-  //! Returns the first shape of the revol  (coinciding with
-  //! the generating shape).
-  Standard_EXPORT TopoDS_Shape FirstShape();
-  
-  //! Returns the first shape of the revol  (coinciding with
-  //! the generating shape).
-  Standard_EXPORT TopoDS_Shape FirstShape (const TopoDS_Shape& aGenS);
-  
-  //! Returns the TopoDS Shape of the top of the prism.
-  Standard_EXPORT TopoDS_Shape LastShape();
-  
-  //! Returns the  TopoDS  Shape of the top  of  the  prism.
-  //! generated  with  aGenS  (subShape  of  the  generating
-  //! shape).
-  Standard_EXPORT TopoDS_Shape LastShape (const TopoDS_Shape& aGenS);
-  
-  //! returns the axis
-  Standard_EXPORT gp_Ax1 Axe() const;
-  
-  //! returns the angle.
-  Standard_EXPORT Standard_Real Angle() const;
+		XBRepSweep_Revol(BRepSweep_Revol* pos);
 
-  //! Returns true if the aGenS is used in resulting Shape 
-  Standard_EXPORT Standard_Boolean IsUsed(const TopoDS_Shape& aGenS) const;
+		void SetSweepRevolHandle(BRepSweep_Revol* pos);
 
+		virtual BRepSweep_Revol* GetSweepRevol();
 
-private:
+		//! Builds the Revol of meridian S axis A  and angle D. If
+		//! C is true S is copied.
+		//! Standard_Boolean C = Standard_False
+		XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Real D, Standard_Boolean C);
 
-  //! builds the NumShape.
-  Standard_EXPORT Sweep_NumShape NumShape (const Standard_Real D) const;
-  
-  //! Builds the Location
-  Standard_EXPORT TopLoc_Location Location (const gp_Ax1& Ax, const Standard_Real D) const;
-  
-  //! Builds the axis
-  Standard_EXPORT gp_Ax1 Axe (const gp_Ax1& Ax, const Standard_Real D) const;
-  
-  //! computes the angle.
-  Standard_EXPORT Standard_Real Angle (const Standard_Real D) const;
+		//! Builds the Revol of meridian S  axis A and angle 2*Pi.
+		//! If C is true S is copied.
+		//! Standard_Boolean C = Standard_False
+		XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Boolean C);
 
+		//! Returns the TopoDS Shape attached to the Revol.
+		XTopoDS_Shape^ Shape();
 
-  BRepSweep_Rotation myRotation;
+		//! Returns    the  TopoDS  Shape   generated  with  aGenS
+		//! (subShape  of the generating shape).
+		XTopoDS_Shape^ Shape(XTopoDS_Shape^ aGenS);
 
+		//! Returns the first shape of the revol  (coinciding with
+		//! the generating shape).
+		XTopoDS_Shape^ FirstShape();
 
-};
+		//! Returns the first shape of the revol  (coinciding with
+		//! the generating shape).
+		XTopoDS_Shape^ FirstShape(XTopoDS_Shape^ aGenS);
 
-#endif // _BRepSweep_Revol_HeaderFile
+		//! Returns the TopoDS Shape of the top of the prism.
+		XTopoDS_Shape^ LastShape();
+
+		//! Returns the  TopoDS  Shape of the top  of  the  prism.
+		//! generated  with  aGenS  (subShape  of  the  generating
+		//! shape).
+		XTopoDS_Shape^ LastShape(XTopoDS_Shape^ aGenS);
+
+		//! returns the axis
+		xgp_Ax1^ Axe();
+
+		//! returns the angle.
+		Standard_Real Angle();
+
+		//! Returns true if the aGenS is used in resulting Shape 
+		Standard_Boolean IsUsed(XTopoDS_Shape^ aGenS);
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepSweep_Revol* IHandle {
+			BRepSweep_Revol* get() { //Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepSweep_Revol* handle) { //Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepSweep_Revol*>(handle);
+			}
+		}
+
+	private:
+		BRepSweep_Revol* NativeHandle;
+	};
+}
+#endif // _XBRepSweep_Revol_HeaderFile

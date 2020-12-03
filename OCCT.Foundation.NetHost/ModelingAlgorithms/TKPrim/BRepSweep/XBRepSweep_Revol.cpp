@@ -1,225 +1,91 @@
-// Created on: 1993-06-25
-// Created by: Laurent BOURESCHE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepSweep_Revol.h>
 
+namespace TKPrim {
 
-#include <BRepSweep_Revol.hxx>
-#include <BRepSweep_Rotation.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Trsf.hxx>
-#include <Precision.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Sweep_NumShape.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Shape.hxx>
+	XBRepSweep_Revol::XBRepSweep_Revol() {
 
-//=======================================================================
-//function : BRepSweep_Revol
-//purpose  : 
-//=======================================================================
-BRepSweep_Revol::BRepSweep_Revol
-  (const TopoDS_Shape& S, 
-   const gp_Ax1& Ax, 
-   const Standard_Real D,
-   const Standard_Boolean C):
-  myRotation(S.Oriented(TopAbs_FORWARD),
-	     NumShape(D),
-	     Location(Ax,D),
-	     Axe(Ax,D),
-	     Angle(D),
-	     C)
-{
-  Standard_ConstructionError_Raise_if
-    (Angle(D)<=Precision::Angular(),"BRepSweep_Revol::Constructor");
-}
+	};
 
-//=======================================================================
-//function : BRepSweep_Revol
-//purpose  : 
-//=======================================================================
+	XBRepSweep_Revol::XBRepSweep_Revol(BRepSweep_Revol* pos) {
+		NativeHandle = pos;
+	};
 
-BRepSweep_Revol::BRepSweep_Revol
-  (const TopoDS_Shape& S, 
-   const gp_Ax1& Ax, 
-   const Standard_Boolean C):
-  myRotation(S.Oriented(TopAbs_FORWARD),
-	     NumShape(2*M_PI),
-	     Location(Ax,2*M_PI),
-	     Axe(Ax,2*M_PI),
-	     Angle(2*M_PI),
-	     C)
+	void XBRepSweep_Revol::SetSweepRevolHandle(BRepSweep_Revol* pos) {
+		NativeHandle = pos;
+	};
 
-{
-}
+	BRepSweep_Revol* XBRepSweep_Revol::GetSweepRevol() {
+		return NativeHandle;
+	};
 
+	//! Builds the Revol of meridian S axis A  and angle D. If
+	//! C is true S is copied.
+	//! Standard_Boolean C = Standard_False
+	XBRepSweep_Revol::XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Real D, Standard_Boolean C) {
+		NativeHandle = new BRepSweep_Revol(*S->GetShape(), A->GetAx1(), D, C);
+	};
 
-//=======================================================================
-//function : Shape
-//purpose  : 
-//=======================================================================
+	//! Builds the Revol of meridian S  axis A and angle 2*Pi.
+	//! If C is true S is copied.
+	//! Standard_Boolean C = Standard_False
+	XBRepSweep_Revol::XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Boolean C) {
+		NativeHandle = new BRepSweep_Revol(*S->GetShape(), A->GetAx1(), C);
+	};
 
-TopoDS_Shape  BRepSweep_Revol::Shape()
-{
-  return myRotation.Shape();
-}
+	//! Returns the TopoDS Shape attached to the Revol.
+	XTopoDS_Shape^ XBRepSweep_Revol::Shape(){
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
+	//! Returns    the  TopoDS  Shape   generated  with  aGenS
+	//! (subShape  of the generating shape).
+	XTopoDS_Shape^ XBRepSweep_Revol::Shape(XTopoDS_Shape^ aGenS) {
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->Shape(*aGenS->GetShape()));
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
-//=======================================================================
-//function : Shape
-//purpose  : 
-//=======================================================================
+	//! Returns the first shape of the revol  (coinciding with
+	//! the generating shape).
+	XTopoDS_Shape^ XBRepSweep_Revol::FirstShape() {
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->FirstShape());
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
-TopoDS_Shape  BRepSweep_Revol::Shape(const TopoDS_Shape& aGenS)
-{
-  return myRotation.Shape(aGenS);
-}
+	//! Returns the first shape of the revol  (coinciding with
+	//! the generating shape).
+	XTopoDS_Shape^ XBRepSweep_Revol::FirstShape(XTopoDS_Shape^ aGenS) {
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->FirstShape(*aGenS->GetShape()));
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
+	//! Returns the TopoDS Shape of the top of the prism.
+	XTopoDS_Shape^ XBRepSweep_Revol::LastShape() {
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->LastShape());
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
-//=======================================================================
-//function : FirstShape
-//purpose  : 
-//=======================================================================
+	//! Returns the  TopoDS  Shape of the top  of  the  prism.
+	//! generated  with  aGenS  (subShape  of  the  generating
+	//! shape).
+	XTopoDS_Shape^ XBRepSweep_Revol::LastShape(XTopoDS_Shape^ aGenS) {
+		TopoDS_Shape* aShape = new TopoDS_Shape(NativeHandle->LastShape(*aGenS->GetShape()));
+		return gcnew XTopoDS_Shape(aShape);
+	};
 
-TopoDS_Shape  BRepSweep_Revol::FirstShape()
-{
-  return myRotation.FirstShape();
-}
+	//! returns the axis
+	xgp_Ax1^ XBRepSweep_Revol::Axe() {
+		gp_Ax1* aAx1 = new gp_Ax1(NativeHandle->Axe());
+		return gcnew xgp_Ax1(aAx1);
+	};
 
+	//! returns the angle.
+	Standard_Real XBRepSweep_Revol::Angle() {
+		return NativeHandle->Angle();
+	};
 
-//=======================================================================
-//function : FirstShape
-//purpose  : 
-//=======================================================================
-
-TopoDS_Shape  BRepSweep_Revol::FirstShape(const TopoDS_Shape& aGenS)
-{
-  return myRotation.FirstShape(aGenS);
-}
-
-
-//=======================================================================
-//function : LastShape
-//purpose  : 
-//=======================================================================
-
-TopoDS_Shape  BRepSweep_Revol::LastShape()
-{
-  return myRotation.LastShape();
-}
-
-
-//=======================================================================
-//function : LastShape
-//purpose  : 
-//=======================================================================
-
-TopoDS_Shape  BRepSweep_Revol::LastShape(const TopoDS_Shape& aGenS)
-{
-  return myRotation.LastShape(aGenS);
-}
-
-
-//=======================================================================
-//function : NumShape
-//purpose  : 
-//=======================================================================
-
-Sweep_NumShape  BRepSweep_Revol::NumShape(const Standard_Real D)const 
-{
-  Sweep_NumShape N;
-  if (Abs(Angle(D) - 2*M_PI)<=Precision::Angular()){
-    N.Init(2,TopAbs_EDGE,Standard_True,
-	   Standard_False,Standard_False);
-  }
-  else{
-    N.Init(2,TopAbs_EDGE);
-  }
-  return N;
-}
-
-
-//=======================================================================
-//function : Location
-//purpose  : 
-//=======================================================================
-
-TopLoc_Location  BRepSweep_Revol::Location(const gp_Ax1& Ax, 
-					   const Standard_Real D)const 
-{
-  gp_Trsf gpt;
-  gpt.SetRotation(Axe(Ax,D),Angle(D));
-  TopLoc_Location L(gpt);
-  return L;
-}
-
-
-//=======================================================================
-//function : Axe
-//purpose  : 
-//=======================================================================
-
-gp_Ax1  BRepSweep_Revol::Axe(const gp_Ax1& Ax, const Standard_Real D)const 
-{
-  gp_Ax1 A = Ax;
-  if ( D < 0. ) A.Reverse();
-  return A;
-}
-
-
-//=======================================================================
-//function : Angle
-//purpose  : 
-//=======================================================================
-
-Standard_Real  BRepSweep_Revol::Angle(const Standard_Real D)const 
-{
-  Standard_Real d = Abs(D);
-  while(d>(2*M_PI + Precision::Angular())){
-    d = d - 2*M_PI;
-  }
-  return d;
-}
-
-
-//=======================================================================
-//function : Angle
-//purpose  : 
-//=======================================================================
-
-Standard_Real  BRepSweep_Revol::Angle()const 
-{
-  return myRotation.Angle();
-}
-
-
-//=======================================================================
-//function : Axe
-//purpose  : 
-//=======================================================================
-
-gp_Ax1  BRepSweep_Revol::Axe()const 
-{
-  return myRotation.Axe();
-}
-
-
-//=======================================================================
-//function : IsUsed
-//purpose  : 
-//=======================================================================
-Standard_Boolean BRepSweep_Revol::IsUsed(const TopoDS_Shape& aGenS) const
-{
-  return myRotation.IsUsed(aGenS);
+	//! Returns true if the aGenS is used in resulting Shape 
+	Standard_Boolean XBRepSweep_Revol::IsUsed(XTopoDS_Shape^ aGenS) {
+		return NativeHandle->IsUsed(*aGenS->GetShape());
+	};
 }

@@ -2,6 +2,18 @@
 
 namespace TKPrim {
 	//! DEFINE_STANDARD_ALLOC
+	//! 
+	//! 
+	XBRepPrimAPI_MakeSweep::XBRepPrimAPI_MakeSweep() {
+		
+	};
+
+	XBRepPrimAPI_MakeSweep::XBRepPrimAPI_MakeSweep(BRepPrimAPI_MakeSweep* pos) {
+		NativeHandle = pos;
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+
 	void XBRepPrimAPI_MakeSweep::SetMakeSweepHandle(BRepPrimAPI_MakeSweep* pos) {
 		NativeHandle = pos;
 		SetMakeShapeHandle(NativeHandle);

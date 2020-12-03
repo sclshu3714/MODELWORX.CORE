@@ -52,8 +52,12 @@ namespace TKPrim {
 	public ref class XBRepPrimAPI_MakeSweep : public XBRepBuilderAPI_MakeShape
 	{
 	public:
-
 		//! DEFINE_STANDARD_ALLOC
+		//! 
+		XBRepPrimAPI_MakeSweep();
+
+		XBRepPrimAPI_MakeSweep(BRepPrimAPI_MakeSweep* pos);
+		
 		void SetMakeSweepHandle(BRepPrimAPI_MakeSweep* pos);
 
 		virtual BRepPrimAPI_MakeSweep* GetMakeSweep();

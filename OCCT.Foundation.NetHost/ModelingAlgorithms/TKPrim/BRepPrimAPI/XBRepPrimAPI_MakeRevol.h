@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrimAPI_MakeRevol_HeaderFile
-#define _BRepPrimAPI_MakeRevol_HeaderFile
+#ifndef _XBRepPrimAPI_MakeRevol_HeaderFile
+#define _XBRepPrimAPI_MakeRevol_HeaderFile
+
+#pragma once
+#include <XTopoDS_Shape.h>
+#include <BRepPrimAPI_MakeRevol.hxx>
+#include <TopoDS_Shape.hxx>
+#include <XBRepPrimAPI_MakeSweep.h>
+#include <XBRepSweep_Revol.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,8 +36,7 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 class TopoDS_Shape;
-class gp_Ax1;
-class BRepSweep_Revol;
+
 
 
 //! Class to make revolved sweep topologies.
@@ -63,78 +70,91 @@ class BRepSweep_Revol;
 //! Sweeping a Compound sweeps  the elements  of the
 //! compound  and creates    a  compound with    the
 //! results.
-class BRepPrimAPI_MakeRevol  : public BRepPrimAPI_MakeSweep
-{
-public:
+//! 
+using namespace TKMath;
+namespace TKPrim {
+	ref class XBRepSweep_Revol;
+	ref class TKMath::xgp_Ax1;
+	public ref class XBRepPrimAPI_MakeRevol : public XBRepPrimAPI_MakeSweep
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
-  
-  //! Builds the Revol of base S, axis  A and angle  D. If C
-  //! is true, S is copied.
-  Standard_EXPORT BRepPrimAPI_MakeRevol(const TopoDS_Shape& S, const gp_Ax1& A, const Standard_Real D, const Standard_Boolean Copy = Standard_False);
-  
-  //! Builds the Revol of base S, axis  A and angle 2*Pi. If
-  //! C is true, S is copied.
-  Standard_EXPORT BRepPrimAPI_MakeRevol(const TopoDS_Shape& S, const gp_Ax1& A, const Standard_Boolean Copy = Standard_False);
-  
-  //! Returns the internal sweeping algorithm.
-  Standard_EXPORT const BRepSweep_Revol& Revol() const;
-  
-  //! Builds the resulting shape (redefined from MakeShape).
-  Standard_EXPORT virtual void Build() Standard_OVERRIDE;
-  
-  //! Returns the first shape of the revol  (coinciding with
-  //! the generating shape).
-  Standard_EXPORT TopoDS_Shape FirstShape() Standard_OVERRIDE;
-  
-  //! Returns the TopoDS Shape of the end of the revol.
-  Standard_EXPORT TopoDS_Shape LastShape() Standard_OVERRIDE;
-  
-  //! Returns list of shape generated from shape S
-  //! Warning: shape S must be shape of type VERTEX, EDGE, FACE, SOLID.
-  //! For shapes of other types method always returns empty list
-  Standard_EXPORT virtual const TopTools_ListOfShape& Generated (const TopoDS_Shape& S) Standard_OVERRIDE;
+		//! DEFINE_STANDARD_ALLOC
 
-  //! Returns true if the shape S has been deleted.
-  Standard_EXPORT virtual Standard_Boolean IsDeleted(const TopoDS_Shape& S) Standard_OVERRIDE;
+		XBRepPrimAPI_MakeRevol();
 
-  
-  //! Returns the TopoDS Shape of the beginning of the revolution,
-  //! generated with theShape  (subShape of the generating shape).
-  Standard_EXPORT TopoDS_Shape FirstShape (const TopoDS_Shape& theShape);
-  
-  //! Returns the TopoDS Shape of the end of the revolution,
-  //! generated with  theShape (subShape of the  generating shape).
-  Standard_EXPORT TopoDS_Shape LastShape (const TopoDS_Shape& theShape);
-  
-  //! Check if there are degenerated edges in the result.
-  Standard_EXPORT Standard_Boolean HasDegenerated() const;
+		XBRepPrimAPI_MakeRevol(BRepPrimAPI_MakeRevol* pos);
 
-  //! Returns the list of degenerated edges
-  Standard_EXPORT const TopTools_ListOfShape& Degenerated() const;
+		void SetMakeRevolHandle(BRepPrimAPI_MakeRevol* pos);
 
-protected:
+		virtual BRepPrimAPI_MakeRevol* GetMakeRevol();
 
-  //! Checks possibilities of producing self-intersection surface
-  //! returns true if all surfaces are valid
-  Standard_EXPORT Standard_Boolean CheckValidity(const TopoDS_Shape& theShape, const gp_Ax1& theA);
+		virtual BRepPrimAPI_MakeSweep* GetMakeSweep() Standard_OVERRIDE;
 
-private:
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
+
+		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+
+		//! Builds the Revol of base S, axis  A and angle  D. If C
+		//! is true, S is copied.
+		//! Standard_Boolean Copy = Standard_False
+		XBRepPrimAPI_MakeRevol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Real D, Standard_Boolean );
+
+		//! Builds the Revol of base S, axis  A and angle 2*Pi. If
+		//! C is true, S is copied.
+		//! Standard_Boolean Copy = Standard_False
+		XBRepPrimAPI_MakeRevol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Boolean Copy);
+
+		//! Returns the internal sweeping algorithm.
+		XBRepSweep_Revol^ Revol();
+
+		//! Builds the resulting shape (redefined from MakeShape).
+		virtual void Build() Standard_OVERRIDE;
+
+		//! Returns the first shape of the revol  (coinciding with
+		//! the generating shape).
+		XTopoDS_Shape^ FirstShape() Standard_OVERRIDE;
+
+		//! Returns the TopoDS Shape of the end of the revol.
+		XTopoDS_Shape^ LastShape() Standard_OVERRIDE;
+
+		//! Returns list of shape generated from shape S
+		//! Warning: shape S must be shape of type VERTEX, EDGE, FACE, SOLID.
+		//! For shapes of other types method always returns empty list
+		virtual XTopTools_ListOfShape^ Generated(XTopoDS_Shape^ S) Standard_OVERRIDE;
+
+		//! Returns true if the shape S has been deleted.
+		virtual Standard_Boolean IsDeleted(XTopoDS_Shape^ S) Standard_OVERRIDE;
 
 
+		//! Returns the TopoDS Shape of the beginning of the revolution,
+		//! generated with theShape  (subShape of the generating shape).
+		XTopoDS_Shape^ FirstShape(XTopoDS_Shape^ theShape);
 
-  BRepSweep_Revol myRevol;
-  TopTools_ListOfShape myDegenerated;
-  Handle(BRepTools_History) myHist;
-  Standard_Boolean myIsBuild;
+		//! Returns the TopoDS Shape of the end of the revolution,
+		//! generated with  theShape (subShape of the  generating shape).
+		XTopoDS_Shape^ LastShape(XTopoDS_Shape^ theShape);
 
+		//! Check if there are degenerated edges in the result.
+		Standard_Boolean HasDegenerated();
 
-};
+		//! Returns the list of degenerated edges
+		XTopTools_ListOfShape^ Degenerated();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeRevol*>(handle);
+			}
+		}
 
-
-
-
-
-
-#endif // _BRepPrimAPI_MakeRevol_HeaderFile
+	private:
+		BRepPrimAPI_MakeRevol* NativeHandle;
+	};
+}
+#endif // _XBRepPrimAPI_MakeRevol_HeaderFile

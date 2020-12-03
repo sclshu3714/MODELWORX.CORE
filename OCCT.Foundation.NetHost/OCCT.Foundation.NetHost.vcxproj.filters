@@ -352,6 +352,18 @@
     <Filter Include="源文件\ModelingAlgorithms\TKPrim\BRepPrim">
       <UniqueIdentifier>{2e226e97-cad6-443c-b5d0-b5f371f46d05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKPrim\BRepSweep">
+      <UniqueIdentifier>{35472a55-1fc6-4a0f-b3b2-c9dbf5415652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKPrim\BRepSweep">
+      <UniqueIdentifier>{828591da-d0c1-4138-a8c9-ca1fa45a8849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKPrim\Sweep">
+      <UniqueIdentifier>{9e671b49-855c-4cff-9cd2-3319bbb3830d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKPrim\Sweep">
+      <UniqueIdentifier>{8cbc9d92-2606-4cb7-b4bc-ed371dfafc1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -996,6 +1008,12 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Wedge.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeRevol.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepSweep\XBRepSweep_Revol.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepSweep</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1337,6 +1355,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepSweep\XBRepSweep_Revol.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepSweep</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeRevol.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
