@@ -17,12 +17,12 @@
 #ifndef _XBRepPrimAPI_MakeOneAxis_HeaderFile
 #define _XBRepPrimAPI_MakeOneAxis_HeaderFile
 #pragma once
+#include <XStandard_Helper.h>
 #include <BRepPrimAPI_MakeOneAxis.hxx>
 #include <XBRepBuilderAPI_MakeShape.h>
 #include <XTopoDS_Face.h>
 #include <XTopoDS_Shell.h>
 #include <XTopoDS_Solid.h>
-#include <XStandard_Helper.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>

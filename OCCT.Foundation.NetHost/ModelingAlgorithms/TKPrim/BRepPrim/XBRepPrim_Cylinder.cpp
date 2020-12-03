@@ -1,138 +1,84 @@
-// Created on: 1992-11-06
-// Created by: Remi LEQUETTE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrim_Cylinder.h>
 
+namespace TKPrim {
+	//! 
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder() {
+		//NativeHandle = new BRepPrim_Cylinder();
+	};
 
-#include <BRepPrim_Cylinder.hxx>
-#include <Geom2d_Line.hxx>
-#include <Geom_CylindricalSurface.hxx>
-#include <Geom_Line.hxx>
-#include <gp.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <Precision.hxx>
-#include <Standard_DomainError.hxx>
-#include <TopoDS_Face.hxx>
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(BRepPrim_Cylinder* handle) {
+		NativeHandle = handle;
+		SetRevolutionHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
-BRepPrim_Cylinder::BRepPrim_Cylinder(const gp_Ax2& Position, 
-				     const Standard_Real Radius,
-				     const Standard_Real Height) : 
-       BRepPrim_Revolution(Position,0,Height),
-       myRadius(Radius)
-{
-  SetMeridian();
-}
+	void XBRepPrim_Cylinder::SetCylinderHandle(BRepPrim_Cylinder* handle) {
+		NativeHandle = handle;
+		SetRevolutionHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
+	BRepPrim_Cylinder* XBRepPrim_Cylinder::GetCylinder() {
+		return NativeHandle;
+	};
 
-BRepPrim_Cylinder::BRepPrim_Cylinder(const Standard_Real Radius) :
-       BRepPrim_Revolution(gp::XOY(),RealFirst(),RealLast()),
-       myRadius(Radius)
-{
-  SetMeridian();
-}
+	BRepPrim_Revolution* XBRepPrim_Cylinder::GetRevolution() {
+		return NativeHandle;
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
+	BRepPrim_OneAxis* XBRepPrim_Cylinder::GetOneAxis() {
+		return NativeHandle;
+	};
 
-BRepPrim_Cylinder::BRepPrim_Cylinder(const gp_Pnt& Center, 
-				     const Standard_Real Radius) :
-       BRepPrim_Revolution(gp_Ax2(Center,gp_Dir(0,0,1),gp_Dir(1,0,0)),
-			   RealFirst(),RealLast()),
-       myRadius(Radius)
-{
-  SetMeridian();
-}
+	//! the STEP definition
+	//! Position : center of a Face and Axis
+	//! Radius : radius of cylinder
+	//! Height : distance between faces
+	//! on positive side
+	//!
+	//! Errors : Height < Resolution
+	//! Radius < Resolution
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Ax2^ Position, Standard_Real Radius, Standard_Real Height) {
+		NativeHandle = new BRepPrim_Cylinder(Position->GetAx2(), Radius, Height);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
+	//! infinite Cylinder at origin on Z negative
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(Standard_Real Radius) {
+		NativeHandle = new BRepPrim_Cylinder(Radius);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-BRepPrim_Cylinder::BRepPrim_Cylinder(const gp_Ax2& Axes,
-				     const Standard_Real Radius) :
-       BRepPrim_Revolution(Axes, RealFirst(),RealLast()),
-       myRadius(Radius)
-{
-  SetMeridian();
-}
+	//! infinite Cylinder at Center on Z negative
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Pnt^ Center, Standard_Real Radius) {
+		NativeHandle = new BRepPrim_Cylinder(Center->GetPnt(), Radius);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
+	//! infinite Cylinder at Axes on Z negative
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Ax2^ Axes, Standard_Real Radius) {
+		NativeHandle = new BRepPrim_Cylinder(Axes->GetAx2(), Radius);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-BRepPrim_Cylinder::BRepPrim_Cylinder(const Standard_Real R,
-				     const Standard_Real H) :
-       BRepPrim_Revolution(gp::XOY(), 0, H),
-       myRadius(R)
-{
-  SetMeridian();
-}
+	//! create a Cylinder  at origin on Z  axis, of
+	//! height H and radius R
+	//! Error  : Radius  < Resolution
+	//! H < Resolution
+	//! H negative
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(Standard_Real R, Standard_Real H) {
+		NativeHandle = new BRepPrim_Cylinder(R, H);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrim_Cylinder
-//purpose  : 
-//=======================================================================
+	//! same as above but at a given point
+	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Pnt^ Center, Standard_Real R, Standard_Real H) {
+		NativeHandle = new BRepPrim_Cylinder(Center->GetPnt(), R, H);
+		SetRevolutionHandle(NativeHandle);
+	};
 
-BRepPrim_Cylinder::BRepPrim_Cylinder(const gp_Pnt& Center, 
-				     const Standard_Real R, 
-				     const Standard_Real H) :
-       BRepPrim_Revolution(gp_Ax2(Center,gp_Dir(0,0,1),gp_Dir(1,0,0)),
-			   0,H),
-       myRadius(R)
-{
-  SetMeridian();
-}
-
-//=======================================================================
-//function : MakeEmptyLateralFace
-//purpose  : 
-//=======================================================================
-
-TopoDS_Face  BRepPrim_Cylinder::MakeEmptyLateralFace() const 
-{
-  Handle(Geom_CylindricalSurface) C =
-    new Geom_CylindricalSurface(Axes(),myRadius);
-  TopoDS_Face F;
-  myBuilder.Builder().MakeFace(F,C,Precision::Confusion());
-  return F;
-}
-
-//=======================================================================
-//function : SetMeridian
-//purpose  : 
-//=======================================================================
-
-void BRepPrim_Cylinder::SetMeridian()
-{
-  gp_Vec V = Axes().XDirection();
-  V.Multiply(myRadius);
-  gp_Ax1 A = Axes().Axis();
-  A.Translate(V);
-  Handle(Geom_Line) L = new Geom_Line(A);
-  Handle(Geom2d_Line) L2d = new Geom2d_Line(gp_Pnt2d(myRadius,0),gp_Dir2d(0,1));
-  Meridian(L,L2d);
+	//! The surface normal should be directed  towards the
+	//! outside.
+	XTopoDS_Face^ XBRepPrim_Cylinder::MakeEmptyLateralFace() {
+		TopoDS_Face* aFace = new TopoDS_Face(NativeHandle->MakeEmptyLateralFace());
+		return gcnew XTopoDS_Face(aFace);
+	};
 }

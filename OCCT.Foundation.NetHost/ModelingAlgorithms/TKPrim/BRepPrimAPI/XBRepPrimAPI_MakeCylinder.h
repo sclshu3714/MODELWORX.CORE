@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrimAPI_MakeCylinder_HeaderFile
-#define _BRepPrimAPI_MakeCylinder_HeaderFile
+#ifndef _XBRepPrimAPI_MakeCylinder_HeaderFile
+#define _XBRepPrimAPI_MakeCylinder_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrimAPI_MakeCylinder.hxx>
+#include <XBRepPrimAPI_MakeOneAxis.h>
+#include <XBRepPrim_Cylinder.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -35,79 +40,89 @@ class BRepPrim_Cylinder;
 //! -   defining the construction of a cylinder,
 //! -   implementing the construction algorithm, and
 //! -   consulting the result.
-class BRepPrimAPI_MakeCylinder  : public BRepPrimAPI_MakeOneAxis
-{
-public:
+//! 
+using namespace TKMath;
+using namespace TKernel;
+namespace TKPrim {
+	ref class XBRepPrim_Cylinder;
+	ref class TKMath::xgp_Ax2;
+	ref class TKernel::XStandard_Helper;
+	public ref class XBRepPrimAPI_MakeCylinder : public XBRepPrimAPI_MakeOneAxis
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
 
-  
-  //! Make a cylinder of radius R and length H.
-  Standard_EXPORT BRepPrimAPI_MakeCylinder(const Standard_Real R, const Standard_Real H);
-  
-  //! Make a cylinder   of  radius R  and  length H with
-  //! angle  H.
-  Standard_EXPORT BRepPrimAPI_MakeCylinder(const Standard_Real R, const Standard_Real H, const Standard_Real Angle);
-  
-  //! Make a cylinder of radius R and length H.
-  Standard_EXPORT BRepPrimAPI_MakeCylinder(const gp_Ax2& Axes, const Standard_Real R, const Standard_Real H);
-  
-  //! Make a cylinder   of  radius R  and  length H with
-  //! angle  H.
-  //! Constructs
-  //! -   a cylinder of radius R and height H, or
-  //! -   a portion of cylinder of radius R and height H, and of
-  //! the angle Angle defining the missing portion of the cylinder.
-  //! The cylinder is constructed about the "Z Axis" of either:
-  //! -   the global coordinate system, or
-  //! -   the local coordinate system Axes.
-  //! It is limited in this coordinate system as follows:
-  //! -   in the v parametric direction (the Z axis), by the two
-  //! parameter values 0 and H,
-  //! -   and in the u parametric direction (the rotation angle
-  //! around the Z Axis), in the case of a portion of a
-  //! cylinder, by the two parameter values 0 and Angle.
-  //! Angle is given in radians.
-  //! The resulting shape is composed of:
-  //! -   a lateral cylindrical face,
-  //! -   two planar faces in the planes z = 0 and z = H
-  //! (in the case of a complete cylinder, these faces are circles), and
-  //! -   in case of a portion of a cylinder, two additional
-  //! planar faces to close the shape.(two rectangles in the
-  //! planes u = 0 and u = Angle).
-  //! Exceptions Standard_DomainError if:
-  //! -   R is less than or equal to Precision::Confusion(), or
-  //! -   H is less than or equal to Precision::Confusion().
-  Standard_EXPORT BRepPrimAPI_MakeCylinder(const gp_Ax2& Axes, const Standard_Real R, const Standard_Real H, const Standard_Real Angle);
-  
-  //! Returns the algorithm.
-  Standard_EXPORT Standard_Address OneAxis();
-  
-  //! Returns the algorithm.
-  Standard_EXPORT BRepPrim_Cylinder& Cylinder();
+		XBRepPrimAPI_MakeCylinder();
 
+		XBRepPrimAPI_MakeCylinder(BRepPrimAPI_MakeCylinder* handle);
 
+		void SetMakeCylinderHandle(BRepPrimAPI_MakeCylinder* handle);
 
+		virtual BRepPrimAPI_MakeCylinder* GetMakeCylinder();
 
-protected:
+		virtual BRepPrimAPI_MakeOneAxis* GetMakeOneAxis() Standard_OVERRIDE;
 
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
+		//! Make a cylinder of radius R and length H.
+		XBRepPrimAPI_MakeCylinder(Standard_Real R, Standard_Real H);
 
+		//! Make a cylinder   of  radius R  and  length H with
+		//! angle  H.
+		XBRepPrimAPI_MakeCylinder(Standard_Real R, Standard_Real H, Standard_Real Angle);
 
+		//! Make a cylinder of radius R and length H.
+		XBRepPrimAPI_MakeCylinder(xgp_Ax2^ Axes, Standard_Real R, Standard_Real H);
 
-private:
+		//! Make a cylinder   of  radius R  and  length H with
+		//! angle  H.
+		//! Constructs
+		//! -   a cylinder of radius R and height H, or
+		//! -   a portion of cylinder of radius R and height H, and of
+		//! the angle Angle defining the missing portion of the cylinder.
+		//! The cylinder is constructed about the "Z Axis" of either:
+		//! -   the global coordinate system, or
+		//! -   the local coordinate system Axes.
+		//! It is limited in this coordinate system as follows:
+		//! -   in the v parametric direction (the Z axis), by the two
+		//! parameter values 0 and H,
+		//! -   and in the u parametric direction (the rotation angle
+		//! around the Z Axis), in the case of a portion of a
+		//! cylinder, by the two parameter values 0 and Angle.
+		//! Angle is given in radians.
+		//! The resulting shape is composed of:
+		//! -   a lateral cylindrical face,
+		//! -   two planar faces in the planes z = 0 and z = H
+		//! (in the case of a complete cylinder, these faces are circles), and
+		//! -   in case of a portion of a cylinder, two additional
+		//! planar faces to close the shape.(two rectangles in the
+		//! planes u = 0 and u = Angle).
+		//! Exceptions Standard_DomainError if:
+		//! -   R is less than or equal to Precision::Confusion(), or
+		//! -   H is less than or equal to Precision::Confusion().
+		XBRepPrimAPI_MakeCylinder(xgp_Ax2^ Axes, Standard_Real R, Standard_Real H, Standard_Real Angle);
 
+		//! Returns the algorithm.
+		virtual Object^ OneAxis() Standard_OVERRIDE;
 
+		//! Returns the algorithm.
+		XBRepPrim_Cylinder^ Cylinder();
 
-  BRepPrim_Cylinder myCylinder;
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeCylinder*>(handle);
+			}
+		}
 
-
-};
-
-
-
-
-
-
-
-#endif // _BRepPrimAPI_MakeCylinder_HeaderFile
+	private:
+		BRepPrimAPI_MakeCylinder* NativeHandle;
+	};
+}
+#endif // _XBRepPrimAPI_MakeCylinder_HeaderFile

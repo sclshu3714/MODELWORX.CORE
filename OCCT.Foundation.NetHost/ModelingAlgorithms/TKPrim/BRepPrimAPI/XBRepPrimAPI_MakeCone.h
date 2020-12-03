@@ -20,6 +20,7 @@
 #include <XStandard_Helper.h>
 #include <XBRepPrimAPI_MakeOneAxis.h>
 #include <BRepPrimAPI_MakeCone.hxx>
+#include <XBRepPrim_Cone.h>
 #include <xgp_Ax2.h>
 
 #include <Standard.hxx>
@@ -34,12 +35,18 @@ class Standard_DomainError;
 class gp_Ax2;
 class BRepPrim_Cone;
 
+using namespace TKMath;
+using namespace TKernel;
 namespace TKPrim {
 	//! Describes functions to build cones or portions of cones.
 	//! A MakeCone object provides a framework for:
 	//! -   defining the construction of a cone,
 	//! -   implementing the construction algorithm, and
 	//! -   consulting the result.
+
+	ref class XBRepPrim_Cone;
+	ref class TKMath::xgp_Ax2;
+	ref class TKernel::XStandard_Helper;
 	public ref class XBRepPrimAPI_MakeCone : public XBRepPrimAPI_MakeOneAxis
 	{
 	public:
@@ -50,7 +57,7 @@ namespace TKPrim {
 
 		XBRepPrimAPI_MakeCone(BRepPrimAPI_MakeCone* handle);
 
-		void SetMakeOneAxisHandle(BRepPrimAPI_MakeCone* handle);
+		void SetMakeConeHandle(BRepPrimAPI_MakeCone* handle);
 
 		virtual BRepPrimAPI_MakeCone* GetMakeCone();
 
@@ -108,7 +115,7 @@ namespace TKPrim {
 		Object^ OneAxis() Standard_OVERRIDE;
 
 		//! Returns the algorithm.
-		BRepPrim_Cone^ Cone();
+		XBRepPrim_Cone^ Cone();
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

@@ -1,106 +1,101 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrimAPI_MakeCone.h>
 
+namespace TKPrim {
 
-#include <BRepBuilderAPI.hxx>
-#include <BRepPrim_Cone.hxx>
-#include <BRepPrimAPI_MakeCone.hxx>
-#include <gp.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone() {
+		//NativeHandle = new BRepPrimAPI_MakeCone();
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeCone
-//purpose  : 
-//=======================================================================
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(BRepPrimAPI_MakeCone* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
 
-BRepPrimAPI_MakeCone::BRepPrimAPI_MakeCone(const Standard_Real R1,
-				   const Standard_Real R2, 
-				   const Standard_Real H) :
-       myCone(gp::XOY(),R1, R2, H)
-{
+	void XBRepPrimAPI_MakeCone::SetMakeConeHandle(BRepPrimAPI_MakeCone* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	BRepPrimAPI_MakeCone* XBRepPrimAPI_MakeCone::GetMakeCone() {
+		return NativeHandle;
+	};
+
+	BRepPrimAPI_MakeOneAxis* XBRepPrimAPI_MakeCone::GetMakeOneAxis() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeCone::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	//! Make a cone of height H radius R1 in the plane z =
+	//! 0, R2 in the plane Z = H. R1 and R2 may be null.
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(Standard_Real R1, Standard_Real R2, Standard_Real H) {
+		NativeHandle = new BRepPrimAPI_MakeCone(R1, R2, H);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a cone of height H radius R1 in the plane z =
+	//! 0, R2 in the plane Z = H. R1 and R2 may be null.
+	//! Take a section of <angle>
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(Standard_Real R1, Standard_Real R2, Standard_Real H, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeCone(R1, R2, H, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a cone of height H radius R1 in the plane z =
+	//! 0, R2 in the plane Z = H. R1 and R2 may be null.
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H) {
+		NativeHandle = new BRepPrimAPI_MakeCone(Axes->GetAx2(), R1, R2, H);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a cone of height H radius R1 in the plane z =
+	//! 0, R2 in the plane Z = H. R1 and R2 may be null.
+	//! Take a section of <angle>
+	//! Constructs a cone, or a portion of a cone, of height H,
+	//! and radius R1 in the plane z = 0 and R2 in the plane
+	//! z = H. The result is a sharp cone if R1 or R2 is equal to 0.
+	//! The cone is constructed about the "Z Axis" of either:
+	//! -   the global coordinate system, or
+	//! -   the local coordinate system Axes.
+	//! It is limited in these coordinate systems as follows:
+	//! -   in the v parametric direction (the Z coordinate), by
+	//! the two parameter values 0 and H,
+	//! -   and in the u parametric direction (defined by the
+	//! angle of rotation around the Z axis), in the case of a
+	//! portion of a cone, by the two parameter values 0 and
+	//! angle. Angle is given in radians.
+	//! The resulting shape is composed of:
+	//! -   a lateral conical face
+	//! -   two planar faces in the planes z = 0 and z = H,
+	//! or only one planar face in one of these two planes if a
+	//! radius value is null (in the case of a complete cone,
+	//! these faces are circles), and
+	//! -   and in the case of a portion of a cone, two planar
+	//! faces to close the shape. (either two parallelograms or
+	//! two triangles, in the planes u = 0 and u = angle).
+	//! Exceptions
+	//! Standard_DomainError if:
+	//! -   H is less than or equal to Precision::Confusion(), or
+	//! -   the half-angle at the apex of the cone, defined by
+	//! R1, R2 and H, is less than Precision::Confusion()/H, or greater than
+	//! (Pi/2)-Precision::Confusion()/H.f
+	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeCone(Axes->GetAx2(), R1, R2, H, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Returns the algorithm.
+	Object^ XBRepPrimAPI_MakeCone::OneAxis() {
+		return XStandard_Helper::toObject(NativeHandle->OneAxis());
+	};
+
+	//! Returns the algorithm.
+	XBRepPrim_Cone^ XBRepPrimAPI_MakeCone::Cone() {
+		BRepPrim_Cone* aCone = new BRepPrim_Cone(NativeHandle->Cone());
+		return gcnew XBRepPrim_Cone(aCone);
+	};
 }
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeCone
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeCone::BRepPrimAPI_MakeCone(const Standard_Real R1,
-				   const Standard_Real R2,
-				   const Standard_Real H,
-				   const Standard_Real angle) :
-       myCone( R1, R2, H)
-{
-  myCone.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeCone
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeCone::BRepPrimAPI_MakeCone(const gp_Ax2& Axes,
-				   const Standard_Real R1, 
-				   const Standard_Real R2,
-				   const Standard_Real H) :
-       myCone( Axes, R1, R2, H)
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeCone
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeCone::BRepPrimAPI_MakeCone(const gp_Ax2& Axes,
-				   const Standard_Real R1,
-				   const Standard_Real R2,
-				   const Standard_Real H,
-				   const Standard_Real angle) :
-       myCone( Axes, R1, R2, H)
-{
-  myCone.Angle(angle);
-}
-
-
-//=======================================================================
-//function : OneAxis
-//purpose  : 
-//=======================================================================
-
-Standard_Address  BRepPrimAPI_MakeCone::OneAxis()
-{
-  return &myCone;
-}
-
-
-//=======================================================================
-//function : Cone
-//purpose  : 
-//=======================================================================
-
-BRepPrim_Cone&  BRepPrimAPI_MakeCone::Cone()
-{
-  return myCone;
-}
-
 
 
