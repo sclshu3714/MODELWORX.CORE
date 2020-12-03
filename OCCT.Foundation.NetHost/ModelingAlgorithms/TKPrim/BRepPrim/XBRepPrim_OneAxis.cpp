@@ -1,6 +1,10 @@
 #include <XBRepPrim_OneAxis.h>
 namespace TKPrim {
 
+	XBRepPrim_OneAxis::XBRepPrim_OneAxis() {
+		
+	};
+
 	XBRepPrim_OneAxis::XBRepPrim_OneAxis(BRepPrim_OneAxis* handle) {
 		NativeHandle = handle;
 	};

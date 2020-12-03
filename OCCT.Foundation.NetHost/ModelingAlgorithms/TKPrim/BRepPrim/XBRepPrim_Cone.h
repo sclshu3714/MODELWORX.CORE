@@ -14,100 +14,113 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_Cone_HeaderFile
-#define _BRepPrim_Cone_HeaderFile
+#ifndef _XBRepPrim_Cone_HeaderFile
+#define _XBRepPrim_Cone_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrim_Cone.hxx>
+#include <XBRepPrim_Revolution.h>
+#include <XTopoDS_Face.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
 #include <Standard_Real.hxx>
-#include <BRepPrim_Revolution.hxx>
 class Standard_DomainError;
 class gp_Ax2;
 class gp_Pnt;
 class TopoDS_Face;
 
 
-//! Implement the cone primitive.
-class BRepPrim_Cone  : public BRepPrim_Revolution
-{
-public:
+using namespace TKMath;
+using namespace TKBRep;
+namespace TKPrim {
+	//! Implement the cone primitive.
+	ref class TKBRep::XTopoDS_Face;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax2;
+	public ref class XBRepPrim_Cone : public XBRepPrim_Revolution
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! the STEP definition
-  //! Angle = semi-angle of the cone
-  //! Position : the coordinate system
-  //! Height : height of the cone.
-  //! Radius : radius of truncated face at z = 0
-  //!
-  //! The apex is on z < 0
-  //!
-  //! Errors : Height < Resolution
-  //! Angle < Resolution / Height
-  //! Angle > PI/2 - Resolution / Height
-  Standard_EXPORT BRepPrim_Cone(const Standard_Real Angle, const gp_Ax2& Position, const Standard_Real Height, const Standard_Real Radius = 0);
-  
-  //! infinite cone at origin on Z negative
-  Standard_EXPORT BRepPrim_Cone(const Standard_Real Angle);
-  
-  //! infinite cone at Apex on Z negative
-  Standard_EXPORT BRepPrim_Cone(const Standard_Real Angle, const gp_Pnt& Apex);
-  
-  //! infinite cone with Axes
-  Standard_EXPORT BRepPrim_Cone(const Standard_Real Angle, const gp_Ax2& Axes);
-  
-  //! create a  Cone at origin  on Z axis, of height  H,
-  //! radius R1 at Z = 0, R2 at  Z = H, X is  the origin
-  //! of angles.  If R1 or  R2 is 0   there is  an apex.
-  //! Otherwise, it is a truncated cone.
-  //!
-  //! Error  : R1 and R2  < Resolution
-  //! R1 or R2 negative
-  //! Abs(R1-R2) < Resolution
-  //! H < Resolution
-  //! H negative
-  Standard_EXPORT BRepPrim_Cone(const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
-  
-  //! same as above but at a given point
-  Standard_EXPORT BRepPrim_Cone(const gp_Pnt& Center, const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
-  
-  //! same as above with given axes system.
-  Standard_EXPORT BRepPrim_Cone(const gp_Ax2& Axes, const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
-  
-  //! The surface normal should be directed  towards the
-  //! outside.
-  Standard_EXPORT virtual TopoDS_Face MakeEmptyLateralFace() const Standard_OVERRIDE;
+		//! DEFINE_STANDARD_ALLOC
 
 
+		XBRepPrim_Cone();
 
+		XBRepPrim_Cone(BRepPrim_Cone* handle);
 
-protected:
+		void SetPrimConeHandle(BRepPrim_Cone* handle);
 
+		virtual BRepPrim_Cone* GetPrimCone();
+		 
+		virtual BRepPrim_Revolution* GetRevolution() Standard_OVERRIDE;
 
+		virtual BRepPrim_OneAxis* GetOneAxis() Standard_OVERRIDE;
 
+		//! the STEP definition
+		//! Angle = semi-angle of the cone
+		//! Position : the coordinate system
+		//! Height : height of the cone.
+		//! Radius : radius of truncated face at z = 0
+		//!
+		//! The apex is on z < 0
+		//!
+		//! Errors : Height < Resolution
+		//! Angle < Resolution / Height
+		//! Angle > PI/2 - Resolution / Height
+		//! Radius = 0
+		XBRepPrim_Cone(Standard_Real Angle, xgp_Ax2^ Position, Standard_Real Height, Standard_Real Radius);
 
+		//! infinite cone at origin on Z negative
+		XBRepPrim_Cone(Standard_Real Angle);
 
-private:
+		//! infinite cone at Apex on Z negative
+		XBRepPrim_Cone(Standard_Real Angle, xgp_Pnt^ Apex);
 
-  
-  Standard_EXPORT void SetMeridian();
-  
-  Standard_EXPORT void SetParameters (const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
+		//! infinite cone with Axes
+		XBRepPrim_Cone(Standard_Real Angle, xgp_Ax2^ Axes);
 
+		//! create a  Cone at origin  on Z axis, of height  H,
+		//! radius R1 at Z = 0, R2 at  Z = H, X is  the origin
+		//! of angles.  If R1 or  R2 is 0   there is  an apex.
+		//! Otherwise, it is a truncated cone.
+		//!
+		//! Error  : R1 and R2  < Resolution
+		//! R1 or R2 negative
+		//! Abs(R1-R2) < Resolution
+		//! H < Resolution
+		//! H negative
+		XBRepPrim_Cone(Standard_Real R1, Standard_Real R2, Standard_Real H);
 
-  Standard_Real myHalfAngle;
-  Standard_Real myRadius;
+		//! same as above but at a given point
+		XBRepPrim_Cone(xgp_Pnt^ Center, Standard_Real R1, Standard_Real R2, Standard_Real H);
 
+		//! same as above with given axes system.
+		XBRepPrim_Cone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H);
 
-};
+		//! The surface normal should be directed  towards the
+		//! outside.
+		virtual XTopoDS_Face^ MakeEmptyLateralFace() Standard_OVERRIDE;
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_OneAxis* IHandle {
+			BRepPrim_OneAxis* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_OneAxis* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_Cone*>(handle);
+			}
+		}
 
-
-
-
-
-
-#endif // _BRepPrim_Cone_HeaderFile
+	private:
+		BRepPrim_Cone* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_Cone_HeaderFile

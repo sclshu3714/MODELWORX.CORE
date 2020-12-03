@@ -49,6 +49,10 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		XBRepPrimAPI_MakeOneAxis();
+
+		XBRepPrimAPI_MakeOneAxis(BRepPrimAPI_MakeOneAxis* handle);
+
 		void SetMakeOneAxisHandle(BRepPrimAPI_MakeOneAxis* handle);
 
 		virtual BRepPrimAPI_MakeOneAxis* GetMakeOneAxis();

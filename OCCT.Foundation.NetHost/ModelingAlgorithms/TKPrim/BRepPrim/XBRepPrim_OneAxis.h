@@ -85,6 +85,7 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
+		XBRepPrim_OneAxis();
 
 		XBRepPrim_OneAxis(BRepPrim_OneAxis* handle);
 

@@ -2,6 +2,15 @@
 
 namespace TKPrim {
 
+	XBRepPrimAPI_MakeOneAxis::XBRepPrimAPI_MakeOneAxis() {
+		//NativeHandle = new BRepPrimAPI_MakeOneAxis();
+	};
+
+	XBRepPrimAPI_MakeOneAxis::XBRepPrimAPI_MakeOneAxis(BRepPrimAPI_MakeOneAxis* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
+
 	void XBRepPrimAPI_MakeOneAxis::SetMakeOneAxisHandle(BRepPrimAPI_MakeOneAxis* handle) {
 		NativeHandle = handle;
 		SetMakeShapeHandle(NativeHandle);

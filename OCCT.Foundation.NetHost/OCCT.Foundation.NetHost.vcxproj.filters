@@ -1014,6 +1014,15 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepSweep\XBRepSweep_Revol.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepSweep</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Revolution.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Cone.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1361,6 +1370,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeRevol.cpp">
       <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Revolution.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Cone.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

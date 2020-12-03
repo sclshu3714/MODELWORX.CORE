@@ -44,21 +44,32 @@ namespace TKPrim {
 	{
 	public:
 
-		DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
 
+		XBRepPrimAPI_MakeCone();
 
-			//! Make a cone of height H radius R1 in the plane z =
-			//! 0, R2 in the plane Z = H. R1 and R2 may be null.
-			Standard_EXPORT BRepPrimAPI_MakeCone(const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
+		XBRepPrimAPI_MakeCone(BRepPrimAPI_MakeCone* handle);
+
+		void SetMakeOneAxisHandle(BRepPrimAPI_MakeCone* handle);
+
+		virtual BRepPrimAPI_MakeCone* GetMakeCone();
+
+		virtual BRepPrimAPI_MakeOneAxis* GetMakeOneAxis() Standard_OVERRIDE;
+
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
+
+		//! Make a cone of height H radius R1 in the plane z =
+		//! 0, R2 in the plane Z = H. R1 and R2 may be null.
+		XBRepPrimAPI_MakeCone(Standard_Real R1, Standard_Real R2, Standard_Real H);
 
 		//! Make a cone of height H radius R1 in the plane z =
 		//! 0, R2 in the plane Z = H. R1 and R2 may be null.
 		//! Take a section of <angle>
-		Standard_EXPORT BRepPrimAPI_MakeCone(const Standard_Real R1, const Standard_Real R2, const Standard_Real H, const Standard_Real angle);
+		XBRepPrimAPI_MakeCone(Standard_Real R1, Standard_Real R2, Standard_Real H, Standard_Real angle);
 
 		//! Make a cone of height H radius R1 in the plane z =
 		//! 0, R2 in the plane Z = H. R1 and R2 may be null.
-		Standard_EXPORT BRepPrimAPI_MakeCone(const gp_Ax2& Axes, const Standard_Real R1, const Standard_Real R2, const Standard_Real H);
+		XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H);
 
 		//! Make a cone of height H radius R1 in the plane z =
 		//! 0, R2 in the plane Z = H. R1 and R2 may be null.
@@ -91,30 +102,28 @@ namespace TKPrim {
 		//! -   the half-angle at the apex of the cone, defined by
 		//! R1, R2 and H, is less than Precision::Confusion()/H, or greater than
 		//! (Pi/2)-Precision::Confusion()/H.f
-		Standard_EXPORT BRepPrimAPI_MakeCone(const gp_Ax2& Axes, const Standard_Real R1, const Standard_Real R2, const Standard_Real H, const Standard_Real angle);
+		XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H, Standard_Real angle);
 
 		//! Returns the algorithm.
-		Standard_EXPORT Standard_Address OneAxis();
+		Object^ OneAxis() Standard_OVERRIDE;
 
 		//! Returns the algorithm.
-		Standard_EXPORT BRepPrim_Cone& Cone();
+		BRepPrim_Cone^ Cone();
 
-
-
-
-	protected:
-
-
-
-
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeCone*>(handle);
+			}
+		}
 
 	private:
-
-
-
-		BRepPrim_Cone myCone;
-
-
+		BRepPrimAPI_MakeCone* NativeHandle;
 	};
 }
 #endif // _XBRepPrimAPI_MakeCone_HeaderFile
