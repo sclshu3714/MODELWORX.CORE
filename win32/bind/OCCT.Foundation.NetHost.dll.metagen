@@ -3522,7 +3522,6 @@ Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax22d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2d, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Circ2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3530,7 +3529,7 @@ Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Circ2d* Handle 'get ' : 
   Methods:
-    GetCirc2d(gp_Circ2d*): PrivateScope, Public, HideBySig
+    GetCirc2d(): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SetXAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig

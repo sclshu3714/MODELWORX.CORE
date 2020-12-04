@@ -76,7 +76,7 @@ namespace TKPrim {
     //! the  edge <E>  in   the  parametric  space of  the
     //! surface of <F>.
     void XBRepPrim_Builder::SetPCurve(XTopoDS_Edge^ E, XTopoDS_Face^ F, xgp_Circ2d^ C) {
-        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), C->GetCirc2d());
+        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), *C->GetCirc2d());
     };
 
     //! Returns in <V> a Vertex built with the point <P>.

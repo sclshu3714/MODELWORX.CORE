@@ -63,11 +63,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Circ2d(gp_Circ2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Circ2d(gp_Circ2d pos);
 
         //! The location point of XAxis is the center of the circle.
         //! Warnings :
@@ -90,7 +85,7 @@ namespace TKMath
         !xgp_Circ2d();
 
         //! gp_Circ2d
-        gp_Circ2d GetCirc2d();
+        gp_Circ2d* GetCirc2d();
 
         //! Changes the location point (center) of the circle.
         void SetLocation(xgp_Pnt2d^ P);
