@@ -27,6 +27,7 @@
 #include <xgp_EulerSequence.h>
 #include "xgp_Vec.h"
 #include "xgp_Mat.h"
+class gp_Quaternion;
 
 namespace TKMath
 {
