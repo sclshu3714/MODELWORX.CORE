@@ -27,14 +27,14 @@ namespace TKMath
     //! "Direction" and Vx gives the "XDirection".
     //! Raises ConstructionError if N and Vx are parallel (same or opposite orientation).
     xgp_Ax3::xgp_Ax3(xgp_Pnt^ P, xgp_Dir^ N, xgp_Dir^ Vx) {
-        NativeHandle = new gp_Ax3(P->GetPnt(), N->GetDir(), Vx->GetDir());
+        NativeHandle = new gp_Ax3(P->GetPnt(), *N->GetDir(), *Vx->GetDir());
     };
 
 
     //! Creates an axis placement with the  "Location" point <P>
     //! and the normal direction <V>.
     xgp_Ax3::xgp_Ax3(xgp_Pnt^ P, xgp_Dir^ V) {
-        NativeHandle = new gp_Ax3(P->GetPnt(), V->GetDir());
+        NativeHandle = new gp_Ax3(P->GetPnt(), *V->GetDir());
     };
 
     //ÊÍ·Å
@@ -98,7 +98,7 @@ namespace TKMath
     //! because it is impossible to calculate the new "XDirection"
     //! and the new "YDirection".
     void xgp_Ax3::SetDirection(xgp_Dir^ V) {
-        NativeHandle->SetDirection(V->GetDir());
+        NativeHandle->SetDirection(*V->GetDir());
     };
 
 
@@ -115,7 +115,7 @@ namespace TKMath
     //! Raises ConstructionError if <Vx> is parallel (same or opposite
     //! orientation) to the main direction of <me>
     void xgp_Ax3::SetXDirection(xgp_Dir^ Vx) {
-        NativeHandle->SetXDirection(Vx->GetDir());
+        NativeHandle->SetXDirection(*Vx->GetDir());
     };
 
 
@@ -126,7 +126,7 @@ namespace TKMath
     //! YDirection = Direction ^ (<Vy> ^ Direction).
     //! Raises ConstructionError if <Vy> is parallel to the main direction of <me>
     void xgp_Ax3::SetYDirection(xgp_Dir^ Vy) {
-        NativeHandle->SetYDirection(Vy->GetDir());
+        NativeHandle->SetYDirection(*Vy->GetDir());
     };
 
 
@@ -159,7 +159,8 @@ namespace TKMath
 
     //! Returns the main direction of <me>.
     xgp_Dir^ xgp_Ax3::Direction() {
-        return gcnew xgp_Dir(NativeHandle->Direction());
+        gp_Dir* temp = new gp_Dir(NativeHandle->Direction());
+        return gcnew xgp_Dir(temp);
     };
 
 
@@ -171,13 +172,15 @@ namespace TKMath
 
     //! Returns the "XDirection" of <me>.
     xgp_Dir^ xgp_Ax3::XDirection() {
-        return gcnew xgp_Dir(NativeHandle->XDirection());
+        gp_Dir* temp = new gp_Dir(NativeHandle->XDirection());
+        return gcnew xgp_Dir(temp);
     };
 
 
     //! Returns the "YDirection" of <me>.
     xgp_Dir^ xgp_Ax3::YDirection() {
-        return gcnew xgp_Dir(NativeHandle->YDirection());
+        gp_Dir* temp = new gp_Dir(NativeHandle->YDirection());
+        return gcnew xgp_Dir(temp);
     };
 
     //! Returns  True if  the  coordinate  system is right-handed. i.e.

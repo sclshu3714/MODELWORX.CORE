@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Cone::xgp_Cone(gp_Cone* pos) {
         NativeHandle = new gp_Cone(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Cone::xgp_Cone(gp_Cone pos) {
-        NativeHandle = new gp_Cone(pos);
-    };
 
     //! Creates an infinite conical surface. A3 locates the cone
     //! in the space and defines the reference plane of the surface.
@@ -50,8 +43,8 @@ namespace TKMath
     };
 
     //! gp_Cone
-    gp_Cone xgp_Cone::GetCone() {
-        return *NativeHandle;
+    gp_Cone* xgp_Cone::GetCone() {
+        return NativeHandle;
     };
 
     //! Changes the symmetry axis of the cone.  Raises ConstructionError
@@ -173,7 +166,8 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Cone(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Mirror(xgp_Ax1^ A1) {
@@ -185,7 +179,8 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Cone(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Mirror(xgp_Ax2^ A2) {
@@ -197,7 +192,8 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Cone(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -208,7 +204,8 @@ namespace TKMath
     //! Rotates a cone. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Cone^ xgp_Cone::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Cone(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Scale(xgp_Pnt^ P, Standard_Real S) {
@@ -219,7 +216,8 @@ namespace TKMath
     //! Scales a cone. S is the scaling value.
     //! The absolute value of S is used to scale the cone
     xgp_Cone^ xgp_Cone::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Cone(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Transform(xgp_Trsf^ T) {
@@ -229,7 +227,8 @@ namespace TKMath
 
     //! Transforms a cone with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Cone^ xgp_Cone::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Cone(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Translate(xgp_Vec^ V) {
@@ -240,7 +239,8 @@ namespace TKMath
     //! Translates a cone in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Cone^ xgp_Cone::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Cone(NativeHandle->Translated(V->GetVec()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
@@ -250,7 +250,8 @@ namespace TKMath
 
     //! Translates a cone from the point P1 to the point P2.
     xgp_Cone^ xgp_Cone::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Cone(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Cone(temp);
     };
 };
 

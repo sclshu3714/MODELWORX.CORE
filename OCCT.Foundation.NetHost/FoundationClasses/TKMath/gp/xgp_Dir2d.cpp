@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Dir2d::xgp_Dir2d(gp_Dir2d* pos) {
         NativeHandle = new gp_Dir2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Dir2d::xgp_Dir2d(gp_Dir2d pos) {
-        NativeHandle = new gp_Dir2d(pos);
-    };
 
     //! Normalizes the vector V and creates a Direction. Raises ConstructionError if V.Magnitude() <= Resolution from gp.
     xgp_Dir2d::xgp_Dir2d(xgp_Vec2d^ V) {
@@ -144,8 +137,8 @@ namespace TKMath
     };
 
     //! return the gp_Dir2d
-    gp_Dir2d  xgp_Dir2d::GetDir2d() {
-        return *NativeHandle;
+    gp_Dir2d* xgp_Dir2d::GetDir2d() {
+        return NativeHandle;
     };
 
     //! For this unit vector returns the coordinate of range Index :
@@ -184,7 +177,7 @@ namespace TKMath
     //! i.e. the angle between this unit vector and the
     //! unit vector Other is less than or equal to AngularTolerance.
     Standard_Boolean xgp_Dir2d::IsEqual(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetDir2d(), AngularTolerance);
+        return NativeHandle->IsEqual(*Other->GetDir2d(), AngularTolerance);
     };
 
 
@@ -192,7 +185,7 @@ namespace TKMath
     //! unit vector Other is equal to Pi/2 or -Pi/2 (normal)
     //! i.e. Abs(Abs(<me>.Angle(Other)) - PI/2.) <= AngularTolerance
     Standard_Boolean xgp_Dir2d::IsNormal(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetDir2d(), AngularTolerance);
+        return NativeHandle->IsNormal(*Other->GetDir2d(), AngularTolerance);
     };
 
 
@@ -200,7 +193,7 @@ namespace TKMath
     //! unit vector Other is equal to Pi or -Pi (opposite).
     //! i.e.  PI - Abs(<me>.Angle(Other)) <= AngularTolerance
     Standard_Boolean xgp_Dir2d::IsOpposite(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetDir2d(), AngularTolerance);
+        return NativeHandle->IsOpposite(*Other->GetDir2d(), AngularTolerance);
     };
 
 
@@ -209,26 +202,26 @@ namespace TKMath
     //! i.e.  Abs(Angle(<me>, Other)) <= AngularTolerance or
     //! PI - Abs(Angle(<me>, Other)) <= AngularTolerance
     Standard_Boolean xgp_Dir2d::IsParallel(xgp_Dir2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetDir2d(), AngularTolerance);
+        return NativeHandle->IsParallel(*Other->GetDir2d(), AngularTolerance);
     };
 
 
     //! Computes the angular value in radians between <me> and
     //! <Other>. Returns the angle in the range [-PI, PI].
     Standard_Real xgp_Dir2d::Angle(xgp_Dir2d^ Other) {
-        return NativeHandle->Angle(Other->GetDir2d());
+        return NativeHandle->Angle(*Other->GetDir2d());
     };
 
 
     //! Computes the cross product between two directions.
     Standard_Real xgp_Dir2d::Crossed(xgp_Dir2d^ Right) {
-        return NativeHandle->Crossed(Right->GetDir2d());
+        return NativeHandle->Crossed(*Right->GetDir2d());
     };
 
 
     //! Computes the scalar product
     Standard_Real xgp_Dir2d::Dot(xgp_Dir2d^ Other) {
-        return NativeHandle->Dot(Other->GetDir2d());
+        return NativeHandle->Dot(*Other->GetDir2d());
     };
 
 
@@ -238,12 +231,13 @@ namespace TKMath
 
     //! Reverses the orientation of a direction
     xgp_Dir2d^ xgp_Dir2d::Reversed() {
-        return gcnew xgp_Dir2d(NativeHandle->Reversed());
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Reversed());
+        return gcnew xgp_Dir2d(temp);
     };
 
 
     void xgp_Dir2d::Mirror(xgp_Dir2d^ V) {
-        NativeHandle->Mirror(V->GetDir2d());
+        NativeHandle->Mirror(*V->GetDir2d());
     };
 
 
@@ -251,7 +245,8 @@ namespace TKMath
     //! with respect to the direction V which is the center of
     //! the  symmetry.
     xgp_Dir2d^ xgp_Dir2d::Mirrored(xgp_Dir2d^ V) {
-        return gcnew xgp_Dir2d(NativeHandle->Mirrored(V->GetDir2d()));
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Mirrored(*V->GetDir2d()));
+        return gcnew xgp_Dir2d(temp);
     };
 
     void xgp_Dir2d::Mirror(xgp_Ax2d^ A) {
@@ -263,7 +258,8 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Dir2d^ xgp_Dir2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Dir2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Dir2d(temp);
     };
 
     void xgp_Dir2d::Rotate(Standard_Real Ang) {
@@ -274,7 +270,8 @@ namespace TKMath
     //! Rotates a direction.  Ang is the angular value of
     //! the rotation in radians.
     xgp_Dir2d^ xgp_Dir2d::Rotated(Standard_Real Ang) {
-        return gcnew xgp_Dir2d(NativeHandle->Rotated(Ang));
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Rotated(Ang));
+        return gcnew xgp_Dir2d(temp);
     };
 
     void xgp_Dir2d::Transform(xgp_Trsf2d^ T) {
@@ -287,7 +284,8 @@ namespace TKMath
     //! If the scale factor of the "Trsf" T is negative then the
     //! direction <me> is reversed.
     xgp_Dir2d^ xgp_Dir2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Dir2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Dir2d(temp);
     };
 };
 

@@ -22,7 +22,8 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 
 //! Describes a composite solid which
 //! - references an underlying composite solid with the

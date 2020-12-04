@@ -38,7 +38,7 @@ namespace TKMath
 	}
 
 	void xgp_Ax1::SetDirection(xgp_Dir^ V) {
-		NativeHandle->SetDirection(V->GetDir());
+		NativeHandle->SetDirection(*V->GetDir());
 	}
 
 	void xgp_Ax1::SetLocation(xgp_Pnt^ P) {

@@ -34,6 +34,8 @@
 #include <TopTools_ListOfShape.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_WireError.hxx>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class StdFail_NotDone;
 class TopoDS_Edge;
 class TopoDS_Wire;

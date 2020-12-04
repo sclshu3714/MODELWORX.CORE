@@ -8,6 +8,7 @@
 #include "xgp_Ax2.h"
 #include "xgp_Vec.h"
 #include "xgp_Trsf.h"
+class gp_Ax1;
 
 namespace TKMath
 {

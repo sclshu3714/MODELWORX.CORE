@@ -40,7 +40,7 @@ namespace TKG3d {
 	//! (P and V are, respectively, the origin and the unit
 	//! vector of the positioning axis of the line).
 	XGeom_Line::XGeom_Line(xgp_Pnt^ P, xgp_Dir^ V) {
-		NativeHandle() = new Geom_Line(P->GetPnt(), V->GetDir());
+		NativeHandle() = new Geom_Line(P->GetPnt(), *V->GetDir());
 		SetCurveHandle(NativeHandle());
 	};
 
@@ -69,7 +69,7 @@ namespace TKG3d {
 
 	//! changes the direction of the line.
 	void XGeom_Line::SetDirection(xgp_Dir^ V) {
-		NativeHandle()->SetDirection(V->GetDir());
+		NativeHandle()->SetDirection(*V->GetDir());
 	};
 
 

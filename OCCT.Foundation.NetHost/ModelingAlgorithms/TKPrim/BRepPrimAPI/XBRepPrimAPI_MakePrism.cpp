@@ -43,7 +43,7 @@ namespace TKPrim {
 	//! are attempted to be canonized in simple types
 	//!  const Standard_Boolean Inf = Standard_True, const Standard_Boolean Copy = Standard_False, const Standard_Boolean Canonize = Standard_True
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Dir^ D, Standard_Boolean Inf, Standard_Boolean Copy, Standard_Boolean Canonize) {
-		NativeHandle = new BRepPrimAPI_MakePrism(*S->GetShape(), D->GetDir(), Inf, Copy, Canonize);
+		NativeHandle = new BRepPrimAPI_MakePrism(*S->GetShape(), *D->GetDir(), Inf, Copy, Canonize);
 		SetMakeSweepHandle(NativeHandle);
 	};
 

@@ -47,7 +47,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
-
+class gp_Circ;
 namespace TKMath
 {
     ref class xgp_Ax1;

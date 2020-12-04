@@ -29,6 +29,8 @@
 #include <BRepBuilderAPI_Command.hxx>
 #include <Standard_Boolean.hxx>
 #include <XTopTools_ListOfShape.h>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class StdFail_NotDone;
 class TopoDS_Shape;
 

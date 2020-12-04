@@ -25,6 +25,7 @@
 #include <Standard_Type.hxx>
 #include <Standard_TypeDef.hxx>
 #include <Standard_Handle.hxx>
+class gp_Dir;
 
 //! Describes a unit vector in 3D space. This unit vector is also called "Direction".
 //! See Also
@@ -52,11 +53,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Dir(gp_Dir* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Dir(gp_Dir pos);
 
         //! Normalizes the vector V and creates a direction. Raises ConstructionError if V.Magnitude() <= Resolution.
         xgp_Dir(xgp_Vec^ V);
@@ -113,7 +109,7 @@ namespace TKMath
         void SetXYZ(xgp_XYZ^ Coord);
 
         //! Returns the gp_Dir
-        gp_Dir GetDir();
+        gp_Dir* GetDir();
         //! Returns the coordinate of range Index :
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned

@@ -21,7 +21,7 @@ namespace TKMath
     //! the axis placement and V is the "Direction" of
     //! the axis placement.
     xgp_Ax2d::xgp_Ax2d(xgp_Pnt2d^ P, xgp_Dir2d^ V) {
-        NativeHandle = new gp_Ax2d(P->GetPnt2d(), V->GetDir2d());
+        NativeHandle = new gp_Ax2d(P->GetPnt2d(), *V->GetDir2d());
     };
 
     // Õ∑≈
@@ -46,7 +46,7 @@ namespace TKMath
 
     //! Changes the direction of <me>.
     void xgp_Ax2d::SetDirection(xgp_Dir2d^ V) {
-        NativeHandle->SetDirection(V->GetDir2d());
+        NativeHandle->SetDirection(*V->GetDir2d());
     };
 
     //Returns the gp_Ax2d
@@ -61,7 +61,8 @@ namespace TKMath
 
     //! Returns the direction of <me>.
     xgp_Dir2d^ xgp_Ax2d::Direction() {
-        return gcnew xgp_Dir2d(NativeHandle->Direction());
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Direction());
+        return gcnew xgp_Dir2d(temp);
     };
 
 

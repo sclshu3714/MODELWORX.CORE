@@ -24,7 +24,7 @@ namespace TKMath
     //! Direction" and Vx^Vy have the same sign.
     //! Raises ConstructionError if Vx and Vy are parallel (same or opposite orientation).
     xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ Vx, xgp_Dir2d^ Vy) {
-        NativeHandle = new gp_Ax22d(P->GetPnt2d(), Vx->GetDir2d(), Vx->GetDir2d());
+        NativeHandle = new gp_Ax22d(P->GetPnt2d(), *Vx->GetDir2d(), *Vx->GetDir2d());
     };
 
 
@@ -33,7 +33,7 @@ namespace TKMath
     //! -   right-handed if Sense is true (default value), or
     //! -   left-handed if Sense is false
     xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean Sense) {
-        NativeHandle = new gp_Ax22d(P->GetPnt2d(), V->GetDir2d(), Sense);
+        NativeHandle = new gp_Ax22d(P->GetPnt2d(), *V->GetDir2d(), Sense);
     };
 
 
@@ -97,7 +97,7 @@ namespace TKMath
     //! without modifying the orientation (right-handed or
     //! left-handed) of this coordinate system.
     void xgp_Ax22d::SetXDirection(xgp_Dir2d^ Vx) {
-        NativeHandle->SetXDirection(Vx->GetDir2d());
+        NativeHandle->SetXDirection(*Vx->GetDir2d());
     };
 
     //! Assignsr Vy to the  "Y Direction" of
@@ -106,7 +106,7 @@ namespace TKMath
     //! without modifying the orientation (right-handed or
     //! left-handed) of this coordinate system.
     void xgp_Ax22d::SetYDirection(xgp_Dir2d^ Vy) {
-        NativeHandle->SetYDirection(Vy->GetDir2d());
+        NativeHandle->SetYDirection(*Vy->GetDir2d());
     };
 
     //! Returns an axis, for which
@@ -136,13 +136,15 @@ namespace TKMath
 
     //! Returns the "XDirection" of <me>.
     xgp_Dir2d^ xgp_Ax22d::XDirection() {
-        return gcnew xgp_Dir2d(NativeHandle->XDirection());
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->XDirection());
+        return gcnew xgp_Dir2d(temp);
     };
 
 
     //! Returns the "YDirection" of <me>.
     xgp_Dir2d^ xgp_Ax22d::YDirection() {
-        return gcnew xgp_Dir2d(NativeHandle->YDirection());
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->YDirection());
+        return gcnew xgp_Dir2d(temp);
     };
 
     void xgp_Ax22d::Mirror(xgp_Pnt2d^ P) {

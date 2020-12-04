@@ -38,6 +38,7 @@
 #include "xgp_Trsf2d.h"
 #include "xgp_Dir2d.h"
 #include "xgp_Pnt2d.h"
+class gp_Ax2d;
 
 namespace TKMath
 {

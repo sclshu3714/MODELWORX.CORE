@@ -28,7 +28,7 @@ namespace TKG3d {
 
 	//! Creates a transient copy of <me>.
 	XGeom_Direction::XGeom_Direction(xgp_Dir^ V) {
-		NativeHandle() = new Geom_Direction(V->GetDir());
+		NativeHandle() = new Geom_Direction(*V->GetDir());
 		SetVectorHandle(NativeHandle());
 	};
 
@@ -51,7 +51,7 @@ namespace TKG3d {
 
 	//! Converts the gp_Dir unit vector V into this unit vector.
 	void XGeom_Direction::SetDir(xgp_Dir^ V) {
-		NativeHandle()->SetDir(V->GetDir());
+		NativeHandle()->SetDir(*V->GetDir());
 	};
 
 	//! Changes the X coordinate of <me>.
@@ -79,7 +79,8 @@ namespace TKG3d {
 	//! Returns the non transient direction with the same
 	//! coordinates as <me>.
 	xgp_Dir^ XGeom_Direction::Dir() {
-		return gcnew xgp_Dir(NativeHandle()->Dir());
+		gp_Dir* temp = new gp_Dir(NativeHandle()->Dir());
+		return gcnew xgp_Dir(temp);
 	};
 
 	//! returns 1.0 which is the magnitude of any unit vector.

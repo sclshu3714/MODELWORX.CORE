@@ -56,7 +56,7 @@
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
 #include "xgp_Trsf.h"
-
+class gp_Ax3;
 namespace TKMath
 {
     ref class xgp_Ax1;

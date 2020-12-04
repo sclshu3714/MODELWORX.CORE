@@ -31,6 +31,8 @@
 #include <BRepLib_MakeSolid.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
 #include <Standard_Boolean.hxx>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class StdFail_NotDone;
 
 

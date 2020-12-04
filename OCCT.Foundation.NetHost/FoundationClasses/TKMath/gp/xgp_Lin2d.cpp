@@ -32,7 +32,7 @@ namespace TKMath
     //! <P> is the location point (origin) of the line and
     //! <V> is the direction of the line.
     xgp_Lin2d::xgp_Lin2d(xgp_Pnt2d^ P, xgp_Dir2d^ V) {
-        NativeHandle = new gp_Lin2d(P->GetPnt2d(), V->GetDir2d());
+        NativeHandle = new gp_Lin2d(P->GetPnt2d(), *V->GetDir2d());
     };
 
 
@@ -76,7 +76,7 @@ namespace TKMath
 
     //! Changes the direction of the line.
     void xgp_Lin2d::SetDirection(xgp_Dir2d^ V) {
-        return NativeHandle->SetDirection(V->GetDir2d());
+        return NativeHandle->SetDirection(*V->GetDir2d());
     };
 
     //! Changes the origin of the line.
@@ -101,7 +101,8 @@ namespace TKMath
 
     //! Returns the direction of the line.
     xgp_Dir2d^ xgp_Lin2d::Direction() {
-        return gcnew xgp_Dir2d(NativeHandle->Direction());
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Direction());
+        return gcnew xgp_Dir2d(temp);
     };
 
     //! Returns the location point (origin) of the line.

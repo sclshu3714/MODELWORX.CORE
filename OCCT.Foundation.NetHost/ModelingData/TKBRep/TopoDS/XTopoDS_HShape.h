@@ -24,7 +24,8 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 #include <Standard_Transient.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 
 //class TopoDS_HShape;
 //DEFINE_STANDARD_HANDLE(TopoDS_HShape, Standard_Transient)

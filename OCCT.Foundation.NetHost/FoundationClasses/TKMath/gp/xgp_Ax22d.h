@@ -39,7 +39,7 @@
 #include "xgp_Ax2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Ax22d;
 namespace TKMath
 {
     ref class xgp_Pnt2d;

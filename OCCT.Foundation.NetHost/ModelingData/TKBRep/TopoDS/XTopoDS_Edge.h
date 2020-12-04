@@ -26,7 +26,8 @@
 #include <Standard_Handle.hxx>
 
 #include <TopoDS_Shape.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 
 //! Describes an edge which
 //! - references an underlying edge with the potential to

@@ -25,7 +25,7 @@ namespace TKMath
 
     //! Creates a unitary vector from a direction V.
     xgp_Vec2d::xgp_Vec2d(xgp_Dir2d^ V) {
-        NativeHandle = new gp_Vec2d(V->GetDir2d());
+        NativeHandle = new gp_Vec2d(*V->GetDir2d());
     };
 
     //! Creates a vector with a doublet of coordinates.

@@ -41,7 +41,8 @@
 #include <Poly_PolygonOnTriangulation.hxx>
 #include <Poly_Triangulation.hxx>
 #include <XGeom2d_Curve.h>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class Standard_NullObject;
 class Standard_DomainError;
 class TopoDS_Face;

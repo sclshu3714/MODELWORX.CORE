@@ -24,7 +24,8 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 
 //! Describes a compound which
 //! - references an underlying compound with the

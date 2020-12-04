@@ -14,13 +14,7 @@ namespace TKMath
     xgp_Cylinder::xgp_Cylinder(gp_Cylinder* pos) {
         NativeHandle = new gp_Cylinder(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Cylinder::xgp_Cylinder(gp_Cylinder pos) {
-        NativeHandle = new gp_Cylinder(pos);
-    };
+
 
     //! Creates a cylinder of radius Radius, whose axis is the "main
     //! Axis" of A3. A3 is the local coordinate system of the cylinder.   Raises ConstructionErrord if R < 0.0
@@ -43,8 +37,8 @@ namespace TKMath
 
 
     //! gp_Cylinder
-    gp_Cylinder xgp_Cylinder::GetCylinder() {
-        return *NativeHandle;
+    gp_Cylinder* xgp_Cylinder::GetCylinder() {
+        return NativeHandle;
     };
 
     //! Changes the symmetry axis of the cylinder. Raises ConstructionError if the direction of A1 is parallel to the "XDirection"
@@ -140,7 +134,8 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Cylinder(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Mirror(xgp_Ax1^ A1) {
@@ -152,7 +147,8 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Cylinder(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Mirror(xgp_Ax2^ A2) {
@@ -164,7 +160,8 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Cylinder(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -175,7 +172,8 @@ namespace TKMath
     //! Rotates a cylinder. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Cylinder^ xgp_Cylinder::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Cylinder(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Scale(xgp_Pnt^ P, Standard_Real S) {
@@ -186,7 +184,8 @@ namespace TKMath
     //! Scales a cylinder. S is the scaling value.
     //! The absolute value of S is used to scale the cylinder
     xgp_Cylinder^ xgp_Cylinder::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Cylinder(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Transform(xgp_Trsf^ T) {
@@ -196,7 +195,8 @@ namespace TKMath
 
     //! Transforms a cylinder with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Cylinder^ xgp_Cylinder::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Cylinder(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Translate(xgp_Vec^ V) {
@@ -207,7 +207,8 @@ namespace TKMath
     //! Translates a cylinder in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Cylinder^ xgp_Cylinder::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Cylinder(NativeHandle->Translated(V->GetVec()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
@@ -217,7 +218,8 @@ namespace TKMath
 
     //! Translates a cylinder from the point P1 to the point P2.
     xgp_Cylinder^ xgp_Cylinder::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Cylinder(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Cylinder(temp);
     };
 };
 

@@ -19,8 +19,10 @@
 #pragma once
 #include <BRepBuilderAPI_MakeEdge.hxx>	 
 #include <XBRepBuilderAPI_MakeShape.h>
+#include <XBRepBuilderAPI_EdgeError.h>
 #include <XTopoDS_Shape.h>
-
+#include <XTopoDS_Edge.h>
+#include <XGeom2d_Curve.h>
 #include <XGeom_Surface.h>
 #include <XTopoDS_Face.h>
 #include <XTopoDS_Wire.h>	
@@ -46,9 +48,7 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_EdgeError.hxx>
-#include <XTopoDS_Edge.h>
-#include <XGeom2d_Curve.h>
-#include <XBRepBuilderAPI_EdgeError.h>
+#include <gp_Dir2d.hxx>
 
 class StdFail_NotDone;
 class TopoDS_Vertex;
@@ -62,7 +62,7 @@ class Geom_Curve;
 class Geom2d_Curve;
 class Geom_Surface;
 class TopoDS_Edge;
-
+class gp_Dir2d;
 
 //! Provides methods to build edges.
 //!

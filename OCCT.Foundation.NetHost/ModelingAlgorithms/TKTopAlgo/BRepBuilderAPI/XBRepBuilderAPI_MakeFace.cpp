@@ -24,13 +24,13 @@ namespace TKTopAlgo {
 
 	//! Make a face from a cylinder.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCylinder());
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a cone.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCone());
 		Initialize(NativeHandle);
 	};
 
@@ -61,13 +61,13 @@ namespace TKTopAlgo {
 
 	//! Make a face from a cylinder.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), UMin, UMax, VMin, VMax);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCylinder(), UMin, UMax, VMin, VMax);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a cone.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), UMin, UMax, VMin, VMax);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCone(), UMin, UMax, VMin, VMax);
 		Initialize(NativeHandle);
 	};
 
@@ -113,14 +113,14 @@ namespace TKTopAlgo {
 	//! Make a face from a cylinder and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cylinder^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCylinder(), *W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCylinder(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a cone and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Cone^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetCone(), *W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetCone(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 

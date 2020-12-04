@@ -42,6 +42,7 @@
 #include <BRep_Builder.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
+
 class BRep_Builder;
 
 using namespace TKBRep;

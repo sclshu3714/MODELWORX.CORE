@@ -23,6 +23,8 @@
 #include <XTopAbs_Orientation.h>
 #include <XTopAbs_ShapeEnum.h>
 #include <XTopoDS_TShape.h>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 //! Describes a shape which
 //! - references an underlying shape with the potential
 //! to be given a location and an orientation

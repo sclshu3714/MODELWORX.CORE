@@ -31,6 +31,8 @@
 #include <TopAbs_Orientation.hxx>
 #include <TopLoc_Location.hxx>
 #include <Standard_Boolean.hxx>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class Standard_NoMoreObject;
 class Standard_NoSuchObject;
 

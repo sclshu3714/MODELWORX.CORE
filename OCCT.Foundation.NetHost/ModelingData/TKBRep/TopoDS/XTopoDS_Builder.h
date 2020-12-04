@@ -29,7 +29,8 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class Standard_NullObject;
 class TopoDS_FrozenShape;
 class TopoDS_UnCompatibleShapes;

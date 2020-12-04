@@ -41,6 +41,8 @@
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_FaceError.hxx>
 #include <XBRepBuilderAPI_FaceError.h>
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 class StdFail_NotDone;
 //class TopoDS_Face;
 //class gp_Pln;

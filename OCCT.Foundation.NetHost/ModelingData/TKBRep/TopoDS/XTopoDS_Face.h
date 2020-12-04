@@ -25,7 +25,8 @@
 #include <Standard_Handle.hxx>
 
 #include <TopoDS_Shape.hxx>
-
+#include <gp_Dir2d.hxx>
+class gp_Dir2d;
 
 //! Describes a face which
 //! - references an underlying face with the potential to

@@ -32,7 +32,7 @@ namespace TKMath
     //! vector V (P and V are, respectively, the origin and
     //! the unit vector of the positioning axis of the line).
     xgp_Lin::xgp_Lin(xgp_Pnt^ P, xgp_Dir^ V){
-        NativeHandle = new gp_Lin(P->GetPnt(), V->GetDir());
+        NativeHandle = new gp_Lin(P->GetPnt(), *V->GetDir());
     };
 
     //ÊÍ·Å
@@ -67,7 +67,7 @@ namespace TKMath
 
     //! Changes the direction of the line.
     void xgp_Lin::SetDirection(xgp_Dir^ V){
-        return NativeHandle->SetDirection(V->GetDir());
+        return NativeHandle->SetDirection(*V->GetDir());
     };
 
     //! Changes the location point (origin) of the line.
@@ -85,7 +85,8 @@ namespace TKMath
 
     //! Returns the direction of the line.
     xgp_Dir^ xgp_Lin::Direction(){ 
-        return gcnew xgp_Dir(NativeHandle->Direction());
+        gp_Dir* temp = new gp_Dir(NativeHandle->Direction());
+        return gcnew xgp_Dir(temp);
     };
 
 

@@ -23,7 +23,7 @@ namespace TKMath
     //! Direction" = (N ^ Vx) ^ N,
     //! Exception: raises ConstructionError if N and Vx are parallel (same or opposite orientation).
     xgp_Ax2::xgp_Ax2(xgp_Pnt^ P, xgp_Dir^ N, xgp_Dir^ Vx) {
-        NativeHandle = new gp_Ax2(P->GetPnt(),N->GetDir(), Vx->GetDir());
+        NativeHandle = new gp_Ax2(P->GetPnt(),*N->GetDir(), *Vx->GetDir());
     };
 
     //! Creates an axis placement with an origin P such that:
@@ -40,7 +40,7 @@ namespace TKMath
     //! gives the "main Direction" (here, "X Direction" and "Y
     //! Direction" are defined automatically).
     xgp_Ax2::xgp_Ax2(xgp_Pnt^ P, xgp_Dir^ V) {
-        NativeHandle = new gp_Ax2(P->GetPnt(), V->GetDir());
+        NativeHandle = new gp_Ax2(P->GetPnt(), *V->GetDir());
     };
 
     //! Creates -   a coordinate system with an origin P, where V
@@ -86,7 +86,7 @@ namespace TKMath
     //! Standard_ConstructionError if V is parallel to the "X
     //! Direction" of this coordinate system.
     void xgp_Ax2::SetDirection(xgp_Dir^ V) {
-        NativeHandle->SetDirection(V->GetDir());
+        NativeHandle->SetDirection(*V->GetDir());
     };
 
 
@@ -104,7 +104,7 @@ namespace TKMath
     //! Standard_ConstructionError if Vx or Vy is parallel to
     //! the "main Direction" of this coordinate system.
     void xgp_Ax2::SetXDirection(xgp_Dir^ Vx) {
-        NativeHandle->SetXDirection(Vx->GetDir());
+        NativeHandle->SetXDirection(*Vx->GetDir());
     };
 
 
@@ -117,7 +117,7 @@ namespace TKMath
     //! Standard_ConstructionError if Vx or Vy is parallel to
     //! the "main Direction" of this coordinate system.
     void xgp_Ax2::SetYDirection(xgp_Dir^ Vy) {
-        NativeHandle->SetYDirection(Vy->GetDir());
+        NativeHandle->SetYDirection(*Vy->GetDir());
     };
 
 
@@ -143,7 +143,8 @@ namespace TKMath
 
     //! Returns the main direction of <me>.
     xgp_Dir^ xgp_Ax2::Direction() {
-        return gcnew  xgp_Dir(NativeHandle->Direction());
+        gp_Dir* temp = new gp_Dir(NativeHandle->Direction());
+        return gcnew xgp_Dir(temp);
     };
 
 
@@ -155,13 +156,15 @@ namespace TKMath
 
     //! Returns the "XDirection" of <me>.
     xgp_Dir^ xgp_Ax2::XDirection() {
-        return gcnew  xgp_Dir(NativeHandle->XDirection());
+        gp_Dir* temp = new gp_Dir(NativeHandle->XDirection());
+        return gcnew  xgp_Dir(temp);
     };
 
 
     //! Returns the "YDirection" of <me>.
     xgp_Dir^ xgp_Ax2::YDirection() {
-        return gcnew  xgp_Dir(NativeHandle->YDirection());
+        gp_Dir* temp = new gp_Dir(NativeHandle->YDirection());
+        return gcnew  xgp_Dir(temp);
     };
 
     Standard_Boolean xgp_Ax2::IsCoplanar(xgp_Ax2^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {

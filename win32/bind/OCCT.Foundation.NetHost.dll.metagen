@@ -717,7 +717,6 @@ Class TKMath.xgp_Dir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Dir2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -730,7 +729,7 @@ Class TKMath.xgp_Dir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetX(Double): PrivateScope, Public, HideBySig
     SetY(Double): PrivateScope, Public, HideBySig
     SetXY(xgp_XY): PrivateScope, Public, HideBySig
-    GetDir2d(gp_Dir2d*): PrivateScope, Public, HideBySig
+    GetDir2d(): PrivateScope, Public, HideBySig
     Coord(Double, Double): PrivateScope, Public, HideBySig
     Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
@@ -1010,7 +1009,6 @@ Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Dir*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1024,7 +1022,7 @@ Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetY(Double): PrivateScope, Public, HideBySig
     SetZ(Double): PrivateScope, Public, HideBySig
     SetXYZ(xgp_XYZ): PrivateScope, Public, HideBySig
-    GetDir(gp_Dir*): PrivateScope, Public, HideBySig
+    GetDir(): PrivateScope, Public, HideBySig
     Coord(Double, Double, Double): PrivateScope, Public, HideBySig
     Coord(Int32): PrivateScope, Public, HideBySig
     X(): PrivateScope, Public, HideBySig
@@ -3568,7 +3566,6 @@ Class TKMath.xgp_Circ2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax3, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Cone): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cone*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3576,7 +3573,7 @@ Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Cone* Handle 'get ' : 
   Methods:
-    GetCone(gp_Cone*): PrivateScope, Public, HideBySig
+    GetCone(): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
@@ -3614,7 +3611,6 @@ Class TKMath.xgp_Cone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax3, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Cylinder): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Cylinder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3622,7 +3618,7 @@ Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Cylinder* Handle 'get ' : 
   Methods:
-    GetCylinder(gp_Cylinder*): PrivateScope, Public, HideBySig
+    GetCylinder(): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax3): PrivateScope, Public, HideBySig
@@ -5339,7 +5335,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeSolid: AutoLayout, AnsiClass, Class, Public,
     SetMakeSolidHandle(BRepBuilderAPI_MakeSolid*): PrivateScope, Public, HideBySig
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     Add(XTopoDS_Shell): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Solid(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig

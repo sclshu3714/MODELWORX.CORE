@@ -36,7 +36,7 @@ namespace TKMath
     //! Creates a plane with the  "Location" point <P>
     //! and the normal direction <V>.
     xgp_Pln::xgp_Pln(xgp_Pnt^ P, xgp_Dir^ V) {
-        NativeHandle = new gp_Pln(P->GetPnt(), V->GetDir());
+        NativeHandle = new gp_Pln(P->GetPnt(), *V->GetDir());
     };
 
 

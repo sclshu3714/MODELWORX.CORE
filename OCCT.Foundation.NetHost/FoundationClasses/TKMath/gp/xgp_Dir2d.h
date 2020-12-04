@@ -21,6 +21,8 @@
 #include "xgp_Ax2d.h"
 #include "xgp_Trsf2d.h"
 
+class gp_Dir2d;
+
 //! Describes a unit vector in the plane (2D space). This unit
 //! vector is also called "Direction".
 //! See Also
@@ -47,11 +49,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Dir2d(gp_Dir2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Dir2d(gp_Dir2d pos);
 
         //! Normalizes the vector V and creates a Direction. Raises ConstructionError if V.Magnitude() <= Resolution from gp.
         xgp_Dir2d(xgp_Vec2d^ V);
@@ -149,7 +146,7 @@ namespace TKMath
         void SetXY(xgp_XY^ Coord);
 
         //! return the gp_Dir2d
-        gp_Dir2d  GetDir2d();
+        gp_Dir2d*  GetDir2d();
 
         //! For this unit vector returns the coordinate of range Index :
         //! Index = 1 => X is returned

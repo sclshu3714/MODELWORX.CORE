@@ -49,6 +49,7 @@
 #include "xgp_Vec.h"
 #include "xgp_Ax1.h"
 #include "xgp_Trsf.h"
+class gp_Ax2;
 
 namespace TKMath
 {

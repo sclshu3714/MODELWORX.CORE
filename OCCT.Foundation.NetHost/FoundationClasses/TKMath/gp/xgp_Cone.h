@@ -51,6 +51,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Cone;
 
 namespace TKMath
 {
@@ -72,11 +73,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Cone(gp_Cone* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Cone(gp_Cone pos);
 
         //! Creates an infinite conical surface. A3 locates the cone
         //! in the space and defines the reference plane of the surface.
@@ -96,7 +92,7 @@ namespace TKMath
         !xgp_Cone();
 
         //! gp_Cone
-        gp_Cone GetCone();
+        gp_Cone* GetCone();
 
         //! Changes the symmetry axis of the cone.  Raises ConstructionError
         //! the direction of A1 is parallel to the "XDirection"

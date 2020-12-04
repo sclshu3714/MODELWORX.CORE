@@ -14,13 +14,7 @@ namespace TKMath
     xgp_Dir::xgp_Dir(gp_Dir* pos) {
         NativeHandle = new gp_Dir(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Dir::xgp_Dir(gp_Dir pos) {
-        NativeHandle = new gp_Dir(pos);
-    };
+
 
     //! Normalizes the vector V and creates a direction. Raises ConstructionError if V.Magnitude() <= Resolution.
     xgp_Dir::xgp_Dir(xgp_Vec^ V) {
@@ -105,8 +99,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Dir
-    gp_Dir xgp_Dir::GetDir() {
-        return *NativeHandle;
+    gp_Dir* xgp_Dir::GetDir() {
+        return NativeHandle;
     };
     //! Returns the coordinate of range Index :
     //! Index = 1 => X is returned
@@ -148,19 +142,19 @@ namespace TKMath
     //! Returns True if the angle between the two directions is
     //! lower or equal to AngularTolerance.
     Standard_Boolean xgp_Dir::IsEqual(xgp_Dir^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetDir(), AngularTolerance);
+        return NativeHandle->IsEqual(*Other->GetDir(), AngularTolerance);
     };
 
 
     //! Returns True if  the angle between this unit vector and the unit vector Other is equal to Pi/2 (normal).
     Standard_Boolean xgp_Dir::IsNormal(xgp_Dir^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetDir(), AngularTolerance);
+        return NativeHandle->IsNormal(*Other->GetDir(), AngularTolerance);
     };
 
 
     //! Returns True if  the angle between this unit vector and the unit vector Other is equal to  Pi (opposite).
     Standard_Boolean xgp_Dir::IsOpposite(xgp_Dir^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetDir(), AngularTolerance);
+        return NativeHandle->IsOpposite(*Other->GetDir(), AngularTolerance);
     };
 
 
@@ -168,7 +162,7 @@ namespace TKMath
     //! unit vector Other is equal to 0 or to Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
     Standard_Boolean xgp_Dir::IsParallel(xgp_Dir^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetDir(), AngularTolerance);
+        return NativeHandle->IsParallel(*Other->GetDir(), AngularTolerance);
     };
 
 
@@ -176,7 +170,7 @@ namespace TKMath
     //! <Other>. This value is always positive in 3D space.
     //! Returns the angle in the range [0, PI]
     Standard_Real xgp_Dir::Angle(xgp_Dir^ Other) {
-        return NativeHandle->Angle(Other->GetDir());
+        return NativeHandle->Angle(*Other->GetDir());
     };
 
 
@@ -189,7 +183,7 @@ namespace TKMath
     //! when <VRef> is in the same plane as <me> and <Other>
     //! The tolerance criterion is Resolution from package gp.
     Standard_Real xgp_Dir::AngleWithRef(xgp_Dir^ Other, xgp_Dir^ VRef) {
-        return NativeHandle->AngleWithRef(Other->GetDir(), VRef->GetDir());
+        return NativeHandle->AngleWithRef(*Other->GetDir(), *VRef->GetDir());
     };
 
     //! Computes the cross product between two directions
@@ -197,7 +191,7 @@ namespace TKMath
     //! are parallel because the computed vector cannot be normalized
     //! to create a direction.
     void xgp_Dir::Cross(xgp_Dir^ Right) {
-        NativeHandle->Cross(Right->GetDir());
+        NativeHandle->Cross(*Right->GetDir());
     };
 
 
@@ -207,12 +201,13 @@ namespace TKMath
     //! or <me> and (V1^V2) are parallel because the computed vector
     //! can't be normalized to create a direction.
     xgp_Dir^ xgp_Dir::Crossed(xgp_Dir^ Right) {
-        return gcnew xgp_Dir(NativeHandle->Crossed(Right->GetDir()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Crossed(*Right->GetDir()));
+        return gcnew xgp_Dir(temp);
     };
 
 
     void xgp_Dir::CrossCross(xgp_Dir^ V1, xgp_Dir^ V2) {
-        NativeHandle->CrossCross(V1->GetDir(), V2->GetDir());
+        NativeHandle->CrossCross(*V1->GetDir(), *V2->GetDir());
     };
 
     //! Computes the double vector product this ^ (V1 ^ V2).
@@ -224,12 +219,13 @@ namespace TKMath
     //! This is because, in these conditions, the computed vector
     //! is null and cannot be normalized.
     xgp_Dir^ xgp_Dir::CrossCrossed(xgp_Dir^ V1, xgp_Dir^ V2) {
-        return gcnew xgp_Dir(NativeHandle->CrossCrossed(V1->GetDir(), V2->GetDir()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->CrossCrossed(*V1->GetDir(), *V2->GetDir()));
+        return gcnew xgp_Dir(temp);
     };
 
     //! Computes the scalar product
     Standard_Real xgp_Dir::Dot(xgp_Dir^ Other) {
-        return NativeHandle->Dot(Other->GetDir());
+        return NativeHandle->Dot(*Other->GetDir());
     };
 
 
@@ -239,7 +235,7 @@ namespace TKMath
     //! to create a unitary vector. So this method never
     //! raises an exception even if V1 and V2 are parallel.
     Standard_Real xgp_Dir::DotCross(xgp_Dir^ V1, xgp_Dir^ V2) {
-        return NativeHandle->DotCross(V1->GetDir(), V2->GetDir());
+        return NativeHandle->DotCross(*V1->GetDir(), *V2->GetDir());
     };
 
     void xgp_Dir::Reverse() {
@@ -252,12 +248,13 @@ namespace TKMath
     //! with respect to the direction V which is the center of
     //! the  symmetry.]
     xgp_Dir^ xgp_Dir::Reversed() {
-        return gcnew xgp_Dir(NativeHandle->Reversed());
+        gp_Dir* temp = new gp_Dir(NativeHandle->Reversed());
+        return gcnew xgp_Dir(temp);
     };
 
 
     void xgp_Dir::Mirror(xgp_Dir^ V) {
-        NativeHandle->Mirror(V->GetDir());
+        NativeHandle->Mirror(*V->GetDir());
     };
 
 
@@ -265,7 +262,8 @@ namespace TKMath
     //! with respect to the direction V which is the center of
     //! the  symmetry.
     xgp_Dir^ xgp_Dir::Mirrored(xgp_Dir^ V) {
-        return gcnew xgp_Dir(NativeHandle->Mirrored(V->GetDir()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Mirrored(*V->GetDir()));
+        return gcnew xgp_Dir(temp);
     };
 
     void xgp_Dir::Mirror(xgp_Ax1^ A1) {
@@ -277,7 +275,8 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Dir^ xgp_Dir::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Dir(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Dir(temp);
     };
 
     void xgp_Dir::Mirror(xgp_Ax2^ A2) {
@@ -289,7 +288,8 @@ namespace TKMath
     //! with respect to a plane. The axis placement A2 locates
     //! the plane of the symmetry : (Location, XDirection, YDirection).
     xgp_Dir^ xgp_Dir::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Dir(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Dir(temp);
     };
 
     void xgp_Dir::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -300,7 +300,8 @@ namespace TKMath
     //! Rotates a direction. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Dir^ xgp_Dir::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Dir(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Dir(temp);
     };
 
     void xgp_Dir::Transform(xgp_Trsf^ T) {
@@ -313,7 +314,8 @@ namespace TKMath
     //! If the scale factor of the "Trsf" T is negative then the
     //! direction <me> is reversed.
     xgp_Dir^ xgp_Dir::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Dir(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Dir* temp = new gp_Dir(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Dir(temp);
     };
 };
 

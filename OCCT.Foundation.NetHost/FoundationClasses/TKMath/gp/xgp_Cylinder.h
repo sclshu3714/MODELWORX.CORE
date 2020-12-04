@@ -42,6 +42,8 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Cylinder;
+
 
 namespace TKMath
 {
@@ -63,11 +65,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Cylinder(gp_Cylinder* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Cylinder(gp_Cylinder pos);
 
         //! Creates a cylinder of radius Radius, whose axis is the "main
         //! Axis" of A3. A3 is the local coordinate system of the cylinder.   Raises ConstructionErrord if R < 0.0
@@ -80,7 +77,7 @@ namespace TKMath
 
 
         //! gp_Cylinder
-        gp_Cylinder GetCylinder();
+        gp_Cylinder* GetCylinder();
 
         //! Changes the symmetry axis of the cylinder. Raises ConstructionError if the direction of A1 is parallel to the "XDirection"
         //! of the coordinate system of the cylinder.
