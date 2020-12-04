@@ -223,25 +223,25 @@ namespace TKMath
     };
 
     void xgp_Cone::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a cone with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Cone^ xgp_Cone::Transformed(xgp_Trsf^ T) {
-        gp_Cone* temp = new gp_Cone(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Cone(temp);
     };
 
     void xgp_Cone::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a cone in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Cone^ xgp_Cone::Translated(xgp_Vec^ V) {
-        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(V->GetVec()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Cone(temp);
     };
 

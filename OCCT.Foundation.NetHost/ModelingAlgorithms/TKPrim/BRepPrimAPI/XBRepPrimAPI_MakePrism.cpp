@@ -29,9 +29,7 @@ namespace TKPrim {
 	//! are attempted to be canonized in simple types
 	//! const Standard_Boolean Copy = Standard_False, const Standard_Boolean Canonize = Standard_True
 	XBRepPrimAPI_MakePrism::XBRepPrimAPI_MakePrism(XTopoDS_Shape^ S, xgp_Vec^ V, Standard_Boolean Copy, Standard_Boolean Canonize) {
-		TopoDS_Shape* shape = new TopoDS_Shape(*S->GetShape());
-		gp_Vec* gpVec = new gp_Vec(V->GetVec());
-		NativeHandle = new BRepPrimAPI_MakePrism(*shape, *gpVec, Copy, Canonize); 
+		NativeHandle = new BRepPrimAPI_MakePrism(*S->GetShape(), *V->GetVec(), Copy, Canonize);
 		SetMakeSweepHandle(NativeHandle);
 	};
 

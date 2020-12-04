@@ -154,7 +154,7 @@ namespace TKG3d {
 
 	//! Returns the point P of parameter u and the first derivative V1.
 	void XGeom_Line::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
+		NativeHandle()->D1(U, *P->GetPnt(), *V1->GetVec());
 	};
 
 
@@ -162,13 +162,13 @@ namespace TKG3d {
 	//! derivatives V1 and V2. V2 is a vector with null magnitude
 	//! for a line.
 	void XGeom_Line::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
+		NativeHandle()->D2(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec());
 	};
 
 
 	//! V2 and V3 are vectors with null magnitude for a line.
 	void XGeom_Line::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		NativeHandle()->D3(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec(), *V3->GetVec());
 	};
 
 
@@ -176,12 +176,13 @@ namespace TKG3d {
 	//! order of derivation N.
 	//! Raised if N < 1.
 	xgp_Vec^ XGeom_Line::DN(Standard_Real U, Standard_Integer N) {
-		return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, N));
+		return gcnew xgp_Vec(temp);
 	};
 
 	//! Applies the transformation T to this line.
 	void XGeom_Line::Transform(xgp_Trsf^ T) {
-		NativeHandle()->Transform(T->GetTrsf());
+		NativeHandle()->Transform(*T->GetTrsf());
 	};
 
 	//! Returns the  parameter on the  transformed  curve for
@@ -195,7 +196,7 @@ namespace TKG3d {
 	//!
 	//! This methods returns <U> * T.ScaleFactor()
 	Standard_Real XGeom_Line::TransformedParameter(Standard_Real U, xgp_Trsf^ T) {
-		return NativeHandle()->TransformedParameter(U, T->GetTrsf());
+		return NativeHandle()->TransformedParameter(U, *T->GetTrsf());
 	};
 
 	//! Returns a  coefficient to compute the parameter on
@@ -210,7 +211,7 @@ namespace TKG3d {
 	//!
 	//! This methods returns T.ScaleFactor()
 	Standard_Real XGeom_Line::ParametricTransformation(xgp_Trsf^ T) {
-		return NativeHandle()->ParametricTransformation(T->GetTrsf());
+		return NativeHandle()->ParametricTransformation(*T->GetTrsf());
 	};
 
 	//! Creates a new object which is a copy of this line.

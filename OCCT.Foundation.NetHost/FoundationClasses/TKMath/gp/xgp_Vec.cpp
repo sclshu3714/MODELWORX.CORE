@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Vec::xgp_Vec(gp_Vec* pos) {
         NativeHandle = new gp_Vec(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Vec::xgp_Vec(gp_Vec pos) {
-        NativeHandle = new gp_Vec(pos);
-    };
 
     //! Creates a unitary vector from a direction V.
     xgp_Vec::xgp_Vec(xgp_Dir^ V) {
@@ -96,8 +89,8 @@ namespace TKMath
     };
 
     //! Returns the  gp_Vec
-    gp_Vec xgp_Vec::GetVec() {
-        return *NativeHandle;
+    gp_Vec* xgp_Vec::GetVec() {
+        return NativeHandle;
     };
     //! Returns the coordinate of range Index :
     //! Index = 1 => X is returned
@@ -140,7 +133,7 @@ namespace TKMath
     //! and the same direction. The precision values are LinearTolerance
     //! for the magnitude and AngularTolerance for the direction.
     Standard_Boolean xgp_Vec::IsEqual(xgp_Vec^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetVec(), LinearTolerance, AngularTolerance);
+        return NativeHandle->IsEqual(*Other->GetVec(), LinearTolerance, AngularTolerance);
     };
 
 
@@ -148,7 +141,7 @@ namespace TKMath
     //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp
     Standard_Boolean xgp_Vec::IsNormal(xgp_Vec^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetVec(), AngularTolerance);
+        return NativeHandle->IsNormal(*Other->GetVec(), AngularTolerance);
     };
 
 
@@ -156,7 +149,7 @@ namespace TKMath
     //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp
     Standard_Boolean xgp_Vec::IsOpposite(xgp_Vec^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetVec(), AngularTolerance);
+        return NativeHandle->IsOpposite(*Other->GetVec(), AngularTolerance);
     };
 
 
@@ -167,7 +160,7 @@ namespace TKMath
     //! as parallel. Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp
     Standard_Boolean xgp_Vec::IsParallel(xgp_Vec^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetVec(), AngularTolerance);
+        return NativeHandle->IsParallel(*Other->GetVec(), AngularTolerance);
     };
 
 
@@ -177,7 +170,7 @@ namespace TKMath
     //! Other.Magnitude() <= Resolution because the angular value is
     //! indefinite if one of the vectors has a null magnitude.
     Standard_Real xgp_Vec::Angle(xgp_Vec^ Other) {
-        return NativeHandle->Angle(Other->GetVec());
+        return NativeHandle->Angle(*Other->GetVec());
     };
 
     //! Computes the angle, in radians, between this vector and
@@ -195,7 +188,7 @@ namespace TKMath
     //! and the vector VRef are coplanar, unless this vector and
     //! the vector Other are parallel.
     Standard_Real xgp_Vec::AngleWithRef(xgp_Vec^ Other, xgp_Vec^ VRef) {
-        return NativeHandle->AngleWithRef(Other->GetVec(), VRef->GetVec());
+        return NativeHandle->AngleWithRef(*Other->GetVec(), *VRef->GetVec());
     };
 
     //! Computes the magnitude of this vector.
@@ -210,24 +203,26 @@ namespace TKMath
 
     //! Adds two vectors
     void xgp_Vec::Add(xgp_Vec^ Other) {
-        NativeHandle->Add(Other->GetVec());
+        NativeHandle->Add(*Other->GetVec());
     };
 
     //! Adds two vectors
     xgp_Vec^ xgp_Vec::Added(xgp_Vec^ Other) {
-       return gcnew xgp_Vec(NativeHandle->Added(Other->GetVec()));
+       gp_Vec* temp = new gp_Vec(NativeHandle->Added(*Other->GetVec()));
+       return gcnew xgp_Vec(temp);
     };
 
 
     //! Subtracts two vectors
     void xgp_Vec::Subtract(xgp_Vec^ Right) {
-        NativeHandle->Subtract(Right->GetVec());
+        NativeHandle->Subtract(*Right->GetVec());
     };
 
 
     //! Subtracts two vectors
     xgp_Vec^ xgp_Vec::Subtracted(xgp_Vec^ Right) {
-        return gcnew xgp_Vec(NativeHandle->Subtracted(Right->GetVec()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Subtracted(*Right->GetVec()));
+        return gcnew xgp_Vec(temp);
     };
 
 
@@ -239,7 +234,8 @@ namespace TKMath
 
     //! Multiplies a vector by a scalar  *
     xgp_Vec^ xgp_Vec::Multiplied(Standard_Real Scalar) {
-        return gcnew xgp_Vec(NativeHandle->Multiplied(Scalar));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Multiplied(Scalar));
+        return gcnew xgp_Vec(temp);
     };
 
 
@@ -251,19 +247,21 @@ namespace TKMath
 
     //! Divides a vector by a scalar
     xgp_Vec^ xgp_Vec::Divided(Standard_Real Scalar) {
-        return gcnew xgp_Vec(NativeHandle->Divided(Scalar));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Divided(Scalar));
+        return gcnew xgp_Vec(temp);
     };
 
 
     //! computes the cross product between two vectors
     void xgp_Vec::Cross(xgp_Vec^ Right) {
-        NativeHandle->Subtract(Right->GetVec());
+        NativeHandle->Subtract(*Right->GetVec());
     };
 
 
     //! computes the cross product between two vectors
     xgp_Vec^ xgp_Vec::Crossed(xgp_Vec^ Right) {
-        return gcnew xgp_Vec(NativeHandle->Crossed(Right->GetVec()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Crossed(*Right->GetVec()));
+        return gcnew xgp_Vec(temp);
     };
 
 
@@ -271,7 +269,7 @@ namespace TKMath
     //! product between <me> and Right.
     //! Returns || <me> ^ Right ||
     Standard_Real xgp_Vec::CrossMagnitude(xgp_Vec^ Right) {
-        return NativeHandle->CrossMagnitude(Right->GetVec());
+        return NativeHandle->CrossMagnitude(*Right->GetVec());
     };
 
 
@@ -279,29 +277,30 @@ namespace TKMath
     //! the cross product between <me> and Right.
     //! Returns || <me> ^ Right ||**2
     Standard_Real xgp_Vec::CrossSquareMagnitude(xgp_Vec^ Right) {
-        return NativeHandle->CrossSquareMagnitude(Right->GetVec());
+        return NativeHandle->CrossSquareMagnitude(*Right->GetVec());
     };
 
     //! Computes the triple vector product.
     //! <me> ^= (V1 ^ V2)
     void xgp_Vec::CrossCross(xgp_Vec^ V1, xgp_Vec^ V2) {
-        NativeHandle->CrossCross(V1->GetVec(), V2->GetVec());
+        NativeHandle->CrossCross(*V1->GetVec(), *V2->GetVec());
     };
 
     //! Computes the triple vector product.
     //! <me> ^ (V1 ^ V2)
     xgp_Vec^ xgp_Vec::CrossCrossed(xgp_Vec^ V1, xgp_Vec^ V2) {
-        return gcnew xgp_Vec(NativeHandle->CrossCrossed(V1->GetVec(), V2->GetVec()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->CrossCrossed(*V1->GetVec(), *V2->GetVec()));
+        return gcnew xgp_Vec(temp);
     };
 
     //! computes the scalar product
     Standard_Real xgp_Vec::Dot(xgp_Vec^ Other) {
-        return NativeHandle->Dot(Other->GetVec());
+        return NativeHandle->Dot(*Other->GetVec());
     };
 
     //! Computes the triple scalar product <me> * (V1 ^ V2).
     Standard_Real xgp_Vec::DotCross(xgp_Vec^ V1, xgp_Vec^ V2) {
-        return NativeHandle->DotCross(V1->GetVec(), V2->GetVec());
+        return NativeHandle->DotCross(*V1->GetVec(), *V2->GetVec());
     };
 
     //! normalizes a vector
@@ -315,7 +314,8 @@ namespace TKMath
     //! Raises an exception if the magnitude of the vector is
     //! lower or equal to Resolution from gp.
     xgp_Vec^ xgp_Vec::Normalized() {
-        return gcnew xgp_Vec(NativeHandle->Normalized());
+        gp_Vec* temp = new gp_Vec(NativeHandle->Normalized());
+        return gcnew xgp_Vec(temp);
     };
 
     //! Reverses the direction of a vector
@@ -325,51 +325,52 @@ namespace TKMath
 
     //! Reverses the direction of a vector
     xgp_Vec^ xgp_Vec::Reversed() {
-        return gcnew xgp_Vec(NativeHandle->Reversed());
+        gp_Vec* temp = new gp_Vec(NativeHandle->Reversed());
+        return gcnew xgp_Vec(temp);
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * V1 + A2 * V2 + A3 * V3 + V4
     void xgp_Vec::SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, Standard_Real A3, xgp_Vec^ V3, xgp_Vec^ V4) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec(), A2, V2->GetVec(), A3, V3->GetVec(), V4->GetVec());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec(), A2, *V2->GetVec(), A3, *V3->GetVec(), *V4->GetVec());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * V1 + A2 * V2 + A3 * V3
     void xgp_Vec::SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, Standard_Real A3, xgp_Vec^ V3) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec(), A2, V2->GetVec(), A3, V3->GetVec());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec(), A2, *V2->GetVec(), A3, *V3->GetVec());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * V1 + A2 * V2 + V3
     void xgp_Vec::SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2, xgp_Vec^ V3) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec(), A2, V2->GetVec(),V3->GetVec());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec(), A2, *V2->GetVec(),*V3->GetVec());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * V1 + A2 * V2
     void xgp_Vec::SetLinearForm(Standard_Real A1, xgp_Vec^ V1, Standard_Real A2, xgp_Vec^ V2) {
-        NativeHandle->SetLinearForm(A1,V1->GetVec(),A2, V2->GetVec());
+        NativeHandle->SetLinearForm(A1,*V1->GetVec(),A2, *V2->GetVec());
     };
 
 
     //! <me> is set to the following linear form : A1 * V1 + V2
     void xgp_Vec::SetLinearForm(Standard_Real A1, xgp_Vec^ V1, xgp_Vec^ V2) {
-        NativeHandle->SetLinearForm(A1,V1->GetVec(),V2->GetVec());
+        NativeHandle->SetLinearForm(A1,*V1->GetVec(),*V2->GetVec());
     };
 
 
     //! <me> is set to the following linear form : V1 + V2
     void xgp_Vec::SetLinearForm(xgp_Vec^ V1, xgp_Vec^ V2) {
-        NativeHandle->SetLinearForm(V1->GetVec(), V2->GetVec());
+        NativeHandle->SetLinearForm(*V1->GetVec(), *V2->GetVec());
     };
 
     void xgp_Vec::Mirror(xgp_Vec^ V) {
-        NativeHandle->Mirror(V->GetVec());
+        NativeHandle->Mirror(*V->GetVec());
     };
 
 
@@ -377,7 +378,8 @@ namespace TKMath
     //! with respect to the vector V which is the center of
     //! the  symmetry.
     xgp_Vec^ xgp_Vec::Mirrored(xgp_Vec^ V) {
-        return gcnew xgp_Vec(NativeHandle->Mirrored(V->GetVec()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Mirrored(*V->GetVec()));
+        return gcnew xgp_Vec(temp);
     };
 
     void xgp_Vec::Mirror(xgp_Ax1^ A1) {
@@ -389,7 +391,8 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Vec^ xgp_Vec::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Vec(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Vec(temp);
     };
 
     void xgp_Vec::Mirror(xgp_Ax2^ A2) {
@@ -401,7 +404,8 @@ namespace TKMath
     //! with respect to a plane. The axis placement A2 locates
     //! the plane of the symmetry : (Location, XDirection, YDirection).
     xgp_Vec^ xgp_Vec::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Vec(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Vec(temp);
     };
 
     void xgp_Vec::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -412,7 +416,8 @@ namespace TKMath
     //! Rotates a vector. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Vec^ xgp_Vec::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Vec(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Vec(temp);
     };
 
     void xgp_Vec::Scale(Standard_Real S) {
@@ -421,16 +426,18 @@ namespace TKMath
 
     //! Scales a vector. S is the scaling value.
     xgp_Vec^ xgp_Vec::Scaled(Standard_Real S) {
-        return gcnew xgp_Vec(NativeHandle->Scaled(S));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Scaled(S));
+        return gcnew xgp_Vec(temp);
     };
 
     //! Transforms a vector with the transformation T.
     void xgp_Vec::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
     //! Transforms a vector with the transformation T.
     xgp_Vec^ xgp_Vec::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Vec(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Vec* temp = new gp_Vec(NativeHandle->Transformed(*T->GetTrsf()));
+        return gcnew xgp_Vec(temp);
     };
 };

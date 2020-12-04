@@ -23,6 +23,7 @@
 #include <XTopoDS_Face.h>
 #include <XTopoDS_Shell.h>
 #include <XTopoDS_Solid.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -36,13 +37,15 @@ class StdFail_NotDone;
 using namespace TKBRep;
 using namespace TKTopAlgo;
 using namespace TKernel;
+using namespace TKMath;
 namespace TKPrim {
 	//! The abstract class MakeOneAxis is the root class of
 	//! algorithms used to construct rotational primitives.
 	ref class TKBRep::XTopoDS_Face;
 	ref class TKBRep::XTopoDS_Shell;
 	ref class TKBRep::XTopoDS_Solid;
-	ref class  TKernel::XStandard_Helper;
+	ref class TKernel::XStandard_Helper;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrimAPI_MakeOneAxis : public XBRepBuilderAPI_MakeShape
 	{
 	public:

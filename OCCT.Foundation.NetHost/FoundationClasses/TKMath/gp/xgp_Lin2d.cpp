@@ -207,25 +207,25 @@ namespace TKMath
     };
 
     void xgp_Lin2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
 
     //! Transforms a line with the transformation T fromnamespace TKMath  {  public ref class Trsf2d.
     xgp_Lin2d^ xgp_Lin2d::Transformed(xgp_Trsf2d^ T) {
-        gp_Lin2d* temp = new gp_Lin2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Lin2d* temp = new gp_Lin2d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Lin2d(temp);
     };
 
     void xgp_Lin2d::Translate(xgp_Vec2d^ V) {
-        NativeHandle->Translate(V->GetVec2d());
+        NativeHandle->Translate(*V->GetVec2d());
     };
 
 
     //! Translates a line in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Lin2d^ xgp_Lin2d::Translated(xgp_Vec2d^ V) {
-        gp_Lin2d* temp = new gp_Lin2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Lin2d* temp = new gp_Lin2d(NativeHandle->Translated(*V->GetVec2d()));
         return gcnew xgp_Lin2d(temp);
     };
 

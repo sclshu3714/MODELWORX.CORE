@@ -23,7 +23,7 @@
 #include <XTopoDS_Face.h>
 #include <xgp_Pnt.h>
 #include <xgp_Ax2.h>
-
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -41,6 +41,7 @@ using namespace TKBRep;
 namespace TKPrim {
 	ref class TKMath::xgp_Pnt;
 	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec2d;
 	ref class TKBRep::XTopoDS_Face;
 	//! Implements the torus primitive
 	public ref class XBRepPrim_Torus : public XBRepPrim_Revolution

@@ -29,6 +29,7 @@
 #include <xgp_Ax2.h>
 #include <xgp_Pln.h>
 #include <xgp_Lin.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -75,6 +76,7 @@ namespace TKPrim {
 	ref class TKMath::xgp_Pln;
 	ref class TKMath::xgp_Lin;
 	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrim_GWedge
 	{
 	public:

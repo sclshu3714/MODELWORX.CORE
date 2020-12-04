@@ -39,7 +39,7 @@
 #include "xgp_XY.h"
 #include "xgp_GTrsf2d.h"
 #include "xgp_Ax2d.h"
-
+class gp_Trsf2d;
 
 namespace TKMath
 {
@@ -61,11 +61,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Trsf2d(gp_Trsf2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Trsf2d(gp_Trsf2d pos);
 
         //! Creates a 2d transformation in the XY plane from a
         //! 3d transformation .
@@ -126,7 +121,7 @@ namespace TKMath
         void SetScaleFactor(Standard_Real S);
 
         //! Returns the gp_Trsf2d
-        gp_Trsf2d GetTrsf2d();
+        gp_Trsf2d* GetTrsf2d();
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative..

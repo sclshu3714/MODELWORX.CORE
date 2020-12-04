@@ -32,6 +32,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 #include <Standard_Real.hxx>
+#include <gp_Vec2d.hxx>
+class gp_Vec2d;
 class Standard_DomainError;
 class Standard_OutOfRange;
 class StdFail_NotDone;

@@ -26,7 +26,7 @@
 #include <XTopoDS_Edge.h>
 #include <xgp_Pnt2d.h>
 #include <xgp_Ax2.h>
-
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -52,6 +52,7 @@ namespace TKPrim {
 	ref class TKBRep::XTopoDS_Edge;
 	ref class TKMath::xgp_Pnt2d;
 	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrim_Revolution : public XBRepPrim_OneAxis
 	{
 	public:

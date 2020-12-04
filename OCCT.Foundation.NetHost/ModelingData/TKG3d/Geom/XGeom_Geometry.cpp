@@ -75,7 +75,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Translate(xgp_Vec^ V) {
-		NativeHandle()->Translate(V->GetVec());
+		NativeHandle()->Translate(*V->GetVec());
 	}
 
 
@@ -84,7 +84,7 @@ namespace TKG3d
 	}
 
 	void XGeom_Geometry::Transform(xgp_Trsf^ T) {
-		NativeHandle()->Transform(T->GetTrsf());
+		NativeHandle()->Transform(*T->GetTrsf());
 	};
 
 	XGeom_Geometry^ XGeom_Geometry::Mirrored(xgp_Pnt^ P) {
@@ -116,13 +116,13 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Transformed(xgp_Trsf^ T) {
-		return gcnew XGeom_Geometry(NativeHandle()->Transformed(T->GetTrsf()));
+		return gcnew XGeom_Geometry(NativeHandle()->Transformed(*T->GetTrsf()));
 	}
 
 
 
 	XGeom_Geometry^ XGeom_Geometry::Translated(xgp_Vec^ V) {
-		return gcnew XGeom_Geometry(NativeHandle()->Translated(V->GetVec()));
+		return gcnew XGeom_Geometry(NativeHandle()->Translated(*V->GetVec()));
 	}
 
 

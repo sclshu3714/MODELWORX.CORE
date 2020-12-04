@@ -84,7 +84,7 @@ namespace TKG3d {
 	//!
 	//! It can be redefined. For example on the Line.
 	Standard_Real XGeom_Curve::TransformedParameter(Standard_Real U, xgp_Trsf^ T) {
-		return NativeHandle()->TransformedParameter(U, T->GetTrsf());
+		return NativeHandle()->TransformedParameter(U, *T->GetTrsf());
 	};
 
 	//! Returns a  coefficient to compute the parameter on
@@ -101,7 +101,7 @@ namespace TKG3d {
 	//!
 	//! It can be redefined. For example on the Line.
 	Standard_Real XGeom_Curve::ParametricTransformation(xgp_Trsf^ T) {
-		return NativeHandle()->ParametricTransformation(T->GetTrsf());
+		return NativeHandle()->ParametricTransformation(*T->GetTrsf());
 	};
 
 	//! Returns a copy of <me> reversed.
@@ -197,7 +197,7 @@ namespace TKG3d {
 	//! Returns the point P of parameter U and the first derivative V1.
 	//! Raised if the continuity of the curve is not C1.
 	void XGeom_Curve::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
+		NativeHandle()->D1(U, *P->GetPnt(), *V1->GetVec());
 	};
 
 
@@ -205,7 +205,7 @@ namespace TKG3d {
 	//! derivatives V1 and V2.
 	//! Raised if the continuity of the curve is not C2.
 	void XGeom_Curve::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
+		NativeHandle()->D2(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec());
 	};
 
 
@@ -213,7 +213,7 @@ namespace TKG3d {
 	//! and the third derivative.
 	//! Raised if the continuity of the curve is not C3.
 	void XGeom_Curve::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		NativeHandle()->D3(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec(), *V3->GetVec());
 	};
 
 
@@ -225,7 +225,8 @@ namespace TKG3d {
 	//! easily. e.g. rational bspline and n > 3.
 	//! Raised if N < 1.
 	xgp_Vec^ XGeom_Curve::DN(Standard_Real U, Standard_Integer N) {
-		  return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, N));
+		return gcnew xgp_Vec(temp);
 	};
 
 	//! Computes the point of parameter U on <me>.

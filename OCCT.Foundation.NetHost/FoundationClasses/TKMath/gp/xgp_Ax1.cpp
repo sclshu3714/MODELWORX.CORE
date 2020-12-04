@@ -126,19 +126,19 @@ namespace TKMath
 	}
 
 	void xgp_Ax1::Transform(xgp_Trsf^ T) {
-		NativeHandle->Transform(T->GetTrsf());
+		NativeHandle->Transform(*T->GetTrsf());
 	}
 
 	xgp_Ax1^ xgp_Ax1::Transformed(xgp_Trsf^ T) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Transformed(T->GetTrsf()));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Transformed(*T->GetTrsf()));
 		return gcnew xgp_Ax1(temp);
 	}
 
 	void xgp_Ax1::Translate(xgp_Vec^ V) {
-		NativeHandle->Translate(V->GetVec());
+		NativeHandle->Translate(*V->GetVec());
 	}
 	xgp_Ax1^ xgp_Ax1::Translated(xgp_Vec^ V) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Translated(V->GetVec()));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Translated(*V->GetVec()));
 		return gcnew xgp_Ax1(temp);
 	}
 	void xgp_Ax1::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {

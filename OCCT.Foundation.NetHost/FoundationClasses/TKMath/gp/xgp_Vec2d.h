@@ -21,7 +21,7 @@
 #include "xgp_Pnt2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Ax2d.h"
-
+class gp_Vec2d;
 //! Defines a non-persistent vector in 2D space.
 namespace TKMath
 {
@@ -41,12 +41,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Vec2d(gp_Vec2d* pos);
-
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Vec2d(gp_Vec2d pos);
 
         //! Creates a unitary vector from a direction V.
         xgp_Vec2d(xgp_Dir2d^ V);
@@ -87,7 +81,7 @@ namespace TKMath
         void SetXY(xgp_XY^ Coord);
 
         //! Returns the gp_Vec2d
-        gp_Vec2d GetVec2d();
+        gp_Vec2d* GetVec2d();
         //! Returns the coordinate of range Index :
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned

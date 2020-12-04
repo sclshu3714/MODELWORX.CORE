@@ -53,6 +53,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Vec.h"
 #include "xgp_Trsf.h"
+class gp_Torus;
 
 namespace TKMath
 {
@@ -73,11 +74,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Torus(gp_Torus* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Torus(gp_Torus pos);
 
         //! a torus centered on the origin of coordinate system
         //! A3, with major radius MajorRadius and minor radius
@@ -118,7 +114,7 @@ namespace TKMath
         void SetPosition(xgp_Ax3^ A3);
 
         //! returns the gp_Torus
-        gp_Torus GetTorus();
+        gp_Torus* GetTorus();
 
         //! Computes the area of the torus.
         Standard_Real Area();

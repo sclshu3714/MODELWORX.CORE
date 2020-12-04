@@ -174,24 +174,24 @@ namespace TKMath
     };
 
     void xgp_Ax2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
     //! Transforms an axis placement with a Trsf.
     xgp_Ax2d^ xgp_Ax2d::Transformed(xgp_Trsf2d^ T) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Translate(xgp_Vec2d^ V) {
-        NativeHandle->Translate(V->GetVec2d());
+        NativeHandle->Translate(*V->GetVec2d());
     };
 
 
     //! Translates an axis placement in the direction of the vector
     //! <V>. The magnitude of the translation is the vector's magnitude.
     xgp_Ax2d^ xgp_Ax2d::Translated(xgp_Vec2d^ V) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(*V->GetVec2d()));
         return gcnew xgp_Ax2d(temp);
     };
 

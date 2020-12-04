@@ -27,6 +27,8 @@
 #include <BRepAlgoAPI_BooleanOperation.hxx>
 #include <Standard_Boolean.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
+#include <gp_Vec2d.hxx>
+class gp_Vec2d;
 class BOPAlgo_PaveFiller;
 
 

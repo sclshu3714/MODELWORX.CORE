@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Sphere::xgp_Sphere(gp_Sphere* pos) {
         NativeHandle = new gp_Sphere(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Sphere::xgp_Sphere(gp_Sphere pos) {
-        NativeHandle = new gp_Sphere(pos);
-    };
 
     //! Constructs a sphere with radius Radius, centered on the origin
     //! of A3.  A3 is the local coordinate system of the sphere.
@@ -46,8 +39,8 @@ namespace TKMath
 
 
     //! gp_Sphere
-    gp_Sphere xgp_Sphere::GetSphere() {
-        return *NativeHandle;
+    gp_Sphere* xgp_Sphere::GetSphere() {
+        return NativeHandle;
     };
 
     //! Changes the center of the sphere.
@@ -146,7 +139,8 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Sphere^ xgp_Sphere::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Sphere(NativeHandle->Mirrored(*P->GetPnt()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Mirrored(*P->GetPnt()));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Mirror(xgp_Ax1^ A1) {
@@ -158,7 +152,8 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Sphere^ xgp_Sphere::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Sphere(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Mirror(xgp_Ax2^ A2) {
@@ -170,7 +165,8 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Sphere^ xgp_Sphere::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Sphere(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -181,7 +177,8 @@ namespace TKMath
     //! Rotates a sphere. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Sphere^ xgp_Sphere::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Sphere(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Scale(xgp_Pnt^ P, Standard_Real S) {
@@ -192,28 +189,31 @@ namespace TKMath
     //! Scales a sphere. S is the scaling value.
     //! The absolute value of S is used to scale the sphere
     xgp_Sphere^ xgp_Sphere::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Sphere(NativeHandle->Scaled(*P->GetPnt(), S));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Scaled(*P->GetPnt(), S));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a sphere with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Sphere^ xgp_Sphere::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Sphere(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Transformed(*T->GetTrsf()));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a sphere in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Sphere^ xgp_Sphere::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Sphere(NativeHandle->Translated(V->GetVec()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Translated(*V->GetVec()));
+        return gcnew xgp_Sphere(temp);
     };
 
     void xgp_Sphere::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
@@ -223,6 +223,7 @@ namespace TKMath
 
     //! Translates a sphere from the point P1 to the point P2.
     xgp_Sphere^ xgp_Sphere::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Sphere(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
+        gp_Sphere* temp = new gp_Sphere(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
+        return gcnew xgp_Sphere(temp);
     };
 };

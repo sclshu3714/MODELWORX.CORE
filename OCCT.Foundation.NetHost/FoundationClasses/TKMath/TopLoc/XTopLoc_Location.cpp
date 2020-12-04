@@ -25,7 +25,7 @@ namespace TKMath {
     //!ructs the local coordinate system object defined
     //! by the transformation T. T invokes in turn, a TopLoc_Datum3D object.
     XTopLoc_Location::XTopLoc_Location(xgp_Trsf^ T) {
-        NativeHandle = new TopLoc_Location(T->GetTrsf());
+        NativeHandle = new TopLoc_Location(*T->GetTrsf());
     };
 
     //!ructs the local coordinate system object defined by the 3D datum D.
@@ -88,7 +88,8 @@ namespace TKMath {
     //! Returns  the transformation    associated  to  the
     //! coordinate system.
     xgp_Trsf^ XTopLoc_Location::Transformation() {
-        return gcnew xgp_Trsf(NativeHandle->Transformation());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Transformation());
+        return gcnew xgp_Trsf(temp);
     };
 
     //! Returns the inverse of <me>.

@@ -45,9 +45,6 @@ namespace TKMath
         /// <param name="pos"></param>
         xgp_Quaternion(gp_Quaternion* pos);
 
-        //! Creates quaternion 
-        xgp_Quaternion(gp_Quaternion pos);
-
         //! Creates quaternion directly from component values
         xgp_Quaternion(Standard_Real x, Standard_Real y, Standard_Real z, Standard_Real w);
 
@@ -78,7 +75,7 @@ namespace TKMath
         // Õ∑≈
         !xgp_Quaternion();
         //! Return the gp_Quaternion
-        gp_Quaternion GetQuaternion();
+        gp_Quaternion* GetQuaternion();
 
         //! Simple equal test without precision
         Standard_Boolean IsEqual(xgp_Quaternion^ theOther);

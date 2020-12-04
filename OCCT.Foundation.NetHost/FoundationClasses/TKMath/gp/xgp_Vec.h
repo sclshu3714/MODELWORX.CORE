@@ -21,7 +21,7 @@
 #include "xgp_Ax2.h"
 #include "xgp_Trsf.h"
 #include "xgp_Pnt.h"
-
+class gp_Vec;
 
 namespace TKMath
 {
@@ -43,11 +43,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Vec(gp_Vec* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Vec(gp_Vec pos);
 
         //! Creates a unitary vector from a direction V.
         xgp_Vec(xgp_Dir^ V);
@@ -93,7 +88,7 @@ namespace TKMath
         void SetXYZ(xgp_XYZ^ Coord);
 
         //! Returns the  gp_Vec
-        gp_Vec GetVec();
+        gp_Vec* GetVec();
         //! Returns the coordinate of range Index :
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned

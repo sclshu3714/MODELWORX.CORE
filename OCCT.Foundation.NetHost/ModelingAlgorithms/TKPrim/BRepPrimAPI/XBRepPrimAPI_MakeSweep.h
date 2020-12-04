@@ -20,6 +20,7 @@
 #include <BRepPrimAPI_MakeSweep.hxx>
 #include <XBRepBuilderAPI_MakeShape.h>
 #include <XTopoDS_Shape.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -47,8 +48,10 @@
 //! 
 using namespace TKBRep;	
 using namespace TKTopAlgo;
+using namespace TKMath;
 namespace TKPrim {
 	ref class TKBRep::XTopoDS_Shape;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrimAPI_MakeSweep : public XBRepBuilderAPI_MakeShape
 	{
 	public:

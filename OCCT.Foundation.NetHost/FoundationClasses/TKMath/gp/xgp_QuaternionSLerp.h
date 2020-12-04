@@ -16,6 +16,7 @@
 #pragma once
 #include <gp_QuaternionSLerp.hxx>
 #include <xgp_Quaternion.h>
+class gp_QuaternionSLerp;
 //! Perform Spherical Linear Interpolation of the quaternions,
 //! return unit length quaternion.
 namespace TKMath
@@ -57,14 +58,14 @@ namespace TKMath
             myQStart = theQStart;
             myQEnd = theQEnd;
             Standard_Real cosOmega = myQStart->Dot(myQEnd);
-            if (*cosOmega < 0.0) {
-                cosOmega = -(*cosOmega);
+            if (cosOmega < 0.0) {
+                cosOmega = -(cosOmega);
                 myQEnd = -myQEnd;
             }
-            if (*cosOmega > 0.9999) {
+            if (cosOmega > 0.9999) {
                 cosOmega = 0.9999;
             }
-            myOmega = ACos(*cosOmega);
+            myOmega = ACos(cosOmega);
             Standard_Real invSinOmega = (1.0 / Sin(myOmega));
             myQStart->Scale(invSinOmega);
             myQEnd->Scale(invSinOmega);
@@ -72,7 +73,7 @@ namespace TKMath
 
         //! Set interpolated quaternion for theT position (from 0.0 to 1.0)
         void Interpolate(Standard_Real theT, xgp_Quaternion^ theResultQ) {
-            theResultQ = *myQStart * Sin((1.0 - *theT) * myOmega) + *myQEnd * Sin(*theT * myOmega);
+            theResultQ = *myQStart * Sin((1.0 - theT) * myOmega) + *myQEnd * Sin(theT * myOmega);
         }
         /// <summary>
         /// ±¾µØ¾ä±ú

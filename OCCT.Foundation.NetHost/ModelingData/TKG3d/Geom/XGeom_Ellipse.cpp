@@ -202,33 +202,34 @@ namespace TKG3d {
 	};
 
 	void XGeom_Ellipse::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		return NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
+		return NativeHandle()->D1(U, *P->GetPnt(), *V1->GetVec());
 	};
 
 
 	//! Returns the point P of parameter U. The vectors V1 and V2
 	//! are the first and second derivatives at this point.
 	void XGeom_Ellipse::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		return NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
+		return NativeHandle()->D2(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec());
 	};
 
 
 	//! Returns the point P of parameter U, the first second and
 	//! third derivatives V1 V2 and V3.
 	void XGeom_Ellipse::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		return NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		return NativeHandle()->D3(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec(), *V3->GetVec());
 	};
 
 	//! For the point of parameter U of this ellipse, computes
 	//! the vector corresponding to the Nth derivative.
 	//! Exceptions Standard_RangeError if N is less than 1.
 	xgp_Vec^ XGeom_Ellipse::DN(Standard_Real U, Standard_Integer N) {
-		return gcnew xgp_Vec(NativeHandle()->DN(U, N));
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, N));
+		return gcnew xgp_Vec(temp);
 	};
 
 	//! Applies the transformation T to this ellipse.
 	void XGeom_Ellipse::Transform(xgp_Trsf^ T) {
-		NativeHandle()->Transform(T->GetTrsf());
+		NativeHandle()->Transform(*T->GetTrsf());
 	};
 
 	//! Creates a new object which is a copy of this ellipse.

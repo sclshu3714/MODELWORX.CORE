@@ -261,7 +261,7 @@ namespace TKMath
     };
 
     void xgp_Pln::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
@@ -271,19 +271,19 @@ namespace TKMath
     //! The resulting normal direction is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Pln^ xgp_Pln::Transformed(xgp_Trsf^ T) {
-        gp_Pln* temp = new gp_Pln(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a plane in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Pln^ xgp_Pln::Translated(xgp_Vec^ V) {
-        gp_Pln* temp = new gp_Pln(NativeHandle->Translated(V->GetVec()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Pln(temp);
     };
 

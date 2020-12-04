@@ -208,25 +208,25 @@ namespace TKMath
     };
 
     void xgp_Lin::Transform(xgp_Trsf^ T){  
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a line with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Lin^ xgp_Lin::Transformed(xgp_Trsf^ T){ 
-        gp_Lin* temp = new gp_Lin(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Translate(xgp_Vec^ V){ 
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a line in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Lin^ xgp_Lin::Translated(xgp_Vec^ V){  
-        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(V->GetVec()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Lin(temp);
     };
 

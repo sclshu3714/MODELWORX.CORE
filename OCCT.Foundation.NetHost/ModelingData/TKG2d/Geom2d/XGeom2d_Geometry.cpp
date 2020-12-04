@@ -40,7 +40,7 @@ namespace TKG2d {
 
 	//! Translates a Geometry.  V is the vector of the tanslation.
 	void XGeom2d_Geometry::Translate(xgp_Vec2d^ V) {
-		NativeHandle()->Translate(V->GetVec2d());
+		NativeHandle()->Translate(*V->GetVec2d());
 	};
 
 	//! Translates a Geometry from the point P1 to the point P2.
@@ -57,7 +57,7 @@ namespace TKG2d {
 	//! as the previous ones but they don't modified the object
 	//! itself. A copy of the object is returned.
 	void XGeom2d_Geometry::Transform(xgp_Trsf2d^ T) {
-		NativeHandle()->Transform(T->GetTrsf2d());
+		NativeHandle()->Transform(*T->GetTrsf2d());
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Mirrored(xgp_Pnt2d^ P) {
@@ -77,11 +77,11 @@ namespace TKG2d {
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Transformed(xgp_Trsf2d^ T) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Transformed(T->GetTrsf2d()));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Transformed(*T->GetTrsf2d()));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Translated(xgp_Vec2d^ V) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Translated(V->GetVec2d()));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Translated(*V->GetVec2d()));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {

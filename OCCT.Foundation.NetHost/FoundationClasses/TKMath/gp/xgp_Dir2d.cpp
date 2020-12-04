@@ -17,7 +17,7 @@ namespace TKMath
 
     //! Normalizes the vector V and creates a Direction. Raises ConstructionError if V.Magnitude() <= Resolution from gp.
     xgp_Dir2d::xgp_Dir2d(xgp_Vec2d^ V) {
-        NativeHandle = new gp_Dir2d(V->GetVec2d());
+        NativeHandle = new gp_Dir2d(*V->GetVec2d());
     };
 
     //! Creates a Direction from a doublet of coordinates. Raises ConstructionError if Coord.Modulus() <= Resolution from gp.
@@ -276,7 +276,7 @@ namespace TKMath
     };
 
     void xgp_Dir2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
 
@@ -285,7 +285,7 @@ namespace TKMath
     //! If the scale factor of the "Trsf" T is negative then the
     //! direction <me> is reversed.
     xgp_Dir2d^ xgp_Dir2d::Transformed(xgp_Trsf2d^ T) {
-        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Dir2d* temp = new gp_Dir2d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Dir2d(temp);
     };
 };

@@ -61,7 +61,7 @@ namespace TKG2d {
 	//! Note: this function generally returns U but it can be
 	//! redefined (for example, on a line).
 	Standard_Real XGeom2d_Curve::TransformedParameter(Standard_Real U, xgp_Trsf2d^ T) {
-		return NativeHandle()->TransformedParameter(U, T->GetTrsf2d());
+		return NativeHandle()->TransformedParameter(U, *T->GetTrsf2d());
 	};
 
 	//! Returns the coefficient required to compute the
@@ -73,7 +73,7 @@ namespace TKG2d {
 	//! Note: this function generally returns 1. but it can be
 	//! redefined (for example, on a line).
 	Standard_Real XGeom2d_Curve::ParametricTransformation(xgp_Trsf2d^ T) {
-		return NativeHandle()->ParametricTransformation(T->GetTrsf2d());
+		return NativeHandle()->ParametricTransformation(*T->GetTrsf2d());
 	};
 
 	//! Creates a reversed duplicate Changes the orientation of this curve. The first and
@@ -180,7 +180,7 @@ namespace TKG2d {
 	//! Returns the point P of parameter U and the first derivative V1.
 	//! Raised if the continuity of the curve is not C1.
 	void XGeom2d_Curve::D1(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1) {
-		NativeHandle()->D1(U, *P->GetPnt2d(), V1->GetVec2d());
+		NativeHandle()->D1(U, *P->GetPnt2d(), *V1->GetVec2d());
 	};
 
 
@@ -188,7 +188,7 @@ namespace TKG2d {
 	//! derivatives V1 and V2.
 	//! Raised if the continuity of the curve is not C2.
 	void XGeom2d_Curve::D2(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1, xgp_Vec2d^ V2) {
-		NativeHandle()->D2(U, *P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d());
+		NativeHandle()->D2(U, *P->GetPnt2d(), *V1->GetVec2d(), *V2->GetVec2d());
 	};
 
 
@@ -196,7 +196,7 @@ namespace TKG2d {
 	//! and the third derivative.
 	//! Raised if the continuity of the curve is not C3.
 	void XGeom2d_Curve::D3(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1, xgp_Vec2d^ V2, xgp_Vec2d^ V3) {
-		NativeHandle()->D3(U, *P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d(), V3->GetVec2d());
+		NativeHandle()->D3(U, *P->GetPnt2d(), *V1->GetVec2d(), *V2->GetVec2d(), *V3->GetVec2d());
 	};
 
 	//! For the point of parameter U of this curve, computes
@@ -209,7 +209,8 @@ namespace TKG2d {
 	//! example, a rational BSpline curve where N is greater than 3).
 	//! Standard_RangeError if N is less than 1.
 	xgp_Vec2d^ XGeom2d_Curve::DN(Standard_Real U, Standard_Integer N) {
-		return gcnew xgp_Vec2d(NativeHandle()->DN(U, N));
+		gp_Vec2d* temp = new gp_Vec2d(NativeHandle()->DN(U, N));
+		return gcnew xgp_Vec2d(temp);
 	};
 
 	//! Computes the point of parameter U on <me>.

@@ -190,25 +190,25 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a cylinder with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Cylinder^ xgp_Cylinder::Transformed(xgp_Trsf^ T) {
-        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Cylinder(temp);
     };
 
     void xgp_Cylinder::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a cylinder in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Cylinder^ xgp_Cylinder::Translated(xgp_Vec^ V) {
-        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(V->GetVec()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Cylinder(temp);
     };
 

@@ -48,6 +48,7 @@
 #include "xgp_XYZ.h"
 #include "xgp_Quaternion.h"
 #include <xgp_TrsfForm.h>
+class gp_Trsf;
 
 namespace TKMath
 {
@@ -72,12 +73,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Trsf(gp_Trsf* pos);
-
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Trsf(gp_Trsf pos);
 
         //! Creates  a 3D transformation from the 2D transformation T.
         //! The resulting transformation has a homogeneous
@@ -230,7 +225,7 @@ namespace TKMath
         void SetValues(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a14, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a24, Standard_Real a31, Standard_Real a32, Standard_Real a33, Standard_Real a34);
 
         //! Returns the gp_Trsf
-        gp_Trsf GetTrsf();
+        gp_Trsf* GetTrsf();
 
         //! Returns true if the determinant of the vectorial part of
         //! this transformation is negative.

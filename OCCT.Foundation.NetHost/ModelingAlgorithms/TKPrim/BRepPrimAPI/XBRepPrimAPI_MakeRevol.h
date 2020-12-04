@@ -23,7 +23,7 @@
 #include <TopoDS_Shape.hxx>
 #include <XBRepPrimAPI_MakeSweep.h>
 #include <XBRepSweep_Revol.h>
-
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -75,6 +75,7 @@ using namespace TKMath;
 namespace TKPrim {
 	ref class XBRepSweep_Revol;
 	ref class TKMath::xgp_Ax1;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrimAPI_MakeRevol : public XBRepPrimAPI_MakeSweep
 	{
 	public:

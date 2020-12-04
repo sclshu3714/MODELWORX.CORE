@@ -18,7 +18,7 @@ namespace TKMath
     //! Converts the xgp_Trsf2d transformation T into a
     //! general transformation.
     xgp_GTrsf2d::xgp_GTrsf2d(xgp_Trsf2d^ T) {
-        NativeHandle = new  gp_GTrsf2d(T->GetTrsf2d());
+        NativeHandle = new  gp_GTrsf2d(*T->GetTrsf2d());
     };
 
     //! Creates   a transformation based on the matrix M and the
@@ -75,7 +75,7 @@ namespace TKMath
 
     //! Assigns the vectorial and translation parts of T to this transformation.
     void xgp_GTrsf2d::SetTrsf2d(xgp_Trsf2d^ T) {
-        NativeHandle->SetTrsf2d(T->GetTrsf2d());
+        NativeHandle->SetTrsf2d(*T->GetTrsf2d());
     };
 
 
@@ -225,7 +225,8 @@ namespace TKMath
     //! Standard_ConstructionError if this transformation
     //! cannot be converted, i.e. if its form is gp_Other.
     xgp_Trsf2d^ xgp_GTrsf2d::Trsf2d() {
-        return gcnew xgp_Trsf2d(NativeHandle->Trsf2d());
+        gp_Trsf2d* temp = new gp_Trsf2d(NativeHandle->Trsf2d());
+        return gcnew xgp_Trsf2d(temp);
     };
 };
 

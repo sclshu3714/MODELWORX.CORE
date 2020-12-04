@@ -33,7 +33,7 @@
 #include <xgp_Circ2d.h>
 #include <xgp_Ax2.h>
 #include <xgp_Pnt.h>
-
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -62,6 +62,7 @@ namespace TKPrim {
     ref class TKMath::xgp_Lin2d;
     ref class TKMath::xgp_Circ2d;
     ref class TKMath::xgp_Pnt;
+    ref class TKMath::xgp_Vec2d;
     //! implements the abstract Builder with the BRep Builder
     public ref class XBRepPrim_Builder
     {

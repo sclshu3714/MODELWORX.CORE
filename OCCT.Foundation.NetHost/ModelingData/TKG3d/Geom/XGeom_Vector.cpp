@@ -162,7 +162,8 @@ namespace TKG3d {
 
 	//! Converts this vector into a gp_Vec vector.
 	xgp_Vec^ XGeom_Vector::Vec() {
-		return gcnew xgp_Vec(NativeHandle()->Vec());
+		gp_Vec* temp = new gp_Vec(NativeHandle()->Vec());
+		return gcnew xgp_Vec(temp);
 	};
 }
 

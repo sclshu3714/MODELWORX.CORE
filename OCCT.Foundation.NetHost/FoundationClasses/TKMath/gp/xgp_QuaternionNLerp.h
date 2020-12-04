@@ -18,7 +18,7 @@
 #pragma once
 #include <gp_QuaternionNLerp.hxx>
 #include <xgp_Quaternion.h>
-
+class gp_QuaternionNLerp;
 namespace TKMath
 {
     ref class xgp_Quaternion;
@@ -58,7 +58,7 @@ namespace TKMath
             myQStart = theQStart;
             myQEnd = theQEnd;
             Standard_Real anInner = myQStart->Dot(myQEnd);
-            if (*anInner < 0.0) {
+            if (anInner < 0.0) {
                 myQEnd = -myQEnd;
             }
             myQEnd -= myQStart;

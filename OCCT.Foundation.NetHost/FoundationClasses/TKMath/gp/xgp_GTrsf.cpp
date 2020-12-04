@@ -19,7 +19,7 @@ namespace TKMath
     //! general transformation, i.e. Returns a GTrsf with
     //! the same matrix of coefficients as the Trsf T.
     xgp_GTrsf::xgp_GTrsf(xgp_Trsf^ T) {
-        NativeHandle = new  gp_GTrsf(T->GetTrsf());
+        NativeHandle = new  gp_GTrsf(*T->GetTrsf());
     };
 
 
@@ -93,7 +93,7 @@ namespace TKMath
 
     //! Assigns the vectorial and translation parts of T to this transformation.
     void xgp_GTrsf::SetTrsf(xgp_Trsf^ T) {
-        NativeHandle->SetTrsf(T->GetTrsf());
+        NativeHandle->SetTrsf(*T->GetTrsf());
     };
 
 
@@ -240,6 +240,7 @@ namespace TKMath
     };
 
     xgp_Trsf^ xgp_GTrsf::Trsf() {
-        return gcnew xgp_Trsf(NativeHandle->Trsf());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Trsf());
+        return gcnew xgp_Trsf(temp);
     };
 };

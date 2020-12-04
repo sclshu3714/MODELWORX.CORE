@@ -22,7 +22,7 @@ namespace TKMath {
 
     XTopLoc_Datum3D::XTopLoc_Datum3D(xgp_Trsf^ T)
     {
-        NativeHandle = new TopLoc_Datum3D(T->GetTrsf());
+        NativeHandle = new TopLoc_Datum3D(*T->GetTrsf());
     };
 
     //!
@@ -33,7 +33,8 @@ namespace TKMath {
     //! Returns a gp_Trsf which, when applied to this datum,
         //! produces the default datum.
     xgp_Trsf^ XTopLoc_Datum3D::Transformation() {
-        return gcnew xgp_Trsf(NativeHandle->Transformation());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Transformation());
+        return gcnew xgp_Trsf(temp);
     };
     //=======================================================================
     //function : DumpJson

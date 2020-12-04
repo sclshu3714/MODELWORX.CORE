@@ -338,7 +338,7 @@ namespace TKMath
     };
 
     void xgp_Ax2::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
@@ -348,19 +348,19 @@ namespace TKMath
     //! main "Direction" of <me> is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax2^ xgp_Ax2::Transformed(xgp_Trsf^ T) {
-        gp_Ax2* temp = new gp_Ax2(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Ax2(temp);
     };
 
     void xgp_Ax2::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates an axis plaxement in the direction of the vector
     //! <V>. The magnitude of the translation is the vector's magnitude.
     xgp_Ax2^ xgp_Ax2::Translated(xgp_Vec^ V) {
-        gp_Ax2* temp = new gp_Ax2(NativeHandle->Translated(V->GetVec()));
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Ax2(temp);
     };
 

@@ -318,26 +318,26 @@ namespace TKMath
     };
 
     void xgp_Hypr::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms an hyperbola with the transformation T from
     //!namespace TKMath  {  public ref class Trsf.
     xgp_Hypr^ xgp_Hypr::Transformed(xgp_Trsf^ T) {
-        gp_Hypr* temp = new gp_Hypr(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Hypr* temp = new gp_Hypr(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Hypr(temp);
     };
 
     void xgp_Hypr::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates an hyperbola in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Hypr^ xgp_Hypr::Translated(xgp_Vec^ V) {
-        gp_Hypr* temp = new gp_Hypr(NativeHandle->Translated(V->GetVec()));
+        gp_Hypr* temp = new gp_Hypr(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Hypr(temp);
     };
 

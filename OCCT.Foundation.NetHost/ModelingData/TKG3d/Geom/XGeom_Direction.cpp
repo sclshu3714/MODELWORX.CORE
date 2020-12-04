@@ -132,7 +132,7 @@ namespace TKG3d {
 
 	//! Applies the transformation T to this unit vector, then normalizes it.
 	void XGeom_Direction::Transform(xgp_Trsf^ T) {
-		NativeHandle()->Transform(T->GetTrsf());
+		NativeHandle()->Transform(*T->GetTrsf());
 	};
 
 	//! Creates a new object which is a copy of this unit vector.

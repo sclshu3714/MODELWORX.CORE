@@ -24,6 +24,8 @@
 #include <XTopoDS_Face.h>
 #include <XTopoDS_Edge.h>
 #include <XTopoDS_Vertex.h>
+#include <xgp_Vec2d.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -51,6 +53,7 @@ class TopoDS_Vertex;
 using namespace TKBRep;
 using namespace TKG3d;
 using namespace TKBRep;
+using namespace TKMath;
 namespace TKPrim {
 
 	ref class TKBRep::XBRep_Builder;
@@ -58,6 +61,7 @@ namespace TKPrim {
 	ref class TKBRep::XTopoDS_Face;
 	ref class TKBRep::XTopoDS_Edge;
 	ref class TKBRep::XTopoDS_Vertex;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrim_FaceBuilder
 	{
 	public:

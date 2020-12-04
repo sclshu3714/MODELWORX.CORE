@@ -22,6 +22,7 @@
 #include <XTopoDS_Shape.h>
 #include <xgp_Vec.h>
 #include <xgp_Dir.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -58,6 +59,7 @@ namespace TKPrim {
 	ref class TKBRep::XTopoDS_Shape;
 	ref class TKMath::xgp_Vec;
 	ref class TKMath::xgp_Dir;
+	ref class TKMath::xgp_Vec2d;
 	ref class XBRepPrimAPI_MakeSweep;
 	public ref class XBRepPrimAPI_MakePrism : public XBRepPrimAPI_MakeSweep
 	{

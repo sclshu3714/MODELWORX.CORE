@@ -14,18 +14,11 @@ namespace TKMath
     xgp_Trsf2d::xgp_Trsf2d(gp_Trsf2d* pos) {
         NativeHandle = new gp_Trsf2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Trsf2d::xgp_Trsf2d(gp_Trsf2d pos) {
-        NativeHandle = new gp_Trsf2d(pos);
-    };
 
     //! Creates a 2d transformation in the XY plane from a
     //! 3d transformation .
     xgp_Trsf2d::xgp_Trsf2d(xgp_Trsf^ T) {
-        NativeHandle = new gp_Trsf2d(T->GetTrsf());
+        NativeHandle = new gp_Trsf2d(*T->GetTrsf());
     };
 
     // Õ∑≈
@@ -92,7 +85,7 @@ namespace TKMath
     //! Changes the transformation into a translation.
     //! V is the vector of the translation.
     void xgp_Trsf2d::SetTranslation(xgp_Vec2d^ V) {
-        NativeHandle->SetTranslation(V->GetVec2d());
+        NativeHandle->SetTranslation(*V->GetVec2d());
     };
 
 
@@ -104,7 +97,7 @@ namespace TKMath
 
     //! Replaces the translation vector with V.
     void xgp_Trsf2d::SetTranslationPart(xgp_Vec2d^ V) {
-        NativeHandle->SetTranslationPart(V->GetVec2d());
+        NativeHandle->SetTranslationPart(*V->GetVec2d());
     };
 
     //! Modifies the scale factor.
@@ -113,8 +106,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Trsf2d
-    gp_Trsf2d xgp_Trsf2d::GetTrsf2d() {
-        return *NativeHandle;
+    gp_Trsf2d* xgp_Trsf2d::GetTrsf2d() {
+        return NativeHandle;
     };
 
     //! Returns true if the determinant of the vectorial part of
@@ -188,25 +181,27 @@ namespace TKMath
     //! is not inversible, it means that the scale factor is lower
     //! or equal to Resolution from package gp.
     xgp_Trsf2d^ xgp_Trsf2d::Inverted() {
-        return gcnew xgp_Trsf2d(NativeHandle->Inverted());
+        gp_Trsf2d* temp = new gp_Trsf2d(NativeHandle->Inverted());
+        return gcnew xgp_Trsf2d(temp);
     };
 
     xgp_Trsf2d^ xgp_Trsf2d::Multiplied(xgp_Trsf2d^ T) {
-        return gcnew xgp_Trsf2d(NativeHandle->Multiplied(T->GetTrsf2d()));
+        gp_Trsf2d* temp = new gp_Trsf2d(NativeHandle->Multiplied(*T->GetTrsf2d()));
+        return gcnew xgp_Trsf2d(temp);
     };
 
 
     //! Computes the transformation composed from <me> and T.
     //! <me> = <me> * T
     void xgp_Trsf2d::Multiply(xgp_Trsf2d^ T) {
-        NativeHandle->Multiply(T->GetTrsf2d());
+        NativeHandle->Multiply(*T->GetTrsf2d());
     };
 
 
     //! Computes the transformation composed from <me> and T.
     //! <me> = T * <me>
     void xgp_Trsf2d::PreMultiply(xgp_Trsf2d^ T) {
-        NativeHandle->PreMultiply(T->GetTrsf2d());
+        NativeHandle->PreMultiply(*T->GetTrsf2d());
     };
 
     void xgp_Trsf2d::Power(Standard_Integer N) {
@@ -222,7 +217,8 @@ namespace TKMath
     //! Raises if N < 0 and if the matrix of the transformation not
     //! inversible.
     xgp_Trsf2d^ xgp_Trsf2d::Powered(Standard_Integer N) {
-        return gcnew xgp_Trsf2d(NativeHandle->Powered(N));
+        gp_Trsf2d* temp = new gp_Trsf2d(NativeHandle->Powered(N));
+        return gcnew xgp_Trsf2d(temp);
     };
 
     void xgp_Trsf2d::Transforms(Standard_Real X, Standard_Real Y) {

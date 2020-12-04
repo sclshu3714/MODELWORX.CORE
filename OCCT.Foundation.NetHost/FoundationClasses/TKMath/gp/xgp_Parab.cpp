@@ -225,25 +225,25 @@ namespace TKMath
     };
 
     void xgp_Parab::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a parabola with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Parab^ xgp_Parab::Transformed(xgp_Trsf^ T) {
-        gp_Parab* temp = new gp_Parab(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Parab* temp = new gp_Parab(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Parab(temp);
     };
 
     void xgp_Parab::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a parabola in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Parab^ xgp_Parab::Translated(xgp_Vec^ V) {
-        gp_Parab* temp = new gp_Parab(NativeHandle->Translated(V->GetVec()));
+        gp_Parab* temp = new gp_Parab(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Parab(temp);
     };
 

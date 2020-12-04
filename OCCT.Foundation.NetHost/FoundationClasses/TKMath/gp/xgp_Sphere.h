@@ -42,6 +42,7 @@
 #include "xgp_Dir.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Sphere;
 
 namespace TKMath
 {
@@ -63,11 +64,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Sphere(gp_Sphere* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Sphere(gp_Sphere pos);
 
         //! Constructs a sphere with radius Radius, centered on the origin
         //! of A3.  A3 is the local coordinate system of the sphere.
@@ -83,7 +79,7 @@ namespace TKMath
 
 
         //! gp_Sphere
-        gp_Sphere GetSphere();
+        gp_Sphere* GetSphere();
 
         //! Changes the center of the sphere.
         void SetLocation(xgp_Pnt^ Loc);

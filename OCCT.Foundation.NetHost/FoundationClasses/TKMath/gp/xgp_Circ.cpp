@@ -215,25 +215,25 @@ namespace TKMath
     };
 
     void xgp_Circ::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms a circle with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Circ^ xgp_Circ::Transformed(xgp_Trsf^ T) {
-        gp_Circ* temp = new gp_Circ(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a circle in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Circ^ xgp_Circ::Translated(xgp_Vec^ V) {
-        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(V->GetVec()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Circ(temp);
     };
 

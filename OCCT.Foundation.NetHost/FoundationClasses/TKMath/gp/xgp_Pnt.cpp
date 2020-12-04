@@ -215,25 +215,25 @@ namespace TKMath
     };
 
     void xgp_Pnt::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Translates a point in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Pnt^ xgp_Pnt::Transformed(xgp_Trsf^ T) {
-        gp_Pnt* temp = new gp_Pnt(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Pnt(temp);
     };
 
     void xgp_Pnt::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates a point from the point P1 to the point P2.
     xgp_Pnt^ xgp_Pnt::Translated(xgp_Vec^ V) {
-        gp_Pnt* temp = new gp_Pnt(NativeHandle->Translated(V->GetVec()));
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Pnt(temp);
     };
 

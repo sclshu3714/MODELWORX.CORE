@@ -22,6 +22,7 @@
 #include "XTDF_Attribute.h"
 #include "XStandard_GUID.h"
 #include "XTDF_Label.h"
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -38,9 +39,11 @@ class TDF_RelocationTable;
 //class TDataStd_Integer;
 //DEFINE_STANDARD_HANDLE(TDataStd_Integer, TDF_Attribute)
 using namespace TKernel;
+using namespace TKMath;
 namespace TKLCAF {
 	ref class TKernel::XStandard_GUID;
 	ref class XTDF_Label;
+	ref class TKMath::xgp_Vec2d;
 	//! The basis to define an integer attribute.
 	public ref class XTDataStd_Integer : public XTDF_Attribute
 	{

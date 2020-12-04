@@ -21,6 +21,7 @@
 #include <BRepPrimAPI_MakeCylinder.hxx>
 #include <XBRepPrimAPI_MakeOneAxis.h>
 #include <XBRepPrim_Cylinder.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -30,6 +31,8 @@
 #include <BRepPrimAPI_MakeOneAxis.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Address.hxx>
+#include <gp_Vec2d.hxx>
+class gp_Vec2d;
 class Standard_DomainError;
 class gp_Ax2;
 class BRepPrim_Cylinder;
@@ -46,6 +49,7 @@ using namespace TKernel;
 namespace TKPrim {
 	ref class XBRepPrim_Cylinder;
 	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec2d;
 	ref class TKernel::XStandard_Helper;
 	public ref class XBRepPrimAPI_MakeCylinder : public XBRepPrimAPI_MakeOneAxis
 	{

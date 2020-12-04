@@ -213,7 +213,7 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
 
@@ -223,19 +223,19 @@ namespace TKMath
     //! main "Direction" of <me> is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax22d^ xgp_Ax22d::Transformed(xgp_Trsf2d^ T) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Translate(xgp_Vec2d^ V) {
-        NativeHandle->Translate(V->GetVec2d());
+        NativeHandle->Translate(*V->GetVec2d());
     };
 
 
     //! Translates an axis plaxement in the direction of the vector
     //! <V>. The magnitude of the translation is the vector's magnitude.
     xgp_Ax22d^ xgp_Ax22d::Translated(xgp_Vec2d^ V) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(*V->GetVec2d()));
         return gcnew xgp_Ax22d(temp);
     };
 

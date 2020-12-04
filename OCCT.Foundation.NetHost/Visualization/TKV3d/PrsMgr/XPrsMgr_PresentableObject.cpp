@@ -228,7 +228,7 @@ namespace TKV3d {
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
     void XPrsMgr_PresentableObject::SetLocalTransformation(xgp_Trsf^ theTrsf) {
-        NativeHandle()->SetLocalTransformation(theTrsf->GetTrsf());
+        NativeHandle()->SetLocalTransformation(*theTrsf->GetTrsf());
     };
 
     //! Sets local transformation to theTransformation.
@@ -254,14 +254,16 @@ namespace TKV3d {
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
     const xgp_Trsf^ XPrsMgr_PresentableObject::LocalTransformation() {
-        return gcnew xgp_Trsf(NativeHandle()->LocalTransformation());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle()->LocalTransformation());
+        return gcnew xgp_Trsf(temp);
     };
 
     //! Return the transformation taking into account transformation of parent object(s).
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
     const xgp_Trsf^ XPrsMgr_PresentableObject::Transformation() {
-        return gcnew xgp_Trsf(NativeHandle()->Transformation());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle()->Transformation());
+        return gcnew xgp_Trsf(temp);
     };
 
     //! Return inversed transformation.

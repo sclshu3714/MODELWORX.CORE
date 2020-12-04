@@ -21,6 +21,7 @@
 #include <XBRepPrim_GWedge.h>
 #include <XStandard_Helper.h>
 #include <xgp_Ax2.h>
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -32,6 +33,7 @@ class Standard_DomainError;
 using namespace TKMath;
 namespace TKPrim {
 	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec2d;
 	//! Provides constructors without Builders.
 	public ref class XBRepPrim_Wedge : public XBRepPrim_GWedge
 	{

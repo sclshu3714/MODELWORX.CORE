@@ -271,25 +271,25 @@ namespace TKMath
     };
 
     void xgp_Elips::Transform(xgp_Trsf^ T) {
-        NativeHandle->Transform(T->GetTrsf());
+        NativeHandle->Transform(*T->GetTrsf());
     };
 
 
     //! Transforms an ellipse with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Elips^ xgp_Elips::Transformed(xgp_Trsf^ T) {
-        gp_Elips* temp = new gp_Elips(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Transformed(*T->GetTrsf()));
         return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Translate(xgp_Vec^ V) {
-        NativeHandle->Translate(V->GetVec());
+        NativeHandle->Translate(*V->GetVec());
     };
 
 
     //! Translates an ellipse in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Elips^ xgp_Elips::Translated(xgp_Vec^ V) {
-        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(V->GetVec()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(*V->GetVec()));
         return gcnew xgp_Elips(temp);
     };
 

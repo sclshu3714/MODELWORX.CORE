@@ -15,14 +15,6 @@ namespace TKMath
         NativeHandle = new gp_Vec2d(*pos);
     };
 
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Vec2d::xgp_Vec2d(gp_Vec2d pos) {
-        NativeHandle = new gp_Vec2d(pos);
-    };
-
     //! Creates a unitary vector from a direction V.
     xgp_Vec2d::xgp_Vec2d(xgp_Dir2d^ V) {
         NativeHandle = new gp_Vec2d(*V->GetDir2d());
@@ -90,8 +82,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Vec2d
-    gp_Vec2d xgp_Vec2d::GetVec2d() {
-        return *NativeHandle;
+    gp_Vec2d* xgp_Vec2d::GetVec2d() {
+        return NativeHandle;
     };
     //! Returns the coordinate of range Index :
     //! Index = 1 => X is returned
@@ -127,7 +119,7 @@ namespace TKMath
     //! and the same direction. The precision values are LinearTolerance
     //! for the magnitude and AngularTolerance for the direction.
     Standard_Boolean xgp_Vec2d::IsEqual(xgp_Vec2d^ Other, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
-        return NativeHandle->IsEqual(Other->GetVec2d(), LinearTolerance, AngularTolerance);
+        return NativeHandle->IsEqual(*Other->GetVec2d(), LinearTolerance, AngularTolerance);
     };
 
 
@@ -136,7 +128,7 @@ namespace TKMath
     //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp.
     Standard_Boolean xgp_Vec2d::IsNormal(xgp_Vec2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetVec2d(), AngularTolerance);
+        return NativeHandle->IsNormal(*Other->GetVec2d(), AngularTolerance);
     };
 
 
@@ -144,7 +136,7 @@ namespace TKMath
     //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp.
     Standard_Boolean xgp_Vec2d::IsOpposite(xgp_Vec2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetVec2d(), AngularTolerance);
+        return NativeHandle->IsOpposite(*Other->GetVec2d(), AngularTolerance);
     };
 
 
@@ -154,7 +146,7 @@ namespace TKMath
     //! Raises VectorWithNullMagnitude if <me>.Magnitude() <= Resolution or
     //! Other.Magnitude() <= Resolution from gp
     Standard_Boolean xgp_Vec2d::IsParallel(xgp_Vec2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetVec2d(), AngularTolerance);
+        return NativeHandle->IsParallel(*Other->GetVec2d(), AngularTolerance);
     };
 
 
@@ -166,7 +158,7 @@ namespace TKMath
     //! Other.Magnitude() <= Resolution because the angular value is
     //! indefinite if one of the vectors has a null magnitude.
     Standard_Real xgp_Vec2d::Angle(xgp_Vec2d^ Other) {
-        return NativeHandle->Angle(Other->GetVec2d());
+        return NativeHandle->Angle(*Other->GetVec2d());
     };
 
     //! Computes the magnitude of this vector.
@@ -180,31 +172,32 @@ namespace TKMath
     };
 
     void xgp_Vec2d::Add(xgp_Vec2d^ Other) {
-        NativeHandle->Add(Other->GetVec2d());
+        NativeHandle->Add(*Other->GetVec2d());
     };
 
     //! Adds two vectors
     xgp_Vec2d^ xgp_Vec2d::Added(xgp_Vec2d^ Other) {
-        return gcnew xgp_Vec2d(NativeHandle->Added(Other->GetVec2d()));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Added(*Other->GetVec2d()));
+        return gcnew xgp_Vec2d(temp);
     };
 
     //! Computes the crossing product between two vectors
     Standard_Real xgp_Vec2d::Crossed(xgp_Vec2d^ Right) {
-        return NativeHandle->Crossed(Right->GetVec2d());
+        return NativeHandle->Crossed(*Right->GetVec2d());
     };
 
 
     //! Computes the magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||
     Standard_Real xgp_Vec2d::CrossMagnitude(xgp_Vec2d^ Right) {
-        return NativeHandle->CrossMagnitude(Right->GetVec2d());
+        return NativeHandle->CrossMagnitude(*Right->GetVec2d());
     };
 
 
     //! Computes the square magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||**2
     Standard_Real xgp_Vec2d::CrossSquareMagnitude(xgp_Vec2d^ Right) {
-        return NativeHandle->CrossSquareMagnitude(Right->GetVec2d());
+        return NativeHandle->CrossSquareMagnitude(*Right->GetVec2d());
     };
 
     void xgp_Vec2d::Divide(Standard_Real Scalar) {
@@ -213,16 +206,18 @@ namespace TKMath
 
     //! divides a vector by a scalar
     xgp_Vec2d^ xgp_Vec2d::Divided(Standard_Real Scalar) {
-        return gcnew xgp_Vec2d(NativeHandle->Divided(Scalar));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Divided(Scalar));
+        return gcnew xgp_Vec2d(temp);
     };
 
     //! Computes the scalar product
     Standard_Real xgp_Vec2d::Dot(xgp_Vec2d^ Other) {
-        return NativeHandle->Dot(Other->GetVec2d());
+        return NativeHandle->Dot(*Other->GetVec2d());
     };
 
     xgp_Vec2d^ xgp_Vec2d::GetNormal() {
-        return gcnew xgp_Vec2d(NativeHandle->GetNormal());
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->GetNormal());
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Multiply(Standard_Real Scalar) {
@@ -234,7 +229,8 @@ namespace TKMath
     //! Raises an exception if the magnitude of the vector is
     //! lower or equal to Resolution from package gp.
     xgp_Vec2d^ xgp_Vec2d::Multiplied(Standard_Real Scalar) {
-        return gcnew xgp_Vec2d(NativeHandle->Multiplied(Scalar));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Multiplied(Scalar));
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Normalize() {
@@ -246,7 +242,8 @@ namespace TKMath
     //! lower or equal to Resolution from package gp.
     //! Reverses the direction of a vector
     xgp_Vec2d^ xgp_Vec2d::Normalized() {
-        return gcnew xgp_Vec2d(NativeHandle->Normalized());
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Normalized());
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Reverse() {
@@ -255,43 +252,45 @@ namespace TKMath
 
     //! Reverses the direction of a vector
     xgp_Vec2d^ xgp_Vec2d::Reversed() {
-        return gcnew xgp_Vec2d(NativeHandle->Reversed());
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Reversed());
+        return gcnew xgp_Vec2d(temp);
     };
 
     //! Subtracts two vectors
     void xgp_Vec2d::Subtract(xgp_Vec2d^ Right) {
-        NativeHandle->Subtract(Right->GetVec2d());
+        NativeHandle->Subtract(*Right->GetVec2d());
     };
 
 
     //! Subtracts two vectors
     xgp_Vec2d^ xgp_Vec2d::Subtracted(xgp_Vec2d^ Right) {
-        return gcnew xgp_Vec2d(NativeHandle->Subtracted(Right->GetVec2d()));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Subtracted(*Right->GetVec2d()));
+        return gcnew xgp_Vec2d(temp);
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * V1 + A2 * V2 + V3
     void xgp_Vec2d::SetLinearForm(Standard_Real A1, xgp_Vec2d^ V1, Standard_Real A2, xgp_Vec2d^ V2, xgp_Vec2d^ V3) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec2d(), A2, V2->GetVec2d(), V3->GetVec2d());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec2d(), A2, *V2->GetVec2d(), *V3->GetVec2d());
     };
 
 
     //! <me> is set to the following linear form : A1 * V1 + A2 * V2
     void xgp_Vec2d::SetLinearForm(Standard_Real A1, xgp_Vec2d^ V1, Standard_Real A2, xgp_Vec2d^ V2) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec2d(), A2, V2->GetVec2d());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec2d(), A2, *V2->GetVec2d());
     };
 
 
     //! <me> is set to the following linear form : A1 * V1 + V2
     void xgp_Vec2d::SetLinearForm(Standard_Real A1, xgp_Vec2d^ V1, xgp_Vec2d^ V2) {
-        NativeHandle->SetLinearForm(A1, V1->GetVec2d(), V2->GetVec2d());
+        NativeHandle->SetLinearForm(A1, *V1->GetVec2d(), *V2->GetVec2d());
     };
 
 
     //! <me> is set to the following linear form : Left + Right
     void xgp_Vec2d::SetLinearForm(xgp_Vec2d^ Left, xgp_Vec2d^ Right) {
-        NativeHandle->SetLinearForm(Left->GetVec2d(), Right->GetVec2d());
+        NativeHandle->SetLinearForm(*Left->GetVec2d(), *Right->GetVec2d());
     };
 
 
@@ -299,7 +298,7 @@ namespace TKMath
     //! with respect to the vector V which is the center of
     //! the  symmetry.
     void xgp_Vec2d::Mirror(xgp_Vec2d^ V) {
-        NativeHandle->Mirror(V->GetVec2d());
+        NativeHandle->Mirror(*V->GetVec2d());
     };
 
 
@@ -307,7 +306,8 @@ namespace TKMath
     //! with respect to the vector V which is the center of
     //! the  symmetry.
     xgp_Vec2d^ xgp_Vec2d::Mirrored(xgp_Vec2d^ V) {
-        return gcnew xgp_Vec2d(NativeHandle->Mirrored(V->GetVec2d()));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Mirrored(*V->GetVec2d()));
+        return gcnew xgp_Vec2d(temp);
     };
 
 
@@ -323,7 +323,8 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Vec2d^ xgp_Vec2d::Mirrored(xgp_Ax2d^ A1) {
-        return gcnew xgp_Vec2d(NativeHandle->Mirrored(*A1->GetAx2d()));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Mirrored(*A1->GetAx2d()));
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Rotate(Standard_Real Ang) {
@@ -334,7 +335,8 @@ namespace TKMath
     //! Rotates a vector. Ang is the angular value of the
     //! rotation in radians.
     xgp_Vec2d^ xgp_Vec2d::Rotated(Standard_Real Ang) {
-        return gcnew xgp_Vec2d(NativeHandle->Rotated(Ang));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Rotated(Ang));
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Scale(Standard_Real S) {
@@ -343,15 +345,17 @@ namespace TKMath
 
     //! Scales a vector. S is the scaling value.
     xgp_Vec2d^ xgp_Vec2d::Scaled(Standard_Real S) {
-        return gcnew xgp_Vec2d(NativeHandle->Rotated(S));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Rotated(S));
+        return gcnew xgp_Vec2d(temp);
     };
 
     void xgp_Vec2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
     //! Transforms a vector with a Trsf from gp.
     xgp_Vec2d^ xgp_Vec2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Vec2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Vec2d* temp = new gp_Vec2d(NativeHandle->Transformed(*T->GetTrsf2d()));
+        return gcnew xgp_Vec2d(temp);
     };
 };

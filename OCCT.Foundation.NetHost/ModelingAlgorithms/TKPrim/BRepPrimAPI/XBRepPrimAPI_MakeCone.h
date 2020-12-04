@@ -31,6 +31,8 @@
 #include <BRepPrimAPI_MakeOneAxis.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Address.hxx>
+#include <gp_Vec2d.hxx>
+class gp_Vec2d;
 class Standard_DomainError;
 class gp_Ax2;
 class BRepPrim_Cone;

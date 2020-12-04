@@ -36,13 +36,13 @@ namespace TKTopAlgo {
 
 	//! Make a face from a sphere.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*S->GetSphere());
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a torus.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetTorus());
 		Initialize(NativeHandle);
 	};
 
@@ -73,13 +73,13 @@ namespace TKTopAlgo {
 
 	//! Make a face from a sphere.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), UMin, UMax, VMin, VMax);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*S->GetSphere(), UMin, UMax, VMin, VMax);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a torus.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), UMin, UMax, VMin, VMax);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetTorus(), UMin, UMax, VMin, VMax);
 		Initialize(NativeHandle);
 	};
 
@@ -124,14 +124,14 @@ namespace TKTopAlgo {
 	//! Make a face from a sphere and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Sphere^ S, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(S->GetSphere(), *W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*S->GetSphere(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a torus and a wire.
 	//! Standard_Boolean Inside = Standard_True
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Torus^ C, XTopoDS_Wire^ W, Standard_Boolean Inside) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(C->GetTorus(), *W->GetWire(), Inside);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*C->GetTorus(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 

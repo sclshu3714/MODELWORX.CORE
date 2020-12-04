@@ -15,13 +15,6 @@ namespace TKMath
         NativeHandle = new gp_Trsf(*pos);
     };
 
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Trsf::xgp_Trsf(gp_Trsf pos) {
-        NativeHandle = new gp_Trsf(pos);
-    };
 
     //! Creates  a 3D transformation from the 2D transformation T.
     //! The resulting transformation has a homogeneous
@@ -40,7 +33,7 @@ namespace TKMath
     //! origin (0., 0., 0.) and the vectors DX (1., 0., 0.), and DY
     //! (0., 1., 0.)). The scale factor is applied to the entire space.
     xgp_Trsf::xgp_Trsf(xgp_Trsf2d^ T) {
-        NativeHandle = new gp_Trsf(T->GetTrsf2d());
+        NativeHandle = new gp_Trsf(*T->GetTrsf2d());
     };
 
 
@@ -94,7 +87,7 @@ namespace TKMath
     //! Note that rotation is performed around origin, i.e.
     //! no translation is involved.
     void xgp_Trsf::SetRotation(xgp_Quaternion^ R) {
-        NativeHandle->SetRotation(R->GetQuaternion());
+        NativeHandle->SetRotation(*R->GetQuaternion());
     };
 
 
@@ -169,14 +162,14 @@ namespace TKMath
 
     //! Sets transformation by directly specified rotation and translation.
     void xgp_Trsf::SetTransformation(xgp_Quaternion^ R, xgp_Vec^ T) {
-        NativeHandle->SetTransformation(R->GetQuaternion(), T->GetVec());
+        NativeHandle->SetTransformation(*R->GetQuaternion(), *T->GetVec());
     };
 
 
     //! Changes the transformation into a translation.
     //! V is the vector of the translation.
     void xgp_Trsf::SetTranslation(xgp_Vec^ V) {
-        NativeHandle->SetTranslation(V->GetVec());
+        NativeHandle->SetTranslation(*V->GetVec());
     };
 
 
@@ -188,7 +181,7 @@ namespace TKMath
 
     //! Replaces the translation vector with the vector V.
     void xgp_Trsf::SetTranslationPart(xgp_Vec^ V) {
-        NativeHandle->SetTranslationPart(V->GetVec());
+        NativeHandle->SetTranslationPart(*V->GetVec());
     };
 
     //! Modifies the scale factor.
@@ -218,8 +211,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Trsf
-    gp_Trsf xgp_Trsf::GetTrsf() {
-        return *NativeHandle;
+    gp_Trsf* xgp_Trsf::GetTrsf() {
+        return NativeHandle;
     };
 
     //! Returns true if the determinant of the vectorial part of
@@ -266,7 +259,8 @@ namespace TKMath
 
     //! Returns quaternion representing rotational part of the transformation.
     xgp_Quaternion^ xgp_Trsf::GetRotation() {
-        return gcnew xgp_Quaternion(NativeHandle->GetRotation());
+        gp_Quaternion* temp = new gp_Quaternion(NativeHandle->GetRotation());
+        return gcnew xgp_Quaternion(temp);
     };
 
 
@@ -317,25 +311,27 @@ namespace TKMath
     //! Pnt P3 = P1.Transformed(T1);       //using T1 then T2
     //! P3.Transform(T2);                  // P3 = P2 !!!
     xgp_Trsf^ xgp_Trsf::Inverted() {
-        return gcnew xgp_Trsf(NativeHandle->Inverted());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Inverted());
+        return gcnew xgp_Trsf(temp);
     };
 
     xgp_Trsf^ xgp_Trsf::Multiplied(xgp_Trsf^ T) {
-        return gcnew xgp_Trsf(NativeHandle->Multiplied(T->GetTrsf()));
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Multiplied(*T->GetTrsf()));
+        return gcnew xgp_Trsf(temp);
     };
 
 
     //! Computes the transformation composed with <me> and T.
     //! <me> = <me> * T
     void xgp_Trsf::Multiply(xgp_Trsf^ T) {
-        NativeHandle->Multiply(T->GetTrsf());
+        NativeHandle->Multiply(*T->GetTrsf());
     };
 
 
     //! Computes the transformation composed with <me> and T.
     //! <me> = T * <me>
     void xgp_Trsf::PreMultiply(xgp_Trsf^ T) {
-        NativeHandle->PreMultiply(T->GetTrsf());
+        NativeHandle->PreMultiply(*T->GetTrsf());
     };
 
     void xgp_Trsf::Power(Standard_Integer N) {
@@ -351,7 +347,8 @@ namespace TKMath
     //! Raises if N < 0 and if the matrix of the transformation not
     //! inversible.
     xgp_Trsf^ xgp_Trsf::Powered(Standard_Integer N) {
-        return gcnew xgp_Trsf(NativeHandle->Powered(N));
+        gp_Trsf* temp = new gp_Trsf(NativeHandle->Powered(N));
+        return gcnew xgp_Trsf(temp);
     };
 
     void xgp_Trsf::Transforms(Standard_Real X, Standard_Real Y, Standard_Real Z) {

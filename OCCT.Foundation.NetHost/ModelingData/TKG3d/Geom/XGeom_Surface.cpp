@@ -103,7 +103,7 @@ namespace TKG3d {
 	//! It  can be redefined.  For  example on  the Plane,
 	//! Cylinder, Cone, Revolved and Extruded surfaces.
 	void XGeom_Surface::TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T) {
-		NativeHandle()->TransformParameters(U, V, T->GetTrsf());
+		NativeHandle()->TransformParameters(U, V, *T->GetTrsf());
 	};
 
 	//! Returns a 2d transformation  used to find the  new
@@ -125,7 +125,7 @@ namespace TKG3d {
 	//! It  can be redefined.  For  example on  the Plane,
 	//! Cylinder, Cone, Revolved and Extruded surfaces.
 	xgp_GTrsf2d^ XGeom_Surface::ParametricTransformation(xgp_Trsf^ T) {
-		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(T->GetTrsf()));
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(*T->GetTrsf()));
 		return gcnew xgp_GTrsf2d(temp);
 	};
 
@@ -249,7 +249,7 @@ namespace TKG3d {
 	//! directions U and V at this point.
 	//! Raised if the continuity of the surface is not C1.
 	void XGeom_Surface::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
-		return NativeHandle()->D1(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec());
+		return NativeHandle()->D1(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec());
 	};
 
 
@@ -257,7 +257,7 @@ namespace TKG3d {
 	//! the directions U and V at this point.
 	//! Raised if the continuity of the surface is not C2.
 	void XGeom_Surface::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
-		return NativeHandle()->D2(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec());
+		return NativeHandle()->D2(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec());
 	};
 
 
@@ -265,7 +265,7 @@ namespace TKG3d {
 	//! derivatives in the directions U and V at this point.
 	//! Raised if the continuity of the surface is not C2.
 	void XGeom_Surface::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
-		NativeHandle()->D3(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec(), D3U->GetVec(), D3V->GetVec(), D3UUV->GetVec(), D3UVV->GetVec());
+		NativeHandle()->D3(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec(), *D3U->GetVec(), *D3V->GetVec(), *D3UUV->GetVec(), *D3UVV->GetVec());
 	};
 
 	//! ---Purpose ;
@@ -276,7 +276,8 @@ namespace TKG3d {
 	//! direction or not CNv in the V direction.
 	//! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
 	xgp_Vec^ XGeom_Surface::DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) {
-		return gcnew xgp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		return gcnew xgp_Vec(temp);
 	};
 
 

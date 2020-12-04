@@ -23,7 +23,7 @@
 #include <XTopoDS_Face.h>
 #include <xgp_Pnt.h>
 #include <xgp_Ax2.h>
-
+#include <xgp_Vec2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -43,6 +43,7 @@ namespace TKPrim {
 	ref class TKBRep::XTopoDS_Face;
 	ref class TKMath::xgp_Pnt;
 	ref class TKMath::xgp_Ax2;
+	ref class TKMath::xgp_Vec2d;
 	public ref class XBRepPrim_Cone : public XBRepPrim_Revolution
 	{
 	public:

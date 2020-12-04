@@ -350,25 +350,25 @@ namespace TKMath
     };
 
     void xgp_Hypr2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
 
     //! Transforms an hyperbola with the transformation T from
     //!namespace TKMath  {  public ref class Trsf2d.
     xgp_Hypr2d^ xgp_Hypr2d::Transformed(xgp_Trsf2d^ T) {
-        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Translate(xgp_Vec2d^ V) {
-        NativeHandle->Translate(V->GetVec2d());
+        NativeHandle->Translate(*V->GetVec2d());
     };
 
     //! Translates an hyperbola in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Hypr2d^ xgp_Hypr2d::Translated(xgp_Vec2d^ V) {
-        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Translated(*V->GetVec2d()));
         return gcnew xgp_Hypr2d(temp);
     };
 

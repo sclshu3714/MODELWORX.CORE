@@ -184,25 +184,25 @@ namespace TKMath
     };
 
     void xgp_Pnt2d::Transform(xgp_Trsf2d^ T) {
-        NativeHandle->Transform(T->GetTrsf2d());
+        NativeHandle->Transform(*T->GetTrsf2d());
     };
 
 
     //! Translates a point in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Pnt2d^ xgp_Pnt2d::Transformed(xgp_Trsf2d^ T) {
-        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Transformed(*T->GetTrsf2d()));
         return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Translate(xgp_Vec2d^ V) {
-        NativeHandle->Translate(V->GetVec2d());
+        NativeHandle->Translate(*V->GetVec2d());
     };
 
 
     //! Translates a point from the point P1 to the point P2.
     xgp_Pnt2d^ xgp_Pnt2d::Translated(xgp_Vec2d^ V) {
-        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Translated(*V->GetVec2d()));
         return gcnew xgp_Pnt2d(temp);
     };
 
