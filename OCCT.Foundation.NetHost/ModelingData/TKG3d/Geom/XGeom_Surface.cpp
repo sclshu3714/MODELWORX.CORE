@@ -125,7 +125,8 @@ namespace TKG3d {
 	//! It  can be redefined.  For  example on  the Plane,
 	//! Cylinder, Cone, Revolved and Extruded surfaces.
 	xgp_GTrsf2d^ XGeom_Surface::ParametricTransformation(xgp_Trsf^ T) {
-		return gcnew xgp_GTrsf2d(NativeHandle()->ParametricTransformation(T->GetTrsf()));
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(T->GetTrsf()));
+		return gcnew xgp_GTrsf2d(temp);
 	};
 
 	//! Returns the parametric bounds U1, U2, V1 and V2 of this surface.

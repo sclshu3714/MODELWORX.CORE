@@ -60,7 +60,7 @@
 #include "xgp_Pnt2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Hypr2d;
 
 namespace TKMath
 {
@@ -81,11 +81,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Hypr2d(gp_Hypr2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Hypr2d(gp_Hypr2d pos);
 
         //! Creates a hyperbola with radii MajorRadius and
         //! MinorRadius, centered on the origin of MajorAxis
@@ -124,7 +119,7 @@ namespace TKMath
         !xgp_Hypr2d();
 
         //!gp_Hypr2d
-        gp_Hypr2d GetHypr2d();
+        gp_Hypr2d* GetHypr2d();
 
 
         //! Modifies this hyperbola, by redefining its local

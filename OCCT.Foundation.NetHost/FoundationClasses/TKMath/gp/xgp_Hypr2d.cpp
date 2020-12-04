@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Hypr2d::xgp_Hypr2d(gp_Hypr2d* pos) {
         NativeHandle = new gp_Hypr2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Hypr2d::xgp_Hypr2d(gp_Hypr2d pos) {
-        NativeHandle = new gp_Hypr2d(pos);
-    };
 
     //! Creates a hyperbola with radii MajorRadius and
     //! MinorRadius, centered on the origin of MajorAxis
@@ -71,8 +64,8 @@ namespace TKMath
     };
 
     //!gp_Hypr2d
-    gp_Hypr2d xgp_Hypr2d::GetHypr2d() {
-        return *NativeHandle;
+    gp_Hypr2d* xgp_Hypr2d::GetHypr2d() {
+        return NativeHandle;
     };
 
 
@@ -154,14 +147,16 @@ namespace TKMath
     //! Computes the branch of hyperbola which is on the positive side of the
     //! "YAxis" of <me>.
     xgp_Hypr2d^ xgp_Hypr2d::ConjugateBranch1() {
-        return gcnew xgp_Hypr2d(NativeHandle->ConjugateBranch1());
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->ConjugateBranch1());
+        return gcnew xgp_Hypr2d(temp);
     };
 
 
     //! Computes the branch of hyperbola which is on the negative side of the
     //! "YAxis" of <me>.
     xgp_Hypr2d^ xgp_Hypr2d::ConjugateBranch2() {
-        return gcnew xgp_Hypr2d(NativeHandle->ConjugateBranch2());
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->ConjugateBranch2());
+        return gcnew xgp_Hypr2d(temp);
     };
 
 
@@ -242,7 +237,8 @@ namespace TKMath
     //! symmetrical transformation of <me> with respect to the
     //! "YAxis" of <me>.
     xgp_Hypr2d^ xgp_Hypr2d::OtherBranch() {
-        return gcnew xgp_Hypr2d(NativeHandle->OtherBranch());
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->OtherBranch());
+        return gcnew xgp_Hypr2d(temp);
     };
 
 
@@ -290,7 +286,8 @@ namespace TKMath
     //! -   Reverse assigns the result to this hyperbola, while
     //! -   Reversed creates a new one.
     xgp_Hypr2d^ xgp_Hypr2d::Reversed() {
-        return gcnew xgp_Hypr2d(NativeHandle->Reversed());
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Reversed());
+        return gcnew xgp_Hypr2d(temp);
     };
 
     //! Returns true if the local coordinate system is direct
@@ -307,7 +304,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of an hyperbola with
     //! respect  to the point P which is the center of the symmetry.
     xgp_Hypr2d^ xgp_Hypr2d::Mirrored(xgp_Pnt2d^ P) {
-        return gcnew xgp_Hypr2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Mirror(xgp_Ax2d^ A) {
@@ -318,7 +316,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of an hyperbola with
     //! respect to an axis placement which is the axis of the symmetry.
     xgp_Hypr2d^ xgp_Hypr2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Hypr2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
@@ -329,7 +328,8 @@ namespace TKMath
     //! Rotates an hyperbola. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Hypr2d^ xgp_Hypr2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        return gcnew xgp_Hypr2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
@@ -342,7 +342,8 @@ namespace TKMath
     //! modified. But if <S> is negative the "XAxis" is
     //! reversed and the "YAxis" too.
     xgp_Hypr2d^ xgp_Hypr2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        return gcnew xgp_Hypr2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Transform(xgp_Trsf2d^ T) {
@@ -353,7 +354,8 @@ namespace TKMath
     //! Transforms an hyperbola with the transformation T from
     //!namespace TKMath  {  public ref class Trsf2d.
     xgp_Hypr2d^ xgp_Hypr2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Hypr2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Translate(xgp_Vec2d^ V) {
@@ -363,7 +365,8 @@ namespace TKMath
     //! Translates an hyperbola in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Hypr2d^ xgp_Hypr2d::Translated(xgp_Vec2d^ V) {
-        return gcnew xgp_Hypr2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Translated(V->GetVec2d()));
+        return gcnew xgp_Hypr2d(temp);
     };
 
     void xgp_Hypr2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
@@ -372,6 +375,7 @@ namespace TKMath
 
     //! Translates an hyperbola from the point P1 to the point P2.
     xgp_Hypr2d^ xgp_Hypr2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        return gcnew xgp_Hypr2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        return gcnew xgp_Hypr2d(temp);
     };
 };

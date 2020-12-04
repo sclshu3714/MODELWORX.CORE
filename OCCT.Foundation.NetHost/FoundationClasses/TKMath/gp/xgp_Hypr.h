@@ -67,6 +67,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Hypr;
 
 namespace TKMath
 {
@@ -88,11 +89,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Hypr(gp_Hypr* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Hypr(gp_Hypr pos);
 
         //! Creates a hyperbola with radii MajorRadius and
         //! MinorRadius, positioned in the space by the
@@ -121,7 +117,7 @@ namespace TKMath
         !xgp_Hypr();
 
         //! gp_Hypr
-        gp_Hypr GetHypr();
+        gp_Hypr* GetHypr();
 
         //! Modifies this hyperbola, by redefining its local coordinate
         //! system so that:

@@ -51,6 +51,7 @@
 #include "xgp_Mat2d.h"
 #include "xgp_XY.h"
 #include "xgp_Ax2d.h"
+class gp_GTrsf2d;
 
 namespace TKMath
 {
@@ -70,11 +71,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_GTrsf2d(gp_GTrsf2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_GTrsf2d(gp_GTrsf2d pos);
 
         //! Converts the xgp_Trsf2d transformation T into a
         //! general transformation.
@@ -93,7 +89,7 @@ namespace TKMath
         !xgp_GTrsf2d();
 
         //! gp_GTrsf2d
-        gp_GTrsf2d GetGTrsf2d();
+        gp_GTrsf2d* GetGTrsf2d();
 
         //! Changes this transformation into an affinity of ratio Ratio
         //! with respect to the axis A.
