@@ -53,7 +53,7 @@ namespace TKMath
     //! MajorRadius <= MinorRadius.
     //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
     xgp_Hypr2d::xgp_Hypr2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-        NativeHandle = new gp_Hypr2d(A->GetAx22d(), MajorRadius, MinorRadius);
+        NativeHandle = new gp_Hypr2d(*A->GetAx22d(), MajorRadius, MinorRadius);
     };
 
 
@@ -101,7 +101,7 @@ namespace TKMath
     //! Modifies this hyperbola, by redefining its local
     //! coordinate system so that it becomes A.
     void xgp_Hypr2d::SetAxis(xgp_Ax22d^ A) {
-        NativeHandle->SetAxis(A->GetAx22d());
+        NativeHandle->SetAxis(*A->GetAx22d());
     };
 
 
@@ -255,7 +255,8 @@ namespace TKMath
 
     //! Returns the axisplacement of the hyperbola.
     xgp_Ax22d^ xgp_Hypr2d::Axis() {
-        return gcnew xgp_Ax22d(NativeHandle->Axis());
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Axis());
+        return gcnew xgp_Ax22d(temp);
     };
 
     //! Computes an axis whose

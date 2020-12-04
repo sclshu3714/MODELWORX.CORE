@@ -38,7 +38,7 @@ namespace TKMath
     //! It is not forbidden to create a circle with Radius = 0.0 Raises ConstructionError if Radius < 0.0.
     //! Raised if Radius < 0.0.
     xgp_Circ2d::xgp_Circ2d(xgp_Ax22d^ Axis, Standard_Real Radius) {
-        NativeHandle = new gp_Circ2d(Axis->GetAx22d(), Radius);
+        NativeHandle = new gp_Circ2d(*Axis->GetAx22d(), Radius);
     };
 
     //ÊÍ·Å
@@ -71,7 +71,7 @@ namespace TKMath
 
     //! Changes the X axis of the circle.
     void xgp_Circ2d::SetAxis(xgp_Ax22d^ A) {
-        NativeHandle->SetAxis(A->GetAx22d());
+        NativeHandle->SetAxis(*A->GetAx22d());
     };
 
     //! Changes the Y axis of the circle.
@@ -139,12 +139,14 @@ namespace TKMath
 
     //! returns the position of the circle.
     xgp_Ax22d^ xgp_Circ2d::Axis() {
-        return gcnew xgp_Ax22d(NativeHandle->Axis());
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Axis());
+        return gcnew xgp_Ax22d(temp);
     };
 
     //! returns the position of the circle. Idem Axis(me).
     xgp_Ax22d^ xgp_Circ2d::Position() {
-        return gcnew xgp_Ax22d(NativeHandle->Position());
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Position());
+        return gcnew xgp_Ax22d(temp);
     };
 
     //! returns the X axis of the circle.

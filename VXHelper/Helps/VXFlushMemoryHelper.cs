@@ -13,7 +13,7 @@ namespace VXHelper
     {
         [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
         public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
-        private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
+        private static readonly object lockObject = new object();   //对象锁，用于控制多线程异步操作
         private static VXFlushMemory flushMemory = null;//全局设置
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace VXHelper
                 return flushMemory;
             }
         }
-        private static List<string> NoEmptys = new List<string>(){ "qmbsrv", "RuntimeBroker", "Memory Compression", "System", "Idle",
+        private static readonly List<string> NoEmptys = new List<string>(){ "qmbsrv", "RuntimeBroker", "Memory Compression", "System", "Idle",
                     "SgrmBroker", "wininit", "services", "WmiPrvSE", "csrss", "SecurityHealthService", "Registry", "emdctl",
                     "cmd", "smss", "svchost" };
         /// <summary>
@@ -49,12 +49,12 @@ namespace VXHelper
         /// 释放内存
         /// </summary>
         public void ClearMemory() {
-            staticClearMemory();
+            StaticClearMemory();
         }
         /// <summary>      
         /// 释放内存      
         /// </summary>      
-        public static void staticClearMemory() {
+        public static void StaticClearMemory() {
             GC.Collect();
             GC.WaitForPendingFinalizers();
             if(Environment.OSVersion.Platform == PlatformID.Win32NT) {
@@ -66,12 +66,12 @@ namespace VXHelper
         /// 释放内存
         /// </summary>
         public void FlushMemory() {
-            staticFlushMemory();
+            StaticFlushMemory();
         }
         /// <summary>
         /// 释放内存
         /// </summary>
-        public static void staticFlushMemory() {
+        public static void StaticFlushMemory() {
             GC.Collect();
             GC.WaitForPendingFinalizers();
             Process[] processes = Process.GetProcesses();

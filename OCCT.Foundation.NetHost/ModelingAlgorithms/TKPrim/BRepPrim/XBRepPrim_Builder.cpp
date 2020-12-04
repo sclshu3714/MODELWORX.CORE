@@ -55,7 +55,7 @@ namespace TKPrim {
     //! Returns  in <E>   an  Edge  built  with the circle
     //! equation  <C>.
     void XBRepPrim_Builder::MakeEdge(XTopoDS_Edge^ E, xgp_Circ^ C) {
-        NativeHandle->MakeEdge(*E->GetEdge(), C->GetCirc());
+        NativeHandle->MakeEdge(*E->GetEdge(), *C->GetCirc());
     };
 
     //! Sets the line <L> to be the curve representing the

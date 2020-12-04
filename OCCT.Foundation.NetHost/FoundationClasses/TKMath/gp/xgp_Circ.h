@@ -67,11 +67,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Circ(gp_Circ* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Circ(gp_Circ pos);
 
         //! A2 locates the circle and gives its orientation in 3D space.
         //! Warnings :
@@ -85,7 +80,7 @@ namespace TKMath
         !xgp_Circ();
 
         //! gp_Circ
-        gp_Circ GetCirc();
+        gp_Circ* GetCirc();
 
         //! Changes the main axis of the circle. It is the axis
         //! perpendicular to the plane of the circle.

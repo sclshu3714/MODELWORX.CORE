@@ -15,13 +15,7 @@ namespace TKMath
     xgp_Ax22d::xgp_Ax22d(gp_Ax22d* pos) {
         NativeHandle = new gp_Ax22d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Ax22d::xgp_Ax22d(gp_Ax22d pos) {
-        NativeHandle = new gp_Ax22d(pos);
-    };
+
 
     //! Creates a coordinate system with origin P and where:
     //! -   Vx is the "X Direction", and
@@ -66,14 +60,14 @@ namespace TKMath
     };
 
     //!  gp_Ax22d
-    gp_Ax22d xgp_Ax22d::GetAx22d() {
-      return *NativeHandle;
+    gp_Ax22d* xgp_Ax22d::GetAx22d() {
+      return NativeHandle;
     };
 
     //! Assigns the origin and the two unit vectors of the
     //! coordinate system A1 to this coordinate system.
     void xgp_Ax22d::SetAxis(xgp_Ax22d^ A1) {
-        NativeHandle->SetAxis(A1->GetAx22d());
+        NativeHandle->SetAxis(*A1->GetAx22d());
     };
 
 
@@ -164,7 +158,8 @@ namespace TKMath
     //! The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax22d^ xgp_Ax22d::Mirrored(xgp_Pnt2d^ P) {
-        return gcnew xgp_Ax22d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Mirrored(P->GetPnt2d()));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Mirror(xgp_Ax2d^ A) {
@@ -180,7 +175,8 @@ namespace TKMath
     //! The resulting main "Direction" is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax22d^ xgp_Ax22d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Ax22d(NativeHandle->Mirrored(*A->GetAx2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
@@ -192,7 +188,8 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax22d^ xgp_Ax22d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        return gcnew xgp_Ax22d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
@@ -208,7 +205,8 @@ namespace TKMath
     //! . The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax22d^ xgp_Ax22d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        return gcnew xgp_Ax22d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Transform(xgp_Trsf2d^ T) {
@@ -222,7 +220,8 @@ namespace TKMath
     //! main "Direction" of <me> is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax22d^ xgp_Ax22d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Ax22d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Translate(xgp_Vec2d^ V) {
@@ -233,7 +232,8 @@ namespace TKMath
     //! Translates an axis plaxement in the direction of the vector
     //! <V>. The magnitude of the translation is the vector's magnitude.
     xgp_Ax22d^ xgp_Ax22d::Translated(xgp_Vec2d^ V) {
-        return gcnew xgp_Ax22d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(V->GetVec2d()));
+        return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
@@ -244,6 +244,7 @@ namespace TKMath
     //! Translates an axis placement from the point <P1> to the
     //! point <P2>.
     xgp_Ax22d^ xgp_Ax22d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        return gcnew xgp_Ax22d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        return gcnew xgp_Ax22d(temp);
     };
 };

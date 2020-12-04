@@ -60,11 +60,7 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Ax22d(gp_Ax22d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Ax22d(gp_Ax22d pos);
+
 
         //! Creates a coordinate system with origin P and where:
         //! -   Vx is the "X Direction", and
@@ -95,7 +91,7 @@ namespace TKMath
         !xgp_Ax22d();
 
         //!  gp_Ax22d
-        gp_Ax22d GetAx22d();
+        gp_Ax22d* GetAx22d();
 
         //! Assigns the origin and the two unit vectors of the
         //! coordinate system A1 to this coordinate system.

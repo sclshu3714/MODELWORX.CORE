@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Circ::xgp_Circ(gp_Circ* pos) {
         NativeHandle = new gp_Circ(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Circ::xgp_Circ(gp_Circ pos) {
-        NativeHandle = new gp_Circ(pos);
-    };
 
     //! A2 locates the circle and gives its orientation in 3D space.
     //! Warnings :
@@ -44,8 +37,8 @@ namespace TKMath
     };
 
     //! gp_Circ
-    gp_Circ xgp_Circ::GetCirc() {
-        return *NativeHandle;
+    gp_Circ* xgp_Circ::GetCirc() {
+        return NativeHandle;
     };
 
     //! Changes the main axis of the circle. It is the axis
@@ -163,7 +156,8 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Circ(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Mirror(xgp_Ax1^ A1) {
@@ -175,7 +169,8 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Circ(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Mirror(xgp_Ax2^ A2) {
@@ -187,7 +182,8 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Circ(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -198,7 +194,8 @@ namespace TKMath
     //! Rotates a circle. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Circ^ xgp_Circ::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Circ(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Scale(xgp_Pnt^ P, Standard_Real S) {
@@ -212,7 +209,8 @@ namespace TKMath
     //! the "XAxis" and the "YAxis" are  reversed as for
     //! an ellipse.
     xgp_Circ^ xgp_Circ::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Circ(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Transform(xgp_Trsf^ T) {
@@ -222,7 +220,8 @@ namespace TKMath
 
     //! Transforms a circle with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Circ^ xgp_Circ::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Circ(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Translate(xgp_Vec^ V) {
@@ -233,7 +232,8 @@ namespace TKMath
     //! Translates a circle in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Circ^ xgp_Circ::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Circ(NativeHandle->Translated(V->GetVec()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Circ(temp);
     };
 
     void xgp_Circ::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
@@ -243,6 +243,7 @@ namespace TKMath
 
     //! Translates a circle from the point P1 to the point P2.
     xgp_Circ^ xgp_Circ::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Circ(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Circ(temp);
     };
 };

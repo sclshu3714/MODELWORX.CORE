@@ -3441,7 +3441,6 @@ Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Ax22d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Ax22d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3449,7 +3448,7 @@ Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Ax22d* Handle 'get ' : 
   Methods:
-    GetAx22d(gp_Ax22d*): PrivateScope, Public, HideBySig
+    GetAx22d(): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax22d): PrivateScope, Public, HideBySig
     SetXAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
     SetYAxis(xgp_Ax2d): PrivateScope, Public, HideBySig
@@ -3479,7 +3478,6 @@ Class TKMath.xgp_Ax22d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Circ*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3487,7 +3485,7 @@ Class TKMath.xgp_Circ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Circ* Handle 'get ' : 
   Methods:
-    GetCirc(gp_Circ*): PrivateScope, Public, HideBySig
+    GetCirc(): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetPosition(xgp_Ax2): PrivateScope, Public, HideBySig
@@ -4339,9 +4337,9 @@ Class TKBO.XBRepAlgoAPI_Cut: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     BRepAlgoAPI_Cut* IHandle 'get set' : 
   Methods:
-    Shape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(BRepAlgoAPI_Cut*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    Shape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BRepAlgoAPI_Cut*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum

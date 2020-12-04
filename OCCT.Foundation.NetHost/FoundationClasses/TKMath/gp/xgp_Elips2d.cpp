@@ -50,7 +50,7 @@ namespace TKMath
     //! MajorRadius = MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
     xgp_Elips2d::xgp_Elips2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-        NativeHandle = new gp_Elips2d(A->GetAx22d(), MajorRadius, MinorRadius);
+        NativeHandle = new gp_Elips2d(*A->GetAx22d(), MajorRadius, MinorRadius);
     };
 
 
@@ -93,7 +93,7 @@ namespace TKMath
     //! Modifies this ellipse, by redefining its local coordinate system so that
     //! it becomes A.
     void xgp_Elips2d::SetAxis(xgp_Ax22d^ A) {
-        NativeHandle->SetAxis(A->GetAx22d());
+        NativeHandle->SetAxis(*A->GetAx22d());
     };
 
     //! Modifies this ellipse, by redefining its local coordinate system so that
@@ -208,7 +208,8 @@ namespace TKMath
 
     //! Returns the major axis of the ellipse.
     xgp_Ax22d^ xgp_Elips2d::Axis() {
-        return gcnew xgp_Ax22d(NativeHandle->Axis());
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Axis());
+        return gcnew xgp_Ax22d(temp);
     };
 
     //! Returns the major axis of the ellipse.

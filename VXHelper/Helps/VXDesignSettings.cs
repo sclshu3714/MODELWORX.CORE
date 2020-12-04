@@ -64,7 +64,7 @@ namespace VXHelper.Helps
         /// 内存清理
         /// </summary>
         public static void FlushMemory() {
-            VXFlushMemory.staticFlushMemory();
+            VXFlushMemory.StaticFlushMemory();
         }
         #endregion
 

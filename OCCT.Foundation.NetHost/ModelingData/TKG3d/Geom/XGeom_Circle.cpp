@@ -19,7 +19,7 @@
 namespace TKG3d {
 	//! Constructs a circle by conversion of the gp_Circ circle C.
 	XGeom_Circle::XGeom_Circle(xgp_Circ^ C) {
-		NativeHandle() = new Geom_Circle(C->GetCirc());
+		NativeHandle() = new Geom_Circle(*C->GetCirc());
 		SetConicHandle(NativeHandle());
 	};
 
@@ -64,7 +64,7 @@ namespace TKG3d {
 
 	//! Set <me> so that <me> has the same geometric properties as C.
 	void XGeom_Circle::SetCirc(xgp_Circ^ C) {
-		NativeHandle()->SetCirc(C->GetCirc());
+		NativeHandle()->SetCirc(*C->GetCirc());
 	};
 
 	//! Assigns the value R to the radius of this circle.
@@ -78,7 +78,8 @@ namespace TKG3d {
 	//! returns the non transient circle from gp with the same
 	//! geometric properties as <me>.
 	xgp_Circ^ XGeom_Circle::Circ() {
-		return gcnew xgp_Circ(NativeHandle()->Circ());
+		gp_Circ* temp = new gp_Circ(NativeHandle()->Circ());
+		return gcnew xgp_Circ(temp);
 	};
 
 	//! Returns the radius of this circle.

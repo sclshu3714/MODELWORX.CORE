@@ -37,7 +37,7 @@ namespace TKMath
     //! the parabola looks like a line, which is parallel to the symmetry-axis.
     //! Raises ConstructionError if Focal < 0.0
     xgp_Parab2d::xgp_Parab2d(xgp_Ax22d^ theAxes, Standard_Real theFocalLength) {
-        NativeHandle = new gp_Parab2d(theAxes->GetAx22d(), theFocalLength);
+        NativeHandle = new gp_Parab2d(*theAxes->GetAx22d(), theFocalLength);
     };
 
 
@@ -103,7 +103,7 @@ namespace TKMath
     //! Changes the local coordinate system of the parabola.
     //! The "Location" point of A becomes the vertex of the parabola.
     void xgp_Parab2d::SetAxis(xgp_Ax22d^ A) {
-        NativeHandle->SetAxis(A->GetAx22d());
+        NativeHandle->SetAxis(*A->GetAx22d());
     };
 
 
@@ -157,7 +157,8 @@ namespace TKMath
     //! Returns the local coordinate system of the parabola.
     //! The "Location" point of this axis is the vertex of the parabola.
     xgp_Ax22d^ xgp_Parab2d::Axis() {
-        return gcnew xgp_Ax22d(NativeHandle->Axis());
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Axis());
+        return gcnew xgp_Ax22d(temp);
     };
 
 
