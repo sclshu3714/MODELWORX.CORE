@@ -1592,7 +1592,6 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
 Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Mat, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_GTrsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_GTrsf*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1600,7 +1599,7 @@ Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_GTrsf* Handle 'get ' : 
   Methods:
-    GetGTrsf(gp_GTrsf*): PrivateScope, Public, HideBySig
+    GetGTrsf(): PrivateScope, Public, HideBySig
     SetAffinity(xgp_Ax2, Double): PrivateScope, Public, HideBySig
     SetAffinity(xgp_Ax1, Double): PrivateScope, Public, HideBySig
     SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
@@ -3653,7 +3652,6 @@ Class TKMath.xgp_Cylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Elips): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3661,7 +3659,7 @@ Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Elips* Handle 'get ' : 
   Methods:
-    GetElips(gp_Elips*): PrivateScope, Public, HideBySig
+    GetElips(): PrivateScope, Public, HideBySig
     SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     SetMajorRadius(Double): PrivateScope, Public, HideBySig
@@ -3703,7 +3701,6 @@ Class TKMath.xgp_Elips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Ax22d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2d, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Elips2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Elips2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3711,7 +3708,7 @@ Class TKMath.xgp_Elips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Elips2d* Handle 'get ' : 
   Methods:
-    GetElips2d(gp_Elips2d*): PrivateScope, Public, HideBySig
+    GetElips2d(): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SetMajorRadius(Double): PrivateScope, Public, HideBySig
     SetMinorRadius(Double): PrivateScope, Public, HideBySig

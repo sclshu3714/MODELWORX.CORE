@@ -39,7 +39,7 @@
 #include "xgp_Pnt2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Elips2d;
 namespace TKMath
 {
     ref class xgp_Ax2d;
@@ -59,11 +59,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Elips2d(gp_Elips2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Elips2d(gp_Elips2d pos);
 
         //! Creates an ellipse with the major axis, the major and the
         //! minor radius. The location of the MajorAxis is the center
@@ -99,7 +94,7 @@ namespace TKMath
         !xgp_Elips2d();
 
         //! gp_Elips2d
-        gp_Elips2d GetElips2d();
+        gp_Elips2d* GetElips2d();
 
         //! Modifies this ellipse, by redefining its local coordinate system so that
         //! -   its origin becomes P.

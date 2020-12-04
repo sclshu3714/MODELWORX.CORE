@@ -266,7 +266,8 @@ namespace TKV3d {
 
     //! Return inversed transformation.
     const xgp_GTrsf^ XPrsMgr_PresentableObject::InversedTransformation() {
-        return gcnew xgp_GTrsf(NativeHandle()->InversedTransformation());
+        gp_GTrsf* temp = new gp_GTrsf(NativeHandle()->InversedTransformation());
+        return gcnew xgp_GTrsf(temp);
     };
 
     //! Return combined parent transformation.

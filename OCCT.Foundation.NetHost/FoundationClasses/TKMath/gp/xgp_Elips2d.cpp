@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Elips2d::xgp_Elips2d(gp_Elips2d* pos) {
         NativeHandle = new gp_Elips2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Elips2d::xgp_Elips2d(gp_Elips2d pos) {
-        NativeHandle = new gp_Elips2d(pos);
-    };
 
     //! Creates an ellipse with the major axis, the major and the
     //! minor radius. The location of the MajorAxis is the center
@@ -68,8 +61,8 @@ namespace TKMath
     };
 
     //! gp_Elips2d
-    gp_Elips2d xgp_Elips2d::GetElips2d() {
-        return *NativeHandle;
+    gp_Elips2d* xgp_Elips2d::GetElips2d() {
+        return NativeHandle;
     };
 
     //! Modifies this ellipse, by redefining its local coordinate system so that
@@ -230,7 +223,8 @@ namespace TKMath
     };
 
     xgp_Elips2d^ xgp_Elips2d::Reversed() {
-        return gcnew xgp_Elips2d(NativeHandle->Reversed());
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Reversed());
+        return gcnew xgp_Elips2d(temp);
     };
 
     //! Returns true if the local coordinate system is direct
@@ -247,7 +241,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of a ellipse with respect
     //! to the point P which is the center of the symmetry
     xgp_Elips2d^ xgp_Elips2d::Mirrored(xgp_Pnt2d^ P) {
-        return gcnew xgp_Elips2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Mirror(xgp_Ax2d^ A) {
@@ -258,7 +253,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of a ellipse with respect
     //! to an axis placement which is the axis of the symmetry.
     xgp_Elips2d^ xgp_Elips2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Elips2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
@@ -266,7 +262,8 @@ namespace TKMath
     };
 
     xgp_Elips2d^ xgp_Elips2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        return gcnew xgp_Elips2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
@@ -276,7 +273,8 @@ namespace TKMath
 
     //! Scales a ellipse. S is the scaling value.
     xgp_Elips2d^ xgp_Elips2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        return gcnew xgp_Elips2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Transform(xgp_Trsf2d^ T) {
@@ -286,7 +284,8 @@ namespace TKMath
 
     //! Transforms an ellipse with the transformation T fromnamespace TKMath  {  public ref class Trsf2d.
     xgp_Elips2d^ xgp_Elips2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Elips2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Translate(xgp_Vec2d^ V) {
@@ -297,7 +296,8 @@ namespace TKMath
     //! Translates a ellipse in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Elips2d^ xgp_Elips2d::Translated(xgp_Vec2d^ V) {
-        return gcnew xgp_Elips2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Translated(V->GetVec2d()));
+        return gcnew xgp_Elips2d(temp);
     };
 
     void xgp_Elips2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
@@ -307,6 +307,7 @@ namespace TKMath
 
     //! Translates a ellipse from the point P1 to the point P2.
     xgp_Elips2d^ xgp_Elips2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        return gcnew xgp_Elips2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        return gcnew xgp_Elips2d(temp);
     };
 };

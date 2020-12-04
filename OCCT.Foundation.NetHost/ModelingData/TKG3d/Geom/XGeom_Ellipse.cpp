@@ -19,7 +19,7 @@
 namespace TKG3d {
 	//! Constructs an ellipse by conversion of the gp_Elips ellipse E.
 	XGeom_Ellipse::XGeom_Ellipse(xgp_Elips^ E) {
-		IHandle = new  Geom_Ellipse(E->GetElips());
+		IHandle = new  Geom_Ellipse(*E->GetElips());
 	};
 
 	//! Constructs an ellipse
@@ -61,7 +61,7 @@ namespace TKG3d {
 
 	//! Converts the gp_Elips ellipse E into this ellipse.
 	void XGeom_Ellipse::SetElips(xgp_Elips^ E) {
-		NativeHandle()->SetElips(E->GetElips());
+		NativeHandle()->SetElips(*E->GetElips());
 	};
 
 	//! Assigns a value to the major radius of this ellipse.
@@ -79,7 +79,8 @@ namespace TKG3d {
 
 	//! returns the non transient ellipse from gp with the same
 	xgp_Elips^ XGeom_Ellipse::Elips() {
-		return gcnew xgp_Elips(NativeHandle()->Elips());
+		gp_Elips* temp = new gp_Elips(NativeHandle()->Elips());
+		return gcnew xgp_Elips(temp);
 	};
 
 	//! Computes the parameter on the reversed ellipse for

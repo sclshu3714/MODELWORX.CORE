@@ -44,6 +44,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Elips;
 
 namespace TKMath
 {
@@ -63,11 +64,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Elips(gp_Elips* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Elips(gp_Elips pos);
 
         //! The major radius of the ellipse is on the "XAxis" and the
         //! minor radius is on the "YAxis" of the ellipse. The "XAxis"
@@ -85,7 +81,7 @@ namespace TKMath
         !xgp_Elips();
 
         //! gp_Elips
-        gp_Elips GetElips();
+        gp_Elips* GetElips();
 
         //! Changes the axis normal to the plane of the ellipse.
         //! It modifies the definition of this plane.

@@ -80,22 +80,22 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Elips^ L) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetElips());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips());
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Elips^ L, Standard_Real p1, Standard_Real p2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetElips(), p1, p2);
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips(), p1, p2);
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Elips^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetElips(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips(), P1->GetPnt(), P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Elips^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetElips(), *V1->GetVertex(), *V2->GetVertex());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips(), *V1->GetVertex(), *V2->GetVertex());
 		Initialize(NativeHandle);
 	};
 

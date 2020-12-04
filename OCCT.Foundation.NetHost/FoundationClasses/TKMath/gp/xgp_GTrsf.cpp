@@ -14,13 +14,6 @@ namespace TKMath
     xgp_GTrsf::xgp_GTrsf(gp_GTrsf* pos) {
         NativeHandle = new  gp_GTrsf(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_GTrsf::xgp_GTrsf(gp_GTrsf pos) {
-        NativeHandle = new  gp_GTrsf(pos);
-    };
 
     //! Converts the xgp_Trsf transformation T into a
     //! general transformation, i.e. Returns a GTrsf with
@@ -52,8 +45,8 @@ namespace TKMath
     };
 
     //! gp_GTrsf
-    gp_GTrsf xgp_GTrsf::GetGTrsf() {
-        return *NativeHandle;
+    gp_GTrsf* xgp_GTrsf::GetGTrsf() {
+        return NativeHandle;
     };
 
     //! Changes this transformation into an affinity of ratio Ratio
@@ -175,7 +168,8 @@ namespace TKMath
     //! Raises an exception if the matrix of the transformation
     //! is not inversible.
     xgp_GTrsf^ xgp_GTrsf::Inverted() {
-        return gcnew xgp_GTrsf(NativeHandle->Inverted());
+        gp_GTrsf* temp = new gp_GTrsf(NativeHandle->Inverted());
+        return gcnew xgp_GTrsf(temp);
     };
 
 
@@ -193,14 +187,15 @@ namespace TKMath
     //! T1.Transforms(P2);                  //using T1 then T2
     //! T2.Transforms(P2);                  // P1 = P2 !!!
     xgp_GTrsf^ xgp_GTrsf::Multiplied(xgp_GTrsf^ T) {
-        return gcnew xgp_GTrsf(NativeHandle->Multiplied(T->GetGTrsf()));
+        gp_GTrsf* temp = new gp_GTrsf(NativeHandle->Multiplied(*T->GetGTrsf()));
+        return gcnew xgp_GTrsf(temp);
     };
 
 
     //! Computes the transformation composed with <me> and T.
     //! <me> = <me> * T
     void xgp_GTrsf::Multiply(xgp_GTrsf^ T) {
-        NativeHandle->Multiply(T->GetGTrsf());
+        NativeHandle->Multiply(*T->GetGTrsf());
     };
 
 
@@ -208,7 +203,7 @@ namespace TKMath
     //! transformation and assigns the result to this transformation.
     //! this = T * this
     void xgp_GTrsf::PreMultiply(xgp_GTrsf^ T) {
-        NativeHandle->PreMultiply(T->GetGTrsf());
+        NativeHandle->PreMultiply(*T->GetGTrsf());
     };
 
     void xgp_GTrsf::Power(Standard_Integer N) {
@@ -230,7 +225,8 @@ namespace TKMath
     //! Raises an exception if N < 0 and if the matrix of the
     //! transformation not inversible.
     xgp_GTrsf^ xgp_GTrsf::Powered(Standard_Integer N) {
-        return gcnew xgp_GTrsf(NativeHandle->Powered(N));
+        gp_GTrsf* temp = new gp_GTrsf(NativeHandle->Powered(N));
+        return gcnew xgp_GTrsf(temp);
     };
 
     void xgp_GTrsf::Transforms(xgp_XYZ^ Coord) {

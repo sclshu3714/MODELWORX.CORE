@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Elips::xgp_Elips(gp_Elips* pos) {
         NativeHandle = new gp_Elips(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Elips::xgp_Elips(gp_Elips pos) {
-        NativeHandle = new gp_Elips(pos);
-    };
 
     //! The major radius of the ellipse is on the "XAxis" and the
     //! minor radius is on the "YAxis" of the ellipse. The "XAxis"
@@ -48,8 +41,8 @@ namespace TKMath
     };
 
     //! gp_Elips
-    gp_Elips xgp_Elips::GetElips() {
-        return *NativeHandle;
+    gp_Elips* xgp_Elips::GetElips() {
+        return NativeHandle;
     };
 
     //! Changes the axis normal to the plane of the ellipse.
@@ -222,7 +215,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of an ellipse with
     //! respect to the point P which is the center of the symmetry.
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Elips(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Mirror(xgp_Ax1^ A1) {
@@ -233,7 +227,8 @@ namespace TKMath
     //! Performs the symmetrical transformation of an ellipse with
     //! respect to an axis placement which is the axis of the symmetry.
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Elips(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Mirror(xgp_Ax2^ A2) {
@@ -245,7 +240,8 @@ namespace TKMath
     //! respect to a plane. The axis placement A2 locates the plane
     //! of the symmetry (Location, XDirection, YDirection).
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Elips(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -256,7 +252,8 @@ namespace TKMath
     //! Rotates an ellipse. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Elips^ xgp_Elips::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Elips(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Scale(xgp_Pnt^ P, Standard_Real S) {
@@ -266,7 +263,8 @@ namespace TKMath
 
     //! Scales an ellipse. S is the scaling value.
     xgp_Elips^ xgp_Elips::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Elips(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Transform(xgp_Trsf^ T) {
@@ -276,7 +274,8 @@ namespace TKMath
 
     //! Transforms an ellipse with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Elips^ xgp_Elips::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Elips(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Translate(xgp_Vec^ V) {
@@ -287,7 +286,8 @@ namespace TKMath
     //! Translates an ellipse in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Elips^ xgp_Elips::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Elips(NativeHandle->Translated(V->GetVec()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Elips(temp);
     };
 
     void xgp_Elips::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
@@ -297,7 +297,8 @@ namespace TKMath
 
     //! Translates an ellipse from the point P1 to the point P2.
     xgp_Elips^ xgp_Elips::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Elips(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Elips(temp);
     };
 };
 
