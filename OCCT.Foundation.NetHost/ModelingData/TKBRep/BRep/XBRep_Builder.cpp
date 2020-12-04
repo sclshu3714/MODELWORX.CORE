@@ -129,7 +129,7 @@ namespace TKBRep {
     //! If <C> is a null handle, remove any existing pcurve.
     //! Sets UV bounds for curve repsentation
     void XBRep_Builder::UpdateEdge(XTopoDS_Edge^ E, XGeom2d_Curve^ C, XGeom_Surface^ S, XTopLoc_Location^ L, Standard_Real Tol, xgp_Pnt2d^ Pf, xgp_Pnt2d^ Pl) {
-        NativeHandle->UpdateEdge(*E->GetEdge(), C->GetCurve(), S->GetSurface(), *L->GetLocation(), Tol, Pf->GetPnt2d(), Pl->GetPnt2d());
+        NativeHandle->UpdateEdge(*E->GetEdge(), C->GetCurve(), S->GetSurface(), *L->GetLocation(), Tol, *Pf->GetPnt2d(), *Pl->GetPnt2d());
     };
 
     //! Sets pcurves for the edge on the closed surface.
@@ -144,7 +144,7 @@ namespace TKBRep {
     //! pcurve.
     //! Sets UV bounds for curve repsentation
     void XBRep_Builder::UpdateEdge(XTopoDS_Edge^ E, XGeom2d_Curve^ C1, XGeom2d_Curve^ C2, XGeom_Surface^ S, XTopLoc_Location^ L, Standard_Real Tol, xgp_Pnt2d^ Pf, xgp_Pnt2d^ Pl) {
-        NativeHandle->UpdateEdge(*E->GetEdge(), C1->GetCurve(), C2->GetCurve(), S->GetSurface(), *L->GetLocation(), Tol, Pf->GetPnt2d(), Pl->GetPnt2d());
+        NativeHandle->UpdateEdge(*E->GetEdge(), C1->GetCurve(), C2->GetCurve(), S->GetSurface(), *L->GetLocation(), Tol, *Pf->GetPnt2d(), *Pl->GetPnt2d());
     };
 
     //! Changes an Edge 3D polygon.

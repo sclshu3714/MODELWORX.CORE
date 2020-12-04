@@ -477,7 +477,6 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKMath.xgp_Pnt2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -490,7 +489,7 @@ Class TKMath.xgp_Pnt2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetX(Double): PrivateScope, Public, HideBySig
     SetY(Double): PrivateScope, Public, HideBySig
     SetXY(xgp_XY): PrivateScope, Public, HideBySig
-    GetPnt2d(gp_Pnt2d*): PrivateScope, Public, HideBySig
+    GetPnt2d(): PrivateScope, Public, HideBySig
     Coord(): PrivateScope, Public, HideBySig
     Coord(Double, Double): PrivateScope, Public, HideBySig
     Coord(Int32): PrivateScope, Public, HideBySig

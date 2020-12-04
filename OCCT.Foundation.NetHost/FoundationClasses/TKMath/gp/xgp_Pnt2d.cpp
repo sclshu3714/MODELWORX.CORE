@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Pnt2d::xgp_Pnt2d(gp_Pnt2d* pos) {
         NativeHandle = new gp_Pnt2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Pnt2d::xgp_Pnt2d(gp_Pnt2d pos) {
-        NativeHandle = new gp_Pnt2d(pos);
-    };
 
     //! Creates a point with a doublet of coordinates.
     xgp_Pnt2d::xgp_Pnt2d(xgp_XY^ Coord) {
@@ -78,8 +71,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Pnt2d
-    gp_Pnt2d xgp_Pnt2d::GetPnt2d() {
-        return *NativeHandle;
+    gp_Pnt2d* xgp_Pnt2d::GetPnt2d() {
+        return NativeHandle;
     };
 
     //! Returns the coordinate of range Index :
@@ -129,17 +122,17 @@ namespace TKMath
     //! Returns True if the distance between the two
     //! points is lower or equal to LinearTolerance.
     Standard_Boolean xgp_Pnt2d::IsEqual(xgp_Pnt2d^ Other, Standard_Real LinearTolerance) {
-        return NativeHandle->IsEqual(Other->GetPnt2d(), LinearTolerance);
+        return NativeHandle->IsEqual(*Other->GetPnt2d(), LinearTolerance);
     };
 
     //! Computes the distance between two points.
     Standard_Real xgp_Pnt2d::Distance(xgp_Pnt2d^ Other) {
-        return NativeHandle->Distance(Other->GetPnt2d());
+        return NativeHandle->Distance(*Other->GetPnt2d());
     };
 
     //! Computes the square distance between two points.
     Standard_Real xgp_Pnt2d::SquareDistance(xgp_Pnt2d^ Other) {
-        return NativeHandle->SquareDistance(Other->GetPnt2d());
+        return NativeHandle->SquareDistance(*Other->GetPnt2d());
     };
 
 
@@ -147,14 +140,15 @@ namespace TKMath
     //! with respect to the point P which is the center of
     //! the  symmetry.
     void xgp_Pnt2d::Mirror(xgp_Pnt2d^ P) {
-        NativeHandle->Mirror(P->GetPnt2d());
+        NativeHandle->Mirror(*P->GetPnt2d());
     };
 
 
     //! Performs the symmetrical transformation of a point
     //! with respect to an axis placement which is the axis
     xgp_Pnt2d^ xgp_Pnt2d::Mirrored(xgp_Pnt2d^ P) {
-        return gcnew xgp_Pnt2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Mirrored(*P->GetPnt2d()));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Mirror(xgp_Ax2d^ A) {
@@ -165,25 +159,28 @@ namespace TKMath
     //! Rotates a point. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Pnt2d^ xgp_Pnt2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Pnt2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), Ang);
+        NativeHandle->Rotate(*P->GetPnt2d(), Ang);
     };
 
     //! Scales a point. S is the scaling value.
     xgp_Pnt2d^ xgp_Pnt2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        return gcnew xgp_Pnt2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Rotated(*P->GetPnt2d(), Ang));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt2d(), S);
+        NativeHandle->Scale(*P->GetPnt2d(), S);
     };
 
     //! Transforms a point with the transsformation T.
     xgp_Pnt2d^ xgp_Pnt2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        return gcnew xgp_Pnt2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Scaled(*P->GetPnt2d(), S));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Transform(xgp_Trsf2d^ T) {
@@ -194,7 +191,8 @@ namespace TKMath
     //! Translates a point in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Pnt2d^ xgp_Pnt2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Pnt2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Translate(xgp_Vec2d^ V) {
@@ -204,14 +202,16 @@ namespace TKMath
 
     //! Translates a point from the point P1 to the point P2.
     xgp_Pnt2d^ xgp_Pnt2d::Translated(xgp_Vec2d^ V) {
-        return gcnew xgp_Pnt2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Translated(V->GetVec2d()));
+        return gcnew xgp_Pnt2d(temp);
     };
 
     void xgp_Pnt2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
     xgp_Pnt2d^ xgp_Pnt2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        return gcnew xgp_Pnt2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
+        return gcnew xgp_Pnt2d(temp);
     };
 };

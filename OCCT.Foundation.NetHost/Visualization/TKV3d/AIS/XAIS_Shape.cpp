@@ -251,29 +251,32 @@ namespace TKV3d {
 
   //! Return texture repeat UV values; (1, 1) by default.
     xgp_Pnt2d^ XAIS_Shape::TextureRepeatUV() {
-        return gcnew xgp_Pnt2d(NativeHandle()->TextureRepeatUV());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle()->TextureRepeatUV());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Sets the number of occurrences of the texture on each face. The texture itself is parameterized in (0,1) by (0,1).
     //! Each face of the shape to be textured is parameterized in UV space (Umin,Umax) by (Vmin,Vmax).
     void XAIS_Shape::SetTextureRepeatUV(xgp_Pnt2d^ theRepeatUV) {
-        NativeHandle()->SetTextureRepeatUV(theRepeatUV->GetPnt2d());
+        NativeHandle()->SetTextureRepeatUV(*theRepeatUV->GetPnt2d());
     };
 
     //! Return texture origin UV position; (0, 0) by default.
     xgp_Pnt2d^ XAIS_Shape::TextureOriginUV() {
-        return gcnew xgp_Pnt2d(NativeHandle()->TextureOriginUV());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle()->TextureOriginUV());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Use this method to change the origin of the texture.
     //! The texel (0,0) will be mapped to the surface (myUVOrigin.X(), myUVOrigin.Y()).
     void XAIS_Shape::SetTextureOriginUV(xgp_Pnt2d^ theOriginUV) {
-        NativeHandle()->SetTextureOriginUV(theOriginUV->GetPnt2d());
+        NativeHandle()->SetTextureOriginUV(*theOriginUV->GetPnt2d());
     };
 
     //! Return scale factor for UV coordinates; (1, 1) by default.
     xgp_Pnt2d^ XAIS_Shape::TextureScaleUV() {
-        return gcnew xgp_Pnt2d(NativeHandle()->TextureScaleUV());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle()->TextureScaleUV());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Use this method to scale the texture (percent of the face).
@@ -281,7 +284,7 @@ namespace TKV3d {
     //! Example: if you set ScaleU and ScaleV to 0.5 and you enable texture repeat,
     //!          the texture will appear twice on the face in each direction.
     void XAIS_Shape::SetTextureScaleUV(xgp_Pnt2d^ theScaleUV) {
-        NativeHandle()->SetTextureScaleUV(theScaleUV->GetPnt2d());
+        NativeHandle()->SetTextureScaleUV(*theScaleUV->GetPnt2d());
     };
 
     //! Compute HLR presentation for specified shape.

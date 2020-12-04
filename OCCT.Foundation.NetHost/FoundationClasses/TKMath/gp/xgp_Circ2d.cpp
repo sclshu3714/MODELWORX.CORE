@@ -54,7 +54,7 @@ namespace TKMath
 
     //! Changes the location point (center) of the circle.
     void xgp_Circ2d::SetLocation(xgp_Pnt2d^ P) {
-        NativeHandle->SetLocation(P->GetPnt2d());
+        NativeHandle->SetLocation(*P->GetPnt2d());
     };
 
     //! Changes the X axis of the circle.
@@ -99,20 +99,20 @@ namespace TKMath
     //! the circumference of the circle is lower of equal to
     //! <LinearTolerance>.
     Standard_Boolean xgp_Circ2d::Contains(xgp_Pnt2d^ P, Standard_Real LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt2d(), LinearTolerance);
+        return NativeHandle->Contains(*P->GetPnt2d(), LinearTolerance);
     };
 
 
     //! Computes the minimum of distance between the point P and any
     //! point on the circumference of the circle.
     Standard_Real xgp_Circ2d::Distance(xgp_Pnt2d^ P) {
-        return NativeHandle->Distance(P->GetPnt2d());
+        return NativeHandle->Distance(*P->GetPnt2d());
     };
 
 
     //! Computes the square distance between <me> and the point P.
     Standard_Real xgp_Circ2d::SquareDistance(xgp_Pnt2d^ P) {
-        return NativeHandle->SquareDistance(P->GetPnt2d());
+        return NativeHandle->SquareDistance(*P->GetPnt2d());
     };
 
     //! computes the circumference of the circle.
@@ -122,7 +122,8 @@ namespace TKMath
 
     //! Returns the location point (center) of the circle.
     xgp_Pnt2d^ xgp_Circ2d::Location() {
-        return gcnew xgp_Pnt2d(NativeHandle->Location());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Location());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Returns the radius value of the circle.
@@ -179,14 +180,14 @@ namespace TKMath
     };
 
     void xgp_Circ2d::Mirror(xgp_Pnt2d^ P) {
-        NativeHandle->Mirror(P->GetPnt2d());
+        NativeHandle->Mirror(*P->GetPnt2d());
     };
 
 
     //! Performs the symmetrical transformation of a circle with respect
     //! to the point P which is the center of the symmetry
     xgp_Circ2d^ xgp_Circ2d::Mirrored(xgp_Pnt2d^ P) {
-        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Mirrored(*P->GetPnt2d()));
         return gcnew xgp_Circ2d(temp);
     };
 
@@ -203,19 +204,19 @@ namespace TKMath
     };
 
     void xgp_Circ2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), Ang);
+        NativeHandle->Rotate(*P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates a circle. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Circ2d^ xgp_Circ2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Rotated(*P->GetPnt2d(), Ang));
         return gcnew xgp_Circ2d(temp);
     };
 
     void xgp_Circ2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt2d(), S);
+        NativeHandle->Scale(*P->GetPnt2d(), S);
     };
 
 
@@ -225,7 +226,7 @@ namespace TKMath
     //! the "XAxis" and the "YAxis" are  reversed as for
     //! an ellipse.
     xgp_Circ2d^ xgp_Circ2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Scaled(*P->GetPnt2d(), S));
         return gcnew xgp_Circ2d(temp);
     };
 
@@ -253,13 +254,13 @@ namespace TKMath
     };
 
     void xgp_Circ2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
 
     //! Translates a circle from the point P1 to the point P2.
     xgp_Circ2d^ xgp_Circ2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
         return gcnew xgp_Circ2d(temp);
     };
 };

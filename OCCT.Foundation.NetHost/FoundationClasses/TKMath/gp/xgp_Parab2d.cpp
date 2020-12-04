@@ -48,7 +48,7 @@ namespace TKMath
     //! coordinate system is used, otherwise - left-handed. Result parabola will look
     //! like a line, which is perpendicular to the directrix.
     xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theDirectrix, xgp_Pnt2d^ theFocus, Standard_Boolean theSense) {
-        NativeHandle = new gp_Parab2d(*theDirectrix->GetAx2d(), theFocus->GetPnt2d(), theSense);
+        NativeHandle = new gp_Parab2d(*theDirectrix->GetAx2d(), *theFocus->GetPnt2d(), theSense);
     };
 
 
@@ -82,7 +82,7 @@ namespace TKMath
     //! Changes the "Location" point of the parabola. It is the
     //! vertex of the parabola.
     void xgp_Parab2d::SetLocation(xgp_Pnt2d^ P) {
-        NativeHandle->SetLocation(P->GetPnt2d());
+        NativeHandle->SetLocation(*P->GetPnt2d());
     };
 
     //! Modifies this parabola, by redefining its local coordinate system so that
@@ -132,12 +132,14 @@ namespace TKMath
 
     //! Returns the focus of the parabola.
     xgp_Pnt2d^ xgp_Parab2d::Focus() {
-        return gcnew xgp_Pnt2d(NativeHandle->Focus());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Focus());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Returns the vertex of the parabola.
     xgp_Pnt2d^ xgp_Parab2d::Location() {
-        return gcnew xgp_Pnt2d(NativeHandle->Location());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Location());
+        return gcnew xgp_Pnt2d(temp);
     };
 
 
@@ -186,14 +188,14 @@ namespace TKMath
     };
 
     void xgp_Parab2d::Mirror(xgp_Pnt2d^ P) {
-        NativeHandle->Mirror(P->GetPnt2d());
+        NativeHandle->Mirror(*P->GetPnt2d());
     };
 
 
     //! Performs the symmetrical transformation of a parabola with respect
     //! to the point P which is the center of the symmetry
     xgp_Parab2d^ xgp_Parab2d::Mirrored(xgp_Pnt2d^ P) {
-        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Mirrored(*P->GetPnt2d()));
         return gcnew xgp_Parab2d(temp);
     };
 
@@ -210,19 +212,19 @@ namespace TKMath
     };
 
     void xgp_Parab2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), Ang);
+        NativeHandle->Rotate(*P->GetPnt2d(), Ang);
     };
 
 
     //! Rotates a parabola. P is the center of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Parab2d^ xgp_Parab2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Rotated(*P->GetPnt2d(), Ang));
         return gcnew xgp_Parab2d(temp);
     };
 
     void xgp_Parab2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt2d(), S);
+        NativeHandle->Scale(*P->GetPnt2d(), S);
     };
 
 
@@ -230,7 +232,7 @@ namespace TKMath
     //! If S is negative the direction of the symmetry axis
     //! "XAxis" is reversed and the direction of the "YAxis" too.
     xgp_Parab2d^ xgp_Parab2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Scaled(*P->GetPnt2d(), S));
         return gcnew xgp_Parab2d(temp);
     };
 
@@ -258,13 +260,13 @@ namespace TKMath
     };
 
     void xgp_Parab2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
 
     //! Translates a parabola from the point P1 to the point P2.
     xgp_Parab2d^ xgp_Parab2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Parab2d* temp = new gp_Parab2d(NativeHandle->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
         return gcnew xgp_Parab2d(temp);
     };
 };

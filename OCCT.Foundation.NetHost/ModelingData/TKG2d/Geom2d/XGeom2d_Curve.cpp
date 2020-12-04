@@ -173,14 +173,14 @@ namespace TKG2d {
 	//! derivative on the basis curve and the offset direction
 	//! are parallel.
 	void XGeom2d_Curve::D0(Standard_Real U, xgp_Pnt2d^ P) {
-		NativeHandle()->D0(U, P->GetPnt2d());
+		NativeHandle()->D0(U, *P->GetPnt2d());
 	};
 
 
 	//! Returns the point P of parameter U and the first derivative V1.
 	//! Raised if the continuity of the curve is not C1.
 	void XGeom2d_Curve::D1(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1) {
-		NativeHandle()->D1(U, P->GetPnt2d(), V1->GetVec2d());
+		NativeHandle()->D1(U, *P->GetPnt2d(), V1->GetVec2d());
 	};
 
 
@@ -188,7 +188,7 @@ namespace TKG2d {
 	//! derivatives V1 and V2.
 	//! Raised if the continuity of the curve is not C2.
 	void XGeom2d_Curve::D2(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1, xgp_Vec2d^ V2) {
-		NativeHandle()->D2(U, P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d());
+		NativeHandle()->D2(U, *P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d());
 	};
 
 
@@ -196,7 +196,7 @@ namespace TKG2d {
 	//! and the third derivative.
 	//! Raised if the continuity of the curve is not C3.
 	void XGeom2d_Curve::D3(Standard_Real U, xgp_Pnt2d^ P, xgp_Vec2d^ V1, xgp_Vec2d^ V2, xgp_Vec2d^ V3) {
-		NativeHandle()->D3(U, P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d(), V3->GetVec2d());
+		NativeHandle()->D3(U, *P->GetPnt2d(), V1->GetVec2d(), V2->GetVec2d(), V3->GetVec2d());
 	};
 
 	//! For the point of parameter U of this curve, computes
@@ -224,6 +224,7 @@ namespace TKG2d {
 	//! derivative on the basis curve and the offset direction
 	//! are parallel.
 	xgp_Pnt2d^ XGeom2d_Curve::Value(Standard_Real U) {
-		return gcnew xgp_Pnt2d(NativeHandle()->Value(U));
+		gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle()->Value(U));
+		return gcnew xgp_Pnt2d(temp);
 	};
 }

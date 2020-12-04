@@ -15,12 +15,14 @@
 #ifndef _xgp_Pnt_HeaderFile
 #define _xgp_Pnt_HeaderFile
 #pragma once
+#include <gp_Pnt.hxx>
 #include <gp_Ax2.hxx>
 #include "xgp_XYZ.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
+class gp_Pnt;
 class gp_Ax2;
 
 

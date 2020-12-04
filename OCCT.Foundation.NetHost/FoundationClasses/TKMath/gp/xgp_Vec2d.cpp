@@ -42,7 +42,7 @@ namespace TKMath
     //! Creates a vector from two points. The length of the vector
     //! is the distance between P1 and P2
     xgp_Vec2d::xgp_Vec2d(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle = new gp_Vec2d(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle = new gp_Vec2d(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
     // Õ∑≈

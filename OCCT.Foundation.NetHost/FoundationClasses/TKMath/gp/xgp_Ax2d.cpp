@@ -21,7 +21,7 @@ namespace TKMath
     //! the axis placement and V is the "Direction" of
     //! the axis placement.
     xgp_Ax2d::xgp_Ax2d(xgp_Pnt2d^ P, xgp_Dir2d^ V) {
-        NativeHandle = new gp_Ax2d(P->GetPnt2d(), *V->GetDir2d());
+        NativeHandle = new gp_Ax2d(*P->GetPnt2d(), *V->GetDir2d());
     };
 
     // Õ∑≈
@@ -41,7 +41,7 @@ namespace TKMath
 
     //! Changes the "Location" point (origin) of <me>.
     void xgp_Ax2d::SetLocation(xgp_Pnt2d^ Locat) {
-        NativeHandle->SetLocation(Locat->GetPnt2d());
+        NativeHandle->SetLocation(*Locat->GetPnt2d());
     };
 
     //! Changes the direction of <me>.
@@ -56,7 +56,8 @@ namespace TKMath
 
     //! Returns the origin of <me>.
     xgp_Pnt2d^ xgp_Ax2d::Location() {
-        return gcnew xgp_Pnt2d(NativeHandle->Location());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Location());
+        return gcnew xgp_Pnt2d(temp);
     };
 
     //! Returns the direction of <me>.
@@ -121,7 +122,7 @@ namespace TKMath
     };
 
     void xgp_Ax2d::Mirror(xgp_Pnt2d^ P) {
-        NativeHandle->Mirror(P->GetPnt2d());
+        NativeHandle->Mirror(*P->GetPnt2d());
     };
 
 
@@ -129,7 +130,7 @@ namespace TKMath
     //! placement with respect to the point P which is the
     //! center of the symmetry.
     xgp_Ax2d^ xgp_Ax2d::Mirrored(xgp_Pnt2d^ P) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Mirrored(*P->GetPnt2d()));
         return gcnew xgp_Ax2d(temp);
     };
 
@@ -147,7 +148,7 @@ namespace TKMath
     };
 
     void xgp_Ax2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), Ang);
+        NativeHandle->Rotate(*P->GetPnt2d(), Ang);
     };
 
 
@@ -155,12 +156,12 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax2d^ xgp_Ax2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Rotated(*P->GetPnt2d(), Ang));
         return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt2d(), S);
+        NativeHandle->Scale(*P->GetPnt2d(), S);
     };
 
 
@@ -168,7 +169,7 @@ namespace TKMath
     //! The "Location" point of the axisplacement is modified.
     //! The "Direction" is reversed if the scale is negative.
     xgp_Ax2d^ xgp_Ax2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Scaled(*P->GetPnt2d(), S));
         return gcnew xgp_Ax2d(temp);
     };
 
@@ -195,14 +196,14 @@ namespace TKMath
     };
 
     void xgp_Ax2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
 
     //! Translates an axis placement from the point <P1> to the
     //! point <P2>.
     xgp_Ax2d^ xgp_Ax2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
         return gcnew xgp_Ax2d(temp);
     };
 };

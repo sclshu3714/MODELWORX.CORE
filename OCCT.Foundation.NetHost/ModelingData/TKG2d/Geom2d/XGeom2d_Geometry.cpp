@@ -18,7 +18,7 @@ namespace TKG2d {
 	//! with respect to the point P which is the center of the
 	//! symmetry and assigns the result to this geometric object.
 	void XGeom2d_Geometry::Mirror(xgp_Pnt2d^ P) {
-		NativeHandle()->Mirror(P->GetPnt2d());
+		NativeHandle()->Mirror(*P->GetPnt2d());
 	};
 
 	//! Performs the symmetrical transformation of a Geometry
@@ -30,12 +30,12 @@ namespace TKG2d {
 	//! Rotates a Geometry. P is the center of the rotation.
 	//! Ang is the angular value of the rotation in radians.
 	void XGeom2d_Geometry::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-		NativeHandle()->Rotate(P->GetPnt2d(), Ang);
+		NativeHandle()->Rotate(*P->GetPnt2d(), Ang);
 	};
 
 	//! Scales a Geometry. S is the scaling value.
 	void XGeom2d_Geometry::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-		NativeHandle()->Scale(P->GetPnt2d(), S);
+		NativeHandle()->Scale(*P->GetPnt2d(), S);
 	};
 
 	//! Translates a Geometry.  V is the vector of the tanslation.
@@ -45,7 +45,7 @@ namespace TKG2d {
 
 	//! Translates a Geometry from the point P1 to the point P2.
 	void XGeom2d_Geometry::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-		NativeHandle()->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+		NativeHandle()->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
 	};
 
 	//! Transformation of a geometric object. This tansformation
@@ -61,7 +61,7 @@ namespace TKG2d {
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Mirrored(xgp_Pnt2d^ P) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Mirrored(P->GetPnt2d()));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Mirrored(*P->GetPnt2d()));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Mirrored(xgp_Ax2d^ A) {
@@ -69,11 +69,11 @@ namespace TKG2d {
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Rotated(P->GetPnt2d(), Ang));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Rotated(*P->GetPnt2d(), Ang));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Scaled(P->GetPnt2d(), S));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Scaled(*P->GetPnt2d(), S));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Transformed(xgp_Trsf2d^ T) {
@@ -85,7 +85,7 @@ namespace TKG2d {
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Copy() {

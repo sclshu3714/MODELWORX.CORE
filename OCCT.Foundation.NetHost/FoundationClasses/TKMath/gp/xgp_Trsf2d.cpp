@@ -47,7 +47,7 @@ namespace TKMath
     //! Changes the transformation into a symmetrical transformation.
     //! P is the center of the symmetry.
     void xgp_Trsf2d::SetMirror(xgp_Pnt2d^ P) {
-        NativeHandle->SetMirror(P->GetPnt2d());
+        NativeHandle->SetMirror(*P->GetPnt2d());
     };
 
 
@@ -62,14 +62,14 @@ namespace TKMath
     //! P is the rotation's center and Ang is the angular value of the
     //! rotation in radian.
     void xgp_Trsf2d::SetRotation(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->SetRotation(P->GetPnt2d(), Ang);
+        NativeHandle->SetRotation(*P->GetPnt2d(), Ang);
     };
 
 
     //! Changes the transformation into a scale.
     //! P is the center of the scale and S is the scaling value.
     void xgp_Trsf2d::SetScale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->SetScale(P->GetPnt2d(), S);
+        NativeHandle->SetScale(*P->GetPnt2d(), S);
     };
 
 
@@ -99,7 +99,7 @@ namespace TKMath
     //! Makes the transformation into a translation from
     //! the point P1 to the point P2.
     void xgp_Trsf2d::SetTranslation(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->SetTranslation(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->SetTranslation(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
     //! Replaces the translation vector with V.

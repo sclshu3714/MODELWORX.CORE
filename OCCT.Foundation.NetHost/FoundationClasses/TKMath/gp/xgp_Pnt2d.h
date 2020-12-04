@@ -19,7 +19,7 @@
 #include "xgp_Ax2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Pnt2d;
 
 //! Defines  a non-persistent 2D cartesian point.
 namespace TKMath
@@ -39,11 +39,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Pnt2d(gp_Pnt2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Pnt2d(gp_Pnt2d pos);
 
         //! Creates a point with a doublet of coordinates.
         xgp_Pnt2d(xgp_XY^ Coord);
@@ -77,7 +72,7 @@ namespace TKMath
         void SetXY(xgp_XY^ Coord);
 
         //! Returns the gp_Pnt2d
-        gp_Pnt2d GetPnt2d();
+        gp_Pnt2d* GetPnt2d();
 
         //! Returns the coordinate of range Index :
         //! Index = 1 => X is returned

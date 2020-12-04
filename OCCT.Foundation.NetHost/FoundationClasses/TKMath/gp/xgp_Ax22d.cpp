@@ -24,7 +24,7 @@ namespace TKMath
     //! Direction" and Vx^Vy have the same sign.
     //! Raises ConstructionError if Vx and Vy are parallel (same or opposite orientation).
     xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ Vx, xgp_Dir2d^ Vy) {
-        NativeHandle = new gp_Ax22d(P->GetPnt2d(), *Vx->GetDir2d(), *Vx->GetDir2d());
+        NativeHandle = new gp_Ax22d(*P->GetPnt2d(), *Vx->GetDir2d(), *Vx->GetDir2d());
     };
 
 
@@ -33,7 +33,7 @@ namespace TKMath
     //! -   right-handed if Sense is true (default value), or
     //! -   left-handed if Sense is false
     xgp_Ax22d::xgp_Ax22d(xgp_Pnt2d^ P, xgp_Dir2d^ V, Standard_Boolean Sense) {
-        NativeHandle = new gp_Ax22d(P->GetPnt2d(), *V->GetDir2d(), Sense);
+        NativeHandle = new gp_Ax22d(*P->GetPnt2d(), *V->GetDir2d(), Sense);
     };
 
 
@@ -87,7 +87,7 @@ namespace TKMath
 
     //! Changes the "Location" point (origin) of <me>.
     void xgp_Ax22d::SetLocation(xgp_Pnt2d^ P) {
-        NativeHandle->SetLocation(P->GetPnt2d());
+        NativeHandle->SetLocation(*P->GetPnt2d());
     };
 
 
@@ -130,7 +130,8 @@ namespace TKMath
 
     //! Returns the "Location" point (origin) of <me>.
     xgp_Pnt2d^ xgp_Ax22d::Location() {
-        return gcnew xgp_Pnt2d(NativeHandle->Location());
+        gp_Pnt2d* temp = new gp_Pnt2d(NativeHandle->Location());
+        return gcnew xgp_Pnt2d(temp);
     };
 
 
@@ -148,7 +149,7 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Mirror(xgp_Pnt2d^ P) {
-        NativeHandle->Mirror(P->GetPnt2d());
+        NativeHandle->Mirror(*P->GetPnt2d());
     };
 
 
@@ -160,7 +161,7 @@ namespace TKMath
     //! The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax22d^ xgp_Ax22d::Mirrored(xgp_Pnt2d^ P) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Mirrored(*P->GetPnt2d()));
         return gcnew xgp_Ax22d(temp);
     };
 
@@ -182,7 +183,7 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
-        NativeHandle->Rotate(P->GetPnt2d(), Ang);
+        NativeHandle->Rotate(*P->GetPnt2d(), Ang);
     };
 
 
@@ -190,12 +191,12 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax22d^ xgp_Ax22d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Rotated(*P->GetPnt2d(), Ang));
         return gcnew xgp_Ax22d(temp);
     };
 
     void xgp_Ax22d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt2d(), S);
+        NativeHandle->Scale(*P->GetPnt2d(), S);
     };
 
 
@@ -207,7 +208,7 @@ namespace TKMath
     //! . The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax22d^ xgp_Ax22d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Scaled(*P->GetPnt2d(), S));
         return gcnew xgp_Ax22d(temp);
     };
 
@@ -239,14 +240,14 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        NativeHandle->Translate(P1->GetPnt2d(), P2->GetPnt2d());
+        NativeHandle->Translate(*P1->GetPnt2d(), *P2->GetPnt2d());
     };
 
 
     //! Translates an axis placement from the point <P1> to the
     //! point <P2>.
     xgp_Ax22d^ xgp_Ax22d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Ax22d* temp = new gp_Ax22d(NativeHandle->Translated(*P1->GetPnt2d(), *P2->GetPnt2d()));
         return gcnew xgp_Ax22d(temp);
     };
 };
