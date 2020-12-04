@@ -1,229 +1,122 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrimAPI_MakeSphere.h>
 
+namespace TKPrim {
 
-#include <BRepBuilderAPI.hxx>
-#include <BRepPrim_Sphere.hxx>
-#include <BRepPrimAPI_MakeSphere.hxx>
-#include <gp.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere() {
+		//NativeHandle = new BRepPrimAPI_MakeSphere();
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(BRepPrimAPI_MakeSphere* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
 
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const Standard_Real R) :
-       mySphere(gp::XOY(),R)
-{
+	void XBRepPrimAPI_MakeSphere::SetMakeSphereHandle(BRepPrimAPI_MakeSphere* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	BRepPrimAPI_MakeSphere* XBRepPrimAPI_MakeSphere::GetMakeSphere() {
+		return NativeHandle;
+	};
+
+	BRepPrimAPI_MakeOneAxis* XBRepPrimAPI_MakeSphere::GetMakeOneAxis() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeSphere::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(Standard_Real R) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(R);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(Standard_Real R, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(R, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(Standard_Real R, Standard_Real angle1, Standard_Real angle2) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(R, angle1, angle2);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(Standard_Real R, Standard_Real angle1, Standard_Real angle2, Standard_Real angle3) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(R, angle1, angle2, angle3);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Pnt^ Center, Standard_Real R) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Center->GetPnt(), R);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Pnt^ Center, Standard_Real R, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Center->GetPnt(), R, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Pnt^ Center, Standard_Real R, Standard_Real angle1, Standard_Real angle2) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Center->GetPnt(), R, angle1, angle2);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Pnt^ Center, Standard_Real R, Standard_Real angle1, Standard_Real angle2, Standard_Real angle3) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Center->GetPnt(), R, angle1, angle2, angle3);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Ax2^ Axis, Standard_Real R) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Axis->GetAx2(), R);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Ax2^ Axis, Standard_Real R, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Axis->GetAx2(), R, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Ax2^ Axis, Standard_Real R, Standard_Real angle1, Standard_Real angle2) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Axis->GetAx2(), R, angle1, angle2);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a sphere of radius R.
+	//! For all algorithms The resulting shape is composed of
+	//! -   a lateral spherical face,
+	//! -   two planar faces parallel to the plane z = 0 if the
+	//! sphere is truncated in the v parametric direction, or
+	//! only one planar face if angle1 is equal to -p/2 or if
+	//! angle2 is equal to p/2 (these faces are circles in
+	//! case of a complete truncated sphere),
+	//! -   and in case of a portion of sphere, two planar faces
+	//! to shut the shape.(in the planes u = 0 and u = angle).
+	XBRepPrimAPI_MakeSphere::XBRepPrimAPI_MakeSphere(xgp_Ax2^ Axis, Standard_Real R, Standard_Real angle1, Standard_Real angle2, Standard_Real angle3) {
+		NativeHandle = new BRepPrimAPI_MakeSphere(*Axis->GetAx2(), R, angle1, angle2, angle3);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Returns the algorithm.
+	Object^ XBRepPrimAPI_MakeSphere::OneAxis() {
+		return XStandard_Helper::toObject(NativeHandle->OneAxis());
+	};
+
+	//! Returns the algorithm.
+	XBRepPrim_Sphere^ XBRepPrimAPI_MakeSphere::Sphere() {
+		BRepPrim_Sphere* temp = new BRepPrim_Sphere(NativeHandle->Sphere());
+		return gcnew XBRepPrim_Sphere(temp);
+	};
 }
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const Standard_Real R, 
-				       const Standard_Real angle) :
-       mySphere(gp_Ax2(gp::Origin(), (angle<0.?-1:1)*gp::DZ(), gp::DX()),
-		R)
-{
-  mySphere.Angle(Abs(angle));
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const Standard_Real R,
-				       const Standard_Real angle1, 
-				       const Standard_Real angle2) :
-       mySphere(R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const Standard_Real R, 
-				       const Standard_Real angle1,
-				       const Standard_Real angle2, 
-				       const Standard_Real angle3) :
-       mySphere(R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-  mySphere.Angle(angle3);
-}
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Pnt& Center,
-				       const Standard_Real R) :
-       mySphere(gp_Ax2(Center, gp_Dir(0,0,1), gp_Dir(1,0,0)),
-		R)
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Pnt& Center,
-				       const Standard_Real R, 
-				       const Standard_Real angle) :
-       mySphere(gp_Ax2(Center, gp_Dir(0,0,1), gp_Dir(1,0,0)),
-		R)
-{
-  mySphere.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Pnt& Center,
-				       const Standard_Real R,
-				       const Standard_Real angle1,
-				       const Standard_Real angle2) :
-       mySphere(gp_Ax2(Center, gp_Dir(0,0,1), gp_Dir(1,0,0)),
-		R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Pnt& Center,
-				       const Standard_Real R,
-				       const Standard_Real angle1,
-				       const Standard_Real angle2,
-				       const Standard_Real angle3) :
-       mySphere(gp_Ax2(Center, gp_Dir(0,0,1), gp_Dir(1,0,0)),
-		R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-  mySphere.Angle(angle3);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Ax2& Axis,
-				       const Standard_Real R) :
-       mySphere(Axis, R)
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Ax2& Axis,
-				       const Standard_Real R,
-				       const Standard_Real angle) :
-       mySphere( Axis, R)
-{
-  mySphere.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Ax2& Axis, 
-				       const Standard_Real R,
-				       const Standard_Real angle1, 
-				       const Standard_Real angle2) :
-       mySphere(Axis, R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeSphere
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeSphere::BRepPrimAPI_MakeSphere(const gp_Ax2& Axis, 
-				       const Standard_Real R,
-				       const Standard_Real angle1, 
-				       const Standard_Real angle2, 
-				       const Standard_Real angle3) :
-       mySphere( Axis, R)
-{
-  mySphere.VMin(angle1);
-  mySphere.VMax(angle2);
-  mySphere.Angle(angle3);
-}
-
-
-
-//=======================================================================
-//function : OneAxis
-//purpose  : 
-//=======================================================================
-
-Standard_Address  BRepPrimAPI_MakeSphere::OneAxis()
-{
-  return &mySphere;
-}
-
-
-//=======================================================================
-//function : Sphere
-//purpose  : 
-//=======================================================================
-
-BRepPrim_Sphere&  BRepPrimAPI_MakeSphere::Sphere()
-{
-  return mySphere;
-}
-
-

@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrimAPI_MakeWedge_HeaderFile
-#define _BRepPrimAPI_MakeWedge_HeaderFile
+#ifndef _XBRepPrimAPI_MakeWedge_HeaderFile
+#define _XBRepPrimAPI_MakeWedge_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrimAPI_MakeWedge.hxx>
+#include <XBRepPrimAPI_MakeOneAxis.h>
+#include <XBRepPrim_Wedge.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -37,61 +45,68 @@ class TopoDS_Solid;
 //! -   defining the construction of a wedge,
 //! -   implementing the construction algorithm, and
 //! -   consulting the result.
-class BRepPrimAPI_MakeWedge  : public BRepBuilderAPI_MakeShape
-{
-public:
+//! 
+using namespace TKMath;
+using namespace TKernel;
+namespace TKPrim {
+	ref class XBRepPrim_Revolution;
+	ref class TKMath::xgp_Ax2;
+	ref class TKernel::XStandard_Helper;
+	public ref class XBRepPrimAPI_MakeWedge : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
+		XBRepPrimAPI_MakeWedge();
 
-  
-  //! Make a STEP right angular wedge. (ltx >= 0)
-  Standard_EXPORT BRepPrimAPI_MakeWedge(const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real ltx);
-  
-  //! Make a STEP right angular wedge. (ltx >= 0)
-  Standard_EXPORT BRepPrimAPI_MakeWedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real ltx);
-  
-  //! Make a wedge. The face at dy is xmin,zmin xmax,zmax
-  Standard_EXPORT BRepPrimAPI_MakeWedge(const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real xmin, const Standard_Real zmin, const Standard_Real xmax, const Standard_Real zmax);
-  
-  //! Make a wedge. The face at dy is xmin,zmin xmax,zmax
-  Standard_EXPORT BRepPrimAPI_MakeWedge(const gp_Ax2& Axes, const Standard_Real dx, const Standard_Real dy, const Standard_Real dz, const Standard_Real xmin, const Standard_Real zmin, const Standard_Real xmax, const Standard_Real zmax);
-  
-  //! Returns the internal algorithm.
-  Standard_EXPORT BRepPrim_Wedge& Wedge();
-  
-  //! Stores the solid in myShape.
-  Standard_EXPORT virtual void Build() Standard_OVERRIDE;
-  
-  //! Returns the constructed box in the form of a shell.
-  Standard_EXPORT const TopoDS_Shell& Shell();
-Standard_EXPORT operator TopoDS_Shell();
-  
-  //! Returns the constructed box in the form of a solid.
-  Standard_EXPORT const TopoDS_Solid& Solid();
-Standard_EXPORT operator TopoDS_Solid();
+		XBRepPrimAPI_MakeWedge(BRepPrimAPI_MakeWedge* handle);
 
+		void SetMakeWedgeHandle(BRepPrimAPI_MakeWedge* handle);
 
+		virtual BRepPrimAPI_MakeWedge* GetMakeWedge();
 
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
-protected:
+		//! Make a STEP right angular wedge. (ltx >= 0)
+		XBRepPrimAPI_MakeWedge(Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx);
 
+		//! Make a STEP right angular wedge. (ltx >= 0)
+		XBRepPrimAPI_MakeWedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx);
 
+		//! Make a wedge. The face at dy is xmin,zmin xmax,zmax
+		XBRepPrimAPI_MakeWedge(Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real xmin, Standard_Real zmin, Standard_Real xmax, Standard_Real zmax);
 
+		//! Make a wedge. The face at dy is xmin,zmin xmax,zmax
+		XBRepPrimAPI_MakeWedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real xmin, Standard_Real zmin, Standard_Real xmax, Standard_Real zmax);
 
+		//! Returns the internal algorithm.
+		XBRepPrim_Wedge^ Wedge();
 
-private:
+		//! Stores the solid in myShape.
+		virtual void Build() Standard_OVERRIDE;
 
+		//! Returns the constructed box in the form of a shell.
+		XTopoDS_Shell^ Shell();
+		operator XTopoDS_Shell^();
 
+		//! Returns the constructed box in the form of a solid.
+		XTopoDS_Solid^ Solid();
+		operator XTopoDS_Solid^();
 
-  BRepPrim_Wedge myWedge;
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrimAPI_MakeWedge*>(handle);
+			}
+		}
 
-
-};
-
-
-
-
-
-
-
-#endif // _BRepPrimAPI_MakeWedge_HeaderFile
+	private:
+		BRepPrimAPI_MakeWedge* NativeHandle;
+	};
+}
+#endif // _XBRepPrimAPI_MakeWedge_HeaderFile

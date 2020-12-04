@@ -1038,6 +1038,21 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Torus.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeHalfSpace.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeRevolution.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSphere.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeTorus.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeWedge.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1409,6 +1424,21 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Torus.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeHalfSpace.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeRevolution.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeSphere.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeTorus.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeWedge.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

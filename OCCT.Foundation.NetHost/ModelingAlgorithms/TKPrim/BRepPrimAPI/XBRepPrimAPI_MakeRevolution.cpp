@@ -1,214 +1,97 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrimAPI_MakeRevolution.h>
 
+namespace TKPrim {
 
-#include <BRepBuilderAPI.hxx>
-#include <BRepPrim_Revolution.hxx>
-#include <BRepPrimAPI_MakeRevolution.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Plane.hxx>
-#include <GeomProjLib.hxx>
-#include <gp_Ax2.hxx>
-#include <Standard_DomainError.hxx>
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution() {
+		//NativeHandle = new BRepPrimAPI_MakeRevolution();
+	};
 
-//=======================================================================
-//function : Project
-//purpose  : 
-//=======================================================================
-static Handle(Geom2d_Curve) Project(const Handle(Geom_Curve)& M,
-				    const gp_Ax3 Axis)
-{
-  Handle(Geom2d_Curve) C;
-  C = GeomProjLib::Curve2d(M,new Geom_Plane(Axis));
-  return C;
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(BRepPrimAPI_MakeRevolution* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	void XBRepPrimAPI_MakeRevolution::SetMakeRevolutionHandle(BRepPrimAPI_MakeRevolution* handle) {
+		NativeHandle = handle;
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	BRepPrimAPI_MakeRevolution* XBRepPrimAPI_MakeRevolution::GetMakeRevolution() {
+		return NativeHandle;
+	};
+
+	BRepPrimAPI_MakeOneAxis* XBRepPrimAPI_MakeRevolution::GetMakeOneAxis() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeRevolution::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(XGeom_Curve^ Meridian) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(Meridian->GetCurve());
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(XGeom_Curve^ Meridian, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(Meridian->GetCurve(), angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(XGeom_Curve^ Meridian, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(Meridian->GetCurve(), VMin, VMax);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(XGeom_Curve^ Meridian, Standard_Real VMin, Standard_Real VMax, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(Meridian->GetCurve(), VMin, VMax, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(xgp_Ax2^ Axes, XGeom_Curve^ Meridian) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(*Axes->GetAx2(), Meridian->GetCurve());
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(xgp_Ax2^ Axes, XGeom_Curve^ Meridian, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(*Axes->GetAx2(), Meridian->GetCurve(), angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(xgp_Ax2^ Axes, XGeom_Curve^ Meridian, Standard_Real VMin, Standard_Real VMax) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(*Axes->GetAx2(), Meridian->GetCurve(), VMin, VMax);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Make a revolution body by rotating a curve around Z.
+	//! For all algorithms the resulting shape is composed of
+	//! -   a lateral revolved face,
+	//! -   two planar faces in planes parallel to the plane z =
+	//! 0, and passing by the extremities of the revolved
+	//! portion of Meridian, if these points are not on the Z
+	//! axis (in case of a complete revolved shape, these faces are circles),
+	//! -   and in the case of a portion of a revolved shape, two
+	//! planar faces to close the shape (in the planes u = 0 and u = angle).
+	XBRepPrimAPI_MakeRevolution::XBRepPrimAPI_MakeRevolution(xgp_Ax2^ Axes, XGeom_Curve^ Meridian, Standard_Real VMin, Standard_Real VMax, Standard_Real angle) {
+		NativeHandle = new BRepPrimAPI_MakeRevolution(*Axes->GetAx2(), Meridian->GetCurve(), VMin, VMax, angle);
+		SetMakeOneAxisHandle(NativeHandle);
+	};
+
+	//! Returns the algorithm.
+	Object^ XBRepPrimAPI_MakeRevolution::OneAxis() {
+		return XStandard_Helper::toObject(NativeHandle->OneAxis());
+	};
+
+	//! Returns the algorithm.
+	XBRepPrim_Revolution^ XBRepPrimAPI_MakeRevolution::Revolution() {
+		BRepPrim_Revolution* temp = new BRepPrim_Revolution(NativeHandle->Revolution());
+		return gcnew XBRepPrim_Revolution(temp);
+	};
 }
-
-static Handle(Geom2d_Curve) Project(const Handle(Geom_Curve)& M)
-{
-  return Project(M,gp_Ax2(gp::Origin(),-gp::DY(),gp::DX()));
-}
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const Handle(Geom_Curve)& Meridian) :
-  myRevolution(gp::XOY(),
-	       Meridian->FirstParameter(),
-	       Meridian->LastParameter(),
-	       Meridian,
-	       Project(Meridian))
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const Handle(Geom_Curve)& Meridian, 
-   const Standard_Real angle) :
-  myRevolution(gp_Ax2(gp_Pnt(0,0,0),gp_Dir(0,0,1),gp_Dir(1,0,0)),
-	       Meridian->FirstParameter(),
-	       Meridian->LastParameter(),
-	       Meridian,
-	       Project(Meridian))
-{
-  myRevolution.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const Handle(Geom_Curve)& Meridian, 
-   const Standard_Real VMin, 
-   const Standard_Real VMax) :
-  myRevolution(gp_Ax2(gp_Pnt(0,0,0),gp_Dir(0,0,1),gp_Dir(1,0,0)),
-	       VMin,
-	       VMax,
-	       Meridian,
-	       Project(Meridian))
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const Handle(Geom_Curve)& Meridian,
-   const Standard_Real VMin, 
-   const Standard_Real VMax, 
-   const Standard_Real angle) :
-  myRevolution(gp_Ax2(gp_Pnt(0,0,0),gp_Dir(0,0,1),gp_Dir(1,0,0)),
-	       VMin,
-	       VMax,
-	       Meridian,
-	       Project(Meridian))
-{
-  myRevolution.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const gp_Ax2& Axes, 
-   const Handle(Geom_Curve)& Meridian) :
-  myRevolution(Axes,
-	       Meridian->FirstParameter(),
-	       Meridian->LastParameter(),
-	       Meridian,
-	       Project(Meridian))
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const gp_Ax2& Axes, 
-   const Handle(Geom_Curve)& Meridian, 
-   const Standard_Real angle) :
-  myRevolution(Axes,
-	       Meridian->FirstParameter(),
-	       Meridian->LastParameter(),
-	       Meridian,
-	       Project(Meridian))
-{
-  myRevolution.Angle(angle);
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const gp_Ax2& Axes, 
-   const Handle(Geom_Curve)& Meridian, 
-   const Standard_Real VMin, 
-   const Standard_Real VMax) :
-  myRevolution(Axes,
-	       VMin,
-	       VMax,
-	       Meridian,
-	       Project(Meridian))
-{
-}
-
-
-//=======================================================================
-//function : BRepPrimAPI_MakeRevolution
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeRevolution::BRepPrimAPI_MakeRevolution
-  (const gp_Ax2& Axes, 
-   const Handle(Geom_Curve)& Meridian, 
-   const Standard_Real VMin, 
-   const Standard_Real VMax, 
-   const Standard_Real angle) :
-  myRevolution(Axes,
-	       VMin,
-	       VMax,
-	       Meridian,
-	       Project(Meridian))
-{
-  myRevolution.Angle(angle);
-}
-
-
-//=======================================================================
-//function : OneAxis
-//purpose  : 
-//=======================================================================
-
-Standard_Address  BRepPrimAPI_MakeRevolution::OneAxis()
-{
-  return &myRevolution;
-}
-
-
-//=======================================================================
-//function : Revolution
-//purpose  : 
-//=======================================================================
-
-BRepPrim_Revolution&  BRepPrimAPI_MakeRevolution::Revolution()
-{
-  return myRevolution;
-}
-
-

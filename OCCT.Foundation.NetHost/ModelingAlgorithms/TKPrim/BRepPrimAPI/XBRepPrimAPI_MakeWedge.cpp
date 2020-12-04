@@ -1,161 +1,80 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepPrimAPI_MakeWedge.h>
 
+namespace TKPrim {
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge() {
 
-#include <BRepPrim_Wedge.hxx>
-#include <BRepPrimAPI_MakeWedge.hxx>
-#include <gp_Ax2.hxx>
-#include <Standard_DomainError.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeWedge
-//purpose  : 
-//=======================================================================
-BRepPrimAPI_MakeWedge::BRepPrimAPI_MakeWedge(const Standard_Real dx, 
-				     const Standard_Real dy,
-				     const Standard_Real dz,
-				     const Standard_Real ltx) :
-       myWedge(gp_Ax2(gp_Pnt(0,0,0),gp_Dir(0,0,1),gp_Dir(1,0,0)),
-	       dx,dy,dz,ltx)
-{
-}
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge(BRepPrimAPI_MakeWedge* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
 
+	void XBRepPrimAPI_MakeWedge::SetMakeWedgeHandle(BRepPrimAPI_MakeWedge* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeWedge
-//purpose  : 
-//=======================================================================
+	BRepPrimAPI_MakeWedge* XBRepPrimAPI_MakeWedge::GetMakeWedge() {
+		return NativeHandle;
+	};
 
-BRepPrimAPI_MakeWedge::BRepPrimAPI_MakeWedge(const gp_Ax2& Axes,
-				     const Standard_Real dx, 
-				     const Standard_Real dy,
-				     const Standard_Real dz, 
-				     const Standard_Real ltx) :
-       myWedge(Axes,
-	       dx,dy,dz,ltx)
-{
-}
+	BRepBuilderAPI_MakeShape* XBRepPrimAPI_MakeWedge::GetMakeShape() {
+		return NativeHandle;
+	};
 
+	//! Make a STEP right angular wedge. (ltx >= 0)
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge(Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx) {
+		NativeHandle = new BRepPrimAPI_MakeWedge(dx, dy, dz, ltx);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeWedge
-//purpose  : 
-//=======================================================================
+	//! Make a STEP right angular wedge. (ltx >= 0)
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx) {
+		NativeHandle = new BRepPrimAPI_MakeWedge(*Axes->GetAx2(), dx, dy, dz, ltx);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-BRepPrimAPI_MakeWedge::BRepPrimAPI_MakeWedge(const Standard_Real dx, 
-				     const Standard_Real dy, 
-				     const Standard_Real dz, 
-				     const Standard_Real xmin,
-				     const Standard_Real zmin,
-				     const Standard_Real xmax,
-				     const Standard_Real zmax) :
-       myWedge(gp_Ax2(gp_Pnt(0,0,0),gp_Dir(0,0,1),gp_Dir(1,0,0)),
-	       0,0,0,zmin,xmin,dx,dy,dz,zmax,xmax)
-{
-}
+	//! Make a wedge. The face at dy is xmin,zmin xmax,zmax
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge(Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real xmin, Standard_Real zmin, Standard_Real xmax, Standard_Real zmax) {
+		NativeHandle = new BRepPrimAPI_MakeWedge(dx, dy, dz, xmin, zmin, xmax, zmax);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
+	//! Make a wedge. The face at dy is xmin,zmin xmax,zmax
+	XBRepPrimAPI_MakeWedge::XBRepPrimAPI_MakeWedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real xmin, Standard_Real zmin, Standard_Real xmax, Standard_Real zmax) {
+		NativeHandle = new BRepPrimAPI_MakeWedge(*Axes->GetAx2(), dx, dy, dz, xmin, zmin, xmax, zmax);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepPrimAPI_MakeWedge
-//purpose  : 
-//=======================================================================
+	//! Returns the internal algorithm.
+	XBRepPrim_Wedge^ XBRepPrimAPI_MakeWedge::Wedge() {
+		BRepPrim_Wedge* temp = new BRepPrim_Wedge(NativeHandle->Wedge());
+		return gcnew XBRepPrim_Wedge(temp);
+	};
 
-BRepPrimAPI_MakeWedge::BRepPrimAPI_MakeWedge(const gp_Ax2& Axes,
-				     const Standard_Real dx,
-				     const Standard_Real dy, 
-				     const Standard_Real dz,
-				     const Standard_Real xmin,
-				     const Standard_Real zmin, 
-				     const Standard_Real xmax, 
-				     const Standard_Real zmax) :
-       myWedge(Axes,
-	       0,0,0,zmin,xmin,dx,dy,dz,zmax,xmax)
-{
-}
+	//! Stores the solid in myShape.
+	void XBRepPrimAPI_MakeWedge::Build() {
+		NativeHandle->Build();
+	};
 
+	//! Returns the constructed box in the form of a shell.
+	XTopoDS_Shell^ XBRepPrimAPI_MakeWedge::Shell() {
+		TopoDS_Shell* temp = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(temp);
+	};
+	XBRepPrimAPI_MakeWedge::operator XTopoDS_Shell^() {
+		TopoDS_Shell* temp = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(temp);
+	};
 
-//=======================================================================
-//function : Wedge
-//purpose  : 
-//=======================================================================
-
-BRepPrim_Wedge&  BRepPrimAPI_MakeWedge::Wedge()
-{
-  return myWedge;
-}
-
-
-//=======================================================================
-//function : Shell
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Shell&  BRepPrimAPI_MakeWedge::Shell()
-{
-  Build();
-  return myWedge.Shell();
-}
-
-
-//=======================================================================
-//function : Build
-//purpose  : 
-//=======================================================================
-
-void BRepPrimAPI_MakeWedge::Build()
-{
-  BRep_Builder B;
-  B.MakeSolid(TopoDS::Solid(myShape));
-  B.Add(myShape,myWedge.Shell());
-  Done();
-}
-
-//=======================================================================
-//function : Solid
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Solid&  BRepPrimAPI_MakeWedge::Solid()
-{
-  Build();
-  return TopoDS::Solid(myShape);
-}
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeWedge::operator TopoDS_Shell()
-{
-  return Shell();
-}
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepPrimAPI_MakeWedge::operator TopoDS_Solid()
-{
-  return Solid();
+	//! Returns the constructed box in the form of a solid.
+	XTopoDS_Solid^ XBRepPrimAPI_MakeWedge::Solid() {
+		TopoDS_Solid* temp = new TopoDS_Solid(NativeHandle->Solid());
+		return gcnew XTopoDS_Solid(temp);
+	};
+	XBRepPrimAPI_MakeWedge::operator XTopoDS_Solid^() {
+		TopoDS_Solid* temp = new TopoDS_Solid(NativeHandle->Solid());
+		return gcnew XTopoDS_Solid(temp);
+	};
 }
