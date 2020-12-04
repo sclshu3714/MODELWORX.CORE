@@ -34,7 +34,7 @@ namespace TKMath
     //! vector V where M defines the vectorial part of
     //! the transformation, and V the translation part, or
     xgp_GTrsf::xgp_GTrsf(xgp_Mat^ M, xgp_XYZ^ V) {
-        NativeHandle = new gp_GTrsf(M->GetMat(), V->GetXYZ());
+        NativeHandle = new gp_GTrsf(M->GetMat(), *V->GetXYZ());
     };
 
 
@@ -95,7 +95,7 @@ namespace TKMath
     //! Replaces the translation part of
     //! this transformation by the coordinates of the number triple Coord.
     void xgp_GTrsf::SetTranslationPart(xgp_XYZ^ Coord) {
-        NativeHandle->SetTranslationPart(Coord->GetXYZ());
+        NativeHandle->SetTranslationPart(*Coord->GetXYZ());
     };
 
     //! Assigns the vectorial and translation parts of T to this transformation.
@@ -148,7 +148,8 @@ namespace TKMath
 
     //! Returns the translation part of the GTrsf.
     xgp_XYZ^ xgp_GTrsf::TranslationPart() {
-        return gcnew xgp_XYZ(NativeHandle->TranslationPart());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->TranslationPart());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -233,7 +234,7 @@ namespace TKMath
     };
 
     void xgp_GTrsf::Transforms(xgp_XYZ^ Coord) {
-        NativeHandle->Transforms(Coord->GetXYZ());
+        NativeHandle->Transforms(*Coord->GetXYZ());
     };
 
     //! Transforms a triplet XYZ with a GTrsf.

@@ -247,7 +247,8 @@ namespace TKMath
 
     //! Returns the translation part of the transformation's matrix
     xgp_XYZ^ xgp_Trsf::TranslationPart() {
-        return gcnew xgp_XYZ(NativeHandle->TranslationPart());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->TranslationPart());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -259,7 +260,7 @@ namespace TKMath
     //! the transformation; generally you would need to check also the
     //! translational part to obtain the axis (xgp_Ax1) of rotation.
     Standard_Boolean xgp_Trsf::GetRotation(xgp_XYZ^ theAxis, Standard_Real theAngle) {
-        return NativeHandle->GetRotation(theAxis->GetXYZ(), theAngle);
+        return NativeHandle->GetRotation(*theAxis->GetXYZ(), theAngle);
     };
 
 
@@ -357,7 +358,7 @@ namespace TKMath
 
     //! Transformation of a triplet XYZ with a Trsf
     void xgp_Trsf::Transforms(xgp_XYZ^ Coord) {
-        NativeHandle->Transforms(Coord->GetXYZ());
+        NativeHandle->Transforms(*Coord->GetXYZ());
     };
 
     ////! Convert transformation to 4x4 matrix.

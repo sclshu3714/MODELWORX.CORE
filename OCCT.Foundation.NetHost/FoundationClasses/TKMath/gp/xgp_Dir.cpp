@@ -29,7 +29,7 @@ namespace TKMath
 
     //! Creates a direction from a triplet of coordinates. Raises ConstructionError if Coord.Modulus() <= Resolution from gp.
     xgp_Dir::xgp_Dir(xgp_XYZ^ Coord) {
-        NativeHandle = new gp_Dir(Coord->GetXYZ());
+        NativeHandle = new gp_Dir(*Coord->GetXYZ());
     };
 
     //! Creates a direction with its 3 cartesian coordinates. Raises ConstructionError if Sqrt(Xv*Xv + Yv*Yv + Zv*Zv) <= Resolution
@@ -101,7 +101,7 @@ namespace TKMath
 
     //! Assigns the three coordinates of Coord to this unit vector.
     void xgp_Dir::SetXYZ(xgp_XYZ^ Coord) {
-        NativeHandle->SetXYZ(Coord->GetXYZ());
+        NativeHandle->SetXYZ(*Coord->GetXYZ());
     };
 
     //! Returns the gp_Dir
@@ -140,7 +140,8 @@ namespace TKMath
 
     //! for this unit vector, returns  its three coordinates as a number triplea.
     xgp_XYZ^ xgp_Dir::XYZ() {
-        return gcnew xgp_XYZ(NativeHandle->XYZ());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->XYZ());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 

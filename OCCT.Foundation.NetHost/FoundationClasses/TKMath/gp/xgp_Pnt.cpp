@@ -9,7 +9,7 @@ namespace TKMath
 
     //! Creates a point from a XYZ object.
     xgp_Pnt::xgp_Pnt(xgp_XYZ^ Coord) {
-        NativeHandle = new gp_Pnt(Coord->GetXYZ());
+        NativeHandle = new gp_Pnt(*Coord->GetXYZ());
     };
 
     /// <summary>
@@ -78,7 +78,7 @@ namespace TKMath
 
     //! Assigns the three coordinates of Coord to this point.
     void xgp_Pnt::SetXYZ(xgp_XYZ^ Coord) {
-        NativeHandle->SetXYZ(Coord->GetXYZ());
+        NativeHandle->SetXYZ(*Coord->GetXYZ());
     };
 
     //! »ñÈ¡
@@ -118,19 +118,22 @@ namespace TKMath
 
     //! For this point, returns its three coordinates as a XYZ object.
     xgp_XYZ^ xgp_Pnt::XYZ() {
-        return gcnew xgp_XYZ(NativeHandle->XYZ());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->XYZ());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! For this point, returns its three coordinates as a XYZ object.
     xgp_XYZ^ xgp_Pnt::Coord() {
-        return gcnew xgp_XYZ(NativeHandle->Coord());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Coord());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
     //! Returns the coordinates of this point.
     //! Note: This syntax allows direct modification of the returned value.
     xgp_XYZ^ xgp_Pnt::ChangeCoord() {
-        return gcnew xgp_XYZ(NativeHandle->ChangeCoord());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->ChangeCoord());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! Assigns the result of the following expression to this point

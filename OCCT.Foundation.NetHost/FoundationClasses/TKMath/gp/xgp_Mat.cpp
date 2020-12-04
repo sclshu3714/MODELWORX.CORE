@@ -30,7 +30,7 @@ namespace TKMath
     //! Creates a matrix.
     //! Col1, Col2, Col3 are the 3 columns of the matrix.
     xgp_Mat::xgp_Mat(xgp_XYZ^ Col1, xgp_XYZ^ Col2, xgp_XYZ^ Col3) {
-        NativeHandle = new gp_Mat(Col1->GetXYZ(), Col2->GetXYZ(), Col3->GetXYZ());
+        NativeHandle = new gp_Mat(*Col1->GetXYZ(), *Col2->GetXYZ(), *Col3->GetXYZ());
     };
 
 
@@ -53,13 +53,13 @@ namespace TKMath
     //! Col of this matrix.
     //! Raises OutOfRange if Col < 1 or Col > 3.
     void xgp_Mat::SetCol(Standard_Integer Col, xgp_XYZ^ Value) {
-        NativeHandle->SetCol(Col, Value->GetXYZ());
+        NativeHandle->SetCol(Col, *Value->GetXYZ());
     };
 
     //! Assigns the number triples Col1, Col2, Col3 to the three
     //! columns of this matrix.
     void xgp_Mat::SetCols(xgp_XYZ^ Col1, xgp_XYZ^ Col2, xgp_XYZ^ Col3) {
-        NativeHandle->SetCols(Col1->GetXYZ(), Col2->GetXYZ(), Col3->GetXYZ());
+        NativeHandle->SetCols(*Col1->GetXYZ(), *Col2->GetXYZ(), *Col3->GetXYZ());
     };
 
 
@@ -72,7 +72,7 @@ namespace TKMath
     //! triplet Ref and the triplet {XYZ}.
     //! Note: this matrix is anti-symmetric.
     void xgp_Mat::SetCross(xgp_XYZ^ Ref) {
-        NativeHandle->SetCross(Ref->GetXYZ());
+        NativeHandle->SetCross(*Ref->GetXYZ());
     };
 
 
@@ -92,7 +92,7 @@ namespace TKMath
     //! this * (X,Y,Z) = Ref.(X,Y,Z)
     //! Note: this matrix is symmetric.
     void xgp_Mat::SetDot(xgp_XYZ^ Ref) {
-        NativeHandle->SetDot(Ref->GetXYZ());
+        NativeHandle->SetDot(*Ref->GetXYZ());
     };
 
     //! Modifies this matrix so that it represents the Identity matrix.
@@ -106,19 +106,19 @@ namespace TKMath
     //! rotation.
     //! Raises ConstructionError if XYZ.Modulus() <= Resolution()
     void xgp_Mat::SetRotation(xgp_XYZ^ Axis, Standard_Real Ang) {
-        NativeHandle->SetRotation(Axis->GetXYZ(), Ang);
+        NativeHandle->SetRotation(*Axis->GetXYZ(), Ang);
     };
 
     //! Assigns the three coordinates of Value to the row of index
     //! Row of this matrix. Raises OutOfRange if Row < 1 or Row > 3.
     void xgp_Mat::SetRow(Standard_Integer Row, xgp_XYZ^ Value) {
-        NativeHandle->SetRow(Row, Value->GetXYZ());
+        NativeHandle->SetRow(Row, *Value->GetXYZ());
     };
 
     //! Assigns the number triples Row1, Row2, Row3 to the three
     //! rows of this matrix.
     void xgp_Mat::SetRows(xgp_XYZ^ Row1, xgp_XYZ^ Row2, xgp_XYZ^ Row3) {
-        NativeHandle->SetRows(Row1->GetXYZ(), Row2->GetXYZ(), Row3->GetXYZ());
+        NativeHandle->SetRows(*Row1->GetXYZ(), *Row2->GetXYZ(), *Row3->GetXYZ());
     };
 
 
@@ -145,7 +145,8 @@ namespace TKMath
     //! Returns the column of Col index.
     //! Raises OutOfRange if Col < 1 or Col > 3
     xgp_XYZ^ xgp_Mat::Column(Standard_Integer Col) {
-        return gcnew xgp_XYZ(NativeHandle->Column(Col));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Column(Col));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! Computes the determinant of the matrix.
@@ -155,13 +156,15 @@ namespace TKMath
 
     //! Returns the main diagonal of the matrix.
     xgp_XYZ^ xgp_Mat::Diagonal() {
-        return gcnew xgp_XYZ(NativeHandle->Diagonal());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Diagonal());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! returns the row of Row index.
     //! Raises OutOfRange if Row < 1 or Row > 3
     xgp_XYZ^ xgp_Mat::Row(Standard_Integer Row) {
-        return gcnew xgp_XYZ(NativeHandle->Row(Row));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Row(Row));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! Returns the coefficient of range (Row, Col)

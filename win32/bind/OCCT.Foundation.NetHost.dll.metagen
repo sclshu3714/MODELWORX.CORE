@@ -404,7 +404,6 @@ Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XYZ*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -417,7 +416,7 @@ Class TKMath.xgp_XYZ: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetX(Double): PrivateScope, Public, HideBySig
     SetY(Double): PrivateScope, Public, HideBySig
     SetZ(Double): PrivateScope, Public, HideBySig
-    GetXYZ(gp_XYZ*): PrivateScope, Public, HideBySig
+    GetXYZ(): PrivateScope, Public, HideBySig
     Coord(Double, Double, Double): PrivateScope, Public, HideBySig
     Coord(Int32): PrivateScope, Public, HideBySig
     ChangeCoord(Int32): PrivateScope, Public, HideBySig

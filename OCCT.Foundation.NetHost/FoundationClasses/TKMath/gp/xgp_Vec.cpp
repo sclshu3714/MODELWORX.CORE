@@ -29,7 +29,7 @@ namespace TKMath
 
     //! Creates a vector with a triplet of coordinates.
     xgp_Vec::xgp_Vec(xgp_XYZ^ Coord) {
-        NativeHandle = new gp_Vec(Coord->GetXYZ());
+        NativeHandle = new gp_Vec(*Coord->GetXYZ());
     };
 
     //! Creates a point with its three cartesian coordinates.
@@ -92,7 +92,7 @@ namespace TKMath
 
     //! Assigns the three coordinates of Coord to this vector.
     void xgp_Vec::SetXYZ(xgp_XYZ^ Coord) {
-        NativeHandle->SetXYZ(Coord->GetXYZ());
+        NativeHandle->SetXYZ(*Coord->GetXYZ());
     };
 
     //! Returns the  gp_Vec
@@ -131,7 +131,8 @@ namespace TKMath
     //! For this vector, returns
     //! -   its three coordinates as a number triple
     xgp_XYZ^ xgp_Vec::XYZ() {
-        return gcnew xgp_XYZ(NativeHandle->XYZ());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->XYZ());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 

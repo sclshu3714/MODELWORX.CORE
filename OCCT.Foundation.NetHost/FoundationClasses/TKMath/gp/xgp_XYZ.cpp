@@ -14,13 +14,6 @@ namespace TKMath
     xgp_XYZ::xgp_XYZ(gp_XYZ* pos) {
         NativeHandle = new gp_XYZ(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_XYZ::xgp_XYZ(gp_XYZ pos) {
-        NativeHandle = new gp_XYZ(pos);
-    };
 
     //! creates an XYZ with given coordinates
     xgp_XYZ::xgp_XYZ(Standard_Real X, Standard_Real Y, Standard_Real Z) {
@@ -74,8 +67,8 @@ namespace TKMath
     };
 
     //! returns the gp_XYZ
-    gp_XYZ xgp_XYZ::GetXYZ() {
-        return *NativeHandle;
+    gp_XYZ* xgp_XYZ::GetXYZ() {
+        return NativeHandle;
     };
     //! returns the coordinate of range Index :
     //! Index = 1 => X is returned
@@ -129,7 +122,7 @@ namespace TKMath
     //! abs(<me>.Y() - Other.Y()) <= Tolerance and
     //! abs(<me>.Z() - Other.Z()) <= Tolerance.
     Standard_Boolean xgp_XYZ::IsEqual(xgp_XYZ^ Other, Standard_Real Tolerance) {
-        return NativeHandle->IsEqual(Other->GetXYZ(), Tolerance);
+        return NativeHandle->IsEqual(*Other->GetXYZ(), Tolerance);
     };
 
 
@@ -137,7 +130,7 @@ namespace TKMath
     //! <me>.Y() = <me>.Y() + Other.Y()
     //! <me>.Z() = <me>.Z() + Other.Z()
     void xgp_XYZ::Add(xgp_XYZ^ Other) {
-        NativeHandle->Add(Other->GetXYZ());
+        NativeHandle->Add(*Other->GetXYZ());
     };
 
 
@@ -145,7 +138,8 @@ namespace TKMath
     //! new.Y() = <me>.Y() + Other.Y()
     //! new.Z() = <me>.Z() + Other.Z()
     xgp_XYZ^ xgp_XYZ::Added(xgp_XYZ^ Other) {
-        return gcnew xgp_XYZ(NativeHandle->Added(Other->GetXYZ()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Added(*Other->GetXYZ()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -153,7 +147,7 @@ namespace TKMath
     //! <me>.Y() = <me>.Z() * Other.X() - <me>.X() * Other.Z()
     //! <me>.Z() = <me>.X() * Other.Y() - <me>.Y() * Other.X()
     void xgp_XYZ::Cross(xgp_XYZ^ Right) {
-        NativeHandle->Cross(Right->GetXYZ());
+        NativeHandle->Cross(*Right->GetXYZ());
     };
 
 
@@ -161,33 +155,35 @@ namespace TKMath
     //! new.Y() = <me>.Z() * Other.X() - <me>.X() * Other.Z()
     //! new.Z() = <me>.X() * Other.Y() - <me>.Y() * Other.X()
     xgp_XYZ^ xgp_XYZ::Crossed(xgp_XYZ^ Right) {
-        return gcnew xgp_XYZ(NativeHandle->Crossed(Right->GetXYZ()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Crossed(*Right->GetXYZ()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
     //! Computes the magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||
     Standard_Real xgp_XYZ::CrossMagnitude(xgp_XYZ^ Right) {
-        return NativeHandle->CrossMagnitude(Right->GetXYZ());
+        return NativeHandle->CrossMagnitude(*Right->GetXYZ());
     };
 
 
     //! Computes the square magnitude of the cross product between <me> and
     //! Right. Returns || <me> ^ Right ||**2
     Standard_Real xgp_XYZ::CrossSquareMagnitude(xgp_XYZ^ Right) {
-        return NativeHandle->CrossSquareMagnitude(Right->GetXYZ());
+        return NativeHandle->CrossSquareMagnitude(*Right->GetXYZ());
     };
 
     //! Triple vector product
     //! Computes <me> = <me>.Cross(Coord1.Cross(Coord2))
     void xgp_XYZ::CrossCross(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2) {
-        return NativeHandle->CrossCross(Coord1->GetXYZ(), Coord2->GetXYZ());
+        return NativeHandle->CrossCross(*Coord1->GetXYZ(), *Coord2->GetXYZ());
     };
 
     //! Triple vector product
     //! computes New = <me>.Cross(Coord1.Cross(Coord2))
     xgp_XYZ^ xgp_XYZ::CrossCrossed(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2) {
-        return gcnew xgp_XYZ(NativeHandle->CrossCrossed(Coord1->GetXYZ(), Coord2->GetXYZ()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->CrossCrossed(*Coord1->GetXYZ(), *Coord2->GetXYZ()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! divides <me> by a real.
@@ -197,17 +193,18 @@ namespace TKMath
 
     //! divides <me> by a real.
     xgp_XYZ^ xgp_XYZ::Divided(Standard_Real Scalar) {
-        return gcnew xgp_XYZ(NativeHandle->Divided(Scalar));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Divided(Scalar));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! computes the scalar product between <me> and Other
     Standard_Real xgp_XYZ::Dot(xgp_XYZ^ Other) {
-        return NativeHandle->Dot(Other->GetXYZ());
+        return NativeHandle->Dot(*Other->GetXYZ());
     };
 
     //! computes the triple scalar product
     Standard_Real xgp_XYZ::DotCross(xgp_XYZ^ Coord1, xgp_XYZ^ Coord2) {
-        return NativeHandle->DotCross(Coord1->GetXYZ(), Coord2->GetXYZ());
+        return NativeHandle->DotCross(*Coord1->GetXYZ(), *Coord2->GetXYZ());
     };
 
 
@@ -223,7 +220,7 @@ namespace TKMath
     //! <me>.Y() = <me>.Y() * Other.Y();
     //! <me>.Z() = <me>.Z() * Other.Z();
     void xgp_XYZ::Multiply(xgp_XYZ^ Other) {
-        return NativeHandle->Multiply(Other->GetXYZ());
+        return NativeHandle->Multiply(*Other->GetXYZ());
     };
 
     //! <me> = Matrix * <me>
@@ -236,7 +233,8 @@ namespace TKMath
     //! New.Y() = <me>.Y() * Scalar;
     //! New.Z() = <me>.Z() * Scalar;
     xgp_XYZ^ xgp_XYZ::Multiplied(Standard_Real Scalar) {
-        return gcnew xgp_XYZ(NativeHandle->Multiplied(Scalar));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Multiplied(Scalar));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -244,12 +242,14 @@ namespace TKMath
     //! new.Y() = <me>.Y() * Other.Y();
     //! new.Z() = <me>.Z() * Other.Z();
     xgp_XYZ^ xgp_XYZ::Multiplied(xgp_XYZ^ Other) {
-        return gcnew xgp_XYZ(NativeHandle->Multiplied(Other->GetXYZ()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Multiplied(*Other->GetXYZ()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
     //! New = Matrix * <me>
     xgp_XYZ^ xgp_XYZ::Multiplied(xgp_Mat^ Matrix) {
-        return gcnew xgp_XYZ(NativeHandle->Multiplied(Matrix->GetMat()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Multiplied(Matrix->GetMat()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -267,7 +267,8 @@ namespace TKMath
     //! New.Z() = <me>.Z()/ <me>.Modulus()
     //! Raised if <me>.Modulus() <= Resolution from gp
     xgp_XYZ^ xgp_XYZ::Normalized() {
-        return gcnew xgp_XYZ(NativeHandle->Normalized());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Normalized());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -283,7 +284,8 @@ namespace TKMath
     //! New.Y() = -<me>.Y()
     //! New.Z() = -<me>.Z()
     xgp_XYZ^ xgp_XYZ::Reversed() {
-        return gcnew xgp_XYZ(NativeHandle->Reversed());
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Reversed());
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
@@ -291,7 +293,7 @@ namespace TKMath
     //! <me>.Y() = <me>.Y() - Other.Y()
     //! <me>.Z() = <me>.Z() - Other.Z()
     void xgp_XYZ::Subtract(xgp_XYZ^ Right) {
-        NativeHandle->Subtract(Right->GetXYZ());
+        NativeHandle->Subtract(*Right->GetXYZ());
     };
 
 
@@ -299,49 +301,50 @@ namespace TKMath
     //! new.Y() = <me>.Y() - Other.Y()
     //! new.Z() = <me>.Z() - Other.Z()
     xgp_XYZ^ xgp_XYZ::Subtracted(xgp_XYZ^ Right) {
-        return gcnew xgp_XYZ(NativeHandle->Subtracted(Right->GetXYZ()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Subtracted(*Right->GetXYZ()));
+        return gcnew xgp_XYZ(aXYZ);
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * XYZ1 + A2 * XYZ2 + A3 * XYZ3 + XYZ4
     void xgp_XYZ::SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, Standard_Real A3, xgp_XYZ^ XYZ3, xgp_XYZ^ XYZ4) {
-        NativeHandle->SetLinearForm(A1, XYZ1->GetXYZ(), A2, XYZ2->GetXYZ(), A3, XYZ3->GetXYZ(), XYZ4->GetXYZ());
+        NativeHandle->SetLinearForm(A1, *XYZ1->GetXYZ(), A2, *XYZ2->GetXYZ(), A3, *XYZ3->GetXYZ(), *XYZ4->GetXYZ());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * XYZ1 + A2 * XYZ2 + A3 * XYZ3
     void xgp_XYZ::SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, Standard_Real A3, xgp_XYZ^ XYZ3) {
-        NativeHandle->SetLinearForm(A1, XYZ1->GetXYZ(), A2, XYZ2->GetXYZ(), A3, XYZ3->GetXYZ());
+        NativeHandle->SetLinearForm(A1, *XYZ1->GetXYZ(), A2, *XYZ2->GetXYZ(), A3, *XYZ3->GetXYZ());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * XYZ1 + A2 * XYZ2 + XYZ3
     void xgp_XYZ::SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2, xgp_XYZ^ XYZ3) {
-        NativeHandle->SetLinearForm(A1, XYZ1->GetXYZ(), A2, XYZ2->GetXYZ(), XYZ3->GetXYZ());
+        NativeHandle->SetLinearForm(A1, *XYZ1->GetXYZ(), A2, *XYZ2->GetXYZ(), *XYZ3->GetXYZ());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * XYZ1 + A2 * XYZ2
     void xgp_XYZ::SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, Standard_Real A2, xgp_XYZ^ XYZ2) {
-        NativeHandle->SetLinearForm(A1, XYZ1->GetXYZ(), A2, XYZ2->GetXYZ());
+        NativeHandle->SetLinearForm(A1, *XYZ1->GetXYZ(), A2, *XYZ2->GetXYZ());
     };
 
 
     //! <me> is set to the following linear form :
     //! A1 * XYZ1 + XYZ2
     void xgp_XYZ::SetLinearForm(Standard_Real A1, xgp_XYZ^ XYZ1, xgp_XYZ^ XYZ2) {
-        NativeHandle->SetLinearForm(A1, XYZ1->GetXYZ(), XYZ2->GetXYZ());
+        NativeHandle->SetLinearForm(A1, *XYZ1->GetXYZ(), *XYZ2->GetXYZ());
     };
 
 
     //! <me> is set to the following linear form :
     //! XYZ1 + XYZ2
     void xgp_XYZ::SetLinearForm(xgp_XYZ^ XYZ1, xgp_XYZ^ XYZ2) {
-        NativeHandle->SetLinearForm(XYZ1->GetXYZ(),XYZ2->GetXYZ());
+        NativeHandle->SetLinearForm(*XYZ1->GetXYZ(), *XYZ2->GetXYZ());
     };
 
 

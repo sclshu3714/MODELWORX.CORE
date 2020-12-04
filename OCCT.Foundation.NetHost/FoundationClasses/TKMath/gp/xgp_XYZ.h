@@ -33,11 +33,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_XYZ(gp_XYZ* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_XYZ(gp_XYZ pos);
 
         //! creates an XYZ with given coordinates
         xgp_XYZ(Standard_Real X, Standard_Real Y, Standard_Real Z);
@@ -69,7 +64,7 @@ namespace TKMath
         void SetZ(Standard_Real Z);
 
         //! returns the gp_XYZ
-        gp_XYZ GetXYZ();
+        gp_XYZ* GetXYZ();
         //! returns the coordinate of range Index :
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned
