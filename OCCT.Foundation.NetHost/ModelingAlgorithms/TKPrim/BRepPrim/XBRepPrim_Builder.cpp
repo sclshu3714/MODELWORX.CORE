@@ -49,7 +49,7 @@ namespace TKPrim {
     //! Returns   in <E>  an  Edge  built  with  the  line
     //! equation  <L>.
     void XBRepPrim_Builder::MakeEdge(XTopoDS_Edge^ E, xgp_Lin^ L) {
-        NativeHandle->MakeEdge(*E->GetEdge(), L->GetLin());
+        NativeHandle->MakeEdge(*E->GetEdge(), *L->GetLin());
     };
 
     //! Returns  in <E>   an  Edge  built  with the circle
@@ -62,14 +62,14 @@ namespace TKPrim {
     //! edge <E> in the parametric space of the surface of
     //! <F>.
     void XBRepPrim_Builder::SetPCurve(XTopoDS_Edge^ E, XTopoDS_Face^ F, xgp_Lin2d^ L) {
-        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), L->GetLin2d());
+        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), *L->GetLin2d());
     };
 
     //! Sets the    lines  <L1,L2>  to   be     the curves
     //! representing the edge <E>  in the parametric space
     //! of the closed surface of <F>.
     void XBRepPrim_Builder::SetPCurve(XTopoDS_Edge^ E, XTopoDS_Face^ F, xgp_Lin2d^ L1, xgp_Lin2d^ L2) {
-        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), L1->GetLin2d(), L2->GetLin2d());
+        NativeHandle->SetPCurve(*E->GetEdge(), *F->GetFace(), *L1->GetLin2d(), *L2->GetLin2d());
     };
 
     //! Sets the  circle <C> to  be the curve representing

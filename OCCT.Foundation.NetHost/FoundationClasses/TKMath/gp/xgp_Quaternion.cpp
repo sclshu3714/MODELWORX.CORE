@@ -54,7 +54,7 @@ namespace TKMath
     //! Creates quaternion from rotation matrix 3*3
     //! (which should be orthonormal skew-symmetric matrix)
     xgp_Quaternion::xgp_Quaternion(xgp_Mat^ theMat) {
-        NativeHandle = new gp_Quaternion(theMat->GetMat());
+        NativeHandle = new gp_Quaternion(*theMat->GetMat());
     };
 
     //ÊÍ·Å
@@ -114,12 +114,13 @@ namespace TKMath
     //! For numerical stability we find first the greatest component of quaternion
     //! and than search others from this one
     void xgp_Quaternion::SetMatrix(xgp_Mat^ theMat) {
-        NativeHandle->SetMatrix(theMat->GetMat());
+        NativeHandle->SetMatrix(*theMat->GetMat());
     };
 
     //! Returns rotation operation as 3*3 matrix
     xgp_Mat^ xgp_Quaternion::GetMatrix() {
-        return gcnew xgp_Mat(NativeHandle->GetMatrix());
+        gp_Mat* temp = new gp_Mat(NativeHandle->GetMatrix());
+        return gcnew xgp_Mat(temp);
     };
 
     //! Create a unit quaternion representing rotation defined

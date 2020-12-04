@@ -141,14 +141,16 @@ namespace TKMath
 
     //! Returns the translation part of the transformation's matrix
     xgp_XY^ xgp_Trsf2d::TranslationPart() {
-        return gcnew xgp_XY(NativeHandle->TranslationPart());
+        gp_XY* temp = new gp_XY(NativeHandle->TranslationPart());
+        return gcnew xgp_XY(temp);
     };
 
 
     //! Returns the vectorial part of the transformation. It is a
     //! 2*2 matrix which includes the scale factor.
     xgp_Mat2d^ xgp_Trsf2d::VectorialPart() {
-        return gcnew xgp_Mat2d(NativeHandle->VectorialPart());
+        gp_Mat2d* temp = new gp_Mat2d(NativeHandle->VectorialPart());
+        return gcnew xgp_Mat2d(temp);
     };
 
 
@@ -157,7 +159,8 @@ namespace TKMath
     //! The coefficients of this matrix must be multiplied by the
     //! scale factor to obtain the coefficients of the transformation.
     xgp_Mat2d^ xgp_Trsf2d::HVectorialPart() {
-        return gcnew xgp_Mat2d(NativeHandle->HVectorialPart());
+        gp_Mat2d* temp = new gp_Mat2d(NativeHandle->HVectorialPart());
+        return gcnew xgp_Mat2d(temp);
     };
 
 
@@ -228,7 +231,7 @@ namespace TKMath
 
     //! Transforms  a doublet XY with a Trsf2d
     void xgp_Trsf2d::Transforms(xgp_XY^ Coord) {
-        NativeHandle->Transforms(Coord->GetXY());
+        NativeHandle->Transforms(*Coord->GetXY());
     };
 
     //! Sets the coefficients  of the transformation. The

@@ -14,13 +14,6 @@ namespace TKMath
     xgp_Mat::xgp_Mat(gp_Mat* pos) {
         NativeHandle = new gp_Mat(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Mat::xgp_Mat(gp_Mat pos) {
-        NativeHandle = new gp_Mat(pos);
-    };
 
     //! Creates a matrix.
     xgp_Mat::xgp_Mat(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a31, Standard_Real a32, Standard_Real a33) {
@@ -138,8 +131,8 @@ namespace TKMath
     };
 
     //! Returns the gp_Mat
-    gp_Mat xgp_Mat::GetMat() {
-        return *NativeHandle;
+    gp_Mat* xgp_Mat::GetMat() {
+        return NativeHandle;
     };
 
     //! Returns the column of Col index.
@@ -188,7 +181,7 @@ namespace TKMath
     };
 
     void xgp_Mat::Add(xgp_Mat^ Other) {
-        NativeHandle->Add(Other->GetMat());
+        NativeHandle->Add(*Other->GetMat());
     };
 
 
@@ -196,7 +189,8 @@ namespace TKMath
     //! the matrix Other for each coefficient of the matrix :
     //! <me>.Coef(i,j) + <Other>.Coef(i,j)
     xgp_Mat^ xgp_Mat::Added(xgp_Mat^ Other) {
-        return gcnew xgp_Mat(NativeHandle->Added(Other->GetMat()));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Added(*Other->GetMat()));
+        return gcnew xgp_Mat(temp);
     };
 
     void xgp_Mat::Divide(Standard_Real Scalar) {
@@ -205,7 +199,8 @@ namespace TKMath
 
     //! Divides all the coefficients of the matrix by Scalar
     xgp_Mat^ xgp_Mat::Divided(Standard_Real Scalar) {
-        return gcnew xgp_Mat(NativeHandle->Divided(Scalar));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Divided(Scalar));
+        return gcnew xgp_Mat(temp);
     };
 
     void xgp_Mat::Invert() {
@@ -224,26 +219,29 @@ namespace TKMath
     //! Standard_ConstructionError if this matrix is singular,
     //! and therefore cannot be inverted.
     xgp_Mat^ xgp_Mat::Inverted() {
-        return gcnew xgp_Mat(NativeHandle->Inverted());
+        gp_Mat* temp = new gp_Mat(NativeHandle->Inverted());
+        return gcnew xgp_Mat(temp);
     };
 
 
     //! Computes  the product of two matrices <me> * <Other>
     xgp_Mat^ xgp_Mat::Multiplied(xgp_Mat^ Other) {
-        return gcnew xgp_Mat(NativeHandle->Multiplied(Other->GetMat()));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Multiplied(*Other->GetMat()));
+        return gcnew xgp_Mat(temp);
     };
 
     //! Computes the product of two matrices <me> = <Other> * <me>.
     void xgp_Mat::Multiply(xgp_Mat^ Other) {
-        NativeHandle->Multiply(Other->GetMat());
+        NativeHandle->Multiply(*Other->GetMat());
     };
 
     void xgp_Mat::PreMultiply(xgp_Mat^ Other) {
-        NativeHandle->PreMultiply(Other->GetMat());
+        NativeHandle->PreMultiply(*Other->GetMat());
     };
 
     xgp_Mat^ xgp_Mat::Multiplied(Standard_Real Scalar) {
-        return gcnew xgp_Mat(NativeHandle->Multiplied(Scalar));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Multiplied(Scalar));
+        return gcnew xgp_Mat(temp);
     };
 
 
@@ -263,18 +261,20 @@ namespace TKMath
     //! If N < 0 an exception will be raised if the matrix is not
     //! inversible
     xgp_Mat^ xgp_Mat::Powered(Standard_Integer N) {
-        return gcnew xgp_Mat(NativeHandle->Powered(N));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Powered(N));
+        return gcnew xgp_Mat(temp);
     };
 
     void xgp_Mat::Subtract(xgp_Mat^ Other) {
-        NativeHandle->Subtract(Other->GetMat());
+        NativeHandle->Subtract(*Other->GetMat());
     };
 
 
     //! cOmputes for each coefficient of the matrix :
     //! <me>.Coef(i,j) - <Other>.Coef(i,j)
     xgp_Mat^ xgp_Mat::Subtracted(xgp_Mat^ Other) {
-        return gcnew xgp_Mat(NativeHandle->Subtracted(Other->GetMat()));
+        gp_Mat* temp = new gp_Mat(NativeHandle->Subtracted(*Other->GetMat()));
+        return gcnew xgp_Mat(temp);
     };
 
     void xgp_Mat::Transpose() {
@@ -284,7 +284,8 @@ namespace TKMath
 
     //! Transposes the matrix. A(j, i) -> A (i, j)
     xgp_Mat^ xgp_Mat::Transposed() {
-        return gcnew xgp_Mat(NativeHandle->Transposed());
+        gp_Mat* temp = new gp_Mat(NativeHandle->Transposed());
+        return gcnew xgp_Mat(temp);
     };
 
     //! Dumps the content of me into the stream

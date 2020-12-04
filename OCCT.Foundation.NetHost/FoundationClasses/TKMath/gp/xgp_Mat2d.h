@@ -18,7 +18,7 @@
 #include "xgp_Trsf2d.h"
 #include "xgp_GTrsf2d.h"
 #include "xgp_XY.h"
-
+class gp_Mat2d;
 
 //! Describes a two column, two row matrix. This sort of
 //! object is used in various vectorial or matrix computations.
@@ -39,11 +39,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Mat2d(gp_Mat2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Mat2d(gp_Mat2d pos);
 
         //! Col1, Col2 are the 2 columns of the matrix.
         xgp_Mat2d(xgp_XY^ Col1, xgp_XY^ Col2);
@@ -95,7 +90,7 @@ namespace TKMath
         void SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value);
 
         //! Returns the gp_Mat2d
-        gp_Mat2d GetMat2d();
+        gp_Mat2d* GetMat2d();
 
         //! Returns the column of Col index.
         //! Raises OutOfRange if Col < 1 or Col > 2

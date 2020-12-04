@@ -17,6 +17,7 @@
 #pragma once
 #include <gp_Mat.hxx>
 #include "xgp_XYZ.h"
+class gp_Mat;
 
 namespace TKMath
 {
@@ -33,11 +34,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Mat(gp_Mat* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Mat(gp_Mat pos);
 
         //! Creates a matrix.
         xgp_Mat(Standard_Real a11, Standard_Real a12, Standard_Real a13, Standard_Real a21, Standard_Real a22, Standard_Real a23, Standard_Real a31, Standard_Real a32, Standard_Real a33);
@@ -119,7 +115,7 @@ namespace TKMath
         void SetValue(Standard_Integer Row, Standard_Integer Col, Standard_Real Value);
 
         //! Returns the gp_Mat
-        gp_Mat GetMat();
+        gp_Mat* GetMat();
 
         //! Returns the column of Col index.
         //! Raises OutOfRange if Col < 1 or Col > 3

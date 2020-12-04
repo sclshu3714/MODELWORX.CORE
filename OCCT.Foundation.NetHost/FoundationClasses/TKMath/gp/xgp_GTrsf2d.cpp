@@ -25,7 +25,7 @@ namespace TKMath
     //! vector V where M defines the vectorial part of the
     //! transformation, and V the translation part.
     xgp_GTrsf2d::xgp_GTrsf2d(xgp_Mat2d^ M, xgp_XY^ V) {
-        NativeHandle = new gp_GTrsf2d(M->GetMat2d(), V->GetXY());
+        NativeHandle = new gp_GTrsf2d(*M->GetMat2d(), *V->GetXY());
     };
 
 
@@ -69,7 +69,7 @@ namespace TKMath
     //! Replacesthe translation part of this
     //! transformation by the coordinates of the number pair Coord.
     void xgp_GTrsf2d::SetTranslationPart(xgp_XY^ Coord) {
-        NativeHandle->SetTranslationPart(Coord->GetXY());
+        NativeHandle->SetTranslationPart(*Coord->GetXY());
     };
 
 
@@ -81,7 +81,7 @@ namespace TKMath
 
     //! Replaces the vectorial part of this transformation by Matrix.
     void xgp_GTrsf2d::SetVectorialPart(xgp_Mat2d^ Matrix) {
-        NativeHandle->SetVectorialPart(Matrix->GetMat2d());
+        NativeHandle->SetVectorialPart(*Matrix->GetMat2d());
     };
 
 
@@ -117,14 +117,16 @@ namespace TKMath
 
     //! Returns the translation part of the GTrsf2d.
     xgp_XY^ xgp_GTrsf2d::TranslationPart() {
-        return gcnew xgp_XY(NativeHandle->TranslationPart());
+        gp_XY* temp = new gp_XY(NativeHandle->TranslationPart());
+        return gcnew xgp_XY(temp);
     };
 
 
     //! Computes the vectorial part of the GTrsf2d. The returned
     //! Matrix is a 2*2 matrix.
     xgp_Mat2d^ xgp_GTrsf2d::VectorialPart() {
-        return gcnew xgp_Mat2d(NativeHandle->VectorialPart());
+        gp_Mat2d* temp = new gp_Mat2d(NativeHandle->VectorialPart());
+        return gcnew xgp_Mat2d(temp);
     };
 
 
@@ -197,11 +199,12 @@ namespace TKMath
     };
 
     void xgp_GTrsf2d::Transforms(xgp_XY^ Coord) {
-        NativeHandle->Transforms(Coord->GetXY());
+        NativeHandle->Transforms(*Coord->GetXY());
     };
 
     xgp_XY^ xgp_GTrsf2d::Transformed(xgp_XY^ Coord) {
-        return gcnew xgp_XY(NativeHandle->Transformed(Coord->GetXY()));
+        gp_XY* temp = new gp_XY(NativeHandle->Transformed(*Coord->GetXY()));
+        return gcnew xgp_XY(temp);
     };
 
 

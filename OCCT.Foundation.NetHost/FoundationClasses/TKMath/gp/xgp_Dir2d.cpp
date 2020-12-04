@@ -22,7 +22,7 @@ namespace TKMath
 
     //! Creates a Direction from a doublet of coordinates. Raises ConstructionError if Coord.Modulus() <= Resolution from gp.
     xgp_Dir2d::xgp_Dir2d(xgp_XY^ Coord) {
-        NativeHandle = new gp_Dir2d(Coord->GetXY());
+        NativeHandle = new gp_Dir2d(*Coord->GetXY());
     };
 
     //! Creates a Direction with its 2 cartesian coordinates. Raises ConstructionError if Sqrt(Xv*Xv + Yv*Yv) <= Resolution from gp.
@@ -133,7 +133,7 @@ namespace TKMath
     //! X or Y coordinate and the other coordinate of this
     //! vector that was not directly modified.
     void xgp_Dir2d::SetXY(xgp_XY^ Coord) {
-        NativeHandle->SetXY(Coord->GetXY());
+        NativeHandle->SetXY(*Coord->GetXY());
     };
 
     //! return the gp_Dir2d
@@ -169,7 +169,8 @@ namespace TKMath
     //! Comparison between Directions
     //! The precision value is an input data.
     xgp_XY^ xgp_Dir2d::XY() {
-        return gcnew xgp_XY(NativeHandle->XY());
+        gp_XY* temp = new gp_XY(NativeHandle->XY());
+        return gcnew xgp_XY(temp);
     };
 
 

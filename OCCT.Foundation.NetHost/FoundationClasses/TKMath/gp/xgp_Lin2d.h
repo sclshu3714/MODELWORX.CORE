@@ -40,7 +40,7 @@
 #include "xgp_Dir2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Lin2d;
 namespace TKMath
 {
     ref class xgp_Ax2d;
@@ -60,11 +60,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Lin2d(gp_Lin2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Lin2d(gp_Lin2d pos);
 
         //! Creates a line located with A.
         xgp_Lin2d(xgp_Ax2d^ A);
@@ -86,7 +81,7 @@ namespace TKMath
         !xgp_Lin2d();
 
         //! gp_Lin2d
-        gp_Lin2d GetLin2d();
+        gp_Lin2d* GetLin2d();
 
         void Reverse();
 

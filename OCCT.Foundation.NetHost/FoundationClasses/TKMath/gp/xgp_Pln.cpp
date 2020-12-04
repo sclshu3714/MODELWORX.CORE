@@ -131,7 +131,7 @@ namespace TKMath
 
     //! Computes the distance between <me> and the line <L>.
     Standard_Real xgp_Pln::Distance(xgp_Lin^ L) {
-        return NativeHandle->Distance(L->GetLin());
+        return NativeHandle->Distance(*L->GetLin());
     };
 
     //! Computes the distance between two planes.
@@ -148,7 +148,7 @@ namespace TKMath
 
     //! Computes the square distance between <me> and the line <L>.
     Standard_Real xgp_Pln::SquareDistance(xgp_Lin^ L) {
-        return NativeHandle->SquareDistance(L->GetLin());
+        return NativeHandle->SquareDistance(*L->GetLin());
     };
 
 
@@ -190,7 +190,7 @@ namespace TKMath
     //! of line L and this plane is less than or equal to
     //! LinearTolerance.
     Standard_Boolean xgp_Pln::Contains(xgp_Lin^ L, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
-        return NativeHandle->Contains(L->GetLin(), LinearTolerance, AngularTolerance);
+        return NativeHandle->Contains(*L->GetLin(), LinearTolerance, AngularTolerance);
     };
 
     void xgp_Pln::Mirror(xgp_Pnt^ P) {

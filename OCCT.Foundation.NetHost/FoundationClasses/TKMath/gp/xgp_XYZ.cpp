@@ -225,7 +225,7 @@ namespace TKMath
 
     //! <me> = Matrix * <me>
     void xgp_XYZ::Multiply(xgp_Mat^ Matrix) {
-        NativeHandle->Multiply(Matrix->GetMat());
+        NativeHandle->Multiply(*Matrix->GetMat());
     };
 
 
@@ -248,7 +248,7 @@ namespace TKMath
 
     //! New = Matrix * <me>
     xgp_XYZ^ xgp_XYZ::Multiplied(xgp_Mat^ Matrix) {
-        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Multiplied(Matrix->GetMat()));
+        gp_XYZ* aXYZ = new gp_XYZ(NativeHandle->Multiplied(*Matrix->GetMat()));
         return gcnew xgp_XYZ(aXYZ);
     };
 

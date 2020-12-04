@@ -28,7 +28,7 @@ namespace TKG3d {
 
 	//! Creates a line from a non transient line from package gp.
 	XGeom_Line::XGeom_Line(xgp_Lin^ L) {
-		NativeHandle() = new Geom_Line(L->GetLin());
+		NativeHandle() = new Geom_Line(*L->GetLin());
 		SetCurveHandle(NativeHandle());
 	};
 
@@ -64,7 +64,7 @@ namespace TKG3d {
 
 	//! Set <me> so that <me> has the same geometric properties as L.
 	void XGeom_Line::SetLin(xgp_Lin^ L) {
-		NativeHandle()->SetLin(L->GetLin());
+		NativeHandle()->SetLin(*L->GetLin());
 	};
 
 	//! changes the direction of the line.
@@ -88,7 +88,8 @@ namespace TKG3d {
 	//! Returns non transient line from gp with the same geometric
 	//! properties as <me>
 	xgp_Lin^ XGeom_Line::Lin() {
-		return gcnew xgp_Lin(NativeHandle()->Lin());
+		gp_Lin* temp = new gp_Lin(NativeHandle()->Lin());
+		return gcnew xgp_Lin(temp);
 	};
 
 	//! Returns the positioning axis of this line; this is also its local coordinate system.

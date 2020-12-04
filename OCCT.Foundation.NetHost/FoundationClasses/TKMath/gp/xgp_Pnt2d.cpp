@@ -24,7 +24,7 @@ namespace TKMath
 
     //! Creates a point with a doublet of coordinates.
     xgp_Pnt2d::xgp_Pnt2d(xgp_XY^ Coord) {
-        NativeHandle = new gp_Pnt2d(Coord->GetXY());
+        NativeHandle = new gp_Pnt2d(*Coord->GetXY());
     };
 
 
@@ -74,7 +74,7 @@ namespace TKMath
 
     //! Assigns the two coordinates of Coord to this point.
     void xgp_Pnt2d::SetXY(xgp_XY^ Coord) {
-        NativeHandle->SetXY(Coord->GetXY());
+        NativeHandle->SetXY(*Coord->GetXY());
     };
 
     //! Returns the gp_Pnt2d
@@ -107,19 +107,22 @@ namespace TKMath
 
     //! For this point, returns its two coordinates as a number pair.
     xgp_XY^ xgp_Pnt2d::XY() {
-        return gcnew xgp_XY(NativeHandle->XY());
+        gp_XY* temp = new gp_XY(NativeHandle->XY());
+        return gcnew xgp_XY(temp);
     };
 
     //! For this point, returns its two coordinates as a number pair.
     xgp_XY^ xgp_Pnt2d::Coord() {
-        return gcnew xgp_XY(NativeHandle->Coord());
+        gp_XY* temp = new gp_XY(NativeHandle->Coord());
+        return gcnew xgp_XY(temp);
     };
 
 
     //! Returns the coordinates of this point.
     //! Note: This syntax allows direct modification of the returned value.
     xgp_XY^ xgp_Pnt2d::ChangeCoord() {
-        return gcnew xgp_XY(NativeHandle->ChangeCoord());
+        gp_XY* temp = new gp_XY(NativeHandle->ChangeCoord());
+        return gcnew xgp_XY(temp);
     };
 
     //! Comparison

@@ -22,6 +22,7 @@
 #pragma once
 #include <gp_XY.hxx>
 #include "xgp_Mat2d.h"
+class gp_XY;
 
 namespace TKMath  
 {  
@@ -37,11 +38,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_XY(gp_XY* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_XY(gp_XY pos);
 
         //! a number pair defined by the XY coordinates
         xgp_XY(Standard_Real X, Standard_Real Y);
@@ -68,7 +64,7 @@ namespace TKMath
         void SetY(Standard_Real Y);
 
         //! returns the gp_XY
-        gp_XY GetXY();
+        gp_XY* GetXY();
         //! returns the coordinate of range Index :
         //! Index = 1 => X is returned
         //! Index = 2 => Y is returned

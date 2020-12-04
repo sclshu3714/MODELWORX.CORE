@@ -30,7 +30,7 @@ namespace TKMath
 
     //! Creates a vector with a doublet of coordinates.
     xgp_Vec2d::xgp_Vec2d(xgp_XY^ Coord) {
-        NativeHandle = new gp_Vec2d(Coord->GetXY());
+        NativeHandle = new gp_Vec2d(*Coord->GetXY());
     };
 
     //! Creates a point with its two Cartesian coordinates.
@@ -86,7 +86,7 @@ namespace TKMath
 
     //! Assigns the two coordinates of Coord to this vector.
     void xgp_Vec2d::SetXY(xgp_XY^ Coord) {
-        NativeHandle->SetXY(Coord->GetXY());
+        NativeHandle->SetXY(*Coord->GetXY());
     };
 
     //! Returns the gp_Vec2d
@@ -118,7 +118,8 @@ namespace TKMath
 
     //! For this vector, returns its two coordinates as a number pair
     xgp_XY^ xgp_Vec2d::XY() {
-        return gcnew xgp_XY(NativeHandle->XY());
+        gp_XY* temp = new gp_XY(NativeHandle->XY());
+        return gcnew xgp_XY(temp);
     };
 
 

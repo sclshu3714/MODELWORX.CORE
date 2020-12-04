@@ -15,13 +15,6 @@ namespace TKMath
     xgp_Lin::xgp_Lin(gp_Lin* pos){
         NativeHandle = new gp_Lin(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Lin::xgp_Lin(gp_Lin pos){
-        NativeHandle = new gp_Lin(pos);
-    };
 
     //! Creates a line defined by axis A1.
     xgp_Lin::xgp_Lin(xgp_Ax1^ A1){
@@ -49,8 +42,8 @@ namespace TKMath
     };
 
     //! gp_Lin
-    gp_Lin xgp_Lin::GetLin(){
-        return *NativeHandle;
+    gp_Lin* xgp_Lin::GetLin(){
+        return NativeHandle;
     };
 
     void xgp_Lin::Reverse(){
@@ -62,7 +55,8 @@ namespace TKMath
     //! -   Reverse assigns the result to this line, while
     //! -   Reversed creates a new one.
     xgp_Lin^ xgp_Lin::Reversed(){
-        return gcnew xgp_Lin(NativeHandle->Reversed());
+        gp_Lin* temp = new gp_Lin(NativeHandle->Reversed());
+        return gcnew xgp_Lin(temp);
     };
 
     //! Changes the direction of the line.
@@ -105,7 +99,7 @@ namespace TKMath
 
     //! Computes the angle between two lines in radians.
     Standard_Real xgp_Lin::Angle(xgp_Lin^ Other){
-        return NativeHandle->Angle(Other->GetLin());
+        return NativeHandle->Angle(*Other->GetLin());
     };
 
     //! Returns true if this line contains the point P, that is, if the
@@ -122,7 +116,7 @@ namespace TKMath
 
     //! Computes the distance between two lines.
     Standard_Real xgp_Lin::Distance(xgp_Lin^ Other){
-        return NativeHandle->Distance(Other->GetLin());
+        return NativeHandle->Distance(*Other->GetLin());
     };
 
 
@@ -133,7 +127,7 @@ namespace TKMath
 
     //! Computes the square distance between two lines.
     Standard_Real xgp_Lin::SquareDistance(xgp_Lin^ Other){
-        return NativeHandle->SquareDistance(Other->GetLin());
+        return NativeHandle->SquareDistance(*Other->GetLin());
     };
 
 
@@ -143,7 +137,8 @@ namespace TKMath
     //! or equal to Resolution from gp because there is an infinity of
     //! solutions in 3D space.
     xgp_Lin^ xgp_Lin::Normal(xgp_Pnt^ P){ 
-        return gcnew xgp_Lin(NativeHandle->Normal(P->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Normal(P->GetPnt()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Mirror(xgp_Pnt^ P){  
@@ -155,7 +150,8 @@ namespace TKMath
     //! with respect to the point P which is the center of
     //! the symmetry.
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Pnt^ P){
-        return gcnew xgp_Lin(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Mirror(xgp_Ax1^ A1){  
@@ -167,7 +163,8 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Ax1^ A1){ 
-        return gcnew xgp_Lin(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Mirror(xgp_Ax2^ A2){ 
@@ -180,7 +177,8 @@ namespace TKMath
     //! locates the plane of the symmetry :
     //! (Location, XDirection, YDirection).
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Ax2^ A2){ 
-        return gcnew xgp_Lin(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Rotate(xgp_Ax1^ A1, Standard_Real Ang){ 
@@ -191,7 +189,8 @@ namespace TKMath
     //! Rotates a line. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Lin^ xgp_Lin::Rotated(xgp_Ax1^ A1, Standard_Real Ang){  
-        return gcnew xgp_Lin(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Scale(xgp_Pnt^ P, Standard_Real S){ 
@@ -203,7 +202,8 @@ namespace TKMath
     //! The "Location" point (origin) of the line is modified.
     //! The "Direction" is reversed if the scale is negative.
     xgp_Lin^ xgp_Lin::Scaled(xgp_Pnt^ P, Standard_Real S){ 
-        return gcnew xgp_Lin(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Transform(xgp_Trsf^ T){  
@@ -213,7 +213,8 @@ namespace TKMath
 
     //! Transforms a line with the transformation T fromnamespace TKMath  {  public ref class Trsf.
     xgp_Lin^ xgp_Lin::Transformed(xgp_Trsf^ T){ 
-        return gcnew xgp_Lin(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Translate(xgp_Vec^ V){ 
@@ -224,7 +225,8 @@ namespace TKMath
     //! Translates a line in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Lin^ xgp_Lin::Translated(xgp_Vec^ V){  
-        return gcnew xgp_Lin(NativeHandle->Translated(V->GetVec()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2){ 
@@ -234,6 +236,7 @@ namespace TKMath
 
     //! Translates a line from the point P1 to the point P2.
     xgp_Lin^ xgp_Lin::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2){  
-        return gcnew xgp_Lin(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Lin(temp);
     };
 };

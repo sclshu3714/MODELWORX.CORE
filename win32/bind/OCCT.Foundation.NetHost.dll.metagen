@@ -344,7 +344,6 @@ Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
 Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_XYZ, TKMath.xgp_XYZ, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Mat): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Mat*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -363,7 +362,7 @@ Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetRows(xgp_XYZ, xgp_XYZ, xgp_XYZ): PrivateScope, Public, HideBySig
     SetScale(Double): PrivateScope, Public, HideBySig
     SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
-    GetMat(gp_Mat*): PrivateScope, Public, HideBySig
+    GetMat(): PrivateScope, Public, HideBySig
     Column(Int32): PrivateScope, Public, HideBySig
     Determinant(): PrivateScope, Public, HideBySig
     Diagonal(): PrivateScope, Public, HideBySig
@@ -595,7 +594,6 @@ Class TKMath.xgp_GTrsf2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Mat2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_XY, TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Mat2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Mat2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -612,7 +610,7 @@ Class TKMath.xgp_Mat2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetRows(xgp_XY, xgp_XY): PrivateScope, Public, HideBySig
     SetScale(Double): PrivateScope, Public, HideBySig
     SetValue(Int32, Int32, Double): PrivateScope, Public, HideBySig
-    GetMat2d(gp_Mat2d*): PrivateScope, Public, HideBySig
+    GetMat2d(): PrivateScope, Public, HideBySig
     Column(Int32): PrivateScope, Public, HideBySig
     Determinant(): PrivateScope, Public, HideBySig
     Diagonal(): PrivateScope, Public, HideBySig
@@ -651,7 +649,6 @@ Class TKMath.xgp_Mat2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_XY*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -663,7 +660,7 @@ Class TKMath.xgp_XY: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetCoord(Int32, Double): PrivateScope, Public, HideBySig
     SetX(Double): PrivateScope, Public, HideBySig
     SetY(Double): PrivateScope, Public, HideBySig
-    GetXY(gp_XY*): PrivateScope, Public, HideBySig
+    GetXY(): PrivateScope, Public, HideBySig
     Coord(Double, Double): PrivateScope, Public, HideBySig
     Coord(Int32): PrivateScope, Public, HideBySig
     ChangeCoord(Int32): PrivateScope, Public, HideBySig
@@ -3858,7 +3855,6 @@ Class TKMath.xgp_Hypr2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Lin): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Lin*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3866,7 +3862,7 @@ Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Lin* Handle 'get ' : 
   Methods:
-    GetLin(gp_Lin*): PrivateScope, Public, HideBySig
+    GetLin(): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
@@ -3904,7 +3900,6 @@ Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Lin2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Lin2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3912,7 +3907,7 @@ Class TKMath.xgp_Lin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     gp_Lin2d* Handle 'get ' : 
   Methods:
-    GetLin2d(gp_Lin2d*): PrivateScope, Public, HideBySig
+    GetLin2d(): PrivateScope, Public, HideBySig
     Reverse(): PrivateScope, Public, HideBySig
     Reversed(): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir2d): PrivateScope, Public, HideBySig

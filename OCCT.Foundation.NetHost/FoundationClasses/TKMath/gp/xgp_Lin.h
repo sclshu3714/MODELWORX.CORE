@@ -36,6 +36,7 @@
 #include "xgp_Dir.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Lin;
 
 namespace TKMath
 {
@@ -58,11 +59,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Lin(gp_Lin* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Lin(gp_Lin pos);
 
         //! Creates a line defined by axis A1.
         xgp_Lin(xgp_Ax1^ A1);
@@ -78,7 +74,7 @@ namespace TKMath
         !xgp_Lin();
 
         //! gp_Lin
-        gp_Lin GetLin();
+        gp_Lin* GetLin();
 
         void Reverse();
 

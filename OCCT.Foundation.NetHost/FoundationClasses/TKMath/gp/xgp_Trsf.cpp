@@ -273,7 +273,8 @@ namespace TKMath
     //! Returns the vectorial part of the transformation. It is
     //! a 3*3 matrix which includes the scale factor.
     xgp_Mat^ xgp_Trsf::VectorialPart() {
-        return gcnew xgp_Mat(NativeHandle->VectorialPart());
+        gp_Mat* temp = new gp_Mat(NativeHandle->VectorialPart());
+        return gcnew xgp_Mat(temp);
     };
 
 
@@ -284,7 +285,8 @@ namespace TKMath
     //! The coefficients of this matrix must be multiplied by the
     //! scale factor to obtain the coefficients of the transformation.
     xgp_Mat^ xgp_Trsf::HVectorialPart() {
-        return gcnew xgp_Mat(NativeHandle->HVectorialPart());
+        gp_Mat* temp = new gp_Mat(NativeHandle->HVectorialPart());
+        return gcnew xgp_Mat(temp);
     };
 
 

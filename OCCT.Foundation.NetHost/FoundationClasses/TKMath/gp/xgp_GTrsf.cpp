@@ -27,7 +27,7 @@ namespace TKMath
     //! vector V where M defines the vectorial part of
     //! the transformation, and V the translation part, or
     xgp_GTrsf::xgp_GTrsf(xgp_Mat^ M, xgp_XYZ^ V) {
-        NativeHandle = new gp_GTrsf(M->GetMat(), *V->GetXYZ());
+        NativeHandle = new gp_GTrsf(*M->GetMat(), *V->GetXYZ());
     };
 
 
@@ -82,7 +82,7 @@ namespace TKMath
 
     //! Replaces the vectorial part of this transformation by Matrix.
     void xgp_GTrsf::SetVectorialPart(xgp_Mat^ Matrix) {
-        NativeHandle->SetVectorialPart(Matrix->GetMat());
+        NativeHandle->SetVectorialPart(*Matrix->GetMat());
     };
 
     //! Replaces the translation part of
@@ -149,7 +149,8 @@ namespace TKMath
     //! Computes the vectorial part of the GTrsf. The returned Matrix
     //! is a  3*3 matrix.
     xgp_Mat^ xgp_GTrsf::VectorialPart() {
-        return gcnew xgp_Mat(NativeHandle->VectorialPart());
+        gp_Mat* temp = new gp_Mat(NativeHandle->VectorialPart());
+        return gcnew xgp_Mat(temp);
     };
 
 
