@@ -125,12 +125,14 @@ namespace TKMath
 
     //! Returns the axis X of the sphere.
     xgp_Ax1^ xgp_Sphere::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the axis Y of the sphere.
     xgp_Ax1^ xgp_Sphere::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Sphere::Mirror(xgp_Pnt^ P) {
@@ -146,7 +148,7 @@ namespace TKMath
     };
 
     void xgp_Sphere::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -154,7 +156,7 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Sphere^ xgp_Sphere::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Sphere(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Sphere(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Sphere::Mirror(xgp_Ax2^ A2) {
@@ -170,14 +172,14 @@ namespace TKMath
     };
 
     void xgp_Sphere::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a sphere. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Sphere^ xgp_Sphere::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Sphere(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Sphere(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Sphere::Scale(xgp_Pnt^ P, Standard_Real S) {

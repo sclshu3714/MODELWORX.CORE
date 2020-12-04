@@ -21,7 +21,7 @@ namespace TKG3d {
 	//! Creates a line located in 3D space with the axis placement A1.
 	//! The Location of A1 is the origin of the line.
 	XGeom_Line::XGeom_Line(xgp_Ax1^ A1) {
-		NativeHandle() = new Geom_Line(A1->GetAx1());
+		NativeHandle() = new Geom_Line(*A1->GetAx1());
 		SetCurveHandle(NativeHandle());
 	};
 
@@ -81,7 +81,7 @@ namespace TKG3d {
 
 	//! changes the "Location" and a the "Direction" of <me>.
 	void XGeom_Line::SetPosition(xgp_Ax1^ A1) {
-		NativeHandle()->SetPosition(A1->GetAx1());
+		NativeHandle()->SetPosition(*A1->GetAx1());
 	};
 
 
@@ -93,7 +93,8 @@ namespace TKG3d {
 
 	//! Returns the positioning axis of this line; this is also its local coordinate system.
 	xgp_Ax1^ XGeom_Line::Position() {
-		return gcnew xgp_Ax1(NativeHandle()->Position());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Position());
+		return gcnew xgp_Ax1(temp);
 	};
 
 	//! Changes the orientation of this line. As a result, the

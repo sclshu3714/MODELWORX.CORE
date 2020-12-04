@@ -36,7 +36,7 @@ namespace TKPrim {
 	//! is true, S is copied.
 	//! Standard_Boolean Copy = Standard_False
 	XBRepPrimAPI_MakeRevol::XBRepPrimAPI_MakeRevol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Real D, Standard_Boolean C) {
-		NativeHandle = new BRepPrimAPI_MakeRevol(*S->GetShape(), A->GetAx1(), D, C);
+		NativeHandle = new BRepPrimAPI_MakeRevol(*S->GetShape(), *A->GetAx1(), D, C);
 		SetMakeSweepHandle(NativeHandle);
 	};
 
@@ -44,7 +44,7 @@ namespace TKPrim {
 	//! C is true, S is copied.
 	//! Standard_Boolean Copy = Standard_False
 	XBRepPrimAPI_MakeRevol::XBRepPrimAPI_MakeRevol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Boolean Copy) {
-		NativeHandle = new BRepPrimAPI_MakeRevol(*S->GetShape(), A->GetAx1(), Copy);
+		NativeHandle = new BRepPrimAPI_MakeRevol(*S->GetShape(), *A->GetAx1(), Copy);
 		SetMakeSweepHandle(NativeHandle);
 	};
 

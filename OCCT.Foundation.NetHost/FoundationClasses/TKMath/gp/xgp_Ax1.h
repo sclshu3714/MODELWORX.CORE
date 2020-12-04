@@ -22,11 +22,6 @@ namespace TKMath
         //! Creates an axis object representing Z axis of
         //! the reference co-ordinate system.
         xgp_Ax1(void);
-        /// <summary>
-      ///  映射点
-      /// </summary>
-      /// <param name="pos"></param>
-        xgp_Ax1(gp_Ax1 pos);
 
         /// <summary>
         /// 指针映射点
@@ -46,7 +41,7 @@ namespace TKMath
         !xgp_Ax1();
 
         //! 获取映射的gp_Ax1
-        gp_Ax1 GetAx1();
+        gp_Ax1* GetAx1();
 
         //! Assigns V as the "Direction"  of this axis.
         void SetDirection(xgp_Dir^ V);

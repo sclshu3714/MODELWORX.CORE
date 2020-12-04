@@ -1067,14 +1067,13 @@ Class TKMath.xgp_Ax1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Pnt*, gp_Dir*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Ax1*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Properties:
     gp_Ax1* Handle 'get ' : 
   Methods:
-    GetAx1(gp_Ax1*): PrivateScope, Public, HideBySig
+    GetAx1(): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     Direction(): PrivateScope, Public, HideBySig

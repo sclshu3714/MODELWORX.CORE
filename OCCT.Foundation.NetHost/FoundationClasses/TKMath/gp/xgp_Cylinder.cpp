@@ -50,7 +50,7 @@ namespace TKMath
     //! Changes the symmetry axis of the cylinder. Raises ConstructionError if the direction of A1 is parallel to the "XDirection"
     //! of the coordinate system of the cylinder.
     void xgp_Cylinder::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Changes the location of the surface.
@@ -89,7 +89,8 @@ namespace TKMath
 
     //! Returns the symmetry axis of the cylinder.
     xgp_Ax1^ xgp_Cylinder::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -119,12 +120,14 @@ namespace TKMath
 
     //! Returns the axis X of the cylinder.
     xgp_Ax1^ xgp_Cylinder::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the axis Y of the cylinder.
     xgp_Ax1^ xgp_Cylinder::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Cylinder::Mirror(xgp_Pnt^ P) {
@@ -140,7 +143,7 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -148,7 +151,7 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Cylinder(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Cylinder(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Cylinder::Mirror(xgp_Ax2^ A2) {
@@ -164,14 +167,14 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a cylinder. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Cylinder^ xgp_Cylinder::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Cylinder(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Cylinder(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Cylinder::Scale(xgp_Pnt^ P, Standard_Real S) {

@@ -55,7 +55,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Mirror(xgp_Ax1^ A1) {
-		NativeHandle()->Mirror(A1->GetAx1());
+		NativeHandle()->Mirror(*A1->GetAx1());
 	}
 
 
@@ -65,7 +65,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-		NativeHandle()->Rotate(A1->GetAx1(), Ang);
+		NativeHandle()->Rotate(*A1->GetAx1(), Ang);
 	}
 
 
@@ -93,7 +93,7 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Mirrored(xgp_Ax1^ A1) {
-		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(A1->GetAx1()));
+		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(*A1->GetAx1()));
 	}
 
 
@@ -104,7 +104,7 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-		return gcnew XGeom_Geometry(NativeHandle()->Rotated(A1->GetAx1(), Ang));
+		return gcnew XGeom_Geometry(NativeHandle()->Rotated(*A1->GetAx1(), Ang));
 	}
 
 

@@ -91,7 +91,7 @@ namespace TKMath
     //! impossible to calculate the new "XDirection" and the new
     //! "YDirection".
     void xgp_Ax3::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
 
@@ -148,7 +148,8 @@ namespace TKMath
     //! Returns the main axis of <me>. It is the "Location" point
     //! and the main "Direction".
     xgp_Ax1^ xgp_Ax3::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes a right-handed coordinate system with the
@@ -210,7 +211,7 @@ namespace TKMath
     //! is lower or equal to LinearTolerance and
     //! . the main direction of <me> and the direction of A1 are normal.
     Standard_Boolean xgp_Ax3::IsCoplanar(xgp_Ax1^ A1, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
-        return NativeHandle->IsCoplanar(A1->GetAx1(), LinearTolerance, AngularTolerance);
+        return NativeHandle->IsCoplanar(*A1->GetAx1(), LinearTolerance, AngularTolerance);
     };
 
     void xgp_Ax3::Mirror(xgp_Pnt^ P) {
@@ -230,7 +231,7 @@ namespace TKMath
     };
 
     void xgp_Ax3::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -242,7 +243,7 @@ namespace TKMath
     //! The resulting main "Direction" is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax3^ xgp_Ax3::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Ax3(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Ax3(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Ax3::Mirror(xgp_Ax2^ A2) {
@@ -263,7 +264,7 @@ namespace TKMath
     };
 
     void xgp_Ax3::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
@@ -271,7 +272,7 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax3^ xgp_Ax3::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Ax3(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Ax3(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Ax3::Scale(xgp_Pnt^ P, Standard_Real S) {

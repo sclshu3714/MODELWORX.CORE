@@ -69,7 +69,7 @@ namespace TKMath
     //! Makes the transformation into a symmetrical transformation.
     //! A1 is the center of the axial symmetry.
     void xgp_Trsf::SetMirror(xgp_Ax1^ A1) {
-        NativeHandle->SetMirror(A1->GetAx1());
+        NativeHandle->SetMirror(*A1->GetAx1());
     };
 
 
@@ -86,7 +86,7 @@ namespace TKMath
     //! A1 is the rotation axis and Ang is the angular value of the
     //! rotation in radians.
     void xgp_Trsf::SetRotation(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->SetRotation(A1->GetAx1(), Ang);
+        NativeHandle->SetRotation(*A1->GetAx1(), Ang);
     };
 
 

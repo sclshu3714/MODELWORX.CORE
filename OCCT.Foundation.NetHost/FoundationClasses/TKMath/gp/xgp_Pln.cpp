@@ -77,7 +77,7 @@ namespace TKMath
     //! axis A1 (the "X Direction" and "Y Direction" are then recomputed).
     //! Raises ConstructionError if the A1 is parallel to the "XAxis" of the plane.
     void xgp_Pln::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Changes the origin of the plane.
@@ -109,7 +109,8 @@ namespace TKMath
 
     //! Returns the plane's normal Axis.
     xgp_Ax1^ xgp_Pln::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the plane's location (origin).
@@ -157,12 +158,14 @@ namespace TKMath
 
     //! Returns the X axis of the plane.
     xgp_Ax1^ xgp_Pln::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the Y axis  of the plane.
     xgp_Ax1^ xgp_Pln::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns true if this plane contains the point P. This means that
@@ -204,7 +207,7 @@ namespace TKMath
     };
 
     void xgp_Pln::Mirror(xgp_Ax1^ A1) {
-        return NativeHandle->Mirror(A1->GetAx1());
+        return NativeHandle->Mirror(*A1->GetAx1());
     };
 
     //! Performs   the symmetrical transformation  of a
@@ -216,7 +219,7 @@ namespace TKMath
     //! if  the  initial plane was right  handed,  else  it is the
     //! opposite.
     xgp_Pln^ xgp_Pln::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Pln(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Pln(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Pln::Mirror(xgp_Ax2^ A2) {
@@ -236,14 +239,14 @@ namespace TKMath
     };
 
     void xgp_Pln::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! rotates a plane. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Pln^ xgp_Pln::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Pln(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Pln(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Pln::Scale(xgp_Pnt^ P, Standard_Real S) {

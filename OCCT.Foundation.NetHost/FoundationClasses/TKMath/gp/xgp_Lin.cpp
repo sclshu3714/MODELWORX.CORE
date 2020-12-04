@@ -25,7 +25,7 @@ namespace TKMath
 
     //! Creates a line defined by axis A1.
     xgp_Lin::xgp_Lin(xgp_Ax1^ A1){
-        NativeHandle = new gp_Lin(A1->GetAx1());
+        NativeHandle = new gp_Lin(*A1->GetAx1());
     };
 
     //! Creates a line passing through point P and parallel to
@@ -80,7 +80,7 @@ namespace TKMath
     //! The "Location" point of <A1> is the origin of the line.
     //! The "Direction" of <A1> is  the direction of the line.
     void xgp_Lin::SetPosition(xgp_Ax1^ A1){
-        return NativeHandle->SetPosition(A1->GetAx1());
+        return NativeHandle->SetPosition(*A1->GetAx1());
     };
 
     //! Returns the direction of the line.
@@ -98,7 +98,8 @@ namespace TKMath
     //! Returns the axis placement one axis whith the same
     //! location and direction as <me>.
     xgp_Ax1^ xgp_Lin::Position(){
-        return gcnew xgp_Ax1(NativeHandle->Position());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Position());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes the angle between two lines in radians.
@@ -157,7 +158,7 @@ namespace TKMath
     };
 
     void xgp_Lin::Mirror(xgp_Ax1^ A1){  
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -165,7 +166,7 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Ax1^ A1){ 
-        return gcnew xgp_Lin(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Lin(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Lin::Mirror(xgp_Ax2^ A2){ 
@@ -182,14 +183,14 @@ namespace TKMath
     };
 
     void xgp_Lin::Rotate(xgp_Ax1^ A1, Standard_Real Ang){ 
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a line. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Lin^ xgp_Lin::Rotated(xgp_Ax1^ A1, Standard_Real Ang){  
-        return gcnew xgp_Lin(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Lin(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Lin::Scale(xgp_Pnt^ P, Standard_Real S){ 

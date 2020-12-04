@@ -71,7 +71,7 @@ namespace TKMath
     //! Raises ConstructionError if the direction of A1 is parallel to the direction of
     //! the "XAxis" of the hyperbola.
     void xgp_Hypr::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Modifies this hyperbola, by redefining its local coordinate
@@ -108,7 +108,8 @@ namespace TKMath
     //! equation of the first asymptote is Y = (B/A)*X
     //! where A is the major radius and B is the minor radius. Raises ConstructionError if MajorRadius = 0.0
     xgp_Ax1^ xgp_Hypr::Asymptote1() {
-        return gcnew xgp_Ax1(NativeHandle->Asymptote1());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Asymptote1());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -117,13 +118,15 @@ namespace TKMath
     //! equation of the first asymptote is Y = -(B/A)*X.
     //! where A is the major radius and B is the minor radius. Raises ConstructionError if MajorRadius = 0.0
     xgp_Ax1^ xgp_Hypr::Asymptote2() {
-        return gcnew xgp_Ax1(NativeHandle->Asymptote2());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Asymptote2());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the axis passing through the center,
     //! and normal to the plane of this hyperbola.
     xgp_Ax1^ xgp_Hypr::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -150,14 +153,16 @@ namespace TKMath
     //! of the directrix1. This point is on the positive side of the
     //! "XAxis".
     xgp_Ax1^ xgp_Hypr::Directrix1() {
-        return gcnew xgp_Ax1(NativeHandle->Directrix1());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Directrix1());
+        return gcnew xgp_Ax1(temp);
     };
 
 
     //! This line is obtained by the symmetrical transformation
     //! of "Directrix1" with respect to the "YAxis" of the hyperbola.
     xgp_Ax1^ xgp_Hypr::Directrix2() {
-        return gcnew xgp_Ax1(NativeHandle->Directrix2());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Directrix2());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -238,7 +243,8 @@ namespace TKMath
     //! These axes are, the major axis (the "X
     //! Axis") and  of this hyperboReturns the "XAxis" of the hyperbola.
     xgp_Ax1^ xgp_Hypr::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes an axis, whose
@@ -247,7 +253,8 @@ namespace TKMath
     //! of the local coordinate system of this hyperbola.
     //! These axes are the minor axis (the "Y Axis") of this hyperbola
     xgp_Ax1^ xgp_Hypr::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Hypr::Mirror(xgp_Pnt^ P) {
@@ -262,14 +269,14 @@ namespace TKMath
     };
 
     void xgp_Hypr::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
     //! Performs the symmetrical transformation of an hyperbola with
     //! respect to an axis placement which is the axis of the symmetry.
     xgp_Hypr^ xgp_Hypr::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Hypr(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Hypr(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Hypr::Mirror(xgp_Ax2^ A2) {
@@ -285,14 +292,14 @@ namespace TKMath
     };
 
     void xgp_Hypr::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates an hyperbola. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Hypr^ xgp_Hypr::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Hypr(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Hypr(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Hypr::Scale(xgp_Pnt^ P, Standard_Real S) {

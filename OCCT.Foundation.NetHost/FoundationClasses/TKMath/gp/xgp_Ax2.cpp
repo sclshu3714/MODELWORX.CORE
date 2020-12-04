@@ -81,7 +81,7 @@ namespace TKMath
     //! Standard_ConstructionError if A1 is parallel to the "X
     //! Direction" of this coordinate system.
     void xgp_Ax2::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
 
@@ -143,7 +143,8 @@ namespace TKMath
     //! Returns the main axis of <me>. It is the "Location" point
     //! and the main "Direction".
     xgp_Ax1^ xgp_Ax2::Axis() {
-        return gcnew  xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew  xgp_Ax1(temp);
     };
 
 
@@ -181,7 +182,7 @@ namespace TKMath
     //! . the main direction of <me> and the direction of A1 are normal.
     //! Note: the tolerance criterion for angular equality is given by AngularTolerance.
     Standard_Boolean xgp_Ax2::IsCoplanar(xgp_Ax1^ A1, Standard_Real LinearTolerance, Standard_Real AngularTolerance) {
-        return NativeHandle->IsCoplanar(A1->GetAx1(), LinearTolerance, AngularTolerance);
+        return NativeHandle->IsCoplanar(*A1->GetAx1(), LinearTolerance, AngularTolerance);
     };
 
 
@@ -241,7 +242,7 @@ namespace TKMath
     //! This maintains the right-handed property of the
     //! coordinate system.
     void xgp_Ax2::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -261,7 +262,7 @@ namespace TKMath
     //! This maintains the right-handed property of the
     //! coordinate system.
     xgp_Ax2^ xgp_Ax2::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Ax2(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Ax2(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
 
@@ -307,7 +308,7 @@ namespace TKMath
     };
 
     void xgp_Ax2::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
@@ -315,7 +316,7 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax2^ xgp_Ax2::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Ax2(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Ax2(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Ax2::Scale(xgp_Pnt^ P, Standard_Real S) {

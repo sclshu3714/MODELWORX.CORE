@@ -101,7 +101,8 @@ namespace TKG3d {
 	//! Raised if Eccentricity = 0.0. (The ellipse degenerates
 	//! into a circle)
 	xgp_Ax1^ XGeom_Ellipse::Directrix1() {
-		return gcnew xgp_Ax1(NativeHandle()->Directrix1());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Directrix1());
+		return gcnew xgp_Ax1(temp);
 	};
 
 
@@ -111,7 +112,8 @@ namespace TKG3d {
 	//! Raised if Eccentricity = 0.0. (The ellipse degenerates into a
 	//! circle).
 	xgp_Ax1^ XGeom_Ellipse::Directrix2() {
-		return gcnew xgp_Ax1(NativeHandle()->Directrix2());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Directrix2());
+		return gcnew xgp_Ax1(temp);
 	};
 
 

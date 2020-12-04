@@ -37,19 +37,22 @@ namespace TKMath
     //! Identifies an axis where its origin is Origin
     //! and its unit vector coordinates  X = 1.0,  Y = Z = 0.0
     xgp_Ax1^ xgp::OX() {
-        return gcnew xgp_Ax1(gp::OX());
+        gp_Ax1* temp = new gp_Ax1(gp::OX());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Identifies an axis where its origin is Origin
     //! and its unit vector coordinates Y = 1.0,  X = Z = 0.0
     xgp_Ax1^ xgp::OY() {
-        return gcnew xgp_Ax1(gp::OY());
+        gp_Ax1* temp = new gp_Ax1(gp::OY());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Identifies an axis where its origin is Origin
     //! and its unit vector coordinates Z = 1.0,  Y = X = 0.0
     xgp_Ax1^ xgp::OZ() {
-        return gcnew xgp_Ax1(gp::OZ());
+        gp_Ax1* temp = new gp_Ax1(gp::OZ());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Identifies a coordinate system where its origin is Origin,

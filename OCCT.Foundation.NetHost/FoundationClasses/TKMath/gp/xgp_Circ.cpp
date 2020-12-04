@@ -53,7 +53,7 @@ namespace TKMath
     //! Raises ConstructionError if the direction of A1
     //! is parallel to the "XAxis" of the circle.
     void xgp_Circ::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
 
@@ -85,7 +85,8 @@ namespace TKMath
     //! It is the axis perpendicular to the plane of the circle,
     //! passing through the "Location" point (center) of the circle.
     xgp_Ax1^ xgp_Circ::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes the circumference of the circle.
@@ -118,7 +119,8 @@ namespace TKMath
     //! This axis is perpendicular to the axis of the conic.
     //! This axis and the "Yaxis" define the plane of the conic.
     xgp_Ax1^ xgp_Circ::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -126,7 +128,8 @@ namespace TKMath
     //! This axis and the "Xaxis" define the plane of the conic.
     //! The "YAxis" is perpendicular to the "Xaxis".
     xgp_Ax1^ xgp_Circ::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -163,7 +166,7 @@ namespace TKMath
     };
 
     void xgp_Circ::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -171,7 +174,7 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Circ(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Circ(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Circ::Mirror(xgp_Ax2^ A2) {
@@ -187,14 +190,14 @@ namespace TKMath
     };
 
     void xgp_Circ::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a circle. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Circ^ xgp_Circ::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Circ(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Circ(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Circ::Scale(xgp_Pnt^ P, Standard_Real S) {

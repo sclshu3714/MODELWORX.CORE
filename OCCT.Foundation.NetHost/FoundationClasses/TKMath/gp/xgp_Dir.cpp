@@ -269,7 +269,7 @@ namespace TKMath
     };
 
     void xgp_Dir::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -277,7 +277,7 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Dir^ xgp_Dir::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Dir(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Dir(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Dir::Mirror(xgp_Ax2^ A2) {
@@ -293,14 +293,14 @@ namespace TKMath
     };
 
     void xgp_Dir::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a direction. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Dir^ xgp_Dir::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Dir(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Dir(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Dir::Transform(xgp_Trsf^ T) {

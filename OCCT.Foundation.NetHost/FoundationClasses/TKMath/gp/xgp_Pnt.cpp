@@ -176,7 +176,7 @@ namespace TKMath
     };
 
     void xgp_Pnt::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -184,7 +184,7 @@ namespace TKMath
     //! with respect to a plane. The axis placement A2 locates
     //! the plane of the symmetry : (Location, XDirection, YDirection).
     xgp_Pnt^ xgp_Pnt::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Pnt(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Pnt(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Pnt::Mirror(xgp_Ax2^ A2) {
@@ -199,12 +199,12 @@ namespace TKMath
     };
 
     void xgp_Pnt::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
     //! Scales a point. S is the scaling value.
     xgp_Pnt^ xgp_Pnt::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Pnt(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Pnt(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Pnt::Scale(xgp_Pnt^ P, Standard_Real S) {

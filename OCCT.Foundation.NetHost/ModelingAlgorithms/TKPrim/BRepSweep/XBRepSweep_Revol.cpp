@@ -22,14 +22,14 @@ namespace TKPrim {
 	//! C is true S is copied.
 	//! Standard_Boolean C = Standard_False
 	XBRepSweep_Revol::XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Real D, Standard_Boolean C) {
-		NativeHandle = new BRepSweep_Revol(*S->GetShape(), A->GetAx1(), D, C);
+		NativeHandle = new BRepSweep_Revol(*S->GetShape(), *A->GetAx1(), D, C);
 	};
 
 	//! Builds the Revol of meridian S  axis A and angle 2*Pi.
 	//! If C is true S is copied.
 	//! Standard_Boolean C = Standard_False
 	XBRepSweep_Revol::XBRepSweep_Revol(XTopoDS_Shape^ S, xgp_Ax1^ A, Standard_Boolean C) {
-		NativeHandle = new BRepSweep_Revol(*S->GetShape(), A->GetAx1(), C);
+		NativeHandle = new BRepSweep_Revol(*S->GetShape(), *A->GetAx1(), C);
 	};
 
 	//! Returns the TopoDS Shape attached to the Revol.

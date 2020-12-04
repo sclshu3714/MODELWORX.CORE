@@ -39,7 +39,7 @@ namespace TKMath
     //! of the parabola is the cross product between the XAxis and the
     //! YAxis.
     xgp_Parab::xgp_Parab(xgp_Ax1^ D, xgp_Pnt^ F) {
-        NativeHandle = new gp_Parab(D->GetAx1(), F->GetPnt());
+        NativeHandle = new gp_Parab(*D->GetAx1(), F->GetPnt());
     };
 
     //! 
@@ -68,7 +68,7 @@ namespace TKMath
     //! Raises ConstructionError if the direction of A1 is parallel to the previous
     //! XAxis of the parabola.
     void xgp_Parab::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Changes the focal distance of the parabola.
@@ -94,7 +94,8 @@ namespace TKMath
     //! It is the axis normal to the plane of the parabola passing
     //! through the vertex of the parabola.
     xgp_Ax1^ xgp_Parab::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes the directrix of this parabola.
@@ -107,7 +108,8 @@ namespace TKMath
     //! The directrix is returned as an axis (a xgp_Ax1 object),
     //! the origin of which is situated on the "X Axis" of this parabola.
     xgp_Ax1^ xgp_Parab::Directrix() {
-        return gcnew xgp_Ax1(NativeHandle->Directrix());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Directrix());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -147,14 +149,16 @@ namespace TKMath
     //! Returns the symmetry axis of the parabola. The location point
     //! of the axis is the vertex of the parabola.
     xgp_Ax1^ xgp_Parab::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
     //! It is an axis parallel to the directrix of the parabola.
     //! The location point of this axis is the vertex of the parabola.
     xgp_Ax1^ xgp_Parab::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Parab::Mirror(xgp_Pnt^ P) {
@@ -170,7 +174,7 @@ namespace TKMath
     };
 
     void xgp_Parab::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -178,7 +182,7 @@ namespace TKMath
     //! with respect to an axis placement which is the axis of
     //! the symmetry.
     xgp_Parab^ xgp_Parab::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Parab(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Parab(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Parab::Mirror(xgp_Ax2^ A2) {
@@ -194,14 +198,14 @@ namespace TKMath
     };
 
     void xgp_Parab::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a parabola. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Parab^ xgp_Parab::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Parab(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Parab(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Parab::Scale(xgp_Pnt^ P, Standard_Real S) {

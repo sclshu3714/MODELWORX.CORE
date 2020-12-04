@@ -62,7 +62,7 @@ namespace TKMath
     //! Raises ConstructionError if the direction of A1
     //! is parallel to the direction of the "XAxis" of the ellipse.
     void xgp_Elips::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Modifies this ellipse, by redefining its local coordinate
@@ -101,7 +101,8 @@ namespace TKMath
 
     //! Computes the axis normal to the plane of the ellipse.
     xgp_Ax1^ xgp_Elips::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Computes the first or second directrix of this ellipse.
@@ -119,7 +120,8 @@ namespace TKMath
     //! Standard_ConstructionError if the eccentricity is null
     //! (the ellipse has degenerated into a circle).
     xgp_Ax1^ xgp_Elips::Directrix1() {
-        return gcnew xgp_Ax1(NativeHandle->Directrix1());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Directrix1());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -129,7 +131,8 @@ namespace TKMath
     //! Standard_ConstructionError if the eccentricity is null
     //! (the ellipse has degenerated into a circle).
     xgp_Ax1^ xgp_Elips::Directrix2() {
-        return gcnew xgp_Ax1(NativeHandle->Directrix2());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Directrix2());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -197,7 +200,8 @@ namespace TKMath
     //! is the center of this ellipse. It is the major axis of the
     //! ellipse.
     xgp_Ax1^ xgp_Elips::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -205,7 +209,8 @@ namespace TKMath
     //! of the local coordinate system of this ellipse.
     //! This is the minor axis of the ellipse.
     xgp_Ax1^ xgp_Elips::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Elips::Mirror(xgp_Pnt^ P) {
@@ -220,14 +225,14 @@ namespace TKMath
     };
 
     void xgp_Elips::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
     //! Performs the symmetrical transformation of an ellipse with
     //! respect to an axis placement which is the axis of the symmetry.
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Elips(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Elips(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Elips::Mirror(xgp_Ax2^ A2) {
@@ -243,14 +248,14 @@ namespace TKMath
     };
 
     void xgp_Elips::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates an ellipse. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Elips^ xgp_Elips::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Elips(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Elips(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Elips::Scale(xgp_Pnt^ P, Standard_Real S) {

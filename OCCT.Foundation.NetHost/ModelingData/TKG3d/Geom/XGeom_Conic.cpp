@@ -52,7 +52,7 @@ namespace TKG3d {
 	//!
 	//! raised if the A1 is parallel to the XAxis of the conic.
 	void XGeom_Conic::SetAxis(xgp_Ax1^ A1) {
-		NativeHandle()->SetAxis(A1->GetAx1());
+		NativeHandle()->SetAxis(*A1->GetAx1());
 	};
 
 	//! changes the location point of the conic.
@@ -68,7 +68,8 @@ namespace TKG3d {
 	//! Returns the "main Axis" of this conic. This axis is
 	//! normal to the plane of the conic.
 	xgp_Ax1^ XGeom_Conic::Axis() {
-		return gcnew xgp_Ax1(NativeHandle()->Axis());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Axis());
+		return gcnew xgp_Ax1(temp);
 	};
 
 
@@ -108,7 +109,8 @@ namespace TKG3d {
 	//! This axis is perpendicular to the Axis of the conic.
 	//! This axis and the Yaxis define the plane of the conic.
 	xgp_Ax1^ XGeom_Conic::XAxis() {
-		return gcnew xgp_Ax1(NativeHandle()->XAxis());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->XAxis());
+		return gcnew xgp_Ax1(temp);
 	};
 
 
@@ -116,7 +118,8 @@ namespace TKG3d {
 	//! The YAxis is perpendicular to the Xaxis.
 	//! This axis and the Xaxis define the plane of the conic.
 	xgp_Ax1^ XGeom_Conic::YAxis() {
-		return gcnew xgp_Ax1(NativeHandle()->YAxis());
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->YAxis());
+		return gcnew xgp_Ax1(temp);
 	};
 
 

@@ -58,7 +58,7 @@ namespace TKMath
     //! the direction of A1 is parallel to the "XDirection"
     //! of the coordinate system of the cone.
     void xgp_Cone::SetAxis(xgp_Ax1^ A1) {
-        NativeHandle->SetAxis(A1->GetAx1());
+        NativeHandle->SetAxis(*A1->GetAx1());
     };
 
     //! Changes the location of the cone.
@@ -115,7 +115,8 @@ namespace TKMath
 
     //! returns the symmetry axis of the cone.
     xgp_Ax1^ xgp_Cone::Axis() {
-        return gcnew xgp_Ax1(NativeHandle->Axis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->Axis());
+        return gcnew xgp_Ax1(temp);
     };
 
 
@@ -152,12 +153,14 @@ namespace TKMath
 
     //! Returns the XAxis of the reference plane.
     xgp_Ax1^ xgp_Cone::XAxis() {
-        return gcnew xgp_Ax1(NativeHandle->XAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->XAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     //! Returns the YAxis of the reference plane.
     xgp_Ax1^ xgp_Cone::YAxis() {
-        return gcnew xgp_Ax1(NativeHandle->YAxis());
+        gp_Ax1* temp = new gp_Ax1(NativeHandle->YAxis());
+        return gcnew xgp_Ax1(temp);
     };
 
     void xgp_Cone::Mirror(xgp_Pnt^ P) {
@@ -173,7 +176,7 @@ namespace TKMath
     };
 
     void xgp_Cone::Mirror(xgp_Ax1^ A1) {
-        NativeHandle->Mirror(A1->GetAx1());
+        NativeHandle->Mirror(*A1->GetAx1());
     };
 
 
@@ -181,7 +184,7 @@ namespace TKMath
     //! respect to an axis placement which is the axis of the
     //! symmetry.
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Cone(NativeHandle->Mirrored(A1->GetAx1()));
+        return gcnew xgp_Cone(NativeHandle->Mirrored(*A1->GetAx1()));
     };
 
     void xgp_Cone::Mirror(xgp_Ax2^ A2) {
@@ -197,14 +200,14 @@ namespace TKMath
     };
 
     void xgp_Cone::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
-        NativeHandle->Rotate(A1->GetAx1(), Ang);
+        NativeHandle->Rotate(*A1->GetAx1(), Ang);
     };
 
 
     //! Rotates a cone. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Cone^ xgp_Cone::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Cone(NativeHandle->Rotated(A1->GetAx1(), Ang));
+        return gcnew xgp_Cone(NativeHandle->Rotated(*A1->GetAx1(), Ang));
     };
 
     void xgp_Cone::Scale(xgp_Pnt^ P, Standard_Real S) {
