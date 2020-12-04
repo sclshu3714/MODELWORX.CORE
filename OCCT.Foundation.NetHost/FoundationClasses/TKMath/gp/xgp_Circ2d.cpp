@@ -27,7 +27,7 @@ namespace TKMath
     //! It is not forbidden to create a circle with Radius = 0.0   Raises ConstructionError if Radius < 0.0.
     //! Raised if Radius < 0.0.
     xgp_Circ2d::xgp_Circ2d(xgp_Ax2d^ XAxis, Standard_Real Radius, Standard_Boolean Sense) {
-        NativeHandle = new gp_Circ2d(XAxis->GetAx2d(), Radius, Sense);
+        NativeHandle = new gp_Circ2d(*XAxis->GetAx2d(), Radius, Sense);
     };
 
 
@@ -66,7 +66,7 @@ namespace TKMath
 
     //! Changes the X axis of the circle.
     void xgp_Circ2d::SetXAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetXAxis(A->GetAx2d());
+        NativeHandle->SetXAxis(*A->GetAx2d());
     };
 
     //! Changes the X axis of the circle.
@@ -76,7 +76,7 @@ namespace TKMath
 
     //! Changes the Y axis of the circle.
     void xgp_Circ2d::SetYAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetYAxis(A->GetAx2d());
+        NativeHandle->SetYAxis(*A->GetAx2d());
     };
 
     //! Modifies the radius of this circle.
@@ -149,13 +149,15 @@ namespace TKMath
 
     //! returns the X axis of the circle.
     xgp_Ax2d^ xgp_Circ2d::XAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->XAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->XAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     //! Returns the Y axis of the circle.
     //! Reverses the direction of the circle.
     xgp_Ax2d^ xgp_Circ2d::YAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->YAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->YAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     //! Reverses the orientation of the local coordinate system
@@ -192,14 +194,14 @@ namespace TKMath
     };
 
     void xgp_Circ2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
     //! Performs the symmetrical transformation of a circle with respect
     //! to an axis placement which is the axis of the symmetry.
     xgp_Circ2d^ xgp_Circ2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Circ2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Circ2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Circ2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {

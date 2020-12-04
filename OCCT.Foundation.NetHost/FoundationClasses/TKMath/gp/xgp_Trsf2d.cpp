@@ -54,7 +54,7 @@ namespace TKMath
     //! Changes the transformation into a symmetrical transformation.
     //! A is the center of the axial symmetry.
     void xgp_Trsf2d::SetMirror(xgp_Ax2d^ A) {
-        NativeHandle->SetMirror(A->GetAx2d());
+        NativeHandle->SetMirror(*A->GetAx2d());
     };
 
 
@@ -76,7 +76,7 @@ namespace TKMath
     //! Changes a transformation allowing passage from the coordinate
     //! system "FromSystem1" to the coordinate system "ToSystem2".
     void xgp_Trsf2d::SetTransformation(xgp_Ax2d^ FromSystem1, xgp_Ax2d^ ToSystem2) {
-        NativeHandle->SetTransformation(FromSystem1->GetAx2d(), ToSystem2->GetAx2d());
+        NativeHandle->SetTransformation(*FromSystem1->GetAx2d(), *ToSystem2->GetAx2d());
     };
 
 
@@ -85,7 +85,7 @@ namespace TKMath
     //! {P(0.,0.,0.), VX (1.,0.,0.), VY (0.,1.,0.)}
     //! to the local coordinate system defined with the Ax2d ToSystem.
     void xgp_Trsf2d::SetTransformation(xgp_Ax2d^ ToSystem) {
-        NativeHandle->SetTransformation(ToSystem->GetAx2d());
+        NativeHandle->SetTransformation(*ToSystem->GetAx2d());
     };
 
 

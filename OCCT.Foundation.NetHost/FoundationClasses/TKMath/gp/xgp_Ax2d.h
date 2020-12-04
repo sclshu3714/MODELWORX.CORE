@@ -59,11 +59,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Ax2d(gp_Ax2d* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Ax2d(gp_Ax2d pos);
 
         //! Creates an Ax2d. <P> is the "Location" point of
         //! the axis placement and V is the "Direction" of
@@ -82,7 +77,7 @@ namespace TKMath
         void SetDirection(xgp_Dir2d^ V);
 
         //Returns the gp_Ax2d
-        gp_Ax2d GetAx2d();
+        gp_Ax2d* GetAx2d();
 
         //! Returns the origin of <me>.
         xgp_Pnt2d^ Location();

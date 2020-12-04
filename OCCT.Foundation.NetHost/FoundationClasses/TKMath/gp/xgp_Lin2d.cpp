@@ -25,7 +25,7 @@ namespace TKMath
 
     //! Creates a line located with A.
     xgp_Lin2d::xgp_Lin2d(xgp_Ax2d^ A) {
-        NativeHandle = new gp_Lin2d(A->GetAx2d());
+        NativeHandle = new gp_Lin2d(*A->GetAx2d());
     };
 
 
@@ -89,7 +89,7 @@ namespace TKMath
     //! The "Location" point of <A> is the origin of the line.
     //! The "Direction" of <A> is  the direction of the line.
     void xgp_Lin2d::SetPosition(xgp_Ax2d^ A) {
-        return NativeHandle->SetPosition(A->GetAx2d());
+        return NativeHandle->SetPosition(*A->GetAx2d());
     };
 
 
@@ -113,7 +113,8 @@ namespace TKMath
     //! Returns the axis placement one axis whith the same
     //! location and direction as <me>.
     xgp_Ax2d^ xgp_Lin2d::Position() {
-        return gcnew xgp_Ax2d(NativeHandle->Position());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Position());
+        return gcnew xgp_Ax2d(temp);
     };
 
     //! Computes the angle between two lines in radians.
@@ -171,7 +172,7 @@ namespace TKMath
     };
 
     void xgp_Lin2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
@@ -179,7 +180,7 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Lin2d^ xgp_Lin2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Lin2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Lin2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Lin2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {

@@ -31,7 +31,7 @@ namespace TKMath
     //! MajorRadius = MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.0
     xgp_Elips2d::xgp_Elips2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
-        NativeHandle = new gp_Elips2d(MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
+        NativeHandle = new gp_Elips2d(*MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
     };
 
     //! Creates an ellipse with radii MajorRadius and
@@ -102,7 +102,7 @@ namespace TKMath
     //! recomputed. The orientation of the local coordinate
     //! system is not modified.
     void xgp_Elips2d::SetXAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetXAxis(A->GetAx2d());
+        NativeHandle->SetXAxis(*A->GetAx2d());
     };
 
     //! Modifies this ellipse, by redefining its local coordinate system so that
@@ -111,7 +111,7 @@ namespace TKMath
     //! recomputed. The orientation of the local coordinate
     //! system is not modified.
     void xgp_Elips2d::SetYAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetYAxis(A->GetAx2d());
+        NativeHandle->SetYAxis(*A->GetAx2d());
     };
 
     //! Computes the area of the ellipse.
@@ -138,7 +138,8 @@ namespace TKMath
     //! Raised if Eccentricity = 0.0. (The ellipse degenerates into a
     //! circle)
     xgp_Ax2d^ xgp_Elips2d::Directrix1() {
-        return gcnew xgp_Ax2d(NativeHandle->Directrix1());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Directrix1());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -148,7 +149,8 @@ namespace TKMath
     //! Raised if Eccentricity = 0.0. (The ellipse degenerates into a
     //! circle).
     xgp_Ax2d^ xgp_Elips2d::Directrix2() {
-        return gcnew xgp_Ax2d(NativeHandle->Directrix2());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Directrix2());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -211,13 +213,15 @@ namespace TKMath
 
     //! Returns the major axis of the ellipse.
     xgp_Ax2d^ xgp_Elips2d::XAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->XAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->XAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     //! Returns the minor axis of the ellipse.
     //! Reverses the direction of the circle.
     xgp_Ax2d^ xgp_Elips2d::YAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->YAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->YAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Elips2d::Reverse() {
@@ -246,14 +250,14 @@ namespace TKMath
     };
 
     void xgp_Elips2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
     //! Performs the symmetrical transformation of a ellipse with respect
     //! to an axis placement which is the axis of the symmetry.
     xgp_Elips2d^ xgp_Elips2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Elips2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Elips2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Elips2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {

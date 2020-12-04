@@ -15,13 +15,7 @@ namespace TKMath
     xgp_Ax2d::xgp_Ax2d(gp_Ax2d* pos) {
         NativeHandle = new gp_Ax2d(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Ax2d::xgp_Ax2d(gp_Ax2d pos) {
-        NativeHandle = new gp_Ax2d(pos);
-    };
+
 
     //! Creates an Ax2d. <P> is the "Location" point of
     //! the axis placement and V is the "Direction" of
@@ -56,8 +50,8 @@ namespace TKMath
     };
 
     //Returns the gp_Ax2d
-    gp_Ax2d xgp_Ax2d::GetAx2d() {
-        return *NativeHandle;
+    gp_Ax2d* xgp_Ax2d::GetAx2d() {
+        return NativeHandle;
     };
 
     //! Returns the origin of <me>.
@@ -79,14 +73,14 @@ namespace TKMath
     //! . the distance between <Other>.Location() and <me> is lower
     //! or equal to LinearTolerance.
     Standard_Boolean xgp_Ax2d::IsCoaxial(xgp_Ax2d^ Other, Standard_Real AngularTolerance, Standard_Real LinearTolerance) {
-        return NativeHandle->IsCoaxial(Other->GetAx2d(), AngularTolerance, LinearTolerance);
+        return NativeHandle->IsCoaxial(*Other->GetAx2d(), AngularTolerance, LinearTolerance);
     };
 
     //! Returns true if this axis and the axis Other are normal to
     //! each other. That is, if the angle between the two axes is equal to Pi/2 or -Pi/2.
     //! Note: the tolerance criterion is given by AngularTolerance.
     Standard_Boolean xgp_Ax2d::IsNormal(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsNormal(Other->GetAx2d(), AngularTolerance);
+        return NativeHandle->IsNormal(*Other->GetAx2d(), AngularTolerance);
     };
 
     //! Returns true if this axis and the axis Other are parallel,
@@ -94,7 +88,7 @@ namespace TKMath
     //! between the two axes is equal to Pi or -Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
     Standard_Boolean xgp_Ax2d::IsOpposite(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsOpposite(Other->GetAx2d(), AngularTolerance);
+        return NativeHandle->IsOpposite(*Other->GetAx2d(), AngularTolerance);
     };
 
     //! Returns true if this axis and the axis Other are parallel,
@@ -102,14 +96,14 @@ namespace TKMath
     //! is, if the angle between the two axes is equal to 0, Pi or -Pi.
     //! Note: the tolerance criterion is given by AngularTolerance.
     Standard_Boolean xgp_Ax2d::IsParallel(xgp_Ax2d^ Other, Standard_Real AngularTolerance) {
-        return NativeHandle->IsParallel(Other->GetAx2d(), AngularTolerance);
+        return NativeHandle->IsParallel(*Other->GetAx2d(), AngularTolerance);
     };
 
 
     //! Computes the angle, in radians, between this axis and
     //! the axis Other. The value of the angle is between -Pi and Pi.
     Standard_Real xgp_Ax2d::Angle(xgp_Ax2d^ Other) {
-        return NativeHandle->Angle(Other->GetAx2d());
+        return NativeHandle->Angle(*Other->GetAx2d());
     };
 
     //! Reverses the direction of <me> and assigns the result to this axis.
@@ -121,7 +115,8 @@ namespace TKMath
     //! Computes a new axis placement with a direction opposite to
     //! the direction of <me>.
     xgp_Ax2d^ xgp_Ax2d::Reversed() {
-        return gcnew xgp_Ax2d(NativeHandle->Reversed());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Reversed());
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Mirror(xgp_Pnt2d^ P) {
@@ -133,11 +128,12 @@ namespace TKMath
     //! placement with respect to the point P which is the
     //! center of the symmetry.
     xgp_Ax2d^ xgp_Ax2d::Mirrored(xgp_Pnt2d^ P) {
-        return gcnew xgp_Ax2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Mirrored(P->GetPnt2d()));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
@@ -145,7 +141,8 @@ namespace TKMath
     //! placement with respect to an axis placement which
     //! is the axis of the symmetry.
     xgp_Ax2d^ xgp_Ax2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Ax2d(NativeHandle->Mirrored(A->GetAx2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Mirrored(*A->GetAx2d()));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
@@ -157,7 +154,8 @@ namespace TKMath
     //! rotation . Ang is the angular value of the rotation
     //! in radians.
     xgp_Ax2d^ xgp_Ax2d::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {
-        return gcnew xgp_Ax2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Rotated(P->GetPnt2d(), Ang));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Scale(xgp_Pnt2d^ P, Standard_Real S) {
@@ -169,7 +167,8 @@ namespace TKMath
     //! The "Location" point of the axisplacement is modified.
     //! The "Direction" is reversed if the scale is negative.
     xgp_Ax2d^ xgp_Ax2d::Scaled(xgp_Pnt2d^ P, Standard_Real S) {
-        return gcnew xgp_Ax2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Scaled(P->GetPnt2d(), S));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Transform(xgp_Trsf2d^ T) {
@@ -178,7 +177,8 @@ namespace TKMath
 
     //! Transforms an axis placement with a Trsf.
     xgp_Ax2d^ xgp_Ax2d::Transformed(xgp_Trsf2d^ T) {
-        return gcnew xgp_Ax2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Transformed(T->GetTrsf2d()));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Translate(xgp_Vec2d^ V) {
@@ -189,7 +189,8 @@ namespace TKMath
     //! Translates an axis placement in the direction of the vector
     //! <V>. The magnitude of the translation is the vector's magnitude.
     xgp_Ax2d^ xgp_Ax2d::Translated(xgp_Vec2d^ V) {
-        return gcnew xgp_Ax2d(NativeHandle->Translated(V->GetVec2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(V->GetVec2d()));
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Ax2d::Translate(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
@@ -200,7 +201,8 @@ namespace TKMath
     //! Translates an axis placement from the point <P1> to the
     //! point <P2>.
     xgp_Ax2d^ xgp_Ax2d::Translated(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
-        return gcnew xgp_Ax2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Translated(P1->GetPnt2d(), P2->GetPnt2d()));
+        return gcnew xgp_Ax2d(temp);
     };
 };
 

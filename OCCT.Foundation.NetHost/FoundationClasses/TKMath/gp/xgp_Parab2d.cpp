@@ -27,7 +27,7 @@ namespace TKMath
     //! the parabola looks like a line, which is parallel to the symmetry-axis.
     //! Raises ConstructionError if FocalLength < 0.0
     xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theMirrorAxis, Standard_Real theFocalLength, Standard_Boolean theSense) {
-        NativeHandle = new gp_Parab2d(theMirrorAxis->GetAx2d(), theFocalLength, theSense);
+        NativeHandle = new gp_Parab2d(*theMirrorAxis->GetAx2d(), theFocalLength, theSense);
     };
 
 
@@ -53,7 +53,7 @@ namespace TKMath
     //! coordinate system is used, otherwise - left-handed. Result parabola will look
     //! like a line, which is perpendicular to the directrix.
     xgp_Parab2d::xgp_Parab2d(xgp_Ax2d^ theDirectrix, xgp_Pnt2d^ theFocus, Standard_Boolean theSense) {
-        NativeHandle = new gp_Parab2d(theDirectrix->GetAx2d(), theFocus->GetPnt2d(), theSense);
+        NativeHandle = new gp_Parab2d(*theDirectrix->GetAx2d(), theFocus->GetPnt2d(), theSense);
     };
 
 
@@ -96,7 +96,7 @@ namespace TKMath
     //! then recomputed. The orientation of the local
     //! coordinate system is not modified.
     void xgp_Parab2d::SetMirrorAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetMirrorAxis(A->GetAx2d());
+        NativeHandle->SetMirrorAxis(*A->GetAx2d());
     };
 
 
@@ -124,7 +124,8 @@ namespace TKMath
     //! The directrix is returned as an axis (a xgp_Ax2d object),
     //! the origin of which is situated on the "X Axis" of this parabola.
     xgp_Ax2d^ xgp_Parab2d::Directrix() {
-        return gcnew xgp_Ax2d(NativeHandle->Directrix());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Directrix());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -148,7 +149,8 @@ namespace TKMath
     //! Returns the symmetry axis of the parabola.
     //! The "Location" point of this axis is the vertex of the parabola.
     xgp_Ax2d^ xgp_Parab2d::MirrorAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->MirrorAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->MirrorAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -198,14 +200,14 @@ namespace TKMath
     };
 
     void xgp_Parab2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
     //! Performs the symmetrical transformation of a parabola with respect
     //! to an axis placement which is the axis of the symmetry.
     xgp_Parab2d^ xgp_Parab2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Parab2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Parab2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Parab2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {

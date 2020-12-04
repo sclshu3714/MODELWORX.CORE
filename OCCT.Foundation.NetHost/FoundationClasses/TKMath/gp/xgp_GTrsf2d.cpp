@@ -62,7 +62,7 @@ namespace TKMath
     //! the orthogonal projection of P on the axis A, the vectors
     //! HP and HP' satisfy: HP' = Ratio * HP.
     void xgp_GTrsf2d::SetAffinity(xgp_Ax2d^ A, Standard_Real Ratio) {
-        NativeHandle->SetAffinity(A->GetAx2d(), Ratio);
+        NativeHandle->SetAffinity(*A->GetAx2d(), Ratio);
     };
 
 

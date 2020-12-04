@@ -255,7 +255,7 @@ namespace TKMath
     };
 
     void xgp_Dir2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
@@ -263,7 +263,7 @@ namespace TKMath
     //! with respect to an axis placement which is the axis
     //! of the symmetry.
     xgp_Dir2d^ xgp_Dir2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Dir2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Dir2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Dir2d::Rotate(Standard_Real Ang) {

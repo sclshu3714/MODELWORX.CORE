@@ -24,7 +24,7 @@ namespace TKG2d {
 	//! Performs the symmetrical transformation of a Geometry
 	//! with respect to an axis placement which is the axis of the symmetry.
 	void XGeom2d_Geometry::Mirror(xgp_Ax2d^ A) {
-		NativeHandle()->Mirror(A->GetAx2d());
+		NativeHandle()->Mirror(*A->GetAx2d());
 	};
 
 	//! Rotates a Geometry. P is the center of the rotation.
@@ -65,7 +65,7 @@ namespace TKG2d {
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Mirrored(xgp_Ax2d^ A) {
-		return gcnew XGeom2d_Geometry(NativeHandle()->Mirrored(A->GetAx2d()));
+		return gcnew XGeom2d_Geometry(NativeHandle()->Mirrored(*A->GetAx2d()));
 	};
 
 	XGeom2d_Geometry^ XGeom2d_Geometry::Rotated(xgp_Pnt2d^ P, Standard_Real Ang) {

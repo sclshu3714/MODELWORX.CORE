@@ -48,7 +48,7 @@ namespace TKMath
     //! -   right-handed if Sense is true (default value), or
     //! -   left-handed if Sense is false.
     xgp_Ax22d::xgp_Ax22d(xgp_Ax2d^ A, Standard_Boolean Sense) {
-        NativeHandle = new gp_Ax22d(A->GetAx2d(), Sense);
+        NativeHandle = new gp_Ax22d(*A->GetAx2d(), Sense);
     };
 
     //!  Õ∑≈
@@ -81,13 +81,13 @@ namespace TKMath
     //! of <me>.
     //! The "YDirection" is recomputed in the same sense as before.
     void xgp_Ax22d::SetXAxis(xgp_Ax2d^ A1) {
-        NativeHandle->SetXAxis(A1->GetAx2d());
+        NativeHandle->SetXAxis(*A1->GetAx2d());
     };
 
     //! Changes the XAxis and YAxis ("Location" point and "Direction") of <me>.
     //! The "XDirection" is recomputed in the same sense as before.
     void xgp_Ax22d::SetYAxis(xgp_Ax2d^ A1) {
-        NativeHandle->SetYAxis(A1->GetAx2d());
+        NativeHandle->SetYAxis(*A1->GetAx2d());
     };
 
 
@@ -120,7 +120,8 @@ namespace TKMath
     //! -   the unit vector is either the "X Direction"  of this coordinate system.
     //! Note: the result is the "X Axis" of this coordinate system.
     xgp_Ax2d^ xgp_Ax22d::XAxis() {
-       return gcnew xgp_Ax2d(NativeHandle->XAxis());
+       gp_Ax2d* temp = new gp_Ax2d(NativeHandle->XAxis());
+       return gcnew xgp_Ax2d(temp);
     };
 
     //! Returns an axis, for which
@@ -128,7 +129,8 @@ namespace TKMath
     //! - the unit vector is either the  "Y Direction" of this coordinate system.
     //! Note: the result is the "Y Axis" of this coordinate system.
     xgp_Ax2d^ xgp_Ax22d::YAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->YAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->YAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -166,7 +168,7 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirrored(A->GetAx2d());
+        NativeHandle->Mirrored(*A->GetAx2d());
     };
 
 
@@ -178,7 +180,7 @@ namespace TKMath
     //! The resulting main "Direction" is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax22d^ xgp_Ax22d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Ax22d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Ax22d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Ax22d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {

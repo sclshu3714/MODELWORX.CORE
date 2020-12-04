@@ -520,7 +520,6 @@ Class TKMath.xgp_Pnt2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Ax2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(gp_Ax2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gp_Ax2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -530,7 +529,7 @@ Class TKMath.xgp_Ax2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     SetLocation(xgp_Pnt2d): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir2d): PrivateScope, Public, HideBySig
-    GetAx2d(gp_Ax2d*): PrivateScope, Public, HideBySig
+    GetAx2d(): PrivateScope, Public, HideBySig
     Location(): PrivateScope, Public, HideBySig
     Direction(): PrivateScope, Public, HideBySig
     IsCoaxial(xgp_Ax2d, Double, Double): PrivateScope, Public, HideBySig

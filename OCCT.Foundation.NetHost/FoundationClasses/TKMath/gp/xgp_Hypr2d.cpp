@@ -33,7 +33,7 @@ namespace TKMath
     //! MajorRadius <= MinorRadius.
     //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
     xgp_Hypr2d::xgp_Hypr2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
-        NativeHandle = new gp_Hypr2d(MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
+        NativeHandle = new gp_Hypr2d(*MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
     };
 
 
@@ -108,14 +108,14 @@ namespace TKMath
     //! Changes the major axis of the hyperbola. The minor axis is
     //! recomputed and the location of the hyperbola too.
     void xgp_Hypr2d::SetXAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetXAxis(A->GetAx2d());
+        NativeHandle->SetXAxis(*A->GetAx2d());
     };
 
 
     //! Changes the minor axis of the hyperbola.The minor axis is
     //! recomputed and the location of the hyperbola too.
     void xgp_Hypr2d::SetYAxis(xgp_Ax2d^ A) {
-        NativeHandle->SetYAxis(A->GetAx2d());
+        NativeHandle->SetYAxis(*A->GetAx2d());
     };
 
 
@@ -126,7 +126,8 @@ namespace TKMath
     //! radius of the hyperbola.
     //! Raises ConstructionError if MajorRadius = 0.0
     xgp_Ax2d^ xgp_Hypr2d::Asymptote1() {
-        return gcnew xgp_Ax2d(NativeHandle->Asymptote1());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Asymptote1());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -137,7 +138,8 @@ namespace TKMath
     //! radius of the hyperbola.
     //! Raises ConstructionError if MajorRadius = 0.0
     xgp_Ax2d^ xgp_Hypr2d::Asymptote2() {
-        return gcnew xgp_Ax2d(NativeHandle->Asymptote2());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Asymptote2());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -172,14 +174,16 @@ namespace TKMath
     //! of the "Directrix1".
     //! This point is on the positive side of the "XAxis".
     xgp_Ax2d^ xgp_Hypr2d::Directrix1() {
-        return gcnew xgp_Ax2d(NativeHandle->Directrix1());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Directrix1());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
     //! This line is obtained by the symmetrical transformation
     //! of "Directrix1" with respect to the "YAxis" of the hyperbola.
     xgp_Ax2d^ xgp_Hypr2d::Directrix2() {
-        return gcnew xgp_Ax2d(NativeHandle->Directrix2());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->Directrix2());
+        return gcnew xgp_Ax2d(temp);
     };
 
 
@@ -260,7 +264,8 @@ namespace TKMath
     //! respectively of the local coordinate system of this hyperbola
     //! Returns the major axis of the hyperbola.
     xgp_Ax2d^ xgp_Hypr2d::XAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->XAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->XAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     //! Computes an axis whose
@@ -269,7 +274,8 @@ namespace TKMath
     //! respectively of the local coordinate system of this hyperbola
     //! Returns the minor axis of the hyperbola.
     xgp_Ax2d^ xgp_Hypr2d::YAxis() {
-        return gcnew xgp_Ax2d(NativeHandle->YAxis());
+        gp_Ax2d* temp = new gp_Ax2d(NativeHandle->YAxis());
+        return gcnew xgp_Ax2d(temp);
     };
 
     void xgp_Hypr2d::Reverse() {
@@ -304,14 +310,14 @@ namespace TKMath
     };
 
     void xgp_Hypr2d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirror(A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 
     //! Performs the symmetrical transformation of an hyperbola with
     //! respect to an axis placement which is the axis of the symmetry.
     xgp_Hypr2d^ xgp_Hypr2d::Mirrored(xgp_Ax2d^ A) {
-        return gcnew xgp_Hypr2d(NativeHandle->Mirrored(A->GetAx2d()));
+        return gcnew xgp_Hypr2d(NativeHandle->Mirrored(*A->GetAx2d()));
     };
 
     void xgp_Hypr2d::Rotate(xgp_Pnt2d^ P, Standard_Real Ang) {
