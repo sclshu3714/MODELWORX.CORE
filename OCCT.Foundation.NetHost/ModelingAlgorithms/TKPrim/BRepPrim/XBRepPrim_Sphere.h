@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_Sphere_HeaderFile
-#define _BRepPrim_Sphere_HeaderFile
+#ifndef _XBRepPrim_Sphere_HeaderFile
+#define _XBRepPrim_Sphere_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrim_Sphere.hxx>
+#include <XBRepPrim_Revolution.h>
+#include <XTopoDS_Face.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,56 +36,63 @@ class gp_Pnt;
 class gp_Ax2;
 class TopoDS_Face;
 
+using namespace TKMath;
+using namespace TKBRep;
+namespace TKPrim {
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax2;
+	ref class TKBRep::XTopoDS_Face;
+	//! Implements the sphere primitive
+	public ref class XBRepPrim_Sphere : public XBRepPrim_Revolution
+	{
+	public:
 
-//! Implements the sphere primitive
-class BRepPrim_Sphere  : public BRepPrim_Revolution
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
 
-  DEFINE_STANDARD_ALLOC
+		//! 
+		XBRepPrim_Sphere();
 
-  
-  //! Creates a Sphere at  origin with  Radius. The axes
-  //! of the sphere are the  reference axes. An error is
-  //! raised if the radius is < Resolution.
-  Standard_EXPORT BRepPrim_Sphere(const Standard_Real Radius);
-  
-  //! Creates a Sphere with Center and Radius.  Axes are
-  //! the   referrence    axes.   This    is the    STEP
-  //! constructor.
-  Standard_EXPORT BRepPrim_Sphere(const gp_Pnt& Center, const Standard_Real Radius);
-  
-  //! Creates a sphere with given axes system.
-  Standard_EXPORT BRepPrim_Sphere(const gp_Ax2& Axes, const Standard_Real Radius);
-  
-  //! The surface normal should be directed  towards the
-  //! outside.
-  Standard_EXPORT virtual TopoDS_Face MakeEmptyLateralFace() const Standard_OVERRIDE;
+		XBRepPrim_Sphere(BRepPrim_Sphere* handle);
 
+		void SetPrimSphereHandle(BRepPrim_Sphere* handle);
 
+		virtual BRepPrim_Sphere* GetPrimSphere();
 
+		virtual BRepPrim_Revolution* GetRevolution() Standard_OVERRIDE;
 
-protected:
+		virtual BRepPrim_OneAxis* GetOneAxis() Standard_OVERRIDE;
 
+		//! Creates a Sphere at  origin with  Radius. The axes
+		//! of the sphere are the  reference axes. An error is
+		//! raised if the radius is < Resolution.
+		XBRepPrim_Sphere(Standard_Real Radius);
 
+		//! Creates a Sphere with Center and Radius.  Axes are
+		//! the   referrence    axes.   This    is the    STEP
+		//! constructor.
+		XBRepPrim_Sphere(xgp_Pnt^ Center, Standard_Real Radius);
 
+		//! Creates a sphere with given axes system.
+		XBRepPrim_Sphere(xgp_Ax2^ Axes, Standard_Real Radius);
 
+		//! The surface normal should be directed  towards the
+		//! outside.
+		virtual XTopoDS_Face^ MakeEmptyLateralFace() Standard_OVERRIDE;
 
-private:
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_OneAxis* IHandle {
+			BRepPrim_OneAxis* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_OneAxis* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_Sphere*>(handle);
+			}
+		}
 
-  
-  Standard_EXPORT void SetMeridian();
-
-
-  Standard_Real myRadius;
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepPrim_Sphere_HeaderFile
+	private:
+		BRepPrim_Sphere* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_Sphere_HeaderFile

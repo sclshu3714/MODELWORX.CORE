@@ -1029,6 +1029,15 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Cylinder.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_FaceBuilder.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Sphere.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Torus.h">
+      <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1391,6 +1400,15 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCylinder.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_FaceBuilder.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Sphere.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrim\XBRepPrim_Torus.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

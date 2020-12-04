@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_FaceBuilder_HeaderFile
-#define _BRepPrim_FaceBuilder_HeaderFile
+#ifndef _XBRepPrim_FaceBuilder_HeaderFile
+#define _XBRepPrim_FaceBuilder_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrim_FaceBuilder.hxx>
+#include <XBRep_Builder.h>
+#include <XGeom_Surface.h>
+#include <XTopoDS_Face.h>
+#include <XTopoDS_Edge.h>
+#include <XTopoDS_Vertex.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -40,64 +48,70 @@ class TopoDS_Vertex;
 //!
 //! The  face covers  the  whole surface or  the  area
 //! delimited by UMin, UMax, VMin, VMax
-class BRepPrim_FaceBuilder 
-{
-public:
+using namespace TKBRep;
+using namespace TKG3d;
+using namespace TKBRep;
+namespace TKPrim {
 
-  DEFINE_STANDARD_ALLOC
+	ref class TKBRep::XBRep_Builder;
+	ref class TKG3d::XGeom_Surface;
+	ref class TKBRep::XTopoDS_Face;
+	ref class TKBRep::XTopoDS_Edge;
+	ref class TKBRep::XTopoDS_Vertex;
+	public ref class XBRepPrim_FaceBuilder
+	{
+	public:
 
-  
-  Standard_EXPORT BRepPrim_FaceBuilder();
-  
-  Standard_EXPORT BRepPrim_FaceBuilder(const BRep_Builder& B, const Handle(Geom_Surface)& S);
-  
-  Standard_EXPORT BRepPrim_FaceBuilder(const BRep_Builder& B, const Handle(Geom_Surface)& S, const Standard_Real UMin, const Standard_Real UMax, const Standard_Real VMin, const Standard_Real VMax);
-  
-  Standard_EXPORT void Init (const BRep_Builder& B, const Handle(Geom_Surface)& S);
-  
-  Standard_EXPORT void Init (const BRep_Builder& B, const Handle(Geom_Surface)& S, const Standard_Real UMin, const Standard_Real UMax, const Standard_Real VMin, const Standard_Real VMax);
-  
-  Standard_EXPORT const TopoDS_Face& Face() const;
-Standard_EXPORT operator TopoDS_Face();
-  
-  //! Returns the edge of index <I>
-  //! 1 - Edge VMin
-  //! 2 - Edge UMax
-  //! 3 - Edge VMax
-  //! 4 - Edge UMin
-  Standard_EXPORT const TopoDS_Edge& Edge (const Standard_Integer I) const;
-  
-  //! Returns the vertex of index <I>
-  //! 1 - Vertex UMin,VMin
-  //! 2 - Vertex UMax,VMin
-  //! 3 - Vertex UMax,VMax
-  //! 4 - Vertex UMin,VMax
-  Standard_EXPORT const TopoDS_Vertex& Vertex (const Standard_Integer I) const;
+		//! DEFINE_STANDARD_ALLOC
 
 
+		XBRepPrim_FaceBuilder();
 
+		XBRepPrim_FaceBuilder(BRepPrim_FaceBuilder* pos);
 
-protected:
+		XBRepPrim_FaceBuilder(XBRep_Builder^ B, XGeom_Surface^ S);
 
+		XBRepPrim_FaceBuilder(XBRep_Builder^ B, XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax);
 
+		void SetPrimFaceBuilder(BRepPrim_FaceBuilder* pos);
 
+		virtual BRepPrim_FaceBuilder* GetPrimFaceBuilder();
 
+		void Init(XBRep_Builder^ B, XGeom_Surface^ S);
 
-private:
+		void Init(XBRep_Builder^ B, XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax);
 
+		XTopoDS_Face^ Face();
+		operator XTopoDS_Face^();
 
+		//! Returns the edge of index <I>
+		//! 1 - Edge VMin
+		//! 2 - Edge UMax
+		//! 3 - Edge VMax
+		//! 4 - Edge UMin
+		XTopoDS_Edge^ Edge(Standard_Integer I);
 
-  TopoDS_Vertex myVertex[4];
-  TopoDS_Edge myEdges[4];
-  TopoDS_Face myFace;
+		//! Returns the vertex of index <I>
+		//! 1 - Vertex UMin,VMin
+		//! 2 - Vertex UMax,VMin
+		//! 3 - Vertex UMax,VMax
+		//! 4 - Vertex UMin,VMax
+		XTopoDS_Vertex^ Vertex(Standard_Integer I);
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_FaceBuilder* IHandle {
+			BRepPrim_FaceBuilder* get() { // Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_FaceBuilder* handle) { //s Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_FaceBuilder*>(handle);
+			}
+		}
 
-};
-
-
-
-
-
-
-
-#endif // _BRepPrim_FaceBuilder_HeaderFile
+	private:
+		BRepPrim_FaceBuilder* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_FaceBuilder_HeaderFile

@@ -14,8 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepPrim_Torus_HeaderFile
-#define _BRepPrim_Torus_HeaderFile
+#ifndef _XBRepPrim_Torus_HeaderFile
+#define _XBRepPrim_Torus_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepPrim_Torus.hxx>
+#include <XBRepPrim_Revolution.h>
+#include <XTopoDS_Face.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax2.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,58 +36,65 @@ class gp_Ax2;
 class gp_Pnt;
 class TopoDS_Face;
 
+using namespace TKMath;
+using namespace TKBRep;
+namespace TKPrim {
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Ax2;
+	ref class TKBRep::XTopoDS_Face;
+	//! Implements the torus primitive
+	public ref class XBRepPrim_Torus : public XBRepPrim_Revolution
+	{
+	public:
 
-//! Implements the torus primitive
-class BRepPrim_Torus  : public BRepPrim_Revolution
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
 
-  DEFINE_STANDARD_ALLOC
+		//! 
+		XBRepPrim_Torus();
 
-  
-  //! the STEP definition
-  //! Position : center and axes
-  //! Major, Minor : Radii
-  //!
-  //! Errors : Major < Resolution
-  //! Minor < Resolution
-  Standard_EXPORT BRepPrim_Torus(const gp_Ax2& Position, const Standard_Real Major, const Standard_Real Minor);
-  
-  //! Torus centered at origin
-  Standard_EXPORT BRepPrim_Torus(const Standard_Real Major, const Standard_Real Minor);
-  
-  //! Torus at Center
-  Standard_EXPORT BRepPrim_Torus(const gp_Pnt& Center, const Standard_Real Major, const Standard_Real Minor);
-  
-  //! The surface normal should be directed  towards the
-  //! outside.
-  Standard_EXPORT virtual TopoDS_Face MakeEmptyLateralFace() const Standard_OVERRIDE;
+		XBRepPrim_Torus(BRepPrim_Torus* handle);
 
+		void SetPrimTorusHandle(BRepPrim_Torus* handle);
 
+		virtual BRepPrim_Torus* GetPrimTorus();
 
+		virtual BRepPrim_Revolution* GetRevolution() Standard_OVERRIDE;
 
-protected:
+		virtual BRepPrim_OneAxis* GetOneAxis() Standard_OVERRIDE;
 
+		//! the STEP definition
+		//! Position : center and axes
+		//! Major, Minor : Radii
+		//!
+		//! Errors : Major < Resolution
+		//! Minor < Resolution
+		XBRepPrim_Torus(xgp_Ax2^ Position, Standard_Real Major, Standard_Real Minor);
 
+		//! Torus centered at origin
+		XBRepPrim_Torus(Standard_Real Major, Standard_Real Minor);
 
+		//! Torus at Center
+		XBRepPrim_Torus(xgp_Pnt^ Center, Standard_Real Major, Standard_Real Minor);
 
-
-private:
-
-  
-  Standard_EXPORT void SetMeridian();
-
-
-  Standard_Real myMajor;
-  Standard_Real myMinor;
-
-
-};
+		//! The surface normal should be directed  towards the
+		//! outside.
+		virtual XTopoDS_Face^ MakeEmptyLateralFace() Standard_OVERRIDE;
 
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepPrim_OneAxis* IHandle {
+			BRepPrim_OneAxis* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepPrim_OneAxis* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepPrim_Torus*>(handle);
+			}
+		}
 
-
-
-
-
-#endif // _BRepPrim_Torus_HeaderFile
+	private:
+		BRepPrim_Torus* NativeHandle;
+	};
+}
+#endif // _XBRepPrim_Torus_HeaderFile
