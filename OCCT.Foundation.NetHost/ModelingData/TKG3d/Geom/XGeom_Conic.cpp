@@ -62,7 +62,7 @@ namespace TKG3d {
 
 	//! changes the local coordinate system of the conic.
 	void XGeom_Conic::SetPosition(xgp_Ax2^ A2) {
-		NativeHandle()->SetPosition(A2->GetAx2());
+		NativeHandle()->SetPosition(*A2->GetAx2());
 	};
 
 	//! Returns the "main Axis" of this conic. This axis is
@@ -100,7 +100,8 @@ namespace TKG3d {
 	//! is in the plane of the conic and corresponds to the origin
 	//! for the conic's parametric value u.
 	xgp_Ax2^ XGeom_Conic::Position() {
-		return gcnew xgp_Ax2(NativeHandle()->Position());
+		gp_Ax2* temp = new gp_Ax2(NativeHandle()->Position());
+		return gcnew xgp_Ax2(temp);
 	};
 
 

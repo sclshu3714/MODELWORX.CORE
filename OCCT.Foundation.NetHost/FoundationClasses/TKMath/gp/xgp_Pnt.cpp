@@ -188,14 +188,14 @@ namespace TKMath
     };
 
     void xgp_Pnt::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
     //! Rotates a point. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Pnt^ xgp_Pnt::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Pnt(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Pnt(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Pnt::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

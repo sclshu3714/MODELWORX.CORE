@@ -99,11 +99,11 @@ namespace TKMath
 	}
 
 	void xgp_Ax1::Mirror(xgp_Ax2^ A2) {
-		NativeHandle->Mirror(A2->GetAx2());
+		NativeHandle->Mirror(*A2->GetAx2());
 	}
 
 	xgp_Ax1^ xgp_Ax1::Mirrored(xgp_Ax2^ A2) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Mirrored(A2->GetAx2()));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Mirrored(*A2->GetAx2()));
 		return gcnew xgp_Ax1(temp);
 	}
 

@@ -31,7 +31,7 @@ namespace TKMath
     //! MinorRadius.
     //! Raises ConstructionError if MajorRadius < MinorRadius or MinorRadius < 0.
     xgp_Elips::xgp_Elips(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-        NativeHandle = new gp_Elips(A2->GetAx2(), MajorRadius, MinorRadius);
+        NativeHandle = new gp_Elips(*A2->GetAx2(), MajorRadius, MinorRadius);
     };
 
     //ÊÍ·Å
@@ -90,7 +90,7 @@ namespace TKMath
     //! Modifies this ellipse, by redefining its local coordinate
     //! so that it becomes A2e.
     void xgp_Elips::SetPosition(xgp_Ax2^ A2) {
-        NativeHandle->SetPosition(A2->GetAx2());
+        NativeHandle->SetPosition(*A2->GetAx2());
     };
 
     //! Computes the area of the Ellipse.
@@ -192,7 +192,8 @@ namespace TKMath
 
     //! Returns the coordinate system of the ellipse.
     xgp_Ax2^ xgp_Elips::Position() {
-        return gcnew xgp_Ax2(NativeHandle->Position());
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Position());
+        return gcnew xgp_Ax2(temp);
     };
 
 
@@ -236,7 +237,7 @@ namespace TKMath
     };
 
     void xgp_Elips::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirrored(A2->GetAx2());
+        NativeHandle->Mirrored(*A2->GetAx2());
     };
 
 
@@ -244,7 +245,7 @@ namespace TKMath
     //! respect to a plane. The axis placement A2 locates the plane
     //! of the symmetry (Location, XDirection, YDirection).
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Elips(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Elips(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Elips::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

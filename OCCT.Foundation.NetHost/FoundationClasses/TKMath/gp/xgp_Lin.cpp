@@ -170,7 +170,7 @@ namespace TKMath
     };
 
     void xgp_Lin::Mirror(xgp_Ax2^ A2){ 
-        NativeHandle->Mirrored(A2->GetAx2());
+        NativeHandle->Mirrored(*A2->GetAx2());
     };
 
 
@@ -179,7 +179,7 @@ namespace TKMath
     //! locates the plane of the symmetry :
     //! (Location, XDirection, YDirection).
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Ax2^ A2){ 
-        return gcnew xgp_Lin(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Lin(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Lin::Rotate(xgp_Ax1^ A1, Standard_Real Ang){ 

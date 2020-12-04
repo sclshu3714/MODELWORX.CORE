@@ -26,7 +26,7 @@ namespace TKMath
     //! Raises ConstructionError if Focal < 0.0
     //! Raised if Focal < 0.0
     xgp_Parab::xgp_Parab(xgp_Ax2^ A2, Standard_Real Focal) {
-        NativeHandle = new gp_Parab(A2->GetAx2(), Focal);
+        NativeHandle = new gp_Parab(*A2->GetAx2(), Focal);
     };
 
 
@@ -86,7 +86,7 @@ namespace TKMath
 
     //! Changes the local coordinate system of the parabola.
     void xgp_Parab::SetPosition(xgp_Ax2^ A2) {
-        NativeHandle->SetPosition(A2->GetAx2());
+        NativeHandle->SetPosition(*A2->GetAx2());
     };
 
 
@@ -142,7 +142,8 @@ namespace TKMath
 
     //! Returns the local coordinate system of the parabola.
     xgp_Ax2^ xgp_Parab::Position() {
-        return gcnew xgp_Ax2(NativeHandle->Position());
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Position());
+        return gcnew xgp_Ax2(temp);
     };
 
 
@@ -186,7 +187,7 @@ namespace TKMath
     };
 
     void xgp_Parab::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -194,7 +195,7 @@ namespace TKMath
     //! with respect to a plane. The axis placement A2 locates
     //! the plane of the symmetry (Location, XDirection, YDirection).
     xgp_Parab^ xgp_Parab::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Parab(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Parab(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Parab::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

@@ -78,7 +78,7 @@ namespace TKMath
     //! and defines the plane of symmetry by its origin, "X
     //! Direction" and "Y Direction".
     void xgp_Trsf::SetMirror(xgp_Ax2^ A2) {
-        NativeHandle->SetMirror(A2->GetAx2());
+        NativeHandle->SetMirror(*A2->GetAx2());
     };
 
 

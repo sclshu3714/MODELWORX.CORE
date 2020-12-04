@@ -52,7 +52,7 @@ namespace TKPrim {
 	//! system less than or equal to Precision::Confusion().
 	//! In these cases, the box would be flat.
 	XBRepPrimAPI_MakeBox::XBRepPrimAPI_MakeBox(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz) {
-		NativeHandle = new BRepPrimAPI_MakeBox(Axes->GetAx2(), dx, dy, dz);
+		NativeHandle = new BRepPrimAPI_MakeBox(*Axes->GetAx2(), dx, dy, dz);
 		SetMakeShapeHandle(NativeHandle);
 	};
 

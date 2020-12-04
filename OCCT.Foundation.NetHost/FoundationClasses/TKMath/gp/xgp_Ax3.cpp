@@ -26,7 +26,7 @@ namespace TKMath
     //! Creates  a  coordinate  system from a right-handed
     //! coordinate system.
     xgp_Ax3::xgp_Ax3(xgp_Ax2^ A) {
-        NativeHandle = new gp_Ax3(A->GetAx2());
+        NativeHandle = new gp_Ax3(*A->GetAx2());
     };
 
     //! Creates a  right handed axis placement with the
@@ -159,7 +159,8 @@ namespace TKMath
     //! returned is the same coordinate system. If this
     //! coordinate system is left-handed, the result is reversed.
     xgp_Ax2^ xgp_Ax3::Ax2() {
-        return gcnew xgp_Ax2(NativeHandle->Ax2());
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Ax2());
+        return gcnew xgp_Ax2(temp);
     };
 
 
@@ -247,7 +248,7 @@ namespace TKMath
     };
 
     void xgp_Ax3::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -260,7 +261,7 @@ namespace TKMath
     //! The resulting main "Direction" is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Ax3^ xgp_Ax3::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Ax3(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Ax3(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Ax3::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

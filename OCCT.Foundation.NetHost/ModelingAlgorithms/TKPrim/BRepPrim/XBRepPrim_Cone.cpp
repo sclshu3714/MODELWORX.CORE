@@ -40,7 +40,7 @@ namespace TKPrim {
 	//! Angle > PI/2 - Resolution / Height
 	//! Radius = 0
 	XBRepPrim_Cone::XBRepPrim_Cone(Standard_Real Angle, xgp_Ax2^ Position, Standard_Real Height, Standard_Real Radius) {
-		NativeHandle = new BRepPrim_Cone(Angle, Position->GetAx2(), Height, Radius);
+		NativeHandle = new BRepPrim_Cone(Angle, *Position->GetAx2(), Height, Radius);
 		SetRevolutionHandle(NativeHandle);
 	};
 
@@ -58,7 +58,7 @@ namespace TKPrim {
 
 	//! infinite cone with Axes
 	XBRepPrim_Cone::XBRepPrim_Cone(Standard_Real Angle, xgp_Ax2^ Axes) {
-		NativeHandle = new BRepPrim_Cone(Angle, Axes->GetAx2());
+		NativeHandle = new BRepPrim_Cone(Angle, *Axes->GetAx2());
 		SetRevolutionHandle(NativeHandle);
 	};
 
@@ -85,7 +85,7 @@ namespace TKPrim {
 
 	//! same as above with given axes system.
 	XBRepPrim_Cone::XBRepPrim_Cone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H) {
-		NativeHandle = new BRepPrim_Cone(Axes->GetAx2(), R1, R2, H);
+		NativeHandle = new BRepPrim_Cone(*Axes->GetAx2(), R1, R2, H);
 		SetRevolutionHandle(NativeHandle);
 	};
 

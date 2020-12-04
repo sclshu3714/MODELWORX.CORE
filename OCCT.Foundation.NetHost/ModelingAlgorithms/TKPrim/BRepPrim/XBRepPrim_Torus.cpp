@@ -34,7 +34,7 @@ namespace TKPrim {
 	//! Errors : Major < Resolution
 	//! Minor < Resolution
 	XBRepPrim_Torus::XBRepPrim_Torus(xgp_Ax2^ Position, Standard_Real Major, Standard_Real Minor) {
-		NativeHandle = new BRepPrim_Torus(Position->GetAx2(), Major, Minor);
+		NativeHandle = new BRepPrim_Torus(*Position->GetAx2(), Major, Minor);
 		SetRevolutionHandle(NativeHandle);
 	};
 

@@ -34,7 +34,7 @@ namespace TKPrim {
 	};
 
 	void XBRepPrim_OneAxis::Axes(xgp_Ax2^ A) {
-		NativeHandle->Axes(A->GetAx2());
+		NativeHandle->Axes(*A->GetAx2());
 	};
 
 	Standard_Real XBRepPrim_OneAxis::Angle() {

@@ -59,14 +59,16 @@ namespace TKMath
     //! and its "main Direction" and "X Direction" coordinates
     //! Z = 1.0, X = Y =0.0 and X direction coordinates X = 1.0, Y = Z = 0.0
     xgp_Ax2^ xgp::XOY() {
-        return gcnew xgp_Ax2(gp::XOY());
+        gp_Ax2* temp = new gp_Ax2(gp::XOY());
+        return gcnew xgp_Ax2(temp);
     };
 
     //! Identifies a coordinate system where its origin is Origin,
     //! and its "main Direction" and "X Direction" coordinates
     //! Y = 1.0, X = Z =0.0 and X direction coordinates Z = 1.0, X = Y = 0.0
     xgp_Ax2^ xgp::ZOX() {
-        return gcnew xgp_Ax2(gp::ZOX());
+        gp_Ax2* temp = new gp_Ax2(gp::ZOX());
+        return gcnew xgp_Ax2(temp);
     };
 
     //! Identifies a coordinate system where its origin is Origin,
@@ -74,7 +76,8 @@ namespace TKMath
     //! X = 1.0, Z = Y =0.0 and X direction coordinates Y = 1.0, X = Z = 0.0
     //! In 2D space
     xgp_Ax2^ xgp::YOZ() {
-        return gcnew xgp_Ax2(gp::YOZ());
+        gp_Ax2* temp = new gp_Ax2(gp::YOZ());
+        return gcnew xgp_Ax2(temp);
     };
 
     //! Identifies a Cartesian point with coordinates X = Y = 0.0

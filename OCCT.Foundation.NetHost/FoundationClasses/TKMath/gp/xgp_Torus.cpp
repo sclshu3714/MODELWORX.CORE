@@ -198,7 +198,7 @@ namespace TKMath
     };
 
     void xgp_Torus::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -206,7 +206,7 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Torus^ xgp_Torus::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Torus(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Torus(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Torus::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

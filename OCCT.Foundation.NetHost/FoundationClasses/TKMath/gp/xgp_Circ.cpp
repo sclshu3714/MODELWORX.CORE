@@ -26,7 +26,7 @@ namespace TKMath
     //! Warnings :
     //! It is not forbidden to create a circle with Radius = 0.0  Raises ConstructionError if Radius < 0.0
     xgp_Circ::xgp_Circ(xgp_Ax2^ A2, Standard_Real Radius) {
-        NativeHandle = new gp_Circ(A2->GetAx2(), Radius);
+        NativeHandle = new gp_Circ(*A2->GetAx2(), Radius);
     };
 
     //! ÊÍ·Å
@@ -64,7 +64,7 @@ namespace TKMath
 
     //! Changes the position of the circle.
     void xgp_Circ::SetPosition(xgp_Ax2^ A2) {
-        NativeHandle->SetPosition(A2->GetAx2());
+        NativeHandle->SetPosition(*A2->GetAx2());
     };
 
     //! Modifies the radius of this circle.
@@ -106,7 +106,8 @@ namespace TKMath
     //! Returns the position of the circle.
     //! It is the local coordinate system of the circle.
     xgp_Ax2^ xgp_Circ::Position() {
-        return gcnew xgp_Ax2(NativeHandle->Position());
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Position());
+        return gcnew xgp_Ax2(temp);
     };
 
     //! Returns the radius of this circle.
@@ -178,7 +179,7 @@ namespace TKMath
     };
 
     void xgp_Circ::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -186,7 +187,7 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Circ(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Circ(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Circ::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

@@ -60,7 +60,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Mirror(xgp_Ax2^ A2) {
-		NativeHandle()->Mirror(A2->GetAx2());
+		NativeHandle()->Mirror(*A2->GetAx2());
 	}
 
 
@@ -98,7 +98,7 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Mirrored(xgp_Ax2^ A2) {
-		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(A2->GetAx2()));
+		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(*A2->GetAx2()));
 	}
 
 

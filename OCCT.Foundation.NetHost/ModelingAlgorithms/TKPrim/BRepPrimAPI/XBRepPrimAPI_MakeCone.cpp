@@ -46,7 +46,7 @@ namespace TKPrim {
 	//! Make a cone of height H radius R1 in the plane z =
 	//! 0, R2 in the plane Z = H. R1 and R2 may be null.
 	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H) {
-		NativeHandle = new BRepPrimAPI_MakeCone(Axes->GetAx2(), R1, R2, H);
+		NativeHandle = new BRepPrimAPI_MakeCone(*Axes->GetAx2(), R1, R2, H);
 		SetMakeOneAxisHandle(NativeHandle);
 	};
 
@@ -82,7 +82,7 @@ namespace TKPrim {
 	//! R1, R2 and H, is less than Precision::Confusion()/H, or greater than
 	//! (Pi/2)-Precision::Confusion()/H.f
 	XBRepPrimAPI_MakeCone::XBRepPrimAPI_MakeCone(xgp_Ax2^ Axes, Standard_Real R1, Standard_Real R2, Standard_Real H, Standard_Real angle) {
-		NativeHandle = new BRepPrimAPI_MakeCone(Axes->GetAx2(), R1, R2, H, angle);
+		NativeHandle = new BRepPrimAPI_MakeCone(*Axes->GetAx2(), R1, R2, H, angle);
 		SetMakeOneAxisHandle(NativeHandle);
 	};
 

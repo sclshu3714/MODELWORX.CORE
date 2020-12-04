@@ -223,7 +223,7 @@ namespace TKMath
     };
 
     void xgp_Pln::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
     //! Performs the  symmetrical transformation  of  a
@@ -235,7 +235,7 @@ namespace TKMath
     //! and the "YDirection"  after  transformation if the initial
     //! plane was right handed, else it is the opposite.
     xgp_Pln^ xgp_Pln::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Pln(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Pln(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Pln::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

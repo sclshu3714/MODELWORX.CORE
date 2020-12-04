@@ -43,7 +43,7 @@ namespace TKPrim {
 
 	//! Make a cylinder of radius R and length H.
 	XBRepPrimAPI_MakeCylinder::XBRepPrimAPI_MakeCylinder(xgp_Ax2^ Axes, Standard_Real R, Standard_Real H) {
-		NativeHandle = new BRepPrimAPI_MakeCylinder(Axes->GetAx2(), R, H);
+		NativeHandle = new BRepPrimAPI_MakeCylinder(*Axes->GetAx2(), R, H);
 		SetMakeOneAxisHandle(NativeHandle);
 	};
 
@@ -74,7 +74,7 @@ namespace TKPrim {
 	//! -   R is less than or equal to Precision::Confusion(), or
 	//! -   H is less than or equal to Precision::Confusion().
 	XBRepPrimAPI_MakeCylinder::XBRepPrimAPI_MakeCylinder(xgp_Ax2^ Axes, Standard_Real R, Standard_Real H, Standard_Real Angle) {
-		NativeHandle = new BRepPrimAPI_MakeCylinder(Axes->GetAx2(), R, H, Angle);
+		NativeHandle = new BRepPrimAPI_MakeCylinder(*Axes->GetAx2(), R, H, Angle);
 		SetMakeOneAxisHandle(NativeHandle);
 	};
 

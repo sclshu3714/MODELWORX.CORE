@@ -188,7 +188,7 @@ namespace TKMath
     };
 
     void xgp_Cone::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -196,7 +196,7 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Cone(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Cone(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Cone::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

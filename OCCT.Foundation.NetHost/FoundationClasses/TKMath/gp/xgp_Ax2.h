@@ -70,11 +70,6 @@ namespace TKMath
         /// <param name="pos"></param>
         xgp_Ax2(gp_Ax2* pos);
 
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Ax2(gp_Ax2 pos);
         //! Creates an axis placement with an origin P such that:
         //! -   N is the Direction, and
         //! -   the "X Direction" is normal to N, in the plane
@@ -158,7 +153,7 @@ namespace TKMath
         Standard_Real Angle(xgp_Ax2^ Other);
 
         //ªÒ»°gp_Ax2
-        gp_Ax2 GetAx2();
+        gp_Ax2* GetAx2();
 
         //! Returns the main axis of <me>. It is the "Location" point
         //! and the main "Direction".

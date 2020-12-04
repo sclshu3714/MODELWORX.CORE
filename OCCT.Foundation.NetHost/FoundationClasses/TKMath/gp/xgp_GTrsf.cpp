@@ -76,7 +76,7 @@ namespace TKMath
     //! plane A2, the vectors HP and HP' satisfy:
     //! HP' = Ratio * HP.
     void xgp_GTrsf::SetAffinity(xgp_Ax2^ A2, Standard_Real Ratio) {
-        NativeHandle->SetAffinity(A2->GetAx2(), Ratio);
+        NativeHandle->SetAffinity(*A2->GetAx2(), Ratio);
     };
 
 

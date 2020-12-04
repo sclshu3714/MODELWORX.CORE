@@ -47,7 +47,7 @@ namespace TKPrim {
 
 	//! Creates a sphere with given axes system.
 	XBRepPrim_Sphere::XBRepPrim_Sphere(xgp_Ax2^ Axes, Standard_Real Radius) {
-		NativeHandle = new BRepPrim_Sphere(Axes->GetAx2(), Radius);
+		NativeHandle = new BRepPrim_Sphere(*Axes->GetAx2(), Radius);
 		SetRevolutionHandle(NativeHandle);
 	};
 

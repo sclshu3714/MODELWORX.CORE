@@ -30,7 +30,7 @@ namespace TKPrim {
 	//! The result is a box
 	//! dx,dy,dz should be positive
 	XBRepPrim_GWedge::XBRepPrim_GWedge(XBRepPrim_Builder^ B, xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz) {
-		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), Axes->GetAx2(), dx, dy, dz);
+		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), *Axes->GetAx2(), dx, dy, dz);
 	};
 
 	//! Creates  a GWedge  primitive. <Axes> is   the  axis
@@ -46,7 +46,7 @@ namespace TKPrim {
 	//! dx,dy,dz should be positive
 	//! ltx should not be negative
 	XBRepPrim_GWedge::XBRepPrim_GWedge(XBRepPrim_Builder^ B, xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx) {
-		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), Axes->GetAx2(), dx, dy, dz, ltx);
+		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), *Axes->GetAx2(), dx, dy, dz, ltx);
 	};
 
 	//! Create  a GWedge primitive.   <Axes>  is  the  axis
@@ -56,12 +56,13 @@ namespace TKPrim {
 	//! XYZMax - XYZMin should be positive
 	//! ZX2Max - ZX2Min should not be negative
 	XBRepPrim_GWedge::XBRepPrim_GWedge(XBRepPrim_Builder^ B, xgp_Ax2^ Axes, Standard_Real xmin, Standard_Real ymin, Standard_Real zmin, Standard_Real z2min, Standard_Real x2min, Standard_Real xmax, Standard_Real ymax, Standard_Real zmax, Standard_Real z2max, Standard_Real x2max) {
-		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), Axes->GetAx2(), xmin, ymin, zmin, z2min, x2min, xmax, ymax, zmax, z2max, x2max);
+		NativeHandle = new BRepPrim_GWedge(*B->GetBRepPrimBuilder(), *Axes->GetAx2(), xmin, ymin, zmin, z2min, x2min, xmax, ymax, zmax, z2max, x2max);
 	};
 
 	//! Returns the coordinates system from <me>.
 	xgp_Ax2^ XBRepPrim_GWedge::Axes() {
-		return gcnew xgp_Ax2(NativeHandle->Axes());
+		gp_Ax2* temp = new gp_Ax2(NativeHandle->Axes());
+		return gcnew xgp_Ax2(temp);
 	};
 
 	//! Returns Xmin value from <me>.

@@ -37,7 +37,7 @@ namespace TKPrim {
 	//! Errors : Height < Resolution
 	//! Radius < Resolution
 	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Ax2^ Position, Standard_Real Radius, Standard_Real Height) {
-		NativeHandle = new BRepPrim_Cylinder(Position->GetAx2(), Radius, Height);
+		NativeHandle = new BRepPrim_Cylinder(*Position->GetAx2(), Radius, Height);
 		SetRevolutionHandle(NativeHandle);
 	};
 
@@ -55,7 +55,7 @@ namespace TKPrim {
 
 	//! infinite Cylinder at Axes on Z negative
 	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Ax2^ Axes, Standard_Real Radius) {
-		NativeHandle = new BRepPrim_Cylinder(Axes->GetAx2(), Radius);
+		NativeHandle = new BRepPrim_Cylinder(*Axes->GetAx2(), Radius);
 		SetRevolutionHandle(NativeHandle);
 	};
 

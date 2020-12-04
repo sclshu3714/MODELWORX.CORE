@@ -41,7 +41,7 @@ namespace TKMath
     //! Raises ConstructionError if MajorRadius < 0.0 or MinorRadius < 0.0
     //! Raised if MajorRadius < 0.0 or MinorRadius < 0.0
     xgp_Hypr::xgp_Hypr(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-        NativeHandle = new gp_Hypr(A2->GetAx2(), MajorRadius, MinorRadius);
+        NativeHandle = new gp_Hypr(*A2->GetAx2(), MajorRadius, MinorRadius);
     };
 
 
@@ -99,7 +99,7 @@ namespace TKMath
     //! Modifies this hyperbola, by redefining its local coordinate
     //! system so that it becomes A2.
     void xgp_Hypr::SetPosition(xgp_Ax2^ A2) {
-        NativeHandle->SetPosition(A2->GetAx2());
+        NativeHandle->SetPosition(*A2->GetAx2());
     };
 
 
@@ -233,7 +233,8 @@ namespace TKMath
 
     //! Returns the coordinate system of the hyperbola.
     xgp_Ax2^ xgp_Hypr::Position() {
-        return gcnew xgp_Ax2(NativeHandle->Position());
+        gp_Ax2* temp = new gp_Ax2(NativeHandle->Position());
+        return gcnew xgp_Ax2(temp);
     };
 
     //! Computes an axis, whose
@@ -280,7 +281,7 @@ namespace TKMath
     };
 
     void xgp_Hypr::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -288,7 +289,7 @@ namespace TKMath
     //! respect to a plane. The axis placement A2 locates the plane
     //! of the symmetry (Location, XDirection, YDirection).
     xgp_Hypr^ xgp_Hypr::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Hypr(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Hypr(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Hypr::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {

@@ -42,7 +42,7 @@ namespace TKG3d {
 	//! construction of an ellipse where MajorRadius and
 	//! MinorRadius are equal.
 	XGeom_Ellipse::XGeom_Ellipse(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-		IHandle = new  Geom_Ellipse(A2->GetAx2(), MajorRadius, MinorRadius);
+		IHandle = new  Geom_Ellipse(*A2->GetAx2(), MajorRadius, MinorRadius);
 	};
 
 	Handle(Geom_Conic) XGeom_Ellipse::GetConic() {

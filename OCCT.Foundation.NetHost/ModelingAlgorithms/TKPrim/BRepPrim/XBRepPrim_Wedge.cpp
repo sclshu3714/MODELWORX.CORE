@@ -35,7 +35,7 @@ namespace TKPrim {
 	//! The result is a box
 	//! dx,dy,dz should be positive
 	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz) {
-		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), dx, dy, dz);
+		NativeHandle = new BRepPrim_Wedge(*Axes->GetAx2(), dx, dy, dz);
 		SetGWedgeHandle(NativeHandle);
 	};
 
@@ -52,7 +52,7 @@ namespace TKPrim {
 	//! dx,dy,dz should be positive
 	//! ltx should not be negative
 	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real dx, Standard_Real dy, Standard_Real dz, Standard_Real ltx) {
-		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), dx, dy, dz, ltx);
+		NativeHandle = new BRepPrim_Wedge(*Axes->GetAx2(), dx, dy, dz, ltx);
 		SetGWedgeHandle(NativeHandle);
 	};
 
@@ -63,7 +63,7 @@ namespace TKPrim {
 	//! XYZMax - XYZMin should be positive
 	//! ZX2Max - ZX2Min should not be negative
 	XBRepPrim_Wedge::XBRepPrim_Wedge(xgp_Ax2^ Axes, Standard_Real xmin, Standard_Real ymin, Standard_Real zmin, Standard_Real z2min, Standard_Real x2min, Standard_Real xmax, Standard_Real ymax, Standard_Real zmax, Standard_Real z2max, Standard_Real x2max) {
-		NativeHandle = new BRepPrim_Wedge(Axes->GetAx2(), xmin, ymin, zmin, z2min, x2min, xmax, ymax, zmax, z2max, x2max);
+		NativeHandle = new BRepPrim_Wedge(*Axes->GetAx2(), xmin, ymin, zmin, z2min, x2min, xmax, ymax, zmax, z2max, x2max);
 		SetGWedgeHandle(NativeHandle);
 	};
 }

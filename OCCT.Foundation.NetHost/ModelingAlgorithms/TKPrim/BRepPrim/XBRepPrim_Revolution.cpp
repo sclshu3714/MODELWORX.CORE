@@ -26,7 +26,7 @@ namespace TKPrim {
 	//! must   be in the XZ  plane   of <A>. <PM>  is  the
 	//! meridian in the XZ plane.
 	XBRepPrim_Revolution::XBRepPrim_Revolution(xgp_Ax2^ A, Standard_Real VMin, Standard_Real VMax, XGeom_Curve^ M, XGeom2d_Curve^ PM) {
-		NativeHandle = new BRepPrim_Revolution(A->GetAx2(), VMin, VMax, M->GetCurve(), PM->GetCurve());
+		NativeHandle = new BRepPrim_Revolution(*A->GetAx2(), VMin, VMax, M->GetCurve(), PM->GetCurve());
 		SetOneAxisHandle(NativeHandle);
 	};
 

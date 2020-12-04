@@ -32,7 +32,7 @@ namespace TKG3d {
 	//! Note: It is possible to create a circle where Radius is equal to 0.0.
 	//! raised if Radius < 0.
 	XGeom_Circle::XGeom_Circle(xgp_Ax2^ A2, Standard_Real Radius) {
-		NativeHandle() = new Geom_Circle(A2->GetAx2(), Radius);
+		NativeHandle() = new Geom_Circle(*A2->GetAx2(), Radius);
 		SetConicHandle(NativeHandle());
 	};
 

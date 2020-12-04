@@ -155,7 +155,7 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirror(A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
@@ -163,7 +163,7 @@ namespace TKMath
     //! to a plane. The axis placement A2 locates the plane of the
     //! of the symmetry : (Location, XDirection, YDirection).
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Cylinder(NativeHandle->Mirrored(A2->GetAx2()));
+        return gcnew xgp_Cylinder(NativeHandle->Mirrored(*A2->GetAx2()));
     };
 
     void xgp_Cylinder::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
