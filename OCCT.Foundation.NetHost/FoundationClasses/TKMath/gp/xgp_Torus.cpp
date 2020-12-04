@@ -31,7 +31,7 @@ namespace TKMath
     //! MajorRadius = MinorRadius = 0.0
     //! Raises ConstructionError if MinorRadius < 0.0 or if MajorRadius < 0.0
     xgp_Torus::xgp_Torus(xgp_Ax3^ A3, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-        NativeHandle = new gp_Torus(A3->GetAx3(), MajorRadius, MinorRadius);
+        NativeHandle = new gp_Torus(*A3->GetAx3(), MajorRadius, MinorRadius);
     };
 
     //ÊÍ·Å
@@ -79,7 +79,7 @@ namespace TKMath
 
     //! Changes the local coordinate system of the surface.
     void xgp_Torus::SetPosition(xgp_Ax3^ A3) {
-        NativeHandle->SetPosition(A3->GetAx3());
+        NativeHandle->SetPosition(*A3->GetAx3());
     };
 
     //! returns the gp_Torus
@@ -143,7 +143,8 @@ namespace TKMath
 
     //! Returns the local coordinates system of the torus.
     xgp_Ax3^ xgp_Torus::Position() {
-        return gcnew xgp_Ax3(NativeHandle->Position());
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Position());
+        return gcnew xgp_Ax3(temp);
     };
 
     //! returns the major radius of the torus.

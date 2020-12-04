@@ -29,7 +29,7 @@ namespace TKMath
     //! The "XDirection" and "YDirection" of A3 define the "XAxis" and
     //! the "YAxis" of the plane used to parametrize the plane.
     xgp_Pln::xgp_Pln(xgp_Ax3^ A3) {
-        NativeHandle = new gp_Pln(A3->GetAx3());
+        NativeHandle = new gp_Pln(*A3->GetAx3());
     };
 
 
@@ -87,7 +87,7 @@ namespace TKMath
 
     //! Changes the local coordinate system of the plane.
     void xgp_Pln::SetPosition(xgp_Ax3^ A3) {
-        NativeHandle->SetPosition(A3->GetAx3());
+        NativeHandle->SetPosition(*A3->GetAx3());
     };
 
     //! Reverses the   U   parametrization of   the  plane
@@ -120,7 +120,8 @@ namespace TKMath
 
     //! Returns the local coordinate system of the plane .
     xgp_Ax3^ xgp_Pln::Position() {
-        return gcnew xgp_Ax3(NativeHandle->Position());
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Position());
+        return gcnew xgp_Ax3(temp);
     };
 
     //! Computes the distance between <me> and the point <P>.

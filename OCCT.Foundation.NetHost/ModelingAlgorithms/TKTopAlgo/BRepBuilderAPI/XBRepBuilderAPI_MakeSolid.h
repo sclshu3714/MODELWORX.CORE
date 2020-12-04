@@ -132,7 +132,7 @@ namespace TKTopAlgo {
 		//! If no shell has been added, it could be a whole-space
 		//! solid. However, no check was done to verify the
 		//! conditions of coherence of the resulting solid.
-		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone(); // Standard_OVERRIDE;
 
 		//! Returns the new Solid.
 		XTopoDS_Solid^ Solid();

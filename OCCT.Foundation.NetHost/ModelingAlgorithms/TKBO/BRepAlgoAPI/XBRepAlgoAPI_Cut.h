@@ -67,16 +67,16 @@ namespace TKBO {
 		XBRepAlgoAPI_Cut(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2, BOPAlgo_PaveFiller aDSF, Standard_Boolean bFWD);
 
 		//! 获取图形
-		virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
+		virtual XTopoDS_Shape^ Shape();// Standard_OVERRIDE;
 
 		/// <summary>
 		/// 本地句柄
 		/// </summary>
 		virtual property BRepAlgoAPI_Cut* IHandle {
-			BRepAlgoAPI_Cut* get() Standard_OVERRIDE {
+			BRepAlgoAPI_Cut* get()  {// Standard_OVERRIDE {
 				return NativeHandle;
 			}
-			void set(BRepAlgoAPI_Cut* handle) Standard_OVERRIDE {
+			void set(BRepAlgoAPI_Cut* handle) {// Standard_OVERRIDE {
 				NativeHandle = static_cast<BRepAlgoAPI_Cut*>(handle);
 			}
 		}

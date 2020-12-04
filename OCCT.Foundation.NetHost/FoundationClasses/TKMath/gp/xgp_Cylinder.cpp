@@ -25,7 +25,7 @@ namespace TKMath
     //! Creates a cylinder of radius Radius, whose axis is the "main
     //! Axis" of A3. A3 is the local coordinate system of the cylinder.   Raises ConstructionErrord if R < 0.0
     xgp_Cylinder::xgp_Cylinder(xgp_Ax3^ A3, Standard_Real Radius) {
-        NativeHandle = new gp_Cylinder(A3->GetAx3(), Radius);
+        NativeHandle = new gp_Cylinder(*A3->GetAx3(), Radius);
     };
 
     //ÊÍ·Å
@@ -60,7 +60,7 @@ namespace TKMath
 
     //! Change the local coordinate system of the surface.
     void xgp_Cylinder::SetPosition(xgp_Ax3^ A3) {
-        NativeHandle->SetPosition(A3->GetAx3());
+        NativeHandle->SetPosition(*A3->GetAx3());
     };
 
     //! Modifies the radius of this cylinder.
@@ -110,7 +110,8 @@ namespace TKMath
 
     //! Returns the local coordinate system of the cylinder.
     xgp_Ax3^ xgp_Cylinder::Position() {
-        return gcnew xgp_Ax3(NativeHandle->Position());
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Position());
+        return gcnew xgp_Ax3(temp);
     };
 
     //! Returns the radius of the cylinder.

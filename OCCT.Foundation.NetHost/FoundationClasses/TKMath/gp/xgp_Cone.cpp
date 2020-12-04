@@ -32,7 +32,7 @@ namespace TKMath
     //! * if Radius is lower than 0.0
     //! * Abs(Ang) < Resolution from gp  or Abs(Ang) >= (PI/2) - Resolution.
     xgp_Cone::xgp_Cone(xgp_Ax3^ A3, Standard_Real Ang, Standard_Real Radius) {
-        NativeHandle = new gp_Cone(A3->GetAx3(), Ang, Radius);
+        NativeHandle = new gp_Cone(*A3->GetAx3(), Ang, Radius);
     };
 
 
@@ -70,7 +70,7 @@ namespace TKMath
     //! Changes the local coordinate system of the cone.
     //! This coordinate system defines the reference plane of the cone.
     void xgp_Cone::SetPosition(xgp_Ax3^ A3) {
-        NativeHandle->SetPosition(A3->GetAx3());
+        NativeHandle->SetPosition(*A3->GetAx3());
     };
 
 
@@ -136,7 +136,8 @@ namespace TKMath
 
     //! Returns the local coordinates system of the cone.
     xgp_Ax3^ xgp_Cone::Position() {
-        return gcnew xgp_Ax3(NativeHandle->Position());
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Position());
+        return gcnew xgp_Ax3(temp);
     };
 
 

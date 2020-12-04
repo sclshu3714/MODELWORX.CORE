@@ -127,7 +127,7 @@ namespace TKMath
     //! related transformations: the vectorial part of one is the
     //! inverse of the vectorial part of the other.
     void xgp_Trsf::SetDisplacement(xgp_Ax3^ FromSystem1, xgp_Ax3^ ToSystem2) {
-        NativeHandle->SetDisplacement(FromSystem1->GetAx3(), ToSystem2->GetAx3());
+        NativeHandle->SetDisplacement(*FromSystem1->GetAx3(), *ToSystem2->GetAx3());
     };
 
     //! Modifies this transformation so that it transforms the
@@ -149,7 +149,7 @@ namespace TKMath
     //! xgp_Pnt P2 = P1.Transformed (T);
     //! P2.Coord (x2, y2, z2);
     void xgp_Trsf::SetTransformation(xgp_Ax3^ FromSystem1, xgp_Ax3^ ToSystem2) {
-        NativeHandle->SetTransformation(FromSystem1->GetAx3(), ToSystem2->GetAx3());
+        NativeHandle->SetTransformation(*FromSystem1->GetAx3(), *ToSystem2->GetAx3());
     };
 
     //! Modifies this transformation so that it transforms the
@@ -163,7 +163,7 @@ namespace TKMath
     //! Use in the same way  as the previous method. FromSystem1 is
     //! defaulted to the absolute coordinate system.
     void xgp_Trsf::SetTransformation(xgp_Ax3^ ToSystem) {
-        NativeHandle->SetTransformation(ToSystem->GetAx3());
+        NativeHandle->SetTransformation(*ToSystem->GetAx3());
     };
 
 

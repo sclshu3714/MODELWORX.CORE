@@ -28,7 +28,7 @@ namespace TKMath
     //! It is not forbidden to create a sphere with null radius.
     //! Raises ConstructionError if Radius < 0.0
     xgp_Sphere::xgp_Sphere(xgp_Ax3^ A3, Standard_Real Radius) {
-        NativeHandle = new gp_Sphere(A3->GetAx3(), Radius);
+        NativeHandle = new gp_Sphere(*A3->GetAx3(), Radius);
     };
 
     //ÊÍ·Å
@@ -57,7 +57,7 @@ namespace TKMath
 
     //! Changes the local coordinate system of the sphere.
     void xgp_Sphere::SetPosition(xgp_Ax3^ A3) {
-        NativeHandle->SetPosition(A3->GetAx3());
+        NativeHandle->SetPosition(*A3->GetAx3());
     };
 
     //! Assigns R the radius of the Sphere.
@@ -110,7 +110,8 @@ namespace TKMath
 
     //! Returns the local coordinates system of the sphere.
     xgp_Ax3^ xgp_Sphere::Position() {
-        return gcnew xgp_Ax3(NativeHandle->Position());
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Position());
+        return gcnew xgp_Ax3(temp);
     };
 
     //! Returns the radius of the sphere.

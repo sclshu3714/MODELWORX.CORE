@@ -77,11 +77,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Ax3(gp_Ax3* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Ax3(gp_Ax3 pos);
 
         //! Creates  a  coordinate  system from a right-handed
         //! coordinate system.
@@ -103,7 +98,7 @@ namespace TKMath
         // Õ∑≈
         !xgp_Ax3();
         //! Return the gp_Ax3
-        gp_Ax3 GetAx3();
+        gp_Ax3* GetAx3();
 
         //! Reverses the X direction of <me>.
         void XReverse();
