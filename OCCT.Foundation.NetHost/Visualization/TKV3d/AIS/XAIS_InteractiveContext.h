@@ -365,7 +365,7 @@ namespace TKV3d
 
         
         void SetTransformPersistence(Handle(AIS_InteractiveObject) theObj, Graphic3d_TransModeFlags theFlag, xgp_Pnt^ thePoint) {
-            SetTransformPersistence(theObj, Graphic3d_TransformPers::FromDeprecatedParams(theFlag, thePoint->GetPnt()));
+            SetTransformPersistence(theObj, Graphic3d_TransformPers::FromDeprecatedParams(theFlag, *thePoint->GetPnt()));
         }
 
     public: //! @name mouse picking logic (detection and dynamic highlighting of entities under cursor)

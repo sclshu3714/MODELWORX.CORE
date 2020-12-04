@@ -241,7 +241,7 @@ namespace TKG3d {
 	//! Raised only for an "OffsetSurface" if it is not possible to
 	//! compute the current point.
 	void XGeom_Surface::D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) {
-		return NativeHandle()->D0(U, V, P->GetPnt());
+		return NativeHandle()->D0(U, V, *P->GetPnt());
 	};
 
 
@@ -249,7 +249,7 @@ namespace TKG3d {
 	//! directions U and V at this point.
 	//! Raised if the continuity of the surface is not C1.
 	void XGeom_Surface::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
-		return NativeHandle()->D1(U, V, P->GetPnt(), D1U->GetVec(), D1V->GetVec());
+		return NativeHandle()->D1(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec());
 	};
 
 
@@ -257,7 +257,7 @@ namespace TKG3d {
 	//! the directions U and V at this point.
 	//! Raised if the continuity of the surface is not C2.
 	void XGeom_Surface::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
-		return NativeHandle()->D2(U, V, P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec());
+		return NativeHandle()->D2(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec());
 	};
 
 
@@ -265,7 +265,7 @@ namespace TKG3d {
 	//! derivatives in the directions U and V at this point.
 	//! Raised if the continuity of the surface is not C2.
 	void XGeom_Surface::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
-		NativeHandle()->D3(U, V, P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec(), D3U->GetVec(), D3V->GetVec(), D3UUV->GetVec(), D3UVV->GetVec());
+		NativeHandle()->D3(U, V, *P->GetPnt(), D1U->GetVec(), D1V->GetVec(), D2U->GetVec(), D2V->GetVec(), D2UV->GetVec(), D3U->GetVec(), D3V->GetVec(), D3UUV->GetVec(), D3UVV->GetVec());
 	};
 
 	//! ---Purpose ;
@@ -287,6 +287,7 @@ namespace TKG3d {
 	//! Raised only for an "OffsetSurface" if it is not possible to
 	//! compute the current point.
 	xgp_Pnt^ XGeom_Surface::Value(Standard_Real U, Standard_Real V) {
-		return gcnew xgp_Pnt(NativeHandle()->Value(U, V));
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Value(U, V));
+		return gcnew xgp_Pnt(temp);
 	};
 }

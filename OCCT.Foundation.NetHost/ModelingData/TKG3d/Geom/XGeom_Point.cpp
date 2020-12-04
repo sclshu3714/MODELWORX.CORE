@@ -48,7 +48,8 @@ namespace TKG3d {
 
 	//! returns a non transient copy of <me>
 	xgp_Pnt^ XGeom_Point::Pnt() {
-		return gcnew xgp_Pnt(NativeHandle()->Pnt());
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Pnt());
+		return gcnew xgp_Pnt(temp);
 	};
 
 	//! returns the X coordinate of <me>.

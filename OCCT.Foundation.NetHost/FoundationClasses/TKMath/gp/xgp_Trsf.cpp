@@ -62,7 +62,7 @@ namespace TKMath
     //! Makes the transformation into a symmetrical transformation.
     //! P is the center of the symmetry.
     void xgp_Trsf::SetMirror(xgp_Pnt^ P) {
-        NativeHandle->SetMirror(P->GetPnt());
+        NativeHandle->SetMirror(*P->GetPnt());
     };
 
 
@@ -102,7 +102,7 @@ namespace TKMath
     //! P is the center of the scale and S is the scaling value.
     //! Raises ConstructionError  If <S> is null.
     void xgp_Trsf::SetScale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->SetScale(P->GetPnt(), S);
+        NativeHandle->SetScale(*P->GetPnt(), S);
     };
 
 
@@ -183,7 +183,7 @@ namespace TKMath
     //! Makes the transformation into a translation where the translation vector
     //! is the vector (P1, P2) defined from point P1 to point P2.
     void xgp_Trsf::SetTranslation(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->SetTranslation(P1->GetPnt(),P2->GetPnt());
+        NativeHandle->SetTranslation(*P1->GetPnt(),*P2->GetPnt());
     };
 
     //! Replaces the translation vector with the vector V.

@@ -46,6 +46,7 @@
 #include "xgp_Pnt.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
+class gp_Parab;
 
 namespace TKMath
 {
@@ -64,8 +65,6 @@ namespace TKMath
         //£¡Creates an indefinite Parabola.
         xgp_Parab(gp_Parab* pos);
 
-        //£¡Creates an indefinite Parabola.
-        xgp_Parab(gp_Parab pos);
 
         //! Creates a parabola with its local coordinate system "A2"
         //! and it's focal length "Focal".
@@ -95,7 +94,7 @@ namespace TKMath
         !xgp_Parab();
 
         //! gp_Parab
-        gp_Parab GetParab();
+        gp_Parab* GetParab();
 
         //! Modifies this parabola by redefining its local coordinate system so that
         //! -   its origin and "main Direction" become those of the

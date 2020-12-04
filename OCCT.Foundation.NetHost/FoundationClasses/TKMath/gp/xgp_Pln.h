@@ -45,7 +45,7 @@
 #include "xgp_Lin.h"
 #include "xgp_Trsf.h"
 #include "xgp_Vec.h"
-
+class gp_Pln;
 
 namespace TKMath
 {
@@ -69,11 +69,7 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Pln(gp_Pln* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Pln(gp_Pln pos);
+
         //! The coordinate system of the plane is defined with the axis
         //! placement A3.
         //! The "Direction" of A3 defines the normal to the plane.
@@ -100,7 +96,7 @@ namespace TKMath
         !xgp_Pln();
 
         //! gp_Pln
-        gp_Pln GetPln();
+        gp_Pln* GetPln();
 
         //! Returns the coefficients of the plane's cartesian equation :
         //! A * X + B * Y + C * Z + D = 0.

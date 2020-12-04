@@ -41,7 +41,7 @@ namespace TKPrim {
 	//! the   referrence    axes.   This    is the    STEP
 	//! constructor.
 	XBRepPrim_Sphere::XBRepPrim_Sphere(xgp_Pnt^ Center, Standard_Real Radius) {
-		NativeHandle = new BRepPrim_Sphere(Center->GetPnt() ,Radius);
+		NativeHandle = new BRepPrim_Sphere(*Center->GetPnt() ,Radius);
 		SetRevolutionHandle(NativeHandle);
 	};
 

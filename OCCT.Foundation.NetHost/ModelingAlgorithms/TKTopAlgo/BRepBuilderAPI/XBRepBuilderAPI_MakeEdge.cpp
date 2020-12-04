@@ -35,7 +35,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -50,7 +50,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Lin^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetLin(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetLin(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -70,7 +70,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Circ^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetCirc(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetCirc(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -90,7 +90,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Elips^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetElips(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -110,7 +110,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Hypr^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetHypr(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetHypr(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -120,22 +120,22 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Parab^ L) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetParab());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetParab());
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Parab^ L, Standard_Real p1, Standard_Real p2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetParab(), p1, p2);
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetParab(), p1, p2);
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Parab^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetParab(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetParab(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(xgp_Parab^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetParab(), *V1->GetVertex(), *V2->GetVertex());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(*L->GetParab(), *V1->GetVertex(), *V2->GetVertex());
 		Initialize(NativeHandle);
 	};
 
@@ -150,7 +150,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(XGeom_Curve^ L, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -160,7 +160,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(XGeom_Curve^ L, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Real p1, Standard_Real p2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), P1->GetPnt(), P2->GetPnt(), p1, p2);
+		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), *P1->GetPnt(), *P2->GetPnt(), p1, p2);
 		Initialize(NativeHandle);
 	};
 
@@ -180,7 +180,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(XGeom2d_Curve^ L, XGeom_Surface^ S, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), S->GetSurface(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), S->GetSurface(), *P1->GetPnt(), *P2->GetPnt());
 		Initialize(NativeHandle);
 	};
 
@@ -190,7 +190,7 @@ namespace TKTopAlgo {
 	};
 
 	XBRepBuilderAPI_MakeEdge::XBRepBuilderAPI_MakeEdge(XGeom2d_Curve^ L, XGeom_Surface^ S, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Real p1, Standard_Real p2) {
-		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), S->GetSurface(), P1->GetPnt(), P2->GetPnt(), p1, p2);
+		NativeHandle = new BRepBuilderAPI_MakeEdge(L->GetCurve(), S->GetSurface(), *P1->GetPnt(), *P2->GetPnt(), p1, p2);
 		Initialize(NativeHandle);
 	};
 
@@ -209,7 +209,7 @@ namespace TKTopAlgo {
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom_Curve^ C, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle->Init(C->GetCurve(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle->Init(C->GetCurve(), *P1->GetPnt(), *P2->GetPnt());
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
@@ -217,7 +217,7 @@ namespace TKTopAlgo {
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom_Curve^ C, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Real p1, Standard_Real p2) {
-		NativeHandle->Init(C->GetCurve(), P1->GetPnt(), P2->GetPnt(), p1, p2);
+		NativeHandle->Init(C->GetCurve(), *P1->GetPnt(), *P2->GetPnt(), p1, p2);
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2) {
@@ -233,7 +233,7 @@ namespace TKTopAlgo {
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom2d_Curve^ C, XGeom_Surface^ S, xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle->Init(C->GetCurve(), S->GetSurface(), P1->GetPnt(), P2->GetPnt());
+		NativeHandle->Init(C->GetCurve(), S->GetSurface(), *P1->GetPnt(), *P2->GetPnt());
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom2d_Curve^ C, XGeom_Surface^ S, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
@@ -241,7 +241,7 @@ namespace TKTopAlgo {
 	};
 
 	void XBRepBuilderAPI_MakeEdge::Init(XGeom2d_Curve^ C, XGeom_Surface^ S, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Real p1, Standard_Real p2) {
-		NativeHandle->Init(C->GetCurve(), S->GetSurface(), P1->GetPnt(), P2->GetPnt(), p1, p2);
+		NativeHandle->Init(C->GetCurve(), S->GetSurface(), *P1->GetPnt(), *P2->GetPnt(), p1, p2);
 	};
 
 	//! Defines or redefines the arguments for the construction of an edge.

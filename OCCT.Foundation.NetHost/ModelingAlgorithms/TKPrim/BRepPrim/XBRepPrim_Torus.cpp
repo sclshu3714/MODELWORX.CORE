@@ -46,7 +46,7 @@ namespace TKPrim {
 
 	//! Torus at Center
 	XBRepPrim_Torus::XBRepPrim_Torus(xgp_Pnt^ Center, Standard_Real Major, Standard_Real Minor) {
-		NativeHandle = new BRepPrim_Torus(Center->GetPnt(), Major, Minor);
+		NativeHandle = new BRepPrim_Torus(*Center->GetPnt(), Major, Minor);
 		SetRevolutionHandle(NativeHandle);
 	};
 

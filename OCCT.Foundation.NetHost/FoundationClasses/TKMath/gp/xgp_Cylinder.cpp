@@ -49,7 +49,7 @@ namespace TKMath
 
     //! Changes the location of the surface.
     void xgp_Cylinder::SetLocation(xgp_Pnt^ Loc) {
-        NativeHandle->SetLocation(Loc->GetPnt());
+        NativeHandle->SetLocation(*Loc->GetPnt());
     };
 
     //! Change the local coordinate system of the surface.
@@ -98,7 +98,8 @@ namespace TKMath
 
     //! Returns the "Location" point of the cylinder.
     xgp_Pnt^ xgp_Cylinder::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -126,7 +127,7 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -134,7 +135,7 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Cylinder^ xgp_Cylinder::Mirrored(xgp_Pnt^ P) {
-        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Cylinder(temp);
     };
 
@@ -177,14 +178,14 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales a cylinder. S is the scaling value.
     //! The absolute value of S is used to scale the cylinder
     xgp_Cylinder^ xgp_Cylinder::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Cylinder(temp);
     };
 
@@ -212,13 +213,13 @@ namespace TKMath
     };
 
     void xgp_Cylinder::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a cylinder from the point P1 to the point P2.
     xgp_Cylinder^ xgp_Cylinder::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Cylinder(temp);
     };
 };

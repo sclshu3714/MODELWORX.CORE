@@ -57,7 +57,7 @@ namespace TKG3d {
 
 	//! changes the location point of the conic.
 	void XGeom_Conic::SetLocation(xgp_Pnt^ P) {
-		NativeHandle()->SetLocation(P->GetPnt());
+		NativeHandle()->SetLocation(*P->GetPnt());
 	};
 
 	//! changes the local coordinate system of the conic.
@@ -90,7 +90,8 @@ namespace TKG3d {
 	//! For the circle, the ellipse and the hyperbola it is the center of
 	//! the conic. For the parabola it is the Apex of the parabola.
 	xgp_Pnt^ XGeom_Conic::Location() {
-		return gcnew xgp_Pnt(NativeHandle()->Location());
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Location());
+		return gcnew xgp_Pnt(temp);
 	};
 
 

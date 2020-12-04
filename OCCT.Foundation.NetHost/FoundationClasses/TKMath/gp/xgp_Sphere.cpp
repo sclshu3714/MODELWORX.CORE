@@ -52,7 +52,7 @@ namespace TKMath
 
     //! Changes the center of the sphere.
     void xgp_Sphere::SetLocation(xgp_Pnt^ Loc) {
-        NativeHandle->SetLocation(Loc->GetPnt());
+        NativeHandle->SetLocation(*Loc->GetPnt());
     };
 
     //! Changes the local coordinate system of the sphere.
@@ -104,7 +104,8 @@ namespace TKMath
     //! --- Purpose ;
     //! Returns the center of the sphere.
     xgp_Pnt^ xgp_Sphere::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -137,7 +138,7 @@ namespace TKMath
     };
 
     void xgp_Sphere::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -145,7 +146,7 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Sphere^ xgp_Sphere::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Sphere(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Sphere(NativeHandle->Mirrored(*P->GetPnt()));
     };
 
     void xgp_Sphere::Mirror(xgp_Ax1^ A1) {
@@ -184,14 +185,14 @@ namespace TKMath
     };
 
     void xgp_Sphere::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales a sphere. S is the scaling value.
     //! The absolute value of S is used to scale the sphere
     xgp_Sphere^ xgp_Sphere::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Sphere(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Sphere(NativeHandle->Scaled(*P->GetPnt(), S));
     };
 
     void xgp_Sphere::Transform(xgp_Trsf^ T) {
@@ -216,12 +217,12 @@ namespace TKMath
     };
 
     void xgp_Sphere::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-       NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+       NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a sphere from the point P1 to the point P2.
     xgp_Sphere^ xgp_Sphere::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Sphere(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Sphere(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
     };
 };

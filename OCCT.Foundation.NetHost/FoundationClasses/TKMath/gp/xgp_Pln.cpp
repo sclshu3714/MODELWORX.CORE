@@ -15,13 +15,7 @@ namespace TKMath
     xgp_Pln::xgp_Pln(gp_Pln* pos) {
         NativeHandle = new gp_Pln(*pos);
     };
-    /// <summary>
-    ///  ”≥…‰µ„
-    /// </summary>
-    /// <param name="pos"></param>
-    xgp_Pln::xgp_Pln(gp_Pln pos) {
-        NativeHandle = new gp_Pln(pos);
-    };
+
     //! The coordinate system of the plane is defined with the axis
     //! placement A3.
     //! The "Direction" of A3 defines the normal to the plane.
@@ -36,7 +30,7 @@ namespace TKMath
     //! Creates a plane with the  "Location" point <P>
     //! and the normal direction <V>.
     xgp_Pln::xgp_Pln(xgp_Pnt^ P, xgp_Dir^ V) {
-        NativeHandle = new gp_Pln(P->GetPnt(), *V->GetDir());
+        NativeHandle = new gp_Pln(*P->GetPnt(), *V->GetDir());
     };
 
 
@@ -62,8 +56,8 @@ namespace TKMath
     };
 
     //! gp_Pln
-    gp_Pln xgp_Pln::GetPln() {
-        return *NativeHandle;
+    gp_Pln* xgp_Pln::GetPln() {
+        return NativeHandle;
     };
 
     //! Returns the coefficients of the plane's cartesian equation :
@@ -82,7 +76,7 @@ namespace TKMath
 
     //! Changes the origin of the plane.
     void xgp_Pln::SetLocation(xgp_Pnt^ Loc) {
-        NativeHandle->SetLocation(Loc->GetPnt());
+        NativeHandle->SetLocation(*Loc->GetPnt());
     };
 
     //! Changes the local coordinate system of the plane.
@@ -115,7 +109,8 @@ namespace TKMath
 
     //! Returns the plane's location (origin).
     xgp_Pnt^ xgp_Pln::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
     //! Returns the local coordinate system of the plane .
@@ -126,7 +121,7 @@ namespace TKMath
 
     //! Computes the distance between <me> and the point <P>.
     Standard_Real xgp_Pln::Distance(xgp_Pnt^ P) {
-        return NativeHandle->Distance(P->GetPnt());
+        return NativeHandle->Distance(*P->GetPnt());
     };
 
     //! Computes the distance between <me> and the line <L>.
@@ -136,13 +131,13 @@ namespace TKMath
 
     //! Computes the distance between two planes.
     Standard_Real xgp_Pln::Distance(xgp_Pln^ Other) {
-        return NativeHandle->Distance(Other->GetPln());
+        return NativeHandle->Distance(*Other->GetPln());
     };
 
 
     //! Computes the square distance between <me> and the point <P>.
     Standard_Real xgp_Pln::SquareDistance(xgp_Pnt^ P) {
-        return NativeHandle->SquareDistance(P->GetPnt());
+        return NativeHandle->SquareDistance(*P->GetPnt());
     };
 
 
@@ -154,7 +149,7 @@ namespace TKMath
 
     //! Computes the square distance between two planes.
     Standard_Real xgp_Pln::SquareDistance(xgp_Pln^ Other) {
-        return NativeHandle->SquareDistance(Other->GetPln());
+        return NativeHandle->SquareDistance(*Other->GetPln());
     };
 
     //! Returns the X axis of the plane.
@@ -178,7 +173,7 @@ namespace TKMath
     //! of line L and this plane is less than or equal to
     //! LinearTolerance.
     Standard_Boolean xgp_Pln::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
+        return NativeHandle->Contains(*P->GetPnt(), LinearTolerance);
     };
 
     //! Returns true if this plane contains the line L. This means that
@@ -194,7 +189,7 @@ namespace TKMath
     };
 
     void xgp_Pln::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -204,7 +199,8 @@ namespace TKMath
     //! The normal direction to the plane is not changed.
     //! The "XAxis" and the "YAxis" are reversed.
     xgp_Pln^ xgp_Pln::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Pln(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Mirrored(*P->GetPnt()));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Mirror(xgp_Ax1^ A1) {
@@ -220,7 +216,8 @@ namespace TKMath
     //! if  the  initial plane was right  handed,  else  it is the
     //! opposite.
     xgp_Pln^ xgp_Pln::Mirrored(xgp_Ax1^ A1) {
-        return gcnew xgp_Pln(NativeHandle->Mirrored(*A1->GetAx1()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Mirrored(*A1->GetAx1()));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Mirror(xgp_Ax2^ A2) {
@@ -236,7 +233,8 @@ namespace TKMath
     //! and the "YDirection"  after  transformation if the initial
     //! plane was right handed, else it is the opposite.
     xgp_Pln^ xgp_Pln::Mirrored(xgp_Ax2^ A2) {
-        return gcnew xgp_Pln(NativeHandle->Mirrored(*A2->GetAx2()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Mirrored(*A2->GetAx2()));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Rotate(xgp_Ax1^ A1, Standard_Real Ang) {
@@ -247,17 +245,19 @@ namespace TKMath
     //! rotates a plane. A1 is the axis of the rotation.
     //! Ang is the angular value of the rotation in radians.
     xgp_Pln^ xgp_Pln::Rotated(xgp_Ax1^ A1, Standard_Real Ang) {
-        return gcnew xgp_Pln(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Rotated(*A1->GetAx1(), Ang));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales a plane. S is the scaling value.
     xgp_Pln^ xgp_Pln::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Pln(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Scaled(*P->GetPnt(), S));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Transform(xgp_Trsf^ T) {
@@ -271,7 +271,8 @@ namespace TKMath
     //! The resulting normal direction is the cross product between
     //! the "XDirection" and the "YDirection" after transformation.
     xgp_Pln^ xgp_Pln::Transformed(xgp_Trsf^ T) {
-        return gcnew xgp_Pln(NativeHandle->Transformed(T->GetTrsf()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Transformed(T->GetTrsf()));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Translate(xgp_Vec^ V) {
@@ -282,16 +283,18 @@ namespace TKMath
     //! Translates a plane in the direction of the vector V.
     //! The magnitude of the translation is the vector's magnitude.
     xgp_Pln^ xgp_Pln::Translated(xgp_Vec^ V) {
-        return gcnew xgp_Pln(NativeHandle->Translated(V->GetVec()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Translated(V->GetVec()));
+        return gcnew xgp_Pln(temp);
     };
 
     void xgp_Pln::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a plane from the point P1 to the point P2.
     xgp_Pln^ xgp_Pln::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Pln(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Pln* temp = new gp_Pln(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
+        return gcnew xgp_Pln(temp);
     };
 };

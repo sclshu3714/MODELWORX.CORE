@@ -33,7 +33,7 @@ namespace TKPrim {
     //! Returns in   <F> a  Face  built  with   the  plane
     //! equation <P>. Used by all primitives.
     void XBRepPrim_Builder::MakeFace(XTopoDS_Face^ F, xgp_Pln^ P) {
-        NativeHandle->MakeFace(*F->GetFace(), P->GetPln());
+        NativeHandle->MakeFace(*F->GetFace(), *P->GetPln());
     };
 
     //! Returns in <W> an empty Wire.
@@ -81,7 +81,7 @@ namespace TKPrim {
 
     //! Returns in <V> a Vertex built with the point <P>.
     void XBRepPrim_Builder::MakeVertex(XTopoDS_Vertex^ V, xgp_Pnt^ P) {
-        NativeHandle->MakeVertex(*V->GetVertex(), P->GetPnt());
+        NativeHandle->MakeVertex(*V->GetVertex(), *P->GetPnt());
     };
 
     //! Reverses the Face <F>.

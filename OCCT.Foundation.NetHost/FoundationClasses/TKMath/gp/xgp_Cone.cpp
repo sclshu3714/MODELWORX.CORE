@@ -56,7 +56,7 @@ namespace TKMath
 
     //! Changes the location of the cone.
     void xgp_Cone::SetLocation(xgp_Pnt^ Loc) {
-        NativeHandle->SetLocation(Loc->GetPnt());
+        NativeHandle->SetLocation(*Loc->GetPnt());
     };
 
 
@@ -87,7 +87,8 @@ namespace TKMath
     //! Computes the cone's top. The Apex of the cone is on the
     //! negative side of the symmetry axis of the cone.
     xgp_Pnt^ xgp_Cone::Apex() {
-        return gcnew xgp_Pnt(NativeHandle->Apex());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Apex());
+        return gcnew xgp_Pnt(temp);
     };
 
     //! Reverses the   U   parametrization of   the  cone
@@ -123,7 +124,8 @@ namespace TKMath
 
     //! returns the "Location" point of the cone.
     xgp_Pnt^ xgp_Cone::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -158,7 +160,7 @@ namespace TKMath
     };
 
     void xgp_Cone::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -166,7 +168,7 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Cone^ xgp_Cone::Mirrored(xgp_Pnt^ P) {
-        gp_Cone* temp = new gp_Cone(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Cone(temp);
     };
 
@@ -209,14 +211,14 @@ namespace TKMath
     };
 
     void xgp_Cone::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales a cone. S is the scaling value.
     //! The absolute value of S is used to scale the cone
     xgp_Cone^ xgp_Cone::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Cone* temp = new gp_Cone(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Cone(temp);
     };
 
@@ -244,13 +246,13 @@ namespace TKMath
     };
 
     void xgp_Cone::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a cone from the point P1 to the point P2.
     xgp_Cone^ xgp_Cone::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Cone* temp = new gp_Cone(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Cone(temp);
     };
 };

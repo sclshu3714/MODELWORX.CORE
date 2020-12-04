@@ -137,14 +137,16 @@ namespace TKG3d {
 	//! Returns the first focus of the ellipse. This focus is on the
 	//! positive side of the "XAxis" of the ellipse.
 	xgp_Pnt^ XGeom_Ellipse::Focus1() {
-		return gcnew xgp_Pnt(NativeHandle()->Focus1());
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Focus1());
+		return gcnew xgp_Pnt(temp);
 	};
 
 
 	//! Returns the second focus of the ellipse. This focus is on
 	//! the negative side of the "XAxis" of the ellipse.
 	xgp_Pnt^ XGeom_Ellipse::Focus2() {
-		return gcnew xgp_Pnt(NativeHandle()->Focus2());
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Focus2());
+		return gcnew xgp_Pnt(temp);
 	};
 
 	//! Returns the major  radius of this ellipse.
@@ -196,25 +198,25 @@ namespace TKG3d {
 	//! where C is the center of the ellipse , XDir the direction of
 	//! the "XAxis" and "YDir" the "YAxis" of the ellipse.
 	void XGeom_Ellipse::D0(Standard_Real U, xgp_Pnt^ P) {
-		return NativeHandle()->D0(U, P->GetPnt());
+		return NativeHandle()->D0(U, *P->GetPnt());
 	};
 
 	void XGeom_Ellipse::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		return NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+		return NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
 	};
 
 
 	//! Returns the point P of parameter U. The vectors V1 and V2
 	//! are the first and second derivatives at this point.
 	void XGeom_Ellipse::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		return NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+		return NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
 	};
 
 
 	//! Returns the point P of parameter U, the first second and
 	//! third derivatives V1 V2 and V3.
 	void XGeom_Ellipse::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		return NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		return NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
 	};
 
 	//! For the point of parameter U of this ellipse, computes

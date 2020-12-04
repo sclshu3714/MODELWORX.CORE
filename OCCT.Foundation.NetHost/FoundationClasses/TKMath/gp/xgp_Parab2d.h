@@ -42,7 +42,7 @@
 #include "xgp_Pnt2d.h"
 #include "xgp_Trsf2d.h"
 #include "xgp_Vec2d.h"
-
+class gp_Parab2d;
 namespace TKMath
 {
     ref class xgp_Ax2d;
@@ -60,8 +60,6 @@ namespace TKMath
         //£¡Creates an indefinite Parabola.
         xgp_Parab2d(gp_Parab2d* pos);
 
-        //£¡Creates an indefinite Parabola.
-        xgp_Parab2d(gp_Parab2d pos);
 
 
         //! Creates a parabola with its vertex point, its axis of symmetry
@@ -104,7 +102,7 @@ namespace TKMath
         !xgp_Parab2d();
 
         //! gp_Parab
-        gp_Parab2d GetParab2d();
+        gp_Parab2d* GetParab2d();
 
         //! Changes the focal distance of the parabola
         //! Warnings : It is possible to have Focal = 0.

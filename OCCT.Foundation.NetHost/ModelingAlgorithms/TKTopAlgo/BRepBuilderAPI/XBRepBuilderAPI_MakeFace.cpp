@@ -18,7 +18,7 @@ namespace TKTopAlgo {
 
 	//! Make a face from a plane.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(P->GetPln());
+		NativeHandle = new BRepBuilderAPI_MakeFace(*P->GetPln());
 		Initialize(NativeHandle);
 	};
 
@@ -55,7 +55,7 @@ namespace TKTopAlgo {
 
 	//! Make a face from a plane.
 	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax) {
-		NativeHandle = new BRepBuilderAPI_MakeFace(P->GetPln(), UMin, UMax, VMin, VMax);
+		NativeHandle = new BRepBuilderAPI_MakeFace(*P->GetPln(), UMin, UMax, VMin, VMax);
 		Initialize(NativeHandle);
 	};
 
@@ -95,18 +95,15 @@ namespace TKTopAlgo {
 	//! a plane. If it is not possible to find a plane, the
 	//! flag NotDone will be set.
 	//! Standard_Boolean OnlyPlane = Standard_False
-	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Wire^ XW, Standard_Boolean OnlyPlane) {
-		TopoDS_Wire* W = new TopoDS_Wire(*XW->GetWire());
-		NativeHandle = new BRepBuilderAPI_MakeFace(*W, OnlyPlane);
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(XTopoDS_Wire^ W, Standard_Boolean OnlyPlane) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(*W->GetWire(), OnlyPlane);
 		Initialize(NativeHandle);
 	};
 
 	//! Make a face from a plane and a wire.
 	//! Standard_Boolean Inside = Standard_True
-	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ XP, XTopoDS_Wire^ XW, Standard_Boolean Inside) {
-		gp_Pln* P = new gp_Pln(XP->GetPln());
-		TopoDS_Wire* W = new TopoDS_Wire(*XW->GetWire());
-		NativeHandle = new BRepBuilderAPI_MakeFace(*P, *W, Inside);
+	XBRepBuilderAPI_MakeFace::XBRepBuilderAPI_MakeFace(xgp_Pln^ P, XTopoDS_Wire^ W, Standard_Boolean Inside) {
+		NativeHandle = new BRepBuilderAPI_MakeFace(*P->GetPln(), *W->GetWire(), Inside);
 		Initialize(NativeHandle);
 	};
 

@@ -128,27 +128,27 @@ namespace TKG3d {
 	//! where C is the center of the circle , XDir the XDirection and
 	//! YDir the YDirection of the circle's local coordinate system.
 	void XGeom_Circle::D0(Standard_Real U, xgp_Pnt^ P) {
-		return NativeHandle()->D0(U, P->GetPnt());
+		return NativeHandle()->D0(U, *P->GetPnt());
 	};
 
 
 	//! Returns the point P of parameter U and the first derivative V1.
 	void XGeom_Circle::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		return NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+		return NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
 	};
 
 
 	//! Returns the point P of parameter U, the first and second
 	//! derivatives V1 and V2.
 	void XGeom_Circle::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		return NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+		return NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
 	};
 
 
 	//! Returns the point P of parameter u, the first second and third
 	//! derivatives V1 V2 and V3.
 	void XGeom_Circle::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		return NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		return NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
 	};
 
 

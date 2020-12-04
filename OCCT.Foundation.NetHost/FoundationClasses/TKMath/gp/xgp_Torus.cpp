@@ -61,7 +61,7 @@ namespace TKMath
 
     //! Changes the location of the torus.
     void xgp_Torus::SetLocation(xgp_Pnt^ Loc) {
-        NativeHandle->SetLocation(Loc->GetPnt());
+        NativeHandle->SetLocation(*Loc->GetPnt());
     };
 
     //! Assigns value to the major radius  of this torus.
@@ -138,7 +138,8 @@ namespace TKMath
 
     //! Returns the Torus's location.
     xgp_Pnt^ xgp_Torus::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
     //! Returns the local coordinates system of the torus.
@@ -175,7 +176,7 @@ namespace TKMath
     };
 
     void xgp_Torus::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -183,7 +184,7 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Torus^ xgp_Torus::Mirrored(xgp_Pnt^ P) {
-        return gcnew xgp_Torus(NativeHandle->Mirrored(P->GetPnt()));
+        return gcnew xgp_Torus(NativeHandle->Mirrored(*P->GetPnt()));
     };
 
     void xgp_Torus::Mirror(xgp_Ax1^ A1) {
@@ -222,14 +223,14 @@ namespace TKMath
     };
 
     void xgp_Torus::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales a torus. S is the scaling value.
     //! The absolute value of S is used to scale the torus
     xgp_Torus^ xgp_Torus::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        return gcnew xgp_Torus(NativeHandle->Scaled(P->GetPnt(), S));
+        return gcnew xgp_Torus(NativeHandle->Scaled(*P->GetPnt(), S));
     };
 
     void xgp_Torus::Transform(xgp_Trsf^ T) {
@@ -254,12 +255,12 @@ namespace TKMath
     };
 
     void xgp_Torus::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a torus from the point P1 to the point P2.
     xgp_Torus^ xgp_Torus::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        return gcnew xgp_Torus(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        return gcnew xgp_Torus(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
     };
 };

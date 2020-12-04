@@ -61,7 +61,7 @@ namespace TKMath
     //! Modifies this ellipse, by redefining its local coordinate
     //! so that its origin becomes P.
     void xgp_Elips::SetLocation(xgp_Pnt^ P) {
-        NativeHandle->SetLocation(P->GetPnt());
+        NativeHandle->SetLocation(*P->GetPnt());
     };
 
 
@@ -148,21 +148,24 @@ namespace TKMath
     //! Returns the first focus of the ellipse. This focus is on the
     //! positive side of the "XAxis" of the ellipse.
     xgp_Pnt^ xgp_Elips::Focus1() {
-        return gcnew xgp_Pnt(NativeHandle->Focus1());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Focus1());
+        return gcnew xgp_Pnt(temp);
     };
 
 
     //! Returns the second focus of the ellipse. This focus is on the
     //! negative side of the "XAxis" of the ellipse.
     xgp_Pnt^ xgp_Elips::Focus2() {
-        return gcnew xgp_Pnt(NativeHandle->Focus2());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Focus2());
+        return gcnew xgp_Pnt(temp);
     };
 
 
     //! Returns the center of the ellipse. It is the "Location"
     //! point of the coordinate system of the ellipse.
     xgp_Pnt^ xgp_Elips::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
     //! Returns the major radius of the ellipse.
@@ -208,14 +211,14 @@ namespace TKMath
     };
 
     void xgp_Elips::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
     //! Performs the symmetrical transformation of an ellipse with
     //! respect to the point P which is the center of the symmetry.
     xgp_Elips^ xgp_Elips::Mirrored(xgp_Pnt^ P) {
-        gp_Elips* temp = new gp_Elips(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Elips(temp);
     };
 
@@ -257,13 +260,13 @@ namespace TKMath
     };
 
     void xgp_Elips::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales an ellipse. S is the scaling value.
     xgp_Elips^ xgp_Elips::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Elips* temp = new gp_Elips(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Elips(temp);
     };
 
@@ -291,13 +294,13 @@ namespace TKMath
     };
 
     void xgp_Elips::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates an ellipse from the point P1 to the point P2.
     xgp_Elips^ xgp_Elips::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Elips* temp = new gp_Elips(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Elips(temp);
     };
 };

@@ -40,7 +40,7 @@ namespace TKG3d {
 	//! (P and V are, respectively, the origin and the unit
 	//! vector of the positioning axis of the line).
 	XGeom_Line::XGeom_Line(xgp_Pnt^ P, xgp_Dir^ V) {
-		NativeHandle() = new Geom_Line(P->GetPnt(), *V->GetDir());
+		NativeHandle() = new Geom_Line(*P->GetPnt(), *V->GetDir());
 		SetCurveHandle(NativeHandle());
 	};
 
@@ -75,7 +75,7 @@ namespace TKG3d {
 
 	//! changes the "Location" point (origin) of the line.
 	void XGeom_Line::SetLocation(xgp_Pnt^ P) {
-		NativeHandle()->SetLocation(P->GetPnt());
+		NativeHandle()->SetLocation(*P->GetPnt());
 	};
 
 
@@ -148,13 +148,13 @@ namespace TKG3d {
 	//! P (U) = O + U * Dir where O is the "Location" point of the
 	//! line and Dir the direction of the line.
 	void XGeom_Line::D0(Standard_Real U, xgp_Pnt^ P) {
-		NativeHandle()->D0(U, P->GetPnt());
+		NativeHandle()->D0(U, *P->GetPnt());
 	};
 
 
 	//! Returns the point P of parameter u and the first derivative V1.
 	void XGeom_Line::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
-		NativeHandle()->D1(U, P->GetPnt(), V1->GetVec());
+		NativeHandle()->D1(U, *P->GetPnt(), V1->GetVec());
 	};
 
 
@@ -162,13 +162,13 @@ namespace TKG3d {
 	//! derivatives V1 and V2. V2 is a vector with null magnitude
 	//! for a line.
 	void XGeom_Line::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
-		NativeHandle()->D2(U, P->GetPnt(), V1->GetVec(), V2->GetVec());
+		NativeHandle()->D2(U, *P->GetPnt(), V1->GetVec(), V2->GetVec());
 	};
 
 
 	//! V2 and V3 are vectors with null magnitude for a line.
 	void XGeom_Line::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
-		NativeHandle()->D3(U, P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
+		NativeHandle()->D3(U, *P->GetPnt(), V1->GetVec(), V2->GetVec(), V3->GetVec());
 	};
 
 

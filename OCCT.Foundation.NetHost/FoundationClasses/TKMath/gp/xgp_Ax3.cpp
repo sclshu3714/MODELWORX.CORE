@@ -27,14 +27,14 @@ namespace TKMath
     //! "Direction" and Vx gives the "XDirection".
     //! Raises ConstructionError if N and Vx are parallel (same or opposite orientation).
     xgp_Ax3::xgp_Ax3(xgp_Pnt^ P, xgp_Dir^ N, xgp_Dir^ Vx) {
-        NativeHandle = new gp_Ax3(P->GetPnt(), *N->GetDir(), *Vx->GetDir());
+        NativeHandle = new gp_Ax3(*P->GetPnt(), *N->GetDir(), *Vx->GetDir());
     };
 
 
     //! Creates an axis placement with the  "Location" point <P>
     //! and the normal direction <V>.
     xgp_Ax3::xgp_Ax3(xgp_Pnt^ P, xgp_Dir^ V) {
-        NativeHandle = new gp_Ax3(P->GetPnt(), *V->GetDir());
+        NativeHandle = new gp_Ax3(*P->GetPnt(), *V->GetDir());
     };
 
     // Õ∑≈
@@ -104,7 +104,7 @@ namespace TKMath
 
     //! Changes the "Location" point (origin) of <me>.
     void xgp_Ax3::SetLocation(xgp_Pnt^ P) {
-        NativeHandle->SetLocation(P->GetPnt());
+        NativeHandle->SetLocation(*P->GetPnt());
     };
 
 
@@ -166,7 +166,8 @@ namespace TKMath
 
     //! Returns the "Location" point (origin) of <me>.
     xgp_Pnt^ xgp_Ax3::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -212,7 +213,7 @@ namespace TKMath
     };
 
     void xgp_Ax3::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -224,7 +225,7 @@ namespace TKMath
     //! The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax3^ xgp_Ax3::Mirrored(xgp_Pnt^ P) {
-        gp_Ax3* temp = new gp_Ax3(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Ax3(temp);
     };
 
@@ -277,7 +278,7 @@ namespace TKMath
     };
 
     void xgp_Ax3::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
@@ -289,7 +290,7 @@ namespace TKMath
     //! . The "XDirection" and the "YDirection" are reversed.
     //! So the axis placement stay right handed.
     xgp_Ax3^ xgp_Ax3::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Ax3* temp = new gp_Ax3(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Ax3(temp);
     };
 
@@ -321,14 +322,14 @@ namespace TKMath
     };
 
     void xgp_Ax3::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates an axis placement from the point <P1> to the
     //! point <P2>.
     xgp_Ax3^ xgp_Ax3::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Ax3* temp = new gp_Ax3(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Ax3* temp = new gp_Ax3(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Ax3(temp);
     };
 };

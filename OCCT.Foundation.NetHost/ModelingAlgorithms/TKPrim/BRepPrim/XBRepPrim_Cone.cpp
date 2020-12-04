@@ -52,7 +52,7 @@ namespace TKPrim {
 
 	//! infinite cone at Apex on Z negative
 	XBRepPrim_Cone::XBRepPrim_Cone(Standard_Real Angle, xgp_Pnt^ Apex) {
-		NativeHandle = new BRepPrim_Cone(Angle, Apex->GetPnt());
+		NativeHandle = new BRepPrim_Cone(Angle, *Apex->GetPnt());
 		SetRevolutionHandle(NativeHandle);
 	};
 

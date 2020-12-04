@@ -16,7 +16,7 @@ namespace TKMath
 	}
 
 	xgp_Ax1::xgp_Ax1(xgp_Pnt^ P, xgp_Dir^ V) {
-		NativeHandle = new gp_Ax1(P->GetPnt(), *V->Handle);
+		NativeHandle = new gp_Ax1(*P->GetPnt(), *V->GetDir());
 	}
 
 	xgp_Ax1::~xgp_Ax1() {
@@ -42,7 +42,7 @@ namespace TKMath
 	}
 
 	void xgp_Ax1::SetLocation(xgp_Pnt^ P) {
-		NativeHandle->SetLocation(P->GetPnt());
+		NativeHandle->SetLocation(*P->GetPnt());
 	}
 
 	xgp_Dir^ xgp_Ax1::Direction() {
@@ -83,10 +83,10 @@ namespace TKMath
 		return gcnew xgp_Ax1(temp);
 	}
 	void xgp_Ax1::Mirror(xgp_Pnt^ P) {
-		NativeHandle->Mirror(P->GetPnt());
+		NativeHandle->Mirror(*P->GetPnt());
 	}
 	xgp_Ax1^ xgp_Ax1::Mirrored(xgp_Pnt^ P) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Mirrored(P->GetPnt()));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Mirrored(*P->GetPnt()));
 		return gcnew xgp_Ax1(temp);
 	}
 	void xgp_Ax1::Mirror(xgp_Ax1^ Ax1) {
@@ -117,11 +117,11 @@ namespace TKMath
 	}
 
 	void xgp_Ax1::Scale(xgp_Pnt^ P, Standard_Real S) {
-		NativeHandle->Scale(P->GetPnt(), S);
+		NativeHandle->Scale(*P->GetPnt(), S);
 	}
 
 	xgp_Ax1^ xgp_Ax1::Scaled(xgp_Pnt^ P, Standard_Real S) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Scaled(P->GetPnt(), S));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Scaled(*P->GetPnt(), S));
 		return gcnew xgp_Ax1(temp);
 	}
 
@@ -142,10 +142,10 @@ namespace TKMath
 		return gcnew xgp_Ax1(temp);
 	}
 	void xgp_Ax1::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle->Translate(P1->GetPnt(),P2->GetPnt());
+		NativeHandle->Translate(*P1->GetPnt(),*P2->GetPnt());
 	}
 	xgp_Ax1^ xgp_Ax1::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		gp_Ax1* temp = new gp_Ax1(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+		gp_Ax1* temp = new gp_Ax1(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
 		return gcnew xgp_Ax1(temp);
 	}
 };

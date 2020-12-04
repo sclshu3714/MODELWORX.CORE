@@ -52,7 +52,7 @@ namespace TKMath
 
     //! Changes the "Location" point (center) of the circle.
     void xgp_Circ::SetLocation(xgp_Pnt^ P) {
-        NativeHandle->SetLocation(P->GetPnt());
+        NativeHandle->SetLocation(*P->GetPnt());
     };
 
     //! Changes the position of the circle.
@@ -92,7 +92,8 @@ namespace TKMath
     //! "Location" point of the local coordinate system
     //! of the circle
     xgp_Pnt^ xgp_Circ::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -130,13 +131,13 @@ namespace TKMath
     //! Computes the minimum of distance between the point P and
     //! any point on the circumference of the circle.
     Standard_Real xgp_Circ::Distance(xgp_Pnt^ P) {
-        return NativeHandle->Distance(P->GetPnt());
+        return NativeHandle->Distance(*P->GetPnt());
     };
 
 
     //! Computes the square distance between <me> and the point P.
     Standard_Real xgp_Circ::SquareDistance(xgp_Pnt^ P) {
-        return NativeHandle->SquareDistance(P->GetPnt());
+        return NativeHandle->SquareDistance(*P->GetPnt());
     };
 
 
@@ -144,11 +145,11 @@ namespace TKMath
     //! The distance between <me> and <P> must be lower or
     //! equal to LinearTolerance.
     Standard_Boolean xgp_Circ::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance) {
-        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
+        return NativeHandle->Contains(*P->GetPnt(), LinearTolerance);
     };
 
     void xgp_Circ::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -156,7 +157,7 @@ namespace TKMath
     //! with respect to the point P which is the center of the
     //! symmetry.
     xgp_Circ^ xgp_Circ::Mirrored(xgp_Pnt^ P) {
-        gp_Circ* temp = new gp_Circ(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Circ(temp);
     };
 
@@ -199,7 +200,7 @@ namespace TKMath
     };
 
     void xgp_Circ::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
@@ -209,7 +210,7 @@ namespace TKMath
     //! the "XAxis" and the "YAxis" are  reversed as for
     //! an ellipse.
     xgp_Circ^ xgp_Circ::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Circ* temp = new gp_Circ(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Circ(temp);
     };
 
@@ -237,13 +238,13 @@ namespace TKMath
     };
 
     void xgp_Circ::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a circle from the point P1 to the point P2.
     xgp_Circ^ xgp_Circ::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Circ* temp = new gp_Circ(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Circ(temp);
     };
 };

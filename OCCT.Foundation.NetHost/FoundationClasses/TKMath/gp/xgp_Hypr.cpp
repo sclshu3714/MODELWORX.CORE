@@ -70,7 +70,7 @@ namespace TKMath
     //! Modifies this hyperbola, by redefining its local coordinate
     //! system so that its origin becomes P.
     void xgp_Hypr::SetLocation(xgp_Pnt^ P) {
-        NativeHandle->SetLocation(P->GetPnt());
+        NativeHandle->SetLocation(*P->GetPnt());
     };
 
 
@@ -179,21 +179,24 @@ namespace TKMath
     //! Returns the first focus of the hyperbola. This focus is on the
     //! positive side of the "XAxis" of the hyperbola.
     xgp_Pnt^ xgp_Hypr::Focus1() {
-        return gcnew xgp_Pnt(NativeHandle->Focus1());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Focus1());
+        return gcnew xgp_Pnt(temp);
     };
 
 
     //! Returns the second focus of the hyperbola. This focus is on the
     //! negative side of the "XAxis" of the hyperbola.
     xgp_Pnt^ xgp_Hypr::Focus2() {
-        return gcnew xgp_Pnt(NativeHandle->Focus2());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Focus2());
+        return gcnew xgp_Pnt(temp);
     };
 
 
     //! Returns  the location point of the hyperbola. It is the
     //! intersection point between the "XAxis" and the "YAxis".
     xgp_Pnt^ xgp_Hypr::Location() {
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -255,14 +258,14 @@ namespace TKMath
     };
 
     void xgp_Hypr::Mirror(xgp_Pnt^ P) {
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
     //! Performs the symmetrical transformation of an hyperbola with
     //! respect  to the point P which is the center of the symmetry.
     xgp_Hypr^ xgp_Hypr::Mirrored(xgp_Pnt^ P) {
-        gp_Hypr* temp = new gp_Hypr(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Hypr* temp = new gp_Hypr(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Hypr(temp);
     };
 
@@ -304,13 +307,13 @@ namespace TKMath
     };
 
     void xgp_Hypr::Scale(xgp_Pnt^ P, Standard_Real S) {
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
     //! Scales an hyperbola. S is the scaling value.
     xgp_Hypr^ xgp_Hypr::Scaled(xgp_Pnt^ P, Standard_Real S) {
-        gp_Hypr* temp = new gp_Hypr(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Hypr* temp = new gp_Hypr(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Hypr(temp);
     };
 
@@ -339,13 +342,13 @@ namespace TKMath
     };
 
     void xgp_Hypr::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates an hyperbola from the point P1 to the point P2.
     xgp_Hypr^ xgp_Hypr::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-        gp_Hypr* temp = new gp_Hypr(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Hypr* temp = new gp_Hypr(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Hypr(temp);
     };
 };

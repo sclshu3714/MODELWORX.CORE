@@ -49,7 +49,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Mirror(xgp_Pnt^ P) {
-		NativeHandle()->Mirror(P->GetPnt());
+		NativeHandle()->Mirror(*P->GetPnt());
 	}
 
 
@@ -70,7 +70,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Scale(xgp_Pnt^ P, Standard_Real S) {
-		NativeHandle()->Scale(P->GetPnt(), S);
+		NativeHandle()->Scale(*P->GetPnt(), S);
 	}
 
 
@@ -80,7 +80,7 @@ namespace TKG3d
 
 
 	void XGeom_Geometry::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle()->Translate(P1->GetPnt(), P2->GetPnt());
+		NativeHandle()->Translate(*P1->GetPnt(), *P2->GetPnt());
 	}
 
 	void XGeom_Geometry::Transform(xgp_Trsf^ T) {
@@ -88,7 +88,7 @@ namespace TKG3d
 	};
 
 	XGeom_Geometry^ XGeom_Geometry::Mirrored(xgp_Pnt^ P) {
-		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(P->GetPnt()));
+		return gcnew XGeom_Geometry(NativeHandle()->Mirrored(*P->GetPnt()));
 	}
 
 
@@ -110,7 +110,7 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Scaled(xgp_Pnt^ P, Standard_Real S) {
-		return gcnew XGeom_Geometry(NativeHandle()->Scaled(P->GetPnt(), S));
+		return gcnew XGeom_Geometry(NativeHandle()->Scaled(*P->GetPnt(), S));
 	}
 
 
@@ -127,7 +127,7 @@ namespace TKG3d
 
 
 	XGeom_Geometry^ XGeom_Geometry::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		return gcnew XGeom_Geometry(NativeHandle()->Translated(P1->GetPnt(), P2->GetPnt()));
+		return gcnew XGeom_Geometry(NativeHandle()->Translated(*P1->GetPnt(), *P2->GetPnt()));
 	}
 
 	XGeom_Geometry^ XGeom_Geometry::Copy() {

@@ -25,7 +25,7 @@ namespace TKMath
     //! vector V (P and V are, respectively, the origin and
     //! the unit vector of the positioning axis of the line).
     xgp_Lin::xgp_Lin(xgp_Pnt^ P, xgp_Dir^ V){
-        NativeHandle = new gp_Lin(P->GetPnt(), *V->GetDir());
+        NativeHandle = new gp_Lin(*P->GetPnt(), *V->GetDir());
     };
 
     //ÊÍ·Å
@@ -66,7 +66,7 @@ namespace TKMath
 
     //! Changes the location point (origin) of the line.
     void xgp_Lin::SetLocation(xgp_Pnt^ P){
-        return NativeHandle->SetLocation(P->GetPnt());
+        return NativeHandle->SetLocation(*P->GetPnt());
     };
 
 
@@ -86,7 +86,8 @@ namespace TKMath
 
     //! Returns the location point (origin) of the line.
     xgp_Pnt^ xgp_Lin::Location(){
-        return gcnew xgp_Pnt(NativeHandle->Location());
+        gp_Pnt* temp = new gp_Pnt(NativeHandle->Location());
+        return gcnew xgp_Pnt(temp);
     };
 
 
@@ -106,12 +107,12 @@ namespace TKMath
     //! distance between point P and this line is less than or
     //! equal to LinearTolerance..
     Standard_Boolean xgp_Lin::Contains(xgp_Pnt^ P, Standard_Real LinearTolerance){ 
-        return NativeHandle->Contains(P->GetPnt(), LinearTolerance);
+        return NativeHandle->Contains(*P->GetPnt(), LinearTolerance);
     };
 
     //! Computes the distance between <me> and the point P.
     Standard_Real xgp_Lin::Distance(xgp_Pnt^ P){
-        return NativeHandle->Distance(P->GetPnt());
+        return NativeHandle->Distance(*P->GetPnt());
     };
 
     //! Computes the distance between two lines.
@@ -122,7 +123,7 @@ namespace TKMath
 
     //! Computes the square distance between <me> and the point P.
     Standard_Real xgp_Lin::SquareDistance(xgp_Pnt^ P){
-        return NativeHandle->SquareDistance(P->GetPnt());
+        return NativeHandle->SquareDistance(*P->GetPnt());
     };
 
     //! Computes the square distance between two lines.
@@ -137,12 +138,12 @@ namespace TKMath
     //! or equal to Resolution from gp because there is an infinity of
     //! solutions in 3D space.
     xgp_Lin^ xgp_Lin::Normal(xgp_Pnt^ P){ 
-        gp_Lin* temp = new gp_Lin(NativeHandle->Normal(P->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Normal(*P->GetPnt()));
         return gcnew xgp_Lin(temp);
     };
 
     void xgp_Lin::Mirror(xgp_Pnt^ P){  
-        NativeHandle->Mirror(P->GetPnt());
+        NativeHandle->Mirror(*P->GetPnt());
     };
 
 
@@ -150,7 +151,7 @@ namespace TKMath
     //! with respect to the point P which is the center of
     //! the symmetry.
     xgp_Lin^ xgp_Lin::Mirrored(xgp_Pnt^ P){
-        gp_Lin* temp = new gp_Lin(NativeHandle->Mirrored(P->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Mirrored(*P->GetPnt()));
         return gcnew xgp_Lin(temp);
     };
 
@@ -194,7 +195,7 @@ namespace TKMath
     };
 
     void xgp_Lin::Scale(xgp_Pnt^ P, Standard_Real S){ 
-        NativeHandle->Scale(P->GetPnt(), S);
+        NativeHandle->Scale(*P->GetPnt(), S);
     };
 
 
@@ -202,7 +203,7 @@ namespace TKMath
     //! The "Location" point (origin) of the line is modified.
     //! The "Direction" is reversed if the scale is negative.
     xgp_Lin^ xgp_Lin::Scaled(xgp_Pnt^ P, Standard_Real S){ 
-        gp_Lin* temp = new gp_Lin(NativeHandle->Scaled(P->GetPnt(), S));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Scaled(*P->GetPnt(), S));
         return gcnew xgp_Lin(temp);
     };
 
@@ -230,13 +231,13 @@ namespace TKMath
     };
 
     void xgp_Lin::Translate(xgp_Pnt^ P1, xgp_Pnt^ P2){ 
-        NativeHandle->Translate(P1->GetPnt(), P2->GetPnt());
+        NativeHandle->Translate(*P1->GetPnt(), *P2->GetPnt());
     };
 
 
     //! Translates a line from the point P1 to the point P2.
     xgp_Lin^ xgp_Lin::Translated(xgp_Pnt^ P1, xgp_Pnt^ P2){  
-        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(P1->GetPnt(), P2->GetPnt()));
+        gp_Lin* temp = new gp_Lin(NativeHandle->Translated(*P1->GetPnt(), *P2->GetPnt()));
         return gcnew xgp_Lin(temp);
     };
 };

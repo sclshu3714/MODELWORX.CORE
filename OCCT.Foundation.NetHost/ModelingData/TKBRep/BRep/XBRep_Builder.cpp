@@ -264,12 +264,12 @@ namespace TKBRep {
 
     //! Makes a vertex from a 3D point.
     void XBRep_Builder::MakeVertex(XTopoDS_Vertex^ V, xgp_Pnt^ P, Standard_Real Tol) {
-        NativeHandle->MakeVertex(*V->GetVertex(), P->GetPnt(), Tol);
+        NativeHandle->MakeVertex(*V->GetVertex(), *P->GetPnt(), Tol);
     };
 
     //! Sets a 3D point on the vertex.
     void XBRep_Builder::UpdateVertex(XTopoDS_Vertex^ V, xgp_Pnt^ P, Standard_Real Tol) {
-        NativeHandle->UpdateVertex(*V->GetVertex(), P->GetPnt(), Tol);
+        NativeHandle->UpdateVertex(*V->GetVertex(), *P->GetPnt(), Tol);
     };
 
     //! Sets  the parameter  for the   vertex on the  edge

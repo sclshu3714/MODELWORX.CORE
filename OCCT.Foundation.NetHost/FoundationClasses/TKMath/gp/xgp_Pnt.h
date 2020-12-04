@@ -21,7 +21,7 @@
 #include "xgp_Vec.h"
 #include "xgp_Ax1.h"
 #include "xgp_Ax2.h"
-
+class gp_Ax2;
 
 
 namespace TKMath
@@ -47,11 +47,6 @@ namespace TKMath
         /// </summary>
         /// <param name="pos"></param>
         xgp_Pnt(gp_Pnt* pos);
-        /// <summary>
-        ///  ”≥…‰µ„
-        /// </summary>
-        /// <param name="pos"></param>
-        xgp_Pnt(gp_Pnt pos);
 
         //! Creates a  point with its 3 cartesian's coordinates : Xp, Yp, Zp.
         xgp_Pnt(Standard_Real Xp, Standard_Real Yp, Standard_Real Zp);
@@ -84,7 +79,7 @@ namespace TKMath
         void SetXYZ(xgp_XYZ^ Coord);
 
         //! ªÒ»°
-        gp_Pnt GetPnt();
+        gp_Pnt* GetPnt();
 
         //! Returns the coordinate of corresponding to the value of  Index :
         //! Index = 1 => X is returned

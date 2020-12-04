@@ -27,13 +27,13 @@ namespace TKPrim {
 
 	//! Make a box with a corner at P and size dx, dy, dz.
 	XBRepPrimAPI_MakeBox::XBRepPrimAPI_MakeBox(xgp_Pnt^ P, Standard_Real dx, Standard_Real dy, Standard_Real dz) {
-		NativeHandle = new BRepPrimAPI_MakeBox(P->GetPnt(), dx, dy, dz);
+		NativeHandle = new BRepPrimAPI_MakeBox(*P->GetPnt(), dx, dy, dz);
 		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a box with corners P1,P2.
 	XBRepPrimAPI_MakeBox::XBRepPrimAPI_MakeBox(xgp_Pnt^ P1, xgp_Pnt^ P2) {
-		NativeHandle = new BRepPrimAPI_MakeBox(P1->GetPnt(), P2->GetPnt());
+		NativeHandle = new BRepPrimAPI_MakeBox(*P1->GetPnt(), *P2->GetPnt());
 		SetMakeShapeHandle(NativeHandle);
 	};
 

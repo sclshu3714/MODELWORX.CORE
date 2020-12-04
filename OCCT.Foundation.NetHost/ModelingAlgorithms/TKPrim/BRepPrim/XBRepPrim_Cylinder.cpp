@@ -49,7 +49,7 @@ namespace TKPrim {
 
 	//! infinite Cylinder at Center on Z negative
 	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Pnt^ Center, Standard_Real Radius) {
-		NativeHandle = new BRepPrim_Cylinder(Center->GetPnt(), Radius);
+		NativeHandle = new BRepPrim_Cylinder(*Center->GetPnt(), Radius);
 		SetRevolutionHandle(NativeHandle);
 	};
 
@@ -71,7 +71,7 @@ namespace TKPrim {
 
 	//! same as above but at a given point
 	XBRepPrim_Cylinder::XBRepPrim_Cylinder(xgp_Pnt^ Center, Standard_Real R, Standard_Real H) {
-		NativeHandle = new BRepPrim_Cylinder(Center->GetPnt(), R, H);
+		NativeHandle = new BRepPrim_Cylinder(*Center->GetPnt(), R, H);
 		SetRevolutionHandle(NativeHandle);
 	};
 

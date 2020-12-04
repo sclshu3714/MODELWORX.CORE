@@ -1339,7 +1339,8 @@ namespace TKV3d {
     //=======================================================================
     xgp_Pnt^ XAIS_InteractiveContext::GravityPoint(Handle(V3d_View) theView)
     {
-        return gcnew xgp_Pnt(NativeHandle()->GravityPoint(theView));
+        gp_Pnt* temp = new gp_Pnt(NativeHandle()->GravityPoint(theView));
+        return gcnew xgp_Pnt(temp);
     };
     ////=======================================================================
     ////function : setObjectStatus
