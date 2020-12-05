@@ -279,6 +279,10 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_GlueEnum.h" />
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Operation.h" />
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.h" />
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.h" />
@@ -488,6 +492,8 @@
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_XYZ.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.cpp" />

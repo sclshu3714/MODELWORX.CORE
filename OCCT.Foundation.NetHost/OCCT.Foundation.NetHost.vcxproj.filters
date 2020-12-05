@@ -1077,6 +1077,18 @@
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeWedge.h">
       <Filter>头文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_GlueEnum.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Operation.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1463,6 +1475,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeWedge.cpp">
       <Filter>源文件\ModelingAlgorithms\TKPrim\BRepPrimAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
