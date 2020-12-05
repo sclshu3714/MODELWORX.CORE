@@ -364,6 +364,30 @@
     <Filter Include="源文件\ModelingAlgorithms\TKPrim\Sweep">
       <UniqueIdentifier>{8cbc9d92-2606-4cb7-b4bc-ed371dfafc1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO\BOPTools">
+      <UniqueIdentifier>{c081677b-699d-4970-8224-256038828a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO\BOPTools">
+      <UniqueIdentifier>{6b810f98-de9f-4cf8-ab5a-b426bd509596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO\BOPDS">
+      <UniqueIdentifier>{930b955f-9682-4787-a677-a0ef53286cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO\BOPDS">
+      <UniqueIdentifier>{ae151748-2414-473f-b757-c0c89886b66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO\BOPAlgo">
+      <UniqueIdentifier>{ab2da58f-051b-4bfb-9110-eafcc0ca9494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO\BOPAlgo">
+      <UniqueIdentifier>{d2bcdaeb-e1f2-4df1-8b29-3d21bc7b1539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBO\IntTools">
+      <UniqueIdentifier>{735d726b-998b-48d2-8def-337214ae8a6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBO\IntTools">
+      <UniqueIdentifier>{e01d0e88-c4c5-4c62-9c90-16b2aa6b6d3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">

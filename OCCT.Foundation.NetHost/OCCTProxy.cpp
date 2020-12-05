@@ -108,11 +108,11 @@ public:
         catch (Standard_Failure) {
             return false;
         }
-
         mainViewer() = new V3d_Viewer(mainGraphicDriver());
         mainViewer()->SetDefaultLights();
         mainViewer()->SetLightOn();
         mainView() = mainViewer()->CreateView();
+        mainView()->TriedronDisplay(Aspect_TOTP_LEFT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //»­ÈýÎ¬×ø±êÏµ
         Handle(WNT_Window) aWNTWindow = new WNT_Window(reinterpret_cast<HWND> (theWnd.ToPointer()));
         mainView()->SetWindow(aWNTWindow);
         if (!aWNTWindow->IsMapped()) {
