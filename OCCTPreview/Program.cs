@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VXHelper;
 
 namespace OCCTPreview
 {
@@ -48,7 +49,7 @@ namespace OCCTPreview
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             string strErr = GetExceptionMsg(e.ExceptionObject as Exception, e.ToString());
-            string logName = SystemRuntimeHelper.WriteSystemLog(strErr, "ERROR");
+            string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
             //DesignSplashScreen.staticCloseSplashScreenForm();
             //if(designMessageForm == null || designMessageForm.IsDisposed) {
             //    designMessageForm = new DesignMessageForm();
@@ -65,7 +66,7 @@ namespace OCCTPreview
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             string strErr = GetExceptionMsg(e.Exception, e.ToString());
-            string logName = SystemRuntimeHelper.WriteSystemLog(strErr, "ERROR");
+            string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
             //DesignSplashScreen.staticCloseSplashScreenForm();
             //if(designMessageForm == null || designMessageForm.IsDisposed) {
             //    designMessageForm = new DesignMessageForm();

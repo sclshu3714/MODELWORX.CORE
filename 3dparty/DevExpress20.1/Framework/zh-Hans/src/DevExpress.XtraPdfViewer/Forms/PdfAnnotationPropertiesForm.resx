@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"></xsd:import>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="mimetype" type="xsd:string"></xsd:attribute>
+              <xsd:attribute ref="xml:space"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"></xsd:element>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"></xsd:attribute>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"></xsd:attribute>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"></xsd:attribute>
+              <xsd:attribute ref="xml:space"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"></assembly>
+  <data name="formTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"></assembly>
+  <data name="appearanceGroupHeader.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"></assembly>
+  <data name="appearanceGroupHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="appearanceGroupHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 12</value>
+  </data>
+  <data name="appearanceGroupHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="appearanceGroupHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 33</value>
+  </data>
+  <data name="appearanceGroupHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="appearanceGroupHeader.Text" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="&gt;&gt;appearanceGroupHeader.Name" xml:space="preserve">
+    <value>appearanceGroupHeader</value>
+  </data>
+  <data name="&gt;&gt;appearanceGroupHeader.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;appearanceGroupHeader.Parent" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;appearanceGroupHeader.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="colorLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="colorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="colorLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 1</value>
+  </data>
+  <data name="colorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 32</value>
+  </data>
+  <data name="colorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="colorLabel.Text" xml:space="preserve">
+    <value>Color:</value>
+  </data>
+  <data name="&gt;&gt;colorLabel.Name" xml:space="preserve">
+    <value>colorLabel</value>
+  </data>
+  <data name="&gt;&gt;colorLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;colorLabel.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;colorLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="opacityLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="opacityLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 33</value>
+  </data>
+  <data name="opacityLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 4</value>
+  </data>
+  <data name="opacityLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 34</value>
+  </data>
+  <data name="opacityLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="opacityLabel.Text" xml:space="preserve">
+    <value>Opacity:</value>
+  </data>
+  <data name="&gt;&gt;opacityLabel.Name" xml:space="preserve">
+    <value>opacityLabel</value>
+  </data>
+  <data name="&gt;&gt;opacityLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;opacityLabel.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;opacityLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="markupTypeLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="markupTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 71</value>
+  </data>
+  <data name="markupTypeLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 1</value>
+  </data>
+  <data name="markupTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 32</value>
+  </data>
+  <data name="markupTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="markupTypeLabel.Text" xml:space="preserve">
+    <value>Markup type:</value>
+  </data>
+  <data name="&gt;&gt;markupTypeLabel.Name" xml:space="preserve">
+    <value>markupTypeLabel</value>
+  </data>
+  <data name="&gt;&gt;markupTypeLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;markupTypeLabel.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;markupTypeLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="colorPickEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="colorPickEdit.EditValue" type="System.Drawing.Color, System.Drawing">
+    <value></value>
+  </data>
+  <data name="colorPickEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 6</value>
+  </data>
+  <data name="colorPickEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="colorPickEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 20</value>
+  </data>
+  <data name="colorPickEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;colorPickEdit.Name" xml:space="preserve">
+    <value>colorPickEdit</value>
+  </data>
+  <data name="&gt;&gt;colorPickEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ColorPickEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;colorPickEdit.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;colorPickEdit.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="opacityTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="opacityTrackBarControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="opacityTrackBarControl.EditValue" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value></value>
+  </data>
+  <data name="opacityTrackBarControl.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="opacityTrackBarControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 7</value>
+  </data>
+  <data name="opacityTrackBarControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 7, 0, 0</value>
+  </data>
+  <data name="opacityTrackBarControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 31</value>
+  </data>
+  <data name="opacityTrackBarControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;opacityTrackBarControl.Name" xml:space="preserve">
+    <value>opacityTrackBarControl</value>
+  </data>
+  <data name="&gt;&gt;opacityTrackBarControl.Type" xml:space="preserve">
+    <value>DevExpress.XtraPdfViewer.Native.PdfTrackBarControl, DevExpress.XtraPdfViewer.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;opacityTrackBarControl.Parent" xml:space="preserve">
+    <value>opacityTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;opacityTrackBarControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="opacityValueSpinEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="opacityValueSpinEdit.EditValue" type="System.Decimal, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="opacityValueSpinEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>265, 7</value>
+  </data>
+  <data name="opacityValueSpinEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 7, 0, 0</value>
+  </data>
+  <data name="opacityValueSpinEdit.Properties.Mask.EditMask" xml:space="preserve">
+    <value>P0</value>
+  </data>
+  <data name="opacityValueSpinEdit.Properties.Mask.UseMaskAsDisplayFormat" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="opacityValueSpinEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="opacityValueSpinEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;opacityValueSpinEdit.Name" xml:space="preserve">
+    <value>opacityValueSpinEdit</value>
+  </data>
+  <data name="&gt;&gt;opacityValueSpinEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SpinEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;opacityValueSpinEdit.Parent" xml:space="preserve">
+    <value>opacityTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;opacityValueSpinEdit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="opacityTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="opacityTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 33</value>
+  </data>
+  <data name="opacityTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="opacityTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="opacityTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 38</value>
+  </data>
+  <data name="opacityTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;opacityTableLayoutPanel.Name" xml:space="preserve">
+    <value>opacityTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;opacityTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;opacityTableLayoutPanel.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;opacityTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="opacityTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="opacityTrackBarControl" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="opacityValueSpinEdit" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,265,Absolute,62" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 77</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Properties.Items" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Properties.Items1" xml:space="preserve">
+    <value>Underline</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Properties.Items2" xml:space="preserve">
+    <value>Squiggly Underline</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Properties.Items3" xml:space="preserve">
+    <value>Strikethrough</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 20</value>
+  </data>
+  <data name="markupTypeComboBoxEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;markupTypeComboBoxEdit.Name" xml:space="preserve">
+    <value>markupTypeComboBoxEdit</value>
+  </data>
+  <data name="&gt;&gt;markupTypeComboBoxEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.ComboBoxEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;markupTypeComboBoxEdit.Parent" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;markupTypeComboBoxEdit.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 45</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 104</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;appearanceTableLayoutPanel.Name" xml:space="preserve">
+    <value>appearanceTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;appearanceTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;appearanceTableLayoutPanel.Parent" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;appearanceTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="appearanceTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="colorLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="opacityLabel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="markupTypeLabel" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="colorPickEdit" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="opacityTableLayoutPanel" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="markupTypeComboBoxEdit" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,89,Absolute,327" /&gt;&lt;Rows Styles="Absolute,33,Absolute,38,Absolute,33" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="generalGroupHeader.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <data name="generalGroupHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="generalGroupHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 163</value>
+  </data>
+  <data name="generalGroupHeader.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 14, 0, 0</value>
+  </data>
+  <data name="generalGroupHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 28</value>
+  </data>
+  <data name="generalGroupHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="generalGroupHeader.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="&gt;&gt;generalGroupHeader.Name" xml:space="preserve">
+    <value>generalGroupHeader</value>
+  </data>
+  <data name="&gt;&gt;generalGroupHeader.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;generalGroupHeader.Parent" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;generalGroupHeader.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="generalTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="authorLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="authorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="authorLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 1</value>
+  </data>
+  <data name="authorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 32</value>
+  </data>
+  <data name="authorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="authorLabel.Text" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="&gt;&gt;authorLabel.Name" xml:space="preserve">
+    <value>authorLabel</value>
+  </data>
+  <data name="&gt;&gt;authorLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;authorLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;authorLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="subjectLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="subjectLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 33</value>
+  </data>
+  <data name="subjectLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 1</value>
+  </data>
+  <data name="subjectLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 32</value>
+  </data>
+  <data name="subjectLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="subjectLabel.Text" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="&gt;&gt;subjectLabel.Name" xml:space="preserve">
+    <value>subjectLabel</value>
+  </data>
+  <data name="&gt;&gt;subjectLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;subjectLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;subjectLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="modificationDateLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="modificationDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 66</value>
+  </data>
+  <data name="modificationDateLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="modificationDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 33</value>
+  </data>
+  <data name="modificationDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="modificationDateLabel.Text" xml:space="preserve">
+    <value>Modified:</value>
+  </data>
+  <data name="&gt;&gt;modificationDateLabel.Name" xml:space="preserve">
+    <value>modificationDateLabel</value>
+  </data>
+  <data name="&gt;&gt;modificationDateLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;modificationDateLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;modificationDateLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="creationDateLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="creationDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 99</value>
+  </data>
+  <data name="creationDateLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="creationDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 33</value>
+  </data>
+  <data name="creationDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="creationDateLabel.Text" xml:space="preserve">
+    <value>Created:</value>
+  </data>
+  <data name="&gt;&gt;creationDateLabel.Name" xml:space="preserve">
+    <value>creationDateLabel</value>
+  </data>
+  <data name="&gt;&gt;creationDateLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;creationDateLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;creationDateLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="commentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 156</value>
+  </data>
+  <data name="commentLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 24, 0, 0</value>
+  </data>
+  <data name="commentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="commentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="commentLabel.Text" xml:space="preserve">
+    <value>Comment:</value>
+  </data>
+  <data name="&gt;&gt;commentLabel.Name" xml:space="preserve">
+    <value>commentLabel</value>
+  </data>
+  <data name="&gt;&gt;commentLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;commentLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;commentLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="authorTextEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="authorTextEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 6</value>
+  </data>
+  <data name="authorTextEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="authorTextEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 20</value>
+  </data>
+  <data name="authorTextEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;authorTextEdit.Name" xml:space="preserve">
+    <value>authorTextEdit</value>
+  </data>
+  <data name="&gt;&gt;authorTextEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;authorTextEdit.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;authorTextEdit.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="subjectTextEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="subjectTextEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 39</value>
+  </data>
+  <data name="subjectTextEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="subjectTextEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 20</value>
+  </data>
+  <data name="subjectTextEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;subjectTextEdit.Name" xml:space="preserve">
+    <value>subjectTextEdit</value>
+  </data>
+  <data name="&gt;&gt;subjectTextEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;subjectTextEdit.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;subjectTextEdit.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="modificationDateValueLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="modificationDateValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 66</value>
+  </data>
+  <data name="modificationDateValueLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="modificationDateValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 33</value>
+  </data>
+  <data name="modificationDateValueLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;modificationDateValueLabel.Name" xml:space="preserve">
+    <value>modificationDateValueLabel</value>
+  </data>
+  <data name="&gt;&gt;modificationDateValueLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;modificationDateValueLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;modificationDateValueLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="creationDateValueLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="creationDateValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 99</value>
+  </data>
+  <data name="creationDateValueLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="creationDateValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 33</value>
+  </data>
+  <data name="creationDateValueLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;creationDateValueLabel.Name" xml:space="preserve">
+    <value>creationDateValueLabel</value>
+  </data>
+  <data name="&gt;&gt;creationDateValueLabel.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;creationDateValueLabel.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;creationDateValueLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="commentMemoEdit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="commentMemoEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 155</value>
+  </data>
+  <data name="commentMemoEdit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 23, 0, 0</value>
+  </data>
+  <data name="commentMemoEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 62</value>
+  </data>
+  <data name="commentMemoEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;commentMemoEdit.Name" xml:space="preserve">
+    <value>commentMemoEdit</value>
+  </data>
+  <data name="&gt;&gt;commentMemoEdit.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.MemoEdit, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;commentMemoEdit.Parent" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;commentMemoEdit.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="generalTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="generalTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 191</value>
+  </data>
+  <data name="generalTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="generalTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="generalTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 217</value>
+  </data>
+  <data name="generalTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;generalTableLayoutPanel.Name" xml:space="preserve">
+    <value>generalTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;generalTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;generalTableLayoutPanel.Parent" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;generalTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="generalTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="authorLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="subjectLabel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="modificationDateLabel" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="creationDateLabel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="commentLabel" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="authorTextEdit" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="subjectTextEdit" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="modificationDateValueLabel" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="creationDateValueLabel" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="commentMemoEdit" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,89,Absolute,327" /&gt;&lt;Rows Styles="Absolute,33,Absolute,33,Absolute,33,Absolute,33,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="setAsDefaultButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="setAsDefaultButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="setAsDefaultButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="setAsDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 28</value>
+  </data>
+  <data name="setAsDefaultButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="setAsDefaultButton.Text" xml:space="preserve">
+    <value>Set As Default</value>
+  </data>
+  <data name="&gt;&gt;setAsDefaultButton.Name" xml:space="preserve">
+    <value>setAsDefaultButton</value>
+  </data>
+  <data name="&gt;&gt;setAsDefaultButton.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;setAsDefaultButton.Parent" xml:space="preserve">
+    <value>buttonsTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;setAsDefaultButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="okButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 0</value>
+  </data>
+  <data name="okButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>12, 0, 12, 0</value>
+  </data>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 28</value>
+  </data>
+  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
+    <value>okButton</value>
+  </data>
+  <data name="&gt;&gt;okButton.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
+    <value>buttonsTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cancelButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>317, 0</value>
+  </data>
+  <data name="cancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 28</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v20.1, Culture=neutral</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>buttonsTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 443</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 35, 0, 0</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 28</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;buttonsTableLayoutPanel.Name" xml:space="preserve">
+    <value>buttonsTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;buttonsTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonsTableLayoutPanel.Parent" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;buttonsTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonsTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="setAsDefaultButton" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="cancelButton" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,194,Absolute,123,Absolute,99" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="formTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="formTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="formTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="formTableLayoutPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 12, 11, 22</value>
+  </data>
+  <data name="formTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="formTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>438, 486</value>
+  </data>
+  <data name="formTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;formTableLayoutPanel.Name" xml:space="preserve">
+    <value>formTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;formTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;formTableLayoutPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;formTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="formTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="appearanceGroupHeader" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="appearanceTableLayoutPanel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="generalGroupHeader" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="generalTableLayoutPanel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonsTableLayoutPanel" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,33,Absolute,104,Absolute,42,Absolute,217,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>438, 486</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Annotation Properties</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>PdfAnnotationPropertiesForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v20.1, Culture=neutral</value>
+  </data>
+</root>

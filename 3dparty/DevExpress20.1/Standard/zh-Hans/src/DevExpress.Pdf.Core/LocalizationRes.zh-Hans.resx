@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"></xsd:import>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="mimetype" type="xsd:string"></xsd:attribute>
+              <xsd:attribute ref="xml:space"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"></xsd:attribute>
+              <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"></xsd:element>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"></xsd:attribute>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"></xsd:attribute>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"></xsd:attribute>
+              <xsd:attribute ref="xml:space"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"></xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PdfCoreStringId.DefaultDocumentName" xml:space="preserve">
+    <value>文档</value>
+  </data>
+  <data name="PdfCoreStringId.FileSize" xml:space="preserve">
+    <value>{1} {0:0.00} ({2} 字节)</value>
+  </data>
+  <data name="PdfCoreStringId.FileSizeInBytes" xml:space="preserve">
+    <value>{0} 字节</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectDashPatternArraySize" xml:space="preserve">
+    <value>虚线图案阵列必须不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectFontSize" xml:space="preserve">
+    <value>字体大小值应该大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectDecodeArrayEntryValue" xml:space="preserve">
+    <value>解码数组项的值应该是大于或等于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectGapLength" xml:space="preserve">
+    <value>间隙长度应大于或等于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorSpaceName" xml:space="preserve">
+    <value>色彩空间名称不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectTextHorizontalScaling" xml:space="preserve">
+    <value>文字水平缩放值应大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorLookupTableSize" xml:space="preserve">
+    <value>颜色查找表的大小应颜色成分的数目的倍数，并包含大于0且小于或等于256的颜色</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorComponentValue" xml:space="preserve">
+    <value>颜色组件的值应大于或等于0，且小于或等于1</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectPdfData" xml:space="preserve">
+    <value>输入数据不被确认为有效的PDF</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectGrayLevel" xml:space="preserve">
+    <value>灰度级应大于或等于0，且小于或等于1</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorSpaceComponentName" xml:space="preserve">
+    <value>色彩空间组件名称不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectText" xml:space="preserve">
+    <value>文本值不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectDashPattern" xml:space="preserve">
+    <value>虚线和间隙长度的总和应该是大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectFlatnessTolerance" xml:space="preserve">
+    <value>平整度容差应大于或等于0，且小于或等于100</value>
+  </data>
+  <data name="PdfCoreStringId.MsgZeroColorComponentsCount" xml:space="preserve">
+    <value>颜色应该具有的至少一种成分</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectGamma" xml:space="preserve">
+    <value>伽玛值应该大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectMarkedContentTag" xml:space="preserve">
+    <value>标记的内容标签不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectDashLength" xml:space="preserve">
+    <value>虚线的长度应大于或等于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectMiterLimit" xml:space="preserve">
+    <value>斜接限制应大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectShadingPatternName" xml:space="preserve">
+    <value>底纹图案名称不能为空</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectLineWidth" xml:space="preserve">
+    <value>线的宽度应大于或等于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectGlyphPosition" xml:space="preserve">
+    <value>字形的位置应该是小于或等于文本长度</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectCIEColorComponent" xml:space="preserve">
+    <value>CIE颜色空间组件的值应大于或等于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorComponentsCount" xml:space="preserve">
+    <value>颜色应该有1，3或4个组件</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectGammaComponent" xml:space="preserve">
+    <value>伽马组件的值应该大于0</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSeparationColorSpaceDomainSize" xml:space="preserve">
+    <value>转换函数域大小应等于 1.</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSpecialColorSpaceTintTransformRange" xml:space="preserve">
+    <value>转换函数范围大小应等于备选颜色空间维度。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgDuplicateColorSpaceComponentName" xml:space="preserve">
+    <value>颜色空间组件名称数组中包含重复的名称。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorantComponentsCount" xml:space="preserve">
+    <value>着色剂组件数应等于 1。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectColorantName" xml:space="preserve">
+    <value>着色剂的名称应等于组件名称。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectPageNumber" xml:space="preserve">
+    <value>页面数应大于 0.</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectPdfPassword" xml:space="preserve">
+    <value>文档打开口令为空或不正确。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectRangeListSize" xml:space="preserve">
+    <value>范围列表大小应等于组件计数。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSampleCount" xml:space="preserve">
+    <value>样本数应大于 0.</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSampleCountListSize" xml:space="preserve">
+    <value>样本数列表大小应等于域列表大小。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSampleValue" xml:space="preserve">
+    <value>样品数组元素的值应大于或等于 0 且小于或等于 15.</value>
+  </data>
+  <data name="PdfCoreStringId.MsgUnavailableOperation" xml:space="preserve">
+    <value>正在加载任何文档的情况下，此操作不可用。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgInconsistentColorantsCount" xml:space="preserve">
+    <value>着色剂计数应等于名称计数。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectCalculatorCode" xml:space="preserve">
+    <value>计算器函数代码不能为空。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectDecodeListSize" xml:space="preserve">
+    <value>解码列表大小应等于范围列表大小。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectEncodeListSize" xml:space="preserve">
+    <value>编码列表的大小应等于域列表大小。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectListSize" xml:space="preserve">
+    <value>列表中应该包含至少一个值.</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectSampleArraySize" xml:space="preserve">
+    <value>样品数组大小应等于所有样本计数值的总和。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgInconsistentArrayLength" xml:space="preserve">
+    <value>C0 和 c1 列表的长度应等于。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgInconsistentColorComponentsCount" xml:space="preserve">
+    <value>组件在此计数和交替的颜色空间都应该是平等。</value>
+  </data>
+  <data name="PdfCoreStringId.MsgIncorrectPageTransparencyGroupColorSpace" xml:space="preserve">
+    <value>页透明度组需要一个颜色空间定义。</value>
+  </data>
+  <data name="PdfCoreStringId.UnitExaBytes" xml:space="preserve">
+    <value>EB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitGigaBytes" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitKiloBytes" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitMegaBytes" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitPetaBytes" xml:space="preserve">
+    <value>PB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitTeraBytes" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="PdfCoreStringId.UnitZettaBytes" xml:space="preserve">
+    <value>ZB</value>
+  </data>
+  <data name="PdfCoreStringId.TextUnderlineDefaultSubject" xml:space="preserve">
+    <value>下划线</value>
+  </data>
+</root>
