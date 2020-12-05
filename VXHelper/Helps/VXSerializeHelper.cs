@@ -36,14 +36,14 @@ namespace VXHelper
 		/// <param name="obj"></param>
 		/// <returns></returns>
 		public string SerializeObject(object obj) {
-			return staticSerializeObject(obj);
+			return StaticSerializeObject(obj);
 		}
 		/// <summary>
 		/// 序列化
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
-		public static string staticSerializeObject(object obj) {
+		public static string StaticSerializeObject(object obj) {
 			IFormatter formatter = new BinaryFormatter();
 			string result = string.Empty;
 			using(MemoryStream memoryStream = new MemoryStream()) {
@@ -62,7 +62,7 @@ namespace VXHelper
 		/// <param name="str"></param>
 		/// <returns></returns>
 		public T DeserializeObject<T>(string str) {
-			return staticDeserializeObject<T>(str);
+			return StaticDeserializeObject<T>(str);
 		}
 		/// <summary>
 		/// 反序列化
@@ -70,7 +70,7 @@ namespace VXHelper
 		/// <typeparam name="T"></typeparam>
 		/// <param name="str"></param>
 		/// <returns></returns>
-		public static T staticDeserializeObject<T>(string str) {
+		public static T StaticDeserializeObject<T>(string str) {
 			bool flag = string.IsNullOrEmpty(str);
 			object result;
 			if(flag) {

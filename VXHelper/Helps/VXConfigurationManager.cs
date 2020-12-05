@@ -49,13 +49,13 @@ namespace VXHelper
         /// 初始化
         /// </summary>
         public bool InitConfiguration() {
-            staticInitConfiguration();
+            StaticInitConfiguration();
             return true;
         }
         /// <summary>
         /// 初始化
         /// </summary>
-        public static bool staticInitConfiguration() {
+        public static bool StaticInitConfiguration() {
             if(System.Reflection.Assembly.GetEntryAssembly() == null)
                 return false;
             string assemblyConfigFile = System.Reflection.Assembly.GetEntryAssembly().Location;//读取程序集的配置文件
@@ -74,14 +74,14 @@ namespace VXHelper
         /// </summary>
         /// <param name="key"></param>
         public T GetConfiguration<T>(string key) {
-            return staticGetConfiguration<T>(key);
+            return StaticGetConfiguration<T>(key);
         }
         /// <summary>
         /// 获取配置节点值
         /// </summary>
         /// <param name="key"></param>
-        public static T staticGetConfiguration<T>(string key) {
-            if(appSettings == null && !staticInitConfiguration())
+        public static T StaticGetConfiguration<T>(string key) {
+            if(appSettings == null && !StaticInitConfiguration())
                 return default(T);
             if(appSettings != null && appSettings.Settings != null && appSettings.Settings.AllKeys != null && appSettings.Settings.AllKeys.Contains(key)) {
                 Type conversionType = typeof(T);
@@ -96,7 +96,7 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <param name="value"></param>
         public bool AddConfiguration(string key, string value) {
-            return staticAddConfiguration(key, value);
+            return StaticAddConfiguration(key, value);
         }
 
         /// <summary>
@@ -104,8 +104,8 @@ namespace VXHelper
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static bool staticAddConfiguration(string key, string value) {
-            if(appSettings == null && !staticInitConfiguration())
+        public static bool StaticAddConfiguration(string key, string value) {
+            if(appSettings == null && !StaticInitConfiguration())
                 return false;
             if(appSettings != null && appSettings.Settings != null && appSettings.Settings.AllKeys != null && !appSettings.Settings.AllKeys.Contains(key)) {
                 appSettings.Settings.Add(key, value);
@@ -114,7 +114,7 @@ namespace VXHelper
                 return true;
             }
             else
-                staticUpdataConfiguration(key, value);
+                StaticUpdataConfiguration(key, value);
             return false;
         }
 
@@ -123,14 +123,14 @@ namespace VXHelper
         /// </summary>
         /// <param name="key"></param>
         public void RemoveConfiguration(string key) {
-            staticRemoveConfiguration(key);
+            StaticRemoveConfiguration(key);
         }
         /// <summary>
         /// 删除配置节点，保存
         /// </summary>
         /// <param name="key"></param>
-        public static void staticRemoveConfiguration(string key) {
-            if(appSettings == null && !staticInitConfiguration())
+        public static void StaticRemoveConfiguration(string key) {
+            if(appSettings == null && !StaticInitConfiguration())
                 return;
             if(appSettings != null && appSettings.Settings != null) {
                 appSettings.Settings.Remove(key);
@@ -144,15 +144,15 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <param name="value"></param>
         public bool UpdataConfiguration(string key, string value) {
-            return staticUpdataConfiguration(key, value);
+            return StaticUpdataConfiguration(key, value);
         }
         /// <summary>
         /// 修改配置节点值，保存
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static bool staticUpdataConfiguration(string key, string value) {
-            if(appSettings == null && !staticInitConfiguration())
+        public static bool StaticUpdataConfiguration(string key, string value) {
+            if(appSettings == null && !StaticInitConfiguration())
                 return false;
             if(appSettings != null && appSettings.Settings != null && appSettings.Settings.AllKeys != null && appSettings.Settings.AllKeys.Contains(key)) {
                 appSettings.Settings[key].Value = value;
@@ -168,15 +168,15 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <param name="value"></param>
         public void SetConfiguration(string key, string value) {
-            staticSetConfiguration(key, value);
+            StaticSetConfiguration(key, value);
         }
         /// <summary>
         /// 设置配置节点值,不保存
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void staticSetConfiguration(string key, string value) {
-            if(appSettings == null && !staticInitConfiguration())
+        public static void StaticSetConfiguration(string key, string value) {
+            if(appSettings == null && !StaticInitConfiguration())
                 return;
             if(appSettings != null && appSettings.Settings != null && appSettings.Settings.AllKeys != null && appSettings.Settings.AllKeys.Contains(key))
                 appSettings.Settings[key].Value = value;
@@ -189,13 +189,13 @@ namespace VXHelper
         /// 保存配置节点
         /// </summary>
         public void SaveConfiguration() {
-            staticSaveConfiguration();
+            StaticSaveConfiguration();
         }
         /// <summary>
         /// 保存配置节点
         /// </summary>
-        public static void staticSaveConfiguration() {
-            if(appSettings == null && !staticInitConfiguration())
+        public static void StaticSaveConfiguration() {
+            if(appSettings == null && !StaticInitConfiguration())
                 return;
             config.Save(ConfigurationSaveMode.Modified);//一定要记得保存，写不带参数的config.Save()也可以
             ConfigurationManager.RefreshSection("appSettings");//刷新，否则程序读取的还是之前的值（可能已装入内存）

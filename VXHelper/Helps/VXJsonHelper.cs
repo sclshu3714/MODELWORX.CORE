@@ -35,14 +35,14 @@ namespace VXHelper
         /// <param name="_Object">对象</param>
         /// <returns>JSON字符串</returns>
         public string JsonObjectToString(object _Object) {
-            return staticJsonObjectToString(_Object);
+            return StaticJsonObjectToString(_Object);
         }
         /// <summary>
         /// 把对象转换为JSON字符串
         /// </summary>
         /// <param name="_Object">对象</param>
         /// <returns>JSON字符串</returns>
-        public static string staticJsonObjectToString(object _Object) {
+        public static string StaticJsonObjectToString(object _Object) {
             if(_Object == null)
                 return null;
             return JsonConvert.SerializeObject(_Object);
@@ -54,7 +54,7 @@ namespace VXHelper
         /// <param name="input">json字符串</param>
         /// <returns>返回T</returns>
         public T JsonStringToObject<T>(string input) {
-            return staticJsonStringToObject<T>(input);
+            return StaticJsonStringToObject<T>(input);
         }
         /// <summary>
         /// 把Json文本转为实体
@@ -62,7 +62,7 @@ namespace VXHelper
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static T staticJsonStringToObject<T>(string input) {
+        public static T StaticJsonStringToObject<T>(string input) {
             try {
                 return JsonConvert.DeserializeObject<T>(input);
             }

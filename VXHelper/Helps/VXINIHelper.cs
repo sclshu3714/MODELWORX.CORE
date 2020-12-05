@@ -42,13 +42,13 @@ namespace VXHelper
         /// <summary>
         /// 工作区位置
         /// </summary>
-        private static string staticWorkbenchPath {
+        private static string StaticWorkbenchPath {
             get {
                 if(string.IsNullOrEmpty(workbenchPath))
-                    workbenchPath = VXConfigurationManager.staticGetConfiguration<string>("WorkbenchPath");
+                    workbenchPath = VXConfigurationManager.StaticGetConfiguration<string>("WorkbenchPath");
                 if(string.IsNullOrEmpty(workbenchPath)) {
                     workbenchPath = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MODELWORX","config");
-                    VXConfigurationManager.staticSetConfiguration("WorkbenchPath", workbenchPath);
+                    VXConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
                 }
                 if(!Directory.Exists(workbenchPath))
                     Directory.CreateDirectory(workbenchPath);
@@ -56,7 +56,7 @@ namespace VXHelper
             }
             set {
                 workbenchPath = Path.Combine(value, "MODELWORX");
-                VXConfigurationManager.staticSetConfiguration("WorkbenchPath", workbenchPath);
+                VXConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
                 if(!Directory.Exists(workbenchPath))
                     Directory.CreateDirectory(workbenchPath);
             }
@@ -66,14 +66,14 @@ namespace VXHelper
         /// </summary>
         /// <param name="inifilename">配置文件名称,不带后缀</param>
         public void SetCustomOverride(string inifilename = "Design") {
-            staticSetCustomOverride(inifilename);
+            StaticSetCustomOverride(inifilename);
         }
         /// <summary>
         /// Sets the application name override used for the configuration file name (e.g. Design).
         /// </summary>
         /// <param name="inifilename">配置文件名称,不带后缀</param>
-        public static void staticSetCustomOverride(string inifilename = "Design") {
-            INIFilename = Path.Combine(staticWorkbenchPath, string.Format("{0}.ini", inifilename));
+        public static void StaticSetCustomOverride(string inifilename = "Design") {
+            INIFilename = Path.Combine(StaticWorkbenchPath, string.Format("{0}.ini", inifilename));
             if(!File.Exists(INIFilename))
                 File.Create(INIFilename);
             cache.Clear();
@@ -85,7 +85,7 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <returns></returns>
         public T GetValue<T>(string section, string key) {
-            return staticGetValue<T>(section, key);
+            return StaticGetValue<T>(section, key);
         }
         /// <summary>
         /// return Value of the given setting as variant or defaultValue.
@@ -93,7 +93,7 @@ namespace VXHelper
         /// <param name="section"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static T staticGetValue<T>(string section, string key) {
+        public static T StaticGetValue<T>(string section, string key) {
             StringBuilder value = new StringBuilder(1024);
             GetPrivateProfileString(section, key, "", value, 1024, INIFilename);
             return VXConvert.staticChangeType<T>(value);
@@ -105,7 +105,7 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <returns></returns>
         public string GetValue(string section, string key) {
-            return staticGetValue(section, key);
+            return StaticGetValue(section, key);
         }
         /// <summary>
         /// return Value of the given setting as variant or defaultValue.
@@ -113,7 +113,7 @@ namespace VXHelper
         /// <param name="section"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static string staticGetValue(string section, string key) {
+        public static string StaticGetValue(string section, string key) {
             StringBuilder s = new StringBuilder(1024);
             GetPrivateProfileString(section, key, "", s, 1024, INIFilename);
             return s.ToString();
@@ -126,7 +126,7 @@ namespace VXHelper
         /// <param name="value"></param>
         /// <returns></returns>
         public int SetValue(string section, string key, string value) {
-            return staticSetValue(section, key, value);
+            return StaticSetValue(section, key, value);
         }
         /// <summary>
         /// Sets the variable with the given key and value, overwriting an existing value if overwrite is true (default).
@@ -135,7 +135,7 @@ namespace VXHelper
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int staticSetValue(string section, string key, string value) {
+        public static int StaticSetValue(string section, string key, string value) {
             return WritePrivateProfileString(section, key, value, INIFilename);
         }
         /// <summary>
@@ -144,15 +144,15 @@ namespace VXHelper
         /// <param name="section">节点名</param>
         /// <returns>非零表示成功，零表示失败</returns>
         public int RemoveSection(string section) {
-            return staticRemoveSection(section);
+            return StaticRemoveSection(section);
         }
         /// <summary>
         /// 删除节
         /// </summary>
         /// <param name="section">节点名</param>
         /// <returns>非零表示成功，零表示失败</returns>
-        public static int staticRemoveSection(string section) {
-            return staticSetValue(section, null, null);
+        public static int StaticRemoveSection(string section) {
+            return StaticSetValue(section, null, null);
         }
         /// <summary>
         /// Removes the value for the given key.
@@ -161,7 +161,7 @@ namespace VXHelper
         /// <param name="key">属性名称</param>
         /// <returns>是否成功</returns>
         public int RemoveValue(string section, string key) {
-            return staticRemoveValue(section, key);
+            return StaticRemoveValue(section, key);
         }
         /// <summary>
         /// Removes the value for the given key.
@@ -169,8 +169,8 @@ namespace VXHelper
         /// <param name="section">分组</param>
         /// <param name="key">属性名称</param>
         /// <returns>是否成功</returns>
-        public static int staticRemoveValue(string section, string key) {
-            return staticSetValue(section, key, null);
+        public static int StaticRemoveValue(string section, string key) {
+            return StaticSetValue(section, key, null);
         }
     }
 }

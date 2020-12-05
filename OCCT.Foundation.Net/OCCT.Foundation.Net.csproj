@@ -62,6 +62,7 @@
   <ItemGroup>
     <Folder Include="ApplicationFramework\TKLCAF\TDF\" />
     <Folder Include="ApplicationFramework\TKLCAF\TDocStd\" />
+    <Folder Include="ApplicationFramework\TKVCAF\" />
     <Folder Include="ModelingAlgorithms\TKBO\" />
     <Folder Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\" />
     <Folder Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\" />
@@ -107,6 +108,9 @@
     <Compile Include="FoundationClasses\TKMath\gp\gp_Vec2d.cs" />
     <Compile Include="FoundationClasses\TKMath\gp\gp_XY.cs" />
     <Compile Include="FoundationClasses\TKMath\gp\gp_XYZ.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationFramework\TKLCAF\TDataStd\TDataStd_Name.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -56,6 +56,7 @@ namespace VXHelper
         }
         /// <summary>
         /// 设置属性的下拉可选择项
+        /// 类中必须包含list排序序列
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="propertyName"></param>

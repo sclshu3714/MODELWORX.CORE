@@ -13,7 +13,7 @@ namespace VXHelper
 {
     public class VXZip
     {
-        private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
+        private static readonly object lockObject = new object();   //对象锁，用于控制多线程异步操作
         private static VXZip zip = null;//全局设置
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace VXHelper
         /// <param name="filePath"></param>
         /// <returns></returns>
         public bool UnZipFile(string filePath, string destinationDirectory) {
-            return staticUnZipFile(filePath, destinationDirectory);
+            return StaticUnZipFile(filePath, destinationDirectory);
         }
         /// <summary>
         /// 解压文件
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static bool staticUnZipFile(string filePath, string destinationDirectory) {
+        public static bool StaticUnZipFile(string filePath, string destinationDirectory) {
             string Extension = Path.GetExtension(filePath);
             switch(Extension?.ToUpper()) {
                 case ".RAR":
@@ -89,14 +89,14 @@ namespace VXHelper
         /// <param name="filePath"></param>
         /// <returns></returns>
         public bool ZipFile(string filePath, string destinationDirectory) {
-            return staticZipFile(filePath, destinationDirectory);
+            return StaticZipFile(filePath, destinationDirectory);
         }
         /// <summary>
         /// 压缩文件
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static bool staticZipFile(string filePath, string destinationDirectory) {
+        public static bool StaticZipFile(string filePath, string destinationDirectory) {
             string Extension = Path.GetExtension(filePath);
             switch(Extension?.ToUpper()) {
                 case ".RAR":
