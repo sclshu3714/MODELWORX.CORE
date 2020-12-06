@@ -1092,6 +1092,12 @@
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Common.h">
       <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Fuse.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1486,6 +1492,12 @@
       <Filter>源文件\ModelingAlgorithms\TKBO\BOPTools</Filter>
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Common.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Fuse.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.cpp">
       <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClCompile>
   </ItemGroup>

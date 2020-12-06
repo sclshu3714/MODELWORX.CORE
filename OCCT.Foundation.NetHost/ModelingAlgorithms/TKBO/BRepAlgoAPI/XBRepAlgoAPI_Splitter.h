@@ -12,8 +12,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepAlgoAPI_Splitter_HeaderFile
-#define _BRepAlgoAPI_Splitter_HeaderFile
+#ifndef _XBRepAlgoAPI_Splitter_HeaderFile
+#define _XBRepAlgoAPI_Splitter_HeaderFile
+#pragma once
+#include <BRepAlgoAPI_Cut.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -47,48 +50,51 @@
 //! - *BOPAlgo_AlertTooFewArguments*    - in case there is no enough arguments for the operation;<br>
 //! - *BOPAlgo_AlertIntersectionFailed* - in case the Intersection of the arguments has failed;<br>
 //! - *BOPAlgo_AlertBuilderFailed*      - in case the Building of the result has failed.
-class BRepAlgoAPI_Splitter : public BRepAlgoAPI_BuilderAlgo
-{
-public:
+using namespace TKBRep;
+namespace TKBO {
+	ref class TKBRep::XTopoDS_Shape;
+	public ref class XBRepAlgoAPI_Splitter //: public BRepAlgoAPI_BuilderAlgo
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		DEFINE_STANDARD_ALLOC
 
-public: //! @name Constructors
+	public: //! @name Constructors
 
-  //! Empty constructor
-  Standard_EXPORT BRepAlgoAPI_Splitter();
+	  //! Empty constructor
+		Standard_EXPORT BRepAlgoAPI_Splitter();
 
-  //! Constructor with already prepared intersection tool - PaveFiller
-  Standard_EXPORT BRepAlgoAPI_Splitter(const BOPAlgo_PaveFiller& thePF);
-
-
-public: //! @name Setters/Getters for the Tools
-
-  //! Sets the Tool arguments
-  void SetTools (const TopTools_ListOfShape& theLS)
-  {
-    myTools = theLS;
-  }
-
-  //! Returns the Tool arguments
-  const TopTools_ListOfShape& Tools() const
-  {
-    return myTools;
-  }
+		//! Constructor with already prepared intersection tool - PaveFiller
+		Standard_EXPORT BRepAlgoAPI_Splitter(const BOPAlgo_PaveFiller& thePF);
 
 
-public: //! @name Performing the operation
+	public: //! @name Setters/Getters for the Tools
 
-  //! Performs the Split operation.
-  //! Performs the intersection of the argument shapes (both objects and tools)
-  //! and splits objects by the tools.
-  Standard_EXPORT virtual void Build() Standard_OVERRIDE;
+	  //! Sets the Tool arguments
+		void SetTools(const TopTools_ListOfShape& theLS)
+		{
+			myTools = theLS;
+		}
+
+		//! Returns the Tool arguments
+		const TopTools_ListOfShape& Tools() const
+		{
+			return myTools;
+		}
 
 
-protected: //! @name Fields
+	public: //! @name Performing the operation
 
-  TopTools_ListOfShape myTools; //!< Tool arguments of the operation
+	  //! Performs the Split operation.
+	  //! Performs the intersection of the argument shapes (both objects and tools)
+	  //! and splits objects by the tools.
+		Standard_EXPORT virtual void Build() Standard_OVERRIDE;
 
-};
 
+	protected: //! @name Fields
+
+		TopTools_ListOfShape myTools; //!< Tool arguments of the operation
+
+	};
+}
 #endif // _BRepAlgoAPI_Splitter_HeaderFile
