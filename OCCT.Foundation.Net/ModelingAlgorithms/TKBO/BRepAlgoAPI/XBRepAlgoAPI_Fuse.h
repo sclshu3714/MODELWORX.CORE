@@ -14,8 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepAlgoAPI_Fuse_HeaderFile
-#define _BRepAlgoAPI_Fuse_HeaderFile
+#ifndef _XBRepAlgoAPI_Fuse_HeaderFile
+#define _XBRepAlgoAPI_Fuse_HeaderFile
+#pragma once
+#include <BRepAlgoAPI_Fuse.hxx>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -29,57 +32,56 @@ class TopoDS_Shape;
 
 //! The class provides Boolean fusion operation
 //! between arguments and tools  (Boolean Union).
-class BRepAlgoAPI_Fuse  : public BRepAlgoAPI_BooleanOperation
-{
-public:
+using namespace TKBRep;
+namespace TKBO {
+	ref class TKBRep::XTopoDS_Shape;
+	public ref class XBRepAlgoAPI_Fuse  //: public BRepAlgoAPI_BooleanOperation
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Empty constructor
-  Standard_EXPORT BRepAlgoAPI_Fuse();
-Standard_EXPORT virtual ~BRepAlgoAPI_Fuse();
-  
-  //! Empty constructor
-  //! <PF> - PaveFiller object that is carried out
-  Standard_EXPORT BRepAlgoAPI_Fuse(const BOPAlgo_PaveFiller& PF);
-  
-  //! Constructor with two shapes
-  //! <S1>  -argument
-  //! <S2>  -tool
-  //! <anOperation> - the type of the operation
-  //! Obsolete
-  Standard_EXPORT BRepAlgoAPI_Fuse(const TopoDS_Shape& S1, const TopoDS_Shape& S2);
-  
-  //! Constructor with two shapes
-  //! <S1>  -argument
-  //! <S2>  -tool
-  //! <anOperation> - the type of the operation
-  //! <PF> - PaveFiller object that is carried out
-  //! Obsolete
-  Standard_EXPORT BRepAlgoAPI_Fuse(const TopoDS_Shape& S1, const TopoDS_Shape& S2, const BOPAlgo_PaveFiller& aDSF);
+		//! DEFINE_STANDARD_ALLOC
 
 
+			//! Empty constructor
+		XBRepAlgoAPI_Fuse();
+		virtual ~XBRepAlgoAPI_Fuse();
 
+		//! Empty constructor
+		//! <PF> - PaveFiller object that is carried out
+		XBRepAlgoAPI_Fuse(const BOPAlgo_PaveFiller& PF);
 
-protected:
+		//! Constructor with two shapes
+		//! <S1>  -argument
+		//! <S2>  -tool
+		//! <anOperation> - the type of the operation
+		//! Obsolete
+		XBRepAlgoAPI_Fuse(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2);
 
+		//! Constructor with two shapes
+		//! <S1>  -argument
+		//! <S2>  -tool
+		//! <anOperation> - the type of the operation
+		//! <PF> - PaveFiller object that is carried out
+		//! Obsolete
+		XBRepAlgoAPI_Fuse(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2, const BOPAlgo_PaveFiller& aDSF);
 
+		//! 获取图形
+		virtual XTopoDS_Shape^ Shape();// Standard_OVERRIDE;
 
+		/// <summary>
+		/// 本地句柄
+		/// </summary>
+		virtual property BRepAlgoAPI_Fuse* IHandle {
+			BRepAlgoAPI_Fuse* get() {// Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepAlgoAPI_Fuse* handle) {// Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepAlgoAPI_Fuse*>(handle);
+			}
+		}
 
-
-private:
-
-
-
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepAlgoAPI_Fuse_HeaderFile
+	private:
+		BRepAlgoAPI_Fuse* NativeHandle;
+	};
+}
+#endif // _XBRepAlgoAPI_Fuse_HeaderFile

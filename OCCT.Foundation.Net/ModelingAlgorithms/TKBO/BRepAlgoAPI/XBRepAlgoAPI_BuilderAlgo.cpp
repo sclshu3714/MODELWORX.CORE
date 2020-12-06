@@ -1,314 +1,214 @@
-// Created by: Peter KURNEV
-// Copyright (c) 2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepAlgoAPI_BuilderAlgo.h>
+namespace TKBO {
+    //! Empty constructor
+    XBRepAlgoAPI_BuilderAlgo::XBRepAlgoAPI_BuilderAlgo() {
+        NativeHandle = new BRepAlgoAPI_BuilderAlgo();
+    };
+    XBRepAlgoAPI_BuilderAlgo::~XBRepAlgoAPI_BuilderAlgo() {
+        NativeHandle->~BRepAlgoAPI_BuilderAlgo();
+        NativeHandle = NULL;
+    };
+
+    //! Constructor with prepared Filler object
+    XBRepAlgoAPI_BuilderAlgo::XBRepAlgoAPI_BuilderAlgo(XBOPAlgo_PaveFiller^ thePF) {
+        NativeHandle = new BRepAlgoAPI_BuilderAlgo(*thePF->GetPaveFiller());
+    };
+
+    XBRepAlgoAPI_BuilderAlgo::XBRepAlgoAPI_BuilderAlgo(BRepAlgoAPI_BuilderAlgo* pos) {
+        NativeHandle = pos;
+    };
+
+    void XBRepAlgoAPI_BuilderAlgo::SetBuilderAlgoHandle(BRepAlgoAPI_BuilderAlgo* pos) {
+        NativeHandle = pos;
+    };
+
+    BRepAlgoAPI_BuilderAlgo* XBRepAlgoAPI_BuilderAlgo::GetBuilderAlgo() {
+        return NativeHandle;
+    };
+
+    XTopoDS_Shape^ XBRepAlgoAPI_BuilderAlgo::Shape() {
+        TopoDS_Shape* temp = new TopoDS_Shape(NativeHandle->Shape());
+        return gcnew XTopoDS_Shape(temp);
+    };
+
+    //! @name Setting/Getting data for the algorithm
+
+    //! Sets the arguments
+    void XBRepAlgoAPI_BuilderAlgo::SetArguments(XTopTools_ListOfShape^ theLS) {
+        NativeHandle->SetArguments(*theLS->GetListOfShapes());
+    };
+
+    //! Gets the arguments
+    XTopTools_ListOfShape^ XBRepAlgoAPI_BuilderAlgo::Arguments() {
+        TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Arguments());
+        return gcnew XTopTools_ListOfShape(temp);
+    };
 
 
-#include <BRepAlgoAPI_BuilderAlgo.hxx>
+    //! @name Setting options
 
-#include <BOPAlgo_Builder.hxx>
-#include <BOPAlgo_PaveFiller.hxx>
-#include <BOPDS_DS.hxx>
-#include <ShapeUpgrade_UnifySameDomain.hxx>
-#include <TopoDS_Shape.hxx>
+    //! Sets the flag that defines the mode of treatment.
+    //! In non-destructive mode the argument shapes are not modified. Instead
+    //! a copy of a sub-shape is created in the result if it is needed to be updated.
+    void XBRepAlgoAPI_BuilderAlgo::SetNonDestructive(Standard_Boolean theFlag) {
+        NativeHandle->SetNonDestructive(theFlag);
+    };
 
-//=======================================================================
-// function: BRepAlgoAPI_BuilderAlgo
-// purpose: 
-//=======================================================================
-BRepAlgoAPI_BuilderAlgo::BRepAlgoAPI_BuilderAlgo()
-:
-  BRepAlgoAPI_Algo(),
-  myNonDestructive(Standard_False),
-  myGlue(BOPAlgo_GlueOff),
-  myCheckInverted(Standard_True),
-  myFillHistory(Standard_True),
-  myIsIntersectionNeeded(Standard_True),
-  myDSFiller(NULL),
-  myBuilder(NULL)
-{}
-//=======================================================================
-// function: BRepAlgoAPI_BuilderAlgo
-// purpose: 
-//=======================================================================
-BRepAlgoAPI_BuilderAlgo::BRepAlgoAPI_BuilderAlgo(const BOPAlgo_PaveFiller& aPF)
-:
-  BRepAlgoAPI_Algo(),
-  myNonDestructive(Standard_False),
-  myGlue(BOPAlgo_GlueOff),
-  myCheckInverted(Standard_True),
-  myFillHistory(Standard_True),
-  myIsIntersectionNeeded(Standard_False),
-  myBuilder(NULL)
-{
-  myDSFiller = (BOPAlgo_PaveFiller*)&aPF;
-}
-//=======================================================================
-// function: ~
-// purpose: 
-//=======================================================================
-BRepAlgoAPI_BuilderAlgo::~BRepAlgoAPI_BuilderAlgo()
-{
-  Clear();
-}
-//=======================================================================
-//function : Clear
-//purpose  : 
-//=======================================================================
-void BRepAlgoAPI_BuilderAlgo::Clear()
-{
-  BRepAlgoAPI_Algo::Clear();
-  if (myDSFiller && myIsIntersectionNeeded)
-  {
-    delete myDSFiller;
-    myDSFiller = NULL;
-  }
-  if (myBuilder)
-  {
-    delete myBuilder;
-    myBuilder=NULL;
-  }
-  if (myHistory)
-    myHistory.Nullify();
+    //! Returns the flag that defines the mode of treatment.
+    //! In non-destructive mode the argument shapes are not modified. Instead
+    //! a copy of a sub-shape is created in the result if it is needed to be updated.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::NonDestructive() {
+        return  NativeHandle->NonDestructive();
+    };
 
-  if (mySimplifierHistory)
-    mySimplifierHistory.Nullify();
-}
-//=======================================================================
-//function : Build
-//purpose  : 
-//=======================================================================
-void BRepAlgoAPI_BuilderAlgo::Build()
-{
-  // Setting not done status
-  NotDone();
-  // Destroy the tools if necessary
-  Clear();
-  // If necessary perform intersection of the argument shapes
-  IntersectShapes(myArguments);
-  if (HasErrors())
-    return;
+    //! Sets the glue option for the algorithm,
+    //! which allows increasing performance of the intersection
+    //! of the input shapes.
+    void XBRepAlgoAPI_BuilderAlgo::SetGlue(XBOPAlgo_GlueEnum theGlue) {
+        NativeHandle->SetGlue(safe_cast<BOPAlgo_GlueEnum>(theGlue));
+    };
 
-  // Initialization of the Building tool
-  myBuilder = new BOPAlgo_Builder(myAllocator);
-  // Set arguments to builder
-  myBuilder->SetArguments(myArguments);
+    //! Returns the glue option of the algorithm
+    XBOPAlgo_GlueEnum XBRepAlgoAPI_BuilderAlgo::Glue() {
+        return safe_cast<XBOPAlgo_GlueEnum>(NativeHandle->Glue());
+    };
 
-  // Build the result basing on intersection results
-  BuildResult();
-}
+    //! Enables/Disables the check of the input solids for inverted status
+    void XBRepAlgoAPI_BuilderAlgo::SetCheckInverted(Standard_Boolean theCheck) {
+        NativeHandle->SetCheckInverted(theCheck);
+    };
 
-//=======================================================================
-//function : IntersectShapes
-//purpose  : Intersects the given shapes with the intersection tool
-//=======================================================================
-void BRepAlgoAPI_BuilderAlgo::IntersectShapes(const TopTools_ListOfShape& theArgs)
-{
-  if (!myIsIntersectionNeeded)
-    return;
+    //! Returns the flag defining whether the check for input solids on inverted status
+    //! should be performed or not.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::CheckInverted() {
+        return NativeHandle->CheckInverted();
+    };
 
-  if (myDSFiller)
-    delete myDSFiller;
 
-  // Create new Filler
-  myDSFiller = new BOPAlgo_PaveFiller(myAllocator);
-  // Set arguments for intersection
-  myDSFiller->SetArguments(theArgs);
-  // Set options for intersection
-  myDSFiller->SetRunParallel(myRunParallel);
-  myDSFiller->SetProgressIndicator(myProgressIndicator);
-  myDSFiller->SetFuzzyValue(myFuzzyValue);
-  myDSFiller->SetNonDestructive(myNonDestructive);
-  myDSFiller->SetGlue(myGlue);
-  myDSFiller->SetUseOBB(myUseOBB);
-  // Set Face/Face intersection options to the intersection algorithm
-  SetAttributes();
-  // Perform intersection
-  myDSFiller->Perform();
-  // Check for the errors during intersection
-  GetReport()->Merge(myDSFiller->GetReport());
-}
-//=======================================================================
-//function : BuildResult
-//purpose  : Builds the result shape
-//=======================================================================
-void BRepAlgoAPI_BuilderAlgo::BuildResult()
-{
-  // Set options to the builder
-  myBuilder->SetRunParallel(myRunParallel);
-  myBuilder->SetProgressIndicator(myProgressIndicator);
-  myBuilder->SetCheckInverted(myCheckInverted);
-  myBuilder->SetToFillHistory(myFillHistory);
-  // Perform building of the result with pre-calculated intersections
-  myBuilder->PerformWithFiller(*myDSFiller);
-  // Merge the warnings of the Building part
-  GetReport()->Merge(myBuilder->GetReport());
-  // Check for the errors
-  if (myBuilder->HasErrors())
-    return;
-  // Set done status
-  Done();
-  // Get the result shape
-  myShape = myBuilder->Shape();
-  // Fill history
-  if (myFillHistory)
-  {
-    myHistory = new BRepTools_History;
-    myHistory->Merge(myBuilder->History());
-  }
-}
-//=======================================================================
-//function : SimplifyResult
-//purpose  : 
-//=======================================================================
-void BRepAlgoAPI_BuilderAlgo::SimplifyResult(const Standard_Boolean theUnifyEdges,
-                                             const Standard_Boolean theUnifyFaces,
-                                             const Standard_Real    theAngularTol)
-{
-  if (HasErrors())
-    return;
+    //! @name Performing the operation
 
-  if (!theUnifyEdges && !theUnifyFaces)
-    return;
+    //! Performs the algorithm
+    void XBRepAlgoAPI_BuilderAlgo::Build() {
+        NativeHandle->Build();
+    };// Standard_OVERRIDE;
 
-  // Simplification tool
-  ShapeUpgrade_UnifySameDomain anUnifier(myShape, theUnifyEdges, theUnifyFaces, Standard_True);
-  // Pass options
-  anUnifier.SetLinearTolerance(myFuzzyValue);
-  anUnifier.SetAngularTolerance(theAngularTol);
-  anUnifier.SetSafeInputMode(myNonDestructive);
-  anUnifier.AllowInternalEdges(Standard_False);
-  // Perform simplification
-  anUnifier.Build();
-  // Overwrite result with simplified shape
-  myShape = anUnifier.Shape();
-  // Keep simplification history
-  mySimplifierHistory = anUnifier.History();
-  if (myFillHistory)
-    // Merge simplification history into result history
-    myHistory->Merge(mySimplifierHistory);
-}
-//=======================================================================
-//function : Modified
-//purpose  : 
-//=======================================================================
-const TopTools_ListOfShape& BRepAlgoAPI_BuilderAlgo::Modified(const TopoDS_Shape& theS)
-{
-  if (myFillHistory && myHistory)
-    return myHistory->Modified(theS);
-  myGenerated.Clear();
-  return myGenerated;
-}
-//=======================================================================
-//function : Generated
-//purpose  : 
-//=======================================================================
-const TopTools_ListOfShape& BRepAlgoAPI_BuilderAlgo::Generated(const TopoDS_Shape& theS)
-{
-  if (myFillHistory && myHistory)
-    return myHistory->Generated(theS);
-  myGenerated.Clear();
-  return myGenerated;
-}
-//=======================================================================
-//function : IsDeleted
-//purpose  : 
-//=======================================================================
-Standard_Boolean BRepAlgoAPI_BuilderAlgo::IsDeleted(const TopoDS_Shape& theS)
-{
-  return (myFillHistory && myHistory ? myHistory->IsRemoved(theS) : Standard_False);
-}
-//=======================================================================
-//function : HasModified
-//purpose  : 
-//=======================================================================
-Standard_Boolean BRepAlgoAPI_BuilderAlgo::HasModified() const
-{
-  return (myFillHistory && myHistory ? myHistory->HasModified() : Standard_False);
-}
-//=======================================================================
-//function : HasGenerated
-//purpose  : 
-//=======================================================================
-Standard_Boolean BRepAlgoAPI_BuilderAlgo::HasGenerated() const
-{
-  return (myFillHistory && myHistory ? myHistory->HasGenerated() : Standard_False);
-}
-//=======================================================================
-//function : HasDeleted
-//purpose  : 
-//=======================================================================
-Standard_Boolean BRepAlgoAPI_BuilderAlgo::HasDeleted() const
-{
-  return (myFillHistory && myHistory ? myHistory->HasRemoved() : Standard_False);
-}
-//=======================================================================
-//function : SectionEdges
-//purpose  : 
-//=======================================================================
-const TopTools_ListOfShape& BRepAlgoAPI_BuilderAlgo::SectionEdges()
-{
-  myGenerated.Clear();
-  if (myBuilder == NULL)
-    return myGenerated;
 
-  // Fence map to avoid duplicated section edges in the result list
-  TopTools_MapOfShape aMFence;
-  // Intersection results
-  const BOPDS_PDS& pDS = myDSFiller->PDS();
-  // Iterate on all Face/Face interferences and take section edges
-  BOPDS_VectorOfInterfFF& aFFs = pDS->InterfFF();
-  const Standard_Integer aNbFF = aFFs.Length();
-  for (Standard_Integer i = 0; i < aNbFF; ++i)
-  {
-    BOPDS_InterfFF& aFFi = aFFs(i);
-    // Section curves between pair of faces
-    const BOPDS_VectorOfCurve& aSectionCurves = aFFi.Curves();
-    const Standard_Integer aNbC = aSectionCurves.Length();
-    for (Standard_Integer j = 0; j < aNbC; ++j)
-    {
-      const BOPDS_Curve& aCurve = aSectionCurves(j);
-      // Section edges created from the curve
-      const BOPDS_ListOfPaveBlock& aSectionEdges = aCurve.PaveBlocks();
-      BOPDS_ListIteratorOfListOfPaveBlock aItPB(aSectionEdges);
-      for (; aItPB.More(); aItPB.Next())
-      {
-        const Handle(BOPDS_PaveBlock)& aPB = aItPB.Value();
-        const TopoDS_Shape& aSE = pDS->Shape(aPB->Edge());
-        if (!aMFence.Add(aSE))
-          continue;
-        // Take into account simplification of the result shape
-        if (mySimplifierHistory)
-        {
-          if (mySimplifierHistory->IsRemoved(aSE))
-            continue;
+    //! @name Result simplification
 
-          const TopTools_ListOfShape& aLSEIm = mySimplifierHistory->Modified(aSE);
-          if (!aLSEIm.IsEmpty())
-          {
-            TopTools_ListIteratorOfListOfShape aItLEIm(aLSEIm);
-            for (; aItLEIm.More(); aItLEIm.Next())
-            {
-              if (aMFence.Add(aItLEIm.Value()))
-                myGenerated.Append(aItLEIm.Value());
-            }
-          }
-          else
-            myGenerated.Append(aSE);
-        }
-        else
-          myGenerated.Append(aSE);
-      }
-    }
-  }
-  return myGenerated;
+    //! Simplification of the result shape is performed by the means of
+    //! *ShapeUpgrade_UnifySameDomain* algorithm. The result of the operation will
+    //! be overwritten with the simplified result.
+    //!
+    //! The simplification is performed without creation of the Internal shapes,
+    //! i.e. shapes connections will never be broken.
+    //!
+    //! Simplification is performed on the whole result shape. Thus, if the input
+    //! shapes contained connected tangent edges or faces unmodified during the operation
+    //! they will also be unified.
+    //!
+    //! After simplification, the History of result simplification is merged into the main
+    //! history of operation. So, it is taken into account when asking for Modified,
+    //! Generated and Deleted shapes.
+    //!
+    //! Some options of the main operation are passed into the Unifier:
+    //! - Fuzzy tolerance of the operation is given to the Unifier as the linear tolerance.
+    //! - Non destructive mode here controls the safe input mode in Unifier.
+    //!
+    //! @param theUnifyEdges Controls the edges unification. TRUE by default.
+    //! @param theUnifyFaces Controls the faces unification. TRUE by default.
+    //! @param theAngularTol Angular criteria for tangency of edges and faces.
+    //!                      Precision::Angular() by default.
+    //!Standard_Boolean theUnifyEdges = Standard_True,Standard_Boolean theUnifyFaces = Standard_True,Standard_Real    theAngularTol = Precision::Angular()
+    void XBRepAlgoAPI_BuilderAlgo::SimplifyResult(Standard_Boolean theUnifyEdges, Standard_Boolean theUnifyFaces, Standard_Real theAngularTol) {
+        NativeHandle->SimplifyResult(theUnifyEdges, theUnifyFaces, theAngularTol);
+    };
+
+
+    //! @name History support
+
+    //! Returns the shapes modified from the shape <theS>.
+    //! If any, the list will contain only those splits of the
+    //! given shape, contained in the result.
+    XTopTools_ListOfShape^ XBRepAlgoAPI_BuilderAlgo::Modified(XTopoDS_Shape^ theS) {
+        TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Modified(*theS->GetShape()));
+        return gcnew XTopTools_ListOfShape(temp);
+    };// Standard_OVERRIDE;
+
+    //! Returns the list  of shapes generated from the shape <theS>.
+    //! In frames of Boolean Operations algorithms only Edges and Faces
+    //! could have Generated elements, as only they produce new elements
+    //! during intersection:
+    //! - Edges can generate new vertices;
+    //! - Faces can generate new edges and vertices.
+    XTopTools_ListOfShape^ XBRepAlgoAPI_BuilderAlgo::Generated(XTopoDS_Shape^ theS) {
+        TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Generated(*theS->GetShape()));
+        return gcnew XTopTools_ListOfShape(temp);
+    };// Standard_OVERRIDE;
+
+    //! Checks if the shape <theS> has been completely removed from the result,
+    //! i.e. the result does not contain the shape itself and any of its splits.
+    //! Returns TRUE if the shape has been deleted.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::IsDeleted(XTopoDS_Shape^ aS) {
+        return NativeHandle->IsDeleted(*aS->GetShape());
+    };//Standard_OVERRIDE;
+
+    //! Returns true if any of the input shapes has been modified during operation.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::HasModified() {
+        return NativeHandle->HasModified();
+    };
+
+    //! Returns true if any of the input shapes has generated shapes during operation.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::HasGenerated() {
+        return NativeHandle->HasGenerated();
+    };
+
+    //! Returns true if any of the input shapes has been deleted during operation.
+    //! Normally, General Fuse operation should not have Deleted elements,
+    //! but all derived operation can have.
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::HasDeleted() {
+        return NativeHandle->HasDeleted();
+    };
+
+
+    //! @name Enabling/Disabling the history collection.
+
+    //! Allows disabling the history collection
+    void XBRepAlgoAPI_BuilderAlgo::SetToFillHistory(Standard_Boolean theHistFlag) {
+        NativeHandle->SetToFillHistory(theHistFlag);
+    };
+
+    //! Returns flag of history availability
+    Standard_Boolean XBRepAlgoAPI_BuilderAlgo::HasHistory() {
+        return NativeHandle->HasHistory();
+    };
+
+
+    //! @name Getting the section edges
+
+    //! Returns a list of section edges.
+    //! The edges represent the result of intersection between arguments of operation.
+    XTopTools_ListOfShape^ XBRepAlgoAPI_BuilderAlgo::SectionEdges() {
+        TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->SectionEdges());
+        return gcnew XTopTools_ListOfShape(temp);
+    };
+
+
+    //! @name Getting tools performing the job
+
+    //! Returns the Intersection tool
+    XBOPAlgo_PaveFiller^ XBRepAlgoAPI_BuilderAlgo::DSFiller() {
+        BOPAlgo_PaveFiller* temp = new BOPAlgo_PaveFiller(*NativeHandle->DSFiller());
+        return gcnew XBOPAlgo_PaveFiller(temp);
+    };
+
+    //! Returns the Building tool
+    XBOPAlgo_Builder^ XBRepAlgoAPI_BuilderAlgo::Builder() {
+        BOPAlgo_Builder* temp = new BOPAlgo_Builder(*NativeHandle->Builder());
+        return gcnew XBOPAlgo_Builder(temp);
+    };
+
+    //! History tool
+    Handle(BRepTools_History) XBRepAlgoAPI_BuilderAlgo::History() {
+        NativeHandle->History();
+    };
 }

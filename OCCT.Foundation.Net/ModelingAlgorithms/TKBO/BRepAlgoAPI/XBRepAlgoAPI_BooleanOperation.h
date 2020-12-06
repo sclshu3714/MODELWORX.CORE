@@ -14,8 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepAlgoAPI_BooleanOperation_HeaderFile
-#define _BRepAlgoAPI_BooleanOperation_HeaderFile
+#ifndef _XBRepAlgoAPI_BooleanOperation_HeaderFile
+#define _XBRepAlgoAPI_BooleanOperation_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepAlgoAPI_BooleanOperation.hxx>
+#include <XBRepAlgoAPI_BuilderAlgo.h>
+#include <XBOPAlgo_PaveFiller.h>
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -23,6 +29,7 @@
 
 #include <BOPAlgo_Operation.hxx>
 #include <BRepAlgoAPI_BuilderAlgo.hxx>
+class BRepAlgoAPI_BooleanOperation;
 class BOPAlgo_PaveFiller;
 class TopoDS_Shape;
 
@@ -48,93 +55,79 @@ class TopoDS_Shape;
 //! Additionally to the errors of the base class the algorithm returns
 //! the following Errors:<br>
 //! - *BOPAlgo_AlertBOPNotSet* - in case the type of Boolean Operation is not set.<br>
-class BRepAlgoAPI_BooleanOperation  : public BRepAlgoAPI_BuilderAlgo
-{
-public:
+//! 
+//! 
+using namespace TKBRep;
+namespace TKBO {
+    ref class XBOPAlgo_PaveFiller;
+    ref class TKBRep::XTopoDS_Shape;
+    public ref class XBRepAlgoAPI_BooleanOperation : public XBRepAlgoAPI_BuilderAlgo
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
+         //! DEFINE_STANDARD_ALLOC
 
-public: //! @name Constructors
+         //! @name Constructors
 
-  //! Empty constructor
-  Standard_EXPORT BRepAlgoAPI_BooleanOperation();
+         //! Empty constructor
+        XBRepAlgoAPI_BooleanOperation();
 
-  //! Constructor with precomputed intersections of arguments.
-  Standard_EXPORT BRepAlgoAPI_BooleanOperation(const BOPAlgo_PaveFiller& thePF);
+        //! Constructor with precomputed intersections of arguments.
+        XBRepAlgoAPI_BooleanOperation(XBOPAlgo_PaveFiller^ thePF);
 
+        XBRepAlgoAPI_BooleanOperation(BRepAlgoAPI_BooleanOperation* pos);
 
-public: //! @name Setting/getting arguments
+        void SetBooleanOperationHandle(BRepAlgoAPI_BooleanOperation* pos);
 
-  //! Returns the first argument involved in this Boolean operation.
-  //! Obsolete
-  const TopoDS_Shape& Shape1() const
-  {
-    return myArguments.First();
-  }
+        virtual BRepAlgoAPI_BooleanOperation* GetBooleanOperation();
 
-  //! Returns the second argument involved in this Boolean operation.
-  //! Obsolete
-  const TopoDS_Shape& Shape2() const
-  {
-    return myTools.First();
-  }
+        virtual BRepAlgoAPI_BuilderAlgo* GetBuilderAlgo() Standard_OVERRIDE;
 
-  //! Sets the Tool arguments
-  void SetTools(const TopTools_ListOfShape& theLS)
-  {
-    myTools = theLS;
-  }
+        //! @name Setting/getting arguments
+        virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 
-  //! Returns the Tools arguments
-  const TopTools_ListOfShape& Tools() const
-  {
-    return myTools;
-  }
+        //! Returns the first argument involved in this Boolean operation.
+        //! Obsolete
+        XTopoDS_Shape^ Shape1();
 
+        //! Returns the second argument involved in this Boolean operation.
+        //! Obsolete
+        XTopoDS_Shape^ Shape2();
 
-public: //! @name Setting/Getting the type of Boolean operation
+        //! Sets the Tool arguments
+        void SetTools(XTopTools_ListOfShape^ theLS);
 
-  //! Sets the type of Boolean operation
-  void SetOperation(const BOPAlgo_Operation theBOP)
-  {
-    myOperation = theBOP;
-  }
-
-  //! Returns the type of Boolean Operation
-  BOPAlgo_Operation Operation() const
-  {
-    return myOperation;
-  }
+        //! Returns the Tools arguments
+        XTopTools_ListOfShape^ Tools();
 
 
-public: //! @name Performing the operation
+        //! @name Setting/Getting the type of Boolean operation
 
-  //! Performs the Boolean operation.
-  Standard_EXPORT virtual void Build() Standard_OVERRIDE;
+         //! Sets the type of Boolean operation
+        void SetOperation(XBOPAlgo_Operation theBOP);
 
-
-protected: //! @name Constructors
-
-  //! Constructor to perform Boolean operation on only two arguments.
-  //! Obsolete
-  Standard_EXPORT BRepAlgoAPI_BooleanOperation(const TopoDS_Shape& theS1,
-                                               const TopoDS_Shape& theS2,
-                                               const BOPAlgo_Operation theOperation);
-
-  //! Constructor to perform Boolean operation on only two arguments
-  //! with precomputed intersection results.
-  //! Obsolete
-  Standard_EXPORT BRepAlgoAPI_BooleanOperation(const TopoDS_Shape& theS1,
-                                               const TopoDS_Shape& theS2,
-                                               const BOPAlgo_PaveFiller& thePF,
-                                               const BOPAlgo_Operation theOperation);
+        //! Returns the type of Boolean Operation
+        XBOPAlgo_Operation Operation();
 
 
-protected: //! @name Fields
+        //! @name Performing the operation
 
-  TopTools_ListOfShape myTools;  //!< Tool arguments of operation
-  BOPAlgo_Operation myOperation; //!< Type of Boolean Operation
+      //! Performs the Boolean operation.
+        virtual void Build() Standard_OVERRIDE;
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property BRepAlgoAPI_BuilderAlgo* IHandle {
+            BRepAlgoAPI_BuilderAlgo* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(BRepAlgoAPI_BuilderAlgo* handle)  Standard_OVERRIDE {
+                NativeHandle = static_cast<BRepAlgoAPI_BooleanOperation*>(handle);
+            }
+        }
 
-};
-
-#endif // _BRepAlgoAPI_BooleanOperation_HeaderFile
+    private:
+        BRepAlgoAPI_BooleanOperation* NativeHandle;
+    };
+}
+#endif // _XBRepAlgoAPI_BooleanOperation_HeaderFile

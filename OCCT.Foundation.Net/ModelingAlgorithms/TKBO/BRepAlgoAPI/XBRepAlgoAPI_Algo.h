@@ -12,8 +12,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepAlgoAPI_Algo_HeaderFile
-#define _BRepAlgoAPI_Algo_HeaderFile
+#ifndef _XBRepAlgoAPI_Algo_HeaderFile
+#define _XBRepAlgoAPI_Algo_HeaderFile
+#pragma once
+#include <XStandard_Helper.h>
+#include <BRepAlgoAPI_Algo.hxx>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <XTopoDS_Shape.h>
+//#include <XBOPAlgo_Options.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -23,53 +30,120 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
-#include <BOPAlgo_Options.hxx>
+//#include <BOPAlgo_Options.hxx>
 class Message_ProgressIndicator;
 class TopoDS_Shape;
-
-
+using namespace TKernel;
+using namespace TKTopAlgo;
 //! Provides the root interface for the API algorithms
+namespace TKBO {
+    //ref class XBOPAlgo_Options;
+    ref class TKernel::XStandard_Helper;
+    public ref class XBRepAlgoAPI_Algo : public XBRepBuilderAPI_MakeShape // , public XBOPAlgo_Options
+    {
+    public:
 
-class BRepAlgoAPI_Algo : public BRepBuilderAPI_MakeShape,
-                         protected BOPAlgo_Options
-{
-public:
+        //! Empty constructor
+        XBRepAlgoAPI_Algo();
 
-  DEFINE_STANDARD_ALLOC
+        //! Destructor
+        virtual ~XBRepAlgoAPI_Algo();
+        //! DEFINE_STANDARD_ALLOC
 
-  Standard_EXPORT virtual const TopoDS_Shape& Shape() Standard_OVERRIDE;
+        void SetAlgoHandle(BRepAlgoAPI_Algo* pos);
 
-  // Provide access to methods of protected base class BOPAlgo_Options
-  // (inherited as protected to avoid problems with SWIG wrapper)
-  using BOPAlgo_Options::Clear;
-  using BOPAlgo_Options::SetRunParallel;
-  using BOPAlgo_Options::RunParallel;
-  using BOPAlgo_Options::SetFuzzyValue;
-  using BOPAlgo_Options::FuzzyValue;
-  using BOPAlgo_Options::HasErrors;
-  using BOPAlgo_Options::HasWarnings;
-  using BOPAlgo_Options::HasError;
-  using BOPAlgo_Options::HasWarning;
-  using BOPAlgo_Options::DumpErrors;
-  using BOPAlgo_Options::DumpWarnings;
-  using BOPAlgo_Options::ClearWarnings;
-  using BOPAlgo_Options::GetReport;
-  using BOPAlgo_Options::SetProgressIndicator;
-  using BOPAlgo_Options::SetUseOBB;
+        virtual BRepAlgoAPI_Algo* GetAlgo();
 
-protected:
+        virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
-  //! Empty constructor
-  Standard_EXPORT BRepAlgoAPI_Algo();
+        virtual XTopoDS_Shape^ Shape() Standard_OVERRIDE;
 
-  //! Destructor
-  Standard_EXPORT virtual ~BRepAlgoAPI_Algo();
+        //! Clears all warnings and errors, and any data cached by the algorithm.
+        //! User defined options are not cleared.
+        virtual void Clear() Standard_OVERRIDE;
 
-  //! Empty constructor
-  Standard_EXPORT BRepAlgoAPI_Algo(const Handle(NCollection_BaseAllocator)& theAllocator);
+        //!@name Error reporting mechanism
 
-private:
+        //! Adds the alert as error (fail)
+        void AddError(Handle(Message_Alert)& theAlert) new;
 
-};
+        //! Adds the alert as warning
+        void AddWarning(Handle(Message_Alert)& theAlert);
 
+        //! Returns true if algorithm has failed
+        Standard_Boolean HasErrors();
+
+        //! Returns true if algorithm has generated error of specified type
+        Standard_Boolean HasError(Handle(Standard_Type)& theType);
+
+        //! Returns true if algorithm has generated some warning alerts
+        Standard_Boolean HasWarnings();
+
+        //! Returns true if algorithm has generated warning of specified type
+        Standard_Boolean HasWarning(Handle(Standard_Type)& theType);
+
+        //! Returns report collecting all errors and warnings
+        const Handle(Message_Report)& GetReport();
+
+        //! Dumps the error status into the given stream
+        void DumpErrors(Standard_OStream& theOS);
+
+        //! Dumps the warning statuses into the given stream
+        void DumpWarnings(Standard_OStream& theOS);
+
+        //! Clears the warnings of the algorithm
+        void ClearWarnings();
+
+        //!@name Parallel processing mode
+
+        //! Gets the global parallel mode
+        static Standard_Boolean GetParallelMode();
+
+        //! Sets the global parallel mode
+        static void SetParallelMode(Standard_Boolean theNewMode);
+
+        //! Set the flag of parallel processing
+        //! if <theFlag> is true  the parallel processing is switched on
+        //! if <theFlag> is false the parallel processing is switched off
+        void SetRunParallel(Standard_Boolean theFlag);
+
+        //! Returns the flag of parallel processing
+        Standard_Boolean RunParallel();
+
+        //!@name Fuzzy tolerance
+
+        //! Sets the additional tolerance
+        void SetFuzzyValue(Standard_Real theFuzz);
+
+        //! Returns the additional tolerance
+        Standard_Real FuzzyValue();
+        //!@name Progress indicator
+
+        //! Set the Progress Indicator object.
+        void SetProgressIndicator(Handle(Message_ProgressIndicator)& theObj);
+
+        //!@name Usage of Oriented Bounding boxes
+
+        //! Enables/Disables the usage of OBB
+        void SetUseOBB(Standard_Boolean theUseOBB);
+
+        //! Returns the flag defining usage of OBB
+        Standard_Boolean UseOBB();
+
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property BRepBuilderAPI_MakeShape* IHandle {
+            BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+                NativeHandle = static_cast<BRepAlgoAPI_Algo*>(handle);
+            }
+        }
+
+    private:
+        BRepAlgoAPI_Algo* NativeHandle;
+    };
+}
 #endif // _BRepAlgoAPI_Algo_HeaderFile
