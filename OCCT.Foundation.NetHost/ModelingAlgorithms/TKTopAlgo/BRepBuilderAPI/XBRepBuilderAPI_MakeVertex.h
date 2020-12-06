@@ -14,8 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_MakeVertex_HeaderFile
-#define _BRepBuilderAPI_MakeVertex_HeaderFile
+#ifndef _XBRepBuilderAPI_MakeVertex_HeaderFile
+#define _XBRepBuilderAPI_MakeVertex_HeaderFile
+#pragma once
+#include <BRepBuilderAPI_MakeVertex.hxx>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <XTopoDS_Vertex.h>
+#include <xgp_Pnt.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -36,45 +42,40 @@ class TopoDS_Vertex;
 //! A MakeVertex object provides a framework for:
 //! -   defining and implementing the construction of a vertex, and
 //! -   consulting the result.
-class BRepBuilderAPI_MakeVertex  : public BRepBuilderAPI_MakeShape
-{
-public:
+//! 
+namespace TKTopAlgo {
+	public ref class XBRepBuilderAPI_MakeVertex : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs a vertex from point P.
-  //! Example create a vertex from a 3D point.
-  //! gp_Pnt P(0,0,10);
-  //! TopoDS_Vertex V = BRepBuilderAPI_MakeVertex(P);
-  Standard_EXPORT BRepBuilderAPI_MakeVertex(const gp_Pnt& P);
-  
-  //! Returns the constructed vertex.
-  Standard_EXPORT const TopoDS_Vertex& Vertex();
-  Standard_EXPORT operator TopoDS_Vertex();
+		//!
+		//!  DEFINE_STANDARD_ALLOC
 
 
+		//! Constructs a vertex from point P.
+		//! Example create a vertex from a 3D point.
+		//! gp_Pnt P(0,0,10);
+		//! TopoDS_Vertex V = BRepBuilderAPI_MakeVertex(P);
+		XBRepBuilderAPI_MakeVertex(xgp_Pnt^ P);
 
+		//! Returns the constructed vertex.
+		virtual XTopoDS_Vertex^ Vertex();
+		virtual operator XTopoDS_Vertex^();
 
-protected:
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepBuilderAPI_MakeVertex*>(handle);
+			}
+		}
 
-
-
-
-
-private:
-
-
-
-  BRepLib_MakeVertex myMakeVertex;
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepBuilderAPI_MakeVertex_HeaderFile
+	private:
+		BRepBuilderAPI_MakeVertex* NativeHandle;
+	};
+}
+#endif // _XBRepBuilderAPI_MakeVertex_HeaderFile

@@ -83,6 +83,26 @@ namespace OCCTPreview.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap group2_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("group2_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap group2_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("group2_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap lineitem_16x16 {
             get {
                 object obj = ResourceManager.GetObject("lineitem_16x16", resourceCulture);

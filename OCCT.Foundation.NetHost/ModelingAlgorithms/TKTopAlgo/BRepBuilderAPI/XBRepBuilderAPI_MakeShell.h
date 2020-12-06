@@ -14,8 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_MakeShell_HeaderFile
-#define _BRepBuilderAPI_MakeShell_HeaderFile
+#ifndef _XBRepBuilderAPI_MakeShell_HeaderFile
+#define _XBRepBuilderAPI_MakeShell_HeaderFile
+#pragma once
+#include <BRepBuilderAPI_MakeShell.hxx>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <XGeom_Surface.h>
+#include <XTopoDS_Shell.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -26,6 +32,7 @@
 #include <Standard_Boolean.hxx>
 #include <Standard_Real.hxx>
 #include <BRepBuilderAPI_ShellError.hxx>
+#include <XBRepBuilderAPI_ShellError.h>
 class StdFail_NotDone;
 class Geom_Surface;
 class TopoDS_Shell;
@@ -54,78 +61,79 @@ class TopoDS_Shell;
 //! the surface are not sewn. For a sewn result, you need to use
 //! BRepOffsetAPI_Sewing. For a shell with thickness, you need to use
 //! BRepOffsetAPI_MakeOffsetShape.
-class BRepBuilderAPI_MakeShell  : public BRepBuilderAPI_MakeShape
-{
-public:
+//! 
+//using namespace TKMath;
+using namespace TKBRep;
+using namespace TKG3d;
+namespace TKTopAlgo {
+	ref class TKG3d::XGeom_Surface;
+	ref class TKBRep::XTopoDS_Shell;
+	public ref class XBRepBuilderAPI_MakeShell : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs an empty shell framework. The Init
-  //! function is used to define the construction arguments.
-  //! Warning
-  //! The function Error will return
-  //! BRepBuilderAPI_EmptyShell if it is called before the function Init.
-  Standard_EXPORT BRepBuilderAPI_MakeShell();
-  
-  //! Constructs a shell from the surface S.
-  Standard_EXPORT BRepBuilderAPI_MakeShell(const Handle(Geom_Surface)& S, const Standard_Boolean Segment = Standard_False);
-  
-  //! Constructs a shell from the surface S,
-  //! limited in the u parametric direction by the two
-  //! parameter values UMin and UMax, and limited in the v
-  //! parametric direction by the two parameter values VMin and VMax.
-  Standard_EXPORT BRepBuilderAPI_MakeShell(const Handle(Geom_Surface)& S, const Standard_Real UMin, const Standard_Real UMax, const Standard_Real VMin, const Standard_Real VMax, const Standard_Boolean Segment = Standard_False);
-  
-  //! Defines or redefines the arguments
-  //! for the construction of a shell. The construction is initialized
-  //! with the surface S, limited in the u parametric direction by the
-  //! two parameter values UMin and UMax, and in the v parametric
-  //! direction by the two parameter values VMin and VMax.
-  //! Warning
-  //! The function Error returns:
-  //! -      BRepBuilderAPI_ShellParametersOutOfRange
-  //! when the given parameters are outside the bounds of the
-  //! surface or the basis surface if S is trimmed
-  Standard_EXPORT void Init (const Handle(Geom_Surface)& S, const Standard_Real UMin, const Standard_Real UMax, const Standard_Real VMin, const Standard_Real VMax, const Standard_Boolean Segment = Standard_False);
-  
-  //! Returns true if the shell is built.
-  Standard_EXPORT virtual Standard_Boolean IsDone() const Standard_OVERRIDE;
-  
-  //! Returns the construction status:
-  //! -   BRepBuilderAPI_ShellDone if the shell is built, or
-  //! -   another value of the BRepBuilderAPI_ShellError
-  //! enumeration indicating why the construction failed.
-  //! This is frequently BRepBuilderAPI_ShellParametersOutOfRange
-  //! indicating that the given parameters are outside the bounds of the surface.
-  Standard_EXPORT BRepBuilderAPI_ShellError Error() const;
-  
-  //! Returns the new Shell.
-  Standard_EXPORT const TopoDS_Shell& Shell() const;
-Standard_EXPORT operator TopoDS_Shell() const;
+		//! DEFINE_STANDARD_ALLOC
 
 
+		//! Constructs an empty shell framework. The Init
+		//! function is used to define the construction arguments.
+		//! Warning
+		//! The function Error will return
+		//! BRepBuilderAPI_EmptyShell if it is called before the function Init.
+		XBRepBuilderAPI_MakeShell();
 
+		//! Constructs a shell from the surface S.
+		//! Standard_Boolean Segment = Standard_False
+		XBRepBuilderAPI_MakeShell(XGeom_Surface^ S, Standard_Boolean Segment);
 
-protected:
+		//! Constructs a shell from the surface S,
+		//! limited in the u parametric direction by the two
+		//! parameter values UMin and UMax, and limited in the v
+		//! parametric direction by the two parameter values VMin and VMax.
+		//! Standard_Boolean Segment = Standard_False
+		XBRepBuilderAPI_MakeShell(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Boolean Segment);
 
+		//! Defines or redefines the arguments
+		//! for the construction of a shell. The construction is initialized
+		//! with the surface S, limited in the u parametric direction by the
+		//! two parameter values UMin and UMax, and in the v parametric
+		//! direction by the two parameter values VMin and VMax.
+		//! Warning
+		//! The function Error returns:
+		//! -      BRepBuilderAPI_ShellParametersOutOfRange
+		//! when the given parameters are outside the bounds of the
+		//! surface or the basis surface if S is trimmed
+		//! Standard_Boolean Segment = Standard_False
+		void Init(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Boolean Segment);
 
+		//! Returns true if the shell is built.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
+		//! Returns the construction status:
+		//! -   BRepBuilderAPI_ShellDone if the shell is built, or
+		//! -   another value of the BRepBuilderAPI_ShellError
+		//! enumeration indicating why the construction failed.
+		//! This is frequently BRepBuilderAPI_ShellParametersOutOfRange
+		//! indicating that the given parameters are outside the bounds of the surface.
+		XBRepBuilderAPI_ShellError Error();
 
+		//! Returns the new Shell.
+		XTopoDS_Shell^ Shell();
+		operator XTopoDS_Shell^();
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepBuilderAPI_MakeShell*>(handle);
+			}
+		}
 
-private:
-
-
-
-  BRepLib_MakeShell myMakeShell;
-
-
-};
-
-
-
-
-
-
-
-#endif // _BRepBuilderAPI_MakeShell_HeaderFile
+	private:
+		BRepBuilderAPI_MakeShell* NativeHandle;
+	};
+}
+#endif // _XBRepBuilderAPI_MakeShell_HeaderFile

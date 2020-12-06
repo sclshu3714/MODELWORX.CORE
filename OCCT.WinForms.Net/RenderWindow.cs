@@ -923,6 +923,19 @@ namespace OCCT.WinForms.Net
 
         #endregion
 
+        public void AddShape(XAIS_InteractiveObject theIObj, bool theToUpdateViewer = true) {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            context.Display(theIObj, theToUpdateViewer);
+        }
+
+        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool theToUpdateViewer = true)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            XAIS_Shape theIObj = new XAIS_Shape(theTObj);
+            context.Display(theIObj, theToUpdateViewer);
+            return theIObj;
+        }
+
         #region 字段
         protected CurrentAction3d myCurrentMode;
 		protected CurrentPressedKey myCurrentPressedKey;

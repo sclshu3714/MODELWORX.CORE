@@ -5534,6 +5534,29 @@ Struct XBRepBuilderAPI_FaceError: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XBRepBuilderAPI_FaceError BRepBuilderAPI_NotPlanar = 2 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_CurveProjectionFailed = 3 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_ParametersOutOfRange = 4 : Public, Static, Literal, HasDefault
+Class TKTopAlgo.XBRepBuilderAPI_MakeShell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(TKG3d.XGeom_Surface, Double, Double, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Surface, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    Init(XGeom_Surface, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Error(): PrivateScope, Public, HideBySig
+    Shell(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XBRepBuilderAPI_ShellError: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XBRepBuilderAPI_ShellError BRepBuilderAPI_ShellDone = 0 : Public, Static, Literal, HasDefault
+    XBRepBuilderAPI_ShellError BRepBuilderAPI_EmptyShell = 1 : Public, Static, Literal, HasDefault
+    XBRepBuilderAPI_ShellError BRepBuilderAPI_DisconnectedShell = 2 : Public, Static, Literal, HasDefault
+    XBRepBuilderAPI_ShellError BRepBuilderAPI_ShellParametersOutOfRange = 3 : Public, Static, Literal, HasDefault
 Class TKTopAlgo.XBRepBuilderAPI_MakeSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKBRep.XTopoDS_Solid, TKBRep.XTopoDS_Shell): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5554,6 +5577,16 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeSolid: AutoLayout, AnsiClass, Class, Public,
     Solid(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKTopAlgo.XBRepBuilderAPI_MakeVertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    Vertex(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    op_Implicit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

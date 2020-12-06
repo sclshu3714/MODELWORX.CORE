@@ -1,149 +1,70 @@
-// Created on: 1994-02-18
-// Created by: Remi LEQUETTE
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepBuilderAPI_MakeShell.h>
+namespace TKTopAlgo {
+	//! Constructs an empty shell framework. The Init
+		//! function is used to define the construction arguments.
+		//! Warning
+		//! The function Error will return
+		//! BRepBuilderAPI_EmptyShell if it is called before the function Init.
+	XBRepBuilderAPI_MakeShell::XBRepBuilderAPI_MakeShell() {
+		NativeHandle = new BRepBuilderAPI_MakeShell();
+		SetMakeShapeHandle(NativeHandle);
+	};
 
+	//! Constructs a shell from the surface S.
+	//! Standard_Boolean Segment = Standard_False
+	XBRepBuilderAPI_MakeShell::XBRepBuilderAPI_MakeShell(XGeom_Surface^ S, Standard_Boolean Segment) {
+		NativeHandle = new BRepBuilderAPI_MakeShell(S->GetSurface(), Segment);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-#include <BRepBuilderAPI_MakeShell.hxx>
-#include <Geom_Surface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Shell.hxx>
+	//! Constructs a shell from the surface S,
+	//! limited in the u parametric direction by the two
+	//! parameter values UMin and UMax, and limited in the v
+	//! parametric direction by the two parameter values VMin and VMax.
+	//! Standard_Boolean Segment = Standard_False
+	XBRepBuilderAPI_MakeShell::XBRepBuilderAPI_MakeShell(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Boolean Segment) {
+		NativeHandle = new BRepBuilderAPI_MakeShell(S->GetSurface(), UMin, UMax, VMin, VMax, Segment);
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepBuilderAPI_MakeShell
-//purpose  : 
-//=======================================================================
-BRepBuilderAPI_MakeShell::BRepBuilderAPI_MakeShell()
-{
+	//! Defines or redefines the arguments
+	//! for the construction of a shell. The construction is initialized
+	//! with the surface S, limited in the u parametric direction by the
+	//! two parameter values UMin and UMax, and in the v parametric
+	//! direction by the two parameter values VMin and VMax.
+	//! Warning
+	//! The function Error returns:
+	//! -      BRepBuilderAPI_ShellParametersOutOfRange
+	//! when the given parameters are outside the bounds of the
+	//! surface or the basis surface if S is trimmed
+	//! Standard_Boolean Segment = Standard_False
+	void XBRepBuilderAPI_MakeShell::Init(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Boolean Segment) {
+		NativeHandle->Init(S->GetSurface(), UMin, UMax, VMin, VMax, Segment);
+	};
+
+	//! Returns true if the shell is built.
+	Standard_Boolean XBRepBuilderAPI_MakeShell::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the construction status:
+	//! -   BRepBuilderAPI_ShellDone if the shell is built, or
+	//! -   another value of the BRepBuilderAPI_ShellError
+	//! enumeration indicating why the construction failed.
+	//! This is frequently BRepBuilderAPI_ShellParametersOutOfRange
+	//! indicating that the given parameters are outside the bounds of the surface.
+	XBRepBuilderAPI_ShellError XBRepBuilderAPI_MakeShell::Error() {
+		return safe_cast<XBRepBuilderAPI_ShellError>(NativeHandle->Error());
+	};
+
+	//! Returns the new Shell.
+	XTopoDS_Shell^ XBRepBuilderAPI_MakeShell::Shell() {
+		TopoDS_Shell* temp = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(temp);
+	};
+	XBRepBuilderAPI_MakeShell::operator XTopoDS_Shell^() {
+		TopoDS_Shell* temp = new TopoDS_Shell(NativeHandle->Shell());
+		return gcnew XTopoDS_Shell(temp);
+	};
 }
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeShell
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeShell::BRepBuilderAPI_MakeShell(const Handle(Geom_Surface)& S,
-				     const Standard_Boolean Segment)
-: myMakeShell(S,Segment)
-{
-  if ( myMakeShell.IsDone()) {
-    Done();
-    myShape = myMakeShell.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeShell
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeShell::BRepBuilderAPI_MakeShell(const Handle(Geom_Surface)& S, 
-				     const Standard_Real UMin,
-				     const Standard_Real UMax, 
-				     const Standard_Real VMin, 
-				     const Standard_Real VMax,
-				     const Standard_Boolean Segment)
-: myMakeShell(S,UMin,UMax,VMin,VMax,Segment)
-{
-  if ( myMakeShell.IsDone()) {
-    Done();
-    myShape = myMakeShell.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void BRepBuilderAPI_MakeShell::Init(const Handle(Geom_Surface)& S, 
-			     const Standard_Real UMin, 
-			     const Standard_Real UMax, 
-			     const Standard_Real VMin, 
-			     const Standard_Real VMax,
-			     const Standard_Boolean Segment)
-{
-  myMakeShell.Init(S,UMin,UMax,VMin,VMax,Segment);
-  if ( myMakeShell.IsDone()) {
-    Done();
-    myShape = myMakeShell.Shape();
-  }
-}
-
-//=======================================================================
-//function : IsDone
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepBuilderAPI_MakeShell::IsDone() const
-{
-  return myMakeShell.IsDone();
-}
-
-
-
-//=======================================================================
-//function : Error
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_ShellError BRepBuilderAPI_MakeShell::Error() const 
-{
-  switch ( myMakeShell.Error()) {
-
-  case BRepLib_ShellDone:
-    return BRepBuilderAPI_ShellDone;
-
-  case BRepLib_EmptyShell:
-    return BRepBuilderAPI_EmptyShell;
-
-  case BRepLib_DisconnectedShell:
-    return BRepBuilderAPI_DisconnectedShell;
-
-  case BRepLib_ShellParametersOutOfRange:
-    return BRepBuilderAPI_ShellParametersOutOfRange;
-
-  }
-
-  // portage WNT
-  return BRepBuilderAPI_ShellDone;
-}
-
-
-//=======================================================================
-//function : TopoDS_Shell&
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Shell& BRepBuilderAPI_MakeShell::Shell() const 
-{
-  return myMakeShell.Shell();
-}
-
-
-
-//=======================================================================
-//function : TopoDS_Shell
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeShell::operator TopoDS_Shell() const
-{
-  return Shell();
-}
-
 

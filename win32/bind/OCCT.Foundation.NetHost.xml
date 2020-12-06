@@ -1,0 +1,934 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "OCCT.Foundation.NetHost"
+    </assembly>
+    <members>
+        <member name="M:OCCTProxy.InitOCCTProxy">
+            <summary>
+Initialize OCCTProxy
+</summary>
+        </member>
+        <member name="M:OCCTProxy.TranslateModel(System.String,System.Int32,System.Boolean)">
+            <summary>
+Define which Import/Export function must be called
+</summary>
+            <param name="theFileName">Name of Import/Export file</param>
+            <param name="theFormat">Determines format of Import/Export file</param>
+            <param name="theIsImport">Determines is Import or not</param>
+        </member>
+        <member name="M:OCCTProxy.ExportStl(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Export Stl file
+</summary>
+            <param name="theFileName">Name of export file</param>
+        </member>
+        <member name="M:OCCTProxy.ExportVrml(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Export Vrml file
+</summary>
+            <param name="theFileName">Name of export file</param>
+        </member>
+        <member name="M:OCCTProxy.ExportIges(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Export Iges file
+</summary>
+            <param name="theFileName">Name of export file</param>
+        </member>
+        <member name="M:OCCTProxy.ExportStep(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Export Step file
+</summary>
+            <param name="theFileName">Name of export file</param>
+        </member>
+        <member name="M:OCCTProxy.ExportBRep(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Export BRep file
+</summary>
+            <param name="theFileName">Name of export file</param>
+        </member>
+        <member name="M:OCCTProxy.ImportIges(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Import Iges file
+</summary>
+            <param name="theFileName">Name of import file</param>
+        </member>
+        <member name="M:OCCTProxy.Display(TDF_Label!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Boolean)">
+            <summary>
+显示图形
+</summary>
+            <param name="theLabel" />
+            <param name="IsBoundaryDraw" />
+        </member>
+        <member name="M:OCCTProxy.visitB(TDF_Label!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Boolean)">
+            <summary>
+遍历结构
+</summary>
+            <param name="theLabel" />
+            <param name="IsBoundaryDraw" />
+        </member>
+        <member name="M:OCCTProxy.visit(TDF_Label!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Boolean)">
+            <summary>
+遍历结构
+</summary>
+            <param name="theLabel" />
+            <param name="IsBoundaryDraw" />
+        </member>
+        <member name="M:OCCTProxy.ImportStep(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+Import Step file
+</summary>
+            <param name="theFileName">Name of import file</param>
+            <param name="ColorMode">default: Standard_True</param>
+            <param name="NameMode">default: Standard_True</param>
+            <param name="LayerMode">default: Standard_True</param>
+            <param name="PropsMode">default: Standard_True</param>
+            <param name="SHUOMode">default: Standard_False</param>
+            <param name="GDTMode">default: Standard_True</param>
+            <param name="ViewMode">default: Standard_True</param>
+            <returns />
+        </member>
+        <member name="M:OCCTProxy.ImportStep(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Import Step file
+</summary>
+            <param name="theFileName">Name of import file</param>
+        </member>
+        <member name="M:OCCTProxy.ImportBrep(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Import BRep file
+</summary>
+            <param name="theFileName">Name of import file</param>
+        </member>
+        <member name="M:OCCTProxy.ImportBrep(System.String)">
+            <summary>
+Import BRep file
+</summary>
+            <param name="theFileName">Name of import file</param>
+        </member>
+        <member name="M:OCCTProxy.GetInteractiveContext">
+            <summary>
+Get AISContext
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetContext">
+            <summary>
+Get AISContext
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetAISContext(OCCTProxy)">
+            <summary>
+Set AISContext
+</summary>
+        </member>
+        <member name="M:OCCTProxy.CreateNewView(System.IntPtr)">
+            <summary>
+Create new view
+</summary>
+            <param name="theWnd">System.IntPtr that contains the window handle (HWND) of the control</param>
+        </member>
+        <member name="M:OCCTProxy.DisplayMode">
+            <summary>
+Return display mode   (返回显示模式)
+</summary>
+        </member>
+        <member name="M:OCCTProxy.IsObjectSelected">
+            <summary>
+Return true if object is selected （如果选择了对象，则返回true）
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetTransparency(System.Int32)">
+            <summary>
+set transparency (设置透明度)
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetMaterial(System.Int32)">
+            <summary>
+set material （设置材料）
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetOCCVersion">
+            <summary>
+Get version （获取版本）
+</summary>
+        </member>
+        <member name="M:OCCTProxy.EraseObjects">
+            <summary>
+Erase objects（删除对象）
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetBackgroundColor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+Set background color R/G/B
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetObjColB">
+            <summary>
+Get object color blue
+</summary>
+        </member>
+        <member name="M:OCCTProxy.ObjectColor(System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Get object color R/G/B
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetObjColG">
+            <summary>
+Get object color green
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetObjColR">
+            <summary>
+Get object color red
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetColor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+Set color
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetDisplayMode(System.Int32)">
+            <summary>
+Set display mode of objects
+</summary>
+            <param name="theMode">Set current mode</param>
+        </member>
+        <member name="M:OCCTProxy.Reset">
+            <summary>
+Reset view
+</summary>
+        </member>
+        <member name="M:OCCTProxy.ZoomAllView">
+            <summary>
+Zoom in all view
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Scale">
+            <summary>
+Scale
+</summary>
+        </member>
+        <member name="M:OCCTProxy.AxoView">
+            <summary>
+Axo side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.BottomView">
+            <summary>
+Bottom side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.RightView">
+            <summary>
+Right side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.BackView">
+            <summary>
+Back side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.LeftView">
+            <summary>
+Left side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.TopView">
+            <summary>
+Top side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.FrontView">
+            <summary>
+Front side
+</summary>
+        </member>
+        <member name="M:OCCTProxy.UpdateCurrentViewer">
+            <summary>
+Update current viewer
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetBGColB">
+            <summary>
+Get background color Blue
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetBGColG">
+            <summary>
+Get background color Green
+</summary>
+        </member>
+        <member name="M:OCCTProxy.GetBGColR">
+            <summary>
+Get background color Red
+</summary>
+        </member>
+        <member name="M:OCCTProxy.BackgroundColor(System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Set background color
+</summary>
+        </member>
+        <member name="M:OCCTProxy.ShiftSelect">
+            <summary>
+Select by "Shift" key
+</summary>
+        </member>
+        <member name="M:OCCTProxy.ShiftSelect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Select by rectangle with pressed "Shift" key
+</summary>
+        </member>
+        <member name="M:OCCTProxy.MoveTo(System.Int32,System.Int32)">
+            <summary>
+Move view
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Select">
+            <summary>
+Select by click
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Select(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Select by rectangle
+</summary>
+        </member>
+        <member name="M:OCCTProxy.StartRotation(System.Int32,System.Int32)">
+            <summary>
+Start rotation
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Rotation(System.Int32,System.Int32)">
+            <summary>
+Rotation
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Pan(System.Int32,System.Int32)">
+            <summary>
+Set Pan
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Zoom(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Set Zoom
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Place(System.Int32,System.Int32,System.Single)">
+            <summary>
+Current place of window
+</summary>
+            <param name="theZoomFactor">Current zoom</param>
+        </member>
+        <member name="M:OCCTProxy.WindowFitAll(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Fit all
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetDegenerateModeOff">
+            <summary>
+Set computed mode in true
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetDegenerateModeOn">
+            <summary>
+Set computed mode in false
+</summary>
+        </member>
+        <member name="M:OCCTProxy.UpdateView">
+            <summary>
+Update view
+</summary>
+        </member>
+        <member name="M:OCCTProxy.RedrawView">
+            <summary>
+Redraw view
+</summary>
+        </member>
+        <member name="M:OCCTProxy.Dump(TCollection_AsciiString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Make dump of current view to file
+</summary>
+            <param name="theFileName">Name of dump file</param>
+        </member>
+        <member name="M:OCCTProxy.InitViewer(System.IntPtr)">
+            <summary>
+Initialize a viewer
+</summary>
+            <param name="theWnd">System.IntPtr that contains the window handle (HWND) of the control</param>
+        </member>
+        <member name="T:OCCTProxy">
+            <summary>
+Proxy class encapsulating calls to OCCT C++ classes within
+C++/CLI class visible from .Net (CSharp)
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Hypr.#ctor(gp_Hypr*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Elips.#ctor(gp_Elips*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKBRep.XTopoDS_Shape.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Line.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Torus.#ctor(gp_Torus*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Circ.#ctor(gp_Circ*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXCAF.XXCAFPrs_Driver.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Elips2d.#ctor(gp_Elips2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKernel.XTCollection_AsciiString.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXCAF.XXCAFApp_Application.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDocStd_Application.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.XTopLoc_Datum3D.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXCAF.XXCAFDoc_DocumentTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Sphere.#ctor(gp_Sphere*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Cone.#ctor(gp_Cone*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDataStd_Name.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDocStd_Document.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XAIS_InteractiveObject.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XSelectMgr_SelectableObject.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XPrsMgr_PresentableObject.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XPrs3d_Drawer.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XPrs3d_LineAspect.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XGraphic3d_AspectLine3d.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XGraphic3d_PresentationAttributes.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XQuantity_Color.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp_GTrsf.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_GTrsf.#ctor(gp_GTrsf*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Label.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_GUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_UUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Pln.#ctor(gp_Pln*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp_Lin.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Lin.#ctor(gp_Lin*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Ax22d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax22d.#ctor(gp_Ax22d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKG3d.XGeom_Geometry.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKBRep.XTopoDS_Iterator.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.XTopLoc_Location.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp_GTrsf2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_GTrsf2d.#ctor(gp_GTrsf2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Trsf2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Trsf2d.#ctor(gp_Trsf2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Vec2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Vec2d.#ctor(gp_Vec2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Dir2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Dir2d.#ctor(gp_Dir2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Ax2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax2d.#ctor(gp_Ax2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Pnt2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Pnt2d.#ctor(gp_Pnt2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_XY.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_XY.#ctor(gp_XY*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Mat2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Mat2d.#ctor(gp_Mat2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Trsf.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Trsf.#ctor(gp_Trsf*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Quaternion.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Quaternion.#ctor(gp_Quaternion*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Ax3.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax3.#ctor(gp_Ax3*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Pnt.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Pnt.#ctor(gp_Pnt*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Vec.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Vec.#ctor(gp_Vec*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Dir.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Dir.#ctor(gp_Dir*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Ax1.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax1.#ctor(gp_Ax1*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Ax2.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax2.#ctor(gp_Ax2*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_XYZ.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_XYZ.#ctor(gp_XYZ*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Mat.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Mat.#ctor(gp_Mat*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+    </members>
+</doc>

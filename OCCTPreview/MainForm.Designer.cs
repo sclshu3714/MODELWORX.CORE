@@ -30,19 +30,21 @@ namespace OCCTPreview
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer3 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
+            DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
             this.documentGroup1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup(this.components);
             this.document1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnGrid = new DevExpress.XtraBars.BarButtonItem();
             this.btnLine = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMian = new DevExpress.XtraBars.BarButtonItem();
-            this.btnTi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnFace = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSolid = new DevExpress.XtraBars.BarButtonItem();
+            this.btnShell = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -64,7 +66,6 @@ namespace OCCTPreview
             this.RWControl = new DevExpress.XtraEditors.PanelControl();
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.documentGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.document1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -110,15 +111,17 @@ namespace OCCTPreview
             this.ribbon.SearchEditItem,
             this.btnGrid,
             this.btnLine,
-            this.btnMian,
-            this.btnTi});
+            this.btnFace,
+            this.btnSolid,
+            this.btnShell});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 5;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbon.MaxItemId = 6;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2});
-            this.ribbon.Size = new System.Drawing.Size(1093, 197);
+            this.ribbon.Size = new System.Drawing.Size(1366, 237);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // btnGrid
@@ -137,21 +140,29 @@ namespace OCCTPreview
             this.btnLine.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.lineitem_32x32;
             this.btnLine.Name = "btnLine";
             // 
-            // btnMian
+            // btnFace
             // 
-            this.btnMian.Caption = "面图形";
-            this.btnMian.Id = 3;
-            this.btnMian.ImageOptions.Image = global::OCCTPreview.Properties.Resources.morelayoutoptions_16x16;
-            this.btnMian.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.morelayoutoptions_32x32;
-            this.btnMian.Name = "btnMian";
+            this.btnFace.Caption = "面图形";
+            this.btnFace.Id = 3;
+            this.btnFace.ImageOptions.Image = global::OCCTPreview.Properties.Resources.morelayoutoptions_16x16;
+            this.btnFace.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.morelayoutoptions_32x32;
+            this.btnFace.Name = "btnFace";
             // 
-            // btnTi
+            // btnSolid
             // 
-            this.btnTi.Caption = "体图形";
-            this.btnTi.Id = 4;
-            this.btnTi.ImageOptions.Image = global::OCCTPreview.Properties.Resources.cube_16x16;
-            this.btnTi.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.cube_32x32;
-            this.btnTi.Name = "btnTi";
+            this.btnSolid.Caption = "体图形";
+            this.btnSolid.Id = 4;
+            this.btnSolid.ImageOptions.Image = global::OCCTPreview.Properties.Resources.cube_16x16;
+            this.btnSolid.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.cube_32x32;
+            this.btnSolid.Name = "btnSolid";
+            // 
+            // btnShell
+            // 
+            this.btnShell.Caption = "壳图像";
+            this.btnShell.Id = 5;
+            this.btnShell.ImageOptions.Image = global::OCCTPreview.Properties.Resources.group2_16x16;
+            this.btnShell.ImageOptions.LargeImage = global::OCCTPreview.Properties.Resources.group2_32x32;
+            this.btnShell.Name = "btnShell";
             // 
             // ribbonPage1
             // 
@@ -168,8 +179,9 @@ namespace OCCTPreview
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.btnGrid);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnLine);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnMian);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnTi);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnFace);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnSolid);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnShell);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "几何图形";
             // 
@@ -188,6 +200,11 @@ namespace OCCTPreview
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "视图操作";
             // 
+            // ribbonPageGroup6
+            // 
+            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "文件处理";
+            // 
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -202,10 +219,11 @@ namespace OCCTPreview
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 625);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 765);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1093, 30);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1366, 36);
             // 
             // dockManager1
             // 
@@ -235,9 +253,10 @@ namespace OCCTPreview
             this.hideContainerBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.hideContainerBottom.Controls.Add(this.dockPanel3);
             this.hideContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hideContainerBottom.Location = new System.Drawing.Point(0, 597);
+            this.hideContainerBottom.Location = new System.Drawing.Point(0, 733);
+            this.hideContainerBottom.Margin = new System.Windows.Forms.Padding(4);
             this.hideContainerBottom.Name = "hideContainerBottom";
-            this.hideContainerBottom.Size = new System.Drawing.Size(1093, 28);
+            this.hideContainerBottom.Size = new System.Drawing.Size(1366, 32);
             // 
             // dockPanel3
             // 
@@ -245,36 +264,41 @@ namespace OCCTPreview
             this.dockPanel3.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.dockPanel3.ID = new System.Guid("f58f3234-472f-4a2a-9c06-41bc657f0420");
             this.dockPanel3.Location = new System.Drawing.Point(0, 0);
+            this.dockPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel3.Name = "dockPanel3";
             this.dockPanel3.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanel3.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.dockPanel3.SavedIndex = 2;
-            this.dockPanel3.Size = new System.Drawing.Size(1093, 200);
+            this.dockPanel3.Size = new System.Drawing.Size(1366, 244);
             this.dockPanel3.Text = "消息";
             this.dockPanel3.Visibility = DevExpress.XtraBars.Docking.DockVisibility.AutoHide;
             // 
             // dockPanel3_Container
             // 
             this.dockPanel3_Container.Controls.Add(this.gclInfo);
-            this.dockPanel3_Container.Location = new System.Drawing.Point(4, 34);
+            this.dockPanel3_Container.Location = new System.Drawing.Point(5, 42);
+            this.dockPanel3_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(1085, 162);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(1356, 198);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // gclInfo
             // 
             this.gclInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gclInfo.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gclInfo.Location = new System.Drawing.Point(0, 0);
             this.gclInfo.MainView = this.gvwInfo;
+            this.gclInfo.Margin = new System.Windows.Forms.Padding(4);
             this.gclInfo.MenuManager = this.ribbon;
             this.gclInfo.Name = "gclInfo";
-            this.gclInfo.Size = new System.Drawing.Size(1085, 162);
+            this.gclInfo.Size = new System.Drawing.Size(1356, 198);
             this.gclInfo.TabIndex = 0;
             this.gclInfo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwInfo});
             // 
             // gvwInfo
             // 
+            this.gvwInfo.DetailHeight = 428;
             this.gvwInfo.GridControl = this.gclInfo;
             this.gvwInfo.Name = "gvwInfo";
             // 
@@ -283,18 +307,20 @@ namespace OCCTPreview
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPanel1.ID = new System.Guid("6b94067b-3ff1-443f-9a68-b804d9174aa3");
-            this.dockPanel1.Location = new System.Drawing.Point(0, 197);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 237);
+            this.dockPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(237, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(237, 400);
+            this.dockPanel1.Size = new System.Drawing.Size(237, 496);
             this.dockPanel1.Text = "工作";
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.trlShape);
-            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 32);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 38);
+            this.dockPanel1_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(227, 364);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(226, 454);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // trlShape
@@ -302,37 +328,45 @@ namespace OCCTPreview
             this.trlShape.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
             this.trlShape.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trlShape.HorzScrollStep = 4;
             this.trlShape.Location = new System.Drawing.Point(0, 0);
+            this.trlShape.Margin = new System.Windows.Forms.Padding(4);
             this.trlShape.MenuManager = this.ribbon;
+            this.trlShape.MinWidth = 25;
             this.trlShape.Name = "trlShape";
-            this.trlShape.Size = new System.Drawing.Size(227, 364);
+            this.trlShape.Size = new System.Drawing.Size(226, 454);
             this.trlShape.TabIndex = 0;
+            this.trlShape.TreeLevelWidth = 22;
             // 
             // treeListColumn1
             // 
             this.treeListColumn1.Caption = "图形";
             this.treeListColumn1.FieldName = "图形";
+            this.treeListColumn1.MinWidth = 25;
             this.treeListColumn1.Name = "treeListColumn1";
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
+            this.treeListColumn1.Width = 94;
             // 
             // dockPanel2
             // 
             this.dockPanel2.Controls.Add(this.dockPanel2_Container);
             this.dockPanel2.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.dockPanel2.ID = new System.Guid("3e54aa7e-7fad-493c-a6b8-179124d769e6");
-            this.dockPanel2.Location = new System.Drawing.Point(803, 197);
+            this.dockPanel2.Location = new System.Drawing.Point(1076, 237);
+            this.dockPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel2.Name = "dockPanel2";
             this.dockPanel2.OriginalSize = new System.Drawing.Size(290, 200);
-            this.dockPanel2.Size = new System.Drawing.Size(290, 400);
+            this.dockPanel2.Size = new System.Drawing.Size(290, 496);
             this.dockPanel2.Text = "属性";
             // 
             // dockPanel2_Container
             // 
             this.dockPanel2_Container.Controls.Add(this.vgcProperty);
-            this.dockPanel2_Container.Location = new System.Drawing.Point(6, 32);
+            this.dockPanel2_Container.Location = new System.Drawing.Point(7, 38);
+            this.dockPanel2_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(280, 364);
+            this.dockPanel2_Container.Size = new System.Drawing.Size(279, 454);
             this.dockPanel2_Container.TabIndex = 0;
             // 
             // vgcProperty
@@ -340,9 +374,13 @@ namespace OCCTPreview
             this.vgcProperty.Cursor = System.Windows.Forms.Cursors.Default;
             this.vgcProperty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.vgcProperty.Location = new System.Drawing.Point(0, 0);
+            this.vgcProperty.Margin = new System.Windows.Forms.Padding(4);
             this.vgcProperty.MenuManager = this.ribbon;
             this.vgcProperty.Name = "vgcProperty";
-            this.vgcProperty.Size = new System.Drawing.Size(280, 364);
+            this.vgcProperty.OptionsView.MinRowAutoHeight = 12;
+            this.vgcProperty.RecordWidth = 125;
+            this.vgcProperty.RowHeaderWidth = 125;
+            this.vgcProperty.Size = new System.Drawing.Size(279, 454);
             this.vgcProperty.TabIndex = 0;
             // 
             // dockViewPanel
@@ -358,8 +396,9 @@ namespace OCCTPreview
             // 
             this.dockPanel4_Container.Controls.Add(this.RWControl);
             this.dockPanel4_Container.Location = new System.Drawing.Point(0, 0);
+            this.dockPanel4_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(560, 365);
+            this.dockPanel4_Container.Size = new System.Drawing.Size(833, 456);
             this.dockPanel4_Container.TabIndex = 0;
             // 
             // RWControl
@@ -368,8 +407,9 @@ namespace OCCTPreview
             this.RWControl.Appearance.Options.UseBackColor = true;
             this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RWControl.Location = new System.Drawing.Point(0, 0);
+            this.RWControl.Margin = new System.Windows.Forms.Padding(4);
             this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(560, 365);
+            this.RWControl.Size = new System.Drawing.Size(833, 456);
             this.RWControl.TabIndex = 0;
             // 
             // documentManager1
@@ -385,25 +425,21 @@ namespace OCCTPreview
             this.documentGroup1});
             this.tabbedView1.Documents.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseDocument[] {
             this.document1});
-            dockingContainer3.Element = this.documentGroup1;
+            dockingContainer1.Element = this.documentGroup1;
             this.tabbedView1.RootContainer.Nodes.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer[] {
-            dockingContainer3});
-            // 
-            // ribbonPageGroup6
-            // 
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "文件处理";
+            dockingContainer1});
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 655);
+            this.ClientSize = new System.Drawing.Size(1366, 801);
             this.Controls.Add(this.dockPanel2);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.hideContainerBottom);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -468,8 +504,9 @@ namespace OCCTPreview
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerBottom;
         private DevExpress.XtraBars.BarButtonItem btnGrid;
         private DevExpress.XtraBars.BarButtonItem btnLine;
-        private DevExpress.XtraBars.BarButtonItem btnMian;
-        private DevExpress.XtraBars.BarButtonItem btnTi;
+        private DevExpress.XtraBars.BarButtonItem btnFace;
+        private DevExpress.XtraBars.BarButtonItem btnSolid;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.BarButtonItem btnShell;
     }
 }
