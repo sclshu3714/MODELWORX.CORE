@@ -773,8 +773,8 @@ namespace OCCT.WinForms.Net
                 float aRed = 0.0f;
                 float aGreen = 0.0f;
                 float aBlue = 0.0f;
-                float aWidth = 1.0f;
-                XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
+                //float aWidth = 1.0f;
+                //XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
                 // turn boundaries on/off
                 bool isBoundaryDraw = true;
                 aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
