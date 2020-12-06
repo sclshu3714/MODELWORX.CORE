@@ -13,6 +13,10 @@ namespace TKBO {
         NativeHandle = new BOPAlgo_PaveFiller(theAllocator);
     };
 
+    XBOPAlgo_PaveFiller::XBOPAlgo_PaveFiller(BOPAlgo_PaveFiller* pos) {
+        NativeHandle = pos;
+    };
+
     void XBOPAlgo_PaveFiller::SetPaveFillerHandle(BOPAlgo_PaveFiller* pos) {
         NativeHandle = pos;
     };
@@ -21,7 +25,7 @@ namespace TKBO {
         return NativeHandle;
     };
 
-    BOPDS_DS XBOPAlgo_PaveFiller::DS() {
+    const BOPDS_DS& XBOPAlgo_PaveFiller::DS() {
         return NativeHandle->DS();
     };
 
@@ -29,14 +33,13 @@ namespace TKBO {
         return NativeHandle->PDS();
     };
 
-   /* BOPDS_PIterator XBOPAlgo_PaveFiller::Iterator() {
-        BOPDS_Iterator* temp = new BOPDS_Iterator(*NativeHandle->Iterator());
-        return temp;
+   /* const BOPDS_PIterator& XBOPAlgo_PaveFiller::Iterator() {
+        return NativeHandle->Iterator();
     };*/
 
     //! Sets the arguments for operation
     void XBOPAlgo_PaveFiller::SetArguments(XTopTools_ListOfShape^ theLS) {
-        TopTools_ListOfShape temp(*theLS->TListOfShapes());
+        TopTools_ListOfShape temp(*theLS->GetListOfShapes());
         NativeHandle->SetArguments(temp);
     };
 

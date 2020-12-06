@@ -1086,7 +1086,10 @@
     <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.h">
       <Filter>头文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
     </ClInclude>
-    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.h">
+    <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Options.h">
+      <Filter>头文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Common.h">
       <Filter>头文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1479,7 +1482,10 @@
     <ClCompile Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_PaveFiller.cpp">
       <Filter>源文件\ModelingAlgorithms\TKBO\BOPAlgo</Filter>
     </ClCompile>
-    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_BooleanOperation.cpp">
+    <ClCompile Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Options.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBO\BOPTools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Common.cpp">
       <Filter>源文件\ModelingAlgorithms\TKBO\BRepAlgoAPI</Filter>
     </ClCompile>
   </ItemGroup>

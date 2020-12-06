@@ -37,15 +37,15 @@ namespace TKTopAlgo {
 	//! Returns the  list   of shapes generated   from the
 	//! shape <S>.
 	XTopTools_ListOfShape^ XBRepBuilderAPI_MakeShape::Generated(XTopoDS_Shape^ S) {
-		TopoDS_Shape* Shape = new TopoDS_Shape(*S->GetShape());
-		TopTools_ListOfShape* ListOfShape = new TopTools_ListOfShape(NativeHandle->Generated(*Shape));
-		return gcnew XTopTools_ListOfShape(*ListOfShape);
+		TopTools_ListOfShape* ListOfShape = new TopTools_ListOfShape(NativeHandle->Generated(*S->GetShape()));
+		return gcnew XTopTools_ListOfShape(ListOfShape);
 	};
 
 	//! Returns the list  of shapes modified from the shape
 	//! <S>.
 	XTopTools_ListOfShape^ XBRepBuilderAPI_MakeShape::Modified(XTopoDS_Shape^ S) {
-		return gcnew XTopTools_ListOfShape(NativeHandle->Modified(*S->GetShape()));
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Modified(*S->GetShape()));
+		return gcnew XTopTools_ListOfShape(temp);
 	};
 
 	//! Returns true if the shape S has been deleted.

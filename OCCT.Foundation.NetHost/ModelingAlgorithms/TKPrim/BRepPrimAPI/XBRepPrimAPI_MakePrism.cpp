@@ -74,7 +74,8 @@ namespace TKPrim {
 
 	//! Returns ListOfShape from TopTools.
 	XTopTools_ListOfShape^ XBRepPrimAPI_MakePrism::Generated(XTopoDS_Shape^ S) {
-		return gcnew XTopTools_ListOfShape(NativeHandle->Generated(*S->GetShape()));
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Generated(*S->GetShape()));
+		return gcnew XTopTools_ListOfShape(temp);
 	};
 
 	//! Returns true if the shape S has been deleted.

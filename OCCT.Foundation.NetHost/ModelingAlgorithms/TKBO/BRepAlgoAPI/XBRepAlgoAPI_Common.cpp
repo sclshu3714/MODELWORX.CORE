@@ -1,76 +1,44 @@
-// Created on: 1993-10-15
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepAlgoAPI_Common.h>
+namespace TKBO {
+	//! Empty constructor
+	XBRepAlgoAPI_Common::XBRepAlgoAPI_Common() {
+		NativeHandle = new BRepAlgoAPI_Common();
+	};
+	XBRepAlgoAPI_Common::~XBRepAlgoAPI_Common() {
+		NativeHandle->~BRepAlgoAPI_Common();
+		NativeHandle = NULL;
+	};
 
+	//! Empty constructor
+	//! <PF> - PaveFiller object that is carried out
+	XBRepAlgoAPI_Common::XBRepAlgoAPI_Common(const BOPAlgo_PaveFiller& PF) {
+		NativeHandle = new BRepAlgoAPI_Common(PF);
+	};
 
-#include <BOPAlgo_PaveFiller.hxx>
-#include <BRepAlgoAPI_BooleanOperation.hxx>
-#include <BRepAlgoAPI_Common.hxx>
-#include <TopoDS_Shape.hxx>
+	//! Constructor with two shapes
+	//! <S1>  -argument
+	//! <S2>  -tool
+	//! <anOperation> - the type of the operation
+	//! Obsolete
+	XBRepAlgoAPI_Common::XBRepAlgoAPI_Common(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2) {
+		NativeHandle = new BRepAlgoAPI_Common(*S1->GetShape(), *S2->GetShape());
+	};
 
-//=======================================================================
-//function : BRepAlgoAPI_Common
-//purpose  : 
-//=======================================================================
-BRepAlgoAPI_Common::BRepAlgoAPI_Common()
-:
-  BRepAlgoAPI_BooleanOperation()
-{
-  myOperation=BOPAlgo_COMMON;
-}
-//=======================================================================
-//function : BRepAlgoAPI_Common
-//purpose  : 
-//=======================================================================
-BRepAlgoAPI_Common::BRepAlgoAPI_Common(const BOPAlgo_PaveFiller& aPF)
-:
-  BRepAlgoAPI_BooleanOperation(aPF)
-{
-  myOperation=BOPAlgo_COMMON;
-}
-//=======================================================================
-//function : ~BRepAlgoAPI_Common
-//purpose  : 
-//=======================================================================
-BRepAlgoAPI_Common::~BRepAlgoAPI_Common()
-{
-}
-//=======================================================================
-//function : BRepAlgoAPI_Common
-//purpose  : 
-//=======================================================================
-BRepAlgoAPI_Common::BRepAlgoAPI_Common(const TopoDS_Shape& S1, 
-                                       const TopoDS_Shape& S2)
-: BRepAlgoAPI_BooleanOperation(S1, S2, BOPAlgo_COMMON)
-{
-  BRepAlgoAPI_BooleanOperation* pBO=
-    (BRepAlgoAPI_BooleanOperation*) (void*) this;
-  pBO->Build();
-}
-//=======================================================================
-//function : BRepAlgoAPI_Common
-//purpose  : 
-//=======================================================================
-BRepAlgoAPI_Common::BRepAlgoAPI_Common(const TopoDS_Shape& S1, 
-                                       const TopoDS_Shape& S2,
-                                       const BOPAlgo_PaveFiller& aDSF)
-: BRepAlgoAPI_BooleanOperation(S1, S2, aDSF, BOPAlgo_COMMON)
-{
-  BRepAlgoAPI_BooleanOperation* pBO=
-    (BRepAlgoAPI_BooleanOperation*) (void*) this;
-  pBO->Build();
+	//! Constructor with two shapes
+	//! <S1>  -argument
+	//! <S2>  -tool
+	//! <anOperation> - the type of the operation
+	//! <PF> - PaveFiller object that is carried out
+	//! Obsolete
+	XBRepAlgoAPI_Common::XBRepAlgoAPI_Common(XTopoDS_Shape^ S1, XTopoDS_Shape^ S2, const BOPAlgo_PaveFiller& PF) {
+		NativeHandle = new BRepAlgoAPI_Common(*S1->GetShape(), *S2->GetShape(), PF);
+	};
+
+	//! »ñÈ¡Í¼ÐÎ
+	XTopoDS_Shape^ XBRepAlgoAPI_Common::Shape() {
+		TopoDS_Shape* S1 = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(S1);
+	};// Standard_OVERRIDE;
 }
 
 

@@ -27,23 +27,23 @@ namespace TKBRep {
 	typedef NCollection_List<TopoDS_Shape>::Iterator TopTools_ListIteratorOfListOfShape;*/
 	public ref class XTopTools_ListOfShape {
 	public:
-		XTopTools_ListOfShape(TopTools_ListOfShape TListOfShape) {
-			NListOfShape = new TopTools_ListOfShape(TListOfShape);
+		XTopTools_ListOfShape(TopTools_ListOfShape* TListOfShape) {
+			NListOfShape = new TopTools_ListOfShape(*TListOfShape);
 			ListOfShape = gcnew List<XTopoDS_Shape^>();
-			TopTools_ListIteratorOfListOfShape Iterator(TListOfShape);
-			for (TopTools_ListIteratorOfListOfShape Iterator(TListOfShape); Iterator.More(); Iterator.Next())
+			TopTools_ListIteratorOfListOfShape Iterator(*TListOfShape);
+			for (TopTools_ListIteratorOfListOfShape Iterator(*TListOfShape); Iterator.More(); Iterator.Next())
 			{
 				TopoDS_Shape* OfShape = new TopoDS_Shape(Iterator.Value());
 				XTopoDS_Shape^ shape = gcnew XTopoDS_Shape(OfShape);
 				ListOfShape->Add(shape);
 			}
 		};
-		List<XTopoDS_Shape^>^ XListOfShapes() {
+		List<XTopoDS_Shape^>^ GetXListOfShapes() {
 			return ListOfShape;
 		};
 
-		TopTools_ListOfShape TListOfShapes() {
-			return *NListOfShape;
+		TopTools_ListOfShape* GetListOfShapes() {
+			return NListOfShape;
 		}
 
 	private:

@@ -12,8 +12,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BOPAlgo_Options_HeaderFile
-#define _BOPAlgo_Options_HeaderFile
+#ifndef _xBOPAlgo_Options_HeaderFile
+#define _XBOPAlgo_Options_HeaderFile
+#pragma once
+#include <BOPAlgo_Options.hxx>
 
 #include <Message_Report.hxx>
 #include <Standard_OStream.hxx>
@@ -21,6 +23,7 @@
 #include <NCollection_BaseAllocator.hxx>
 
 class Message_ProgressIndicator;
+class BOPAlgo_Options;
 
 //! The class provides the following options for the algorithms in Boolean Component:
 //! - *Memory allocation tool* - tool for memory allocations;
@@ -35,159 +38,115 @@ class Message_ProgressIndicator;
 //! - *Using the Oriented Bounding Boxes* - Allows using the Oriented Bounding Boxes of the shapes
 //!                          for filtering the intersections.
 //!
-class BOPAlgo_Options
-{
-public:
+//! 
+namespace TKBO {
+    public ref class XBOPAlgo_Options
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
+        //! DEFINE_STANDARD_ALLOC
 
-  //! Empty constructor
-  Standard_EXPORT BOPAlgo_Options();
+        //! Empty constructor
+        XBOPAlgo_Options();
 
-  //! Constructor with allocator
-  Standard_EXPORT BOPAlgo_Options(const Handle(NCollection_BaseAllocator)& theAllocator);
+        //! Constructor with allocator
+        XBOPAlgo_Options(const Handle(NCollection_BaseAllocator)& theAllocator);
 
-  //! Destructor
-  Standard_EXPORT virtual ~BOPAlgo_Options();
+        void SetAlgoOptionsHandle(BOPAlgo_Options* pos);
 
-  //! Returns allocator
-  const Handle(NCollection_BaseAllocator)& Allocator() const
-  {
-    return myAllocator;
-  }
+        BOPAlgo_Options* GetOptions();
 
-  //! Clears all warnings and errors, and any data cached by the algorithm.
-  //! User defined options are not cleared.
-  virtual void Clear()
-  {
-    myReport->Clear();
-  }
+        //! Destructor
+        virtual ~XBOPAlgo_Options();
 
-public:
-  //!@name Error reporting mechanism
+        //! Returns allocator
+        const Handle(NCollection_BaseAllocator)& Allocator();
 
-  //! Adds the alert as error (fail)
-  void AddError (const Handle(Message_Alert)& theAlert)
-  {
-    myReport->AddAlert (Message_Fail, theAlert);
-  }
+        //! Clears all warnings and errors, and any data cached by the algorithm.
+        //! User defined options are not cleared.
+        virtual void Clear();
 
-  //! Adds the alert as warning
-  void AddWarning (const Handle(Message_Alert)& theAlert)
-  {
-    myReport->AddAlert (Message_Warning, theAlert);
-  }
+        //!@name Error reporting mechanism
 
-  //! Returns true if algorithm has failed
-  Standard_Boolean HasErrors() const
-  {
-    return ! myReport->GetAlerts(Message_Fail).IsEmpty();
-  }
+        //! Adds the alert as error (fail)
+        void AddError(const Handle(Message_Alert)& theAlert);
 
-  //! Returns true if algorithm has generated error of specified type
-  Standard_Boolean HasError (const Handle(Standard_Type)& theType) const
-  {
-    return myReport->HasAlert(theType, Message_Fail);
-  }
+        //! Adds the alert as warning
+        void AddWarning(const Handle(Message_Alert)& theAlert);
 
-  //! Returns true if algorithm has generated some warning alerts
-  Standard_Boolean HasWarnings() const
-  {
-    return ! myReport->GetAlerts(Message_Warning).IsEmpty();
-  }
+        //! Returns true if algorithm has failed
+        Standard_Boolean HasErrors();
 
-  //! Returns true if algorithm has generated warning of specified type
-  Standard_Boolean HasWarning (const Handle(Standard_Type)& theType) const
-  {
-    return myReport->HasAlert(theType, Message_Warning);
-  }
+        //! Returns true if algorithm has generated error of specified type
+        Standard_Boolean HasError(const Handle(Standard_Type)& theType);
 
-  //! Returns report collecting all errors and warnings
-  const Handle(Message_Report)& GetReport () const { return myReport; }
+        //! Returns true if algorithm has generated some warning alerts
+        Standard_Boolean HasWarnings();
 
-  //! Dumps the error status into the given stream
-  Standard_EXPORT void DumpErrors(Standard_OStream& theOS) const;
+        //! Returns true if algorithm has generated warning of specified type
+        Standard_Boolean HasWarning(const Handle(Standard_Type)& theType);
 
-  //! Dumps the warning statuses into the given stream
-  Standard_EXPORT void DumpWarnings(Standard_OStream& theOS) const;
+        //! Returns report collecting all errors and warnings
+        const Handle(Message_Report)& GetReport();
 
-  //! Clears the warnings of the algorithm
-  void ClearWarnings()
-  {
-    myReport->Clear (Message_Warning);
-  }
+        //! Dumps the error status into the given stream
+        void DumpErrors(Standard_OStream& theOS);
 
-public:
-  //!@name Parallel processing mode
+        //! Dumps the warning statuses into the given stream
+        void DumpWarnings(Standard_OStream& theOS);
 
-  //! Gets the global parallel mode
-  Standard_EXPORT static Standard_Boolean GetParallelMode();
+        //! Clears the warnings of the algorithm
+        void ClearWarnings();
 
-  //! Sets the global parallel mode
-  Standard_EXPORT static void SetParallelMode(const Standard_Boolean theNewMode);
+        //!@name Parallel processing mode
 
-  //! Set the flag of parallel processing
-  //! if <theFlag> is true  the parallel processing is switched on
-  //! if <theFlag> is false the parallel processing is switched off
-  void SetRunParallel(const Standard_Boolean theFlag)
-  {
-    myRunParallel = theFlag;
-  }
+        //! Gets the global parallel mode
+        static Standard_Boolean GetParallelMode();
 
-  //! Returns the flag of parallel processing
-  Standard_Boolean RunParallel() const
-  {
-    return myRunParallel;
-  }
+        //! Sets the global parallel mode
+        static void SetParallelMode(Standard_Boolean theNewMode);
 
-public:
-  //!@name Fuzzy tolerance
+        //! Set the flag of parallel processing
+        //! if <theFlag> is true  the parallel processing is switched on
+        //! if <theFlag> is false the parallel processing is switched off
+        void SetRunParallel(Standard_Boolean theFlag);
 
-  //! Sets the additional tolerance
-  Standard_EXPORT void SetFuzzyValue(const Standard_Real theFuzz);
+        //! Returns the flag of parallel processing
+        Standard_Boolean RunParallel();
 
-  //! Returns the additional tolerance
-  Standard_Real FuzzyValue() const
-  {
-    return myFuzzyValue;
-  }
+        //!@name Fuzzy tolerance
 
-public:
-  //!@name Progress indicator
+        //! Sets the additional tolerance
+        void SetFuzzyValue(Standard_Real theFuzz);
 
-  //! Set the Progress Indicator object.
-  Standard_EXPORT void SetProgressIndicator(const Handle(Message_ProgressIndicator)& theObj);
+        //! Returns the additional tolerance
+        Standard_Real FuzzyValue();
+        //!@name Progress indicator
 
-public:
-  //!@name Usage of Oriented Bounding boxes
+        //! Set the Progress Indicator object.
+        void SetProgressIndicator(const Handle(Message_ProgressIndicator)& theObj);
 
-  //! Enables/Disables the usage of OBB
-  void SetUseOBB(const Standard_Boolean theUseOBB)
-  {
-    myUseOBB = theUseOBB;
-  }
+        //!@name Usage of Oriented Bounding boxes
 
-  //! Returns the flag defining usage of OBB
-  Standard_Boolean UseOBB() const
-  {
-    return myUseOBB;
-  }
+        //! Enables/Disables the usage of OBB
+        void SetUseOBB(Standard_Boolean theUseOBB);
 
-protected:
+        //! Returns the flag defining usage of OBB
+        Standard_Boolean UseOBB();
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property BOPAlgo_Options* IHandle {
+            BOPAlgo_Options* get() {// Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(BOPAlgo_Options* handle) {// Standard_OVERRIDE {
+                NativeHandle = static_cast<BOPAlgo_Options*>(handle);
+            }
+        }
 
-  //! Breaks the execution if the break signal
-  //! is indicated by myProgressIndicator.
-  Standard_EXPORT void UserBreak() const;
-
-protected:
-
-  Handle(NCollection_BaseAllocator) myAllocator;
-  Handle(Message_Report) myReport;
-  Standard_Boolean myRunParallel;
-  Standard_Real myFuzzyValue;
-  Handle(Message_ProgressIndicator) myProgressIndicator;
-  Standard_Boolean myUseOBB;
-
-};
-
+    private:
+        BOPAlgo_Options* NativeHandle;
+    };
+}
 #endif // _BOPAlgo_Options_HeaderFile

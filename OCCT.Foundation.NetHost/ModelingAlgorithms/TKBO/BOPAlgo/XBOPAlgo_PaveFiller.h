@@ -20,8 +20,12 @@
 #pragma once
 #include <BOPAlgo_PaveFiller.hxx>
 #include <XTopTools_ListOfShape.h>
-#include <XTopoDS_Shape.h>
+#include <XBOPAlgo_GlueEnum.h>
 #include <BOPDS_Iterator.hxx>
+#include <xgp_Pnt.h>
+#include <XTopoDS_Vertex.h>
+#include <XTopoDS_Edge.h>
+#include <XTopoDS_Face.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -52,25 +56,25 @@
 #include <TColStd_DataMapOfIntegerReal.hxx>
 #include <TColStd_ListOfInteger.hxx>
 #include <TColStd_MapOfInteger.hxx>
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopTools_DataMapOfShapeInteger.hxx>
 #include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
 #include <TopTools_IndexedMapOfShape.hxx>
-#include <TopTools_ListOfShape.hxx>
-#include <XBOPAlgo_GlueEnum.h>
 
-class IntTools_Context;
+
+//class IntTools_Context;
 class BOPDS_DS;
+class BOPAlgo_Algo;
+class BOPAlgo_PaveFiller;
 class BOPAlgo_SectionAttribute;
 class BOPDS_PaveBlock;
 class BOPDS_CommonBlock;
-class gp_Pnt;
+class BOPDS_Iterator;
 class BOPDS_Curve;
+class gp_Pnt;
 class TopoDS_Vertex;
 class TopoDS_Edge;
 class TopoDS_Face;
 class BOPAlgo_PaveFiller;
-class BOPDS_Iterator;
 //!
 //! The class represents the Intersection phase of the
 //! Boolean Operations algorithm.<br>
@@ -117,7 +121,12 @@ class BOPDS_Iterator;
 //!
 //! 
 using namespace TKBRep;
+using namespace TKMath;
 namespace TKBO {
+    ref class TKMath::xgp_Pnt;
+    ref class TKBRep::XTopoDS_Vertex;
+    ref class TKBRep::XTopoDS_Edge;
+    ref class TKBRep::XTopoDS_Face;
     public ref class XBOPAlgo_PaveFiller //: public BOPAlgo_Algo
     {
     public:
@@ -131,15 +140,17 @@ namespace TKBO {
 
         XBOPAlgo_PaveFiller(Handle(NCollection_BaseAllocator) theAllocator);
 
+        XBOPAlgo_PaveFiller(BOPAlgo_PaveFiller* pos);
+
         void SetPaveFillerHandle(BOPAlgo_PaveFiller* pos);
 
         BOPAlgo_PaveFiller* GetPaveFiller();
 
-        BOPDS_DS DS();
+        const BOPDS_DS& DS();
 
         BOPDS_PDS PDS();
 
-        //BOPDS_PIterator Iterator();
+        /*const BOPDS_PIterator& Iterator();*/
 
         //! Sets the arguments for operation
         void SetArguments(XTopTools_ListOfShape^ theLS);

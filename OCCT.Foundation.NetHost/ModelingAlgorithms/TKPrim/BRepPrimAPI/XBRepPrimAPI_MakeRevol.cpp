@@ -77,7 +77,7 @@ namespace TKPrim {
 	//! For shapes of other types method always returns empty list
 	XTopTools_ListOfShape^ XBRepPrimAPI_MakeRevol::Generated(XTopoDS_Shape^ S) {
 		TopTools_ListOfShape* aListOfShape = new TopTools_ListOfShape(NativeHandle->Generated(*S->GetShape()));
-		return gcnew XTopTools_ListOfShape(*aListOfShape);
+		return gcnew XTopTools_ListOfShape(aListOfShape);
 	};
 
 	//! Returns true if the shape S has been deleted.
@@ -108,6 +108,6 @@ namespace TKPrim {
 	//! Returns the list of degenerated edges
 	XTopTools_ListOfShape^ XBRepPrimAPI_MakeRevol::Degenerated() {
 		TopTools_ListOfShape* aListOfShape = new TopTools_ListOfShape(NativeHandle->Degenerated());
-		return gcnew XTopTools_ListOfShape(*aListOfShape);
+		return gcnew XTopTools_ListOfShape(aListOfShape);
 	};
 }

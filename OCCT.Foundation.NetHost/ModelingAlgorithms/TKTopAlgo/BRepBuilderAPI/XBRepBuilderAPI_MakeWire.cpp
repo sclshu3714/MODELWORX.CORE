@@ -108,7 +108,7 @@ namespace TKTopAlgo {
 	//! can get the  partial result. (ie connected to  the
 	//! first edgeof the list <L>)
 	void XBRepBuilderAPI_MakeWire::Add(XTopTools_ListOfShape^ XL) {
-		NativeHandle->Add(XL->TListOfShapes());
+		NativeHandle->Add(*XL->GetListOfShapes());
 	};
 
 	//! Returns true if this algorithm contains a valid wire.

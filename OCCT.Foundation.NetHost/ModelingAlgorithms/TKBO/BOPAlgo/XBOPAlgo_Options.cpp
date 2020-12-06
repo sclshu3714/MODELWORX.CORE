@@ -1,153 +1,148 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBOPAlgo_Options.h>
 
+namespace TKBO {
 
-#include <BOPAlgo_Options.hxx>
-#include <Message_MsgFile.hxx>
-#include <Message_ProgressIndicator.hxx>
-#include <NCollection_BaseAllocator.hxx>
-#include <Precision.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Standard_ProgramError.hxx>
+    //! Empty constructor
+    XBOPAlgo_Options::XBOPAlgo_Options() {
+        NativeHandle = new BOPAlgo_Options();
+    };
 
-namespace
-{
-  Standard_Boolean myGlobalRunParallel = Standard_False;
+    //! Constructor with allocator
+    XBOPAlgo_Options::XBOPAlgo_Options(const Handle(NCollection_BaseAllocator)& theAllocator) {
+        NativeHandle = new BOPAlgo_Options(theAllocator);
+    };
 
-  // Initialize textual messages for errors and warnings defined in BOPAlgo
-  #include "BOPAlgo_BOPAlgo_msg.pxx"
-  bool BOPAlgo_InitMessages = false;
-  void BOPAlgo_LoadMessages ()
-  {
-    if (BOPAlgo_InitMessages)
-      return;
-    BOPAlgo_InitMessages = true;
+    void XBOPAlgo_Options::SetAlgoOptionsHandle(BOPAlgo_Options* pos) {
+        NativeHandle = pos;
+    };
 
-    if (! Message_MsgFile::HasMsg ("BOPAlgo_LOAD_CHECKER"))
-    {
-      Message_MsgFile::LoadFromString (BOPAlgo_BOPAlgo_msg);
-    }
-  }
-}
+    BOPAlgo_Options* XBOPAlgo_Options::GetOptions() {
+        return NativeHandle;
+    };
 
-//=======================================================================
-// function: 
-// purpose: 
-//=======================================================================
-BOPAlgo_Options::BOPAlgo_Options()
-:
-  myAllocator(NCollection_BaseAllocator::CommonBaseAllocator()),
-  myReport(new Message_Report),
-  myRunParallel(myGlobalRunParallel),
-  myFuzzyValue(Precision::Confusion()),
-  myUseOBB(Standard_False)
-{
-  BOPAlgo_LoadMessages();
-}
+    //! Destructor
+    XBOPAlgo_Options::~XBOPAlgo_Options() {
+        if (NativeHandle != NULL)
+            delete NativeHandle;
+        NativeHandle = NULL;
+    };
 
-//=======================================================================
-// function: 
-// purpose: 
-//=======================================================================
-BOPAlgo_Options::BOPAlgo_Options
-  (const Handle(NCollection_BaseAllocator)& theAllocator)
-:
-  myAllocator(theAllocator),
-  myReport(new Message_Report),
-  myRunParallel(myGlobalRunParallel),
-  myFuzzyValue(Precision::Confusion()),
-  myUseOBB(Standard_False)
-{
-  BOPAlgo_LoadMessages();
-}
+    //! Returns allocator
+    const Handle(NCollection_BaseAllocator)& XBOPAlgo_Options::Allocator() {
+        return NativeHandle->Allocator();
+    };
 
-//=======================================================================
-// function: ~
-// purpose: 
-//=======================================================================
-BOPAlgo_Options::~BOPAlgo_Options()
-{
-}
+    //! Clears all warnings and errors, and any data cached by the algorithm.
+    //! User defined options are not cleared.
+    void XBOPAlgo_Options::Clear() {
+        NativeHandle->Clear();
+    };
 
-//=======================================================================
-//function : DumpErrors
-//purpose  : 
-//=======================================================================
-void BOPAlgo_Options::DumpErrors(Standard_OStream& theOS) const
-{
-  myReport->Dump (theOS, Message_Fail);
-}
+    //!@name Error reporting mechanism
 
-//=======================================================================
-//function : DumpWarnings
-//purpose  : 
-//=======================================================================
-void BOPAlgo_Options::DumpWarnings(Standard_OStream& theOS) const
-{
-  myReport->Dump (theOS, Message_Warning);
-}
+    //! Adds the alert as error (fail)
+    void XBOPAlgo_Options::AddError(const Handle(Message_Alert)& theAlert) {
+        NativeHandle->AddError(theAlert);
+    };
 
-//=======================================================================
-// function: 
-// purpose: 
-//=======================================================================
-void BOPAlgo_Options::SetParallelMode(Standard_Boolean theNewMode)
-{
-  myGlobalRunParallel = theNewMode;
-}
+    //! Adds the alert as warning
+    void XBOPAlgo_Options::AddWarning(const Handle(Message_Alert)& theAlert) {
+        NativeHandle->AddWarning(theAlert);
+    };
 
-//=======================================================================
-// function: 
-// purpose: 
-//=======================================================================
-Standard_Boolean BOPAlgo_Options::GetParallelMode()
-{
-  return myGlobalRunParallel;
-}
+    //! Returns true if algorithm has failed
+    Standard_Boolean XBOPAlgo_Options::HasErrors() {
+        return NativeHandle->HasErrors();
+    };
 
+    //! Returns true if algorithm has generated error of specified type
+    Standard_Boolean XBOPAlgo_Options::HasError(const Handle(Standard_Type)& theType) {
+        return NativeHandle->HasError(theType);
+    };
 
-//=======================================================================
-//function : SetFuzzyValue
-//purpose  : 
-//=======================================================================
-void BOPAlgo_Options::SetFuzzyValue(const Standard_Real theFuzz)
-{
-  myFuzzyValue = Max(theFuzz, Precision::Confusion());
-}
+    //! Returns true if algorithm has generated some warning alerts
+    Standard_Boolean XBOPAlgo_Options::HasWarnings() {
+        return NativeHandle->HasWarnings();
+    };
 
+    //! Returns true if algorithm has generated warning of specified type
+    Standard_Boolean XBOPAlgo_Options::HasWarning(const Handle(Standard_Type)& theType) {
+        return NativeHandle->HasWarning(theType);
+    };
 
-//=======================================================================
-//function : SetProgressIndicator
-//purpose  : 
-//=======================================================================
-void BOPAlgo_Options::SetProgressIndicator
-  (const Handle(Message_ProgressIndicator)& theObj)
-{
-  if (!theObj.IsNull()) {
-    myProgressIndicator = theObj;
-  }
-}
-//=======================================================================
-//function : UserBreak
-//purpose  : 
-//=======================================================================
-void BOPAlgo_Options::UserBreak() const
-{
-  if (myProgressIndicator.IsNull()) {
-    return;
-  }
-  if (myProgressIndicator->UserBreak()) {
-    throw Standard_NotImplemented("BOPAlgo_Options::UserBreak(), method is not implemented");
-  }
+    //! Returns report collecting all errors and warnings
+    const Handle(Message_Report)& XBOPAlgo_Options::GetReport() {
+        return NativeHandle->GetReport();
+    };
+
+    //! Dumps the error status into the given stream
+    void XBOPAlgo_Options::DumpErrors(Standard_OStream& theOS) {
+        NativeHandle->DumpErrors(theOS);
+    };
+
+    //! Dumps the warning statuses into the given stream
+    void XBOPAlgo_Options::DumpWarnings(Standard_OStream& theOS) {
+        NativeHandle->DumpWarnings(theOS);
+    };
+
+    //! Clears the warnings of the algorithm
+    void XBOPAlgo_Options::ClearWarnings() {
+        NativeHandle->ClearWarnings();
+    };
+
+    //!@name Parallel processing mode
+
+    //! Gets the global parallel mode
+    //!static 
+    Standard_Boolean XBOPAlgo_Options::GetParallelMode() {
+        return BOPAlgo_Options::GetParallelMode();
+    };
+
+    //! Sets the global parallel mode
+    //! static 
+    void XBOPAlgo_Options::SetParallelMode(Standard_Boolean theNewMode) {
+        BOPAlgo_Options::SetParallelMode(theNewMode);
+    };
+
+    //! Set the flag of parallel processing
+    //! if <theFlag> is true  the parallel processing is switched on
+    //! if <theFlag> is false the parallel processing is switched off
+    void XBOPAlgo_Options::SetRunParallel(Standard_Boolean theFlag) {
+        NativeHandle->SetRunParallel(theFlag);
+    };
+
+    //! Returns the flag of parallel processing
+    Standard_Boolean XBOPAlgo_Options::RunParallel() {
+        return  NativeHandle->RunParallel();
+    };
+
+    //!@name Fuzzy tolerance
+
+    //! Sets the additional tolerance
+    void XBOPAlgo_Options::SetFuzzyValue(Standard_Real theFuzz) {
+        NativeHandle->SetFuzzyValue(theFuzz);
+    };
+
+    //! Returns the additional tolerance
+    Standard_Real XBOPAlgo_Options::FuzzyValue() {
+        return  NativeHandle->FuzzyValue();
+    };
+    //!@name Progress indicator
+
+    //! Set the Progress Indicator object.
+    void XBOPAlgo_Options::SetProgressIndicator(const Handle(Message_ProgressIndicator)& theObj) {
+        NativeHandle->SetProgressIndicator(theObj);
+    };
+
+    //!@name Usage of Oriented Bounding boxes
+
+    //! Enables/Disables the usage of OBB
+    void XBOPAlgo_Options::SetUseOBB(Standard_Boolean theUseOBB) {
+        NativeHandle->SetUseOBB(theUseOBB);
+    };
+
+    //! Returns the flag defining usage of OBB
+    Standard_Boolean XBOPAlgo_Options::UseOBB() {
+        return  NativeHandle->UseOBB();
+    };
 }
