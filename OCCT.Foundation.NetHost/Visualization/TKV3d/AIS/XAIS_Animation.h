@@ -82,6 +82,7 @@ namespace TKV3d {
     {
         //! DEFINE_STANDARD_RTTIEXT(AIS_Animation, Standard_Transient)
     public:
+        XAIS_Animation();
 
         //! Creates empty animation.
         XAIS_Animation(XTCollection_AsciiString^ theAnimationName);
@@ -93,7 +94,7 @@ namespace TKV3d {
 
         void SetAnimationHandle(Handle(AIS_Animation) pos);
 
-        Handle(AIS_Animation) GetAnimation();
+        virtual Handle(AIS_Animation) GetAnimation();
 
         //! Animation name.
         XTCollection_AsciiString^ Name();

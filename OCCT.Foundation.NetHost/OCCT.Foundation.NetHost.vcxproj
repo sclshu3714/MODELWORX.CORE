@@ -362,6 +362,7 @@
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfHighlightMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfLine.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Animation.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Axis.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
@@ -564,6 +565,7 @@
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Animation.cpp" />
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Axis.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext_1.cpp" />

@@ -1107,6 +1107,9 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Animation.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1516,6 +1519,9 @@
       <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Animation.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
   </ItemGroup>

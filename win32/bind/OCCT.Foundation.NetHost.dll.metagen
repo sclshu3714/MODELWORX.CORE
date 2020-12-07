@@ -6012,13 +6012,14 @@ Class NCollection_Haft<opencascade::handle<AIS_Animation> >: AutoLayout, AnsiCla
 Class TKV3d.XAIS_Animation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<AIS_Animation>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
     SetAnimationHandle(handle<AIS_Animation>*): PrivateScope, Public, HideBySig
-    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, HideBySig
+    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Name(): PrivateScope, Public, HideBySig
     StartPts(): PrivateScope, Public, HideBySig
     SetStartPts(Double): PrivateScope, Public, HideBySig
@@ -6052,6 +6053,25 @@ Struct TKV3d.XAnimationState: AutoLayout, AnsiClass, Class, Public, Sealed, Befo
     TKV3d.XAnimationState AnimationState_Started = 0 : Public, Static, Literal, HasDefault
     TKV3d.XAnimationState AnimationState_Stopped = 1 : Public, Static, Literal, HasDefault
     TKV3d.XAnimationState AnimationState_Paused = 2 : Public, Static, Literal, HasDefault
+Class NCollection_Haft<opencascade::handle<AIS_AnimationObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_AnimationObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XAIS_Animation
+    Void .ctor(TKernel.XTCollection_AsciiString, TKV3d.XAIS_InteractiveContext, TKV3d.XAIS_InteractiveObject, TKMath.xgp_Trsf, TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetAnimationObjectHandle(handle<AIS_AnimationObject>*): PrivateScope, Public, HideBySig
+    GetAnimationObject(handle<AIS_AnimationObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_AnimationObject(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<AIS_Axis> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

@@ -1,6 +1,11 @@
 #include <XAIS_Animation.h>
 
 namespace TKV3d {
+    XAIS_Animation::XAIS_Animation() {
+        TCollection_AsciiString theAnimationName("NewAnimation");
+        NativeHandle() = new AIS_Animation(theAnimationName);
+    };
+
     //! Creates empty animation.
     XAIS_Animation::XAIS_Animation(XTCollection_AsciiString^ theAnimationName) {
         NativeHandle() = new AIS_Animation(*theAnimationName->GetAsciiString());
