@@ -14,19 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfBackfacingModel_HeaderFile
-#define _V3d_TypeOfBackfacingModel_HeaderFile
+#ifndef _XV3d_TypeOfBackfacingModel_HeaderFile
+#define _XV3d_TypeOfBackfacingModel_HeaderFile
 
 //! Modes of display of back faces in the view
 //!
 //! TOBM_AUTOMATIC graphic's structure setting is in use
 //! TOBM_ALWAYS_DISPLAYED     force display of back faces
 //! TOBM_NEVER_DISPLAYED      disable display of back faces
-enum V3d_TypeOfBackfacingModel
+public enum class XV3d_TypeOfBackfacingModel
 {
-V3d_TOBM_AUTOMATIC,
-V3d_TOBM_ALWAYS_DISPLAYED,
-V3d_TOBM_NEVER_DISPLAYED
+	V3d_TOBM_AUTOMATIC,
+	V3d_TOBM_ALWAYS_DISPLAYED,
+	V3d_TOBM_NEVER_DISPLAYED
 };
 
-#endif // _V3d_TypeOfBackfacingModel_HeaderFile
+#endif // _XV3d_TypeOfBackfacingModel_HeaderFile

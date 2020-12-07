@@ -14,18 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfPickLight_HeaderFile
-#define _V3d_TypeOfPickLight_HeaderFile
+#ifndef _XV3d_TypeOfPickLight_HeaderFile
+#define _XV3d_TypeOfPickLight_HeaderFile
 
 
-enum V3d_TypeOfPickLight
+public enum class XV3d_TypeOfPickLight
 {
-V3d_POSITIONLIGHT,
-V3d_SPACELIGHT,
-V3d_RADIUSTEXTLIGHT,
-V3d_ExtRADIUSLIGHT,
-V3d_IntRADIUSLIGHT,
-V3d_NOTHING
+	V3d_POSITIONLIGHT,
+	V3d_SPACELIGHT,
+	V3d_RADIUSTEXTLIGHT,
+	V3d_ExtRADIUSLIGHT,
+	V3d_IntRADIUSLIGHT,
+	V3d_NOTHING
 };
 
-#endif // _V3d_TypeOfPickLight_HeaderFile
+#endif // _XV3d_TypeOfPickLight_HeaderFile

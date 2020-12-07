@@ -7,18 +7,18 @@ namespace TKernel {
     };
 
     //! Creates the color from enumeration value.
-    XQuantity_Color::XQuantity_Color(const XQuantity_NameOfColor AName) {
+    XQuantity_Color::XQuantity_Color(XQuantity_NameOfColor AName) {
         NativeHandle = new Quantity_Color(safe_cast<Quantity_NameOfColor>(AName));
     };
 
     //! Creates the color from enumeration value.
-    XQuantity_Color::XQuantity_Color(const Quantity_Color AName) {
-        NativeHandle = new Quantity_Color(AName);
+    XQuantity_Color::XQuantity_Color(Quantity_Color* pos) {
+        NativeHandle = pos;
     };
 
     //! Creates the color from enumeration value.
     XQuantity_Color::XQuantity_Color(XQuantity_Color^ AName) {
-        NativeHandle = new Quantity_Color(AName->GetColor());
+        NativeHandle = new Quantity_Color(*AName->GetColor());
     };
 
     //! Creates a color according to the definition system theType.
@@ -37,8 +37,8 @@ namespace TKernel {
     };
 
     //! Quantity_Color
-    Quantity_Color XQuantity_Color::GetColor() {
-        return *NativeHandle;
+    Quantity_Color* XQuantity_Color::GetColor() {
+        return NativeHandle;
     };
 
     //! Define color from RGB values.
@@ -94,19 +94,19 @@ namespace TKernel {
     //! If <DC> is positive then <me> is more contrasty.
     //! If <DI> is positive then <me> is more intense.
     void XQuantity_Color::Delta(XQuantity_Color^ AColor, Standard_Real& DC, Standard_Real& DI) {
-        NativeHandle->Delta(AColor->GetColor(), DC, DI);
+        NativeHandle->Delta(*AColor->GetColor(), DC, DI);
     };
 
     //! Returns the distance between two colours. It's a
     //! value between 0 and the square root of 3
     //! (the black/white distance)
     Standard_Real XQuantity_Color::Distance(XQuantity_Color^ AColor) {
-        return NativeHandle->Distance(AColor->GetColor());
+        return NativeHandle->Distance(*AColor->GetColor());
     };
 
     //! Returns the square of distance between two colours.
     Standard_Real XQuantity_Color::SquareDistance(XQuantity_Color^ AColor) {
-        return NativeHandle->SquareDistance(AColor->GetColor());
+        return NativeHandle->SquareDistance(*AColor->GetColor());
     };
 
     //! Returns the Blue component (quantity of blue) of the color within range [0.0; 1.0].
@@ -129,7 +129,7 @@ namespace TKernel {
     //! Returns Standard_True if the distance between <me> and
     //! <Other> is greater than Epsilon ().
     Standard_Boolean XQuantity_Color::IsDifferent(XQuantity_Color^ Other) {
-        return NativeHandle->IsDifferent(Other->GetColor());
+        return NativeHandle->IsDifferent(*Other->GetColor());
     };
 
     //! Returns true if the Other color is
@@ -139,7 +139,7 @@ namespace TKernel {
     //! distance is no greater than Epsilon().
     //! These methods are aliases of operator != and operator ==.
     Standard_Boolean XQuantity_Color::IsEqual(XQuantity_Color^ Other) {
-        return NativeHandle->IsEqual(Other->GetColor());
+        return NativeHandle->IsEqual(*Other->GetColor());
     };
 
     //! Returns the Light component (value of the lightness) of the color within range [0.0; 1.0].
@@ -240,8 +240,7 @@ namespace TKernel {
     bool XQuantity_Color::ColorFromHex(System::String^ theHexColorString, XQuantity_Color^ theColor) {
         TCollection_AsciiString asc = XStandard_Helper::toAsciiString(theHexColorString);
         const Standard_CString theColorNameString = asc.ToCString();
-        Quantity_Color theQColor = safe_cast<Quantity_Color>(theColor->GetColor());
-       return Quantity_Color::ColorFromHex(theColorNameString, theQColor);
+       return Quantity_Color::ColorFromHex(theColorNameString, *theColor->GetColor());
     };
 
 
@@ -262,13 +261,13 @@ namespace TKernel {
     //! formatted as 0x00RRGGBB
     //! static 
     void XQuantity_Color::Color2argb(XQuantity_Color^ theColor, Standard_Integer& theARGB) {
-        Quantity_Color::Color2argb(theColor->GetColor(), theARGB);
+        Quantity_Color::Color2argb(*theColor->GetColor(), theARGB);
     };
 
     //! Convert integer ARGB value to Color. Alpha bits are ignored
     //! static 
     void XQuantity_Color::Argb2color(const Standard_Integer theARGB, XQuantity_Color^ theColor) {
-        Quantity_Color::Argb2color(theARGB, theColor->GetColor());
+        Quantity_Color::Argb2color(theARGB, *theColor->GetColor());
     };
 
     //! Internal test

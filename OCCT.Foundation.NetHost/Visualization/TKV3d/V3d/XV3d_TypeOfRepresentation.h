@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfRepresentation_HeaderFile
-#define _V3d_TypeOfRepresentation_HeaderFile
+#ifndef _XV3d_TypeOfRepresentation_HeaderFile
+#define _XV3d_TypeOfRepresentation_HeaderFile
 
 
-enum V3d_TypeOfRepresentation
+public enum class XV3d_TypeOfRepresentation
 {
-V3d_SIMPLE,
-V3d_COMPLETE,
-V3d_PARTIAL,
-V3d_SAMELAST
+	V3d_SIMPLE,
+	V3d_COMPLETE,
+	V3d_PARTIAL,
+	V3d_SAMELAST
 };
 
-#endif // _V3d_TypeOfRepresentation_HeaderFile
+#endif // _XV3d_TypeOfRepresentation_HeaderFile

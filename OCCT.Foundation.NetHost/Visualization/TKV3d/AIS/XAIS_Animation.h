@@ -12,196 +12,193 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_Animation_HeaderFile
-#define _AIS_Animation_HeaderFile
+#ifndef _XAIS_Animation_HeaderFile
+#define _XAIS_Animation_HeaderFile
+#pragma once
+#include <AIS_Animation.hxx>
+#include <XTCollection_AsciiString.h>
+#include <NCollection_Haft.h>
+//#include <XNCollection_Sequence.h>
 
 #include <AIS_AnimationTimer.hxx>
 #include <NCollection_Sequence.hxx>
 #include <TCollection_AsciiString.hxx>
+class AIS_Animation;
 
-//! Structure defining current animation progress.
-struct AIS_AnimationProgress
-{
-  Standard_Real Pts;             //!< global presentation timestamp
-  Standard_Real LocalPts;        //!< presentation within current animation
-  Standard_Real LocalNormalized; //!< normalized position within current animation within 0..1 range
+using namespace TKernel;
+namespace TKV3d {
+    //! Structure defining current animation progress.
+    public ref struct XAIS_AnimationProgress
+    {
+        Standard_Real Pts;             //!< global presentation timestamp
+        Standard_Real LocalPts;        //!< presentation within current animation
+        Standard_Real LocalNormalized; //!< normalized position within current animation within 0..1 range
 
-  AIS_AnimationProgress() : Pts (-1.0), LocalPts (-1.0), LocalNormalized (-1.0) {}
-};
+        XAIS_AnimationProgress() : Pts(-1.0), LocalPts(-1.0), LocalNormalized(-1.0) {}
+    };
 
-DEFINE_STANDARD_HANDLE(AIS_Animation, Standard_Transient)
+    //! Defines animation state.
+    public enum class XAnimationState
+    {
+        AnimationState_Started, //!< animation is in progress
+        AnimationState_Stopped, //!< animation is finished, force stopped or not started
+        AnimationState_Paused   //!< animation is paused and can be started from the pause moment
+    };
 
-//! Class represents a basic animation class.
-//! AIS_Animation can be used as:
-//!
-//! - Animation Implementor
-//!   Sub-classes should override method AIS_Animation::update() to perform specific animation.
-//!   AIS package provides limited number of such animation atoms - classes AIS_AnimationObject and AIS_AnimationCamera, which could be enough for defining a simple animation.
-//!   In general case, application is expected defining own AIS_Animation sub-classes implementing application-specific animation logic
-//!   (e.g. another interpolation or another kind of transformations - like color transition and others).
-//!   The basic conception of AIS_Animation::update() is defining an exact scene state for the current presentation timestamp,
-//!   providing a smooth and continuous animation well defined at any time step and in any direction.
-//!   So that a time difference between two sequential drawn Viewer frames can vary from frame to frame without visual artifacts,
-//!   increasing rendering framerate would not lead to animation being executed too fast
-//!   and low framerate (on slow hardware) would not lead to animation played longer than defined duration.
-//!   Hence, implementation should avoid usage of incremental step logic or should apply it very carefully.
-//!
-//! - Animation Container
-//!   AIS_Animation (no sub-classing) can be used to aggregate a sequence of Animation items (children).
-//!   Each children should be defined with its own duration and start time (presentation timestamp).
-//!   It is possible defining collection of nested AIS_Animation items, so that within each container level
-//!   children define start playback time relative to its holder.
-//!
-//! - Animation playback Controller
-//!   It is suggested that application would define a single AIS_Animation instance (optional sub-classing) for controlling animation playback as whole.
-//!   Such controller should be filled in by other AIS_Animation as children objects,
-//!   and will be managed by application by calling StartTimer(), UpdateTimer() and IsStopped() methods.
-//!
-//! Note, that AIS_Animation::StartTimer() defines a timer calculating an elapsed time, not a multimedia timer executing Viewer updates at specific intervals!
-//! Application should avoid using implicit and immediate Viewer updates to ensure that AIS_Animation::UpdateTimer() is called before each redrawing of a Viewer content.
-//! Redrawing logic should be also managed at application level for managing a smooth animation
-//! (by defining a multimedia timer provided by used GUI framework executing updates at desired framerate, or as continuous redraws in loop).
-class AIS_Animation : public Standard_Transient
-{
-  DEFINE_STANDARD_RTTIEXT(AIS_Animation, Standard_Transient)
-public:
+    //! DEFINE_STANDARD_HANDLE(AIS_Animation, Standard_Transient)
 
-  //! Creates empty animation.
-  Standard_EXPORT AIS_Animation (const TCollection_AsciiString& theAnimationName);
+    //! Class represents a basic animation class.
+    //! AIS_Animation can be used as:
+    //!
+    //! - Animation Implementor
+    //!   Sub-classes should override method AIS_Animation::update() to perform specific animation.
+    //!   AIS package provides limited number of such animation atoms - classes AIS_AnimationObject and AIS_AnimationCamera, which could be enough for defining a simple animation.
+    //!   In general case, application is expected defining own AIS_Animation sub-classes implementing application-specific animation logic
+    //!   (e.g. another interpolation or another kind of transformations - like color transition and others).
+    //!   The basic conception of AIS_Animation::update() is defining an exact scene state for the current presentation timestamp,
+    //!   providing a smooth and continuous animation well defined at any time step and in any direction.
+    //!   So that a time difference between two sequential drawn Viewer frames can vary from frame to frame without visual artifacts,
+    //!   increasing rendering framerate would not lead to animation being executed too fast
+    //!   and low framerate (on slow hardware) would not lead to animation played longer than defined duration.
+    //!   Hence, implementation should avoid usage of incremental step logic or should apply it very carefully.
+    //!
+    //! - Animation Container
+    //!   AIS_Animation (no sub-classing) can be used to aggregate a sequence of Animation items (children).
+    //!   Each children should be defined with its own duration and start time (presentation timestamp).
+    //!   It is possible defining collection of nested AIS_Animation items, so that within each container level
+    //!   children define start playback time relative to its holder.
+    //!
+    //! - Animation playback Controller
+    //!   It is suggested that application would define a single AIS_Animation instance (optional sub-classing) for controlling animation playback as whole.
+    //!   Such controller should be filled in by other AIS_Animation as children objects,
+    //!   and will be managed by application by calling StartTimer(), UpdateTimer() and IsStopped() methods.
+    //!
+    //! Note, that AIS_Animation::StartTimer() defines a timer calculating an elapsed time, not a multimedia timer executing Viewer updates at specific intervals!
+    //! Application should avoid using implicit and immediate Viewer updates to ensure that AIS_Animation::UpdateTimer() is called before each redrawing of a Viewer content.
+    //! Redrawing logic should be also managed at application level for managing a smooth animation
+    //! (by defining a multimedia timer provided by used GUI framework executing updates at desired framerate, or as continuous redraws in loop).
+    ref class TKernel::XTCollection_AsciiString;
+    public ref class XAIS_Animation //: public Standard_Transient
+    {
+        //! DEFINE_STANDARD_RTTIEXT(AIS_Animation, Standard_Transient)
+    public:
+        XAIS_Animation();
 
-  //! Destruct object, clear arguments
-  Standard_EXPORT virtual ~AIS_Animation();
+        //! Creates empty animation.
+        XAIS_Animation(XTCollection_AsciiString^ theAnimationName);
 
-  //! Animation name.
-  const TCollection_AsciiString& Name() const { return myName; }
+        //! Destruct object, clear arguments
+        virtual ~XAIS_Animation();
 
-public:
+        XAIS_Animation(Handle(AIS_Animation) pos);
 
-  //! @return start time of the animation in the timeline
-  Standard_Real StartPts() const { return myPtsStart; }
+        void SetAnimationHandle(Handle(AIS_Animation) pos);
 
-  //! Sets time limits for animation in the animation timeline
-  void SetStartPts (const Standard_Real thePtsStart) { myPtsStart = thePtsStart; }
+        virtual Handle(AIS_Animation) GetAnimation();
 
-  //! @return duration of the animation in the timeline
-  Standard_Real Duration() const { return Max (myOwnDuration, myChildrenDuration); }
+        //! Animation name.
+        XTCollection_AsciiString^ Name();
 
-  //! Update total duration considering all animations on timeline.
-  Standard_EXPORT void UpdateTotalDuration();
+        //! @return start time of the animation in the timeline
+        Standard_Real StartPts();
 
-  //! Return true if duration is defined.
-  Standard_Boolean HasOwnDuration() const { return myOwnDuration > 0.0; }
+        //! Sets time limits for animation in the animation timeline
+        void SetStartPts(Standard_Real thePtsStart);
 
-  //! @return own duration of the animation in the timeline
-  Standard_Real OwnDuration() const { return myOwnDuration; }
+        //! @return duration of the animation in the timeline
+        Standard_Real Duration();
 
-  //! Defines duration of the animation.
-  void SetOwnDuration (const Standard_Real theDuration) { myOwnDuration = theDuration; }
+        //! Update total duration considering all animations on timeline.
+        void UpdateTotalDuration();
 
-  //! Add single animation to the timeline.
-  //! @param theAnimation input animation
-  Standard_EXPORT void Add (const Handle(AIS_Animation)& theAnimation);
+        //! Return true if duration is defined.
+        Standard_Boolean HasOwnDuration();
 
-  //! Clear animation timeline - remove all animations from it.
-  Standard_EXPORT void Clear();
+        //! @return own duration of the animation in the timeline
+        Standard_Real OwnDuration();
 
-  //! Return the child animation with the given name.
-  Standard_EXPORT Handle(AIS_Animation) Find (const TCollection_AsciiString& theAnimationName) const;
+        //! Defines duration of the animation.
+        void SetOwnDuration(Standard_Real theDuration);
 
-  //! Remove the child animation.
-  Standard_EXPORT Standard_Boolean Remove (const Handle(AIS_Animation)& theAnimation);
+        //! Add single animation to the timeline.
+        //! @param theAnimation input animation
+        void Add(XAIS_Animation^ theAnimation);
 
-  //! Replace the child animation.
-  Standard_EXPORT Standard_Boolean Replace (const Handle(AIS_Animation)& theAnimationOld,
-                                            const Handle(AIS_Animation)& theAnimationNew);
+        //! Clear animation timeline - remove all animations from it.
+        void Clear();
 
-  //! Clears own children and then copy child animations from another object.
-  //! Copy also Start Time and Duration values.
-  Standard_EXPORT void CopyFrom (const Handle(AIS_Animation)& theOther);
+        //! Return the child animation with the given name.
+        XAIS_Animation^ Find(XTCollection_AsciiString^ theAnimationName);
 
-  //! Return sequence of child animations.
-  const NCollection_Sequence<Handle(AIS_Animation)>& Children() const { return myAnimations; }
+        //! Remove the child animation.
+        Standard_Boolean Remove(XAIS_Animation^ theAnimation);
 
-public:
+        //! Replace the child animation.
+        Standard_Boolean Replace(XAIS_Animation^ theAnimationOld, XAIS_Animation^ theAnimationNew);
 
-  //! Start animation with internally defined timer instance.
-  //! Calls ::Start() internally.
-  //!
-  //! Note, that this method initializes a timer calculating an elapsed time (presentation timestamps within AIS_Animation::UpdateTimer()),
-  //! not a multimedia timer executing Viewer updates at specific intervals!
-  //! Viewer redrawing should be managed at application level, so that AIS_Animation::UpdateTimer() is called once right before each redrawing of a Viewer content.
-  //!
-  //! @param theStartPts    starting timer position (presentation timestamp)
-  //! @param thePlaySpeed   playback speed (1.0 means normal speed)
-  //! @param theToUpdate    flag to update defined animations to specified start position
-  //! @param theToStopTimer flag to pause timer at the starting position
-  Standard_EXPORT virtual void StartTimer (const Standard_Real    theStartPts,
-                                           const Standard_Real    thePlaySpeed,
-                                           const Standard_Boolean theToUpdate,
-                                           const Standard_Boolean theToStopTimer = Standard_False);
+        //! Clears own children and then copy child animations from another object.
+        //! Copy also Start Time and Duration values.
+        void CopyFrom(XAIS_Animation^ theOther);
 
-  //! Update single frame of animation, update timer state
-  //! @return current time of timeline progress.
-  Standard_EXPORT virtual Standard_Real UpdateTimer();
+        //! Return sequence of child animations.
+        List<XAIS_Animation^>^ Children();
+        //NCollection_Sequence<Handle(AIS_Animation)>& Children() const { return myAnimations; }
 
-  //! Return elapsed time.
-  Standard_Real ElapsedTime() const { return !myTimer.IsNull() ? myTimer->ElapsedTime() : 0.0; }
+        //! Start animation with internally defined timer instance.
+        //! Calls ::Start() internally.
+        //!
+        //! Note, that this method initializes a timer calculating an elapsed time (presentation timestamps within AIS_Animation::UpdateTimer()),
+        //! not a multimedia timer executing Viewer updates at specific intervals!
+        //! Viewer redrawing should be managed at application level, so that AIS_Animation::UpdateTimer() is called once right before each redrawing of a Viewer content.
+        //!
+        //! @param theStartPts    starting timer position (presentation timestamp)
+        //! @param thePlaySpeed   playback speed (1.0 means normal speed)
+        //! @param theToUpdate    flag to update defined animations to specified start position
+        //! @param theToStopTimer flag to pause timer at the starting position
+        //! Standard_Boolean theToStopTimer = Standard_False
+        virtual void StartTimer(Standard_Real theStartPts, Standard_Real thePlaySpeed, Standard_Boolean theToUpdate, Standard_Boolean theToStopTimer);
 
-public:
+        //! Update single frame of animation, update timer state
+        //! @return current time of timeline progress.
+        virtual Standard_Real UpdateTimer();
 
-  //! Start animation. This method changes status of the animation to Started.
-  //! This status defines whether animation is to be performed in the timeline or not.
-  //! @param theToUpdate call Update() method
-  Standard_EXPORT virtual void Start (const Standard_Boolean theToUpdate);
+        //! Return elapsed time.
+        Standard_Real ElapsedTime();
 
-  //! Pause the process timeline.
-  Standard_EXPORT virtual void Pause();
+        //! Start animation. This method changes status of the animation to Started.
+        //! This status defines whether animation is to be performed in the timeline or not.
+        //! @param theToUpdate call Update() method
+        virtual void Start(Standard_Boolean theToUpdate);
 
-  //! Stop animation. This method changed status of the animation to Stopped.
-  //! This status shows that animation will not be performed in the timeline or it is finished.
-  Standard_EXPORT virtual void Stop();
+        //! Pause the process timeline.
+        virtual void Pause();
 
-  //! Check if animation is to be performed in the animation timeline.
-  //! @return True if it is stopped of finished.
-  bool IsStopped() { return myState != AnimationState_Started; }
+        //! Stop animation. This method changed status of the animation to Stopped.
+        //! This status shows that animation will not be performed in the timeline or it is finished.
+        virtual void Stop();
 
-  //! Update single frame of animation, update timer state
-  //! @param thePts [in] the time moment within [0; Duration()]
-  //! @return True if timeline is in progress
-  Standard_EXPORT virtual Standard_Boolean Update (const Standard_Real thePts);
+        //! Check if animation is to be performed in the animation timeline.
+        //! @return True if it is stopped of finished.
+        bool IsStopped();
 
-protected:
+        //! Update single frame of animation, update timer state
+        //! @param thePts [in] the time moment within [0; Duration()]
+        //! @return True if timeline is in progress
+        virtual Standard_Boolean Update(Standard_Real thePts);
 
-  //! Process one step of the animation according to the input time progress, including all children.
-  //! Calls also ::update() to update own animation.
-  Standard_EXPORT virtual void updateWithChildren (const AIS_AnimationProgress& thePosition);
-
-  //! Update the own animation to specified position - should be overridden by sub-class.
-  virtual void update (const AIS_AnimationProgress& theProgress) { (void )theProgress; }
-
-protected:
-
-  //! Defines animation state.
-  enum AnimationState
-  {
-    AnimationState_Started, //!< animation is in progress
-    AnimationState_Stopped, //!< animation is finished, force stopped or not started
-    AnimationState_Paused   //!< animation is paused and can be started from the pause moment
-  };
-
-protected:
-
-  Handle(Media_Timer) myTimer;
-
-  TCollection_AsciiString myName;           //!< animation name
-  NCollection_Sequence<Handle(AIS_Animation)>
-                        myAnimations;       //!< sequence of child animations
-
-  AnimationState        myState;            //!< animation state - started, stopped of paused
-  Standard_Real         myPtsStart;         //!< time of start in the timeline
-  Standard_Real         myOwnDuration;      //!< duration of animation excluding children
-  Standard_Real         myChildrenDuration; //!< duration of animation including children
-
-};
-
-#endif // _AIS_Animation_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() { // Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) { // Standard_OVERRIDE {
+                NativeHandle() = Handle(AIS_Animation)::DownCast(handle);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(AIS_Animation)> NativeHandle;
+    };
+}
+#endif // _XAIS_Animation_HeaderFile

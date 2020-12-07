@@ -61,7 +61,7 @@ namespace TKV3d {
 
     //! Sets basic presentation color (RGB components, does not modifies transparency).
     void XGraphic3d_PresentationAttributes::SetColor(XQuantity_Color^ theColor) {
-        NativeHandle()->SetColor(theColor->GetColor());
+        NativeHandle()->SetColor(*theColor->GetColor());
     };
 
     //! Returns basic presentation transparency (0 - opaque, 1 - fully transparent), 0 by default (opaque).

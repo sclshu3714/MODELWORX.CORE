@@ -12,55 +12,69 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_AnimationCamera_HeaderFile
-#define _AIS_AnimationCamera_HeaderFile
+#ifndef _XAIS_AnimationCamera_HeaderFile
+#define _XAIS_AnimationCamera_HeaderFile
+#pragma once
+#include <AIS_AnimationCamera.hxx>
+#include <XAIS_Animation.h>
+#include <XTCollection_AsciiString.h>
+#include <XAIS_InteractiveContext.h>
+#include <XAIS_InteractiveObject.h>
+#include <xgp_Trsf.h>
+#include <XV3d_View.h>
 
 #include <AIS_Animation.hxx>
 
+class AIS_AnimationCamera;
 class Graphic3d_Camera;
 class V3d_View;
 
-//! Camera animation.
-class AIS_AnimationCamera : public AIS_Animation
-{
-  DEFINE_STANDARD_RTTIEXT(AIS_AnimationCamera, AIS_Animation)
-public:
+namespace TKV3d {
+    ref class XV3d_View;
+    //! Camera animation.
+    public ref class XAIS_AnimationCamera : public XAIS_Animation
+    {
+        //! DEFINE_STANDARD_RTTIEXT(AIS_AnimationCamera, AIS_Animation)
+    public:
 
-  //! Main constructor.
-  Standard_EXPORT AIS_AnimationCamera (const TCollection_AsciiString& theAnimationName,
-                                       const Handle(V3d_View)& theView);
+        //! Main constructor.
+        XAIS_AnimationCamera(XTCollection_AsciiString^ theAnimationName, XV3d_View^ theView);
 
-  //! Return the target view.
-  const Handle(V3d_View)& View() const { return myView; }
+        //! Return the target view.
+        XV3d_View^ View();
 
-  //! Set target view.
-  void SetView (const Handle(V3d_View)& theView) { myView = theView; }
+        //! Set target view.
+        void SetView(XV3d_View^ theView);
 
-  //! Return camera start position.
-  const Handle(Graphic3d_Camera)& CameraStart() const { return myCamStart; }
+        //! Return camera start position.
+        Handle(Graphic3d_Camera) CameraStart();
 
-  //! Define camera start position.
-  void SetCameraStart (const Handle(Graphic3d_Camera)& theCameraStart) { myCamStart = theCameraStart; }
+        //! Define camera start position.
+        void SetCameraStart(const Handle(Graphic3d_Camera)& theCameraStart);
 
-  //! Return camera end position.
-  const Handle(Graphic3d_Camera)& CameraEnd() const { return myCamEnd; }
+        //! Return camera end position.
+        Handle(Graphic3d_Camera) CameraEnd();
 
-  //! Define camera end position.
-  void SetCameraEnd (const Handle(Graphic3d_Camera)& theCameraEnd) { myCamEnd = theCameraEnd; }
+        //! Define camera end position.
+        void SetCameraEnd(const Handle(Graphic3d_Camera)& theCameraEnd);
 
-protected:
 
-  //! Update the progress.
-  Standard_EXPORT virtual void update (const AIS_AnimationProgress& theProgress) Standard_OVERRIDE;
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                NativeHandle() = Handle(AIS_AnimationCamera)::DownCast(handle);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(AIS_AnimationCamera)> NativeHandle;
 
-protected:
+    };
 
-  Handle(V3d_View)         myView;        //!< view to setup camera
-  Handle(Graphic3d_Camera) myCamStart;    //!< starting camera position
-  Handle(Graphic3d_Camera) myCamEnd;      //!< end camera position
-
-};
-
-DEFINE_STANDARD_HANDLE(AIS_AnimationCamera, AIS_Animation)
-
-#endif // _AIS_AnimationCamera_HeaderFile
+    //! DEFINE_STANDARD_HANDLE(AIS_AnimationCamera, AIS_Animation)
+}
+#endif // _XAIS_AnimationCamera_HeaderFile

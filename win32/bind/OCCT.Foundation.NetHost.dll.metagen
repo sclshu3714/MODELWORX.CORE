@@ -1664,13 +1664,13 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     Void .ctor(NCollection_Vec3<float>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Double, Double, Double, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(Quantity_Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Quantity_Color*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(XQuantity_NameOfColor): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     Quantity_Color* Handle 'get ' : 
   Methods:
-    GetColor(Quantity_Color*): PrivateScope, Public, HideBySig
+    GetColor(): PrivateScope, Public, HideBySig
     ChangeContrast(Double IsConst): PrivateScope, Public, HideBySig
     ChangeIntensity(Double IsConst): PrivateScope, Public, HideBySig
     SetValues(Double IsConst, Double, Double, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
@@ -2004,7 +2004,7 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-    GetAsciiString(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    GetAsciiString(): PrivateScope, Public, HideBySig
     AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
     AssignCat(SByte*): PrivateScope, Public, HideBySig
     AssignCat(Double): PrivateScope, Public, HideBySig
@@ -4582,7 +4582,7 @@ Class TKBO.XBRepAlgoAPI_Section: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Approximation(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ComputePCurveOn1(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     ComputePCurveOn2(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    Build(): PrivateScope, Public, Virtual, HideBySig
+    Build(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     HasAncestorFaceOn1(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
     HasAncestorFaceOn2(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
     Shape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -5543,7 +5543,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShell: AutoLayout, AnsiClass, Class, Public,
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     Init(XGeom_Surface, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Error(): PrivateScope, Public, HideBySig
     Shell(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -5996,6 +5996,406 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_AnimationProgress: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Double Pts : Public
+    Double LocalPts : Public
+    Double LocalNormalized : Public
+Class NCollection_Haft<opencascade::handle<AIS_Animation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_Animation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<AIS_Animation>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetAnimationHandle(handle<AIS_Animation>*): PrivateScope, Public, HideBySig
+    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Name(): PrivateScope, Public, HideBySig
+    StartPts(): PrivateScope, Public, HideBySig
+    SetStartPts(Double): PrivateScope, Public, HideBySig
+    Duration(): PrivateScope, Public, HideBySig
+    UpdateTotalDuration(): PrivateScope, Public, HideBySig
+    HasOwnDuration(): PrivateScope, Public, HideBySig
+    OwnDuration(): PrivateScope, Public, HideBySig
+    SetOwnDuration(Double): PrivateScope, Public, HideBySig
+    Add(XAIS_Animation): PrivateScope, Public, HideBySig
+    Clear(): PrivateScope, Public, HideBySig
+    Find(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Remove(XAIS_Animation): PrivateScope, Public, HideBySig
+    Replace(XAIS_Animation, XAIS_Animation): PrivateScope, Public, HideBySig
+    CopyFrom(XAIS_Animation): PrivateScope, Public, HideBySig
+    Children(): PrivateScope, Public, HideBySig
+    StartTimer(Double, Double, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UpdateTimer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ElapsedTime(): PrivateScope, Public, HideBySig
+    Start(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Pause(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Stop(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsStopped(): PrivateScope, Public, HideBySig
+    Update(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct TKV3d.XAnimationState: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    TKV3d.XAnimationState AnimationState_Started = 0 : Public, Static, Literal, HasDefault
+    TKV3d.XAnimationState AnimationState_Stopped = 1 : Public, Static, Literal, HasDefault
+    TKV3d.XAnimationState AnimationState_Paused = 2 : Public, Static, Literal, HasDefault
+Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<V3d_View>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<V3d_Viewer>*, TKV3d.XV3d_View): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<V3d_Viewer>*, XV3d_TypeOfView): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetViewMappingDefault(): PrivateScope, Public, HideBySig
+    ResetViewMapping(): PrivateScope, Public, HideBySig
+    Reset(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Convert(Double, Double, Double, Int32, Int32): PrivateScope, Public, HideBySig
+    Convert(Int32, Int32, Double, Double, Double): PrivateScope, Public, HideBySig
+    Convert(Double, Double, Int32, Int32): PrivateScope, Public, HideBySig
+    Convert(Double): PrivateScope, Public, HideBySig
+    Convert(Int32, Int32, Double, Double): PrivateScope, Public, HideBySig
+    Convert(Int32): PrivateScope, Public, HideBySig
+    ConvertWithProj(Int32, Int32, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    ConvertToGrid(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    ConvertToGrid(Int32, Int32, Double, Double, Double): PrivateScope, Public, HideBySig
+    Project(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    Project(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    BackgroundColor(): PrivateScope, Public, HideBySig
+    BackgroundColor(XQuantity_TypeOfColor, Double, Double, Double): PrivateScope, Public, HideBySig
+    GradientBackgroundColors(XQuantity_Color, XQuantity_Color): PrivateScope, Public, HideBySig
+    GradientBackground(Aspect_GradientBackground*): PrivateScope, Public, HideBySig
+    Scale(): PrivateScope, Public, HideBySig
+    AxialScale(Int32, Int32, XV3d_TypeOfAxe): PrivateScope, Public, HideBySig
+    AxialScale(Double, Double, Double): PrivateScope, Public, HideBySig
+    Size(Double, Double): PrivateScope, Public, HideBySig
+    ZSize(): PrivateScope, Public, HideBySig
+    Eye(Double, Double, Double): PrivateScope, Public, HideBySig
+    FocalReferencePoint(Double, Double, Double): PrivateScope, Public, HideBySig
+    ProjReferenceAxe(Int32, Int32, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    Depth(): PrivateScope, Public, HideBySig
+    Proj(Double, Double, Double): PrivateScope, Public, HideBySig
+    At(Double, Double, Double): PrivateScope, Public, HideBySig
+    Up(Double, Double, Double): PrivateScope, Public, HideBySig
+    Twist(): PrivateScope, Public, HideBySig
+    ShadingModel(): PrivateScope, Public, HideBySig
+    TextureEnv(handle<Graphic3d_TextureEnv>*): PrivateScope, Public, HideBySig
+    Visualization(): PrivateScope, Public, HideBySig
+    IfMoreLights(): PrivateScope, Public, HideBySig
+    ActiveLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
+    InitActiveLights(): PrivateScope, Public, HideBySig
+    MoreActiveLights(): PrivateScope, Public, HideBySig
+    NextActiveLights(): PrivateScope, Public, HideBySig
+    ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    LightLimit(): PrivateScope, Public, HideBySig
+    Viewer(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    IfWindow(): PrivateScope, Public, HideBySig
+    Window(handle<Aspect_Window>*): PrivateScope, Public, HideBySig
+    Type(): PrivateScope, Public, HideBySig
+    Pan(Int32, Int32, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Zoom(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    StartZoomAtPoint(Int32, Int32): PrivateScope, Public, HideBySig
+    ZoomAtPoint(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    StartRotation(Int32, Int32, Double): PrivateScope, Public, HideBySig
+    Rotation(Int32, Int32): PrivateScope, Public, HideBySig
+    SetFocale(Double): PrivateScope, Public, HideBySig
+    Focale(): PrivateScope, Public, HideBySig
+    View(handle<Graphic3d_CView>*): PrivateScope, Public, HideBySig
+    SetComputedMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ComputedMode(): PrivateScope, Public, HideBySig
+    WindowFitAll(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    FitMinMax(handle<Graphic3d_Camera>* IsImplicitlyDereferenced, Bnd_Box* IsImplicitlyDereferenced, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetGrid(xgp_Ax3, handle<Aspect_Grid>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetGridActivity(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Dump(SByte*, Graphic3d_BufferType* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, Int32, Int32, Graphic3d_BufferType* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), XV3d_StereoDumpOptions): PrivateScope, Public, HideBySig
+    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, V3d_ImageDumpOptions* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetBackFacingModel(XV3d_TypeOfBackfacingModel): PrivateScope, Public, HideBySig
+    BackFacingModel(): PrivateScope, Public, HideBySig
+    AddClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>*): PrivateScope, Public, HideBySig
+    PlaneLimit(): PrivateScope, Public, HideBySig
+    SetCamera(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Camera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    DefaultCamera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    RenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
+    ChangeRenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
+    IsCullingEnabled(): PrivateScope, Public, HideBySig
+    SetFrustumCulling(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DiagnosticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced, XGraphic3d_DiagnosticInfo): PrivateScope, Public, HideBySig
+    StatisticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    StatisticInformation(): PrivateScope, Public, HideBySig
+    GravityPoint(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    SetV3dViewHandle(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    GetV3dView(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    SetWindow(handle<Aspect_Window>* IsImplicitlyDereferenced, Void*): PrivateScope, Public, HideBySig
+    SetMagnify(handle<Aspect_Window>* IsImplicitlyDereferenced, XV3d_View, Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    Remove(): PrivateScope, Public, HideBySig
+    Update(): PrivateScope, Public, HideBySig
+    Redraw(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RedrawImmediate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Invalidate(): PrivateScope, Public, HideBySig
+    IsInvalidated(): PrivateScope, Public, HideBySig
+    IsInvalidatedImmediate(): PrivateScope, Public, HideBySig
+    InvalidateImmediate(): PrivateScope, Public, HideBySig
+    MustBeResized(): PrivateScope, Public, HideBySig
+    DoMapping(): PrivateScope, Public, HideBySig
+    IsEmpty(): PrivateScope, Public, HideBySig
+    UpdateLights(): PrivateScope, Public, HideBySig
+    SetAutoZFitMode(Boolean(HasFieldMarshal), Double): PrivateScope, Public, HideBySig
+    AutoZFitMode(): PrivateScope, Public, HideBySig
+    AutoZFitScaleFactor(): PrivateScope, Public, HideBySig
+    AutoZFit(): PrivateScope, Public, HideBySig
+    ZFitAll(Double): PrivateScope, Public, HideBySig
+    SetBackgroundColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    SetBackgroundColor(XQuantity_TypeOfColor, Double, Double, Double): PrivateScope, Public, HideBySig
+    SetBgGradientColors(XQuantity_Color, XQuantity_Color, XAspect_GradientFillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetBgGradientStyle(XAspect_GradientFillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetBackgroundImage(SByte*, XAspect_FillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetBgImageStyle(XAspect_FillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetBackgroundCubeMap(handle<Graphic3d_CubeMap>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetAxis(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    SetShadingModel(XGraphic3d_TypeOfShadingModel): PrivateScope, Public, HideBySig
+    SetTextureEnv(handle<Graphic3d_TextureEnv>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetVisualization(XV3d_TypeOfVisualization): PrivateScope, Public, HideBySig
+    SetLightOn(): PrivateScope, Public, HideBySig
+    SetLightOn(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetLightOff(): PrivateScope, Public, HideBySig
+    SetLightOff(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    IsActiveLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetImmediateUpdate(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ZBufferTriedronSetup(XQuantity_Color, XQuantity_Color, XQuantity_Color, Double, Double, Int32): PrivateScope, Public, HideBySig
+    TriedronDisplay(XAspect_TypeOfTriedronPosition, XQuantity_Color, Double, XV3d_TypeOfVisualization): PrivateScope, Public, HideBySig
+    TriedronErase(): PrivateScope, Public, HideBySig
+    GetGraduatedTrihedron(Graphic3d_GraduatedTrihedron*): PrivateScope, Public, HideBySig
+    GraduatedTrihedronDisplay(Graphic3d_GraduatedTrihedron* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GraduatedTrihedronErase(): PrivateScope, Public, HideBySig
+    SetFront(): PrivateScope, Public, HideBySig
+    Rotate(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Rotate(XV3d_TypeOfAxe, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Rotate(XV3d_TypeOfAxe, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Rotate(Double, Double, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Rotate(Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Move(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Move(XV3d_TypeOfAxe, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Move(Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Translate(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Translate(XV3d_TypeOfAxe, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Translate(Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Place(Int32, Int32, Double): PrivateScope, Public, HideBySig
+    Turn(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Turn(V3d_TypeOfAxe, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Turn(Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetTwist(Double): PrivateScope, Public, HideBySig
+    SetEye(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetDepth(Double): PrivateScope, Public, HideBySig
+    SetProj(XV3d_TypeOfOrientation, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetProj(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetAt(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetUp(XV3d_TypeOfOrientation): PrivateScope, Public, HideBySig
+    SetUp(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetViewOrientationDefault(): PrivateScope, Public, HideBySig
+    ResetViewOrientation(): PrivateScope, Public, HideBySig
+    Panning(Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetCenter(Int32, Int32): PrivateScope, Public, HideBySig
+    SetSize(Double): PrivateScope, Public, HideBySig
+    SetZSize(Double): PrivateScope, Public, HideBySig
+    SetZoom(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetScale(Double): PrivateScope, Public, HideBySig
+    SetAxialScale(Double, Double, Double): PrivateScope, Public, HideBySig
+    FitAll(Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    FitAll(Bnd_Box* IsImplicitlyDereferenced, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    FitAll(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DepthFitAll(Double, Double): PrivateScope, Public, HideBySig
+    WindowFit(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<AIS_AnimationCamera> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_AnimationCamera: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XAIS_Animation
+    Void .ctor(TKernel.XTCollection_AsciiString, TKV3d.XV3d_View): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    View(): PrivateScope, Public, HideBySig
+    SetView(XV3d_View): PrivateScope, Public, HideBySig
+    CameraStart(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    SetCameraStart(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    CameraEnd(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    SetCameraEnd(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_AnimationCamera(): PrivateScope, Public, HideBySig
+Struct XV3d_TypeOfView: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_TypeOfView V3d_ORTHOGRAPHIC = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfView V3d_PERSPECTIVE = 1 : Public, Static, Literal, HasDefault
+Struct XV3d_TypeOfAxe: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_TypeOfAxe V3d_X = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfAxe V3d_Y = 1 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfAxe V3d_Z = 2 : Public, Static, Literal, HasDefault
+Struct XV3d_TypeOfVisualization: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_TypeOfVisualization V3d_WIREFRAME = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfVisualization V3d_ZBUFFER = 1 : Public, Static, Literal, HasDefault
+Struct XV3d_TypeOfOrientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_TypeOfOrientation V3d_Xpos = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_Ypos = 1 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_Zpos = 2 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_Xneg = 3 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_Yneg = 4 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_Zneg = 5 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYpos = 6 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposZpos = 7 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_YposZpos = 8 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYneg = 9 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYpos = 10 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegZneg = 11 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegZpos = 12 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_YnegZneg = 13 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_YnegZpos = 14 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYneg = 15 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposZneg = 16 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_YposZneg = 17 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYposZpos = 18 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYnegZpos = 19 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYposZneg = 20 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYposZpos = 21 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XposYnegZneg = 22 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYposZneg = 23 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYnegZpos = 24 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_XnegYnegZneg = 25 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_AxoLeft = 24 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_AxoRight = 19 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Front = 4 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Back = 1 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Top = 2 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Bottom = 5 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Left = 3 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Zup_Right = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_AxoLeft = 21 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_AxoRight = 18 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Front = 2 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Back = 5 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Top = 1 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Bottom = 4 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Left = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfOrientation V3d_TypeOfOrientation_Yup_Right = 3 : Public, Static, Literal, HasDefault
+Struct XV3d_StereoDumpOptions: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_StereoDumpOptions V3d_SDO_MONO = 0 : Public, Static, Literal, HasDefault
+    XV3d_StereoDumpOptions V3d_SDO_LEFT_EYE = 1 : Public, Static, Literal, HasDefault
+    XV3d_StereoDumpOptions V3d_SDO_RIGHT_EYE = 2 : Public, Static, Literal, HasDefault
+    XV3d_StereoDumpOptions V3d_SDO_BLENDED = 3 : Public, Static, Literal, HasDefault
+Struct XV3d_TypeOfBackfacingModel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XV3d_TypeOfBackfacingModel V3d_TOBM_AUTOMATIC = 0 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfBackfacingModel V3d_TOBM_ALWAYS_DISPLAYED = 1 : Public, Static, Literal, HasDefault
+    XV3d_TypeOfBackfacingModel V3d_TOBM_NEVER_DISPLAYED = 2 : Public, Static, Literal, HasDefault
+Struct XAspect_GradientFillMethod: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_GradientFillMethod Aspect_GFM_NONE = 0 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_HOR = 1 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_VER = 2 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_DIAG1 = 3 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_DIAG2 = 4 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_CORNER1 = 5 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_CORNER2 = 6 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_CORNER3 = 7 : Public, Static, Literal, HasDefault
+    XAspect_GradientFillMethod Aspect_GFM_CORNER4 = 8 : Public, Static, Literal, HasDefault
+Struct XAspect_TypeOfTriedronPosition: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_CENTER = 0 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_TOP = 1 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_BOTTOM = 2 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_LEFT = 4 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_RIGHT = 8 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_LEFT_LOWER = 6 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_LEFT_UPPER = 5 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_RIGHT_LOWER = 10 : Public, Static, Literal, HasDefault
+    XAspect_TypeOfTriedronPosition Aspect_TOTP_RIGHT_UPPER = 9 : Public, Static, Literal, HasDefault
+Struct XAspect_FillMethod: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_FillMethod Aspect_FM_NONE = 0 : Public, Static, Literal, HasDefault
+    XAspect_FillMethod Aspect_FM_CENTERED = 1 : Public, Static, Literal, HasDefault
+    XAspect_FillMethod Aspect_FM_TILED = 2 : Public, Static, Literal, HasDefault
+    XAspect_FillMethod Aspect_FM_STRETCH = 3 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_DiagnosticInfo: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Device = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_FrameBuffer = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Limits = 4 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Memory = 8 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_NativePlatform = 16 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Extensions = 32 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Short = 7 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Basic = 31 : Public, Static, Literal, HasDefault
+    XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Complete = 63 : Public, Static, Literal, HasDefault
+Class NCollection_Haft<opencascade::handle<AIS_AnimationObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_AnimationObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKV3d.XAIS_Animation
+    Void .ctor(TKernel.XTCollection_AsciiString, TKV3d.XAIS_InteractiveContext, TKV3d.XAIS_InteractiveObject, TKMath.xgp_Trsf, TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetAnimationObjectHandle(handle<AIS_AnimationObject>*): PrivateScope, Public, HideBySig
+    GetAnimationObject(handle<AIS_AnimationObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_AnimationObject(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<AIS_Axis> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

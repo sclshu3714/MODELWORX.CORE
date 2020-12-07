@@ -1,57 +1,40 @@
-// Created by: Anastasia BORISOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XAIS_AnimationCamera.h>
+namespace TKV3d {
 
-#include <AIS_AnimationCamera.hxx>
+    //! Main constructor.
+    XAIS_AnimationCamera::XAIS_AnimationCamera(XTCollection_AsciiString^ theAnimationName, XV3d_View^ theView) {
+        NativeHandle() = new AIS_AnimationCamera(*theAnimationName->GetAsciiString(), theView->GetV3dView());
+        SetAnimationHandle(NativeHandle());
+    };
 
-#include <Graphic3d_Camera.hxx>
-#include <Precision.hxx>
-#include <V3d_View.hxx>
+    //! Return the target view.
+    XV3d_View^ XAIS_AnimationCamera::View() {
+        V3d_View* temp = new V3d_View(*NativeHandle()->View());
+        return gcnew XV3d_View(temp);
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(AIS_AnimationCamera, AIS_Animation)
+    //! Set target view.
+    void XAIS_AnimationCamera::SetView(XV3d_View^ theView) {
+        NativeHandle()->SetView(theView->GetV3dView());
+    };
 
-//=============================================================================
-//function : AIS_AnimationCamera
-//purpose  :
-//=============================================================================
-AIS_AnimationCamera::AIS_AnimationCamera (const TCollection_AsciiString& theAnimationName,
-                                          const Handle(V3d_View)& theView)
-: AIS_Animation (theAnimationName),
-  myView (theView)
-{
-  //
-}
+    //! Return camera start position.
+    Handle(Graphic3d_Camera) XAIS_AnimationCamera::CameraStart() {
+        return  NativeHandle()->CameraStart();
+    };
 
-//=============================================================================
-//function : update
-//purpose  :
-//=============================================================================
-void AIS_AnimationCamera::update (const AIS_AnimationProgress& theProgress)
-{
-  if (myView.IsNull()
-   || myCamStart.IsNull()
-   || myCamEnd.IsNull())
-  {
-    return;
-  }
+    //! Define camera start position.
+    void XAIS_AnimationCamera::SetCameraStart(const Handle(Graphic3d_Camera)& theCameraStart) {
+        NativeHandle()->SetCameraStart(theCameraStart);
+    };
 
-  Handle(Graphic3d_Camera) aCamera = myView->Camera();
+    //! Return camera end position.
+    Handle(Graphic3d_Camera) XAIS_AnimationCamera::CameraEnd() {
+        return  NativeHandle()->CameraEnd();
+    };
 
-  Graphic3d_CameraLerp aCamLerp (myCamStart, myCamEnd);
-  aCamLerp.Interpolate (HasOwnDuration() ? theProgress.LocalNormalized : 1.0, aCamera);
-
-  const Standard_Boolean aPrevImmUpdate = myView->SetImmediateUpdate (Standard_False);
-  myView->SetCamera (aCamera);
-  myView->SetImmediateUpdate (aPrevImmUpdate);
-  myView->Invalidate();
+    //! Define camera end position.
+    void XAIS_AnimationCamera::SetCameraEnd(const Handle(Graphic3d_Camera)& theCameraEnd) {
+        NativeHandle()->SetCameraEnd(theCameraEnd);
+    };
 }

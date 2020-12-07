@@ -20,7 +20,7 @@ namespace TKV3d {
     //! The width of the line is determined by applying the line width scale factor to this nominal line width.
     //! The supported line widths vary by 1-pixel units.
     XGraphic3d_AspectLine3d::XGraphic3d_AspectLine3d(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, Standard_Real theWidth) {
-        NativeHandle() = new Graphic3d_AspectLine3d(theColor->GetColor(), safe_cast<Aspect_TypeOfLine>(theType), theWidth);
+        NativeHandle() = new Graphic3d_AspectLine3d(*theColor->GetColor(), safe_cast<Aspect_TypeOfLine>(theType), theWidth);
     };
 
     Handle(Graphic3d_AspectLine3d) XGraphic3d_AspectLine3d::GetAspectLine3d() {

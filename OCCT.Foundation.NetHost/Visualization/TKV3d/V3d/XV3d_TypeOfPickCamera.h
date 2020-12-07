@@ -14,18 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfPickCamera_HeaderFile
-#define _V3d_TypeOfPickCamera_HeaderFile
+#ifndef _XV3d_TypeOfPickCamera_HeaderFile
+#define _XV3d_TypeOfPickCamera_HeaderFile
 
 
-enum V3d_TypeOfPickCamera
+public enum class V3d_TypeOfPickCamera
 {
-V3d_POSITIONCAMERA,
-V3d_SPACECAMERA,
-V3d_RADIUSTEXTCAMERA,
-V3d_ExtRADIUSCAMERA,
-V3d_IntRADIUSCAMERA,
-V3d_NOTHINGCAMERA
+	V3d_POSITIONCAMERA,
+	V3d_SPACECAMERA,
+	V3d_RADIUSTEXTCAMERA,
+	V3d_ExtRADIUSCAMERA,
+	V3d_IntRADIUSCAMERA,
+	V3d_NOTHINGCAMERA
 };
 
-#endif // _V3d_TypeOfPickCamera_HeaderFile
+#endif // _XV3d_TypeOfPickCamera_HeaderFile

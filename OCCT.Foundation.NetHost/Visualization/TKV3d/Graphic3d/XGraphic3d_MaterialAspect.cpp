@@ -76,7 +76,8 @@ namespace TKV3d  {
     //! - standard name for a material within enumeration
     //! - "UserDefined" for non-standard material without name specified externally.
     XTCollection_AsciiString^ XGraphic3d_MaterialAspect::StringName() {
-        return gcnew XTCollection_AsciiString(NativeHandle->StringName());
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->StringName());
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Returns the given name of this material. This might be:
@@ -88,7 +89,7 @@ namespace TKV3d  {
     //! The current material become a "UserDefined" material.
     //! Set the name of the "UserDefined" material.
     void XGraphic3d_MaterialAspect::SetMaterialName(XTCollection_AsciiString^ theName) {
-        NativeHandle->SetMaterialName(theName->GetAsciiString());
+        NativeHandle->SetMaterialName(*theName->GetAsciiString());
     };
 
     //! Resets the material with the original values according to
@@ -107,7 +108,7 @@ namespace TKV3d  {
     //! Modifies the ambient and diffuse color of the surface.
     //! WARNING! Has no effect for Graphic3d_MATERIAL_ASPECT material (color should be set to Graphic3d_Aspects::SetInteriorColor()).
     void XGraphic3d_MaterialAspect::SetColor(XQuantity_Color^ theColor) {
-        NativeHandle->SetColor(theColor->GetColor());
+        NativeHandle->SetColor(*theColor->GetColor());
     };
 
     //! Returns the transparency coefficient of the surface (1.0 - Alpha); 0.0 means opaque.
@@ -141,7 +142,7 @@ namespace TKV3d  {
 
     //! Modifies the ambient color of the surface.
     void XGraphic3d_MaterialAspect::SetAmbientColor(XQuantity_Color^ theColor) {
-        NativeHandle->SetAmbientColor(theColor->GetColor());
+        NativeHandle->SetAmbientColor(*theColor->GetColor());
     };
 
     //! Returns the diffuse color of the surface.
@@ -151,7 +152,7 @@ namespace TKV3d  {
 
     //! Modifies the diffuse color of the surface.
     void XGraphic3d_MaterialAspect::SetDiffuseColor(XQuantity_Color^ theColor) {
-        NativeHandle->SetDiffuseColor(theColor->GetColor());
+        NativeHandle->SetDiffuseColor(*theColor->GetColor());
     };
 
     //! Returns the specular color of the surface.
@@ -161,7 +162,7 @@ namespace TKV3d  {
 
     //! Modifies the specular color of the surface.
     void XGraphic3d_MaterialAspect::SetSpecularColor(XQuantity_Color^ theColor) {
-        NativeHandle->SetSpecularColor(theColor->GetColor());
+        NativeHandle->SetSpecularColor(*theColor->GetColor());
     };
 
     //! Returns the emissive color of the surface.
@@ -171,7 +172,7 @@ namespace TKV3d  {
 
     //! Modifies the emissive color of the surface.
     void XGraphic3d_MaterialAspect::SetEmissiveColor(XQuantity_Color^ theColor) {
-        NativeHandle->SetEmissiveColor(theColor->GetColor());
+        NativeHandle->SetEmissiveColor(*theColor->GetColor());
     };
 
     //! Returns the luminosity of the surface.

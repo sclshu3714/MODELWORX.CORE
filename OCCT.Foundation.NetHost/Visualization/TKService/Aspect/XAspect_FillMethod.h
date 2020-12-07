@@ -13,17 +13,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_FillMethod_HeaderFile
-#define _Aspect_FillMethod_HeaderFile
+#ifndef _XAspect_FillMethod_HeaderFile
+#define _XAspect_FillMethod_HeaderFile
 
 //! Defines the fill methods to
 //! write bitmaps in a window.
-enum Aspect_FillMethod
+public enum class XAspect_FillMethod
 {
-Aspect_FM_NONE,
-Aspect_FM_CENTERED,
-Aspect_FM_TILED,
-Aspect_FM_STRETCH
+	Aspect_FM_NONE,
+	Aspect_FM_CENTERED,
+	Aspect_FM_TILED,
+	Aspect_FM_STRETCH
 };
 
-#endif // _Aspect_FillMethod_HeaderFile
+#endif // _XAspect_FillMethod_HeaderFile

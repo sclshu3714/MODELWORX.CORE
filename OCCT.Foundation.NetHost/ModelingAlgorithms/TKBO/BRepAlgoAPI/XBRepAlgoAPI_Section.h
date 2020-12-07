@@ -176,7 +176,7 @@ namespace TKBO {
 		//! Performs the algorithm
 		//! Filling interference Data Structure (if it is necessary)
 		//! Building the result of the operation.
-		virtual void Build() Standard_OVERRIDE;
+		virtual void Build();// Standard_OVERRIDE;
 
 
 		//! get the face of the first part giving section edge <E>.

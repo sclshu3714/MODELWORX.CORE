@@ -12,49 +12,69 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_AnimationObject_HeaderFile
-#define _AIS_AnimationObject_HeaderFile
+#ifndef _XAIS_AnimationObject_HeaderFile
+#define _XAIS_AnimationObject_HeaderFile
+#pragma once
+#include <AIS_AnimationObject.hxx>
+#include <XAIS_Animation.h>
+#include <XTCollection_AsciiString.h>
+#include <XAIS_InteractiveContext.h>
+#include <XAIS_InteractiveObject.h>
+#include <xgp_Trsf.h>
 
 #include <AIS_Animation.hxx>
 #include <AIS_InteractiveContext.hxx>
 #include <gp_TrsfNLerp.hxx>
+class AIS_AnimationObject;
 
-//! Animation defining object transformation.
-class AIS_AnimationObject : public AIS_Animation
-{
-  DEFINE_STANDARD_RTTIEXT(AIS_AnimationObject, AIS_Animation)
-public:
+using namespace TKernel;
+using namespace TKMath;
+namespace TKV3d {
+    ref class XAIS_InteractiveContext;
+    ref class XAIS_InteractiveObject;
+    ref class TKMath::xgp_Trsf;
+    ref class TKernel::XTCollection_AsciiString;
+    //! Animation defining object transformation.
+    public ref class XAIS_AnimationObject : public XAIS_Animation
+    {
+        //! DEFINE_STANDARD_RTTIEXT(AIS_AnimationObject, AIS_Animation)
+    public:
+        //! Creates empty animation.
+       /* XAIS_AnimationObject(XTCollection_AsciiString^ theAnimationName);
 
-  //! Constructor with initialization.
-  //! Note that start/end transformations specify exactly local transformation of the object,
-  //! not the transformation to be applied to existing local transformation.
-  //! @param theAnimationName animation identifier
-  //! @param theContext       interactive context where object have been displayed
-  //! @param theObject        object to apply local transformation
-  //! @param theTrsfStart     local transformation at the start of animation (e.g. theObject->LocalTransformation())
-  //! @param theTrsfEnd       local transformation at the end   of animation
-  Standard_EXPORT AIS_AnimationObject (const TCollection_AsciiString& theAnimationName,
-                                       const Handle(AIS_InteractiveContext)& theContext,
-                                       const Handle(AIS_InteractiveObject)&  theObject,
-                                       const gp_Trsf& theTrsfStart,
-                                       const gp_Trsf& theTrsfEnd);
+        XAIS_AnimationObject(Handle(AIS_AnimationObject) pos);*/
 
-protected:
+        void SetAnimationObjectHandle(Handle(AIS_AnimationObject) pos);
 
-  //! Update the progress.
-  Standard_EXPORT virtual void update (const AIS_AnimationProgress& theProgress) Standard_OVERRIDE;
+        virtual Handle(AIS_AnimationObject) GetAnimationObject();
 
-  //! Invalidate the viewer for proper update.
-  Standard_EXPORT void invalidateViewer();
+        virtual Handle(AIS_Animation) GetAnimation() Standard_OVERRIDE;
 
-protected:
+        //! Constructor with initialization.
+        //! Note that start/end transformations specify exactly local transformation of the object,
+        //! not the transformation to be applied to existing local transformation.
+        //! @param theAnimationName animation identifier
+        //! @param theContext       interactive context where object have been displayed
+        //! @param theObject        object to apply local transformation
+        //! @param theTrsfStart     local transformation at the start of animation (e.g. theObject->LocalTransformation())
+        //! @param theTrsfEnd       local transformation at the end   of animation
+        XAIS_AnimationObject(XTCollection_AsciiString^ theAnimationName,XAIS_InteractiveContext^ theContext,XAIS_InteractiveObject^ theObject, xgp_Trsf^ theTrsfStart, xgp_Trsf^ theTrsfEnd);
+        
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                NativeHandle() = Handle(AIS_AnimationObject)::DownCast(handle);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(AIS_AnimationObject)> NativeHandle;
+    };
 
-  Handle(AIS_InteractiveContext) myContext;   //!< context where object is displayed
-  Handle(AIS_InteractiveObject)  myObject;    //!< presentation object to set location
-  gp_TrsfNLerp                   myTrsfLerp;  //!< interpolation tool
-
-};
-
-DEFINE_STANDARD_HANDLE(AIS_AnimationObject, AIS_Animation)
-
-#endif // _AIS_AnimationObject_HeaderFile
+    //! DEFINE_STANDARD_HANDLE(AIS_AnimationObject, AIS_Animation)
+}
+#endif // _XAIS_AnimationObject_HeaderFile

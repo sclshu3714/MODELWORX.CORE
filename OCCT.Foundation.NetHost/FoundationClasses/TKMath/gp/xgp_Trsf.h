@@ -99,37 +99,49 @@ namespace TKMath
         !xgp_Trsf();
 
         //! Makes the transformation into a symmetrical transformation.
+        //! 使变换成为对称变换。
         //! P is the center of the symmetry.
+        //! P是对称中心。
         void SetMirror(xgp_Pnt^ P);
 
 
         //! Makes the transformation into a symmetrical transformation.
+        //! 使变换成为对称变换。
         //! A1 is the center of the axial symmetry.
+        //! A1是轴对称的中心。
         void SetMirror(xgp_Ax1^ A1);
 
 
         //! Makes the transformation into a symmetrical transformation.
+        //! 使变换成为对称变换。
         //! A2 is the center of the planar symmetry
         //! and defines the plane of symmetry by its origin, "X
         //! Direction" and "Y Direction".
+        //! A2是平面对称的中心，通过原点、“X方向”和“Y方向”定义对称平面。
         void SetMirror(xgp_Ax2^ A2);
 
 
         //! Changes the transformation into a rotation.
-        //! A1 is the rotation axis and Ang is the angular value of the
-        //! rotation in radians.
+        //! 将变换更改为旋转。
+        //! A1 is the rotation axis and Ang is the angular value of the rotation in radians.
+        //! A1是旋转轴，Ang是以弧度表示的旋转角度值。
         void SetRotation(xgp_Ax1^ A1, Standard_Real Ang);
 
 
         //! Changes the transformation into a rotation defined by quaternion.
+        //! 由四元数旋转定义的变换。
         //! Note that rotation is performed around origin, i.e.
         //! no translation is involved.
+        //! 请注意，旋转是围绕原点执行的，即不涉及平移。
         void SetRotation(xgp_Quaternion^ R);
 
 
         //! Changes the transformation into a scale.
+        //! 将转换更改为比例。
         //! P is the center of the scale and S is the scaling value.
+        //! P是刻度的中心，S是刻度值。
         //! Raises ConstructionError  If <S> is null.
+        //! 如果<S>为空，则引发ConstructionError。
         void SetScale(xgp_Pnt^ P, Standard_Real S);
 
 
@@ -162,6 +174,8 @@ namespace TKMath
         //! represent the same point
         //! The transformation is from the coordinate
         //! system "FromSystem1" to the coordinate system "ToSystem2".
+        //! 修改此转换，以便将相对于源坐标系的任何点（x，y，z）的坐标转换为相对于目标坐标系的坐标（x'，y'，z'），
+        //! 但这些坐标系表示相同的点。转换是从坐标系“FromSystem1”到坐标系“ToSystem2”。
         //! Example :
         //! In a C++ implementation :
         //! Real x1, y1, z1;  // are the coordinates of a point in the
@@ -189,6 +203,7 @@ namespace TKMath
 
 
         //! Sets transformation by directly specified rotation and translation.
+        //! 通过直接指定的旋转和平移设置变换。
         void SetTransformation(xgp_Quaternion^ R, xgp_Vec^ T);
 
 

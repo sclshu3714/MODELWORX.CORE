@@ -13,22 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_GradientFillMethod_HeaderFile
-#define _Aspect_GradientFillMethod_HeaderFile
+#ifndef _XAspect_GradientFillMethod_HeaderFile
+#define _XAspect_GradientFillMethod_HeaderFile
 
 //! Defines the fill methods to
 //! write gradient background in a window.
-enum Aspect_GradientFillMethod
+public enum class XAspect_GradientFillMethod
 {
-Aspect_GFM_NONE,
-Aspect_GFM_HOR,
-Aspect_GFM_VER,
-Aspect_GFM_DIAG1,
-Aspect_GFM_DIAG2,
-Aspect_GFM_CORNER1,
-Aspect_GFM_CORNER2,
-Aspect_GFM_CORNER3,
-Aspect_GFM_CORNER4
+	Aspect_GFM_NONE,
+	Aspect_GFM_HOR,
+	Aspect_GFM_VER,
+	Aspect_GFM_DIAG1,
+	Aspect_GFM_DIAG2,
+	Aspect_GFM_CORNER1,
+	Aspect_GFM_CORNER2,
+	Aspect_GFM_CORNER3,
+	Aspect_GFM_CORNER4
 };
 
-#endif // _Aspect_GradientFillMethod_HeaderFile
+#endif // _XAspect_GradientFillMethod_HeaderFile

@@ -39,31 +39,31 @@ namespace TKernel {
     };
 
     //! Initializes a AsciiString with another AsciiString.
-    XTCollection_AsciiString::XTCollection_AsciiString(TCollection_AsciiString astring){
-        NativeHandle = new TCollection_AsciiString(astring);
+    XTCollection_AsciiString::XTCollection_AsciiString(TCollection_AsciiString* astring){
+        NativeHandle = new TCollection_AsciiString(*astring);
     };
 
     //! Initializes a AsciiString with copy of another AsciiString
     //! concatenated with the message character.
     XTCollection_AsciiString::XTCollection_AsciiString(XTCollection_AsciiString^ astring, Standard_Character message){
-        NativeHandle = new TCollection_AsciiString(astring->GetAsciiString(), message);
+        NativeHandle = new TCollection_AsciiString(*astring->GetAsciiString(), message);
     };
 
     //! Initializes a AsciiString with copy of another AsciiString
     //! concatenated with the message string.
     XTCollection_AsciiString::XTCollection_AsciiString(XTCollection_AsciiString^  astring, Standard_CString message){
-        NativeHandle = new TCollection_AsciiString(astring->GetAsciiString(), message);
+        NativeHandle = new TCollection_AsciiString(*astring->GetAsciiString(), message);
     };
 
     //! Initializes a AsciiString with copy of another AsciiString
     //! concatenated with the message string.
     XTCollection_AsciiString::XTCollection_AsciiString(XTCollection_AsciiString^  astring, XTCollection_AsciiString^  message){
-        NativeHandle = new TCollection_AsciiString(astring->GetAsciiString(), message->GetAsciiString());
+        NativeHandle = new TCollection_AsciiString(*astring->GetAsciiString(), *message->GetAsciiString());
     };
 
     //!
-    TCollection_AsciiString XTCollection_AsciiString::GetAsciiString(){
-        return *NativeHandle;
+    TCollection_AsciiString* XTCollection_AsciiString::GetAsciiString(){
+        return NativeHandle;
     };
 
     //! Appends <other>  to me. This is an unary operator.
@@ -94,7 +94,7 @@ namespace TKernel {
     //! Appends <other> to me. This is an unary operator.
     //! Example: aString += anotherString
     void  XTCollection_AsciiString::AssignCat(XTCollection_AsciiString^  other){
-        NativeHandle->AssignCat(other->GetAsciiString());
+        NativeHandle->AssignCat(*other->GetAsciiString());
     };
 
     //! Converts the first character into its corresponding
@@ -118,7 +118,8 @@ namespace TKernel {
     //! aString = "Hello " + "Dolly"  THIS IS NOT ALLOWED
     //! This rule is applicable to AssignCat (operator +=) too.
     XTCollection_AsciiString^ XTCollection_AsciiString::Cat(Standard_Character other){
-        return gcnew XTCollection_AsciiString(NativeHandle->Cat(other));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Cat(other));
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Appends <other>  to me.
@@ -131,7 +132,8 @@ namespace TKernel {
     //! aString = "Hello " + "Dolly"  THIS IS NOT ALLOWED
     //! This rule is applicable to AssignCat (operator +=) too.
     XTCollection_AsciiString^ XTCollection_AsciiString::Cat(Standard_Integer other){
-        return gcnew XTCollection_AsciiString(NativeHandle->Cat(other));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Cat(other));
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Appends <other>  to me.
@@ -144,7 +146,8 @@ namespace TKernel {
     //! aString = "Hello " + "Dolly"  THIS IS NOT ALLOWED
     //! This rule is applicable to AssignCat (operator +=) too.
     XTCollection_AsciiString^ XTCollection_AsciiString::Cat(Standard_Real other){
-        return  gcnew XTCollection_AsciiString(NativeHandle->Cat(other));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Cat(other));
+        return  gcnew XTCollection_AsciiString(temp);
     };
 
     //! Appends <other>  to me.
@@ -158,13 +161,15 @@ namespace TKernel {
     //! aString = "Hello " + "Dolly"  THIS IS NOT ALLOWED
     //! This rule is applicable to AssignCat (operator +=) too.
     XTCollection_AsciiString^ XTCollection_AsciiString::Cat(Standard_CString other){
-        return  gcnew XTCollection_AsciiString(NativeHandle->Cat(other));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Cat(other));
+        return  gcnew XTCollection_AsciiString(temp);
     };
 
     //! Appends <other> to me.
     //! Example: aString = aString + anotherString
     XTCollection_AsciiString^ XTCollection_AsciiString::Cat(XTCollection_AsciiString^  other){
-        return  gcnew XTCollection_AsciiString(NativeHandle->Cat(other->GetAsciiString()));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Cat(*other->GetAsciiString()));
+        return  gcnew XTCollection_AsciiString(temp);
     };
 
     //! Modifies this ASCII string so that its length
@@ -211,17 +216,19 @@ namespace TKernel {
     //! Used as operator =
     //! Example: aString = anotherString;
     void  XTCollection_AsciiString::Copy(XTCollection_AsciiString^  fromwhere){
-        NativeHandle->Copy(fromwhere->GetAsciiString());
+        NativeHandle->Copy(*fromwhere->GetAsciiString());
     };
 
     //! Exchange the data of two strings (without reallocating memory).
     void  XTCollection_AsciiString::Swap(XTCollection_AsciiString^  theOther){
-        NativeHandle->Swap(theOther->GetAsciiString());
+        NativeHandle->Swap(*theOther->GetAsciiString());
     };
 
     //! Frees memory allocated by AsciiString.
     XTCollection_AsciiString::~XTCollection_AsciiString(){
         NativeHandle->~TCollection_AsciiString();
+        delete NativeHandle;
+        NativeHandle = NULL;
     };
 
     //! Returns the index of the first character of <me> that is
@@ -237,7 +244,7 @@ namespace TKernel {
     //! returns
     //! 1
     Standard_Integer XTCollection_AsciiString::FirstLocationInSet(XTCollection_AsciiString^ Set, Standard_Integer FromIndex, Standard_Integer ToIndex){
-        return NativeHandle->FirstLocationInSet(Set->GetAsciiString(), FromIndex, ToIndex);
+        return NativeHandle->FirstLocationInSet(*Set->GetAsciiString(), FromIndex, ToIndex);
     };
 
     //! Returns the index of the first character of <me>
@@ -253,7 +260,7 @@ namespace TKernel {
     //! returns
     //! 3
     Standard_Integer XTCollection_AsciiString::FirstLocationNotInSet(XTCollection_AsciiString^  Set, Standard_Integer FromIndex, Standard_Integer ToIndex){
-        return NativeHandle->FirstLocationNotInSet(Set->GetAsciiString(), FromIndex, ToIndex);
+        return NativeHandle->FirstLocationNotInSet(*Set->GetAsciiString(), FromIndex, ToIndex);
     };
 
     //! Inserts a Character at position <where>.
@@ -278,7 +285,7 @@ namespace TKernel {
 
     //! Inserts a AsciiString at position <where>.
     void  XTCollection_AsciiString::Insert(Standard_Integer where, XTCollection_AsciiString^  what){
-        NativeHandle->Insert(where, what->GetAsciiString());
+        NativeHandle->Insert(where, *what->GetAsciiString());
     };
 
     //! Pushing a string after a specific index in the string <me>.
@@ -291,7 +298,7 @@ namespace TKernel {
     //! after
     //! me = "abcde" , other = "ab"
     void  XTCollection_AsciiString::InsertAfter(Standard_Integer Index, XTCollection_AsciiString^  other){
-        NativeHandle->InsertAfter(Index, other->GetAsciiString());
+        NativeHandle->InsertAfter(Index, *other->GetAsciiString());
     };
 
     //! Pushing a string before a specific index in the string <me>.
@@ -304,7 +311,7 @@ namespace TKernel {
     //! after
     //! me = "abcde" , other = "ab"
     void  XTCollection_AsciiString::InsertBefore(Standard_Integer Index, XTCollection_AsciiString^  other){
-        NativeHandle->InsertBefore(Index, other->GetAsciiString());
+        NativeHandle->InsertBefore(Index, *other->GetAsciiString());
     };
 
     //! Returns True if the string <me> contains zero character.
@@ -323,7 +330,7 @@ namespace TKernel {
     //! are identical to the characters in ASCII string other.
     //! Note that this method is an alias of operator ==.
     Standard_Boolean XTCollection_AsciiString::IsEqual(XTCollection_AsciiString^  other){
-        return NativeHandle->IsEqual(other->GetAsciiString());
+        return NativeHandle->IsEqual(*other->GetAsciiString());
     };
 
     //! Returns true if there are differences between the
@@ -337,7 +344,7 @@ namespace TKernel {
     //! characters in this ASCII string and ASCII string other.
     //! Note that this method is an alias of operator !=
     Standard_Boolean XTCollection_AsciiString::IsDifferent(XTCollection_AsciiString^  other){
-        return NativeHandle->IsDifferent(other->GetAsciiString());
+        return NativeHandle->IsDifferent(*other->GetAsciiString());
     };
 
     //! Returns TRUE if <me> is 'ASCII' less than <other>.
@@ -347,7 +354,7 @@ namespace TKernel {
 
     //! Returns TRUE if <me> is 'ASCII' less than <other>.
     Standard_Boolean XTCollection_AsciiString::IsLess(XTCollection_AsciiString^  other){
-        return NativeHandle->IsLess(other->GetAsciiString());
+        return NativeHandle->IsLess(*other->GetAsciiString());
     };
 
     //! Returns TRUE if <me> is 'ASCII' greater than <other>.
@@ -357,17 +364,17 @@ namespace TKernel {
 
     //! Returns TRUE if <me> is 'ASCII' greater than <other>.
     Standard_Boolean XTCollection_AsciiString::IsGreater(XTCollection_AsciiString^  other){
-        return NativeHandle->IsGreater(other->GetAsciiString());
+        return NativeHandle->IsGreater(*other->GetAsciiString());
     };
 
     //! Determines whether the beginning of this string instance matches the specified string.
     Standard_Boolean XTCollection_AsciiString::StartsWith(XTCollection_AsciiString^  theStartString){
-        return NativeHandle->StartsWith(theStartString->GetAsciiString());
+        return NativeHandle->StartsWith(*theStartString->GetAsciiString());
     };
 
     //! Determines whether the end of this string instance matches the specified string.
     Standard_Boolean XTCollection_AsciiString::EndsWith(XTCollection_AsciiString^  theEndString){
-        return NativeHandle->EndsWith(theEndString->GetAsciiString());
+        return NativeHandle->EndsWith(*theEndString->GetAsciiString());
     };
 
     //! Converts a AsciiString containing a numeric expression to
@@ -443,7 +450,7 @@ namespace TKernel {
     //! returns
     //! 4
     Standard_Integer XTCollection_AsciiString::Location(XTCollection_AsciiString^  other, Standard_Integer FromIndex, Standard_Integer ToIndex){
-        return NativeHandle->Location(other->GetAsciiString(), FromIndex, ToIndex);
+        return NativeHandle->Location(*other->GetAsciiString(), FromIndex, ToIndex);
     };
 
     //! Returns the index of the nth occurence of the character C
@@ -480,7 +487,7 @@ namespace TKernel {
     //! myAlphabet.Prepend(myBegin){       };
     //! assert ( myAlphabet == "abcde" ){       };
     void  XTCollection_AsciiString::Prepend(XTCollection_AsciiString^  other){
-        NativeHandle->Prepend(other->GetAsciiString());
+        NativeHandle->Prepend(*other->GetAsciiString());
     };
 
     //! Displays <me> on a stream.
@@ -562,7 +569,7 @@ namespace TKernel {
     //! and returns position of first item <what> matching.
     //! It returns -1 if not found.
     Standard_Integer XTCollection_AsciiString::Search(XTCollection_AsciiString^  what){
-        return NativeHandle->Search(what->GetAsciiString());
+        return NativeHandle->Search(*what->GetAsciiString());
     };
 
     //! Searches a CString in a AsciiString from the end
@@ -579,7 +586,7 @@ namespace TKernel {
     //! and returns position of first item <what> matching.
     //! It returns -1 if not found.
     Standard_Integer XTCollection_AsciiString::SearchFromEnd(XTCollection_AsciiString^  what){
-        return NativeHandle->SearchFromEnd(what->GetAsciiString());
+        return NativeHandle->SearchFromEnd(*what->GetAsciiString());
     };
 
     //! Replaces one character in the AsciiString at position <where>.
@@ -604,7 +611,7 @@ namespace TKernel {
 
     //! Replaces a part of <me> by another AsciiString.
     void  XTCollection_AsciiString::SetValue(Standard_Integer where, XTCollection_AsciiString^  what){
-        NativeHandle->SetValue(where, what->GetAsciiString());
+        NativeHandle->SetValue(where, *what->GetAsciiString());
     };
 
     //! Splits a AsciiString into two sub-strings.
@@ -612,7 +619,8 @@ namespace TKernel {
     //! aString contains "abcdefg"
     //! aString.Split(3) gives <me> = "abc" and returns "defg"
     XTCollection_AsciiString^ XTCollection_AsciiString::Split(Standard_Integer where){
-        return gcnew XTCollection_AsciiString(NativeHandle->Split(where));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Split(where));
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Creation of a sub-string of the string <me>.
@@ -627,7 +635,8 @@ namespace TKernel {
     //! returns
     //! "cdef"
     XTCollection_AsciiString^ XTCollection_AsciiString::SubString(Standard_Integer FromIndex, Standard_Integer ToIndex){
-        return gcnew XTCollection_AsciiString(NativeHandle->SubString(FromIndex, ToIndex));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->SubString(FromIndex, ToIndex));
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Returns pointer to AsciiString (char *).
@@ -654,7 +663,8 @@ namespace TKernel {
     //! aString.Token("; :,",2) returns "test"
     //! Standard_CString separators = " \t", Standard_Integer whichone = 1
     XTCollection_AsciiString^ XTCollection_AsciiString::Token(Standard_CString separators, Standard_Integer whichone){
-        return gcnew XTCollection_AsciiString(NativeHandle->Token(separators, whichone));
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->Token(separators, whichone));
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Truncates <me> to <ahowmany> characters.
@@ -691,26 +701,26 @@ namespace TKernel {
     //! @return a computed hash code, in the range [1, theUpperBound]
     //!static 
     Standard_Integer XTCollection_AsciiString::HashCode(XTCollection_AsciiString^  theAsciiString, Standard_Integer theUpperBound){
-        return TCollection_AsciiString::HashCode(theAsciiString->GetAsciiString(), theUpperBound);
+        return TCollection_AsciiString::HashCode(*theAsciiString->GetAsciiString(), theUpperBound);
     };
 
     //! Returns True  when the two  strings are the same.
     //! (Just for HashCode for AsciiString)
     //!static 
     Standard_Boolean XTCollection_AsciiString::IsEqual(XTCollection_AsciiString^  string1, XTCollection_AsciiString^  string2){
-        return TCollection_AsciiString::IsEqual(string1->GetAsciiString(), string2->GetAsciiString());
+        return TCollection_AsciiString::IsEqual(*string1->GetAsciiString(), *string2->GetAsciiString());
     };
 
     //! Returns True  when the two  strings are the same.
     //! (Just for HashCode for AsciiString)
     //!static 
     Standard_Boolean XTCollection_AsciiString::IsEqual(XTCollection_AsciiString^  string1, Standard_CString string2){
-       return TCollection_AsciiString::IsEqual(string1->GetAsciiString(), string2);
+       return TCollection_AsciiString::IsEqual(*string1->GetAsciiString(), string2);
     };
 
     //! Returns True if the strings contain same characters.
     //!static 
     Standard_Boolean XTCollection_AsciiString::IsSameString(XTCollection_AsciiString^  theString1, XTCollection_AsciiString^  theString2, Standard_Boolean theIsCaseSensitive){
-       return TCollection_AsciiString::IsSameString(theString1->GetAsciiString(), theString2->GetAsciiString(), theIsCaseSensitive);
+       return TCollection_AsciiString::IsSameString(*theString1->GetAsciiString(), *theString2->GetAsciiString(), theIsCaseSensitive);
     };
 }
