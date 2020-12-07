@@ -76,7 +76,8 @@ namespace TKV3d  {
     //! - standard name for a material within enumeration
     //! - "UserDefined" for non-standard material without name specified externally.
     XTCollection_AsciiString^ XGraphic3d_MaterialAspect::StringName() {
-        return gcnew XTCollection_AsciiString(NativeHandle->StringName());
+        TCollection_AsciiString* temp = new TCollection_AsciiString(NativeHandle->StringName());
+        return gcnew XTCollection_AsciiString(temp);
     };
 
     //! Returns the given name of this material. This might be:
@@ -88,7 +89,7 @@ namespace TKV3d  {
     //! The current material become a "UserDefined" material.
     //! Set the name of the "UserDefined" material.
     void XGraphic3d_MaterialAspect::SetMaterialName(XTCollection_AsciiString^ theName) {
-        NativeHandle->SetMaterialName(theName->GetAsciiString());
+        NativeHandle->SetMaterialName(*theName->GetAsciiString());
     };
 
     //! Resets the material with the original values according to

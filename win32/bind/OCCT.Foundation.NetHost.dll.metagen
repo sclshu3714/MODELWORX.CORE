@@ -2004,7 +2004,7 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-    GetAsciiString(TCollection_AsciiString*): PrivateScope, Public, HideBySig
+    GetAsciiString(): PrivateScope, Public, HideBySig
     AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
     AssignCat(SByte*): PrivateScope, Public, HideBySig
     AssignCat(Double): PrivateScope, Public, HideBySig
@@ -5543,7 +5543,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShell: AutoLayout, AnsiClass, Class, Public,
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     Init(XGeom_Surface, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Error(): PrivateScope, Public, HideBySig
     Shell(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -5996,6 +5996,62 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitOCCTProxy(): PrivateScope, Public, HideBySig
     ~OCCTProxy(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_AnimationProgress: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Double Pts : Public
+    Double LocalPts : Public
+    Double LocalNormalized : Public
+Class NCollection_Haft<opencascade::handle<AIS_Animation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XAIS_Animation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<AIS_Animation>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetAnimationHandle(handle<AIS_Animation>*): PrivateScope, Public, HideBySig
+    GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, HideBySig
+    Name(): PrivateScope, Public, HideBySig
+    StartPts(): PrivateScope, Public, HideBySig
+    SetStartPts(Double): PrivateScope, Public, HideBySig
+    Duration(): PrivateScope, Public, HideBySig
+    UpdateTotalDuration(): PrivateScope, Public, HideBySig
+    HasOwnDuration(): PrivateScope, Public, HideBySig
+    OwnDuration(): PrivateScope, Public, HideBySig
+    SetOwnDuration(Double): PrivateScope, Public, HideBySig
+    Add(XAIS_Animation): PrivateScope, Public, HideBySig
+    Clear(): PrivateScope, Public, HideBySig
+    Find(XTCollection_AsciiString): PrivateScope, Public, HideBySig
+    Remove(XAIS_Animation): PrivateScope, Public, HideBySig
+    Replace(XAIS_Animation, XAIS_Animation): PrivateScope, Public, HideBySig
+    CopyFrom(XAIS_Animation): PrivateScope, Public, HideBySig
+    Children(): PrivateScope, Public, HideBySig
+    StartTimer(Double, Double, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UpdateTimer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ElapsedTime(): PrivateScope, Public, HideBySig
+    Start(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Pause(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Stop(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsStopped(): PrivateScope, Public, HideBySig
+    Update(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct TKV3d.XAnimationState: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    TKV3d.XAnimationState AnimationState_Started = 0 : Public, Static, Literal, HasDefault
+    TKV3d.XAnimationState AnimationState_Stopped = 1 : Public, Static, Literal, HasDefault
+    TKV3d.XAnimationState AnimationState_Paused = 2 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<AIS_Axis> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

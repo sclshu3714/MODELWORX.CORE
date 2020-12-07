@@ -83,7 +83,7 @@ namespace TKernel {
         XTCollection_AsciiString(Standard_Real value);
 
         //! Initializes a AsciiString with another AsciiString.
-        XTCollection_AsciiString(TCollection_AsciiString astring);
+        XTCollection_AsciiString(TCollection_AsciiString* astring);
 
         //! Initializes a AsciiString with copy of another AsciiString
         //! concatenated with the message character.
@@ -98,7 +98,7 @@ namespace TKernel {
         XTCollection_AsciiString(XTCollection_AsciiString^ astring, XTCollection_AsciiString^ message);
 
         //!
-        TCollection_AsciiString GetAsciiString();
+        TCollection_AsciiString* GetAsciiString();
 
         //! Appends <other>  to me. This is an unary operator.
         void AssignCat(Standard_Character other);
