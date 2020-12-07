@@ -1161,6 +1161,9 @@
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DiagnosticInfo.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1581,5 +1584,10 @@
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationCamera.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OCCT.Foundation.NetHost.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
