@@ -357,6 +357,7 @@
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_Orientation.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_ShapeEnum.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_GradientFillMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfDeflection.h" />
@@ -597,6 +598,9 @@
     <ClCompile Include="Visualization\TKV3d\PrsMgr\XPrsMgr_PresentableObject.cpp" />
     <ClCompile Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.cpp" />
     <ClCompile Include="Visualization\TKV3d\V3d\XV3d_View.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OCCT.Foundation.NetHost.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
