@@ -395,14 +395,14 @@ namespace TKV3d {
 
     //! Returns the color setting of the Interactive Object.
     void XPrsMgr_PresentableObject::Color(XQuantity_Color^ theColor) {
-        NativeHandle()->Color(theColor->GetColor());
+        NativeHandle()->Color(*theColor->GetColor());
     };
 
     //! Only the interactive object knowns which Drawer attribute is affected by the color, if any
     //! (ex: for a wire,it's the wireaspect field of the drawer, but for a vertex, only the point aspect field is affected by the color).
     //! WARNING : Do not forget to set the corresponding fields here (hasOwnColor and myDrawer->SetColor())
     void XPrsMgr_PresentableObject::SetColor(XQuantity_Color^ theColor) {
-        NativeHandle()->SetColor(theColor->GetColor());
+        NativeHandle()->SetColor(*theColor->GetColor());
     };
 
     //! Removes color settings. Only the Interactive Object

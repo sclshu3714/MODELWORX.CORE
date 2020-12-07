@@ -179,7 +179,7 @@ namespace TKV3d {
     //! -   hidden line color in hidden line mode:
     //! Prs3d_Drawer_HiddenLineAspect.
     void XAIS_Shape::SetColor(XQuantity_Color^ theColor) {
-        NativeHandle()->SetColor(theColor->GetColor());
+        NativeHandle()->SetColor(*theColor->GetColor());
     };
 
     //! Removes settings for color in the reconstructed compound shape.
@@ -233,7 +233,7 @@ namespace TKV3d {
     //! Returns the Color attributes of the shape accordingly to
     //! the current facing model;
     void XAIS_Shape::Color(XQuantity_Color^ aColor) {
-        NativeHandle()->Color(aColor->GetColor());
+        NativeHandle()->Color(*aColor->GetColor());
     };
 
     //! Returns the NameOfMaterial attributes of the shape accordingly to

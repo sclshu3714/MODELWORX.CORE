@@ -122,7 +122,7 @@ namespace TKV3d {
 	};
 
 	void XAIS_Axis::SetColor(XQuantity_Color^ aColor) {
-		NativeHandle()->SetColor(aColor->GetColor());
+		NativeHandle()->SetColor(*aColor->GetColor());
 	};
 
 	void XAIS_Axis::SetWidth(const Standard_Real aValue) {

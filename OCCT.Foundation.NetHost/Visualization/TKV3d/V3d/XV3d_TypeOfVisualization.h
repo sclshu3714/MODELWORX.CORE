@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfVisualization_HeaderFile
-#define _V3d_TypeOfVisualization_HeaderFile
+#ifndef _XV3d_TypeOfVisualization_HeaderFile
+#define _XV3d_TypeOfVisualization_HeaderFile
 
 //! Determines the type of visualization in the view, either
 //! WIREFRAME or ZBUFFER (shading).
-enum V3d_TypeOfVisualization
+public enum class XV3d_TypeOfVisualization
 {
-V3d_WIREFRAME,
-V3d_ZBUFFER
+	V3d_WIREFRAME,
+	V3d_ZBUFFER
 };
 
-#endif // _V3d_TypeOfVisualization_HeaderFile
+#endif // _XV3d_TypeOfVisualization_HeaderFile

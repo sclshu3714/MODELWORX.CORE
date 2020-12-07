@@ -59,10 +59,10 @@ namespace TKernel {
         XQuantity_Color();
 
         //! Creates the color from enumeration value.
-        XQuantity_Color(const XQuantity_NameOfColor AName);
+        XQuantity_Color(XQuantity_NameOfColor AName);
 
         //! Creates the color from enumeration value.
-        XQuantity_Color(const Quantity_Color AName);
+        XQuantity_Color(Quantity_Color* pos);
 
         //! Creates the color from enumeration value.
         XQuantity_Color(XQuantity_Color^ AName);
@@ -81,7 +81,7 @@ namespace TKernel {
         XQuantity_Color(const Standard_Real theR1, Standard_Real theR2,  Standard_Real theR3, XQuantity_TypeOfColor theType);
 
         //! Quantity_Color
-        Quantity_Color GetColor();
+        Quantity_Color* GetColor();
 
         //! Define color from RGB values.
         explicit XQuantity_Color(const NCollection_Vec3<float>& theRgb);
@@ -254,7 +254,7 @@ namespace TKernel {
         //! theToPrefixHash = true
         static TCollection_AsciiString ColorToHex(XQuantity_Color^ theColor, bool theToPrefixHash)
         {
-            NCollection_Vec3<Standard_ShortReal> anSRgb = (NCollection_Vec3<Standard_ShortReal>)theColor->GetColor();
+            NCollection_Vec3<Standard_ShortReal> anSRgb = (NCollection_Vec3<Standard_ShortReal>)*theColor->GetColor();
             NCollection_Vec3<Standard_Integer> anSRgbInt(anSRgb * 255.0f + NCollection_Vec3<Standard_ShortReal>(0.5f));
             char aBuff[10];
             Sprintf(aBuff, theToPrefixHash ? "#%02X%02X%02X" : "%02X%02X%02X",

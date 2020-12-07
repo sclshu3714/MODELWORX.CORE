@@ -6,7 +6,7 @@ namespace TKV3d {
 	//! -   the line thickness aWidth.
 	//! Type of line refers to whether the line is solid or dotted, for example.
 	XPrs3d_LineAspect::XPrs3d_LineAspect(XQuantity_Color^ theColor, XAspect_TypeOfLine theType, const Standard_Real theWidth) {
-		NativeHandle() = new Prs3d_LineAspect(theColor->GetColor(), safe_cast<Aspect_TypeOfLine>(theType), theWidth);
+		NativeHandle() = new Prs3d_LineAspect(*theColor->GetColor(), safe_cast<Aspect_TypeOfLine>(theType), theWidth);
 	};
 
 	XPrs3d_LineAspect::XPrs3d_LineAspect(Handle(Prs3d_LineAspect) theAspect) {
@@ -28,7 +28,7 @@ namespace TKV3d {
 	//! Sets the line color defined at the time of construction.
 	//! Default value: Quantity_NOC_YELLOW
 	void XPrs3d_LineAspect::SetColor(XQuantity_Color^ theColor) {
-		NativeHandle()->SetColor(theColor->GetColor());
+		NativeHandle()->SetColor(*theColor->GetColor());
 	};
 
 	//! Sets the type of line defined at the time of construction.

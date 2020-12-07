@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfAxe_HeaderFile
-#define _V3d_TypeOfAxe_HeaderFile
+#ifndef _XV3d_TypeOfAxe_HeaderFile
+#define _XV3d_TypeOfAxe_HeaderFile
 
 //! Determines the axis type through the coordinates X, Y, Z.
-enum V3d_TypeOfAxe
+public enum class XV3d_TypeOfAxe
 {
-V3d_X,
-V3d_Y,
-V3d_Z
+	V3d_X,
+	V3d_Y,
+	V3d_Z
 };
 
-#endif // _V3d_TypeOfAxe_HeaderFile
+#endif // _XV3d_TypeOfAxe_HeaderFile

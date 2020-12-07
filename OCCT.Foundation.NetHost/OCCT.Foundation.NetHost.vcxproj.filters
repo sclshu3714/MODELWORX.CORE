@@ -388,6 +388,12 @@
     <Filter Include="头文件\ModelingAlgorithms\TKBO\IntTools">
       <UniqueIdentifier>{e01d0e88-c4c5-4c62-9c90-16b2aa6b6d3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Visualization\TKV3d\V3d">
+      <UniqueIdentifier>{4b07a0d7-54ca-4883-b694-9ca1150bafb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKV3d\V3d">
+      <UniqueIdentifier>{4e248f28-c77c-4386-aa8e-1875c46db3ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1110,6 +1116,51 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_AnimationCamera.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_View.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfView.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_GradientFillMethod.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfVisualization.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfTriedronPosition.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfAxe.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfOrientation.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_StereoDumpOptions.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfBackfacingModel.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfPickCamera.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfPickLight.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfRepresentation.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DiagnosticInfo.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1522,6 +1573,12 @@
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\V3d\XV3d_View.cpp">
+      <Filter>源文件\Visualization\TKV3d\V3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationCamera.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
     </ClCompile>
   </ItemGroup>
