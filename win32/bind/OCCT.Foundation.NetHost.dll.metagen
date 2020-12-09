@@ -5651,6 +5651,58 @@ Class TKBRep.XBRepTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Read(XTopoDS_Shape, SByte*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     Read(XTopoDS_Shape, basic_istream<char\,std::char_traits<char> >*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     EvalAndUpdateTol(XTopoDS_Edge, XGeom_Curve, XGeom2d_Curve, XGeom_Surface, Double, Double): PrivateScope, Public, Static, HideBySig
+Class TKBRep.XBRep_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    IsClosed(XTopoDS_Edge, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    IsClosed(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    IsClosed(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    IsClosed(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+    Surface(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Surface(XTopoDS_Face, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Triangulation(handle<Poly_Triangulation>*, XTopoDS_Face, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Tolerance(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    Tolerance(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Tolerance(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    NaturalRestriction(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    IsGeometric(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Curve(XTopoDS_Edge, Double, Double): PrivateScope, Public, Static, HideBySig
+    Curve(XTopoDS_Edge, XTopLoc_Location, Double, Double): PrivateScope, Public, Static, HideBySig
+    Polygon3D(handle<Poly_Polygon3D>*, XTopoDS_Edge, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    CurveOnSurface(XTopoDS_Edge, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double, Double, Int32): PrivateScope, Public, Static, HideBySig
+    CurveOnSurface(XTopoDS_Edge, XGeom2d_Curve, XGeom_Surface, XTopLoc_Location, Double, Double): PrivateScope, Public, Static, HideBySig
+    CurveOnSurface(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CurveOnSurface(XTopoDS_Edge, XTopoDS_Face, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CurveOnPlane(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, Double, Double): PrivateScope, Public, Static, HideBySig
+    PolygonOnSurface(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XGeom_Surface, XTopLoc_Location, Int32): PrivateScope, Public, Static, HideBySig
+    PolygonOnSurface(XTopoDS_Edge, handle<Poly_Polygon2D>* IsImplicitlyDereferenced, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    PolygonOnSurface(handle<Poly_Polygon2D>*, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    PolygonOnSurface(handle<Poly_Polygon2D>*, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    PolygonOnTriangulation(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location, Int32): PrivateScope, Public, Static, HideBySig
+    PolygonOnTriangulation(XTopoDS_Edge, handle<Poly_PolygonOnTriangulation>* IsImplicitlyDereferenced, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    PolygonOnTriangulation(handle<Poly_PolygonOnTriangulation>*, XTopoDS_Edge, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    SameParameter(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    SameRange(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Degenerated(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Range(XTopoDS_Edge, XTopoDS_Face, Double, Double): PrivateScope, Public, Static, HideBySig
+    Range(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, Double, Double): PrivateScope, Public, Static, HideBySig
+    Range(XTopoDS_Edge, Double, Double): PrivateScope, Public, Static, HideBySig
+    UVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    UVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    SetUVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    SetUVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Pnt(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Parameters(XTopoDS_Vertex, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxTolerance(XTopoDS_Shape, XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_HShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

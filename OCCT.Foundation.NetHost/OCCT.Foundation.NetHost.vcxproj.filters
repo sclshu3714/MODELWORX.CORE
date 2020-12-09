@@ -1167,6 +1167,9 @@
     <ClInclude Include="ModelingData\TKBRep\BRepTools\XBRepTools.h">
       <Filter>头文件\ModelingData\TKBRep\BRepTools</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\BRep\XBRep_Tool.h">
+      <Filter>头文件\ModelingData\TKBRep\BRep</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1589,6 +1592,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKBRep\BRepTools\XBRepTools.cpp">
       <Filter>源文件\ModelingData\TKBRep\BRepTools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\BRep\XBRep_Tool.cpp">
+      <Filter>源文件\ModelingData\TKBRep\BRep</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

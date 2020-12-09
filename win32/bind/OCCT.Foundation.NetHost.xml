@@ -10,11 +10,6 @@
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKG3d.XGeom_Line.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
             <summary>
 本地句柄
@@ -660,6 +655,11 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
         <member name="P:TKMath.XTopLoc_Location.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Line.IHandle">
             <summary>
 本地句柄
 </summary>
