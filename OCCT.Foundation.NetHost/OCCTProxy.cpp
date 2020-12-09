@@ -101,6 +101,9 @@ public:
     /// </summary>
     /// <param name="theWnd">System.IntPtr that contains the window handle (HWND) of the control</param>
     bool InitViewer(System::IntPtr theWnd) {
+        //SetDllDirectory((LPCWSTR)L".\\3dparty\OCCT");
+        TCHAR path[MAX_PATH] = L".\\3dparty\\OCCT" ;
+        SetDllDirectory(path);
         try {
             Handle(Aspect_DisplayConnection) aDisplayConnection;
             mainGraphicDriver() = new OpenGl_GraphicDriver(aDisplayConnection);
