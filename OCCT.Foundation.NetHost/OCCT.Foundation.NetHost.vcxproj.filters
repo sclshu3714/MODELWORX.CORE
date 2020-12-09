@@ -1164,6 +1164,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\BRepTools\XBRepTools.h">
+      <Filter>头文件\ModelingData\TKBRep\BRepTools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1583,6 +1586,9 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_AnimationCamera.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\BRepTools\XBRepTools.cpp">
+      <Filter>源文件\ModelingData\TKBRep\BRepTools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

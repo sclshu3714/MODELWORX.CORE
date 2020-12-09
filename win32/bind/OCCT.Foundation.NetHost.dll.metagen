@@ -5616,6 +5616,41 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XBRepTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    UVBounds(XTopoDS_Face, XTopoDS_Edge, Double, Double, Double, Double): PrivateScope, Public, Static, HideBySig
+    UVBounds(XTopoDS_Face, XTopoDS_Wire, Double, Double, Double, Double): PrivateScope, Public, Static, HideBySig
+    UVBounds(XTopoDS_Face, Double, Double, Double, Double): PrivateScope, Public, Static, HideBySig
+    AddUVBounds(XTopoDS_Face, XTopoDS_Edge, Bnd_Box2d* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    AddUVBounds(XTopoDS_Face, XTopoDS_Wire, Bnd_Box2d* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    AddUVBounds(XTopoDS_Face, Bnd_Box2d* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Compound): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_CompSolid): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Solid): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Shell): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Wire): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Update(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    UpdateFaceUVPoints(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Clean(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+    CleanGeometry(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+    RemoveUnusedPCurves(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+    Triangulation(XTopoDS_Shape, Double): PrivateScope, Public, Static, HideBySig
+    Compare(XTopoDS_Edge, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Compare(XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    OuterWire(XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Map3DEdges(XTopoDS_Shape, NCollection_IndexedMap<TopoDS_Shape\,TopTools_ShapeMapHasher>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    IsReallyClosed(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    DetectClosedness(XTopoDS_Face, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Dump(XTopoDS_Shape, basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, Static, HideBySig
+    Write(XTopoDS_Shape, SByte*, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Write(XTopoDS_Shape, basic_ostream<char\,std::char_traits<char> >*, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Read(XTopoDS_Shape, SByte*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Read(XTopoDS_Shape, basic_istream<char\,std::char_traits<char> >*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    EvalAndUpdateTol(XTopoDS_Edge, XGeom_Curve, XGeom2d_Curve, XGeom_Surface, Double, Double): PrivateScope, Public, Static, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_HShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
