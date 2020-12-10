@@ -566,11 +566,42 @@ namespace OCCT.WinForms.Net
         {
             OCCTView.ZoomAllView();
         }
-
+        /// <summary>
+        /// 删除所有图形
+        /// </summary>
+        /// <param name="theToUpdateViewer"></param>
         public void RemoveAll(bool theToUpdateViewer)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             context.RemoveAll(theToUpdateViewer);
+        }
+
+
+        public void AddShape(XAIS_InteractiveObject theIObj, bool theToUpdateViewer = true)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            context.Display(theIObj, theToUpdateViewer);
+        }
+
+        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool theToUpdateViewer = true)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            XAIS_Shape theIObj = new XAIS_Shape(theTObj);
+            context.Display(theIObj, theToUpdateViewer);
+            return theIObj;
+        }
+
+        public void ClearSelected(bool theToUpdateViewer)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            context.ClearSelected(theToUpdateViewer);
+        }
+
+        public void UpdateCurrentViewer() {
+            this.OCCTView.UpdateCurrentViewer();
+        }
+        public XAIS_InteractiveContext GetInteractiveContext() {
+            return this.OCCTView.GetInteractiveContext();
         }
         #endregion
 
@@ -923,18 +954,6 @@ namespace OCCT.WinForms.Net
 
         #endregion
 
-        public void AddShape(XAIS_InteractiveObject theIObj, bool theToUpdateViewer = true) {
-            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-            context.Display(theIObj, theToUpdateViewer);
-        }
-
-        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool theToUpdateViewer = true)
-        {
-            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-            XAIS_Shape theIObj = new XAIS_Shape(theTObj);
-            context.Display(theIObj, theToUpdateViewer);
-            return theIObj;
-        }
 
         #region 字段
         protected CurrentAction3d myCurrentMode;

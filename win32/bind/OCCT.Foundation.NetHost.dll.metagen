@@ -1974,12 +1974,14 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     Void .ctor(SByte): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(SByte*, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Properties:
     TCollection_AsciiString* Handle 'get ' : 
   Methods:
+    RealValue(): PrivateScope, Public, HideBySig
     RemoveAll(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
     RemoveAll(SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Remove(Int32, Int32): PrivateScope, Public, HideBySig
@@ -2076,7 +2078,6 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     Prepend(XTCollection_AsciiString): PrivateScope, Public, HideBySig
     Print(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    RealValue(): PrivateScope, Public, HideBySig
 Class TKV3d.XGraphic3d_MaterialAspect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(XGraphic3d_NameOfMaterial): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

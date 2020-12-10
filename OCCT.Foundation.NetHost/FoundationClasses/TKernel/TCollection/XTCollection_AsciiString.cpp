@@ -7,6 +7,10 @@ namespace TKernel {
         NativeHandle = new TCollection_AsciiString();
     };
 
+    XTCollection_AsciiString::XTCollection_AsciiString(System::String^ message) {
+        NativeHandle = new TCollection_AsciiString(XStandard_Helper::toAsciiString(message));
+    };
+
     //! Initializes a AsciiString with a CString.
     XTCollection_AsciiString::XTCollection_AsciiString(Standard_CString message){
         NativeHandle = new TCollection_AsciiString(message);

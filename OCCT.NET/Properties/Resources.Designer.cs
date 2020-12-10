@@ -83,6 +83,26 @@ namespace OCCT.NET.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap deletedatasource_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("deletedatasource_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap deletedatasource_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("deletedatasource_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap group2_16x16 {
             get {
                 object obj = ResourceManager.GetObject("group2_16x16", resourceCulture);
@@ -156,6 +176,46 @@ namespace OCCT.NET.Properties {
         internal static System.Drawing.Bitmap point_32x32 {
             get {
                 object obj = ResourceManager.GetObject("point_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap resetmodeldifferences_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("resetmodeldifferences_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap resetmodeldifferences_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("resetmodeldifferences_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("video_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("video_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

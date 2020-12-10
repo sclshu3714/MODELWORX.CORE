@@ -19,6 +19,7 @@
 #pragma once
 #include <TCollection_AsciiString.hxx>
 #include "NCollection_Haft.h"
+#include "XStandard_Helper.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -38,7 +39,6 @@ class Standard_NumericError;
 class Standard_NegativeValue;
 class TCollection_HAsciiString;
 class TCollection_ExtendedString;
-
 //! Class defines a variable-length sequence of 8-bit characters.
 //! Despite class name (kept for historical reasons), it is intended to store UTF-8 string, not just ASCII characters.
 //! However, multi-byte nature of UTF-8 is not considered by the following methods:
@@ -53,6 +53,7 @@ class TCollection_ExtendedString;
 //! not handles to strings, and are copied through assignment.
 //! You may use HAsciiString objects to get handles to strings.
 namespace TKernel {
+    ref class XStandard_Helper;
     public ref class XTCollection_AsciiString
     {
     public:
@@ -62,6 +63,9 @@ namespace TKernel {
 
         //! Initializes a AsciiString to an empty AsciiString.
         XTCollection_AsciiString();
+
+        //! Initializes a AsciiString with a CString.
+        XTCollection_AsciiString(System::String^ message);
 
         //! Initializes a AsciiString with a CString.
         XTCollection_AsciiString(Standard_CString message);

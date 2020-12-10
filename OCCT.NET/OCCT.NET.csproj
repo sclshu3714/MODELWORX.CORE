@@ -201,5 +201,23 @@
   <ItemGroup>
     <None Include="Resources\group2_16x16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deletedatasource_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deletedatasource_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetmodeldifferences_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetmodeldifferences_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_16x16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
