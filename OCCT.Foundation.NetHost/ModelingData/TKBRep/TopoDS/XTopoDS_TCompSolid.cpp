@@ -1,42 +1,36 @@
-// Created on: 1991-04-12
-// Created by: Remi LEQUETTE
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XTopoDS_TCompSolid.h>
+namespace TKBRep {
+    //! Creates an empty TCompSolid.
+    XTopoDS_TCompSolid::XTopoDS_TCompSolid() {
+        NativeHandle() = new TopoDS_TCompSolid();
+        SetTShapeHandle(NativeHandle());
+    };
 
+    XTopoDS_TCompSolid::XTopoDS_TCompSolid(Handle(TopoDS_TCompSolid) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-#include <Standard_Type.hxx>
-#include <TopAbs.hxx>
-#include <TopoDS_TCompSolid.hxx>
-#include <TopoDS_Shape.hxx>
+    void XTopoDS_TCompSolid::SetTCompSolidHandle(Handle(TopoDS_TCompSolid) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(TopoDS_TCompSolid,TopoDS_TShape)
+    Handle(TopoDS_TCompSolid) XTopoDS_TCompSolid::GetTCompSolid() {
+        return NativeHandle();
+    };
 
-//=======================================================================
-//function : ShapeType
-//purpose  : 
-//=======================================================================
-TopAbs_ShapeEnum TopoDS_TCompSolid::ShapeType() const
-{
-  return TopAbs_COMPSOLID;
-}
+    Handle(TopoDS_TShape) XTopoDS_TCompSolid::GetTShape() {
+        return NativeHandle();
+    };
 
-//=======================================================================
-//function : EmptyCopy
-//purpose  : 
-//=======================================================================
+    //! returns COMPSOLID
+    XTopAbs_ShapeEnum XTopoDS_TCompSolid::ShapeType() {
+        return safe_cast<XTopAbs_ShapeEnum>(NativeHandle()->ShapeType());
+    };
 
-Handle(TopoDS_TShape) TopoDS_TCompSolid::EmptyCopy() const
-{
-  return Handle(TopoDS_TCompSolid)(new TopoDS_TCompSolid());
+    //! Returns an empty TCompSolid.
+    XTopoDS_TShape^ XTopoDS_TCompSolid::EmptyCopy() {
+        return gcnew XTopoDS_TShape(NativeHandle()->EmptyCopy());
+    };
 }

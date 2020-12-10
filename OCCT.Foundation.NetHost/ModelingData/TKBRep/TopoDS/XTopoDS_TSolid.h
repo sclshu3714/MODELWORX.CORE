@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TSolid_HeaderFile
-#define _TopoDS_TSolid_HeaderFile
+#ifndef _XTopoDS_TSolid_HeaderFile
+#define _XTopoDS_TSolid_HeaderFile
+#pragma once
+#include <TopoDS_TSolid.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -26,47 +31,51 @@ class TopoDS_TShape;
 
 
 class TopoDS_TSolid;
-DEFINE_STANDARD_HANDLE(TopoDS_TSolid, TopoDS_TShape)
+//! DEFINE_STANDARD_HANDLE(TopoDS_TSolid, TopoDS_TShape)
+namespace TKBRep {
+    //! A Topological part of 3D space, bounded by shells,
+    //! edges and vertices.
+    public ref class XTopoDS_TSolid : public XTopoDS_TShape
+    {
 
-//! A Topological part of 3D space, bounded by shells,
-//! edges and vertices.
-class TopoDS_TSolid : public TopoDS_TShape
-{
-
-public:
-
-  
-  //! Creates an empty TSolid.
-    TopoDS_TSolid();
-  
-  //! returns SOLID.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-  
-  //! Returns an empty TSolid.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+    public:
 
 
+        //! Creates an empty TSolid.
+        XTopoDS_TSolid();
 
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TSolid,TopoDS_TShape)
+        XTopoDS_TSolid(Handle(TopoDS_TSolid) pos);
 
-protected:
+        void SetTSolidHandle(Handle(TopoDS_TSolid) pos);
 
+        virtual Handle(TopoDS_TSolid) GetTSolid();
 
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
 
+        //! returns SOLID.
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
 
-private:
+        //! Returns an empty TSolid.
+        virtual XTopoDS_TShape^ EmptyCopy() Standard_OVERRIDE;
 
 
 
 
-};
-
-
-#include <TopoDS_TSolid.lxx>
-
-
-
-
-
-#endif // _TopoDS_TSolid_HeaderFile
+        //! DEFINE_STANDARD_RTTIEXT(TopoDS_TSolid, TopoDS_TShape)
+             /// <summary>
+             /// ±¾µØ¾ä±ú
+             /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TSolid)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TSolid)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TSolid_HeaderFile

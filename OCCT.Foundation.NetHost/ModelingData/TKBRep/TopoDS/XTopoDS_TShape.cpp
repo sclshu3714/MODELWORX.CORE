@@ -20,6 +20,10 @@
 
 namespace TKBRep {
 
+    XTopoDS_TShape::XTopoDS_TShape() {
+    
+    };
+
     XTopoDS_TShape::XTopoDS_TShape(Handle(TopoDS_TShape) pos) {
         NativeHandle() = pos;
     };

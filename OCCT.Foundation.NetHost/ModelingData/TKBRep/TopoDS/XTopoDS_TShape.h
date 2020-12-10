@@ -62,6 +62,7 @@ namespace TKBRep {
     {
 
     public:
+        XTopoDS_TShape();
 
         XTopoDS_TShape(Handle(TopoDS_TShape) pos);
 
@@ -139,9 +140,9 @@ namespace TKBRep {
 
         //! DEFINE_STANDARD_RTTIEXT(TopoDS_TShape, Standard_Transient)
 
-            /// <summary>
-            /// 本地句柄
-            /// </summary>
+        /// <summary>
+        /// 本地句柄
+        /// </summary>
         virtual property Handle(TopoDS_TShape) IHandle {
             Handle(TopoDS_TShape) get() {
                 return NativeHandle();

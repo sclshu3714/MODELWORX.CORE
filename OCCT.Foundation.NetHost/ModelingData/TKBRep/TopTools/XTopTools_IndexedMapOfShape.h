@@ -14,14 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_IndexedMapOfShape_HeaderFile
-#define TopTools_IndexedMapOfShape_HeaderFile
+#ifndef XTopTools_IndexedMapOfShape_HeaderFile
+#define XTopTools_IndexedMapOfShape_HeaderFile
+#pragma once
+#include <TopTools_IndexedMapOfShape.hxx>
 
-#include <TopoDS_Shape.hxx>
-#include <TopTools_ShapeMapHasher.hxx>
-#include <NCollection_IndexedMap.hxx>
 
-typedef NCollection_IndexedMap<TopoDS_Shape,TopTools_ShapeMapHasher> TopTools_IndexedMapOfShape;
+//#include <TopoDS_Shape.hxx>
+//#include <TopTools_ShapeMapHasher.hxx>
+//#include <NCollection_IndexedMap.hxx>
+//
+//typedef NCollection_IndexedMap<TopoDS_Shape,TopTools_ShapeMapHasher> TopTools_IndexedMapOfShape;
 
+namespace TKBRep {
+	public ref class XTopTools_IndexedMapOfShape {
+		XTopTools_IndexedMapOfShape();
+        XTopTools_IndexedMapOfShape(TopTools_IndexedMapOfShape* pos);
+        void SetIndexedMapOfShapeHandle(TopTools_IndexedMapOfShape* pos);
+        TopTools_IndexedMapOfShape* GetIndexedMapOfShape();
+        ~XTopTools_IndexedMapOfShape();
+        !XTopTools_IndexedMapOfShape();
+
+
+
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property TopTools_IndexedMapOfShape* IHandle {
+            TopTools_IndexedMapOfShape* get() { //Standard_OVERRIDE {
+                return NativeHandle;
+            }
+            void set(TopTools_IndexedMapOfShape* shape) { // Standard_OVERRIDE {
+                NativeHandle = shape;
+            }
+        }
+    private:
+        TopTools_IndexedMapOfShape* NativeHandle;
+	};
+}
 
 #endif

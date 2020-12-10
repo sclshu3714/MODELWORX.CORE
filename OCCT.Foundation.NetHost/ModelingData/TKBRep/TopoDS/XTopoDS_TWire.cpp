@@ -1,42 +1,38 @@
-// Created on: 1991-04-12
-// Created by: Remi LEQUETTE
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XTopoDS_TWire.h>
 
+namespace TKBRep {
 
-#include <Standard_Type.hxx>
-#include <TopAbs.hxx>
-#include <TopoDS_TWire.hxx>
-#include <TopoDS_Shape.hxx>
+    //! Creates an empty TWire.
+    XTopoDS_TWire::XTopoDS_TWire() {
+        NativeHandle() = new TopoDS_TWire();
+        SetTShapeHandle(NativeHandle());
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(TopoDS_TWire,TopoDS_TShape)
+    XTopoDS_TWire::XTopoDS_TWire(Handle(TopoDS_TWire) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-//=======================================================================
-//function : ShapeType
-//purpose  : 
-//=======================================================================
-TopAbs_ShapeEnum TopoDS_TWire::ShapeType() const
-{
-  return TopAbs_WIRE;
-}
+    void XTopoDS_TWire::SetTWireHandle(Handle(TopoDS_TWire) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-//=======================================================================
-//function : EmptyCopy
-//purpose  : 
-//=======================================================================
+    Handle(TopoDS_TWire) XTopoDS_TWire::GetTWire() {
+        return NativeHandle();
+    };
 
-Handle(TopoDS_TShape) TopoDS_TWire::EmptyCopy() const
-{
-  return Handle(TopoDS_TWire)(new TopoDS_TWire());
+    Handle(TopoDS_TShape) XTopoDS_TWire::GetTShape() {
+        return NativeHandle();
+    };
+
+    //! Returns WIRE.
+    XTopAbs_ShapeEnum XTopoDS_TWire::ShapeType() {
+        return safe_cast<XTopAbs_ShapeEnum>(NativeHandle()->ShapeType());
+    };
+
+    //! Returns an empty TWire.
+    XTopoDS_TShape^ XTopoDS_TWire::EmptyCopy() {
+        return gcnew XTopoDS_TShape(NativeHandle()->EmptyCopy());
+    };
 }

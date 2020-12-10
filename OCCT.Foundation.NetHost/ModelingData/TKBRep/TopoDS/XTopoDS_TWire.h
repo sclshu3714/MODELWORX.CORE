@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TWire_HeaderFile
-#define _TopoDS_TWire_HeaderFile
+#ifndef _XTopoDS_TWire_HeaderFile
+#define _XTopoDS_TWire_HeaderFile
+#pragma once
+#include <TopoDS_TWire.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -23,49 +28,49 @@
 #include <TopoDS_TShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 class TopoDS_TShape;
-
-
 class TopoDS_TWire;
-DEFINE_STANDARD_HANDLE(TopoDS_TWire, TopoDS_TShape)
+//DEFINE_STANDARD_HANDLE(TopoDS_TWire, TopoDS_TShape)
+namespace TKBRep {
+    //! A set of edges connected by their vertices.
+    public ref class XTopoDS_TWire : public XTopoDS_TShape
+    {
 
-//! A set of edges connected by their vertices.
-class TopoDS_TWire : public TopoDS_TShape
-{
-
-public:
-
-  
-  //! Creates an empty TWire.
-    TopoDS_TWire();
-  
-  //! Returns WIRE.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-  
-  //! Returns an empty TWire.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+    public:
 
 
+        //! Creates an empty TWire.
+        XTopoDS_TWire();
+
+        XTopoDS_TWire(Handle(TopoDS_TWire) pos);
+
+        void SetTWireHandle(Handle(TopoDS_TWire) pos);
+
+        virtual Handle(TopoDS_TWire) GetTWire();
+
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
+
+        //! Returns WIRE.
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
+
+        //! Returns an empty TWire.
+        virtual XTopoDS_TShape^ EmptyCopy() Standard_OVERRIDE;
 
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TWire,TopoDS_TShape)
+        //! DEFINE_STANDARD_RTTIEXT(TopoDS_TWire, TopoDS_TShape)
 
-protected:
-
-
-
-
-private:
-
-
-
-
-};
-
-
-#include <TopoDS_TWire.lxx>
-
-
-
-
-
-#endif // _TopoDS_TWire_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TWire)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TWire)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TWire_HeaderFile

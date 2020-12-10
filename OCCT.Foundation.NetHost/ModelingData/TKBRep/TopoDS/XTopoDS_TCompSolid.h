@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TCompSolid_HeaderFile
-#define _TopoDS_TCompSolid_HeaderFile
+#ifndef _XTopoDS_TCompSolid_HeaderFile
+#define _XTopoDS_TCompSolid_HeaderFile
+#pragma once
+#include <TopoDS_TCompSolid.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -23,49 +28,47 @@
 #include <TopoDS_TShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 class TopoDS_TShape;
-
-
 class TopoDS_TCompSolid;
-DEFINE_STANDARD_HANDLE(TopoDS_TCompSolid, TopoDS_TShape)
+//DEFINE_STANDARD_HANDLE(TopoDS_TCompSolid, TopoDS_TShape)
+namespace TKBRep {
+    //! A set of solids connected by their faces.
+    public ref class XTopoDS_TCompSolid : public XTopoDS_TShape
+    {
 
-//! A set of solids connected by their faces.
-class TopoDS_TCompSolid : public TopoDS_TShape
-{
+    public:
 
-public:
+        //! Creates an empty TCompSolid.
+        XTopoDS_TCompSolid();
 
-  
-  //! Creates an empty TCompSolid.
-    TopoDS_TCompSolid();
-  
-  //! returns COMPSOLID
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-  
-  //! Returns an empty TCompSolid.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+        XTopoDS_TCompSolid(Handle(TopoDS_TCompSolid) pos);
 
+        void SetTCompSolidHandle(Handle(TopoDS_TCompSolid) pos);
 
+        virtual Handle(TopoDS_TCompSolid) GetTCompSolid();
 
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TCompSolid,TopoDS_TShape)
+        //! returns COMPSOLID
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
 
-protected:
+        //! Returns an empty TCompSolid.
+        virtual XTopoDS_TShape^ EmptyCopy() Standard_OVERRIDE;
 
+        //! DEFINE_STANDARD_RTTIEXT(TopoDS_TCompSolid, TopoDS_TShape)
 
-
-
-private:
-
-
-
-
-};
-
-
-#include <TopoDS_TCompSolid.lxx>
-
-
-
-
-
-#endif // _TopoDS_TCompSolid_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TCompSolid)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TCompSolid)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TCompSolid_HeaderFile

@@ -14,61 +14,55 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TVertex_HeaderFile
-#define _TopoDS_TVertex_HeaderFile
+#ifndef _XTopoDS_TVertex_HeaderFile
+#define _XTopoDS_TVertex_HeaderFile
+#pragma once
+#include <TopoDS_Vertex.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
-
 #include <TopoDS_TShape.hxx>
-#include <TopAbs_ShapeEnum.hxx>
+#include <TopoDS_TVertex.hxx>
 
-
+class TopoDS_TShape;
 class TopoDS_TVertex;
+//!DEFINE_STANDARD_HANDLE(TopoDS_TVertex, TopoDS_TShape)
 
-// resolve name collisions with X11 headers
-#ifdef Convex
-  #undef Convex
-#endif
+namespace TKBRep {
+    //! A  Vertex is a topological  point in  two or three
+    //! dimensions.
+    public ref class XTopoDS_TVertex : public XTopoDS_TShape
+    {
 
-DEFINE_STANDARD_HANDLE(TopoDS_TVertex, TopoDS_TShape)
+    public:
+        XTopoDS_TVertex();
 
-//! A  Vertex is a topological  point in  two or three
-//! dimensions.
-class TopoDS_TVertex : public TopoDS_TShape
-{
+        XTopoDS_TVertex(Handle(TopoDS_TVertex) pos);
 
-public:
+        void SetTVertexHandle(Handle(TopoDS_TVertex) pos);
 
-  
-  //! Returns VERTEX.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
+        virtual Handle(TopoDS_TVertex) GetTVertex();
 
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TVertex,TopoDS_TShape)
-
-protected:
-
-  
-  //! Construct a vertex.
-    TopoDS_TVertex();
-
-
-
-private:
-
-
-
-
-};
-
-
-#include <TopoDS_TVertex.lxx>
-
-
-
-
-
-#endif // _TopoDS_TVertex_HeaderFile
+        //! Returns VERTEX.
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TVertex)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TVertex)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TVertex_HeaderFile

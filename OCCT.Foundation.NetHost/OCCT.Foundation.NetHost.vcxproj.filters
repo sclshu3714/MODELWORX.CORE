@@ -394,6 +394,12 @@
     <Filter Include="源文件\Visualization\TKV3d\V3d">
       <UniqueIdentifier>{4e248f28-c77c-4386-aa8e-1875c46db3ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingData\TKBRep\TopExp">
+      <UniqueIdentifier>{e24042d3-2f45-48d3-b976-54355800d2c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKBRep\TopExp">
+      <UniqueIdentifier>{7d94073d-6bdf-4d34-93e2-ce1ae8bd1f9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1170,6 +1176,39 @@
     <ClInclude Include="ModelingData\TKBRep\BRep\XBRep_Tool.h">
       <Filter>头文件\ModelingData\TKBRep\BRep</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopExp\XTopExp.h">
+      <Filter>头文件\ModelingData\TKBRep\TopExp</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopExp\XTopExp_Explorer.h">
+      <Filter>头文件\ModelingData\TKBRep\TopExp</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TVertex.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TEdge.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TWire.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompound.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompSolid.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TFace.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShell.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TSolid.h">
+      <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1595,6 +1634,39 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKBRep\BRep\XBRep_Tool.cpp">
       <Filter>源文件\ModelingData\TKBRep\BRep</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TVertex.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TEdge.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TWire.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompound.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompSolid.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TFace.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShell.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TSolid.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopoDS</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopExp\XTopExp_Explorer.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopExp</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKBRep\TopExp\XTopExp.cpp">
+      <Filter>源文件\ModelingData\TKBRep\TopExp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

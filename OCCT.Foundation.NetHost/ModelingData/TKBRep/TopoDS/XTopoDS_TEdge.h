@@ -14,55 +14,59 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TEdge_HeaderFile
-#define _TopoDS_TEdge_HeaderFile
+#ifndef _XTopoDS_TEdge_HeaderFile
+#define _XTopoDS_TEdge_HeaderFile
+#pragma once
+#include <TopoDS_TEdge.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
 #include <TopoDS_TShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
-
-
 class TopoDS_TEdge;
-DEFINE_STANDARD_HANDLE(TopoDS_TEdge, TopoDS_TShape)
 
-//! A topological part  of a  curve  in 2D or 3D,  the
-//! boundary    is   a   set  of oriented    Vertices.
-class TopoDS_TEdge : public TopoDS_TShape
-{
+//class TopoDS_TEdge;
+//DEFINE_STANDARD_HANDLE(TopoDS_TEdge, TopoDS_TShape)
+namespace TKBRep {
+    //! A topological part  of a  curve  in 2D or 3D,  the
+    //! boundary    is   a   set  of oriented    Vertices.
+    public ref class XTopoDS_TEdge : public XTopoDS_TShape
+    {
 
-public:
+    public:
 
-  
-  //! Returns  EDGE.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
+        XTopoDS_TEdge();
 
+        XTopoDS_TEdge(Handle(TopoDS_TEdge) pos);
 
+        void SetTEdgeHandle(Handle(TopoDS_TEdge) pos);
 
+        virtual Handle(TopoDS_TEdge) GetTEdge();
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TEdge,TopoDS_TShape)
-
-protected:
-
-  
-  //! Construct an edge.
-    TopoDS_TEdge();
-
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
+        //! Returns  EDGE.
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
 
 
-private:
+        //DEFINE_STANDARD_RTTIEXT(TopoDS_TEdge, TopoDS_TShape)
 
-
-
-
-};
-
-
-#include <TopoDS_TEdge.lxx>
-
-
-
-
-
-#endif // _TopoDS_TEdge_HeaderFile
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TEdge)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TEdge)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TEdge_HeaderFile

@@ -13,9 +13,42 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+#pragma once
+#ifndef _XTopoDS_HeaderFile
+#define _XTopoDS_HeaderFile
+#include <TopoDS.hxx>
+#include <XTopoDS_Vertex.h>;
+#include <XTopoDS_Shape.h>;
+#include <XTopoDS_Edge.h>;
+#include <XTopoDS_Wire.h>;
+#include <XTopoDS_Face.h>;
+#include <XTopoDS_Shell.h>;
+#include <XTopoDS_Solid.h>;
+#include <XTopoDS_CompSolid.h>;
+#include <XTopoDS_Compound.h>;
+#include <XTopoDS_Shape.h>;
+#include <XTopoDS_HShape.h>;
+#include <XTopoDS_TShape.h>;
+#include <XTopoDS_TVertex.h>;
+#include <XTopoDS_Vertex.h>;
+#include <XTopoDS_TEdge.h>;
+#include <XTopoDS_Edge.h>;
+#include <XTopoDS_TWire.h>;
+#include <XTopoDS_Wire.h>;
+#include <XTopoDS_TFace.h>;
+#include <XTopoDS_Face.h>;
+#include <XTopoDS_TShell.h>;
+#include <XTopoDS_Shell.h>;
+#include <XTopoDS_TSolid.h>;
+#include <XTopoDS_Solid.h>;
+#include <XTopoDS_TCompSolid.h>;
+#include <XTopoDS_CompSolid.h>;
+#include <XTopoDS_TCompound.h>;
+#include <XTopoDS_Compound.h>;
+#include <XTopoDS_Builder.h>;
+#include <XTopoDS_Iterator.h>;
 
-#ifndef _TopoDS_HeaderFile
-#define _TopoDS_HeaderFile
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -58,105 +91,83 @@ class TopoDS_Iterator;
 //! sub-classes. Types are verified, thus in the example
 //! below, the first two blocks are correct but the third is
 //! rejected by the compiler.
-class TopoDS 
-{
-public:
+namespace TKBRep {
+    ref class XTopoDS_Vertex;
+    ref class XTopoDS_Shape;
+    ref class XTopoDS_Edge;
+    ref class XTopoDS_Wire;
+    ref class XTopoDS_Face;
+    ref class XTopoDS_Shell;
+    ref class XTopoDS_Solid;
+    ref class XTopoDS_CompSolid;
+    ref class XTopoDS_Compound;
+    ref class XTopoDS_Shape;
+    ref class XTopoDS_HShape;
+    ref class XTopoDS_TShape;
+    ref class XTopoDS_TVertex;
+    ref class XTopoDS_Vertex;
+    ref class XTopoDS_TEdge;
+    ref class XTopoDS_Edge;
+    ref class XTopoDS_TWire;
+    ref class XTopoDS_Wire;
+    ref class XTopoDS_TFace;
+    ref class XTopoDS_Face;
+    ref class XTopoDS_TShell;
+    ref class XTopoDS_Shell;
+    ref class XTopoDS_TSolid;
+    ref class XTopoDS_Solid;
+    ref class XTopoDS_TCompSolid;
+    ref class XTopoDS_CompSolid;
+    ref class XTopoDS_TCompound;
+    ref class XTopoDS_Compound;
+    ref class XTopoDS_Builder;
+    ref class XTopoDS_Iterator;
+    public ref class XTopoDS
+    {
+    public:
 
-  DEFINE_STANDARD_ALLOC
+        //! DEFINE_STANDARD_ALLOC
 
-  
-  //! Basic tool to access the data structure.
-  //! Casts shape S to the more specialized return type, Vertex.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Vertex& Vertex (const TopoDS_Shape& S);
-inline static TopoDS_Vertex& Vertex(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Edge
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Edge& Edge (const TopoDS_Shape& S);
-inline static TopoDS_Edge& Edge(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Wire.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Wire& Wire (const TopoDS_Shape& S);
-inline static TopoDS_Wire& Wire(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Face.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Face& Face (const TopoDS_Shape& S);
-inline static TopoDS_Face& Face(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Shell.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Shell& Shell (const TopoDS_Shape& S);
-inline static TopoDS_Shell& Shell(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Solid.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Solid& Solid (const TopoDS_Shape& S);
-inline static TopoDS_Solid& Solid(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, CompSolid.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_CompSolid& CompSolid (const TopoDS_Shape& S);
-inline static TopoDS_CompSolid& CompSolid(TopoDS_Shape&);
-  
-  //! Casts shape S to the more specialized return type, Compound.
-  //! Exceptions
-  //! Standard_TypeMismatch if S cannot be cast to this return type.
-    static const TopoDS_Compound& Compound (const TopoDS_Shape& S);
-inline static TopoDS_Compound& Compound(TopoDS_Shape&);
+        //! Basic tool to access the data structure.
+        //! Casts shape S to the more specialized return type, Vertex.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Vertex^ Vertex(XTopoDS_Shape^ S);
 
+        //! Casts shape S to the more specialized return type, Edge
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Edge^ Edge(XTopoDS_Shape^ S);
 
+        //! Casts shape S to the more specialized return type, Wire.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Wire^ Wire(XTopoDS_Shape^ S);
 
+        //! Casts shape S to the more specialized return type, Face.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Face^ Face(XTopoDS_Shape^ S);
 
-protected:
+        //! Casts shape S to the more specialized return type, Shell.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Shell^ Shell(XTopoDS_Shape^ S);
 
+        //! Casts shape S to the more specialized return type, Solid.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Solid^ Solid(XTopoDS_Shape^ S);
 
+        //! Casts shape S to the more specialized return type, CompSolid.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_CompSolid^ CompSolid(XTopoDS_Shape^ S);
 
-
-
-private:
-
-
-
-
-friend class TopoDS_Shape;
-friend class TopoDS_HShape;
-friend class TopoDS_TShape;
-friend class TopoDS_TVertex;
-friend class TopoDS_Vertex;
-friend class TopoDS_TEdge;
-friend class TopoDS_Edge;
-friend class TopoDS_TWire;
-friend class TopoDS_Wire;
-friend class TopoDS_TFace;
-friend class TopoDS_Face;
-friend class TopoDS_TShell;
-friend class TopoDS_Shell;
-friend class TopoDS_TSolid;
-friend class TopoDS_Solid;
-friend class TopoDS_TCompSolid;
-friend class TopoDS_CompSolid;
-friend class TopoDS_TCompound;
-friend class TopoDS_Compound;
-friend class TopoDS_Builder;
-friend class TopoDS_Iterator;
-
-};
-
-
-#include <TopoDS.lxx>
-
-
-
-
-
-#endif // _TopoDS_HeaderFile
+        //! Casts shape S to the more specialized return type, Compound.
+        //! Exceptions
+        //! Standard_TypeMismatch if S cannot be cast to this return type.
+        static XTopoDS_Compound^ Compound(XTopoDS_Shape^ S);
+    };
+}
+#endif // _XTopoDS_HeaderFile

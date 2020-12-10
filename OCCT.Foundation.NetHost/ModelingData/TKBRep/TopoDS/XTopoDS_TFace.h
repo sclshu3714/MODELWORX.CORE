@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TFace_HeaderFile
-#define _TopoDS_TFace_HeaderFile
+#ifndef _XTopoDS_TFace_HeaderFile
+#define _XTopoDS_TFace_HeaderFile
+#pragma once
+#include <TopoDS_TFace.hxx>
+#include <XTopoDS_TShape.h>
+#include <XTopAbs_ShapeEnum.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -23,51 +28,51 @@
 #include <TopoDS_TShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 class TopoDS_TShape;
-
-
 class TopoDS_TFace;
-DEFINE_STANDARD_HANDLE(TopoDS_TFace, TopoDS_TShape)
+//! DEFINE_STANDARD_HANDLE(TopoDS_TFace, TopoDS_TShape)
+namespace TKBRep {
+    //! A  topological part  of a surface   or  of the  2D
+    //! space.  The  boundary  is  a   set of  wires   and
+    //! vertices.
+    public ref class XTopoDS_TFace : public XTopoDS_TShape
+    {
 
-//! A  topological part  of a surface   or  of the  2D
-//! space.  The  boundary  is  a   set of  wires   and
-//! vertices.
-class TopoDS_TFace : public TopoDS_TShape
-{
-
-public:
-
-  
-  //! Creates an empty TFace.
-    TopoDS_TFace();
-  
-  //! returns FACE.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-  
-  //! Returns an empty TFace.
-  Standard_EXPORT virtual Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+    public:
 
 
+        //! Creates an empty TFace.
+        XTopoDS_TFace();
+
+        XTopoDS_TFace(Handle(TopoDS_TFace) pos);
+
+        void SetTFaceHandle(Handle(TopoDS_TFace) pos);
+
+        virtual Handle(TopoDS_TFace) GetTFace();
+
+        virtual Handle(TopoDS_TShape) GetTShape() Standard_OVERRIDE;
+
+        //! returns FACE.
+        virtual XTopAbs_ShapeEnum ShapeType() Standard_OVERRIDE;
+
+        //! Returns an empty TFace.
+        virtual XTopoDS_TShape^ EmptyCopy() Standard_OVERRIDE;
 
 
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TFace,TopoDS_TShape)
+        //! DEFINE_STANDARD_RTTIEXT(TopoDS_TFace, TopoDS_TShape)
 
-protected:
-
-
-
-
-private:
-
-
-
-
-};
-
-
-#include <TopoDS_TFace.lxx>
-
-
-
-
-
-#endif // _TopoDS_TFace_HeaderFile
+            /// <summary>
+            /// ±¾µØ¾ä±ú
+            /// </summary>
+            virtual property Handle(TopoDS_TShape) IHandle {
+            Handle(TopoDS_TShape) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(TopoDS_TShape) shape)  Standard_OVERRIDE {
+                NativeHandle() = Handle(TopoDS_TFace)::DownCast(shape);
+            }
+        }
+    private:
+        NCollection_Haft<Handle(TopoDS_TFace)> NativeHandle;
+    };
+}
+#endif // _XTopoDS_TFace_HeaderFile

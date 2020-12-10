@@ -1,42 +1,37 @@
-// Created on: 1991-04-12
-// Created by: Remi LEQUETTE
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XTopoDS_TSolid.h>
+namespace TKBRep {
+    //! Creates an empty TSolid.
+    XTopoDS_TSolid::XTopoDS_TSolid() {
+        NativeHandle() = new TopoDS_TSolid();
+        SetTShapeHandle(NativeHandle());
+    };
 
 
-#include <Standard_Type.hxx>
-#include <TopAbs.hxx>
-#include <TopoDS_TSolid.hxx>
-#include <TopoDS_Shape.hxx>
+    XTopoDS_TSolid::XTopoDS_TSolid(Handle(TopoDS_TSolid) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(TopoDS_TSolid,TopoDS_TShape)
+    void XTopoDS_TSolid::SetTSolidHandle(Handle(TopoDS_TSolid) pos) {
+        NativeHandle() = pos;
+        SetTShapeHandle(NativeHandle());
+    };
 
-//=======================================================================
-//function : ShapeType
-//purpose  : 
-//=======================================================================
-TopAbs_ShapeEnum TopoDS_TSolid::ShapeType() const
-{
-  return TopAbs_SOLID;
-}
+    Handle(TopoDS_TSolid) XTopoDS_TSolid::GetTSolid() {
+        return NativeHandle();
+    };
 
-//=======================================================================
-//function : EmptyCopy
-//purpose  : 
-//=======================================================================
+    Handle(TopoDS_TShape) XTopoDS_TSolid::GetTShape() {
+        return NativeHandle();
+    };
 
-Handle(TopoDS_TShape) TopoDS_TSolid::EmptyCopy() const
-{
-  return Handle(TopoDS_TSolid)(new TopoDS_TSolid());
+    //! returns SOLID.
+    XTopAbs_ShapeEnum XTopoDS_TSolid::ShapeType() {
+        return safe_cast<XTopAbs_ShapeEnum>(NativeHandle()->ShapeType());
+    };
+
+    //! Returns an empty TSolid.
+    XTopoDS_TShape^ XTopoDS_TSolid::EmptyCopy() {
+        return gcnew XTopoDS_TShape(NativeHandle()->EmptyCopy());
+    };
 }

@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDF;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDocStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDataStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKVCAF\TPrsStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\GeomAbs;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\NCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\TCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Quantity;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepPrimAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepPrim;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepSweep;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BRepAlgoAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BOPAlgo;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BOPTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\DataExchange\TKSTEP\STEPConstruct;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\TopAbs;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\TopoDS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\TopTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\BRep;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\BRepTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG2d\Geom2d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKService\Aspect;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Prs3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Graphic3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\SelectMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\PrsMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\V3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\OCC\;$(CSF_OCCTIncludePath);E:\Software\OCC\OpenCASCADE7.4.0\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\inc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDF;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDocStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKLCAF\TDataStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ApplicationFramework\TKVCAF\TPrsStd;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\gp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\TopLoc;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKMath\GeomAbs;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\NCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\TCollection;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Standard;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\FoundationClasses\TKernel\Quantity;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepPrimAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepPrim;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKPrim\BRepSweep;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BRepAlgoAPI;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BOPAlgo;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingAlgorithms\TKBO\BOPTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\DataExchange\TKSTEP\STEPConstruct;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\Geom;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG3d\TopAbs;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\TopoDS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\TopTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\BRep;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\BRepTools;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKBRep\TopExp;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\ModelingData\TKG2d\Geom2d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKService\Aspect;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\AIS;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Prs3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\Graphic3d;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\SelectMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\PrsMgr;D:\Users\lenovo\source\repos\VXCoreLibrary\MODELWORX.CORE\OCCT.Foundation.NetHost\Visualization\TKV3d\V3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <CompileAsManaged>true</CompileAsManaged>
@@ -330,6 +330,9 @@
     <ClInclude Include="ModelingData\TKBRep\BRepTools\XBRepTools.h" />
     <ClInclude Include="ModelingData\TKBRep\BRep\XBRep_Builder.h" />
     <ClInclude Include="ModelingData\TKBRep\BRep\XBRep_Tool.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopExp\XTopExp.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopExp\XTopExp_Explorer.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.h" />
@@ -340,7 +343,15 @@
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shell.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Solid.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompound.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompSolid.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TEdge.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TFace.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShape.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShell.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TSolid.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TVertex.h" />
+    <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TWire.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Vertex.h" />
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.h" />
     <ClInclude Include="ModelingData\TKBRep\TopTools\XTopTools_ListOfShape.h" />
@@ -558,6 +569,9 @@
     <ClCompile Include="ModelingData\TKBRep\BRepTools\XBRepTools.cpp" />
     <ClCompile Include="ModelingData\TKBRep\BRep\XBRep_Builder.cpp" />
     <ClCompile Include="ModelingData\TKBRep\BRep\XBRep_Tool.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopExp\XTopExp.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopExp\XTopExp_Explorer.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Builder.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Compound.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_CompSolid.cpp" />
@@ -568,7 +582,15 @@
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shape.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Shell.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Solid.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompound.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TCompSolid.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TEdge.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TFace.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShape.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TShell.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TSolid.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TVertex.cpp" />
+    <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_TWire.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Vertex.cpp" />
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp" />

@@ -10,11 +10,6 @@
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKBRep.XTopoDS_Shape.IHandle">
             <summary>
 本地句柄
@@ -97,11 +92,6 @@
 </summary>
         </member>
         <member name="P:TKXCAF.XXCAFPrs_Driver.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -506,6 +496,16 @@ C++/CLI class visible from .Net (CSharp)
 指针映射点
 </summary>
             <param name="pos" />
+        </member>
+        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+            <summary>
+本地句柄
+</summary>
         </member>
         <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
             <summary>
