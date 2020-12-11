@@ -203,6 +203,7 @@
   <ItemGroup>
     <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Integer.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_Name.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_RealEnum.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Attribute.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h" />
@@ -289,6 +290,7 @@
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Fuse.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCylinder.h" />
@@ -536,6 +538,7 @@
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Cut.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Fuse.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCylinder.cpp" />

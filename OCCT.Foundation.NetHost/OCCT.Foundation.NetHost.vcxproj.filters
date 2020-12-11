@@ -400,6 +400,18 @@
     <Filter Include="源文件\ModelingData\TKBRep\TopExp">
       <UniqueIdentifier>{7d94073d-6bdf-4d34-93e2-ce1ae8bd1f9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKFillet">
+      <UniqueIdentifier>{122385dd-f6a7-4244-a773-f8f1488e7304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKFillet">
+      <UniqueIdentifier>{402953a7-8147-4792-8d77-81a1238226b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI">
+      <UniqueIdentifier>{5740952c-4bc4-437e-988e-12afdc88c963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI">
+      <UniqueIdentifier>{8658c2bc-7c0d-45b9-97a3-b05e066fc006}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1209,6 +1221,12 @@
     <ClInclude Include="ModelingData\TKBRep\TopoDS\XTopoDS_TSolid.h">
       <Filter>头文件\ModelingData\TKBRep\TopoDS</Filter>
     </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDataStd\XTDataStd_RealEnum.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDataStd</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1667,6 +1685,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKBRep\TopExp\XTopExp.cpp">
       <Filter>源文件\ModelingData\TKBRep\TopExp</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -589,31 +589,6 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Label.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_GUID.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_UUID.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKMath.xgp_Lin.Handle">
             <summary>
 本地句柄
@@ -645,6 +620,31 @@ C++/CLI class visible from .Net (CSharp)
             <param name="pos" />
         </member>
         <member name="P:TKG3d.XGeom_Geometry.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Label.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_GUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_UUID.Handle">
             <summary>
 本地句柄
 </summary>

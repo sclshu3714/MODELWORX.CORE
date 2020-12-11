@@ -4606,6 +4606,37 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShape: AutoLayout, AnsiClass, Class, Public,
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKFillet.XBRepFilletAPI_LocalOperation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(BRepFilletAPI_LocalOperation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetLocalOperationHandle(BRepFilletAPI_LocalOperation*): PrivateScope, Public, HideBySig
+    GetLocalOperation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    Add(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ResetContour(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NbContours(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Contour(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NbEdges(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Edge(Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Remove(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Length(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    FirstVertex(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastVertex(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Abscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RelativeAbscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ClosedAndTangent(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Closed(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reset(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Simulate(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NbSurf(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Sect(handle<ChFiDS_SecHArray1>*, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

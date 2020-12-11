@@ -14,17 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TDataStd_RealEnum_HeaderFile
-#define _TDataStd_RealEnum_HeaderFile
+#ifndef _XTDataStd_RealEnum_HeaderFile
+#define _XTDataStd_RealEnum_HeaderFile
 
 
 //! The terms of this enumeration define the
 //! semantics of a real number value.
-enum TDataStd_RealEnum
+public enum class XTDataStd_RealEnum
 {
-TDataStd_SCALAR,
-TDataStd_LENGTH,
-TDataStd_ANGULAR
+	TDataStd_SCALAR,
+	TDataStd_LENGTH,
+	TDataStd_ANGULAR
 };
 
-#endif // _TDataStd_RealEnum_HeaderFile
+#endif // _XTDataStd_RealEnum_HeaderFile
