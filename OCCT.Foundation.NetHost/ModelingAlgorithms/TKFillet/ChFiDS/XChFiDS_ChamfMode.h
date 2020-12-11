@@ -12,11 +12,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFiDS_ChamfMode_HeaderFile
-#define _ChFiDS_ChamfMode_HeaderFile
+#ifndef _XChFiDS_ChamfMode_HeaderFile
+#define _XChFiDS_ChamfMode_HeaderFile
 
 //! this enumeration defines several modes of chamfer
-enum ChFiDS_ChamfMode
+public enum class XChFiDS_ChamfMode
 {
   //! chamfer with constant distance from spine to one of the two surfaces
   ChFiDS_ClassicChamfer,
@@ -34,4 +34,4 @@ enum ChFiDS_ChamfMode
   ChFiDS_ConstThroatWithPenetrationChamfer
 };
 
-#endif // _ChFiDS_ChamfMode_HeaderFile
+#endif // _XChFiDS_ChamfMode_HeaderFile

@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFiDS_ChamfMethod_HeaderFile
-#define _ChFiDS_ChamfMethod_HeaderFile
+#ifndef _XChFiDS_ChamfMethod_HeaderFile
+#define _XChFiDS_ChamfMethod_HeaderFile
 
 
-enum ChFiDS_ChamfMethod
+public enum class XChFiDS_ChamfMethod
 {
-ChFiDS_Sym,
-ChFiDS_TwoDist,
-ChFiDS_DistAngle
+	ChFiDS_Sym,
+	ChFiDS_TwoDist,
+	ChFiDS_DistAngle
 };
 
-#endif // _ChFiDS_ChamfMethod_HeaderFile
+#endif // _XChFiDS_ChamfMethod_HeaderFile

@@ -412,6 +412,9 @@
     <Filter Include="头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI">
       <UniqueIdentifier>{8658c2bc-7c0d-45b9-97a3-b05e066fc006}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKFillet\ChFiDS">
+      <UniqueIdentifier>{951dde62-1683-4e34-8685-00835e9eb933}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1227,6 +1230,15 @@
     <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.h">
       <Filter>头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeChamfer.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ChamfMethod.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\ChFiDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ChamfMode.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\ChFiDS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1687,6 +1699,9 @@
       <Filter>源文件\ModelingData\TKBRep\TopExp</Filter>
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeChamfer.cpp">
       <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
     </ClCompile>
   </ItemGroup>

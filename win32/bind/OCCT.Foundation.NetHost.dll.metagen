@@ -4637,6 +4637,64 @@ Class TKFillet.XBRepFilletAPI_LocalOperation: AutoLayout, AnsiClass, Class, Publ
     Sect(handle<ChFiDS_SecHArray1>*, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKFillet.XBRepFilletAPI_MakeChamfer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKFillet.XBRepFilletAPI_LocalOperation
+    Void .ctor(BRepFilletAPI_MakeChamfer*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakeChamferHandle(BRepFilletAPI_MakeChamfer*): PrivateScope, Public, HideBySig
+    GetMakeChamfer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLocalOperation(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    Add(Double, Double, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, HideBySig
+    Add(Double, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    SetDist(Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
+    GetDist(Int32, Double): PrivateScope, Public, HideBySig
+    SetDists(Double, Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
+    Dists(Int32, Double, Double): PrivateScope, Public, HideBySig
+    AddDA(Double, Double, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, HideBySig
+    SetDistAngle(Double, Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
+    GetDistAngle(Int32, Double&, Double&): PrivateScope, Public, HideBySig
+    SetMode(XChFiDS_ChamfMode): PrivateScope, Public, HideBySig
+    IsSymetric(Int32): PrivateScope, Public, HideBySig
+    IsTwoDistances(Int32): PrivateScope, Public, HideBySig
+    IsDistanceAngle(Int32): PrivateScope, Public, HideBySig
+    ResetContour(Int32): PrivateScope, Public, Virtual, HideBySig
+    NbContours(): PrivateScope, Public, Virtual, HideBySig
+    Contour(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    NbEdges(Int32): PrivateScope, Public, Virtual, HideBySig
+    Edge(Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    Remove(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    Length(Int32): PrivateScope, Public, Virtual, HideBySig
+    FirstVertex(Int32): PrivateScope, Public, Virtual, HideBySig
+    LastVertex(Int32): PrivateScope, Public, Virtual, HideBySig
+    Abscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    RelativeAbscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    ClosedAndTangent(Int32): PrivateScope, Public, Virtual, HideBySig
+    Closed(Int32): PrivateScope, Public, Virtual, HideBySig
+    Build(): PrivateScope, Public, Virtual, HideBySig
+    Reset(): PrivateScope, Public, Virtual, HideBySig
+    Builder(handle<TopOpeBRepBuild_HBuilder>*): PrivateScope, Public, HideBySig
+    Generated(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    Simulate(Int32): PrivateScope, Public, Virtual, HideBySig
+    NbSurf(Int32): PrivateScope, Public, Virtual, HideBySig
+    Sect(handle<ChFiDS_SecHArray1>*, Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XChFiDS_ChamfMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XChFiDS_ChamfMode ChFiDS_ClassicChamfer = 0 : Public, Static, Literal, HasDefault
+    XChFiDS_ChamfMode ChFiDS_ConstThroatChamfer = 1 : Public, Static, Literal, HasDefault
+    XChFiDS_ChamfMode ChFiDS_ConstThroatWithPenetrationChamfer = 2 : Public, Static, Literal, HasDefault
 Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
