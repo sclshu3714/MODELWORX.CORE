@@ -4656,7 +4656,7 @@ Class TKFillet.XBRepFilletAPI_MakeChamfer: AutoLayout, AnsiClass, Class, Public,
     SetDist(Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
     GetDist(Int32, Double): PrivateScope, Public, HideBySig
     SetDists(Double, Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
-    Dists(Int32, Double, Double): PrivateScope, Public, HideBySig
+    Dists(Int32, Double&, Double&): PrivateScope, Public, HideBySig
     AddDA(Double, Double, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, HideBySig
     SetDistAngle(Double, Double, Int32, XTopoDS_Face): PrivateScope, Public, HideBySig
     GetDistAngle(Int32, Double&, Double&): PrivateScope, Public, HideBySig
@@ -4673,8 +4673,8 @@ Class TKFillet.XBRepFilletAPI_MakeChamfer: AutoLayout, AnsiClass, Class, Public,
     Length(Int32): PrivateScope, Public, Virtual, HideBySig
     FirstVertex(Int32): PrivateScope, Public, Virtual, HideBySig
     LastVertex(Int32): PrivateScope, Public, Virtual, HideBySig
-    Abscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
-    RelativeAbscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    Abscissa(Int32, XTopoDS_Vertex&): PrivateScope, Public, Virtual, HideBySig
+    RelativeAbscissa(Int32, XTopoDS_Vertex&): PrivateScope, Public, Virtual, HideBySig
     ClosedAndTangent(Int32): PrivateScope, Public, Virtual, HideBySig
     Closed(Int32): PrivateScope, Public, Virtual, HideBySig
     Build(): PrivateScope, Public, Virtual, HideBySig

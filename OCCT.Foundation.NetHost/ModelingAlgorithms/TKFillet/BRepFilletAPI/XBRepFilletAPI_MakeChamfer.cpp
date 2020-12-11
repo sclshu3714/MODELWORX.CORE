@@ -115,8 +115,10 @@ namespace TKFillet {
 	//! in the internal data structure of this algorithm.
 	//! Warning
 	//! -1. is returned if IC is outside the bounds of the table of contours.
-	void XBRepFilletAPI_MakeChamfer::Dists(Standard_Integer IC, Standard_Real Dis1, Standard_Real Dis2) {
-		NativeHandle->Dists(IC, Dis1, Dis2);
+	void XBRepFilletAPI_MakeChamfer::Dists(Standard_Integer IC, Standard_Real% Dis1, Standard_Real% Dis2) {
+		Standard_Real XDis1(Dis1); Standard_Real XDis2(Dis2);
+		NativeHandle->Dists(IC, XDis1, XDis2);
+		Dis1 = XDis1; Dis2 = XDis2;
 	};
 
 	//! Adds a  fillet contour in  the  builder  (builds a
@@ -247,8 +249,10 @@ namespace TKFillet {
 	//! Returns -1. if:
 	//! -   IC is outside the bounds of the table of contours, or
 	//! -   V is not on the contour of index IC.
-	Standard_Real XBRepFilletAPI_MakeChamfer::Abscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
-		return NativeHandle->Abscissa(IC, *V->GetVertex());
+	Standard_Real XBRepFilletAPI_MakeChamfer::Abscissa(Standard_Integer IC, XTopoDS_Vertex^% V) {
+		TopoDS_Vertex* temp = V->GetVertex();
+		return NativeHandle->Abscissa(IC, *temp);
+		V = gcnew XTopoDS_Vertex(temp);
 	};
 
 	//! Returns the relative curvilinear abscissa (i.e. between 0
@@ -258,8 +262,10 @@ namespace TKFillet {
 	//! Returns -1. if:
 	//! -   IC is outside the bounds of the table of contours, or
 	//! -   V is not on the contour of index IC.
-	Standard_Real XBRepFilletAPI_MakeChamfer::RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
-		return NativeHandle->RelativeAbscissa(IC, *V->GetVertex());
+	Standard_Real XBRepFilletAPI_MakeChamfer::RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^% V) {
+		TopoDS_Vertex* temp = V->GetVertex();
+		return NativeHandle->RelativeAbscissa(IC, *temp);
+		V = gcnew XTopoDS_Vertex(temp);
 	};
 
 	//! eturns true if the contour of index IC in the internal
