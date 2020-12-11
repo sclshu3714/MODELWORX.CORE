@@ -41,6 +41,7 @@ namespace OCCT.NET
             this.btnShell = new DevExpress.XtraBars.BarButtonItem();
             this.btnDeleteSelect = new DevExpress.XtraBars.BarButtonItem();
             this.btnClearAll = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAnimation = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -68,7 +69,7 @@ namespace OCCT.NET
             this.RWControl = new DevExpress.XtraEditors.PanelControl();
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.btnAnimation = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImportFile = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.documentGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.document1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -119,9 +120,10 @@ namespace OCCT.NET
             this.btnShell,
             this.btnDeleteSelect,
             this.btnClearAll,
-            this.btnAnimation});
+            this.btnAnimation,
+            this.btnImportFile});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 9;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -185,6 +187,14 @@ namespace OCCT.NET
             this.btnClearAll.ImageOptions.LargeImage = global::OCCT.NET.Properties.Resources.resetmodeldifferences_32x32;
             this.btnClearAll.Name = "btnClearAll";
             // 
+            // btnAnimation
+            // 
+            this.btnAnimation.Caption = "动画";
+            this.btnAnimation.Id = 8;
+            this.btnAnimation.ImageOptions.Image = global::OCCT.NET.Properties.Resources.video_16x16;
+            this.btnAnimation.ImageOptions.LargeImage = global::OCCT.NET.Properties.Resources.video_32x32;
+            this.btnAnimation.Name = "btnAnimation";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -226,6 +236,7 @@ namespace OCCT.NET
             // 
             // ribbonPageGroup6
             // 
+            this.ribbonPageGroup6.ItemLinks.Add(this.btnImportFile);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "文件处理";
             // 
@@ -430,13 +441,13 @@ namespace OCCT.NET
             this.tabbedView1.RootContainer.Nodes.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer[] {
             dockingContainer1});
             // 
-            // btnAnimation
+            // btnImportFile
             // 
-            this.btnAnimation.Caption = "动画";
-            this.btnAnimation.Id = 8;
-            this.btnAnimation.ImageOptions.Image = global::OCCT.NET.Properties.Resources.video_16x16;
-            this.btnAnimation.ImageOptions.LargeImage = global::OCCT.NET.Properties.Resources.video_32x32;
-            this.btnAnimation.Name = "btnAnimation";
+            this.btnImportFile.Caption = "导入文件";
+            this.btnImportFile.Id = 9;
+            this.btnImportFile.ImageOptions.Image = global::OCCT.NET.Properties.Resources.article_16x16;
+            this.btnImportFile.ImageOptions.LargeImage = global::OCCT.NET.Properties.Resources.article_32x32;
+            this.btnImportFile.Name = "btnImportFile";
             // 
             // MainForm
             // 
@@ -519,5 +530,6 @@ namespace OCCT.NET
         private DevExpress.XtraBars.BarButtonItem btnDeleteSelect;
         private DevExpress.XtraBars.BarButtonItem btnClearAll;
         private DevExpress.XtraBars.BarButtonItem btnAnimation;
+        private DevExpress.XtraBars.BarButtonItem btnImportFile;
     }
 }
