@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using TKBO;
 using TKBRep;
 using TKernel;
+using TKFillet;
 using TKMath;
 using TKPrim;
 using TKTopAlgo;
@@ -130,7 +131,17 @@ namespace OCCT.NET
             XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
             XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
             XBRepPrimAPI_MakePrism S3 = new XBRepPrimAPI_MakePrism(S2.Shape(), new xgp_Vec(0.0, 0.0, 100.0), false, true);
-            render.AddShape(S3.Shape(), true);
+            //倒圆
+            XBRepFilletAPI_MakeFillet MFBox = new XBRepFilletAPI_MakeFillet(S3.Shape(), XChFi3d_FilletShape.ChFi3d_Rational);
+            XTopExp_Explorer exp = new XTopExp_Explorer(S3.Shape(), XTopAbs_ShapeEnum.TopAbs_EDGE, XTopAbs_ShapeEnum.TopAbs_SHAPE);
+            while (exp.More())
+            {
+                MFBox.Add(5, XTopoDS.Edge(exp.Current()));
+                exp.Next();
+            }
+            XAIS_Shape WAIS_EC = new XAIS_Shape(MFBox.Shape());
+            SetFaceBoundaryAspect(WAIS_EC, true);
+            render.AddShape(WAIS_EC, true);
 
             //XBRepPrimAPI_MakeBox tempA = new XBRepPrimAPI_MakeBox(200.0, 150.0, 100.0);
             //XBRepPrimAPI_MakeBox tempB = new XBRepPrimAPI_MakeBox(new xgp_Pnt(60, 60, 0), 200.0, 150.0, 100.0);
@@ -166,7 +177,9 @@ namespace OCCT.NET
             XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
             XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
             XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
-            render.AddShape(S2.Shape(), true);
+            XAIS_Shape WAIS_EC = new XAIS_Shape(S2.Shape());
+            SetFaceBoundaryAspect(WAIS_EC, true);
+            render.AddShape(WAIS_EC, true);
 
             //xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
             //XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
