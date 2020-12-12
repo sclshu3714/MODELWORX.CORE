@@ -565,8 +565,8 @@ namespace TKV3d {
     //! @param theMargin [in] the margin coefficient for view borders.
     //! @param theToUpdate [in] flag to perform view update.
     //!  Standard_Real theMargin = 0.01, Standard_Boolean theToUpdate = Standard_True
-    void XV3d_View::FitAll(Bnd_Box& theBox, Standard_Real theMargin, Standard_Boolean theToUpdate) {
-        NativeHandle()->FitAll(theBox, theMargin, theToUpdate);
+    void XV3d_View::FitAll(XBnd_Box^ theBox, Standard_Real theMargin, Standard_Boolean theToUpdate) {
+        NativeHandle()->FitAll(*theBox->GetBndBox(), theMargin, theToUpdate);
     };
 
     //! Adjusts the viewing volume so as not to clip the displayed objects by front and back
@@ -966,8 +966,8 @@ namespace TKV3d {
     //!                                the view plane is enlarged such thatwe see the whole line on rotation, otherwise only the center of camera is adjusted.
     //! @return TRUE if the fit all operation can be done
     //! Standard_Real theResolution = 0.0, Standard_Boolean theToEnlargeIfLine = Standard_True
-    Standard_Boolean XV3d_View::FitMinMax(Handle(Graphic3d_Camera)& theCamera, Bnd_Box& theBox, Standard_Real theMargin, Standard_Real theResolution, Standard_Boolean theToEnlargeIfLine) {
-        return NativeHandle()->FitMinMax(theCamera, theBox, theMargin, theResolution, theToEnlargeIfLine);
+    Standard_Boolean XV3d_View::FitMinMax(Handle(Graphic3d_Camera)& theCamera, XBnd_Box^ theBox, Standard_Real theMargin, Standard_Real theResolution, Standard_Boolean theToEnlargeIfLine) {
+        return NativeHandle()->FitMinMax(theCamera, *theBox->GetBndBox(), theMargin, theResolution, theToEnlargeIfLine);
     };
 
     //! Defines or Updates the definition of the

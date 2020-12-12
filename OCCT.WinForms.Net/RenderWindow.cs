@@ -603,6 +603,14 @@ namespace OCCT.WinForms.Net
         public XAIS_InteractiveContext GetInteractiveContext() {
             return this.OCCTView.GetInteractiveContext();
         }
+
+        /// <summary>
+        ///Get V3d_View
+        /// </summary>
+        public XV3d_View GetV3dView()
+        {
+            return this.OCCTView.GetV3dView();
+        }
         #endregion
 
         #region 导入/导出

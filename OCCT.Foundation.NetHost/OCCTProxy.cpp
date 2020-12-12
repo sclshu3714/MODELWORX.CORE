@@ -47,6 +47,7 @@
 #include <XAIS_InteractiveContext.h>
 #include <ViewerTest.hxx>
 #include <TPrsStd_AISViewer.hxx>
+#include <XV3d_View.h>
 
 // list of required OCCT libraries
 #pragma comment(lib, "TKernel.lib")
@@ -723,6 +724,13 @@ public:
     XAIS_InteractiveContext^ GetInteractiveContext(void)
     {
         return gcnew XAIS_InteractiveContext(mainAISContext());
+    }
+
+    /// <summary>
+    ///Get V3d_View
+    /// </summary>
+    XV3d_View^ GetV3dView(void) {
+        return gcnew XV3d_View(mainView());
     }
 
 #pragma endregion

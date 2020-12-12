@@ -21,8 +21,8 @@
 //! of the object.
 public enum class XAspect_TypeOfDeflection
 {
-Aspect_TOD_RELATIVE,
-Aspect_TOD_ABSOLUTE
+	Aspect_TOD_RELATIVE,
+	Aspect_TOD_ABSOLUTE
 };
 
 #endif // _XAspect_TypeOfDeflection_HeaderFile

@@ -209,6 +209,11 @@ Import BRep file
 </summary>
             <param name="theFileName">Name of import file</param>
         </member>
+        <member name="M:OCCTProxy.GetV3dView">
+            <summary>
+Get V3d_View
+</summary>
+        </member>
         <member name="M:OCCTProxy.GetInteractiveContext">
             <summary>
 Get AISContext
@@ -589,6 +594,36 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Label.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_GUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_UUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Line.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKMath.xgp_Lin.Handle">
             <summary>
 本地句柄
@@ -624,42 +659,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Label.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_GUID.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_UUID.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKBRep.XTopoDS_Iterator.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
         <member name="P:TKMath.XTopLoc_Location.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKG3d.XGeom_Line.IHandle">
             <summary>
 本地句柄
 </summary>

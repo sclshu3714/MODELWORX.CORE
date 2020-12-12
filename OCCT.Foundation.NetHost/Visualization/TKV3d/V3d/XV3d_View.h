@@ -36,6 +36,7 @@
 #include <XQuantity_TypeOfColor.h>
 #include <XQuantity_Color.h>
 #include <XTCollection_AsciiString.h>
+#include <XBnd_Box.h>
 
 #include <Aspect_Background.hxx>
 #include <Aspect_FillMethod.hxx>
@@ -110,6 +111,7 @@ namespace TKV3d {
     ref class TKMath::xgp_Pnt;
     ref class TKernel::XQuantity_Color;
     ref class TKernel::XTCollection_AsciiString;
+    ref class TKMath::XBnd_Box;
     //! Defines the application object VIEW for the
     //! VIEWER application.
     //! The methods of this class allow the editing
@@ -530,7 +532,7 @@ namespace TKV3d {
         //! @param theMargin [in] the margin coefficient for view borders.
         //! @param theToUpdate [in] flag to perform view update.
         //!  Standard_Real theMargin = 0.01, Standard_Boolean theToUpdate = Standard_True
-        void FitAll(Bnd_Box& theBox, Standard_Real theMargin, Standard_Boolean theToUpdate);
+        void FitAll(XBnd_Box^ theBox, Standard_Real theMargin, Standard_Boolean theToUpdate);
 
         //! Adjusts the viewing volume so as not to clip the displayed objects by front and back
         //! and back clipping planes. Also sets depth value automatically depending on the
@@ -809,7 +811,7 @@ namespace TKV3d {
         //!                                the view plane is enlarged such thatwe see the whole line on rotation, otherwise only the center of camera is adjusted.
         //! @return TRUE if the fit all operation can be done
         //! Standard_Real theResolution = 0.0, Standard_Boolean theToEnlargeIfLine = Standard_True
-        Standard_Boolean FitMinMax(Handle(Graphic3d_Camera)& theCamera, Bnd_Box& theBox, Standard_Real theMargin, Standard_Real theResolution, Standard_Boolean theToEnlargeIfLine);
+        Standard_Boolean FitMinMax(Handle(Graphic3d_Camera)& theCamera, XBnd_Box^ theBox, Standard_Real theMargin, Standard_Real theResolution, Standard_Boolean theToEnlargeIfLine);
 
         //! Defines or Updates the definition of the
         //! grid in <me>

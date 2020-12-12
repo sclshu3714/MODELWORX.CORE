@@ -77,11 +77,11 @@ namespace OCCT.NET
             xgp_Trsf end_pnt = new xgp_Trsf();
 
             start_pnt.SetValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0);
-            end_pnt.SetValues(1, 0, 0, 100, 0, 1, 0, 100, 0, 0, 1, 100);
+            end_pnt.SetValues(1, 0, 0, 1000, 0, 1, 0, 1000, 0, 0, 1, 100);
 
             XAIS_Animation ais_animation = new XAIS_Animation(new XTCollection_AsciiString("obj1_Ani"));
             XAIS_AnimationObject ais_ao = new XAIS_AnimationObject(new XTCollection_AsciiString("obj1"), render.GetInteractiveContext(), ais_obj1, start_pnt, end_pnt);
-            ais_ao.SetOwnDuration(10);
+            ais_ao.SetOwnDuration(50);
             ais_ao.SetStartPts(0);
 
             ais_animation.Add(ais_ao);
@@ -93,7 +93,7 @@ namespace OCCT.NET
             while (!ais_animation.IsStopped())
             {
                 ais_animation.UpdateTimer();
-                render.UpdateCurrentViewer();
+                render.RedrawView();
             }
         }
         #endregion

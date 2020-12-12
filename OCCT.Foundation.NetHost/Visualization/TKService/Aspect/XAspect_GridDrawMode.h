@@ -13,16 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_GridDrawMode_HeaderFile
-#define _Aspect_GridDrawMode_HeaderFile
+#ifndef _XAspect_GridDrawMode_HeaderFile
+#define _XAspect_GridDrawMode_HeaderFile
 
 //! Defines the grid draw mode. The grid may be drawn
 //! by using lines or points.
-enum Aspect_GridDrawMode
+public enum class XAspect_GridDrawMode
 {
-Aspect_GDM_Lines,
-Aspect_GDM_Points,
-Aspect_GDM_None
+	Aspect_GDM_Lines,
+	Aspect_GDM_Points,
+	Aspect_GDM_None
 };
 
-#endif // _Aspect_GridDrawMode_HeaderFile
+#endif // _XAspect_GridDrawMode_HeaderFile

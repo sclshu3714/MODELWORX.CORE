@@ -1290,6 +1290,21 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
+    <ClInclude Include="FoundationClasses\TKMath\Bnd\XBnd_Box.h">
+      <Filter>头文件\FoundationClasses\TKMath\Bnd</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\V3d\XV3d_Viewer.h">
+      <Filter>头文件\Visualization\TKV3d\V3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerSettings.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_GridDrawMode.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_GridType.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1766,6 +1781,15 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKMath\Bnd\XBnd_Box.cpp">
+      <Filter>源文件\FoundationClasses\TKMath\Bnd</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerSettings.cpp">
+      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\V3d\XV3d_Viewer.cpp">
+      <Filter>源文件\Visualization\TKV3d\V3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

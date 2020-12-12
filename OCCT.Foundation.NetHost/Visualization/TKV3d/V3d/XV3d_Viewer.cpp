@@ -1,575 +1,558 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XV3d_Viewer.h>
 
-#include <V3d_Viewer.hxx>
+namespace TKV3d {
+    //! Create a Viewer with the given graphic driver and with default parameters:
+    //! - View orientation: V3d_XposYnegZpos
+    //! - View background: Quantity_NOC_GRAY30
+    //! - Shading model: V3d_GOURAUD
+    XV3d_Viewer::XV3d_Viewer(Handle(Graphic3d_GraphicDriver)& theDriver) {
+        NativeHandle() = new V3d_Viewer(theDriver);
+    };
 
-#include <Aspect_Grid.hxx>
-#include <Aspect_IdentDefinitionError.hxx>
-#include <Graphic3d_ArrayOfSegments.hxx>
-#include <Graphic3d_AspectLine3d.hxx>
-#include <Graphic3d_AspectMarker3d.hxx>
-#include <Graphic3d_AspectText3d.hxx>
-#include <Graphic3d_GraphicDriver.hxx>
-#include <Graphic3d_Group.hxx>
-#include <Graphic3d_Structure.hxx>
-#include <Graphic3d_Text.hxx>
-#include <Standard_ErrorHandler.hxx>
-#include <Standard_Type.hxx>
-#include <V3d.hxx>
-#include <V3d_BadValue.hxx>
-#include <V3d_CircularGrid.hxx>
-#include <V3d_AmbientLight.hxx>
-#include <V3d_DirectionalLight.hxx>
-#include <V3d_RectangularGrid.hxx>
-#include <V3d_View.hxx>
+    //! Returns True if One View more can be defined in this Viewer.
+    Standard_Boolean XV3d_Viewer::IfMoreViews() {
+        return NativeHandle()->IfMoreViews();
+    };
 
-IMPLEMENT_STANDARD_RTTIEXT(V3d_Viewer, Standard_Transient)
+    //! Creates a view in the viewer according to its default parameters.
+    XV3d_View^ XV3d_Viewer::CreateView() {
+        return gcnew XV3d_View(NativeHandle()->CreateView());
+    };
 
-// ========================================================================
-// function : V3d_Viewer
-// purpose  :
-// ========================================================================
-V3d_Viewer::V3d_Viewer (const Handle(Graphic3d_GraphicDriver)& theDriver)
-: myDriver (theDriver),
-  myStructureManager (new Graphic3d_StructureManager (theDriver)),
-  myZLayerGenId (1, IntegerLast()),
-  myBackground (Quantity_NOC_GRAY30),
-  myViewSize (1000.0),
-  myViewProj (V3d_XposYnegZpos),
-  myVisualization (V3d_ZBUFFER),
-  myShadingModel (Graphic3d_TOSM_VERTEX),
-  myDefaultTypeOfView (V3d_ORTHOGRAPHIC),
-  myComputedMode (Standard_True),
-  myDefaultComputedMode (Standard_False),
-  myPrivilegedPlane (gp_Ax3 (gp_Pnt (0.,0.,0), gp_Dir (0.,0.,1.), gp_Dir (1.,0.,0.))),
-  myDisplayPlane (Standard_False),
-  myDisplayPlaneLength (1000.0),
-  myGridType (Aspect_GT_Rectangular),
-  myGridEcho (Standard_True),
-  myGridEchoLastVert (ShortRealLast(), ShortRealLast(), ShortRealLast())
-{
-  myRGrid = new V3d_RectangularGrid (this, Quantity_Color (Quantity_NOC_GRAY50), Quantity_Color (Quantity_NOC_GRAY70));
-  myCGrid = new V3d_CircularGrid    (this, Quantity_Color (Quantity_NOC_GRAY50), Quantity_Color (Quantity_NOC_GRAY70));
-}
+    //! Activates all of the views of a viewer attached to a window.
+    void XV3d_Viewer::SetViewOn() {
+        NativeHandle()->SetViewOn();
+    };
 
-// ========================================================================
-// function : V3d_Viewer
-// purpose  :
-// ========================================================================
-V3d_Viewer::V3d_Viewer (const Handle(Graphic3d_GraphicDriver)& theDriver,
-                        const Standard_ExtString ,
-                        const Standard_CString ,
-                        const Standard_Real                theViewSize,
-                        const V3d_TypeOfOrientation        theViewProj,
-                        const Quantity_Color&              theViewBackground,
-                        const V3d_TypeOfVisualization      theVisualization,
-                        const Graphic3d_TypeOfShadingModel theShadingModel,
-                        const Standard_Boolean             theComputedMode,
-                        const Standard_Boolean             theDefaultComputedMode)
-: myDriver (theDriver),
-  myStructureManager (new Graphic3d_StructureManager (theDriver)),
-  myZLayerGenId (1, IntegerLast()),
-  myBackground (theViewBackground),
-  myViewSize (theViewSize),
-  myViewProj (theViewProj),
-  myVisualization (theVisualization),
-  myShadingModel (theShadingModel),
-  myDefaultTypeOfView (V3d_ORTHOGRAPHIC),
-  myComputedMode (theComputedMode),
-  myDefaultComputedMode (theDefaultComputedMode),
-  myPrivilegedPlane (gp_Ax3 (gp_Pnt (0.,0.,0), gp_Dir (0.,0.,1.), gp_Dir (1.,0.,0.))),
-  myDisplayPlane (Standard_False),
-  myDisplayPlaneLength (theViewSize),
-  myGridType (Aspect_GT_Rectangular),
-  myGridEcho (Standard_True),
-  myGridEchoLastVert (ShortRealLast(), ShortRealLast(), ShortRealLast())
-{
-  myRGrid = new V3d_RectangularGrid (this, Quantity_Color (Quantity_NOC_GRAY50), Quantity_Color (Quantity_NOC_GRAY70));
-  myCGrid = new V3d_CircularGrid    (this, Quantity_Color (Quantity_NOC_GRAY50), Quantity_Color (Quantity_NOC_GRAY70));
-  SetDefaultViewSize (theViewSize);
-}
+    //! Activates a particular view in the Viewer.
+    //! Must be call if the Window attached to the view has been Deiconified.
+    void XV3d_Viewer::SetViewOn(XV3d_View^ theView) {
+        NativeHandle()->SetViewOn(theView->GetV3dView());
+    };
 
-// ========================================================================
-// function : CreateView
-// purpose  :
-// ========================================================================
-Handle(V3d_View) V3d_Viewer::CreateView ()
-{
-  return new V3d_View(this, myDefaultTypeOfView);
-}
+    //! Deactivates all the views of a Viewer
+    //! attached to a window.
+    void XV3d_Viewer::SetViewOff() {
+        NativeHandle()->SetViewOff();
+    };
 
-// ========================================================================
-// function : SetViewOn
-// purpose  :
-// ========================================================================
-void V3d_Viewer::SetViewOn()
-{
-  for (V3d_ListOfView::Iterator aDefViewIter (myDefinedViews); aDefViewIter.More(); aDefViewIter.Next())
-  {
-    SetViewOn (aDefViewIter.Value());
-  }
-}
+    //! Deactivates a particular view in the Viewer.
+    //! Must be call if the Window attached to the view
+    //! has been Iconified .
+    void XV3d_Viewer::SetViewOff(XV3d_View^ theView) {
+        NativeHandle()->SetViewOff(theView->GetV3dView());
+    };
 
-// ========================================================================
-// function : SetViewOff
-// purpose  :
-// ========================================================================
-void V3d_Viewer::SetViewOff()
-{
-  for (V3d_ListOfView::Iterator aDefViewIter (myDefinedViews); aDefViewIter.More(); aDefViewIter.Next())
-  {
-    SetViewOff (aDefViewIter.Value());
-  }
-}
+    //! Deprecated, Redraw() should be used instead.
+    void XV3d_Viewer::Update() {
+        Redraw();
+    };// { Redraw(); }
 
-// ========================================================================
-// function : SetViewOn
-// purpose  :
-// ========================================================================
-void V3d_Viewer::SetViewOn (const Handle(V3d_View)& theView)
-{
-  Handle(Graphic3d_CView) aViewImpl = theView->View();
-  if (!aViewImpl->IsDefined() || myActiveViews.Contains (theView))
-  {
-    return;
-  }
+    //! Redraws all the views of the Viewer even if no
+    //! modification has taken place. Must be called if
+    //! all the views of the Viewer are exposed, as for
+    //! example in a global DeIconification.
+    void XV3d_Viewer::Redraw() {
+        NativeHandle()->Redraw();
+    };
 
-  myActiveViews.Append (theView);
-  aViewImpl->Activate();
-  for (V3d_ListOfLight::Iterator anActiveLightIter (myActiveLights); anActiveLightIter.More(); anActiveLightIter.Next())
-  {
-    theView->SetLightOn (anActiveLightIter.Value());
-  }
+    //! Updates layer of immediate presentations.
+    void XV3d_Viewer::RedrawImmediate() {
+        NativeHandle()->RedrawImmediate();
+    };
 
-  theView->SetGrid (myPrivilegedPlane, Grid ());
-  theView->SetGridActivity (Grid ()->IsActive ());
-  if (theView->SetImmediateUpdate (Standard_False))
-  {
-    theView->Redraw();
-    theView->SetImmediateUpdate (Standard_True);
-  }
-}
+    //! Invalidates viewer content but does not redraw it.
+    void XV3d_Viewer::Invalidate() {
+        NativeHandle()->Invalidate();
+    };
 
-// ========================================================================
-// function : SetViewOff
-// purpose  :
-// ========================================================================
-void V3d_Viewer::SetViewOff (const Handle(V3d_View)& theView)
-{
-  Handle(Graphic3d_CView) aViewImpl = theView->View();
-  if (aViewImpl->IsDefined() && myActiveViews.Contains (theView))
-  {
-    myActiveViews.Remove (theView);
-    aViewImpl->Deactivate() ;
-  }
-}
+    //! Suppresses the Viewer.
+    void XV3d_Viewer::Remove() {
+        NativeHandle()->Remove();
+    };
 
-// ========================================================================
-// function : Redraw
-// purpose  :
-// ========================================================================
-void V3d_Viewer::Redraw() const
-{
-  for (V3d_ListOfView::Iterator aDefViewIter (myDefinedViews); aDefViewIter.More(); aDefViewIter.Next())
-  {
-    aDefViewIter.Value()->Redraw();
-  }
-}
+    //! Return Graphic Driver instance.
+    Handle(Graphic3d_GraphicDriver) XV3d_Viewer::Driver() {
+        return NativeHandle()->Driver();
+    };// { return myDriver; }
 
-// ========================================================================
-// function : RedrawImmediate
-// purpose  :
-// ========================================================================
-void V3d_Viewer::RedrawImmediate() const
-{
-  for (V3d_ListOfView::Iterator aDefViewIter (myDefinedViews); aDefViewIter.More(); aDefViewIter.Next())
-  {
-    aDefViewIter.Value()->RedrawImmediate();
-  }
-}
+    //! Returns the structure manager associated to this viewer.
+    Handle(Graphic3d_StructureManager) XV3d_Viewer::StructureManager() {
+        return NativeHandle()->StructureManager();
+    };// { return myStructureManager; }
 
-// ========================================================================
-// function : Invalidate
-// purpose  :
-// ========================================================================
-void V3d_Viewer::Invalidate() const
-{
-  for (V3d_ListOfView::Iterator aDefViewIter (myDefinedViews); aDefViewIter.More(); aDefViewIter.Next())
-  {
-    aDefViewIter.Value()->Invalidate();
-  }
-}
+    //! Return default Rendering Parameters.
+    //! By default these parameters are set in a new V3d_View.
+    Graphic3d_RenderingParams XV3d_Viewer::DefaultRenderingParams() {
+        return NativeHandle()->DefaultRenderingParams();
+    };// { return myDefaultRenderingParams; }
 
-// ========================================================================
-// function : Remove
-// purpose  :
-// ========================================================================
-void V3d_Viewer::Remove()
-{
-  myStructureManager->Remove();
-}
+    //! Set default Rendering Parameters.
+    void XV3d_Viewer::SetDefaultRenderingParams(Graphic3d_RenderingParams& theParams) {
+        NativeHandle()->SetDefaultRenderingParams(theParams);
+    };// { myDefaultRenderingParams = theParams; }
 
-// ========================================================================
-// function : Erase
-// purpose  :
-// ========================================================================
-void V3d_Viewer::Erase() const
-{
-  myStructureManager->Erase();
-}
+    //! Defines the default background colour of views
+    //! attached to the viewer by supplying the color object
+    void XV3d_Viewer::SetDefaultBackgroundColor(XQuantity_Color^ theColor) {
+        NativeHandle()->SetDefaultBackgroundColor(*theColor->GetColor());
+    };// { myBackground.SetColor(theColor); }
 
-// ========================================================================
-// function : UnHighlight
-// purpose  :
-// ========================================================================
-void V3d_Viewer::UnHighlight() const
-{
-  myStructureManager->UnHighlight();
-}
+    //! Returns the gradient background of the view.
+    Aspect_GradientBackground XV3d_Viewer::GetGradientBackground() {
+        return  NativeHandle()->GetGradientBackground();
+    };// { return myGradientBackground; }
 
-void V3d_Viewer::SetDefaultViewSize (const Standard_Real theSize)
-{
-  if (theSize <= 0.0)
-    throw V3d_BadValue("V3d_Viewer::SetDefaultViewSize, bad size");
-  myViewSize = theSize;
-}
+    //! Defines the default gradient background colours of views
+    //! attached to the viewer by supplying the colour objects
+    //! Aspect_GradientFillMethod theFillStyle = Aspect_GFM_HOR
+    void XV3d_Viewer::SetDefaultBgGradientColors(XQuantity_Color^ theColor1, XQuantity_Color^ theColor2, XAspect_GradientFillMethod theFillStyle) {
+        NativeHandle()->SetDefaultBgGradientColors(*theColor1->GetColor(), *theColor2->GetColor(), safe_cast<Aspect_GradientFillMethod>(theFillStyle));
+    };
 
-// ========================================================================
-// function : IfMoreViews
-// purpose  :
-// ========================================================================
-Standard_Boolean V3d_Viewer::IfMoreViews() const
-{
-  return myDefinedViews.Size() < myStructureManager->MaxNumOfViews();
-}
+    //! Returns the default size of the view.
+    Standard_Real XV3d_Viewer::DefaultViewSize() {
+        return  NativeHandle()->DefaultViewSize();
+    };// { return myViewSize; }
 
-// ========================================================================
-// function : AddView
-// purpose  :
-// ========================================================================
-void V3d_Viewer::AddView (const Handle(V3d_View)& theView)
-{
-  if (!myDefinedViews.Contains (theView))
-  {
-    myDefinedViews.Append (theView);
-  }
-}
+    //! Gives a default size for the creation of views of the viewer.
+    void XV3d_Viewer::SetDefaultViewSize(Standard_Real theSize) {
+        NativeHandle()->SetDefaultViewSize(theSize);
+    };
 
-// ========================================================================
-// function : DelView
-// purpose  :
-// ========================================================================
-void V3d_Viewer::DelView (const Handle(V3d_View)& theView)
-{
-  myActiveViews.Remove (theView);
-  myDefinedViews.Remove (theView);
-}
+    //! Returns the default Projection.
+    XV3d_TypeOfOrientation XV3d_Viewer::DefaultViewProj() {
+        return safe_cast<XV3d_TypeOfOrientation>(NativeHandle()->DefaultViewProj());
+    };// { return myViewProj; }
 
-//=======================================================================
-//function : InsertLayerBefore
-//purpose  :
-//=======================================================================
-Standard_Boolean V3d_Viewer::InsertLayerBefore (Graphic3d_ZLayerId& theNewLayerId,
-                                                const Graphic3d_ZLayerSettings& theSettings,
-                                                const Graphic3d_ZLayerId theLayerAfter)
-{
-  if (myZLayerGenId.Next (theNewLayerId))
-  {
-    myLayerIds.Add (theNewLayerId);
-    myDriver->InsertLayerBefore (theNewLayerId, theSettings, theLayerAfter);
-    return Standard_True;
-  }
-  return Standard_False;
-}
+    //! Sets the default projection for creating views in the viewer.
+    void XV3d_Viewer::SetDefaultViewProj(XV3d_TypeOfOrientation theOrientation) {
+        NativeHandle()->SetDefaultViewProj(safe_cast<V3d_TypeOfOrientation>(theOrientation));
+    };// { myViewProj = theOrientation; }
 
-//=======================================================================
-//function : InsertLayerAfter
-//purpose  :
-//=======================================================================
-Standard_Boolean V3d_Viewer::InsertLayerAfter (Graphic3d_ZLayerId& theNewLayerId,
-                                               const Graphic3d_ZLayerSettings& theSettings,
-                                               const Graphic3d_ZLayerId theLayerBefore)
-{
-  if (myZLayerGenId.Next (theNewLayerId))
-  {
-    myLayerIds.Add (theNewLayerId);
-    myDriver->InsertLayerAfter (theNewLayerId, theSettings, theLayerBefore);
-    return Standard_True;
-  }
-  return Standard_False;
-}
+    //! Returns the default type of Visualization.
+    XV3d_TypeOfVisualization XV3d_Viewer::DefaultVisualization() {
+        return safe_cast<XV3d_TypeOfVisualization>(NativeHandle()->DefaultVisualization());
+    };// { return myVisualization; }
 
-//=======================================================================
-//function : RemoveZLayer
-//purpose  : 
-//=======================================================================
-Standard_Boolean V3d_Viewer::RemoveZLayer (const Graphic3d_ZLayerId theLayerId)
-{
-  if (!myLayerIds.Contains (theLayerId)
-    || theLayerId < myZLayerGenId.Lower()
-    || theLayerId > myZLayerGenId.Upper())
-  {
-    return Standard_False;
-  }
+    //! Gives the default visualization mode.
+    void XV3d_Viewer::SetDefaultVisualization(XV3d_TypeOfVisualization theType) {
+        return  NativeHandle()->SetDefaultVisualization(safe_cast<V3d_TypeOfVisualization>(theType));
+    };// { myVisualization = theType; }
 
-  myDriver->RemoveZLayer (theLayerId);
-  myLayerIds.Remove  (theLayerId);
-  myZLayerGenId.Free (theLayerId);
+    //! Returns the default type of Shading
+    XGraphic3d_TypeOfShadingModel XV3d_Viewer::DefaultShadingModel() {
+        return safe_cast<XGraphic3d_TypeOfShadingModel>(NativeHandle()->DefaultShadingModel());
+    };// { return myShadingModel; }
 
-  return Standard_True;
-}
+    //! Gives the default type of SHADING.
+    void XV3d_Viewer::SetDefaultShadingModel(XGraphic3d_TypeOfShadingModel theType) {
+        NativeHandle()->SetDefaultShadingModel(safe_cast<Graphic3d_TypeOfShadingModel>(theType));
+    };// { myShadingModel = theType; }
 
-//=======================================================================
-//function : GetAllZLayers
-//purpose  :
-//=======================================================================
-void V3d_Viewer::GetAllZLayers (TColStd_SequenceOfInteger& theLayerSeq) const
-{
-  myDriver->ZLayers (theLayerSeq);
-}
+    //! Returns the default type of View (orthographic or perspective projection) to be returned by CreateView() method.
+    XV3d_TypeOfView XV3d_Viewer::DefaultTypeOfView() {
+        return safe_cast<XV3d_TypeOfView>(NativeHandle()->DefaultTypeOfView());
+    };// { return myDefaultTypeOfView; }
 
-//=======================================================================
-//function : SetZLayerSettings
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetZLayerSettings (const Graphic3d_ZLayerId theLayerId, const Graphic3d_ZLayerSettings& theSettings)
-{
-  myDriver->SetZLayerSettings (theLayerId, theSettings);
-}
+    //! Set the default type of View (orthographic or perspective projection) to be returned by CreateView() method.
+    void XV3d_Viewer::SetDefaultTypeOfView(XV3d_TypeOfView theType) {
+        NativeHandle()->SetDefaultTypeOfView(safe_cast<V3d_TypeOfView>(theType));
+    };// { myDefaultTypeOfView = theType; }
 
-//=======================================================================
-//function : ZLayerSettings
-//purpose  :
-//=======================================================================
-const Graphic3d_ZLayerSettings& V3d_Viewer::ZLayerSettings (const Graphic3d_ZLayerId theLayerId) const
-{
-  return myDriver->ZLayerSettings (theLayerId);
-}
+    //! Returns the default background colour object.
+    XQuantity_Color^ XV3d_Viewer::DefaultBackgroundColor() {
+        Quantity_Color* temp = new Quantity_Color(NativeHandle()->DefaultBackgroundColor());
+        return gcnew XQuantity_Color(temp);
+    };// { return myBackground.Color(); }
 
-//=======================================================================
-//function : UpdateLights
-//purpose  :
-//=======================================================================
-void V3d_Viewer::UpdateLights()
-{
-  for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-  {
-    anActiveViewIter.Value()->UpdateLights();
-  }
-}
+    //! Returns the gradient background colour objects of the view.
+    void XV3d_Viewer::DefaultBgGradientColors(XQuantity_Color^ theColor1, XQuantity_Color^ theColor2) {
+        NativeHandle()->DefaultBgGradientColors(*theColor1->GetColor(), *theColor2->GetColor());
+    };// { myGradientBackground.Colors(theColor1, theColor2); }
 
-//=======================================================================
-//function : SetLightOn
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetLightOn (const Handle(V3d_Light)& theLight)
-{
-  if (!myActiveLights.Contains (theLight))
-  {
-    myActiveLights.Append (theLight);
-  }
+    //! Return all Z layer ids in sequence ordered by overlay level from lowest layer to highest ( foreground ).
+    //! The first layer ID in sequence is the default layer that can't be removed.
+    void XV3d_Viewer::GetAllZLayers(TColStd_SequenceOfInteger& theLayerSeq) {
+        NativeHandle()->GetAllZLayers(theLayerSeq);
+    };
 
-  for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-  {
-    anActiveViewIter.Value()->SetLightOn (theLight);
-  }
-}
+    //! Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value.
+    //! The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view.
+    //! Custom layers will be inserted before Graphic3d_ZLayerId_Top (e.g. between Graphic3d_ZLayerId_Default and before Graphic3d_ZLayerId_Top).
+    //! @param theLayerId [out] id of created layer
+    //! @param theSettings [in] new layer settings
+    //! @return FALSE if the layer can not be created
+    //! Graphic3d_ZLayerSettings& theSettings = Graphic3d_ZLayerSettings()
+    Standard_Boolean XV3d_Viewer::AddZLayer(Graphic3d_ZLayerId& theLayerId, Graphic3d_ZLayerSettings& theSettings) {
+        return NativeHandle()->AddZLayer(theLayerId, theSettings);
+    };
 
-//=======================================================================
-//function : SetLightOff
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetLightOff (const Handle(V3d_Light)& theLight)
-{
-  myActiveLights.Remove (theLight);
-  for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-  {
-    anActiveViewIter.Value()->SetLightOff (theLight);
-  }
-}
+    //! Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value.
+    //! The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view.
+    //! Layer rendering order is defined by its position in list (altered by theLayerAfter)
+    //! and IsImmediate() flag (all layers with IsImmediate() flag are drawn afterwards);
+    //! @param theNewLayerId [out] id of created layer; layer id is arbitrary and does not depend on layer position in the list
+    //! @param theSettings    [in] new layer settings
+    //! @param theLayerAfter  [in] id of layer to append new layer before
+    //! @return FALSE if the layer can not be created
+    Standard_Boolean XV3d_Viewer::InsertLayerBefore(Graphic3d_ZLayerId& theNewLayerId, Graphic3d_ZLayerSettings& theSettings, Graphic3d_ZLayerId theLayerAfter) {
+        return NativeHandle()->InsertLayerBefore(theNewLayerId, theSettings, theLayerAfter);
+    };
 
-//=======================================================================
-//function : SetLightOn
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetLightOn()
-{
-  for (V3d_ListOfLight::Iterator aDefLightIter (myDefinedLights); aDefLightIter.More(); aDefLightIter.Next())
-  {
-    if (!myActiveLights.Contains (aDefLightIter.Value()))
-    {
-      myActiveLights.Append (aDefLightIter.Value());
-      for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-      {
-        anActiveViewIter.Value()->SetLightOn (aDefLightIter.Value());
-      }
-    }
-  }
-}
+    //! Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value.
+    //! The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view.
+    //! Layer rendering order is defined by its position in list (altered by theLayerAfter)
+    //! and IsImmediate() flag (all layers with IsImmediate() flag are drawn afterwards);
+    //! @param theNewLayerId [out] id of created layer; layer id is arbitrary and does not depend on layer position in the list
+    //! @param theSettings    [in] new layer settings
+    //! @param theLayerBefore [in] id of layer to append new layer after
+    //! @return FALSE if the layer can not be created
+    Standard_Boolean XV3d_Viewer::InsertLayerAfter(Graphic3d_ZLayerId& theNewLayerId, Graphic3d_ZLayerSettings& theSettings, Graphic3d_ZLayerId theLayerBefore) {
+        return NativeHandle()->InsertLayerAfter(theNewLayerId, theSettings, theLayerBefore);
+    };
 
-//=======================================================================
-//function : SetLightOff
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetLightOff()
-{
-  for (V3d_ListOfLight::Iterator anActiveLightIter (myActiveLights); anActiveLightIter.More(); anActiveLightIter.Next())
-  {
-    for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-    {
-      anActiveViewIter.Value()->SetLightOff (anActiveLightIter.Value());
-    }
-  }
-  myActiveLights.Clear();
-}
+    //! Remove Z layer with ID <theLayerId>.
+    //! Method returns Standard_False if the layer can not be removed or doesn't exists.
+    //! By default, there are always default bottom-level layer that can't be removed.
+    Standard_Boolean XV3d_Viewer::RemoveZLayer(Graphic3d_ZLayerId theLayerId) {
+        return NativeHandle()->RemoveZLayer(theLayerId);
+    };
 
-//=======================================================================
-//function : IsGlobalLight
-//purpose  :
-//=======================================================================
-Standard_Boolean V3d_Viewer::IsGlobalLight (const Handle(V3d_Light)& theLight) const
-{
-  return myActiveLights.Contains (theLight);
-}
+    //! Returns the settings of a single Z layer.
+    Graphic3d_ZLayerSettings XV3d_Viewer::ZLayerSettings(Graphic3d_ZLayerId theLayerId) {
+        return NativeHandle()->ZLayerSettings(theLayerId);
+    };
 
-//=======================================================================
-//function : AddLight
-//purpose  :
-//=======================================================================
-void V3d_Viewer::AddLight (const Handle(V3d_Light)& theLight)
-{
-  if (!myDefinedLights.Contains (theLight))
-  {
-    myDefinedLights.Append (theLight);
-  }
-}
+    //! Sets the settings for a single Z layer.
+    void XV3d_Viewer::SetZLayerSettings(Graphic3d_ZLayerId theLayerId, Graphic3d_ZLayerSettings& theSettings) {
+        NativeHandle()->SetZLayerSettings(theLayerId, theSettings);
+    };
 
-//=======================================================================
-//function : DelLight
-//purpose  :
-//=======================================================================
-void V3d_Viewer::DelLight (const Handle(V3d_Light)& theLight)
-{
-  SetLightOff (theLight);
-  myDefinedLights.Remove (theLight);
-}
+    //! Return an iterator for active views.
+    V3d_ListOfViewIterator XV3d_Viewer::ActiveViewIterator() {
+        return NativeHandle()->ActiveViewIterator();
+    };// { return V3d_ListOfViewIterator(myActiveViews); }
 
-//=======================================================================
-//function : SetDefaultLights
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetDefaultLights()
-{
-  while (!myDefinedLights.IsEmpty())
-  {
-    Handle(V3d_Light) aLight = myDefinedLights.First();
-    DelLight (aLight);
-  }
+    //! Initializes an internal iterator on the active views.
+    void XV3d_Viewer::InitActiveViews() {
+        NativeHandle()->InitActiveViews();
+    };// { myActiveViewsIterator.Initialize(myActiveViews); }
 
-  Handle(V3d_DirectionalLight) aDirLight  = new V3d_DirectionalLight (V3d_Zneg, Quantity_NOC_WHITE, Standard_True);
-  Handle(V3d_AmbientLight)     anAmbLight = new V3d_AmbientLight (Quantity_NOC_WHITE);
-  AddLight (aDirLight);
-  AddLight (anAmbLight);
-  SetLightOn (aDirLight);
-  SetLightOn (anAmbLight);
-}
+    //! Returns true if there are more active view(s) to return.
+    Standard_Boolean XV3d_Viewer::MoreActiveViews() {
+        return NativeHandle()->MoreActiveViews();
+    };// { return myActiveViewsIterator.More(); }
 
-//=======================================================================
-//function : SetPrivilegedPlane
-//purpose  :
-//=======================================================================
-void V3d_Viewer::SetPrivilegedPlane (const gp_Ax3& thePlane)
-{
-  myPrivilegedPlane = thePlane;
-  Grid()->SetDrawMode(Grid()->DrawMode());
-  for (V3d_ListOfView::Iterator anActiveViewIter (myActiveViews); anActiveViewIter.More(); anActiveViewIter.Next())
-  {
-    anActiveViewIter.Value()->SetGrid (myPrivilegedPlane, Grid());
-  }
+    //! Go to the next active view (if there is not, ActiveView will raise an exception)
+    void XV3d_Viewer::NextActiveViews() {
+        NativeHandle()->NextActiveViews();
+    };// { if (!myActiveViews.IsEmpty()) myActiveViewsIterator.Next(); }
 
-  if (myDisplayPlane)
-  {
-    DisplayPrivilegedPlane (Standard_True, myDisplayPlaneLength);
-  }
-}
+    XV3d_View^ XV3d_Viewer::ActiveView() {
+        return gcnew XV3d_View(NativeHandle()->ActiveView());
+    };// { return myActiveViewsIterator.Value(); }
 
-//=======================================================================
-//function : DisplayPrivilegedPlane
-//purpose  :
-//=======================================================================
-void V3d_Viewer::DisplayPrivilegedPlane (const Standard_Boolean theOnOff, const Standard_Real theSize)
-{
-  myDisplayPlane = theOnOff;
-  myDisplayPlaneLength = theSize;
+    //! returns true if there is only one active view.
+    Standard_Boolean XV3d_Viewer::LastActiveView() {
+        return NativeHandle()->LastActiveView();
+    };// { return myActiveViews.Extent() == 1; }
 
-  if (!myDisplayPlane)
-  {
-    if (!myPlaneStructure.IsNull())
-	{
-      myPlaneStructure->Erase();
-    }
-    return;
-  }
 
-  if (myPlaneStructure.IsNull())
-  {
-    myPlaneStructure = new Graphic3d_Structure (StructureManager());
-    myPlaneStructure->SetInfiniteState (Standard_True);
-    myPlaneStructure->Display();
-  }
-  else
-  {
-    myPlaneStructure->Clear();
-  }
+    //! Return an iterator for defined views.
+    V3d_ListOfViewIterator XV3d_Viewer::DefinedViewIterator() {
+        return NativeHandle()->DefinedViewIterator();
+    };// { return V3d_ListOfViewIterator(myDefinedViews); }
 
-  Handle(Graphic3d_Group) aGroup = myPlaneStructure->NewGroup();
+    //! Initializes an internal iterator on the Defined views.
+    void XV3d_Viewer::InitDefinedViews() {
+        NativeHandle()->InitDefinedViews();
+    };// { myDefinedViewsIterator.Initialize(myDefinedViews); }
 
-  Handle(Graphic3d_AspectLine3d) aLineAttrib = new Graphic3d_AspectLine3d (Quantity_NOC_GRAY60, Aspect_TOL_SOLID, 1.0);
-  aGroup->SetGroupPrimitivesAspect (aLineAttrib);
+    //! returns true if there are more Defined view(s) to return.
+    Standard_Boolean XV3d_Viewer::MoreDefinedViews() {
+        return NativeHandle()->MoreDefinedViews();
+    };// { return myDefinedViewsIterator.More(); }
 
-  Handle(Graphic3d_AspectText3d) aTextAttrib = new Graphic3d_AspectText3d();
-  aTextAttrib->SetColor (Quantity_Color (Quantity_NOC_ROYALBLUE1));
-  aGroup->SetGroupPrimitivesAspect (aTextAttrib);
+    //! Go to the next Defined view (if there is not, DefinedView will raise an exception)
+    void XV3d_Viewer::NextDefinedViews() {
+        NativeHandle()->NextDefinedViews();
+    };// { if (!myDefinedViews.IsEmpty()) myDefinedViewsIterator.Next(); }
 
-  Handle(Graphic3d_ArrayOfSegments) aPrims = new Graphic3d_ArrayOfSegments (6);
+    XV3d_View^ XV3d_Viewer::DefinedView() {
+        return gcnew XV3d_View(NativeHandle()->DefinedView());
+    };// { return myDefinedViewsIterator.Value(); }
 
-  const gp_Pnt& p0 = myPrivilegedPlane.Location();
+    //! @name lights management
 
-  const gp_Pnt pX (p0.XYZ() + myDisplayPlaneLength * myPrivilegedPlane.XDirection().XYZ());
-  aPrims->AddVertex (p0);
-  aPrims->AddVertex (pX);
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text (1.0f / 81.0f);
-  aText->SetText ("X");
-  aText->SetPosition (pX);
-  aGroup->AddText (aText);
+    //! Defines default lights:
+    //!  positional-light 0.3 0. 0.
+    //!  directional-light V3d_XnegYposZpos
+    //!  directional-light V3d_XnegYneg
+    //!  ambient-light
+    void XV3d_Viewer::SetDefaultLights() {
+        NativeHandle()->SetDefaultLights();
+    };
 
-  const gp_Pnt pY (p0.XYZ() + myDisplayPlaneLength * myPrivilegedPlane.YDirection().XYZ());
-  aPrims->AddVertex (p0);
-  aPrims->AddVertex (pY);
-  aText = new Graphic3d_Text (1.0f / 81.0f);
-  aText->SetText ("Y");
-  aText->SetPosition (pY);
-  aGroup->AddText (aText);
+    //! Activates MyLight in the viewer.
+    void XV3d_Viewer::SetLightOn(Handle(V3d_Light)& theLight) {
+        NativeHandle()->SetLightOn(theLight);
+    };
 
-  const gp_Pnt pZ (p0.XYZ() + myDisplayPlaneLength * myPrivilegedPlane.Direction().XYZ());
-  aPrims->AddVertex (p0);
-  aPrims->AddVertex (pZ);
-  aText = new Graphic3d_Text (1.0f / 81.0f);
-  aText->SetText ("Z");
-  aText->SetPosition (pZ);
-  aGroup->AddText (aText);
+    //! Activates all the lights defined in this viewer.
+    void XV3d_Viewer::SetLightOn() {
+        NativeHandle()->SetLightOn();
+    };
 
-  aGroup->AddPrimitiveArray (aPrims);
+    //! Deactivates MyLight in this viewer.
+    void XV3d_Viewer::SetLightOff(Handle(V3d_Light)& theLight) {
+        NativeHandle()->SetLightOff(theLight);
+    };
 
-  myPlaneStructure->Display();
+    //! Deactivate all the Lights defined in this viewer.
+    void XV3d_Viewer::SetLightOff() {
+        NativeHandle()->SetLightOff();
+    };
+
+    //! Adds Light in Sequence Of Lights.
+    void XV3d_Viewer::AddLight(Handle(V3d_Light)& theLight) {
+        NativeHandle()->AddLight(theLight);
+    };
+
+    //! Delete Light in Sequence Of Lights.
+    void XV3d_Viewer::DelLight(Handle(V3d_Light)& theLight) {
+        NativeHandle()->DelLight(theLight);
+    };
+
+    //! Updates the lights of all the views of a viewer.
+    void XV3d_Viewer::UpdateLights() {
+        NativeHandle()->UpdateLights();
+    };
+
+    Standard_Boolean XV3d_Viewer::IsGlobalLight(Handle(V3d_Light)& TheLight) {
+        return NativeHandle()->IsGlobalLight(TheLight);
+    };
+
+    //! Return an iterator for defined lights.
+    V3d_ListOfLightIterator XV3d_Viewer::ActiveLightIterator() {
+        return NativeHandle()->ActiveLightIterator();
+    };// { return V3d_ListOfLightIterator(myActiveLights); }
+
+    //! Initializes an internal iteratator on the active Lights.
+    void XV3d_Viewer::InitActiveLights() {
+        NativeHandle()->InitActiveLights();
+    };// { myActiveLightsIterator.Initialize(myActiveLights); }
+
+    //! returns true if there are more active Light(s) to return.
+    Standard_Boolean XV3d_Viewer::MoreActiveLights() {
+        return NativeHandle()->MoreActiveLights();
+    };// { return myActiveLightsIterator.More(); }
+
+    //! Go to the next active Light (if there is not, ActiveLight() will raise an exception)
+    void XV3d_Viewer::NextActiveLights() {
+        NativeHandle()->NextActiveLights();
+    };// { myActiveLightsIterator.Next(); }
+
+    Handle(V3d_Light) XV3d_Viewer::ActiveLight() {
+        return NativeHandle()->ActiveLight();
+    };// { return myActiveLightsIterator.Value(); }
+
+    //! Return an iterator for defined lights.
+    V3d_ListOfLightIterator XV3d_Viewer::DefinedLightIterator() {
+        return NativeHandle()->DefinedLightIterator();
+    };// { return V3d_ListOfLightIterator(myDefinedLights); }
+
+    //! Initializes an internal iterattor on the Defined Lights.
+    void XV3d_Viewer::InitDefinedLights() {
+        NativeHandle()->InitDefinedLights();
+    };// { myDefinedLightsIterator.Initialize(myDefinedLights); }
+
+    //! Returns true if there are more Defined Light(s) to return.
+    Standard_Boolean XV3d_Viewer::MoreDefinedLights() {
+        return NativeHandle()->MoreDefinedLights();
+    };// { return myDefinedLightsIterator.More(); }
+
+    //! Go to the next Defined Light (if there is not, DefinedLight() will raise an exception)
+    void XV3d_Viewer::NextDefinedLights() {
+        NativeHandle()->NextDefinedLights();
+    };// { if (!myDefinedLights.IsEmpty()) myDefinedLightsIterator.Next(); }
+
+    Handle(V3d_Light) XV3d_Viewer::DefinedLight() {
+        return NativeHandle()->DefinedLight();
+    };// { return myDefinedLightsIterator.Value(); }
+
+    //! @name objects management
+
+    //! Erase all Objects in All the views.
+    void XV3d_Viewer::Erase() {
+        NativeHandle()->Erase();
+    };
+
+    //! UnHighlight all Objects in All the views.
+    void XV3d_Viewer::UnHighlight() {
+        NativeHandle()->UnHighlight();
+    };
+
+
+    //! returns true if the computed mode can be used.
+    Standard_Boolean XV3d_Viewer::ComputedMode() {
+        return NativeHandle()->ComputedMode();
+    };// { return myComputedMode; }
+
+    //! Set if the computed mode can be used.
+    void XV3d_Viewer::SetComputedMode(Standard_Boolean theMode) {
+        NativeHandle()->SetComputedMode(theMode);
+    };// { myComputedMode = theMode; }
+
+    //! returns true if by default the computed mode must be used.
+    Standard_Boolean XV3d_Viewer::DefaultComputedMode() {
+        return NativeHandle()->DefaultComputedMode();
+    };// { return myDefaultComputedMode; }
+
+    //! Set if by default the computed mode must be used.
+    void XV3d_Viewer::SetDefaultComputedMode(Standard_Boolean theMode) {
+        NativeHandle()->SetDefaultComputedMode(theMode);
+    };// { myDefaultComputedMode = theMode; }
+
+    //! @name privileged plane management
+
+    xgp_Ax3^ XV3d_Viewer::PrivilegedPlane() {
+        gp_Ax3* temp = new gp_Ax3(NativeHandle()->PrivilegedPlane());
+        return gcnew xgp_Ax3(temp);
+    };// { return myPrivilegedPlane; }
+
+    void XV3d_Viewer::SetPrivilegedPlane(xgp_Ax3^ thePlane) {
+        NativeHandle()->SetPrivilegedPlane(*thePlane->GetAx3());
+    };
+
+    //Standard_Real theSize = 1
+    void XV3d_Viewer::DisplayPrivilegedPlane(Standard_Boolean theOnOff, Standard_Real theSize) {
+        NativeHandle()->DisplayPrivilegedPlane(theOnOff, theSize);
+    };
+
+    //! @name grid management
+
+    //! Activates the grid in all views of <me>.
+    void XV3d_Viewer::ActivateGrid(XAspect_GridType aGridType, XAspect_GridDrawMode aGridDrawMode) {
+        NativeHandle()->ActivateGrid(safe_cast<Aspect_GridType>(aGridType), safe_cast<Aspect_GridDrawMode>(aGridDrawMode));
+    };
+
+    //! Deactivates the grid in all views of <me>.
+    void XV3d_Viewer::DeactivateGrid() {
+        NativeHandle()->DeactivateGrid();
+    };
+
+    //! Show/Don't show grid echo to the hit point.
+    //! If TRUE,the grid echo will be shown at ConvertToGrid() time.
+    //! Standard_Boolean showGrid = Standard_True
+    void XV3d_Viewer::SetGridEcho(Standard_Boolean showGrid) {
+        NativeHandle()->SetGridEcho(showGrid);
+    };
+
+    //! Show grid echo <aMarker> to the hit point.
+    //! Warning: When the grid echo marker is not set,
+    //! a default marker is build with the attributes:
+    //! marker type : Aspect_TOM_STAR
+    //! marker color : Quantity_NOC_GRAY90
+    //! marker size : 3.0
+    void XV3d_Viewer::SetGridEcho(Handle(Graphic3d_AspectMarker3d)& aMarker) {
+        NativeHandle()->SetGridEcho(aMarker);
+    };
+
+    //! Returns TRUE when grid echo must be displayed at hit point.
+    Standard_Boolean XV3d_Viewer::GridEcho() {
+        return NativeHandle()->GridEcho();
+    };// { return myGridEcho; }
+
+    //! Returns Standard_True if a grid is activated in <me>.
+    Standard_Boolean XV3d_Viewer::IsActive() {
+        return NativeHandle()->IsActive();
+    };
+
+    //! Returns the defined grid in <me>.
+    Handle(Aspect_Grid) XV3d_Viewer::Grid() {
+        return NativeHandle()->Grid();
+    };
+
+    //! Returns the current grid type defined in <me>.
+    XAspect_GridType XV3d_Viewer::GridType() {
+        return safe_cast<XAspect_GridType>(NativeHandle()->GridType());
+    };// { return myGridType; }
+
+    //! Returns the current grid draw mode defined in <me>.
+    XAspect_GridDrawMode XV3d_Viewer::GridDrawMode() {
+        return safe_cast<XAspect_GridDrawMode>(NativeHandle()->GridDrawMode());
+    };
+
+    //! Returns the definition of the rectangular grid.
+    void XV3d_Viewer::RectangularGridValues(Standard_Real% XOrigin, Standard_Real% YOrigin, Standard_Real% XStep, Standard_Real% YStep, Standard_Real% RotationAngle) {
+        Standard_Real SXOrigin(XOrigin); Standard_Real SYOrigin(YOrigin); Standard_Real SXStep(XStep); Standard_Real SYStep(YStep); Standard_Real SRotationAngle(RotationAngle);
+        NativeHandle()->RectangularGridValues(SXOrigin, SYOrigin, SXStep, SYStep, SRotationAngle);
+        XOrigin = SXOrigin; YOrigin = SYOrigin; XStep = SXStep; YStep = SYStep; RotationAngle = SRotationAngle;
+    };
+
+    //! Sets the definition of the rectangular grid.
+    //! <XOrigin>, <YOrigin> defines the origin of the grid.
+    //! <XStep> defines the interval between 2 vertical lines.
+    //! <YStep> defines the interval between 2 horizontal lines.
+    //! <RotationAngle> defines the rotation angle of the grid.
+    void XV3d_Viewer::SetRectangularGridValues(Standard_Real XOrigin, Standard_Real YOrigin, Standard_Real XStep, Standard_Real YStep, Standard_Real RotationAngle) {
+        NativeHandle()->SetRectangularGridValues(XOrigin, YOrigin, XStep, YStep, RotationAngle);
+    };
+
+    //! Returns the definition of the circular grid.
+    void XV3d_Viewer::CircularGridValues(Standard_Real% XOrigin, Standard_Real% YOrigin, Standard_Real% RadiusStep, Standard_Integer% DivisionNumber, Standard_Real% RotationAngle) {
+        Standard_Real SXOrigin(XOrigin); Standard_Real SYOrigin(YOrigin); Standard_Real SRadiusStep(RadiusStep); Standard_Integer SDivisionNumber(DivisionNumber); Standard_Real SRotationAngle(RotationAngle);
+        NativeHandle()->CircularGridValues(SXOrigin, SYOrigin, SRadiusStep, SDivisionNumber, SRotationAngle);
+        XOrigin = SXOrigin; YOrigin = SYOrigin; RadiusStep = SRadiusStep; DivisionNumber = SDivisionNumber; RotationAngle = SRotationAngle;
+    };
+
+    //! Sets the definition of the circular grid.
+    //! <XOrigin>, <YOrigin> defines the origin of the grid.
+    //! <RadiusStep> defines the interval between 2 circles.
+    //! <DivisionNumber> defines the section number of one half circle.
+    //! <RotationAngle> defines the rotation angle of the grid.
+    void XV3d_Viewer::SetCircularGridValues(Standard_Real XOrigin, Standard_Real YOrigin, Standard_Real RadiusStep, Standard_Integer DivisionNumber, Standard_Real RotationAngle) {
+        NativeHandle()->SetCircularGridValues(XOrigin, YOrigin, RadiusStep, DivisionNumber, RotationAngle);
+    };
+
+    //! Returns the location and the size of the grid.
+    void XV3d_Viewer::CircularGridGraphicValues(Standard_Real% Radius, Standard_Real% OffSet) {
+        Standard_Real SRadius(Radius); Standard_Real SOffSet(OffSet);
+        NativeHandle()->CircularGridGraphicValues(SRadius, SOffSet);
+        Radius = SRadius; OffSet = SOffSet;
+    };
+
+    //! Sets the location and the size of the grid.
+    //! <XSize> defines the width of the grid.
+    //! <YSize> defines the height of the grid.
+    //! <OffSet> defines the displacement along the plane normal.
+    void XV3d_Viewer::SetCircularGridGraphicValues(Standard_Real Radius, Standard_Real OffSet) {
+        NativeHandle()->SetCircularGridGraphicValues(Radius, OffSet);
+    };
+
+    //! Returns the location and the size of the grid.
+    void XV3d_Viewer::RectangularGridGraphicValues(Standard_Real% XSize, Standard_Real% YSize, Standard_Real% OffSet) {
+        Standard_Real SXSize(XSize); Standard_Real SYSize(YSize); Standard_Real SOffSet(OffSet);
+        NativeHandle()->RectangularGridGraphicValues(SXSize, SYSize, SOffSet);
+        XSize = SXSize; YSize = SYSize; OffSet = SOffSet;
+    };
+
+    //! Sets the location and the size of the grid.
+    //! <XSize> defines the width of the grid.
+    //! <YSize> defines the height of the grid.
+    //! <OffSet> defines the displacement along the plane normal.
+    void XV3d_Viewer::SetRectangularGridGraphicValues(Standard_Real XSize, Standard_Real YSize, Standard_Real OffSet) {
+        NativeHandle()->RectangularGridGraphicValues(XSize, YSize, OffSet);
+    };
+
+    //! Display grid echo at requested point in the view.
+    void XV3d_Viewer::ShowGridEcho(XV3d_View^ theView, Graphic3d_Vertex& thePoint) {
+        NativeHandle()->ShowGridEcho(theView->GetV3dView(), thePoint);
+    };
+
+    //! Temporarly hide grid echo.
+    void XV3d_Viewer::HideGridEcho(XV3d_View^ theView) {
+        NativeHandle()->HideGridEcho(theView->GetV3dView());
+    };
 }

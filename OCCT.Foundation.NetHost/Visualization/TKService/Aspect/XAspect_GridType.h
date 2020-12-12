@@ -13,14 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_GridType_HeaderFile
-#define _Aspect_GridType_HeaderFile
+#ifndef _XAspect_GridType_HeaderFile
+#define _XAspect_GridType_HeaderFile
 
 //! Defines the grid type : Rectangular or Circular.
-enum Aspect_GridType
+public enum class XAspect_GridType
 {
-Aspect_GT_Rectangular,
-Aspect_GT_Circular
+	Aspect_GT_Rectangular,
+	Aspect_GT_Circular
 };
 
-#endif // _Aspect_GridType_HeaderFile
+#endif // _XAspect_GridType_HeaderFile
