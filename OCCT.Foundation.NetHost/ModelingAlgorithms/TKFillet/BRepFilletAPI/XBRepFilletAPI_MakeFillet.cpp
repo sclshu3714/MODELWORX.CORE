@@ -1,761 +1,469 @@
-// Created on: 1994-06-17
-// Created by: Modeling
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepFilletAPI_MakeFillet.h>
+namespace TKFillet {
+
+	XBRepFilletAPI_MakeFillet::XBRepFilletAPI_MakeFillet() {
+		//NativeHandle = new BRepFilletAPI_MakeFillet();
+	};
+	//! Initializes   the computation    of   the  fillets.
+	//! <FShape> sets   the type   of fillet  surface. The
+	//! default value is ChFi3d_Rational (classical  nurbs
+	//! representation of  circles).   ChFi3d_QuasiAngular
+	//! corresponds to  a  nurbs representation of circles
+	//! which   parameterisation matches  the  circle one.
+	//! ChFi3d_Polynomial  corresponds to  a    polynomial
+	//! representation of circles.
+	//! ChFi3d_FilletShape FShape = ChFi3d_Rational
+	XBRepFilletAPI_MakeFillet::XBRepFilletAPI_MakeFillet(XTopoDS_Shape^ S, XChFi3d_FilletShape FShape) {
+		NativeHandle = new BRepFilletAPI_MakeFillet(*S->GetShape(), safe_cast<ChFi3d_FilletShape>(FShape));
+		SetMakeShapeHandle(NativeHandle);
+	};
 
 
-#include <BRepFilletAPI_MakeFillet.hxx>
-#include <ChFiDS_ErrorStatus.hxx>
-#include <ChFiDS_Spine.hxx>
-#include <Geom_Surface.hxx>
-#include <Law_Function.hxx>
-#include <Law_Interpol.hxx>
-#include <Law_Linear.hxx>
-#include <Law_S.hxx>
-#include <Precision.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopExp_Explorer.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopTools_ListIteratorOfListOfShape.hxx>
+	XBRepFilletAPI_MakeFillet::XBRepFilletAPI_MakeFillet(BRepFilletAPI_MakeFillet* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
 
-//=======================================================================
-//function : BRepFilletAPI_MakeFillet
-//purpose  : 
-//=======================================================================
-BRepFilletAPI_MakeFillet::BRepFilletAPI_MakeFillet(const TopoDS_Shape& S,
-				       const ChFi3d_FilletShape FShape):
-   myBuilder(S,FShape)
-{
+	void XBRepFilletAPI_MakeFillet::SetMakeFilletHandle(BRepFilletAPI_MakeFillet* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	BRepFilletAPI_MakeFillet* XBRepFilletAPI_MakeFillet::GetMakeFillet() {
+		return NativeHandle;
+	};
+
+	BRepFilletAPI_LocalOperation* XBRepFilletAPI_MakeFillet::GetLocalOperation() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepFilletAPI_MakeFillet::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	//! Returns a shape built by the shape construction algorithm.
+	//! Raises exception StdFail_NotDone if the shape was not built.
+	XTopoDS_Shape^ XBRepFilletAPI_MakeFillet::Shape() {
+		TopoDS_Shape* temp = new TopoDS_Shape(NativeHandle->Shape());
+		return gcnew XTopoDS_Shape(temp);
+	};
+
+	void XBRepFilletAPI_MakeFillet::SetParams(Standard_Real Tang, Standard_Real Tesp, Standard_Real T2d, Standard_Real TApp3d, Standard_Real TolApp2d, Standard_Real Fleche) {
+		NativeHandle->SetParams(Tang, Tesp, T2d, TApp3d, TolApp2d, Fleche);
+	};
+
+	//! Changes     the      parameters     of  continiuity
+	//! InternalContinuity to produce fillet'surfaces with
+	//! an continuity   Ci (i=0,1 or    2).
+	//! By defaultInternalContinuity = GeomAbs_C1.
+	//! AngularTolerance  is the G1 tolerance between fillet
+	//! and support'faces.
+	void XBRepFilletAPI_MakeFillet::SetContinuity(XGeomAbs_Shape InternalContinuity, Standard_Real AngularTolerance) {
+		NativeHandle->SetContinuity(safe_cast<GeomAbs_Shape>(InternalContinuity), AngularTolerance);
+	};
+
+	//! Adds a  fillet contour in  the  builder  (builds a
+	//! contour  of tangent edges).
+	//! The Radius must be set after.
+	void XBRepFilletAPI_MakeFillet::Add(XTopoDS_Edge^ E) {
+		NativeHandle->Add(*E->GetEdge());
+	};
+
+	//! Adds a  fillet description in  the  builder
+	//! - builds a contour  of tangent edges,
+	//! - sets the radius.
+	void XBRepFilletAPI_MakeFillet::Add(Standard_Real Radius, XTopoDS_Edge^ E) {
+		NativeHandle->Add(Radius, *E->GetEdge());
+	};
+
+	//! Adds a  fillet description in  the  builder
+	//! - builds a contour  of tangent edges,
+	//! - sets a linear radius evolution law between
+	//! the first and last vertex of the spine.
+	void XBRepFilletAPI_MakeFillet::Add(Standard_Real R1, Standard_Real R2, XTopoDS_Edge^ E) {
+		NativeHandle->Add(R1, R2, *E->GetEdge());
+	};
+
+	//! Adds a  fillet description in  the  builder
+	//! - builds a contour  of tangent edges,
+	//! - sest the radius evolution law.
+	void XBRepFilletAPI_MakeFillet::Add(Handle(Law_Function)& L, XTopoDS_Edge^ E) {
+		NativeHandle->Add(L, *E->GetEdge());
+	};
+
+	//! Adds a  fillet description in  the  builder
+	//! - builds a contour  of tangent edges,
+	//! - sets the radius evolution law interpolating the values
+	//! given in the array UandR :
+	//!
+	//! p2d.X() = relative parameter on the spine [0,1]
+	//! p2d.Y() = value of the radius.
+	void XBRepFilletAPI_MakeFillet::Add(TColgp_Array1OfPnt2d& UandR, XTopoDS_Edge^ E) {
+		NativeHandle->Add(UandR, *E->GetEdge());
+	};
+
+	//! Sets the parameters of the fillet
+	//! along the contour of index IC generated using the Add function
+	//! in the internal data structure of
+	//! this algorithm, where Radius is the radius of the fillet.
+	void XBRepFilletAPI_MakeFillet::SetRadius(Standard_Real Radius, Standard_Integer IC, Standard_Integer IinC) {
+		NativeHandle->SetRadius(Radius, IC, IinC);
+	};
+
+	//! Sets the parameters of the fillet
+	//! along the contour of index IC generated using the Add function
+	//! in the internal data structure of this algorithm, where the radius of the
+	//! fillet evolves according to a linear evolution law defined
+	//! from R1 to R2, between the first and last vertices of the contour of index IC.
+	void XBRepFilletAPI_MakeFillet::SetRadius(Standard_Real R1, Standard_Real R2, Standard_Integer IC, Standard_Integer IinC) {
+		NativeHandle->SetRadius(R1, R2, IC, IinC);
+	};
+
+	//! Sets the parameters of the fillet
+	//! along the contour of index IC generated using the Add function
+	//! in the internal data structure of this algorithm, where the radius of the
+	//! fillet evolves according to the evolution law L, between the
+	//! first and last vertices of the contour of index IC.
+	void XBRepFilletAPI_MakeFillet::SetRadius(Handle(Law_Function)& L, Standard_Integer IC, Standard_Integer IinC) {
+		NativeHandle->SetRadius(L, IC, IinC);
+	};
+
+	//! Sets the parameters of the fillet
+	//! along the contour of index IC generated using the Add function
+	//! in the internal data structure of this algorithm,
+	//! where the radius of the fillet evolves according to the evolution law
+	//! which interpolates the set of parameter and radius pairs given
+	//! in the array UandR as follows:
+	//! -   the X coordinate of a point in UandR defines a
+	//! relative parameter on the contour (i.e. a parameter between 0 and 1),
+	//! -          the Y coordinate of a point in UandR gives the
+	//! corresponding value of the radius, and the radius evolves
+	//! between the first and last vertices of the contour of index IC.
+	void XBRepFilletAPI_MakeFillet::SetRadius(TColgp_Array1OfPnt2d& UandR, Standard_Integer IC, Standard_Integer IinC) {
+		NativeHandle->SetRadius(UandR, IC, IinC);
+	};
+
+	//! Erases the radius information on the contour of index
+	//! IC in the internal data structure of this algorithm.
+	//! Use the SetRadius function to reset this data.
+	//! Warning
+	//! Nothing is done if IC is outside the bounds of the table of contours.
+	void XBRepFilletAPI_MakeFillet::ResetContour(Standard_Integer IC) {
+		NativeHandle->ResetContour(IC);
+	};
+
+	//! Returns true if the radius of the fillet along the contour of index IC
+	//! in the internal data structure of this algorithm is constant,
+	//! Warning
+	//! False is returned if IC is outside the bounds of the table
+	//! of contours or if E does not belong to the contour of index IC.
+	Standard_Boolean XBRepFilletAPI_MakeFillet::IsConstant(Standard_Integer IC) {
+		return NativeHandle->IsConstant(IC);
+	};
+
+	//! Returns the radius of the fillet along the contour of index IC in the
+	//! internal data structure of this algorithm
+	//! Warning
+	//! -   Use this function only if the radius is constant.
+	//! -   -1. is returned if IC is outside the bounds of the
+	//! table of contours or if E does not belong to the contour of index IC.
+	Standard_Real XBRepFilletAPI_MakeFillet::Radius(Standard_Integer IC) {
+		return NativeHandle->Radius(IC);
+	};
+
+	//! Returns true if the radius of the fillet along the edge E of the
+	//! contour of index IC in the internal data structure of
+	//! this algorithm is constant.
+	//! Warning
+	//! False is returned if IC is outside the bounds of the table
+	//! of contours or if E does not belong to the contour of index IC.
+	Standard_Boolean XBRepFilletAPI_MakeFillet::IsConstant(Standard_Integer IC, XTopoDS_Edge^ E) {
+		return NativeHandle->IsConstant(IC, *E->GetEdge());
+	};
+
+	//! Returns the radius of the fillet along the edge E of the contour of index
+	//! IC in the internal data structure of this algorithm.
+	//! Warning
+	//! -   Use this function only if the radius is constant.
+	//! -   -1 is returned if IC is outside the bounds of the
+	//! table of contours or if E does not belong to the contour of index IC.
+	Standard_Real XBRepFilletAPI_MakeFillet::Radius(Standard_Integer IC, XTopoDS_Edge^ E) {
+		return NativeHandle->Radius(IC, *E->GetEdge());
+	};
+
+	//! Assigns Radius as the radius of the fillet on the edge E
+	void XBRepFilletAPI_MakeFillet::SetRadius(Standard_Real Radius, Standard_Integer IC, XTopoDS_Edge^ E) {
+		NativeHandle->SetRadius(Radius, IC, *E->GetEdge());
+	};
+
+	void XBRepFilletAPI_MakeFillet::SetRadius(Standard_Real Radius, Standard_Integer IC, XTopoDS_Vertex^ V) {
+		NativeHandle->SetRadius(Radius, IC, *V->GetVertex());
+	};
+
+	Standard_Boolean XBRepFilletAPI_MakeFillet::GetBounds(Standard_Integer IC, XTopoDS_Edge^ E, Standard_Real F, Standard_Real L) {
+		return NativeHandle->GetBounds(IC,*E->GetEdge(), F, L);
+	};
+
+	Handle(Law_Function) XBRepFilletAPI_MakeFillet::GetLaw(Standard_Integer IC, XTopoDS_Edge^ E) {
+		return NativeHandle->GetLaw(IC, *E->GetEdge());
+	};
+
+	void XBRepFilletAPI_MakeFillet::SetLaw(Standard_Integer IC, XTopoDS_Edge^ E, Handle(Law_Function)& L) {
+		NativeHandle->SetLaw(IC, *E->GetEdge(), L);
+	};
+
+	//! Assigns FShape as the type of fillet shape built by this algorithm.
+	void XBRepFilletAPI_MakeFillet::SetFilletShape(XChFi3d_FilletShape FShape) {
+		NativeHandle->SetFilletShape(safe_cast<ChFi3d_FilletShape>(FShape));
+	};
+
+	//! Returns the type of fillet shape built by this algorithm.
+	XChFi3d_FilletShape XBRepFilletAPI_MakeFillet::GetFilletShape() {
+		return safe_cast<XChFi3d_FilletShape>(NativeHandle->GetFilletShape());
+	};
+
+	//! Returns the number of contours generated using the
+	//! Add function in the internal data structure of this algorithm.
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbContours() {
+		return NativeHandle->NbContours();
+	};
+
+	//! Returns the index of the contour in the internal data
+	//! structure of this algorithm which contains the edge E of the shape.
+	//! This function returns 0 if the edge E does not belong to any contour.
+	//! Warning
+	//! This index can change if a contour is removed from the
+	//! internal data structure of this algorithm using the function Remove.
+	Standard_Integer XBRepFilletAPI_MakeFillet::Contour(XTopoDS_Edge^ E) {
+		return NativeHandle->Contour(*E->GetEdge());
+	};
+
+	//! Returns the number of edges in the contour of index I in
+	//! the internal data structure of this algorithm.
+	//! Warning
+	//! Returns 0 if I is outside the bounds of the table of contours.
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbEdges(Standard_Integer I) {
+		return NativeHandle->NbEdges(I);
+	};
+
+	//! Returns the edge of index J in the contour of index I in
+	//! the internal data structure of this algorithm.
+	//! Warning
+	//! Returns a null shape if:
+	//! -   I is outside the bounds of the table of contours, or
+	//! -   J is outside the bounds of the table of edges of the index I contour.
+	XTopoDS_Edge^ XBRepFilletAPI_MakeFillet::Edge(Standard_Integer I, Standard_Integer J) {
+		TopoDS_Edge* temp = new TopoDS_Edge(NativeHandle->Edge(I, J));
+		return gcnew XTopoDS_Edge(temp);
+	};
+
+	//! Removes the contour in the internal data structure of
+	//! this algorithm which contains the edge E of the shape.
+	//! Warning
+	//! Nothing is done if the edge E does not belong to the
+	//! contour in the internal data structure of this algorithm.
+	void XBRepFilletAPI_MakeFillet::Remove(XTopoDS_Edge^ E) {
+		NativeHandle->Remove(*E->GetEdge());
+	};
+
+	//! Returns the length of the contour of index IC in the
+	//! internal data structure of this algorithm.
+	//! Warning
+	//! Returns -1. if IC is outside the bounds of the table of contours.
+	Standard_Real XBRepFilletAPI_MakeFillet::Length(Standard_Integer IC) {
+		return NativeHandle->Length(IC);
+	};
+
+	//! Returns the first vertex of the contour of index IC
+	//! in the internal data structure of this algorithm.
+	//! Warning
+	//! Returns a null shape if IC is outside the bounds of the table of contours.
+	XTopoDS_Vertex^ XBRepFilletAPI_MakeFillet::FirstVertex(Standard_Integer IC) {
+		TopoDS_Vertex* temp = new TopoDS_Vertex(NativeHandle->FirstVertex(IC));
+		return gcnew XTopoDS_Vertex(temp);
+	};
+
+	//! Returns the  last vertex of the contour of index IC
+	//! in the internal data structure of this algorithm.
+	//! Warning
+	//! Returns a null shape if IC is outside the bounds of the table of contours.
+	XTopoDS_Vertex^ XBRepFilletAPI_MakeFillet::LastVertex(Standard_Integer IC) {
+		TopoDS_Vertex* temp = new TopoDS_Vertex(NativeHandle->LastVertex(IC));
+		return gcnew XTopoDS_Vertex(temp);
+	};
+
+	//! Returns the curvilinear abscissa of the vertex V on the
+	//! contour of index IC in the internal data structure of this algorithm.
+	//! Warning
+	//! Returns -1. if:
+	//! -   IC is outside the bounds of the table of contours, or
+	//! -   V is not on the contour of index IC.
+	Standard_Real XBRepFilletAPI_MakeFillet::Abscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
+		return NativeHandle->Abscissa(IC, *V->GetVertex());
+	};
+
+	//! Returns the relative curvilinear abscissa (i.e. between 0
+	//! and 1) of the vertex V on the contour of index IC in the
+	//! internal data structure of this algorithm.
+	//! Warning
+	//! Returns -1. if:
+	//! -   IC is outside the bounds of the table of contours, or
+	//! -   V is not on the contour of index IC.
+	Standard_Real XBRepFilletAPI_MakeFillet::RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
+		return NativeHandle->RelativeAbscissa(IC, *V->GetVertex());
+	};
+
+	//! Returns true if the contour of index IC in the internal
+	//! data structure of this algorithm is closed and tangential
+	//! at the point of closure.
+	//! Warning
+	//! Returns false if IC is outside the bounds of the table of contours.
+	Standard_Boolean XBRepFilletAPI_MakeFillet::ClosedAndTangent(Standard_Integer IC) {
+		return NativeHandle->ClosedAndTangent(IC);
+	};
+
+	//! Returns true if the contour of index IC in the internal
+	//! data structure of this algorithm is closed.
+	//! Warning
+	//! Returns false if IC is outside the bounds of the table of contours.
+	Standard_Boolean XBRepFilletAPI_MakeFillet::Closed(Standard_Integer IC) {
+		return NativeHandle->Closed(IC);
+	};
+
+	//! Builds the fillets on all the contours in the internal data
+	//! structure of this algorithm and constructs the resulting shape.
+	//! Use the function IsDone to verify that the filleted shape
+	//! is built. Use the function Shape to retrieve the filleted shape.
+	//! Warning
+	//! The construction of fillets implements highly complex
+	//! construction algorithms. Consequently, there may be
+	//! instances where the algorithm fails, for example if the
+	//! data defining the radius of the fillet is not compatible
+	//! with the geometry of the initial shape. There is no initial
+	//! analysis of errors and they only become evident at the
+	//! construction stage.
+	//! Additionally, in the current software release, the
+	//! following cases are not handled:
+	//! -   the end point of the contour is the point of
+	//! intersection of 4 or more edges of the shape, or
+	//! -   the intersection of the fillet with a face which limits
+	//! the contour is not fully contained in this face.
+	void XBRepFilletAPI_MakeFillet::Build() {
+		NativeHandle->Build();
+	};
+
+	//! Reinitializes this algorithm, thus canceling the effects of the Build function.
+	//! This function allows modifications to be made to the
+	//! contours and fillet parameters in order to rebuild the shape.
+	void XBRepFilletAPI_MakeFillet::Reset() {
+		NativeHandle->Reset();
+	};
+
+	//! Returns the internal topology building algorithm.
+	Handle(TopOpeBRepBuild_HBuilder) XBRepFilletAPI_MakeFillet::Builder() {
+		return NativeHandle->Builder();
+	};
+
+	//! Returns the  list   of shapes generated   from the
+	//! shape <EorV>.
+	XTopTools_ListOfShape^ XBRepFilletAPI_MakeFillet::Generated(XTopoDS_Shape^ EorV) {
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Generated(*EorV->GetShape()));
+		return gcnew XTopTools_ListOfShape(temp);
+	};
+
+	//! Returns the list  of shapes modified from the shape
+	//! <F>.
+	XTopTools_ListOfShape^ XBRepFilletAPI_MakeFillet::Modified(XTopoDS_Shape^ F) {
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Modified(*F->GetShape()));
+		return gcnew XTopTools_ListOfShape(temp);
+	};
+
+	Standard_Boolean XBRepFilletAPI_MakeFillet::IsDeleted(XTopoDS_Shape^ F) {
+		return NativeHandle->IsDeleted(*F->GetShape());
+	};
+
+	//! returns the number of surfaces
+	//! after the shape creation.
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbSurfaces() {
+		return NativeHandle->NbSurfaces();
+	};
+
+	//! Return the faces created for surface <I>.
+	XTopTools_ListOfShape^ XBRepFilletAPI_MakeFillet::NewFaces(Standard_Integer I) {
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->NewFaces(I));
+		return gcnew XTopTools_ListOfShape(temp);
+	};
+
+	void XBRepFilletAPI_MakeFillet::Simulate(Standard_Integer IC) {
+		NativeHandle->Simulate(IC);
+	};
+
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbSurf(Standard_Integer IC) {
+		return NativeHandle->NbSurf(IC);
+	};
+
+	Handle(ChFiDS_SecHArray1) XBRepFilletAPI_MakeFillet::Sect(Standard_Integer IC, Standard_Integer IS) {
+		return NativeHandle->Sect(IC, IS);
+	};
+
+	//! Returns the number of contours where the computation
+	//! of the fillet failed
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbFaultyContours() {
+		return NativeHandle->NbFaultyContours();
+	};
+
+	//! for each I in [1.. NbFaultyContours] returns the index IC of
+	//! the contour where the computation of the fillet failed.
+	//! the method NbEdges(IC) gives the number of edges in the contour IC
+	//! the method Edge(IC,ie) gives the edge number ie of the contour IC
+	Standard_Integer XBRepFilletAPI_MakeFillet::FaultyContour(Standard_Integer I) {
+		return NativeHandle->FaultyContour(I);
+	};
+
+	//! returns the number of surfaces which have been
+	//! computed on the contour IC
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbComputedSurfaces(Standard_Integer IC) {
+		return NativeHandle->NbComputedSurfaces(IC);
+	};
+
+	//! returns the surface number IS concerning the contour IC
+	XGeom_Surface^ XBRepFilletAPI_MakeFillet::ComputedSurface(Standard_Integer IC, Standard_Integer IS) {
+		return gcnew XGeom_Surface(NativeHandle->ComputedSurface(IC, IS));
+	};
+
+	//! returns the number of vertices where the computation failed
+	Standard_Integer XBRepFilletAPI_MakeFillet::NbFaultyVertices() {
+		return NativeHandle->NbFaultyVertices();
+	};
+
+	//! returns the vertex where the computation failed
+	XTopoDS_Vertex^ XBRepFilletAPI_MakeFillet::FaultyVertex(Standard_Integer IV) {
+		TopoDS_Vertex* temp = new TopoDS_Vertex(NativeHandle->FaultyVertex(IV));
+		return gcnew XTopoDS_Vertex(temp);
+	};
+
+	//! returns true if a part of the result has been computed
+	//! if the filling in a corner failed a shape with a hole is returned
+	Standard_Boolean XBRepFilletAPI_MakeFillet::HasResult() {
+		return NativeHandle->HasResult();
+	};
+
+	//! if (HasResult()) returns the partial result
+	XTopoDS_Shape^ XBRepFilletAPI_MakeFillet::BadShape() {
+		TopoDS_Shape* temp = new TopoDS_Shape(NativeHandle->BadShape());
+		return gcnew XTopoDS_Shape(temp);
+	};
+
+	//! returns the status concerning the contour IC in case of error
+	//! ChFiDS_Ok : the computation is Ok
+	//! ChFiDS_StartsolFailure : the computation can't start, perhaps the
+	//! the radius is too big
+	//! ChFiDS_TwistedSurface : the computation failed because of a twisted
+	//! surface
+	//! ChFiDS_WalkingFailure : there is a problem in the walking
+	//! ChFiDS_Error:  other error different from above
+	XChFiDS_ErrorStatus XBRepFilletAPI_MakeFillet::StripeStatus(Standard_Integer IC) {
+		return safe_cast<XChFiDS_ErrorStatus>(NativeHandle->StripeStatus(IC));
+	};
 }
-
-//=======================================================================
-//function : SetParams
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetParams(const Standard_Real Tang, 
-					 const Standard_Real Tesp, 
-					 const Standard_Real T2d, 
-					 const Standard_Real TApp3d, 
-					 const Standard_Real TolApp2d, 
-					 const Standard_Real Fleche)
-{
-  myBuilder.SetParams(Tang,Tesp, T2d, TApp3d, TolApp2d, Fleche);
-}
-
-//=======================================================================
-//function : SetContinuity
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetContinuity(
-			      const GeomAbs_Shape InternalContinuity,
-			      const Standard_Real AngleTol)
-{
-  myBuilder.SetContinuity(InternalContinuity, AngleTol );
-}
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Add(const TopoDS_Edge&  E)
-{
-  myBuilder.Add(E);
-}
-
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Add(const Standard_Real Radius,
-				   const TopoDS_Edge&  E)
-{
-  //myBuilder.Add(Radius,E);
-  myBuilder.Add(E);
-  Standard_Integer IinC;
-  Standard_Integer IC = myBuilder.Contains(E, IinC);
-  if (IC)
-    SetRadius( Radius, IC, IinC );
-}
-
-
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Add(const Standard_Real R1,
-				   const Standard_Real R2,
-				   const TopoDS_Edge&  E)
-{
-  myBuilder.Add(E);
-  Standard_Integer IinC;
-  Standard_Integer IC = myBuilder.Contains(E, IinC);
-  if (IC)
-    SetRadius(R1,R2,IC,IinC);
-}
-
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Add(const Handle(Law_Function)& L,
-				   const TopoDS_Edge&  E)
-{
-  //myBuilder.Add(L,E);
-  myBuilder.Add(E);
-  Standard_Integer IinC;
-  Standard_Integer IC = myBuilder.Contains(E, IinC);
-  if (IC)
-    SetRadius(L,IC,IinC);
-}
-
-
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Add(const TColgp_Array1OfPnt2d& UandR,
-				   const TopoDS_Edge&  E)
-{
-  myBuilder.Add(E);
-  Standard_Integer IinC;
-  Standard_Integer IC = myBuilder.Contains(E, IinC);
-  if (IC)
-    SetRadius( UandR, IC, IinC );
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const Standard_Real    Radius,
-					 const Standard_Integer IC,
-					 const Standard_Integer IinC)
-{
-  gp_XY FirstUandR( 0., Radius ), LastUandR( 1., Radius );
-  myBuilder.SetRadius( FirstUandR, IC, IinC );
-  myBuilder.SetRadius( LastUandR,  IC, IinC );
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const Standard_Real R1,
-					 const Standard_Real R2,
-					 const Standard_Integer IC,
-					 const Standard_Integer IinC)
-{
-  Standard_Real r1, r2;
-
-  if(Abs(R1-R2) < Precision::Confusion())
-    r1 = r2 = (R1+R2)*0.5;
-  else
-    {
-      r1 = R1;
-      r2 = R2;
-    }
-  gp_XY FirstUandR( 0., r1 ), LastUandR( 1., r2 );
-  myBuilder.SetRadius( FirstUandR, IC, IinC );
-  myBuilder.SetRadius( LastUandR,  IC, IinC );
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const Handle(Law_Function)& L,
-					 const Standard_Integer      IC,
-					 const Standard_Integer      IinC)
-{
-  myBuilder.SetRadius(L,IC,IinC);
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const TColgp_Array1OfPnt2d& UandR,
-					 const Standard_Integer IC,
-					 const Standard_Integer IinC)
-{
-  if(UandR.Length() == 1)
-    SetRadius( UandR(UandR.Lower()).Y(), IC, IinC );
-  else if(UandR.Length() == 2)
-    SetRadius( UandR(UandR.Lower()).Y(), UandR(UandR.Upper()).Y(), IC, IinC );
-  else{
-    Standard_Real Uf = UandR(UandR.Lower()).X();
-    Standard_Real Ul = UandR(UandR.Upper()).X();
-    for(Standard_Integer i = UandR.Lower(); i <= UandR.Upper(); i++){
-      Standard_Real Ucur = UandR(i).X();
-      Ucur = ( Ucur - Uf ) / ( Ul - Uf );
-      gp_XY newUandR( Ucur, UandR(i).Y() );
-      myBuilder.SetRadius( newUandR, IC, IinC );
-    }
-  }
-}
-
-
-//=======================================================================
-//function : IsConstant
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::IsConstant(const Standard_Integer IC)
-{
-  return myBuilder.IsConstant(IC);
-}
-
-
-//=======================================================================
-//function : Radius
-//purpose  : 
-//=======================================================================
-
-Standard_Real BRepFilletAPI_MakeFillet::Radius(const Standard_Integer IC)
-{
-  return myBuilder.Radius(IC);
-}
-
-
-//=======================================================================
-//function : ResetContour
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::ResetContour(const Standard_Integer IC)
-{
-  myBuilder.ResetContour(IC);
-}
-
-
-//=======================================================================
-//function : IsConstant
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::IsConstant(const Standard_Integer IC,
-						      const TopoDS_Edge&     E)
-{
-  return myBuilder.IsConstant(IC,E);
-}
-
-
-//=======================================================================
-//function : Radius
-//purpose  : 
-//=======================================================================
-
-Standard_Real BRepFilletAPI_MakeFillet::Radius(const Standard_Integer IC,
-					       const TopoDS_Edge&     E)
-{
-  return myBuilder.Radius(IC,E);
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const Standard_Real    Radius,
-					 const Standard_Integer IC,
-					 const TopoDS_Edge&     E)
-{
-  myBuilder.SetRadius(Radius,IC,E);
-}
-
-
-//=======================================================================
-//function : GetBounds
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::GetBounds(const Standard_Integer IC,
-						     const TopoDS_Edge&     E,
-						     Standard_Real&         F,
-						     Standard_Real&         L)
-{
-  return myBuilder.GetBounds(IC,E,F,L);
-}
-
-
-//=======================================================================
-//function : GetLaw
-//purpose  : 
-//=======================================================================
-
-Handle(Law_Function) BRepFilletAPI_MakeFillet::GetLaw(const Standard_Integer IC,
-						      const TopoDS_Edge&     E)
-{
-  return myBuilder.GetLaw(IC,E);
-}
-
-
-//=======================================================================
-//function : SetLaw
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetLaw(const Standard_Integer      IC,
-				      const TopoDS_Edge&          E,
-				      const Handle(Law_Function)& L)
-{
-  myBuilder.SetLaw(IC,E, L);
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetRadius(const Standard_Real    Radius,
-					 const Standard_Integer IC,
-					 const TopoDS_Vertex&   V)
-{
-  myBuilder.SetRadius(Radius,IC,V);
-}
-
-//=======================================================================
-//function : SetFilletShape
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::SetFilletShape(const ChFi3d_FilletShape FShape)
-{
-  myBuilder.SetFilletShape(FShape);
-}
-  
-
-//=======================================================================
-//function : GetFilletShape
-//purpose  : 
-//=======================================================================
-
-ChFi3d_FilletShape BRepFilletAPI_MakeFillet::GetFilletShape() const
-{
-  return myBuilder.GetFilletShape();
-}
-  
-
-//=======================================================================
-//function : NbContours
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbContours()const
-{
-  return myBuilder.NbElements();
-}
-
-
-//=======================================================================
-//function : Contour
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::Contour(const TopoDS_Edge& E)const
-{
-  return myBuilder.Contains(E);  
-}
-
-
-//=======================================================================
-//function : NbEdges
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbEdges(const Standard_Integer I)const
-{
-  const Handle(ChFiDS_Spine)& Spine = myBuilder.Value(I);
-  Standard_Integer n = Spine->NbEdges();
-  return n;
-}
-
-//=======================================================================
-//function : Edge
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Edge& BRepFilletAPI_MakeFillet::Edge(const Standard_Integer I,
-						  const Standard_Integer J)const
-{
-  const Handle(ChFiDS_Spine)& Spine = myBuilder.Value(I);
-  const TopoDS_Edge& S = Spine->Edges(J);
-  return S;
-}
-
-
-//=======================================================================
-//function : Remove
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Remove(const TopoDS_Edge& E)
-{
-  myBuilder.Remove(E);
-}
-
-
-//=======================================================================
-//function : Length
-//purpose  : 
-//=======================================================================
-
-Standard_Real BRepFilletAPI_MakeFillet::Length(const Standard_Integer IC)const
-{
-  return myBuilder.Length(IC);
-}
-
-
-//=======================================================================
-//function : FirstVertex
-//purpose  : 
-//=======================================================================
-
-TopoDS_Vertex BRepFilletAPI_MakeFillet::FirstVertex(const Standard_Integer IC)const
-{
-  return myBuilder.FirstVertex(IC);
-}
-
-
-//=======================================================================
-//function : LastVertex
-//purpose  : 
-//=======================================================================
-
-TopoDS_Vertex BRepFilletAPI_MakeFillet::LastVertex(const Standard_Integer IC)const
-{
-  return myBuilder.LastVertex(IC);
-}
-
-
-//=======================================================================
-//function : Abscissa
-//purpose  : 
-//=======================================================================
-
-Standard_Real BRepFilletAPI_MakeFillet::Abscissa(const Standard_Integer IC,
-						 const TopoDS_Vertex& V)const
-{
-  return myBuilder.Abscissa(IC,V);
-}
-
-
-//=======================================================================
-//function : RelativeAbscissa
-//purpose  : 
-//=======================================================================
-
-Standard_Real BRepFilletAPI_MakeFillet::RelativeAbscissa(const Standard_Integer IC,
-							 const TopoDS_Vertex& V)const
-{
-  return myBuilder.RelativeAbscissa(IC,V);
-}
-
-
-//=======================================================================
-//function : ClosedAndTangent
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::ClosedAndTangent
-(const Standard_Integer IC)const
-{
-  return myBuilder.ClosedAndTangent(IC);
-}
-
-
-//=======================================================================
-//function : Closed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::Closed
-(const Standard_Integer IC)const
-{
-  return myBuilder.Closed(IC);
-}
-
-
-//=======================================================================
-//function : Builder
-//purpose  : 
-//=======================================================================
-
-Handle(TopOpeBRepBuild_HBuilder) BRepFilletAPI_MakeFillet::Builder()const 
-{
-  return myBuilder.Builder();
-}
-
-
-//=======================================================================
-//function : Build
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Build()
-{
-  myBuilder.Compute();
-  if(myBuilder.IsDone()) {
-    Done();
-    myShape = myBuilder.Shape();
-
-    // creation of the Map.
-    TopExp_Explorer ex;
-    for (ex.Init(myShape, TopAbs_FACE); ex.More(); ex.Next()) {
-      myMap.Add(ex.Current());
-    }
-  }
-}
-
-
-//=======================================================================
-//function : Reset
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Reset()
-{
-  NotDone();
-  myBuilder.Reset();
-  myMap.Clear();
-}
-
-//=======================================================================
-//function : NbSurfaces
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbSurfaces() const
-{
-  return (myBuilder.Builder()->DataStructure())->NbSurfaces();
-}
-
-//=======================================================================
-//function : NewFaces
-//purpose  : 
-//=======================================================================
-
-const TopTools_ListOfShape& BRepFilletAPI_MakeFillet::NewFaces
-  (const Standard_Integer I)
-{
-  return (*(TopTools_ListOfShape*)&(myBuilder.Builder()->NewFaces(I)));
-}
-
-//=======================================================================
-//function : Simulate
-//purpose  : 
-//=======================================================================
-
-void BRepFilletAPI_MakeFillet::Simulate(const Standard_Integer IC)
-{
-  myBuilder.Simulate(IC);
-}
-
-
-//=======================================================================
-//function : NbSurf
-//purpose  : 
-//=======================================================================
-
-Standard_Integer  BRepFilletAPI_MakeFillet::NbSurf(const Standard_Integer IC)const
-{
-  return myBuilder.NbSurf(IC);
-}
-
-//=======================================================================
-//function : Sect
-//purpose  : 
-//=======================================================================
-
-Handle(ChFiDS_SecHArray1) BRepFilletAPI_MakeFillet::Sect(const Standard_Integer IC,
-							 const Standard_Integer IS)const
-{
-  return myBuilder.Sect(IC, IS);
-}
-
-//=======================================================================
-//function : Generated
-//purpose  : 
-//=======================================================================
-
-const TopTools_ListOfShape& BRepFilletAPI_MakeFillet::Generated
-  (const TopoDS_Shape& EorV)
-{
-  return myBuilder.Generated(EorV);
-}
-
-//=======================================================================
-//function : Modified
-//purpose  : 
-//=======================================================================
-
-const TopTools_ListOfShape& BRepFilletAPI_MakeFillet::Modified
-  (const TopoDS_Shape& F)
-{
-  myGenerated.Clear();
-
-  if (myBuilder.Builder()->IsSplit(F, TopAbs_OUT)) {
-    TopTools_ListIteratorOfListOfShape It(myBuilder.Builder()->Splits(F, TopAbs_OUT));
-    for(;It.More();It.Next()) {
-      myGenerated.Append(It.Value());
-    }
-  }
-  if (myBuilder.Builder()->IsSplit(F, TopAbs_IN)) {
-    TopTools_ListIteratorOfListOfShape It(myBuilder.Builder()->Splits(F, TopAbs_IN));
-    for(;It.More();It.Next()) {
-      myGenerated.Append(It.Value());
-    }
-  }
-  if (myBuilder.Builder()->IsSplit(F, TopAbs_ON)) {
-    TopTools_ListIteratorOfListOfShape It(myBuilder.Builder()->Splits(F, TopAbs_ON));
-    for(;It.More();It.Next()) {
-      myGenerated.Append(It.Value());
-    }
-  }
-  return myGenerated;
-}
-
-//=======================================================================
-//function : IsDeleted
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::IsDeleted(const TopoDS_Shape& F) 
-{
-  if (myMap.Contains(F) || 
-      myBuilder.Builder()->IsSplit (F, TopAbs_OUT)  ||
-      myBuilder.Builder()->IsSplit (F, TopAbs_IN)   ||
-      myBuilder.Builder()->IsSplit (F, TopAbs_ON))
-    return Standard_False;
-  
-  return Standard_True;    
-}
-
-//=======================================================================
-//function : NbFaultyContours
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbFaultyContours() const
-{
-  return myBuilder.NbFaultyContours();
-}
-//=======================================================================
-//function : FaultyContour
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::FaultyContour(const Standard_Integer I) const
-{
- return myBuilder.FaultyContour(I);
-}
-
-//=======================================================================
-//function : NbComputedSurfaces
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbComputedSurfaces(const Standard_Integer IC) const
-{
-  return myBuilder.NbComputedSurfaces (IC);
-}
-
-//=======================================================================
-//function : ComputedSurface
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Surface) BRepFilletAPI_MakeFillet::ComputedSurface(const Standard_Integer IC,
-							       const Standard_Integer IS) const
-{
-  return myBuilder.ComputedSurface(IC,IS);
-}
-
-//=======================================================================
-//function : NbFaultyVertices
-//purpose  : 
-//=======================================================================
-
-Standard_Integer BRepFilletAPI_MakeFillet::NbFaultyVertices() const
-{
-  return myBuilder.NbFaultyVertices();
-}
-
-//=======================================================================
-//function : FaultyVertex
-//purpose  : 
-//=======================================================================
-
-TopoDS_Vertex BRepFilletAPI_MakeFillet::FaultyVertex(const Standard_Integer IV) const
-{
-  return myBuilder.FaultyVertex(IV);
-}
-
-//=======================================================================
-//function : HasResult
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepFilletAPI_MakeFillet::HasResult() const 
-{
-   return myBuilder.HasResult();
-}
-
-//=======================================================================
-//function : BadShape
-//purpose  : 
-//=======================================================================
-
-TopoDS_Shape BRepFilletAPI_MakeFillet::BadShape()const
-{
- return myBuilder.BadShape();
-}
-
-//=======================================================================
-//function : StripeStatus
-//purpose  : 
-//=======================================================================
-
-ChFiDS_ErrorStatus BRepFilletAPI_MakeFillet::StripeStatus(const Standard_Integer IC)const
-{
- return myBuilder.StripeStatus(IC);
-}
-
-
 

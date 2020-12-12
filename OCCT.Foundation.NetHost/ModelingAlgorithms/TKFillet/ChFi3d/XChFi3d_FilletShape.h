@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFi3d_FilletShape_HeaderFile
-#define _ChFi3d_FilletShape_HeaderFile
+#ifndef _XChFi3d_FilletShape_HeaderFile
+#define _XChFi3d_FilletShape_HeaderFile
 
 
 //! Lists the types of fillet shapes. These include the following:
@@ -27,11 +27,11 @@
 //! -   ChFi3d_Polynomial, which corresponds to a
 //! polynomial approximation of circles. This type
 //! facilitates the implementation of the construction algorithm.
-enum ChFi3d_FilletShape
+public enum class XChFi3d_FilletShape
 {
-ChFi3d_Rational,
-ChFi3d_QuasiAngular,
-ChFi3d_Polynomial
+	ChFi3d_Rational,
+	ChFi3d_QuasiAngular,
+	ChFi3d_Polynomial
 };
 
-#endif // _ChFi3d_FilletShape_HeaderFile
+#endif // _XChFi3d_FilletShape_HeaderFile

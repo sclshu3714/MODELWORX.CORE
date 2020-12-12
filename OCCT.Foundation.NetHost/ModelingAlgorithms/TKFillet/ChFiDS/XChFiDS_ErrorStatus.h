@@ -14,17 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFiDS_ErrorStatus_HeaderFile
-#define _ChFiDS_ErrorStatus_HeaderFile
+#ifndef _XChFiDS_ErrorStatus_HeaderFile
+#define _XChFiDS_ErrorStatus_HeaderFile
 
 //! --- Purpose statuts concernant la cause de l'erreur
-enum ChFiDS_ErrorStatus
+public enum class XChFiDS_ErrorStatus
 {
-ChFiDS_Ok,
-ChFiDS_Error,
-ChFiDS_WalkingFailure,
-ChFiDS_StartsolFailure,
-ChFiDS_TwistedSurface
+	ChFiDS_Ok,
+	ChFiDS_Error,
+	ChFiDS_WalkingFailure,
+	ChFiDS_StartsolFailure,
+	ChFiDS_TwistedSurface
 };
 
-#endif // _ChFiDS_ErrorStatus_HeaderFile
+#endif // _XChFiDS_ErrorStatus_HeaderFile

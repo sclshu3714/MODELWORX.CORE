@@ -4673,8 +4673,8 @@ Class TKFillet.XBRepFilletAPI_MakeChamfer: AutoLayout, AnsiClass, Class, Public,
     Length(Int32): PrivateScope, Public, Virtual, HideBySig
     FirstVertex(Int32): PrivateScope, Public, Virtual, HideBySig
     LastVertex(Int32): PrivateScope, Public, Virtual, HideBySig
-    Abscissa(Int32, XTopoDS_Vertex&): PrivateScope, Public, Virtual, HideBySig
-    RelativeAbscissa(Int32, XTopoDS_Vertex&): PrivateScope, Public, Virtual, HideBySig
+    Abscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    RelativeAbscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
     ClosedAndTangent(Int32): PrivateScope, Public, Virtual, HideBySig
     Closed(Int32): PrivateScope, Public, Virtual, HideBySig
     Build(): PrivateScope, Public, Virtual, HideBySig
@@ -4695,6 +4695,156 @@ Struct XChFiDS_ChamfMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFi
     XChFiDS_ChamfMode ChFiDS_ClassicChamfer = 0 : Public, Static, Literal, HasDefault
     XChFiDS_ChamfMode ChFiDS_ConstThroatChamfer = 1 : Public, Static, Literal, HasDefault
     XChFiDS_ChamfMode ChFiDS_ConstThroatWithPenetrationChamfer = 2 : Public, Static, Literal, HasDefault
+Class TKFillet.XBRepFilletAPI_MakeFillet: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKFillet.XBRepFilletAPI_LocalOperation
+    Void .ctor(BRepFilletAPI_MakeFillet*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Shape, XChFi3d_FilletShape): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakeFilletHandle(BRepFilletAPI_MakeFillet*): PrivateScope, Public, HideBySig
+    GetMakeFillet(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetLocalOperation(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    SetParams(Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    SetContinuity(XGeomAbs_Shape, Double): PrivateScope, Public, HideBySig
+    Add(NCollection_Array1<gp_Pnt2d>* IsImplicitlyDereferenced, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Add(handle<Law_Function>* IsImplicitlyDereferenced, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Add(Double, Double, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Add(Double, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    SetRadius(Double, Int32, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    SetRadius(Double, Int32, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    SetRadius(NCollection_Array1<gp_Pnt2d>* IsImplicitlyDereferenced, Int32, Int32): PrivateScope, Public, HideBySig
+    SetRadius(handle<Law_Function>* IsImplicitlyDereferenced, Int32, Int32): PrivateScope, Public, HideBySig
+    SetRadius(Double, Double, Int32, Int32): PrivateScope, Public, HideBySig
+    SetRadius(Double, Int32, Int32): PrivateScope, Public, HideBySig
+    ResetContour(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsConstant(Int32, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    IsConstant(Int32): PrivateScope, Public, HideBySig
+    Radius(Int32, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Radius(Int32): PrivateScope, Public, HideBySig
+    GetBounds(Int32, XTopoDS_Edge, Double, Double): PrivateScope, Public, HideBySig
+    GetLaw(handle<Law_Function>*, Int32, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    SetLaw(Int32, XTopoDS_Edge, handle<Law_Function>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetFilletShape(XChFi3d_FilletShape): PrivateScope, Public, HideBySig
+    GetFilletShape(): PrivateScope, Public, HideBySig
+    NbContours(): PrivateScope, Public, Virtual, HideBySig
+    Contour(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    NbEdges(Int32): PrivateScope, Public, Virtual, HideBySig
+    Edge(Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    Remove(XTopoDS_Edge): PrivateScope, Public, Virtual, HideBySig
+    Length(Int32): PrivateScope, Public, Virtual, HideBySig
+    FirstVertex(Int32): PrivateScope, Public, Virtual, HideBySig
+    LastVertex(Int32): PrivateScope, Public, Virtual, HideBySig
+    Abscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    RelativeAbscissa(Int32, XTopoDS_Vertex): PrivateScope, Public, Virtual, HideBySig
+    ClosedAndTangent(Int32): PrivateScope, Public, Virtual, HideBySig
+    Closed(Int32): PrivateScope, Public, Virtual, HideBySig
+    Build(): PrivateScope, Public, Virtual, HideBySig
+    Reset(): PrivateScope, Public, Virtual, HideBySig
+    Builder(handle<TopOpeBRepBuild_HBuilder>*): PrivateScope, Public, HideBySig
+    Generated(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    NbSurfaces(): PrivateScope, Public, HideBySig
+    NewFaces(Int32): PrivateScope, Public, HideBySig
+    Simulate(Int32): PrivateScope, Public, Virtual, HideBySig
+    NbSurf(Int32): PrivateScope, Public, Virtual, HideBySig
+    Sect(handle<ChFiDS_SecHArray1>*, Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    NbFaultyContours(): PrivateScope, Public, HideBySig
+    FaultyContour(Int32): PrivateScope, Public, HideBySig
+    NbComputedSurfaces(Int32): PrivateScope, Public, HideBySig
+    ComputedSurface(Int32, Int32): PrivateScope, Public, HideBySig
+    NbFaultyVertices(): PrivateScope, Public, HideBySig
+    FaultyVertex(Int32): PrivateScope, Public, HideBySig
+    HasResult(): PrivateScope, Public, HideBySig
+    BadShape(): PrivateScope, Public, HideBySig
+    StripeStatus(Int32): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
+    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
+Struct XChFi3d_FilletShape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XChFi3d_FilletShape ChFi3d_Rational = 0 : Public, Static, Literal, HasDefault
+    XChFi3d_FilletShape ChFi3d_QuasiAngular = 1 : Public, Static, Literal, HasDefault
+    XChFi3d_FilletShape ChFi3d_Polynomial = 2 : Public, Static, Literal, HasDefault
+Struct XChFiDS_ErrorStatus: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XChFiDS_ErrorStatus ChFiDS_Ok = 0 : Public, Static, Literal, HasDefault
+    XChFiDS_ErrorStatus ChFiDS_Error = 1 : Public, Static, Literal, HasDefault
+    XChFiDS_ErrorStatus ChFiDS_WalkingFailure = 2 : Public, Static, Literal, HasDefault
+    XChFiDS_ErrorStatus ChFiDS_StartsolFailure = 3 : Public, Static, Literal, HasDefault
+    XChFiDS_ErrorStatus ChFiDS_TwistedSurface = 4 : Public, Static, Literal, HasDefault
+Class TKFillet.XBRepFilletAPI_MakeFillet2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(BRepFilletAPI_MakeFillet2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakeFillet2dHandle(BRepFilletAPI_MakeFillet2d*): PrivateScope, Public, HideBySig
+    GetMakeFillet2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    Init(XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, HideBySig
+    Init(XTopoDS_Face): PrivateScope, Public, HideBySig
+    AddFillet(XTopoDS_Vertex, Double): PrivateScope, Public, HideBySig
+    ModifyFillet(XTopoDS_Edge, Double): PrivateScope, Public, HideBySig
+    RemoveFillet(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    AddChamfer(XTopoDS_Edge, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    AddChamfer(XTopoDS_Edge, XTopoDS_Edge, Double, Double): PrivateScope, Public, HideBySig
+    ModifyChamfer(XTopoDS_Edge, XTopoDS_Edge, Double, Double): PrivateScope, Public, HideBySig
+    ModifyChamfer(XTopoDS_Edge, XTopoDS_Edge, XTopoDS_Edge, Double, Double): PrivateScope, Public, HideBySig
+    RemoveChamfer(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    IsModified(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    FilletEdges(NCollection_Sequence<TopoDS_Shape>*): PrivateScope, Public, HideBySig
+    NbFillet(): PrivateScope, Public, HideBySig
+    ChamferEdges(NCollection_Sequence<TopoDS_Shape>*): PrivateScope, Public, HideBySig
+    NbChamfer(): PrivateScope, Public, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    NbCurves(): PrivateScope, Public, HideBySig
+    NewEdges(Int32): PrivateScope, Public, HideBySig
+    HasDescendant(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    DescendantEdge(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    BasisEdge(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Status(): PrivateScope, Public, HideBySig
+    Build(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XChFi2d_ConstructionError: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XChFi2d_ConstructionError ChFi2d_NotPlanar = 0 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_NoFace = 1 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_InitialisationError = 2 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_ParametersError = 3 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_Ready = 4 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_IsDone = 5 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_ComputationError = 6 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_ConnexionError = 7 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_TangencyError = 8 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_FirstEdgeDegenerated = 9 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_LastEdgeDegenerated = 10 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_BothEdgesDegenerated = 11 : Public, Static, Literal, HasDefault
+    XChFi2d_ConstructionError ChFi2d_NotAuthorized = 12 : Public, Static, Literal, HasDefault
 Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5060,17 +5210,6 @@ Struct XBRepPrim_Direction: AutoLayout, AnsiClass, Class, Public, Sealed, Before
     XBRepPrim_Direction BRepPrim_YMax = 3 : Public, Static, Literal, HasDefault
     XBRepPrim_Direction BRepPrim_ZMin = 4 : Public, Static, Literal, HasDefault
     XBRepPrim_Direction BRepPrim_ZMax = 5 : Public, Static, Literal, HasDefault
-Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XGeomAbs_Shape GeomAbs_C0 = 0 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G1 = 1 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C1 = 2 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_G2 = 3 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C2 = 4 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_C3 = 5 : Public, Static, Literal, HasDefault
-    XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Class TKPrim.XBRepPrimAPI_MakeOneAxis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(BRepPrimAPI_MakeOneAxis*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

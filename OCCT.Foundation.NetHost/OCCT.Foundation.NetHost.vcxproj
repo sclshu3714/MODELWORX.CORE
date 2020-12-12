@@ -292,8 +292,13 @@
     <ClInclude Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.h" />
     <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.h" />
     <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeChamfer.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet2d.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFi2d\XChFi2d_ConstructionError.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFi3d\XChFi3d_FilletShape.h" />
     <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ChamfMethod.h" />
     <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ChamfMode.h" />
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ErrorStatus.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.h" />
     <ClInclude Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCylinder.h" />
@@ -543,6 +548,8 @@
     <ClCompile Include="ModelingAlgorithms\TKBO\BRepAlgoAPI\XBRepAlgoAPI_Section.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_LocalOperation.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeChamfer.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet2d.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeBox.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCone.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKPrim\BRepPrimAPI\XBRepPrimAPI_MakeCylinder.cpp" />

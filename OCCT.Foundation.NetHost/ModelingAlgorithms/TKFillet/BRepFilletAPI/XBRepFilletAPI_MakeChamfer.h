@@ -239,7 +239,7 @@ namespace TKFillet {
 		//! Returns -1. if:
 		//! -   IC is outside the bounds of the table of contours, or
 		//! -   V is not on the contour of index IC.
-		Standard_Real Abscissa(Standard_Integer IC, XTopoDS_Vertex^% V) Standard_OVERRIDE;
+		Standard_Real Abscissa(Standard_Integer IC, XTopoDS_Vertex^ V) Standard_OVERRIDE;
 
 		//! Returns the relative curvilinear abscissa (i.e. between 0
 		//! and 1) of the vertex V on the contour of index IC in the
@@ -248,7 +248,7 @@ namespace TKFillet {
 		//! Returns -1. if:
 		//! -   IC is outside the bounds of the table of contours, or
 		//! -   V is not on the contour of index IC.
-		Standard_Real RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^% V) Standard_OVERRIDE;
+		Standard_Real RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^ V) Standard_OVERRIDE;
 
 		//! eturns true if the contour of index IC in the internal
 		//! data structure of this algorithm is closed and tangential at the point of closure.

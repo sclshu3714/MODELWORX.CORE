@@ -21,6 +21,12 @@
 </summary>
             <param name="pos" />
         </member>
+        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
         <member name="P:TKMath.XTopLoc_Datum3D.Handle">
             <summary>
 本地句柄
@@ -59,12 +65,6 @@
             <param name="pos" />
         </member>
         <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
             <summary>
 指针映射点
 </summary>

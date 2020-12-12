@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFi2d_ConstructionError_HeaderFile
-#define _ChFi2d_ConstructionError_HeaderFile
+#ifndef _XChFi2d_ConstructionError_HeaderFile
+#define _XChFi2d_ConstructionError_HeaderFile
 
 //! error     that    can   occur       during   the
 //! fillet  construction on planar wire//! the face is not planar//! the face is null//! the two  faces used for the initialisation are
@@ -25,21 +25,21 @@
 //! is a fillet or a chamfer
 //! One or the two  edges connected to the  vertex
 //! is not a line or a circle
-enum ChFi2d_ConstructionError
+public enum class XChFi2d_ConstructionError
 {
-ChFi2d_NotPlanar,
-ChFi2d_NoFace,
-ChFi2d_InitialisationError,
-ChFi2d_ParametersError,
-ChFi2d_Ready,
-ChFi2d_IsDone,
-ChFi2d_ComputationError,
-ChFi2d_ConnexionError,
-ChFi2d_TangencyError,
-ChFi2d_FirstEdgeDegenerated,
-ChFi2d_LastEdgeDegenerated,
-ChFi2d_BothEdgesDegenerated,
-ChFi2d_NotAuthorized
+	ChFi2d_NotPlanar,
+	ChFi2d_NoFace,
+	ChFi2d_InitialisationError,
+	ChFi2d_ParametersError,
+	ChFi2d_Ready,
+	ChFi2d_IsDone,
+	ChFi2d_ComputationError,
+	ChFi2d_ConnexionError,
+	ChFi2d_TangencyError,
+	ChFi2d_FirstEdgeDegenerated,
+	ChFi2d_LastEdgeDegenerated,
+	ChFi2d_BothEdgesDegenerated,
+	ChFi2d_NotAuthorized
 };
 
-#endif // _ChFi2d_ConstructionError_HeaderFile
+#endif // _XChFi2d_ConstructionError_HeaderFile

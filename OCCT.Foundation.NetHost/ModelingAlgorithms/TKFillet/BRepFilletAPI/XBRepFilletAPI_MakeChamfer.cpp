@@ -249,10 +249,8 @@ namespace TKFillet {
 	//! Returns -1. if:
 	//! -   IC is outside the bounds of the table of contours, or
 	//! -   V is not on the contour of index IC.
-	Standard_Real XBRepFilletAPI_MakeChamfer::Abscissa(Standard_Integer IC, XTopoDS_Vertex^% V) {
-		TopoDS_Vertex* temp = V->GetVertex();
-		return NativeHandle->Abscissa(IC, *temp);
-		V = gcnew XTopoDS_Vertex(temp);
+	Standard_Real XBRepFilletAPI_MakeChamfer::Abscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
+		return NativeHandle->Abscissa(IC, *V->GetVertex());
 	};
 
 	//! Returns the relative curvilinear abscissa (i.e. between 0
@@ -262,10 +260,8 @@ namespace TKFillet {
 	//! Returns -1. if:
 	//! -   IC is outside the bounds of the table of contours, or
 	//! -   V is not on the contour of index IC.
-	Standard_Real XBRepFilletAPI_MakeChamfer::RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^% V) {
-		TopoDS_Vertex* temp = V->GetVertex();
-		return NativeHandle->RelativeAbscissa(IC, *temp);
-		V = gcnew XTopoDS_Vertex(temp);
+	Standard_Real XBRepFilletAPI_MakeChamfer::RelativeAbscissa(Standard_Integer IC, XTopoDS_Vertex^ V) {
+		return NativeHandle->RelativeAbscissa(IC, *V->GetVertex());
 	};
 
 	//! eturns true if the contour of index IC in the internal

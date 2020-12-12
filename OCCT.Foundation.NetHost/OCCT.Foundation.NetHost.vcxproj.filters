@@ -415,6 +415,12 @@
     <Filter Include="头文件\ModelingAlgorithms\TKFillet\ChFiDS">
       <UniqueIdentifier>{951dde62-1683-4e34-8685-00835e9eb933}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKFillet\ChFi3d">
+      <UniqueIdentifier>{fe22c2a6-318d-46f9-afd3-e2549d6b4c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKFillet\ChFi2d">
+      <UniqueIdentifier>{20708fef-dd5a-4cb9-865e-25523f30e7c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1239,6 +1245,21 @@
     <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ChamfMode.h">
       <Filter>头文件\ModelingAlgorithms\TKFillet\ChFiDS</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFi3d\XChFi3d_FilletShape.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\ChFi3d</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFiDS\XChFiDS_ErrorStatus.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\ChFiDS</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet2d.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKFillet\ChFi2d\XChFi2d_ConstructionError.h">
+      <Filter>头文件\ModelingAlgorithms\TKFillet\ChFi2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1702,6 +1723,12 @@
       <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeChamfer.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet2d.cpp">
       <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
     </ClCompile>
   </ItemGroup>
