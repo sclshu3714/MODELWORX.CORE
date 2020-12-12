@@ -421,6 +421,18 @@
     <Filter Include="头文件\ModelingAlgorithms\TKFillet\ChFi2d">
       <UniqueIdentifier>{20708fef-dd5a-4cb9-865e-25523f30e7c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingData\TKGeomBase">
+      <UniqueIdentifier>{0bbb3fc6-37ad-4041-9b34-1b3082bc52b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKGeomBase\GeomTools">
+      <UniqueIdentifier>{22b36332-b45e-4bb1-8cde-5b6628b93412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKGeomBase">
+      <UniqueIdentifier>{cb497246-dc13-472d-9b35-200bec52622b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKGeomBase\GeomTools">
+      <UniqueIdentifier>{2818066f-232d-4b38-9334-772edf81af67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1260,6 +1272,9 @@
     <ClInclude Include="ModelingAlgorithms\TKFillet\ChFi2d\XChFi2d_ConstructionError.h">
       <Filter>头文件\ModelingAlgorithms\TKFillet\ChFi2d</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GeomTools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1730,6 +1745,9 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKFillet\BRepFilletAPI\XBRepFilletAPI_MakeFillet2d.cpp">
       <Filter>源文件\ModelingAlgorithms\TKFillet\BRepFilletAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GeomTools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
