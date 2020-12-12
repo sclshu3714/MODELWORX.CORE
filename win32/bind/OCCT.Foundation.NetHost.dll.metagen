@@ -6438,6 +6438,36 @@ Class TKG3d.XGeom_Point: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XGeom_Point(): PrivateScope, Public, HideBySig
+Class TKGeomBase.XGC_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(GC_Root*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_Root* IHandle 'get set' : 
+  Methods:
+    SetRoot(GC_Root*): PrivateScope, Public, HideBySig
+    GetRoot(): PrivateScope, Public, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Status(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(GC_Root*): PrivateScope, Public, HideBySig, SpecialName
+Struct xgce_ErrorType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    xgce_ErrorType gce_Done = 0 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_ConfusedPoints = 1 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NegativeRadius = 2 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_ColinearPoints = 3 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_IntersectionError = 4 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NullAxis = 5 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NullAngle = 6 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NullRadius = 7 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_InvertAxis = 8 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_BadAngle = 9 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_InvertRadius = 10 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NullFocusLength = 11 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_NullVector = 12 : Public, Static, Literal, HasDefault
+    xgce_ErrorType gce_BadEquation = 13 : Public, Static, Literal, HasDefault
 Class TKGeomBase.XGeomTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

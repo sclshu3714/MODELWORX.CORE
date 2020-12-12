@@ -14,8 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GC_Root_HeaderFile
-#define _GC_Root_HeaderFile
+#ifndef _XGC_Root_HeaderFile
+#define _XGC_Root_HeaderFile
+#pragma once
+#include <GC_Root.hxx>
+#include <xgce_ErrorType.h>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -24,53 +28,45 @@
 #include <gce_ErrorType.hxx>
 #include <Standard_Boolean.hxx>
 
-// resolve name collisions with X11 headers
-#ifdef Status
-  #undef Status
-#endif
+namespace TKGeomBase {
+    //! This class implements the common services for
+    //! all classes of gce which report error.
+    public ref class XGC_Root
+    {
+    public:
 
-//! This class implements the common services for
-//! all classes of gce which report error.
-class GC_Root 
-{
-public:
+        //! DEFINE_STANDARD_ALLOC
+        XGC_Root();
 
-  DEFINE_STANDARD_ALLOC
+        XGC_Root(GC_Root* pos);
 
-  
-  //! Returns true if the construction is successful.
-    Standard_Boolean IsDone() const;
-  
+        void SetRoot(GC_Root* pos);
 
-  //! Returns the status of the construction:
-  //! -   gce_Done, if the construction is successful, or
-  //! -   another value of the gce_ErrorType enumeration
-  //! indicating why the construction failed.
-    gce_ErrorType Status() const;
+        GC_Root* GetRoot();
 
+        //! Returns true if the construction is successful.
+        virtual Standard_Boolean IsDone();
 
+        //! Returns the status of the construction:
+        //! -   gce_Done, if the construction is successful, or
+        //! -   another value of the gce_ErrorType enumeration
+        //! indicating why the construction failed.
+        virtual xgce_ErrorType Status();
 
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        property  GC_Root* IHandle {
+            GC_Root* get() {
+                return 	NativeHandle;
+            }
+            void set(GC_Root* handle) {
+                NativeHandle = handle;
+            }
+        }
 
-protected:
-
-
-
-  gce_ErrorType TheError;
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <GC_Root.lxx>
-
-
-
-
-
-#endif // _GC_Root_HeaderFile
+    private:
+        GC_Root* NativeHandle;
+    };
+}
+#endif // _XGC_Root_HeaderFile

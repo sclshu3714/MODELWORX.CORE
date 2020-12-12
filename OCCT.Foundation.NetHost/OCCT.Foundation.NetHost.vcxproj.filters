@@ -433,6 +433,15 @@
     <Filter Include="源文件\ModelingData\TKGeomBase\GeomTools">
       <UniqueIdentifier>{2818066f-232d-4b38-9334-772edf81af67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingData\TKGeomBase\gce">
+      <UniqueIdentifier>{eefc51ab-dacb-4d49-8765-f206b5e1cf7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingData\TKGeomBase\GC">
+      <UniqueIdentifier>{e63e9908-2486-420d-8c71-b0e64e684027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingData\TKGeomBase\GC">
+      <UniqueIdentifier>{91623239-b6da-464f-9ff0-76c62534aec3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1275,6 +1284,12 @@
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h">
       <Filter>头文件\ModelingData\TKGeomBase\GeomTools</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_ErrorType.h">
+      <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1748,6 +1763,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GeomTools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

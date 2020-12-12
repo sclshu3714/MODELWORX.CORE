@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_ErrorType_HeaderFile
-#define _gce_ErrorType_HeaderFile
+#ifndef _xgce_ErrorType_HeaderFile
+#define _xgce_ErrorType_HeaderFile
 
 //! Indicates the outcome of a construction, i.e.
 //! whether it is successful or not, as explained below.
@@ -35,22 +35,22 @@
 //! gce_NullVector: Vector is null.
 //! gce_BadEquation: Coefficients are
 //! incorrect (applies to the equation of a geometric object).
-enum gce_ErrorType
+public enum class xgce_ErrorType
 {
-gce_Done,
-gce_ConfusedPoints,
-gce_NegativeRadius,
-gce_ColinearPoints,
-gce_IntersectionError,
-gce_NullAxis,
-gce_NullAngle,
-gce_NullRadius,
-gce_InvertAxis,
-gce_BadAngle,
-gce_InvertRadius,
-gce_NullFocusLength,
-gce_NullVector,
-gce_BadEquation
+	gce_Done,
+	gce_ConfusedPoints,
+	gce_NegativeRadius,
+	gce_ColinearPoints,
+	gce_IntersectionError,
+	gce_NullAxis,
+	gce_NullAngle,
+	gce_NullRadius,
+	gce_InvertAxis,
+	gce_BadAngle,
+	gce_InvertRadius,
+	gce_NullFocusLength,
+	gce_NullVector,
+	gce_BadEquation
 };
 
-#endif // _gce_ErrorType_HeaderFile
+#endif // _xgce_ErrorType_HeaderFile
