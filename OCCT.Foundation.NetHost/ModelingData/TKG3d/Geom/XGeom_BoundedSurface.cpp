@@ -1,21 +1,39 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include "XGeom_BoundedSurface.h"
+namespace TKG3d {
+	//!
+	XGeom_BoundedSurface::XGeom_BoundedSurface(void) {
 
+	};
 
-#include <Geom_BoundedSurface.hxx>
-#include <Standard_Type.hxx>
+	//! 
+	XGeom_BoundedSurface::XGeom_BoundedSurface(Handle(Geom_BoundedSurface) pos) {
+		NativeHandle() = pos;
+		SetSurfaceHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_BoundedSurface,Geom_Surface)
+	//!
+	XGeom_BoundedSurface::~XGeom_BoundedSurface() {
+		NativeHandle() = NULL;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	void XGeom_BoundedSurface::SetBoundedSurfaceHandle(Handle(Geom_BoundedSurface) handle) {
+		NativeHandle() = handle;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_BoundedSurface) XGeom_BoundedSurface::GetBoundedSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Surface) XGeom_BoundedSurface::GetSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_BoundedSurface::GetGeometry() {
+		return NativeHandle();
+	};
+}

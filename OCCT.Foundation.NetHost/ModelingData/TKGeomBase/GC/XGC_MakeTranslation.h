@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GC_MakeTranslation_HeaderFile
-#define _GC_MakeTranslation_HeaderFile
+#ifndef _XGC_MakeTranslation_HeaderFile
+#define _XGC_MakeTranslation_HeaderFile
+#pragma once
+#include <GC_MakeTranslation.hxx>
+#include <xgp_Pnt.h >
+#include <xgp_Vec.h >
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -25,54 +30,34 @@ class Geom_Transformation;
 class gp_Vec;
 class gp_Pnt;
 
+using namespace TKMath;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Vec;
+	//! This class implements elementary construction algorithms for a
+	//! translation in 3D space. The result is a
+	//! Geom_Transformation transformation.
+	//! A MakeTranslation object provides a framework for:
+	//! -   defining the construction of the transformation,
+	//! -   implementing the construction algorithm, and
+	//! -   consulting the result.
+	public ref class XGC_MakeTranslation
+	{
+	public:
 
-//! This class implements elementary construction algorithms for a
-//! translation in 3D space. The result is a
-//! Geom_Transformation transformation.
-//! A MakeTranslation object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class GC_MakeTranslation 
-{
-public:
-
-  DEFINE_STANDARD_ALLOC
-
-  
-  //! Constructs a translation along the vector " Vect "
-  Standard_EXPORT GC_MakeTranslation(const gp_Vec& Vect);
-  
-  //! Constructs a translation along the vector (Point1,Point2)
-  //! defined from the point Point1 to the point Point2.
-  Standard_EXPORT GC_MakeTranslation(const gp_Pnt& Point1, const gp_Pnt& Point2);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const Handle(Geom_Transformation)& Value() const;
-operator const Handle(Geom_Transformation)& () const { return Value(); }
+		//! DEFINE_STANDARD_ALLOC
 
 
+		//! Constructs a translation along the vector " Vect "
+		XGC_MakeTranslation(xgp_Vec^ Vect);
 
+		//! Constructs a translation along the vector (Point1,Point2)
+		//! defined from the point Point1 to the point Point2.
+		XGC_MakeTranslation(xgp_Pnt^ Point1, xgp_Pnt^ Point2);
 
-protected:
-
-
-
-
-
-private:
-
-
-
-  Handle(Geom_Transformation) TheTranslation;
-
-
-};
-
-
-
-
-
-
-
-#endif // _GC_MakeTranslation_HeaderFile
+		//! Returns the constructed transformation.
+		Standard_EXPORT const Handle(Geom_Transformation)& Value();
+		operator const Handle(Geom_Transformation)& () { return Value(); }
+	};
+}
+#endif // _XGC_MakeTranslation_HeaderFile

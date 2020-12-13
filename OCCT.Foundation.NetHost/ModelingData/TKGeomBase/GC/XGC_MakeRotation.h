@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GC_MakeRotation_HeaderFile
-#define _GC_MakeRotation_HeaderFile
+#ifndef _XGC_MakeRotation_HeaderFile
+#define _XGC_MakeRotation_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -81,4 +81,4 @@ private:
 
 
 
-#endif // _GC_MakeRotation_HeaderFile
+#endif // _XGC_MakeRotation_HeaderFile

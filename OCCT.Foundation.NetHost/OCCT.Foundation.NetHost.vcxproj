@@ -369,6 +369,7 @@
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.h" />
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
@@ -377,6 +378,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Geometry.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_TrimmedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Vector.h" />
@@ -628,6 +630,7 @@
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />

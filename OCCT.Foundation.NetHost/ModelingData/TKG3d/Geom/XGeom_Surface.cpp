@@ -69,8 +69,8 @@ namespace TKG3d {
 	//! Reverses the V direction of parametrization of <me>.
 	//! The bounds of the surface are not modified.
 	//! A copy of <me> is returned.
-	Handle(Geom_Surface) XGeom_Surface::VReversed() {
-		return NativeHandle()->VReversed();
+	XGeom_Surface^ XGeom_Surface::VReversed() {
+		return gcnew XGeom_Surface(NativeHandle()->VReversed());
 	};
 
 	//! Returns the  parameter on the  Vreversed surface for
@@ -197,13 +197,13 @@ namespace TKG3d {
 	};
 
 	//! Computes the U isoparametric curve.
-	Handle(Geom_Curve) XGeom_Surface::UIso(Standard_Real U) {
-		return NativeHandle()->UIso(U);
+	XGeom_Curve^ XGeom_Surface::UIso(Standard_Real U) {
+		return gcnew XGeom_Curve(NativeHandle()->UIso(U));
 	};
 
 	//! Computes the V isoparametric curve.
-	Handle(Geom_Curve) XGeom_Surface::VIso(Standard_Real V) {
-		return NativeHandle()->VIso(V);
+	XGeom_Curve^ XGeom_Surface::VIso(Standard_Real V) {
+		return gcnew XGeom_Curve(NativeHandle()->VIso(V));
 	};
 
 
@@ -218,8 +218,8 @@ namespace TKG3d {
 	//! Example :
 	//! If the surface is C1 in the V parametric direction and C2
 	//! in the U parametric direction Shape = C1.
-	GeomAbs_Shape XGeom_Surface::Continuity() {
-		return NativeHandle()->Continuity();
+	XGeomAbs_Shape XGeom_Surface::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
 	};
 
 	//! Returns the order of continuity of the surface in the

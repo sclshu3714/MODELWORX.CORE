@@ -16,9 +16,6 @@
 
 #ifndef _XGeom_TrimmedCurve_HeaderFile
 #define _XGeom_TrimmedCurve_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
 #pragma once
 #include "NCollection_Haft.h"
 #include "Geom_TrimmedCurve.hxx"
@@ -29,6 +26,9 @@
 #include "XGeom_Geometry.h"
 #include "XGeom_BoundedCurve.h"
 
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom_Geometry.hxx>
 

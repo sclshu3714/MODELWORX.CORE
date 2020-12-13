@@ -57,6 +57,8 @@
 #include "xgp_Ax2.h"
 #include "xgp_Vec.h"
 #include "xgp_Trsf.h"
+#include <XGeomAbs_Shape.h>
+#include <XGeom_Curve.h>
 class Standard_RangeError;
 class Standard_NoSuchObject;
 class Geom_UndefinedDerivative;
@@ -121,7 +123,7 @@ namespace TKG3d
 		//! Reverses the V direction of parametrization of <me>.
 		//! The bounds of the surface are not modified.
 		//! A copy of <me> is returned.
-		Handle(Geom_Surface) VReversed();
+		XGeom_Surface^ VReversed();
 
 		//! Returns the  parameter on the  Vreversed surface for
 		//! the point of parameter V on <me>.
@@ -226,10 +228,10 @@ namespace TKG3d
 		virtual Standard_Real VPeriod();
 
 		//! Computes the U isoparametric curve.
-		virtual Handle(Geom_Curve) UIso(Standard_Real U);
+		virtual XGeom_Curve^ UIso(Standard_Real U);
 
 		//! Computes the V isoparametric curve.
-		virtual Handle(Geom_Curve) VIso(Standard_Real V);
+		virtual XGeom_Curve^ VIso(Standard_Real V);
 
 
 		//! Returns the Global Continuity of the surface in direction U and V :
@@ -243,7 +245,7 @@ namespace TKG3d
 		//! Example :
 		//! If the surface is C1 in the V parametric direction and C2
 		//! in the U parametric direction Shape = C1.
-		virtual GeomAbs_Shape Continuity();
+		virtual XGeomAbs_Shape Continuity();
 
 		//! Returns the order of continuity of the surface in the
 		//! U parametric direction.

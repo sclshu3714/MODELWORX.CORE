@@ -1311,9 +1311,6 @@
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h">
       <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
     </ClInclude>
-    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h">
-      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
-    </ClInclude>
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
@@ -1333,6 +1330,15 @@
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1847,6 +1853,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
