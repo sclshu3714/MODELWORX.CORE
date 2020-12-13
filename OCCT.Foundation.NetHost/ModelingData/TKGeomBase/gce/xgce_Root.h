@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_Root_HeaderFile
-#define _gce_Root_HeaderFile
+#ifndef _xgce_Root_HeaderFile
+#define _xgce_Root_HeaderFile
+#pragma once
+#include <gce_Root.hxx>
+#include <xgce_ErrorType.h>
+#include <NCollection_Haft.h>
+#include <xgce_ErrorType.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -24,53 +29,48 @@
 #include <gce_ErrorType.hxx>
 #include <Standard_Boolean.hxx>
 
-// resolve name collisions with X11 headers
-#ifdef Status
-  #undef Status
-#endif
+namespace TKGeomBase {
+    //! This class implements the common services for
+    //! all classes of gce which report error.
+    public ref class xgce_Root
+    {
+    public:
 
-//! This class implements the common services for
-//! all classes of gce which report error.
-class gce_Root 
-{
-public:
+        //! DEFINE_STANDARD_ALLOC
 
-  DEFINE_STANDARD_ALLOC
+        xgce_Root();
 
-  
-  //! Returns true if the construction is successful.
-    Standard_Boolean IsDone() const;
-  
+        xgce_Root(gce_Root* pos);
 
-  //! Returns the status of the construction:
-  //! -   gce_Done, if the construction is successful, or
-  //! -   another value of the gce_ErrorType enumeration
-  //! indicating why the construction failed.
-    gce_ErrorType Status() const;
+        void SetRoot(gce_Root* pos);
+
+        gce_Root* GetRoot();
 
 
+        //! Returns true if the construction is successful.
+        Standard_Boolean IsDone();
 
 
-protected:
+        //! Returns the status of the construction:
+        //! -   gce_Done, if the construction is successful, or
+        //! -   another value of the gce_ErrorType enumeration
+        //! indicating why the construction failed.
+        xgce_ErrorType Status();
 
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+       virtual property  gce_Root* IHandle {
+            gce_Root* get() {
+                return 	NativeHandle;
+            }
+            void set(gce_Root* handle) {
+                NativeHandle = handle;
+            }
+        }
 
-
-  gce_ErrorType TheError;
-
-
-private:
-
-
-
-
-
-};
-
-
-#include <gce_Root.lxx>
-
-
-
-
-
-#endif // _gce_Root_HeaderFile
+    private:
+        gce_Root* NativeHandle;
+    };
+}
+#endif // _xgce_Root_HeaderFile

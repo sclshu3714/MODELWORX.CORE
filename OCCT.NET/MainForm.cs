@@ -70,30 +70,82 @@ namespace OCCT.NET
         /// <param name="e"></param>
         private void BtnAnimation_ItemClick(object sender, ItemClickEventArgs e)
         {
-            XBRepPrimAPI_MakeBox obj1 = new XBRepPrimAPI_MakeBox(100, 500, 20);
+            XBRepPrimAPI_MakeBox obj1 = new XBRepPrimAPI_MakeBox(100, 100, 20);
             XAIS_Shape ais_obj1 = render.AddShape(obj1.Shape(), true);
 
-            xgp_Trsf start_pnt = new xgp_Trsf();
-            xgp_Trsf end_pnt = new xgp_Trsf();
+            xgp_Trsf end_pnt0 = new xgp_Trsf();
+            xgp_Trsf end_pnt1 = new xgp_Trsf();
+            xgp_Trsf end_pnt2 = new xgp_Trsf();
+            xgp_Trsf end_pnt3 = new xgp_Trsf();
+            xgp_Trsf end_pnt4 = new xgp_Trsf();
+            xgp_Trsf end_pnt5 = new xgp_Trsf();
+            xgp_Trsf end_pnt6 = new xgp_Trsf();
 
-            start_pnt.SetValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0);
-            end_pnt.SetValues(1, 0, 0, 1000, 0, 1, 0, 1000, 0, 0, 1, 100);
+            end_pnt0.SetValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0);
+            end_pnt1.SetValues(1, 0, 0, 100, 0, 1, 0, 100, 0, 0, 1, 100);
+            end_pnt2.SetValues(1, 0, 0, 200, 0, 1, 0, 200, 0, 0, 1, 100);
+            end_pnt3.SetValues(1, 0, 0, 300, 0, 1, 0, 300, 0, 0, 1, 100);
+            end_pnt4.SetValues(1, 0, 0, 400, 0, 1, 0, 400, 0, 0, 1, 100);
+            end_pnt5.SetValues(1, 0, 0, 500, 0, 1, 0, 500, 0, 0, 1, 100);
+            end_pnt6.SetValues(1, 0, 0, 600, 0, 1, 0, 600, 0, 0, 1, 100);
 
             XAIS_Animation ais_animation = new XAIS_Animation(new XTCollection_AsciiString("obj1_Ani"));
-            XAIS_AnimationObject ais_ao = new XAIS_AnimationObject(new XTCollection_AsciiString("obj1"), render.GetInteractiveContext(), ais_obj1, start_pnt, end_pnt);
-            ais_ao.SetOwnDuration(50);
-            ais_ao.SetStartPts(0);
 
-            ais_animation.Add(ais_ao);
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE1));
+            SetFaceBoundaryAspect(ais_obj1, true);
+            XAIS_AnimationObject ais_ao0 = new XAIS_AnimationObject(new XTCollection_AsciiString("obj0"), render.GetInteractiveContext(), ais_obj1, end_pnt0, end_pnt1);
+            ais_ao0.SetOwnDuration(10);
+            ais_ao0.SetStartPts(0);
+            ais_animation.Add(ais_ao0);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_ANTIQUEWHITE4));
+            SetFaceBoundaryAspect(ais_obj1, false);
+            XAIS_AnimationObject ais_ao1 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao1"), render.GetInteractiveContext(), ais_obj1, end_pnt1, end_pnt2);
+            ais_ao1.SetOwnDuration(10);
+            ais_ao1.SetStartPts(10);
+            ais_animation.Add(ais_ao1);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_AZURE4));
+            SetFaceBoundaryAspect(ais_obj1, true);
+            XAIS_AnimationObject ais_ao2 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao2"), render.GetInteractiveContext(), ais_obj1, end_pnt2, end_pnt3);
+            ais_ao2.SetOwnDuration(10);
+            ais_ao2.SetStartPts(20);
+            ais_animation.Add(ais_ao2);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BISQUE)); 
+            SetFaceBoundaryAspect(ais_obj1, false);
+            XAIS_AnimationObject ais_ao3 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao3"), render.GetInteractiveContext(), ais_obj1, end_pnt3, end_pnt4);
+            ais_ao3.SetOwnDuration(10);
+            ais_ao3.SetStartPts(30);
+            ais_animation.Add(ais_ao3);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BLACK));
+            SetFaceBoundaryAspect(ais_obj1, true);
+            XAIS_AnimationObject ais_ao4 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao4"), render.GetInteractiveContext(), ais_obj1, end_pnt4, end_pnt5);
+            ais_ao4.SetOwnDuration(10);
+            ais_ao4.SetStartPts(40);
+            ais_animation.Add(ais_ao4);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BLUE3));
+            SetFaceBoundaryAspect(ais_obj1, false);
+            XAIS_AnimationObject ais_ao5 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao5"), render.GetInteractiveContext(), ais_obj1, end_pnt5, end_pnt6);
+            ais_ao5.SetOwnDuration(10);
+            ais_ao5.SetStartPts(50);
+            ais_animation.Add(ais_ao5);
+
+            ais_obj1.SetColor(new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_BURLYWOOD1));
+            SetFaceBoundaryAspect(ais_obj1, true);
+            XAIS_AnimationObject ais_ao6 = new XAIS_AnimationObject(new XTCollection_AsciiString("ais_ao6"), render.GetInteractiveContext(), ais_obj1, end_pnt6, end_pnt6);
+            ais_ao6.SetOwnDuration(10);
+            ais_ao6.SetStartPts(60);
+            ais_animation.Add(ais_ao6);
 
             double duration = ais_animation.Duration();
-
             ais_animation.StartTimer(0.0, 1.0, true, false);
-
             while (!ais_animation.IsStopped())
             {
                 ais_animation.UpdateTimer();
-                render.RedrawView();
+                render.UpdateCurrentViewer();
             }
         }
         #endregion

@@ -442,6 +442,9 @@
     <Filter Include="源文件\ModelingData\TKGeomBase\GC">
       <UniqueIdentifier>{91623239-b6da-464f-9ff0-76c62534aec3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\ModelingData\TKGeomBase\gce">
+      <UniqueIdentifier>{7d09fc38-9746-4e68-8df8-193fb623c928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1305,6 +1308,9 @@
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_GridType.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h">
+      <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1790,6 +1796,9 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\V3d\XV3d_Viewer.cpp">
       <Filter>源文件\Visualization\TKV3d\V3d</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_Root.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
