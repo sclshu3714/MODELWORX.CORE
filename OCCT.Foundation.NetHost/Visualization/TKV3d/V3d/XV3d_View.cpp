@@ -2,24 +2,24 @@
 namespace TKV3d {
     //! Initializes the view.
         //! V3d_TypeOfView theType = V3d_ORTHOGRAPHIC
-    XV3d_View::XV3d_View(Handle(V3d_Viewer)& theViewer, XV3d_TypeOfView theType) {
-        NativeHandle() = new V3d_View(theViewer, safe_cast<V3d_TypeOfView>(theType));
+    XV3d_View::XV3d_View(XV3d_Viewer^ theViewer, XV3d_TypeOfView theType) {
+        NativeHandle() = new V3d_View(theViewer->GetViewer(), safe_cast<V3d_TypeOfView>(theType));
     };
 
     //! Initializes the view by copying.
-    XV3d_View::XV3d_View(Handle(V3d_Viewer)& theViewer, XV3d_View^ theView) {
-        NativeHandle() = new V3d_View(theViewer, theView->GetV3dView());
+    XV3d_View::XV3d_View(XV3d_Viewer^ theViewer, XV3d_View^ theView) {
+        NativeHandle() = new V3d_View(theViewer->GetViewer(), theView->GetView());
     };
 
     XV3d_View::XV3d_View(Handle(V3d_View) pos) {
         NativeHandle() = pos;
     };
 
-    void XV3d_View::SetV3dViewHandle(Handle(V3d_View) pos) {
+    void XV3d_View::SetViewHandle(Handle(V3d_View) pos) {
         NativeHandle() = pos;
     };
 
-    Handle(V3d_View) XV3d_View::GetV3dView() {
+    Handle(V3d_View) XV3d_View::GetView() {
         return NativeHandle();
     };
 
@@ -41,7 +41,7 @@ namespace TKV3d {
     };
 
     void XV3d_View::SetMagnify(Handle(Aspect_Window)& theWindow, XV3d_View^ thePreviousView, Standard_Integer theX1, Standard_Integer theY1, Standard_Integer theX2, Standard_Integer theY2) {
-        NativeHandle()->SetMagnify(theWindow, thePreviousView->GetV3dView(), theX1, theY1, theX2, theY2);
+        NativeHandle()->SetMagnify(theWindow, thePreviousView->GetView(), theX1, theY1, theX2, theY2);
     };
 
     //! Destroys the view.
@@ -839,8 +839,8 @@ namespace TKV3d {
     };
 
     //! Returns the viewer in which the view has been created.
-    Handle(V3d_Viewer) XV3d_View::Viewer() {
-        return NativeHandle()->Viewer();
+    XV3d_Viewer^ XV3d_View::Viewer() {
+        return gcnew XV3d_Viewer(NativeHandle()->Viewer());
     };// { return MyViewer; }
 
     //! Returns True if MyView is associated with a window .

@@ -3,7 +3,7 @@ namespace TKV3d {
 
     //! Main constructor.
     XAIS_AnimationCamera::XAIS_AnimationCamera(XTCollection_AsciiString^ theAnimationName, XV3d_View^ theView) {
-        NativeHandle() = new AIS_AnimationCamera(*theAnimationName->GetAsciiString(), theView->GetV3dView());
+        NativeHandle() = new AIS_AnimationCamera(*theAnimationName->GetAsciiString(), theView->GetView());
         SetAnimationHandle(NativeHandle());
     };
 
@@ -15,7 +15,7 @@ namespace TKV3d {
 
     //! Set target view.
     void XAIS_AnimationCamera::SetView(XV3d_View^ theView) {
-        NativeHandle()->SetView(theView->GetV3dView());
+        NativeHandle()->SetView(theView->GetView());
     };
 
     //! Return camera start position.

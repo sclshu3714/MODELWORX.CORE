@@ -9,6 +9,18 @@ namespace TKV3d {
         NativeHandle() = new V3d_Viewer(theDriver);
     };
 
+    XV3d_Viewer::XV3d_Viewer(Handle(V3d_Viewer) pos) {
+        NativeHandle() = pos;
+    };
+
+    void XV3d_Viewer::SetViewerHandle(Handle(V3d_Viewer) pos) {
+        NativeHandle() = pos;
+    };
+
+    Handle(V3d_Viewer) XV3d_Viewer::GetViewer() {
+        return NativeHandle();
+    };
+
     //! Returns True if One View more can be defined in this Viewer.
     Standard_Boolean XV3d_Viewer::IfMoreViews() {
         return NativeHandle()->IfMoreViews();
@@ -27,7 +39,7 @@ namespace TKV3d {
     //! Activates a particular view in the Viewer.
     //! Must be call if the Window attached to the view has been Deiconified.
     void XV3d_Viewer::SetViewOn(XV3d_View^ theView) {
-        NativeHandle()->SetViewOn(theView->GetV3dView());
+        NativeHandle()->SetViewOn(theView->GetView());
     };
 
     //! Deactivates all the views of a Viewer
@@ -40,7 +52,7 @@ namespace TKV3d {
     //! Must be call if the Window attached to the view
     //! has been Iconified .
     void XV3d_Viewer::SetViewOff(XV3d_View^ theView) {
-        NativeHandle()->SetViewOff(theView->GetV3dView());
+        NativeHandle()->SetViewOff(theView->GetView());
     };
 
     //! Deprecated, Redraw() should be used instead.
@@ -548,11 +560,11 @@ namespace TKV3d {
 
     //! Display grid echo at requested point in the view.
     void XV3d_Viewer::ShowGridEcho(XV3d_View^ theView, Graphic3d_Vertex& thePoint) {
-        NativeHandle()->ShowGridEcho(theView->GetV3dView(), thePoint);
+        NativeHandle()->ShowGridEcho(theView->GetView(), thePoint);
     };
 
     //! Temporarly hide grid echo.
     void XV3d_Viewer::HideGridEcho(XV3d_View^ theView) {
-        NativeHandle()->HideGridEcho(theView->GetV3dView());
+        NativeHandle()->HideGridEcho(theView->GetView());
     };
 }

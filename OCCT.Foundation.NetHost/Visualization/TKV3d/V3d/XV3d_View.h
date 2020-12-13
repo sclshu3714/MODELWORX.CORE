@@ -37,6 +37,7 @@
 #include <XQuantity_Color.h>
 #include <XTCollection_AsciiString.h>
 #include <XBnd_Box.h>
+#include <XV3d_Viewer.h>
 
 #include <Aspect_Background.hxx>
 #include <Aspect_FillMethod.hxx>
@@ -100,6 +101,7 @@ class Standard_MultiplyDefined;
 class Standard_TypeMismatch;
 class V3d_BadValue;
 class V3d_UnMapped;
+class V3d_View;
 
 //class V3d_View;
 //DEFINE_STANDARD_HANDLE(V3d_View, Standard_Transient)
@@ -112,6 +114,7 @@ namespace TKV3d {
     ref class TKernel::XQuantity_Color;
     ref class TKernel::XTCollection_AsciiString;
     ref class TKMath::XBnd_Box;
+    ref class XV3d_Viewer;
     //! Defines the application object VIEW for the
     //! VIEWER application.
     //! The methods of this class allow the editing
@@ -134,16 +137,16 @@ namespace TKV3d {
 
         //! Initializes the view.
         //! V3d_TypeOfView theType = V3d_ORTHOGRAPHIC
-        XV3d_View(Handle(V3d_Viewer)& theViewer, XV3d_TypeOfView theType);
+        XV3d_View(XV3d_Viewer^ theViewer, XV3d_TypeOfView theType);
 
         //! Initializes the view by copying.
-        XV3d_View(Handle(V3d_Viewer)& theViewer, XV3d_View^ theView);
+        XV3d_View(XV3d_Viewer^ theViewer, XV3d_View^ theView);
 
         XV3d_View(Handle(V3d_View) pos);
 
-        void SetV3dViewHandle(Handle(V3d_View) pos);
+        void SetViewHandle(Handle(V3d_View) pos);
 
-        Handle(V3d_View) GetV3dView();
+        Handle(V3d_View) GetView();
 
         //! Default destructor.
         virtual ~XV3d_View();
@@ -719,7 +722,9 @@ namespace TKV3d {
         Standard_Integer LightLimit();
 
         //! Returns the viewer in which the view has been created.
-        Handle(V3d_Viewer) Viewer();// { return MyViewer; }
+        XV3d_Viewer^ Viewer();// { return MyViewer; }
+
+
 
         //! Returns True if MyView is associated with a window .
         Standard_Boolean IfWindow();

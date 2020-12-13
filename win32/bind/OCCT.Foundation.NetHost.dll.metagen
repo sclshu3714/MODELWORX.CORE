@@ -6555,6 +6555,122 @@ Class TKGeomBase.XGeomTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     SetUndefinedTypeHandler(handle<GeomTools_UndefinedTypeHandler>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     GetUndefinedTypeHandler(handle<GeomTools_UndefinedTypeHandler>*): PrivateScope, Public, Static, HideBySig
     GetReal(basic_istream<char\,std::char_traits<char> >&, Double&): PrivateScope, Public, Static, HideBySig
+Class NCollection_Haft<opencascade::handle<V3d_Viewer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<V3d_Viewer>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Graphic3d_GraphicDriver>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<V3d_Viewer> IHandle 'get set' : 
+  Methods:
+    IsActive(): PrivateScope, Public, HideBySig
+    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
+    GridType(): PrivateScope, Public, HideBySig
+    GridDrawMode(): PrivateScope, Public, HideBySig
+    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
+    SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
+    CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
+    SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
+    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
+    ShowGridEcho(XV3d_View, Graphic3d_Vertex* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HideGridEcho(XV3d_View): PrivateScope, Public, HideBySig
+    get_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XV3d_Viewer(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    SetViewerHandle(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    GetViewer(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IfMoreViews(): PrivateScope, Public, HideBySig
+    CreateView(): PrivateScope, Public, HideBySig
+    SetViewOn(XV3d_View): PrivateScope, Public, HideBySig
+    SetViewOn(): PrivateScope, Public, HideBySig
+    SetViewOff(XV3d_View): PrivateScope, Public, HideBySig
+    SetViewOff(): PrivateScope, Public, HideBySig
+    Update(): PrivateScope, Public, HideBySig
+    Redraw(): PrivateScope, Public, HideBySig
+    RedrawImmediate(): PrivateScope, Public, HideBySig
+    Invalidate(): PrivateScope, Public, HideBySig
+    Remove(): PrivateScope, Public, HideBySig
+    Driver(handle<Graphic3d_GraphicDriver>*): PrivateScope, Public, HideBySig
+    StructureManager(handle<Graphic3d_StructureManager>*): PrivateScope, Public, HideBySig
+    DefaultRenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
+    SetDefaultRenderingParams(Graphic3d_RenderingParams* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetDefaultBackgroundColor(XQuantity_Color): PrivateScope, Public, HideBySig
+    GetGradientBackground(Aspect_GradientBackground*): PrivateScope, Public, HideBySig
+    SetDefaultBgGradientColors(XQuantity_Color, XQuantity_Color, XAspect_GradientFillMethod): PrivateScope, Public, HideBySig
+    DefaultViewSize(): PrivateScope, Public, HideBySig
+    SetDefaultViewSize(Double): PrivateScope, Public, HideBySig
+    DefaultViewProj(): PrivateScope, Public, HideBySig
+    SetDefaultViewProj(XV3d_TypeOfOrientation): PrivateScope, Public, HideBySig
+    DefaultVisualization(): PrivateScope, Public, HideBySig
+    SetDefaultVisualization(XV3d_TypeOfVisualization): PrivateScope, Public, HideBySig
+    DefaultShadingModel(): PrivateScope, Public, HideBySig
+    SetDefaultShadingModel(XGraphic3d_TypeOfShadingModel): PrivateScope, Public, HideBySig
+    DefaultTypeOfView(): PrivateScope, Public, HideBySig
+    SetDefaultTypeOfView(XV3d_TypeOfView): PrivateScope, Public, HideBySig
+    DefaultBackgroundColor(): PrivateScope, Public, HideBySig
+    DefaultBgGradientColors(XQuantity_Color, XQuantity_Color): PrivateScope, Public, HideBySig
+    GetAllZLayers(NCollection_Sequence<int>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    AddZLayer(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    InsertLayerBefore(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    InsertLayerAfter(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
+    RemoveZLayer(Int32): PrivateScope, Public, HideBySig
+    ZLayerSettings(Graphic3d_ZLayerSettings*, Int32): PrivateScope, Public, HideBySig
+    SetZLayerSettings(Int32, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ActiveViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
+    InitActiveViews(): PrivateScope, Public, HideBySig
+    MoreActiveViews(): PrivateScope, Public, HideBySig
+    NextActiveViews(): PrivateScope, Public, HideBySig
+    ActiveView(): PrivateScope, Public, HideBySig
+    LastActiveView(): PrivateScope, Public, HideBySig
+    DefinedViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
+    InitDefinedViews(): PrivateScope, Public, HideBySig
+    MoreDefinedViews(): PrivateScope, Public, HideBySig
+    NextDefinedViews(): PrivateScope, Public, HideBySig
+    DefinedView(): PrivateScope, Public, HideBySig
+    SetDefaultLights(): PrivateScope, Public, HideBySig
+    SetLightOn(): PrivateScope, Public, HideBySig
+    SetLightOn(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetLightOff(): PrivateScope, Public, HideBySig
+    SetLightOff(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    AddLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    DelLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    UpdateLights(): PrivateScope, Public, HideBySig
+    IsGlobalLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ActiveLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
+    InitActiveLights(): PrivateScope, Public, HideBySig
+    MoreActiveLights(): PrivateScope, Public, HideBySig
+    NextActiveLights(): PrivateScope, Public, HideBySig
+    ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    DefinedLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
+    InitDefinedLights(): PrivateScope, Public, HideBySig
+    MoreDefinedLights(): PrivateScope, Public, HideBySig
+    NextDefinedLights(): PrivateScope, Public, HideBySig
+    DefinedLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    Erase(): PrivateScope, Public, HideBySig
+    UnHighlight(): PrivateScope, Public, HideBySig
+    ComputedMode(): PrivateScope, Public, HideBySig
+    SetComputedMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DefaultComputedMode(): PrivateScope, Public, HideBySig
+    SetDefaultComputedMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    PrivilegedPlane(): PrivateScope, Public, HideBySig
+    SetPrivilegedPlane(xgp_Ax3): PrivateScope, Public, HideBySig
+    DisplayPrivilegedPlane(Boolean(HasFieldMarshal), Double): PrivateScope, Public, HideBySig
+    ActivateGrid(XAspect_GridType, XAspect_GridDrawMode): PrivateScope, Public, HideBySig
+    DeactivateGrid(): PrivateScope, Public, HideBySig
+    SetGridEcho(handle<Graphic3d_AspectMarker3d>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetGridEcho(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    GridEcho(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<V3d_View> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6564,8 +6680,8 @@ Class NCollection_Haft<opencascade::handle<V3d_View> >: AutoLayout, AnsiClass, C
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<V3d_View>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(opencascade.handle<V3d_Viewer>*, TKV3d.XV3d_View): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(opencascade.handle<V3d_Viewer>*, XV3d_TypeOfView): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKV3d.XV3d_Viewer, TKV3d.XV3d_View): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKV3d.XV3d_Viewer, XV3d_TypeOfView): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
     System.IDisposable
   Properties:
@@ -6612,7 +6728,7 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     NextActiveLights(): PrivateScope, Public, HideBySig
     ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
     LightLimit(): PrivateScope, Public, HideBySig
-    Viewer(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    Viewer(): PrivateScope, Public, HideBySig
     IfWindow(): PrivateScope, Public, HideBySig
     Window(handle<Aspect_Window>*): PrivateScope, Public, HideBySig
     Type(): PrivateScope, Public, HideBySig
@@ -6655,8 +6771,8 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-    SetV3dViewHandle(handle<V3d_View>*): PrivateScope, Public, HideBySig
-    GetV3dView(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    SetViewHandle(handle<V3d_View>*): PrivateScope, Public, HideBySig
+    GetView(handle<V3d_View>*): PrivateScope, Public, HideBySig
     SetWindow(handle<Aspect_Window>* IsImplicitlyDereferenced, Void*): PrivateScope, Public, HideBySig
     SetMagnify(handle<Aspect_Window>* IsImplicitlyDereferenced, XV3d_View, Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
     Remove(): PrivateScope, Public, HideBySig
@@ -6737,13 +6853,6 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     FitAll(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     DepthFitAll(Double, Double): PrivateScope, Public, HideBySig
     WindowFit(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
-Class NCollection_Haft<opencascade::handle<V3d_Viewer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<OpenGl_GraphicDriver> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6954,6 +7063,19 @@ Struct XGraphic3d_DiagnosticInfo: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Short = 7 : Public, Static, Literal, HasDefault
     XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Basic = 31 : Public, Static, Literal, HasDefault
     XGraphic3d_DiagnosticInfo Graphic3d_DiagnosticInfo_Complete = 63 : Public, Static, Literal, HasDefault
+Struct XAspect_GridType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_GridType Aspect_GT_Rectangular = 0 : Public, Static, Literal, HasDefault
+    XAspect_GridType Aspect_GT_Circular = 1 : Public, Static, Literal, HasDefault
+Struct XAspect_GridDrawMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XAspect_GridDrawMode Aspect_GDM_Lines = 0 : Public, Static, Literal, HasDefault
+    XAspect_GridDrawMode Aspect_GDM_Points = 1 : Public, Static, Literal, HasDefault
+    XAspect_GridDrawMode Aspect_GDM_None = 2 : Public, Static, Literal, HasDefault
 Class TKV3d.XAIS_AnimationProgress: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
@@ -7212,122 +7334,3 @@ Struct TKV3d.XGraphic3d_ZLayerSetting: AutoLayout, AnsiClass, Class, Public, Sea
     TKV3d.XGraphic3d_ZLayerSetting Graphic3d_ZLayerDepthWrite = 2 : Public, Static, Literal, HasDefault
     TKV3d.XGraphic3d_ZLayerSetting Graphic3d_ZLayerDepthClear = 4 : Public, Static, Literal, HasDefault
     TKV3d.XGraphic3d_ZLayerSetting Graphic3d_ZLayerDepthOffset = 8 : Public, Static, Literal, HasDefault
-Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(opencascade.handle<Graphic3d_GraphicDriver>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    opencascade.handle<V3d_Viewer> IHandle 'get set' : 
-  Methods:
-    GridDrawMode(): PrivateScope, Public, HideBySig
-    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
-    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
-    SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
-    CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
-    SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
-    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
-    ShowGridEcho(XV3d_View, Graphic3d_Vertex* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    HideGridEcho(XV3d_View): PrivateScope, Public, HideBySig
-    get_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XV3d_Viewer(): PrivateScope, Public, HideBySig
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-    IfMoreViews(): PrivateScope, Public, HideBySig
-    CreateView(): PrivateScope, Public, HideBySig
-    SetViewOn(XV3d_View): PrivateScope, Public, HideBySig
-    SetViewOn(): PrivateScope, Public, HideBySig
-    SetViewOff(XV3d_View): PrivateScope, Public, HideBySig
-    SetViewOff(): PrivateScope, Public, HideBySig
-    Update(): PrivateScope, Public, HideBySig
-    Redraw(): PrivateScope, Public, HideBySig
-    RedrawImmediate(): PrivateScope, Public, HideBySig
-    Invalidate(): PrivateScope, Public, HideBySig
-    Remove(): PrivateScope, Public, HideBySig
-    Driver(handle<Graphic3d_GraphicDriver>*): PrivateScope, Public, HideBySig
-    StructureManager(handle<Graphic3d_StructureManager>*): PrivateScope, Public, HideBySig
-    DefaultRenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
-    SetDefaultRenderingParams(Graphic3d_RenderingParams* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetDefaultBackgroundColor(XQuantity_Color): PrivateScope, Public, HideBySig
-    GetGradientBackground(Aspect_GradientBackground*): PrivateScope, Public, HideBySig
-    SetDefaultBgGradientColors(XQuantity_Color, XQuantity_Color, XAspect_GradientFillMethod): PrivateScope, Public, HideBySig
-    DefaultViewSize(): PrivateScope, Public, HideBySig
-    SetDefaultViewSize(Double): PrivateScope, Public, HideBySig
-    DefaultViewProj(): PrivateScope, Public, HideBySig
-    SetDefaultViewProj(XV3d_TypeOfOrientation): PrivateScope, Public, HideBySig
-    DefaultVisualization(): PrivateScope, Public, HideBySig
-    SetDefaultVisualization(XV3d_TypeOfVisualization): PrivateScope, Public, HideBySig
-    DefaultShadingModel(): PrivateScope, Public, HideBySig
-    SetDefaultShadingModel(XGraphic3d_TypeOfShadingModel): PrivateScope, Public, HideBySig
-    DefaultTypeOfView(): PrivateScope, Public, HideBySig
-    SetDefaultTypeOfView(XV3d_TypeOfView): PrivateScope, Public, HideBySig
-    DefaultBackgroundColor(): PrivateScope, Public, HideBySig
-    DefaultBgGradientColors(XQuantity_Color, XQuantity_Color): PrivateScope, Public, HideBySig
-    GetAllZLayers(NCollection_Sequence<int>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    AddZLayer(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    InsertLayerBefore(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
-    InsertLayerAfter(Int32* IsImplicitlyDereferenced, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
-    RemoveZLayer(Int32): PrivateScope, Public, HideBySig
-    ZLayerSettings(Graphic3d_ZLayerSettings*, Int32): PrivateScope, Public, HideBySig
-    SetZLayerSettings(Int32, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ActiveViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
-    InitActiveViews(): PrivateScope, Public, HideBySig
-    MoreActiveViews(): PrivateScope, Public, HideBySig
-    NextActiveViews(): PrivateScope, Public, HideBySig
-    ActiveView(): PrivateScope, Public, HideBySig
-    LastActiveView(): PrivateScope, Public, HideBySig
-    DefinedViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
-    InitDefinedViews(): PrivateScope, Public, HideBySig
-    MoreDefinedViews(): PrivateScope, Public, HideBySig
-    NextDefinedViews(): PrivateScope, Public, HideBySig
-    DefinedView(): PrivateScope, Public, HideBySig
-    SetDefaultLights(): PrivateScope, Public, HideBySig
-    SetLightOn(): PrivateScope, Public, HideBySig
-    SetLightOn(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetLightOff(): PrivateScope, Public, HideBySig
-    SetLightOff(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    AddLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    DelLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    UpdateLights(): PrivateScope, Public, HideBySig
-    IsGlobalLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ActiveLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
-    InitActiveLights(): PrivateScope, Public, HideBySig
-    MoreActiveLights(): PrivateScope, Public, HideBySig
-    NextActiveLights(): PrivateScope, Public, HideBySig
-    ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
-    DefinedLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
-    InitDefinedLights(): PrivateScope, Public, HideBySig
-    MoreDefinedLights(): PrivateScope, Public, HideBySig
-    NextDefinedLights(): PrivateScope, Public, HideBySig
-    DefinedLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
-    Erase(): PrivateScope, Public, HideBySig
-    UnHighlight(): PrivateScope, Public, HideBySig
-    ComputedMode(): PrivateScope, Public, HideBySig
-    SetComputedMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    DefaultComputedMode(): PrivateScope, Public, HideBySig
-    SetDefaultComputedMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    PrivilegedPlane(): PrivateScope, Public, HideBySig
-    SetPrivilegedPlane(xgp_Ax3): PrivateScope, Public, HideBySig
-    DisplayPrivilegedPlane(Boolean(HasFieldMarshal), Double): PrivateScope, Public, HideBySig
-    ActivateGrid(XAspect_GridType, XAspect_GridDrawMode): PrivateScope, Public, HideBySig
-    DeactivateGrid(): PrivateScope, Public, HideBySig
-    SetGridEcho(handle<Graphic3d_AspectMarker3d>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetGridEcho(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    GridEcho(): PrivateScope, Public, HideBySig
-    IsActive(): PrivateScope, Public, HideBySig
-    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
-    GridType(): PrivateScope, Public, HideBySig
-Struct XAspect_GridType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XAspect_GridType Aspect_GT_Rectangular = 0 : Public, Static, Literal, HasDefault
-    XAspect_GridType Aspect_GT_Circular = 1 : Public, Static, Literal, HasDefault
-Struct XAspect_GridDrawMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    Int32 value__ : Public, SpecialName, RTSpecialName
-    XAspect_GridDrawMode Aspect_GDM_Lines = 0 : Public, Static, Literal, HasDefault
-    XAspect_GridDrawMode Aspect_GDM_Points = 1 : Public, Static, Literal, HasDefault
-    XAspect_GridDrawMode Aspect_GDM_None = 2 : Public, Static, Literal, HasDefault

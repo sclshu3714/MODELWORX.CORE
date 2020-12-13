@@ -101,6 +101,13 @@ namespace TKV3d {
         //! - Shading model: V3d_GOURAUD
         XV3d_Viewer(Handle(Graphic3d_GraphicDriver)& theDriver);
 
+        XV3d_Viewer(Handle(V3d_Viewer) pos);
+
+        void SetViewerHandle(Handle(V3d_Viewer) pos);
+
+        virtual Handle(V3d_Viewer) GetViewer();
+
+
         //! Returns True if One View more can be defined in this Viewer.
         Standard_Boolean IfMoreViews();
 
