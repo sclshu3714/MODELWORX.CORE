@@ -635,6 +635,11 @@ The basis to define an integer attribute.
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKG3d.XGeom_Transformation.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKernel.XQuantity_Color.Handle">
             <summary>
 本地句柄

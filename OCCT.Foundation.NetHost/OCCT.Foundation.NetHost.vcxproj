@@ -380,6 +380,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Transformation.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_TrimmedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Vector.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs.h" />
@@ -640,6 +641,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Transformation.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_TrimmedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />

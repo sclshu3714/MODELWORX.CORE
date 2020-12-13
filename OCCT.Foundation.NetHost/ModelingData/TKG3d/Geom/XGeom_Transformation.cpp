@@ -1,58 +1,193 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include "XGeom_Transformation.h"
+namespace TKG3d {
+	//! Creates an identity transformation.
+	XGeom_Transformation::XGeom_Transformation() {
+		NativeHandle() = new Geom_Transformation();
+	};
 
-#include <Geom_Transformation.hxx>
+	//! Creates a transient copy of T.
+	XGeom_Transformation::XGeom_Transformation(xgp_Trsf^ T) {
+		NativeHandle() = new Geom_Transformation(*T->GetTrsf());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Transformation, Standard_Transient)
+	XGeom_Transformation::XGeom_Transformation(Handle(Geom_Transformation) pos) {
+		NativeHandle() = pos;
+	};
 
-Geom_Transformation::Geom_Transformation () { }
+	void XGeom_Transformation::SetTransformationHandle(Handle(Geom_Transformation) pos) {
+		NativeHandle() = pos;
+	};
 
+	Handle(Geom_Transformation) XGeom_Transformation::GetTransformation() {
+		return NativeHandle();
+	};
 
-Geom_Transformation::Geom_Transformation (const gp_Trsf& T) 
-: gpTrsf (T) { }
+	//! Makes the transformation into a symmetrical transformation
+	//! with respect to a point P.
+	//! P is the center of the symmetry.
+	void XGeom_Transformation::SetMirror(xgp_Pnt^ thePnt) {
+		NativeHandle()->SetMirror(*thePnt->GetPnt());
+	};// { gpTrsf.SetMirror(thePnt); }
 
+	//! Makes the transformation into a symmetrical transformation
+	//! with respect to an axis A1.
+	//! A1 is the center of the axial symmetry.
+	void XGeom_Transformation::SetMirror(xgp_Ax1^ theA1) {
+		NativeHandle()->SetMirror(*theA1->GetAx1());
+	};// { gpTrsf.SetMirror(theA1); }
 
-Handle(Geom_Transformation) Geom_Transformation::Copy() const {
+	//! Makes the transformation into a symmetrical transformation
+	//! with respect to a plane.  The plane of the symmetry is
+	//! defined with the axis placement A2. It is the plane
+	//! (Location, XDirection, YDirection).
+	void XGeom_Transformation::SetMirror(xgp_Ax2^ theA2) {
+		NativeHandle()->SetMirror(*theA2->GetAx2());
+	};// { gpTrsf.SetMirror(theA2); }
 
-  Handle(Geom_Transformation) T;
-  T = new Geom_Transformation (gpTrsf);
-  return T; 
-}
+	//! Makes the transformation into a rotation.
+	//! A1 is the axis rotation and Ang is the angular value
+	//! of the rotation in radians.
+	void XGeom_Transformation::SetRotation(xgp_Ax1^ theA1, Standard_Real theAng) {
+		NativeHandle()->SetRotation(*theA1->GetAx1(), theAng);
+	};// { gpTrsf.SetRotation(theA1, theAng); }
 
-Handle(Geom_Transformation) Geom_Transformation::Inverted () const {
+	//! Makes the transformation into a scale. P is the center of
+	//! the scale and S is the scaling value.
+	void XGeom_Transformation::SetScale(xgp_Pnt^ thePnt, Standard_Real theScale) {
+		NativeHandle()->SetScale(*thePnt->GetPnt(), theScale);
+	};// { gpTrsf.SetScale(thePnt, theScale); }
 
-   return new Geom_Transformation (gpTrsf.Inverted());
-}
+	//! Makes a transformation allowing passage from the coordinate
+	//! system "FromSystem1" to the coordinate system "ToSystem2".
+	//! Example :
+	//! In a C++ implementation :
+	//! Real x1, y1, z1;  // are the coordinates of a point in the
+	//! // local system FromSystem1
+	//! Real x2, y2, z2;  // are the coordinates of a point in the
+	//! // local system ToSystem2
+	//! gp_Pnt P1 (x1, y1, z1)
+	//! Geom_Transformation T;
+	//! T.SetTransformation (FromSystem1, ToSystem2);
+	//! gp_Pnt P2 = P1.Transformed (T);
+	//! P2.Coord (x2, y2, z2);
+	void XGeom_Transformation::SetTransformation(xgp_Ax3^ theFromSystem1, xgp_Ax3^ theToSystem2) {
+		NativeHandle()->SetTransformation(*theFromSystem1->GetAx3(), *theToSystem2->GetAx3());
+	};// { gpTrsf.SetTransformation(theFromSystem1, theToSystem2); }
 
+	//! Makes the transformation allowing passage from the basic
+	//! coordinate system
+	//! {P(0.,0.,0.), VX (1.,0.,0.), VY (0.,1.,0.), VZ (0., 0. ,1.) }
+	//! to the local coordinate system defined with the Ax2 ToSystem.
+	//! Same utilisation as the previous method. FromSystem1 is
+	//! defaulted to the absolute coordinate system.
+	void XGeom_Transformation::SetTransformation(xgp_Ax3^ theToSystem) {
+		NativeHandle()->SetTransformation(*theToSystem->GetAx3());
+	};// { gpTrsf.SetTransformation(theToSystem); }
 
-Handle(Geom_Transformation) Geom_Transformation::Multiplied (
-const Handle(Geom_Transformation)& Other) const {
+	//! Makes the transformation into a translation.
+	//! V is the vector of the translation.
+	void XGeom_Transformation::SetTranslation(xgp_Vec^ theVec) {
+		NativeHandle()->SetTranslation(*theVec->GetVec());
+	};// { gpTrsf.SetTranslation(theVec); }
 
-   return new Geom_Transformation (gpTrsf.Multiplied (Other->Trsf()));
-}
+	//! Makes the transformation into a translation from the point
+	//! P1 to the point P2.
+	void XGeom_Transformation::SetTranslation(xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle()->SetTranslation(*P1->GetPnt(), *P2->GetPnt());
+	};// { gpTrsf.SetTranslation(P1, P2); }
 
-Handle(Geom_Transformation) Geom_Transformation::Powered (const Standard_Integer N) const {
+	//! Converts the gp_Trsf transformation T into this transformation.
+	void XGeom_Transformation::SetTrsf(xgp_Trsf^ theTrsf) {
+		NativeHandle()->SetTrsf(*theTrsf->GetTrsf());
+	};// { gpTrsf = theTrsf; }
 
-  gp_Trsf T = gpTrsf;
-  T.Power (N);  
-  return new Geom_Transformation (T);
-}
+	//! Checks whether this transformation is an indirect
+	//! transformation: returns true if the determinant of the
+	//! matrix of the vectorial part of the transformation is less than 0.
+	Standard_Boolean XGeom_Transformation::IsNegative() {
+		return NativeHandle()->IsNegative();
+	};// { return gpTrsf.IsNegative(); }
 
+	//! Returns the nature of this transformation as a value
+	//! of the gp_TrsfForm enumeration.
+	xgp_TrsfForm XGeom_Transformation::Form() {
+		return safe_cast<xgp_TrsfForm>(NativeHandle()->Form());
+	};// { return gpTrsf.Form(); }
 
-void Geom_Transformation::PreMultiply (const Handle(Geom_Transformation)& Other){
+	//! Returns the scale value of the transformation.
+	Standard_Real XGeom_Transformation::ScaleFactor() {
+		return NativeHandle()->ScaleFactor();
+	};// { return gpTrsf.ScaleFactor(); }
 
-   gpTrsf.PreMultiply (Other->Trsf());
+	//! Returns a non transient copy of <me>.
+	xgp_Trsf^ XGeom_Transformation::Trsf() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle()->Trsf());
+		return gcnew xgp_Trsf(temp);
+	};// { return gpTrsf; }
+
+	//! Returns the coefficients of the global matrix of transformation.
+	//! It is a 3 rows X 4 columns matrix.
+	//!
+	//! Raised if  Row < 1 or Row > 3  or  Col < 1 or Col > 4
+	Standard_Real XGeom_Transformation::Value(Standard_Integer theRow, Standard_Integer theCol) {
+		return NativeHandle()->Value(theRow, theCol);
+	};// { return gpTrsf.Value(theRow, theCol); }
+
+	//! Raised if the the transformation is singular. This means that
+	//! the ScaleFactor is lower or equal to Resolution from
+	//! package gp.
+	void XGeom_Transformation::Invert() {
+		NativeHandle()->Invert();
+	};// { gpTrsf.Invert(); }
+
+	//! Raised if the the transformation is singular. This means that
+	//! the ScaleFactor is lower or equal to Resolution from
+	//! package gp.
+	XGeom_Transformation^ XGeom_Transformation::Inverted() {
+		return gcnew XGeom_Transformation(NativeHandle()->Inverted());
+	};
+
+	//! Computes the transformation composed with Other and <me>.
+	//! <me> * Other.
+	//! Returns a new transformation
+	XGeom_Transformation^ XGeom_Transformation::Multiplied(XGeom_Transformation^ Other) {
+		return gcnew XGeom_Transformation(NativeHandle()->Multiplied(Other->GetTransformation()));
+	};
+
+	//! Computes the transformation composed with Other and <me> .
+	//! <me> = <me> * Other.
+	void XGeom_Transformation::Multiply(XGeom_Transformation^ theOther) {
+		NativeHandle()->Multiply(theOther->GetTransformation());
+	};// { gpTrsf.Multiply(theOther->Trsf()); }
+
+	//! Computes the following composition of transformations
+	//! if N > 0  <me> * <me> * .......* <me>.
+	//! if N = 0  Identity
+	//! if N < 0  <me>.Invert() * .........* <me>.Invert()
+	//!
+	//! Raised if N < 0 and if the transformation is not inversible
+	void XGeom_Transformation::Power(Standard_Integer N) {
+		NativeHandle()->Power(N);
+	};// { gpTrsf.Power(N); }
+
+	//! Raised if N < 0 and if the transformation is not inversible
+	XGeom_Transformation^ XGeom_Transformation::Powered(Standard_Integer N) {
+		return gcnew XGeom_Transformation(NativeHandle()->Powered(N));
+	};
+
+	//! Computes the matrix of the transformation composed with
+	//! <me> and Other.     <me> = Other * <me>
+	void XGeom_Transformation::PreMultiply(XGeom_Transformation^ Other) {
+		NativeHandle()->PreMultiply(Other->GetTransformation());
+	};
+
+	//! Applies the transformation <me> to the triplet {X, Y, Z}.
+	void XGeom_Transformation::Transforms(Standard_Real theX, Standard_Real theY, Standard_Real theZ) {
+		NativeHandle()->Transforms(theX, theY, theZ);
+	};// { gpTrsf.Transforms(theX, theY, theZ); }
+
+	//! Creates a new object which is a copy of this transformation.
+	XGeom_Transformation^ XGeom_Transformation::Copy() {
+		return gcnew XGeom_Transformation(NativeHandle()->Copy());
+	};
 }
