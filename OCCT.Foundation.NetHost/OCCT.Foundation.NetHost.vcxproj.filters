@@ -1323,6 +1323,12 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1822,6 +1828,12 @@
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
   </ItemGroup>

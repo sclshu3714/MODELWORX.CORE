@@ -1,64 +1,64 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeArcOfEllipse.h>
+namespace TKGeomBase {
 
+	//! DEFINE_STANDARD_ALLOC
+	XGC_MakeArcOfEllipse::XGC_MakeArcOfEllipse(GC_MakeArcOfEllipse* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-#include <ElCLib.hxx>
-#include <GC_MakeArcOfEllipse.hxx>
-#include <Geom_Ellipse.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	void XGC_MakeArcOfEllipse::SetMakeArcOfEllipseHandle(GC_MakeArcOfEllipse* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeArcOfEllipse::GC_MakeArcOfEllipse(const gp_Elips& Elips   ,
-					   const gp_Pnt&    P1   ,
-					   const gp_Pnt&    P2   ,
-					   const Standard_Boolean  Sense  ) 
-{
-  Standard_Real Alpha1 = ElCLib::Parameter(Elips,P1);
-  Standard_Real Alpha2 = ElCLib::Parameter(Elips,P2);
-  Handle(Geom_Ellipse) E = new Geom_Ellipse(Elips);
-  TheArc = new Geom_TrimmedCurve(E,Alpha1,Alpha2,Sense);
-  TheError = gce_Done;
-}
+	GC_MakeArcOfEllipse* XGC_MakeArcOfEllipse::GetMakeArcOfEllipse() {
+		return NativeHandle;
+	};
 
-GC_MakeArcOfEllipse::GC_MakeArcOfEllipse(const gp_Elips& Elips   ,
-					   const gp_Pnt&   P     ,
-					   const Standard_Real      Alpha ,
-					   const Standard_Boolean   Sense ) 
-{
-  Standard_Real Alphafirst = ElCLib::Parameter(Elips,P);
-  Handle(Geom_Ellipse) E = new Geom_Ellipse(Elips);
-  TheArc = new Geom_TrimmedCurve(E,Alphafirst,Alpha,Sense);
-  TheError = gce_Done;
-}
+	//! Constructs an arc of Ellipse (TrimmedCurve from Geom) from
+	//! a Ellipse between two parameters Alpha1 and Alpha2.
+	XGC_MakeArcOfEllipse::XGC_MakeArcOfEllipse(xgp_Elips^ Elips, Standard_Real Alpha1, Standard_Real Alpha2, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfEllipse(*Elips->GetElips(), Alpha1, Alpha2, Sense);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeArcOfEllipse::GC_MakeArcOfEllipse(const gp_Elips& Elips   ,
-					   const Standard_Real     Alpha1 ,
-					   const Standard_Real     Alpha2 ,
-					   const Standard_Boolean  Sense  ) 
-{
-  Handle(Geom_Ellipse) E = new Geom_Ellipse(Elips);
-  TheArc = new Geom_TrimmedCurve(E,Alpha1,Alpha2,Sense);
-  TheError = gce_Done;
-}
+	//! Constructs an arc of Ellipse (TrimmedCurve from Geom) from
+	//! a Ellipse between point <P> and the angle Alpha
+	//! given in radians.
+	XGC_MakeArcOfEllipse::XGC_MakeArcOfEllipse(xgp_Elips^ Elips, xgp_Pnt^ P, Standard_Real Alpha, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfEllipse(*Elips->GetElips(), *P->GetPnt(), Alpha, Sense);
+		SetRoot(NativeHandle);
+	};
 
-const Handle(Geom_TrimmedCurve)& GC_MakeArcOfEllipse::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeArcOfEllipse::Value() - no result");
-  return TheArc;
+	//! Constructs an arc of Ellipse (TrimmedCurve from Geom) from
+	//! a Ellipse between two points P1 and P2.
+	//! The orientation of the arc of ellipse is:
+	//! -   the sense of Elips if Sense is true, or
+	//! -   the opposite sense if Sense is false.
+	//! Notes:
+	//! -   Alpha1, Alpha2 and Alpha are angle values, given in radians.
+	//! -   IsDone always returns true.
+	XGC_MakeArcOfEllipse::XGC_MakeArcOfEllipse(xgp_Elips^ Elips, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfEllipse(*Elips->GetElips(), *P1->GetPnt(), *P2->GetPnt(), Sense);
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns the constructed arc of ellipse.
+	XGeom_TrimmedCurve^ XGC_MakeArcOfEllipse::Value() {
+		return gcnew XGeom_TrimmedCurve(NativeHandle->Value());
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeArcOfEllipse::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeArcOfEllipse::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

@@ -44,37 +44,60 @@ namespace TKLCAF {
 	ref class TKernel::XStandard_GUID;
 	ref class XTDF_Label;
 	ref class TKMath::xgp_Vec2d;
-	//! The basis to define an integer attribute.
+	/// <summary>
+	/// The basis to define an integer attribute.
+	/// </summary>
 	public ref class XTDataStd_Integer : public XTDF_Attribute
 	{
 
 	public:
 
-
-		//! class methods
-		//! =============
-		//! Returns the GUID for integers.
+		/// <summary>
+		///  class methods 
+		///  Returns the GUID for integers.
+		/// </summary>
+		/// <returns></returns>
 		static XStandard_GUID^ GetID();
 
-		//! Finds, or creates, an Integer attribute and sets <value>
-		//! the Integer  attribute is returned.
+		/// <summary>
+		/// Finds, or creates, an Integer attribute and sets the Integer  attribute is returned.
+		/// </summary>
+		/// <param name="label"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		static XTDataStd_Integer^ Set(XTDF_Label^ label, Standard_Integer value);
 
-		//! Finds, or creates, an Integer attribute with explicit user defined <guid> and sets <value>.
-		//! The Integer attribute  is  returned. 
+		
+		/// <summary>
+		/// Finds, or creates, an Integer attribute with explicit user defined guid and sets value.
+		/// The Integer attribute  is  returned.
+		/// </summary>
+		/// <param name="label"></param>
+		/// <param name="guid"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		static XTDataStd_Integer^ Set(XTDF_Label^ label, XStandard_GUID^ guid, const Standard_Integer value);
 
-		//! Integer methods
-		//! ===============
+		/// <summary>
+		/// Integer methods
+		/// </summary>
+		/// <param name="V"></param>
 		void Set(const Standard_Integer V);
 
-		//! Sets the explicit GUID (user defined) for the attribute.
+		/// <summary>
+		/// Sets the explicit GUID (user defined) for the attribute.
+		/// </summary>
 		void SetID(XStandard_GUID^ guid) Standard_OVERRIDE;
 
-		//! Sets default GUID for the attribute.
+		/// <summary>
+		/// Sets default GUID for the attribute.
+		/// </summary>
 		void SetID() Standard_OVERRIDE;
 
-		//! Returns the integer value contained in the attribute.
+		/// <summary>
+		/// Returns the integer value contained in the attribute.
+		/// </summary>
+		/// <returns></returns>
 		Standard_Integer Get();
 
 		//! Returns True if there is a reference on the same label

@@ -89,6 +89,6 @@ namespace TKGeomBase {
 	//! -   another value of the gce_ErrorType enumeration
 	//! indicating why the construction failed.
 	xgce_ErrorType XGC_MakeArcOfCircle::Status() {
-		return safe_cast<xgce_ErrorType>(NativeHandle->IsDone());
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
 	};
 }

@@ -6639,6 +6639,40 @@ Class TKGeomBase.XGC_MakeArcOfCircle: AutoLayout, AnsiClass, Class, Public, Befo
     Status(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(GC_MakeArcOfCircle*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKGeomBase.XGC_MakeArcOfEllipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Elips, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips, TKMath.xgp_Pnt, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeArcOfEllipse*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeArcOfEllipse* IHandle 'get set' : 
+  Methods:
+    SetMakeArcOfEllipseHandle(GC_MakeArcOfEllipse*): PrivateScope, Public, HideBySig
+    GetMakeArcOfEllipse(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(GC_MakeArcOfEllipse*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKGeomBase.XGC_MakeArcOfHyperbola: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Hypr, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr, TKMath.xgp_Pnt, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeArcOfHyperbola*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeArcOfHyperbola* IHandle 'get set' : 
+  Methods:
+    SetMakeArcOfHyperbolaHandle(GC_MakeArcOfHyperbola*): PrivateScope, Public, HideBySig
+    GetMakeArcOfHyperbola(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(GC_MakeArcOfHyperbola*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class TKGeomBase.XGC_MakeEllipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

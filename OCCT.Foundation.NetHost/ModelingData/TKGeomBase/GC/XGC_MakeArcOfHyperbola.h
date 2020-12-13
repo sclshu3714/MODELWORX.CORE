@@ -14,8 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GC_MakeArcOfHyperbola_HeaderFile
-#define _GC_MakeArcOfHyperbola_HeaderFile
+#ifndef _XGC_MakeArcOfHyperbola_HeaderFile
+#define _XGC_MakeArcOfHyperbola_HeaderFile
+#pragma once
+#include <XGC_Root.h>
+#include <GC_MakeArcOfHyperbola.hxx>
+#include <XGeom_TrimmedCurve.h>
+#include <xgp_Hypr.h>
+#include <xgp_Pnt.h >
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -27,47 +33,76 @@
 class StdFail_NotDone;
 class gp_Hypr;
 class gp_Pnt;
+class GC_MakeArcOfHyperbola;
 
+using namespace TKMath;
+using namespace TKG3d;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Hypr;
+	ref class TKMath::xgp_Pnt;
+	ref class TKG3d::XGeom_TrimmedCurve;
+	//! Implements construction algorithms for an arc
+	//! of hyperbola in 3D space. The result is a Geom_TrimmedCurve curve.
+	//! A MakeArcOfHyperbola object provides a framework for:
+	//! -   defining the construction of the arc of hyperbola,
+	//! -   implementing the construction algorithm, and
+	//! -   consulting the results. In particular, the
+	//! Value function returns the constructed arc of hyperbola.
+	public ref class XGC_MakeArcOfHyperbola : public XGC_Root
+	{
+	public:
 
-//! Implements construction algorithms for an arc
-//! of hyperbola in 3D space. The result is a Geom_TrimmedCurve curve.
-//! A MakeArcOfHyperbola object provides a framework for:
-//! -   defining the construction of the arc of hyperbola,
-//! -   implementing the construction algorithm, and
-//! -   consulting the results. In particular, the
-//! Value function returns the constructed arc of hyperbola.
-class GC_MakeArcOfHyperbola  : public GC_Root
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
+		XGC_MakeArcOfHyperbola(GC_MakeArcOfHyperbola* pos);
 
-  DEFINE_STANDARD_ALLOC
+		void SetMakeArcOfHyperbolaHandle(GC_MakeArcOfHyperbola* pos);
 
-  
-  //! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
-  //! a Hyperbola between two parameters Alpha1 and Alpha2
-  //! (given in radians).
-  Standard_EXPORT GC_MakeArcOfHyperbola(const gp_Hypr& Hypr, const Standard_Real Alpha1, const Standard_Real Alpha2, const Standard_Boolean Sense);
-  
-  //! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
-  //! a Hyperbola between point <P> and the parameter
-  //! Alpha (given in radians).
-  Standard_EXPORT GC_MakeArcOfHyperbola(const gp_Hypr& Hypr, const gp_Pnt& P, const Standard_Real Alpha, const Standard_Boolean Sense);
-  
-  //! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
-  //! a Hyperbola between two points P1 and P2.
-  //! The orientation of the arc of hyperbola is:
-  //! -   the sense of Hypr if Sense is true, or
-  //! -   the opposite sense if Sense is false.
-  Standard_EXPORT GC_MakeArcOfHyperbola(const gp_Hypr& Hypr, const gp_Pnt& P1, const gp_Pnt& P2, const Standard_Boolean Sense);
-  
-  //! Returns the constructed arc of hyperbola.
-  Standard_EXPORT const Handle(Geom_TrimmedCurve)& Value() const;
+		GC_MakeArcOfHyperbola* GetMakeArcOfHyperbola();
 
-  operator const Handle(Geom_TrimmedCurve)& () const { return Value(); }
+		//! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
+		//! a Hyperbola between two parameters Alpha1 and Alpha2
+		//! (given in radians).
+		XGC_MakeArcOfHyperbola(xgp_Hypr^ Hypr, Standard_Real Alpha1, Standard_Real Alpha2, Standard_Boolean Sense);
 
-private:
-  Handle(Geom_TrimmedCurve) TheArc;
-};
+		//! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
+		//! a Hyperbola between point <P> and the parameter
+		//! Alpha (given in radians).
+		XGC_MakeArcOfHyperbola(xgp_Hypr^ Hypr, xgp_Pnt^ P, Standard_Real Alpha, Standard_Boolean Sense);
 
+		//! Creates an arc of Hyperbola (TrimmedCurve from Geom) from
+		//! a Hyperbola between two points P1 and P2.
+		//! The orientation of the arc of hyperbola is:
+		//! -   the sense of Hypr if Sense is true, or
+		//! -   the opposite sense if Sense is false.
+		XGC_MakeArcOfHyperbola(xgp_Hypr^ Hypr, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Boolean Sense);
 
-#endif // _GC_MakeArcOfHyperbola_HeaderFile
+		//! Returns the constructed arc of hyperbola.
+		XGeom_TrimmedCurve^ Value();
+
+		operator XGeom_TrimmedCurve ^ () { return Value(); }
+		//! Returns true if the construction is successful.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+
+		//! Returns the status of the construction:
+		//! -   gce_Done, if the construction is successful, or
+		//! -   another value of the gce_ErrorType enumeration
+		//! indicating why the construction failed.
+		virtual xgce_ErrorType Status() Standard_OVERRIDE;
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property  GC_MakeArcOfHyperbola* IHandle {
+			GC_MakeArcOfHyperbola* get() {
+				return 	NativeHandle;
+			}
+			void set(GC_MakeArcOfHyperbola* handle) {
+				NativeHandle = handle;
+			}
+		}
+
+	private:
+		GC_MakeArcOfHyperbola* NativeHandle;
+	};
+}
+#endif // _XGC_MakeArcOfHyperbola_HeaderFile
