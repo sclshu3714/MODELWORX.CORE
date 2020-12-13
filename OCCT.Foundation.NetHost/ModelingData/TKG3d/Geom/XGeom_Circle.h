@@ -100,6 +100,9 @@ namespace TKG3d {
 		//! raised if Radius < 0.
 		XGeom_Circle(xgp_Ax2^ A2, Standard_Real Radius);
 
+
+		XGeom_Circle(Handle(Geom_Circle) pos);
+
 		Handle(Geom_Circle) GetCircle();
 
 		virtual Handle(Geom_Conic) GetConic() Standard_OVERRIDE;

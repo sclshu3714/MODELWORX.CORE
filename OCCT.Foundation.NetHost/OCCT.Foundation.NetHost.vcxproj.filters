@@ -1329,6 +1329,12 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1834,6 +1840,12 @@
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
   </ItemGroup>

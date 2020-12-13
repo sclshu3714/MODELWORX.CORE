@@ -17,6 +17,8 @@
 #include <XGeom_Circle.h>
 
 namespace TKG3d {
+
+
 	//! Constructs a circle by conversion of the gp_Circ circle C.
 	XGeom_Circle::XGeom_Circle(xgp_Circ^ C) {
 		NativeHandle() = new Geom_Circle(*C->GetCirc());
@@ -36,6 +38,10 @@ namespace TKG3d {
 		SetConicHandle(NativeHandle());
 	};
 
+	XGeom_Circle::XGeom_Circle(Handle(Geom_Circle) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
+	};
 
 	Handle(Geom_Circle) XGeom_Circle::GetCircle() {
 		return NativeHandle();

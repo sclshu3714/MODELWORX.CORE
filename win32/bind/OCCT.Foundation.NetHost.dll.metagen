@@ -6314,6 +6314,7 @@ Class NCollection_Haft<opencascade::handle<Geom_Circle> >: AutoLayout, AnsiClass
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XGeom_Circle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_Conic
+    Void .ctor(opencascade.handle<Geom_Circle>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -6673,6 +6674,45 @@ Class TKGeomBase.XGC_MakeArcOfHyperbola: AutoLayout, AnsiClass, Class, Public, B
     Status(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(GC_MakeArcOfHyperbola*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKGeomBase.XGC_MakeArcOfParabola: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Parab, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab, TKMath.xgp_Pnt, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeArcOfParabola*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeArcOfParabola* IHandle 'get set' : 
+  Methods:
+    SetMakeArcOfParabolaHandle(GC_MakeArcOfParabola*): PrivateScope, Public, HideBySig
+    GetMakeArcOfParabola(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(GC_MakeArcOfParabola*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKGeomBase.XGC_MakeCircle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Ax1, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeCircle*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeCircle* IHandle 'get set' : 
+  Methods:
+    SetMakeCircleHandle(GC_MakeCircle*): PrivateScope, Public, HideBySig
+    GetMakeCircle(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(GC_MakeCircle*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class TKGeomBase.XGC_MakeEllipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

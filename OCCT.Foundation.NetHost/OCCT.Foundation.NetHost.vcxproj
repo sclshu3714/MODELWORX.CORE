@@ -389,6 +389,8 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
@@ -642,6 +644,8 @@
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfHyperbola.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />

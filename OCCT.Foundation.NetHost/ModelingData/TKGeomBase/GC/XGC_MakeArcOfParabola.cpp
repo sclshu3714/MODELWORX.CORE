@@ -1,64 +1,58 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeArcOfParabola.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
+	XGC_MakeArcOfParabola::XGC_MakeArcOfParabola(GC_MakeArcOfParabola* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
+	void XGC_MakeArcOfParabola::SetMakeArcOfParabolaHandle(GC_MakeArcOfParabola* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-#include <ElCLib.hxx>
-#include <GC_MakeArcOfParabola.hxx>
-#include <Geom_Parabola.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	GC_MakeArcOfParabola* XGC_MakeArcOfParabola::GetMakeArcOfParabola() {
+		return NativeHandle;
+	};
 
-GC_MakeArcOfParabola::GC_MakeArcOfParabola(const gp_Parab& Parab ,
-					     const gp_Pnt&   P1    ,
-					     const gp_Pnt&   P2    ,
-					     const Standard_Boolean  Sense  ) 
-{
-  Standard_Real Alpha1 = ElCLib::Parameter(Parab,P1);
-  Standard_Real Alpha2 = ElCLib::Parameter(Parab,P2);
-  Handle(Geom_Parabola) P = new Geom_Parabola(Parab);
-  TheArc = new Geom_TrimmedCurve(P,Alpha1,Alpha2,Sense);
-  TheError = gce_Done;
-}
+	//! Creates an arc of Parabola (TrimmedCurve from Geom) from
+	//! a Parabola between two parameters Alpha1 and Alpha2
+	//! (given in radians).
+	XGC_MakeArcOfParabola::XGC_MakeArcOfParabola(xgp_Parab^ Parab, Standard_Real Alpha1, Standard_Real Alpha2, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfParabola(*Parab->GetParab(), Alpha1, Alpha2, Sense);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeArcOfParabola::GC_MakeArcOfParabola(const gp_Parab& Parab ,
-					     const gp_Pnt&   P     ,
-					     const Standard_Real      Alpha ,
-					     const Standard_Boolean  Sense  ) 
-{
-  Standard_Real Alphafirst = ElCLib::Parameter(Parab,P);
-  Handle(Geom_Parabola) Parabola = new Geom_Parabola(Parab);
-  TheArc = new Geom_TrimmedCurve(Parabola,Alphafirst,Alpha,Sense);
-  TheError = gce_Done;
-}
+	//! Creates an arc of Parabola (TrimmedCurve from Geom) from
+	//! a Parabola between point <P> and the parameter
+	//! Alpha (given in radians).
+	XGC_MakeArcOfParabola::XGC_MakeArcOfParabola(xgp_Parab^ Parab, xgp_Pnt^ P, Standard_Real Alpha, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfParabola(*Parab->GetParab(), *P->GetPnt(), Alpha, Sense);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeArcOfParabola::GC_MakeArcOfParabola(const gp_Parab& Parab ,
-					     const Standard_Real      Alpha1 ,
-					     const Standard_Real      Alpha2 ,
-					     const Standard_Boolean   Sense  ) 
-{
-  Handle(Geom_Parabola) P = new Geom_Parabola(Parab);
-  TheArc = new Geom_TrimmedCurve(P,Alpha1,Alpha2,Sense);
-  TheError = gce_Done;
-}
+	//! Creates an arc of Parabola (TrimmedCurve from Geom) from
+	//! a Parabola between two points P1 and P2.
+	XGC_MakeArcOfParabola::XGC_MakeArcOfParabola(xgp_Parab^ Parab, xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Boolean Sense) {
+		NativeHandle = new GC_MakeArcOfParabola(*Parab->GetParab(), *P1->GetPnt(), *P2->GetPnt(), Sense);
+		SetRoot(NativeHandle);
+	};
 
-const Handle(Geom_TrimmedCurve)& GC_MakeArcOfParabola::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeArcOfParabola::Value() - no result");
-  return TheArc;
+	//! Returns the constructed arc of parabola.
+	XGeom_TrimmedCurve^ XGC_MakeArcOfParabola::Value() {
+		return gcnew XGeom_TrimmedCurve(NativeHandle->Value());
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeArcOfParabola::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeArcOfParabola::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

@@ -1,110 +1,100 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeCircle.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
+	XGC_MakeCircle::XGC_MakeCircle(GC_MakeCircle* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void XGC_MakeCircle::SetMakeCircleHandle(GC_MakeCircle* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	GC_MakeCircle* XGC_MakeCircle::GetMakeCircle() {
+		return NativeHandle;
+	};
+
+	//! creates a circle from a non persistent circle C by its conversion.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Circ^ C) {
+		NativeHandle = new GC_MakeCircle(*C->GetCirc());
+		SetRoot(NativeHandle);
+	};
 
 
-#include <GC_MakeCircle.hxx>
-#include <gce_MakeCirc.hxx>
-#include <Geom_Circle.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! A2 is the local coordinates system of the circle.
+	//! It is not forbidden to create a circle with Radius = 0.0
+	//! Status is "NegativeRadius" if Radius < 0.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Ax2^ A2, Standard_Real Radius) {
+		NativeHandle = new GC_MakeCircle(*A2->GetAx2(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Circ& C)
-{
-  TheError = gce_Done;
-  TheCircle = new Geom_Circle(C);
-}
+	//! Make a Circle from Geom <TheCirc> parallel to another
+	//! Circ <Circ> with a distance <Dist>.
+	//! If Dist is greater than zero the result is enclosing
+	//! the circle <Circ>, else the result is enclosed by the
+	//! circle <Circ>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Circ^ Circ, Standard_Real Dist) {
+		NativeHandle = new GC_MakeCircle(*Circ->GetCirc(), Dist);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Ax2&       A2    ,
-			       const Standard_Real Radius)
-{
-  if (Radius < 0.) { TheError = gce_NegativeRadius; }
-  else {
-    TheError = gce_Done;
-    TheCircle = new Geom_Circle(gp_Circ(A2,Radius));
-  }
-}
+	//! Make a Circle from Geom <TheCirc> parallel to another
+	//! Circ <Circ> and passing through a Pnt <Point>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Circ^ Circ, xgp_Pnt^ Point) {
+		NativeHandle = new GC_MakeCircle(*Circ->GetCirc(), *Point->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Circ& Circ  ,
-			       const gp_Pnt&  Point ) 
-{
-  gp_Circ C = gce_MakeCirc(Circ,Point);
-  TheCircle = new Geom_Circle(C);
-  TheError = gce_Done;
-}
+	//! Make a Circ from gp <TheCirc> passing through 3
+	//! Pnt2d <P1>,<P2>,<P3>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3) {
+		NativeHandle = new GC_MakeCircle(*P1->GetPnt(), *P2->GetPnt(), *P3->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Circ& Circ ,
-			       const Standard_Real     Dist ) 
-{
-  gce_MakeCirc C = gce_MakeCirc(Circ,Dist);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCircle = new Geom_Circle(C.Value());
-  }
-}
+	//! Make a Circle from Geom <TheCirc> with its center
+	//! <Center> and the normal of its plane <Norm> and
+	//! its radius <Radius>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Pnt^ Center, xgp_Dir^ Norm, Standard_Real Radius) {
+		NativeHandle = new GC_MakeCircle(*Center->GetPnt(), *Norm->GetDir(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Pnt& P1 ,
-			       const gp_Pnt& P2 ,
-			       const gp_Pnt& P3 ) 
-{
-  gce_MakeCirc C = gce_MakeCirc(P1,P2,P3);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCircle = new Geom_Circle(C.Value());
-  }
-}
+	//! Make a Circle from Geom <TheCirc> with its center
+	//! <Center> and the normal of its plane defined by the
+	//! two points <Center> and <PtAxis> and its radius <Radius>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Pnt^ Center, xgp_Pnt^ PtAxis, Standard_Real Radius) {
+		NativeHandle = new GC_MakeCircle(*Center->GetPnt(), *PtAxis->GetPnt(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Pnt& Point  ,
-			       const gp_Dir& Norm   ,
-			       const Standard_Real    Radius ) 
-{
-  gce_MakeCirc C = gce_MakeCirc(Point,Norm,Radius);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCircle = new Geom_Circle(C.Value());
-  }
-}
+	//! Make a Circle from Geom <TheCirc> with its center
+	//! <Center> and its radius <Radius>.
+	XGC_MakeCircle::XGC_MakeCircle(xgp_Ax1^ Axis, Standard_Real Radius) {
+		NativeHandle = new GC_MakeCircle(*Axis->GetAx1(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeCircle::GC_MakeCircle(const gp_Pnt&        Point  ,
-			       const gp_Pnt&        PtAxis ,
-			       const Standard_Real  Radius ) 
-{
-  gce_MakeCirc C = gce_MakeCirc(Point,PtAxis,Radius);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCircle = new Geom_Circle(C.Value());
-  }
-}
 
-GC_MakeCircle::GC_MakeCircle(const gp_Ax1& Axis   ,
-			       const Standard_Real    Radius ) 
-{
-  gce_MakeCirc C = gce_MakeCirc(Axis,Radius);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCircle = new Geom_Circle(C.Value());
-  }
-}
+	//! Returns the constructed circle.
+	//! Exceptions
+	//! StdFail_NotDone if no circle is constructed.
+	XGeom_Circle^ XGC_MakeCircle::Value() {
+		return gcnew XGeom_Circle(NativeHandle->Value());
+	};
 
-const Handle(Geom_Circle)& GC_MakeCircle::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeCircle::Value() - no result");
-  return TheCircle;
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeCircle::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeCircle::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
