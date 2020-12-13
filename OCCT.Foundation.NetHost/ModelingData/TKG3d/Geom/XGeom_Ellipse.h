@@ -114,6 +114,11 @@ namespace TKG3d {
 		//! MinorRadius are equal.
 		XGeom_Ellipse(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
+		//! 
+		XGeom_Ellipse(Handle(Geom_Ellipse) pos);
+
+		void SetEllipseHandle(Handle(Geom_Ellipse) pos);
+
 		//!
 		virtual Handle(Geom_Conic) GetConic() Standard_OVERRIDE;
 		//!

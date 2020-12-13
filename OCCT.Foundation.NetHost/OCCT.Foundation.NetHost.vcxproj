@@ -384,6 +384,7 @@
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_ErrorType.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
     <ClInclude Include="resource.h" />
@@ -631,6 +632,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_Root.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />
@@ -657,6 +659,11 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OCCT.Foundation.NetHost.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="GC.png" />
+    <Image Include="Geom.png" />
+    <Image Include="gp.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6401,11 +6401,13 @@ Class NCollection_Haft<opencascade::handle<Geom_Ellipse> >: AutoLayout, AnsiClas
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XGeom_Ellipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_Conic
+    Void .ctor(opencascade.handle<Geom_Ellipse>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Elips): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    SetEllipseHandle(handle<Geom_Ellipse>*): PrivateScope, Public, HideBySig
     GetConic(handle<Geom_Conic>*): PrivateScope, Public, Virtual, HideBySig
     GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
@@ -6552,6 +6554,23 @@ Class TKGeomBase.XGC_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Status(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_Root*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.XGC_MakeEllipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeEllipse*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeEllipse* IHandle 'get set' : 
+  Methods:
+    SetMakeEllipseHandle(GC_MakeEllipse*): PrivateScope, Public, HideBySig
+    GetMakeEllipse(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(GC_MakeEllipse*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class TKGeomBase.XGeomTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

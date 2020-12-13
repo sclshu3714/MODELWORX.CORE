@@ -19,7 +19,8 @@
 namespace TKG3d {
 	//! Constructs an ellipse by conversion of the gp_Elips ellipse E.
 	XGeom_Ellipse::XGeom_Ellipse(xgp_Elips^ E) {
-		IHandle = new  Geom_Ellipse(*E->GetElips());
+		NativeHandle() = new  Geom_Ellipse(*E->GetElips());
+		SetConicHandle(NativeHandle());
 	};
 
 	//! Constructs an ellipse
@@ -42,7 +43,19 @@ namespace TKG3d {
 	//! construction of an ellipse where MajorRadius and
 	//! MinorRadius are equal.
 	XGeom_Ellipse::XGeom_Ellipse(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
-		IHandle = new  Geom_Ellipse(*A2->GetAx2(), MajorRadius, MinorRadius);
+		NativeHandle() = new  Geom_Ellipse(*A2->GetAx2(), MajorRadius, MinorRadius);
+		SetConicHandle(NativeHandle());
+	};
+
+	//! 
+	XGeom_Ellipse::XGeom_Ellipse(Handle(Geom_Ellipse) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
+	};
+
+	void XGeom_Ellipse::SetEllipseHandle(Handle(Geom_Ellipse) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
 	};
 
 	Handle(Geom_Conic) XGeom_Ellipse::GetConic() {

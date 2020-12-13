@@ -1311,6 +1311,9 @@
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h">
       <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1800,10 +1803,24 @@
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_Root.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
     </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OCCT.Foundation.NetHost.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Geom.png">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </Image>
+    <Image Include="gp.png">
+      <Filter>头文件\FoundationClasses\TKMath\gp</Filter>
+    </Image>
+    <Image Include="GC.png">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </Image>
   </ItemGroup>
 </Project>
