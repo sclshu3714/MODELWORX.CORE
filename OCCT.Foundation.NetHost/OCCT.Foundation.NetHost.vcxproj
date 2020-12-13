@@ -368,6 +368,7 @@
     <ClInclude Include="ModelingData\TKBRep\TopTools\XTopTools_ListOfShape.h" />
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.h" />
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
@@ -377,6 +378,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_TrimmedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Vector.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_Orientation.h" />
@@ -384,6 +386,7 @@
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_ErrorType.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
@@ -620,6 +623,7 @@
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
@@ -629,9 +633,11 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_TrimmedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_Root.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />

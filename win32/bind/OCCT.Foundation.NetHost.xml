@@ -594,6 +594,16 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKG3d.XGeom_BoundedCurve.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Curve.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
             <summary>
 本地句柄
