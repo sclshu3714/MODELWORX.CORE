@@ -1,148 +1,129 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_ElementarySurface.h>
+namespace TKG3d {
+
+	//!
+	XGeom_ElementarySurface::XGeom_ElementarySurface(void) {
+		//NativeHandle() = new Geom_ElementarySurface();
+	};
+
+	//! 
+	XGeom_ElementarySurface::XGeom_ElementarySurface(Handle(Geom_ElementarySurface) pos) {
+		NativeHandle() = pos;
+		SetGeomHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_ElementarySurface::~XGeom_ElementarySurface() {
+		NativeHandle() = NULL;
+		SetGeomHandle(NativeHandle());
+	};
+
+	void XGeom_ElementarySurface::SetElementarySurfaceHandle(Handle(Geom_ElementarySurface) handle) {
+		NativeHandle() = handle;
+		SetGeomHandle(NativeHandle());
+	};
+
+	//! 
+	Handle(Geom_ElementarySurface) XGeom_ElementarySurface::GetElementarySurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Surface) XGeom_ElementarySurface::GetSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_ElementarySurface::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Changes the main axis (ZAxis) of the elementary surface.
+	//!
+	//! Raised if the direction of A1 is parallel to the XAxis of the
+	//! coordinate system of the surface.
+	void XGeom_ElementarySurface::SetAxis(xgp_Ax1^ A1) {
+		NativeHandle()->SetAxis(*A1->GetAx1());
+	};
 
 
-#include <Geom_ElementarySurface.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_Type.hxx>
+	//! Changes the location of the local coordinates system of the
+	//! surface.
+	void XGeom_ElementarySurface::SetLocation(xgp_Pnt^ Loc) {
+		NativeHandle()->SetLocation(*Loc->GetPnt());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_ElementarySurface,Geom_Surface)
 
-typedef Geom_ElementarySurface         ElementarySurface;
-typedef gp_Ax1 Ax1;
-typedef gp_Ax2 Ax2;
-typedef gp_Ax3 Ax3;
-typedef gp_Dir Dir;
-typedef gp_Pnt Pnt;
-typedef gp_Vec Vec;
+	//! Changes the local coordinates system of the surface.
+	void XGeom_ElementarySurface::SetPosition(xgp_Ax3^ A3) {
+		NativeHandle()->SetPosition(*A3->GetAx3());
+	};
 
-//=======================================================================
-//function : Continuity
-//purpose  : 
-//=======================================================================
 
-GeomAbs_Shape Geom_ElementarySurface::Continuity () const {
+	//! Returns the main axis of the surface (ZAxis).
+	xgp_Ax1^ XGeom_ElementarySurface::Axis() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Axis());
+		return gcnew xgp_Ax1(temp);
+	};
 
-  return GeomAbs_CN; 
+
+	//! Returns the location point of the local coordinate system of the
+	//! surface.
+	xgp_Pnt^ XGeom_ElementarySurface::Location() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Location());
+		return gcnew xgp_Pnt(temp);
+	};
+
+	//! Returns the local coordinates system of the surface.
+	xgp_Ax3^ XGeom_ElementarySurface::Position() {
+		gp_Ax3* temp = new gp_Ax3(NativeHandle()->Position());
+		return gcnew xgp_Ax3(temp);
+	};
+
+
+	//! Reverses the U parametric direction of the surface.
+	void XGeom_ElementarySurface::UReverse() {
+		NativeHandle()->UReverse();
+	};
+
+	//! Return the  parameter on the  Ureversed surface for
+	//! the point of parameter U on <me>.
+	//!
+	//! me->UReversed()->Value(me->UReversedParameter(U),V)
+	//! is the same point as
+	//! me->Value(U,V)
+	Standard_Real XGeom_ElementarySurface::UReversedParameter(Standard_Real U) {
+		return NativeHandle()->UReversedParameter(U);
+	};
+
+
+	//! Reverses the V parametric direction of the surface.
+	void XGeom_ElementarySurface::VReverse() {
+		NativeHandle()->VReverse();
+	};
+
+	//! Return the  parameter on the  Vreversed surface for
+	//! the point of parameter V on <me>.
+	//!
+	//! me->VReversed()->Value(U,me->VReversedParameter(V))
+	//! is the same point as
+	//! me->Value(U,V)
+	Standard_Real XGeom_ElementarySurface::VReversedParameter(Standard_Real V) {
+		return NativeHandle()->VReversedParameter(V);
+	};
+
+	//! Returns GeomAbs_CN, the global continuity of any elementary surface.
+	XGeomAbs_Shape XGeom_ElementarySurface::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
+	};
+
+	//! Returns True.
+	Standard_Boolean XGeom_ElementarySurface::IsCNu(Standard_Integer N) {
+		return NativeHandle()->IsCNu(N);
+	};
+
+	//! Returns True.
+	Standard_Boolean XGeom_ElementarySurface::IsCNv(Standard_Integer N) {
+		return NativeHandle()->IsCNv(N);
+	};
 }
-
-//=======================================================================
-//function : IsCNu
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ElementarySurface::IsCNu (const Standard_Integer ) const {
-
-  return Standard_True; 
-}
-
-//=======================================================================
-//function : IsCNv
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ElementarySurface::IsCNv (const Standard_Integer ) const {
-
-  return Standard_True; 
-}
-
-//=======================================================================
-//function : Axis
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_ElementarySurface::Axis () const {
-
-  return pos.Axis(); 
-}
-
-//=======================================================================
-//function : SetAxis
-//purpose  : 
-//=======================================================================
-
-void Geom_ElementarySurface::SetAxis (const Ax1& A1) { 
-
-  pos.SetAxis (A1); 
-}
-
-//=======================================================================
-//function : Location
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_ElementarySurface::Location () const {
-
-  return pos.Location(); 
-}
-
-//=======================================================================
-//function : Position
-//purpose  : 
-//=======================================================================
-
-const gp_Ax3& Geom_ElementarySurface::Position () const {
-
-  return pos; 
-}
-
-//=======================================================================
-//function : SetPosition
-//purpose  : 
-//=======================================================================
-
-void Geom_ElementarySurface::SetPosition (const Ax3& A3) {
-
-  pos = A3; 
-}
-
-//=======================================================================
-//function : SetLocation
-//purpose  : 
-//=======================================================================
-
-void Geom_ElementarySurface::SetLocation (const Pnt& Loc) { 
-
-  pos.SetLocation (Loc);
-}
-
-
-//=======================================================================
-//function : UReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_ElementarySurface::UReverse () {
-
-  pos.YReverse();
-}
-
-
-
-//=======================================================================
-//function : VReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_ElementarySurface::VReverse () {
-
-  pos.ZReverse();
-}
-
-

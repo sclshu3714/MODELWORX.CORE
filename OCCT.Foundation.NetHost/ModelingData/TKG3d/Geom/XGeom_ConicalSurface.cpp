@@ -1,435 +1,326 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_ConicalSurface.h>
+namespace TKG3d {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name=""></param>
+	XGeom_ConicalSurface::XGeom_ConicalSurface(void) {
+		//NativeHandle() = new Geom_ConicalSurface();
+	};
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="pos"></param>
+	XGeom_ConicalSurface::XGeom_ConicalSurface(Handle(Geom_ConicalSurface) pos) {
+		NativeHandle() = pos;
+		SetElementarySurfaceHandle(NativeHandle());
+	};
 
 
-#include <ElSLib.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_ConicalSurface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_Line.hxx>
-#include <GeomAbs_UVSense.hxx>
-#include <gp.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Dir.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Precision.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
+	XGeom_ConicalSurface::~XGeom_ConicalSurface() {
+		NativeHandle() = NULL;
+		SetElementarySurfaceHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_ConicalSurface,Geom_ElementarySurface)
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="handle"></param>
+	void XGeom_ConicalSurface::SetConicalSurfaceHandle(Handle(Geom_ConicalSurface) handle) {
+		NativeHandle() = handle;
+		SetElementarySurfaceHandle(NativeHandle());
+	};
 
-typedef Geom_ConicalSurface         ConicalSurface;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Ax3  Ax3;
-typedef gp_Circ Circ;
-typedef gp_Dir  Dir;
-typedef gp_Lin  Lin;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
-typedef gp_XYZ  XYZ;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	Handle(Geom_ConicalSurface) XGeom_ConicalSurface::GetConicalSurface() {
+		return NativeHandle();
+	};
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
+	//! 
+	Handle(Geom_ElementarySurface) XGeom_ConicalSurface::GetElementarySurface() {
+		return NativeHandle();
+	};
 
-Handle(Geom_Geometry) Geom_ConicalSurface::Copy () const {
- 
-   Handle(Geom_ConicalSurface) Cs;
-   Cs = new ConicalSurface (pos, semiAngle, radius);
-   return Cs;
+	//!
+	Handle(Geom_Surface) XGeom_ConicalSurface::GetSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_ConicalSurface::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! A3 defines the local coordinate system of the conical surface.
+	//! Ang is the conical surface semi-angle. Its absolute value is in range
+	//! ]0, PI/2[.
+	//! Radius is the radius of the circle Viso in the placement plane
+	//! of the conical surface defined with "XAxis" and "YAxis".
+	//! The "ZDirection" of A3 defines the direction of the surface's
+	//! axis of symmetry.
+	//! If the location point of A3 is the apex of the surface
+	//! Radius = 0 .
+	//! At the creation the parametrization of the surface is defined
+	//! such that the normal Vector (N = D1U ^ D1V) is oriented towards
+	//! the "outside region" of the surface.
+	//!
+	//! Raised if Radius < 0.0 or Abs(Ang) < Resolution from gp or
+	//! Abs(Ang) >= PI/2 - Resolution
+	XGeom_ConicalSurface::XGeom_ConicalSurface(xgp_Ax3^ A3, Standard_Real Ang, Standard_Real Radius) {
+		NativeHandle() = new Geom_ConicalSurface(*A3->GetAx3(), Ang, Radius);
+		SetElementarySurfaceHandle(NativeHandle());
+	};
+
+
+	//! Creates a ConicalSurface from a non transient Cone from
+	//! package gp.
+	XGeom_ConicalSurface::XGeom_ConicalSurface(xgp_Cone^ C) {
+		NativeHandle() = new Geom_ConicalSurface(*C->GetCone());
+		SetElementarySurfaceHandle(NativeHandle());
+	};
+
+
+	//! Set <me> so that <me> has the same geometric properties as C.
+	void XGeom_ConicalSurface::SetCone(xgp_Cone^ C) {
+		NativeHandle()->SetCone(*C->GetCone());
+	};
+
+
+	//! Changes the radius of the conical surface in the placement
+	//! plane (Z = 0, V = 0).  The local coordinate system is not
+	//! modified.
+	//! Raised if R < 0.0
+	void XGeom_ConicalSurface::SetRadius(Standard_Real R) {
+		NativeHandle()->SetRadius(R);
+	};
+
+
+	//! Changes the semi angle of the conical surface.
+	//! Semi-angle can be negative. Its absolute value
+	//! Abs(Ang) is in range ]0,PI/2[.
+	//! Raises ConstructionError if Abs(Ang) < Resolution from gp or
+	//! Abs(Ang) >= PI/2 - Resolution
+	void XGeom_ConicalSurface::SetSemiAngle(Standard_Real Ang) {
+		NativeHandle()->SetSemiAngle(Ang);
+	};
+
+
+	//! returns a non transient cone with the same geometric properties
+	//! as <me>.
+	xgp_Cone^ XGeom_ConicalSurface::Cone() {
+		gp_Cone* temp = new gp_Cone(NativeHandle()->Cone());
+		return gcnew xgp_Cone(temp);
+	};
+
+	//! return 2.PI - U.
+	Standard_Real XGeom_ConicalSurface::UReversedParameter(Standard_Real U) {
+		return NativeHandle()->UReversedParameter(U);
+	};
+
+	//! Computes the u (or v) parameter on the modified
+	//! surface, when reversing its u (or v) parametric
+	//! direction, for any point of u parameter U (or of v
+	//! parameter V) on this cone.
+	//! In the case of a cone, these functions return respectively:
+	//! - 2.*Pi - U, -V.
+	Standard_Real XGeom_ConicalSurface::VReversedParameter(Standard_Real V) {
+		return NativeHandle()->VReversedParameter(V);
+	};
+
+	//! Changes the orientation of this cone in the v
+	//! parametric direction. The bounds of the surface are
+	//! not changed but the v parametric direction is reversed.
+	//! As a consequence, for a cone:
+	//! - the "main Direction" of the local coordinate system
+	//! is reversed, and
+	//! - the half-angle at the apex is inverted.
+	void XGeom_ConicalSurface::VReverse() {
+		NativeHandle()->VReverse();
+	};
+
+	//! Computes the  parameters on the  transformed  surface for
+	//! the transform of the point of parameters U,V on <me>.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are the new values of U,V after calling
+	//!
+	//! me->TranformParameters(U,V,T)
+	//!
+	//! This methods multiplies V by T.ScaleFactor()
+	void XGeom_ConicalSurface::TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T) {
+		NativeHandle()->TransformParameters(U, V, *T->GetTrsf());
+	};
+
+	//! Returns a 2d transformation  used to find the  new
+	//! parameters of a point on the transformed surface.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are  obtained by transforming U,V with
+	//! th 2d transformation returned by
+	//!
+	//! me->ParametricTransformation(T)
+	//!
+	//! This  methods  returns  a scale  centered  on  the
+	//! U axis with T.ScaleFactor
+	xgp_GTrsf2d^ XGeom_ConicalSurface::ParametricTransformation(xgp_Trsf^ T) {
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(*T->GetTrsf()));
+		return gcnew xgp_GTrsf2d(temp);
+	};
+
+	//! Computes the apex of this cone. It is on the negative
+	//! side of the axis of revolution of this cone if the
+	//! half-angle at the apex is positive, and on the positive
+	//! side of the "main Axis" if the half-angle is negative.
+	xgp_Pnt^ XGeom_ConicalSurface::Apex() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Apex());
+		return gcnew xgp_Pnt(temp);
+	};
+
+
+	//! The conical surface is infinite in the V direction so
+	//! V1 = Realfirst from Standard and V2 = RealLast.
+	//! U1 = 0 and U2 = 2*PI.
+	void XGeom_ConicalSurface::Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) {
+		return NativeHandle()->Bounds(U1, U2, V1, V2);
+	};
+
+
+	//! Returns the coefficients of the implicit equation of the
+	//! quadric in the absolute cartesian coordinate system :
+	//! These coefficients are normalized.
+	//! A1.X**2 + A2.Y**2 + A3.Z**2 + 2.(B1.X.Y + B2.X.Z + B3.Y.Z) +
+	//! 2.(C1.X + C2.Y + C3.Z) + D = 0.0
+	void XGeom_ConicalSurface::Coefficients(Standard_Real A1, Standard_Real A2, Standard_Real A3, Standard_Real B1, Standard_Real B2, Standard_Real B3, Standard_Real C1, Standard_Real C2, Standard_Real C3, Standard_Real D) {
+		NativeHandle()->Coefficients(A1, A2, A3, B1, B2, B3, C1, C2, C3, D);
+	};
+
+	//! Returns the reference radius of this cone.
+	//! The reference radius is the radius of the circle formed
+	//! by the intersection of this cone and its reference
+	//! plane (i.e. the plane defined by the origin, "X
+	//! Direction" and "Y Direction" of the local coordinate
+	//! system of this cone).
+	//! If the apex of this cone is on the origin of the local
+	//! coordinate system of this cone, the returned value is 0.
+	Standard_Real XGeom_ConicalSurface::RefRadius() {
+		return NativeHandle()->RefRadius();
+	};
+
+
+	//! Returns the semi-angle at the apex of this cone.
+	//! Attention! Semi-angle can be negative.
+	Standard_Real XGeom_ConicalSurface::SemiAngle() {
+		return NativeHandle()->SemiAngle();
+	};
+
+	//! returns True.
+	Standard_Boolean XGeom_ConicalSurface::IsUClosed() {
+		return NativeHandle()->IsUClosed();
+	};
+
+	//! returns False.
+	Standard_Boolean XGeom_ConicalSurface::IsVClosed() {
+		return NativeHandle()->IsVClosed();
+	};
+
+	//! Returns True.
+	Standard_Boolean XGeom_ConicalSurface::IsUPeriodic() {
+		return NativeHandle()->IsUPeriodic();
+	};
+
+	//! Returns False.
+	Standard_Boolean XGeom_ConicalSurface::IsVPeriodic() {
+		return NativeHandle()->IsVPeriodic();
+	};
+
+	//! Builds the U isoparametric line of this cone. The
+	//! origin of this line is on the reference plane of this
+	//! cone (i.e. the plane defined by the origin, "X Direction"
+	//! and "Y Direction" of the local coordinate system of this cone).
+	XGeom_Curve^ XGeom_ConicalSurface::UIso(Standard_Real U) {
+		return gcnew XGeom_Curve(NativeHandle()->UIso(U));
+	};
+
+	//! Builds the V isoparametric circle of this cone. It is the
+	//! circle on this cone, located in the plane of Z
+	//! coordinate V*cos(Semi-Angle) in the local coordinate system of this
+	//! cone. The "Axis" of this circle is the axis of revolution
+	//! of this cone. Its starting point is defined by the "X
+	//! Direction" of this cone.
+	//! Warning
+	//! If the V isoparametric circle is close to the apex of
+	//! this cone, the radius of the circle becomes very small.
+	//! It is possible to have a circle with radius equal to 0.0.
+	XGeom_Curve^ XGeom_ConicalSurface::VIso(Standard_Real V) {
+		return gcnew XGeom_Curve(NativeHandle()->VIso(V));
+	};
+
+
+	//! Computes the  point P (U, V) on the surface.
+	//! P (U, V) = Loc +
+	//! (RefRadius + V * sin (Semi-Angle)) * (cos (U) * XDir + sin (U) * YDir) +
+	//! V * cos (Semi-Angle) * ZDir
+	//! where Loc is the origin of the placement plane (XAxis, YAxis)
+	//! XDir is the direction of the XAxis and YDir the direction of
+	//! the YAxis.
+	void XGeom_ConicalSurface::D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, V, *P->GetPnt());
+	};
+
+
+	//! Computes the current point and the first derivatives in the
+	//! directions U and V.
+	void XGeom_ConicalSurface::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
+		NativeHandle()->D1(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec());
+	};
+
+
+	//! Computes the current point, the first and the second derivatives
+	//! in the directions U and V.
+	void XGeom_ConicalSurface::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
+		NativeHandle()->D2(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec());
+	};
+
+
+	//! Computes the current point, the first,the second and the third
+	//! derivatives in the directions U and V.
+	void XGeom_ConicalSurface::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
+		NativeHandle()->D3(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec(), *D3U->GetVec(), *D3V->GetVec(), *D3UUV->GetVec(), *D3UVV->GetVec());
+	};
+
+	//! Computes the derivative of order Nu in the u
+	//! parametric direction, and Nv in the v parametric
+	//! direction at the point of parameters (U, V) of this cone.
+	//! Exceptions
+	//! Standard_RangeError if:
+	//! - Nu + Nv is less than 1,
+	//! - Nu or Nv is negative.
+	xgp_Vec^ XGeom_ConicalSurface::DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) {
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		return gcnew xgp_Vec(temp);
+	};
+
+	//! Applies the transformation T to this cone.
+	void XGeom_ConicalSurface::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this cone.
+	XGeom_Geometry^ XGeom_ConicalSurface::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-//=======================================================================
-//function : Geom_ConicalSurface
-//purpose  : 
-//=======================================================================
-
-Geom_ConicalSurface::Geom_ConicalSurface ( const Ax3& A3 , 
-					   const Standard_Real Ang, 
-					   const Standard_Real R) :
-       radius(R), semiAngle (Ang) 
-{
-
-  if (R < 0.0 || Abs(Ang) <= gp::Resolution() || Abs(Ang) >= M_PI/2.0 - gp::Resolution()) 
-    throw Standard_ConstructionError();
-  
-  pos = A3;
-}
-
-
-//=======================================================================
-//function : Geom_ConicalSurface
-//purpose  : 
-//=======================================================================
-
-Geom_ConicalSurface::Geom_ConicalSurface ( const gp_Cone& C ) 
-: radius (C.RefRadius()), semiAngle (C.SemiAngle()) 
-{
-   pos = C.Position();
-}
-
-
-//=======================================================================
-//function : UReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_ConicalSurface::UReversedParameter( const Standard_Real U) const
-{
-  return ( 2.*M_PI - U);
-}
-
-
-//=======================================================================
-//function : VReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_ConicalSurface::VReversedParameter( const Standard_Real V) const
-{
-  return ( -V);
-}
-
-//=======================================================================
-//function : VReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::VReverse()
-{
-  semiAngle = -semiAngle;
-  pos.ZReverse();
-}
-
-//=======================================================================
-//function : RefRadius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_ConicalSurface::RefRadius () const               
-{ return radius; }
-
-//=======================================================================
-//function : SemiAngle
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_ConicalSurface::SemiAngle () const               
-{ return semiAngle;}
-
-//=======================================================================
-//function : IsUClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ConicalSurface::IsUClosed () const            
-{ return Standard_True; }
-
-//=======================================================================
-//function : IsVClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ConicalSurface::IsVClosed () const            
-{ return Standard_False; }
-
-//=======================================================================
-//function : IsUPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ConicalSurface::IsUPeriodic () const          
-{ return Standard_True; }
-
-//=======================================================================
-//function : IsVPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_ConicalSurface::IsVPeriodic () const          
-{ return Standard_False; }
-
-//=======================================================================
-//function : Cone
-//purpose  : 
-//=======================================================================
-
-gp_Cone Geom_ConicalSurface::Cone () const {
-
-  return gp_Cone (pos, semiAngle, radius);
-}
-
-
-//=======================================================================
-//function : SetCone
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::SetCone (const gp_Cone& C) {
-
-  radius = C.RefRadius ();
-  semiAngle   = C.SemiAngle ();
-  pos    = C.Position  ();
-}
-
-
-//=======================================================================
-//function : SetRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::SetRadius (const Standard_Real R) {
-
-  if (R < 0.0)  throw Standard_ConstructionError();
-  radius = R;
-}
-
-
-//=======================================================================
-//function : SetSemiAngle
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::SetSemiAngle (const Standard_Real Ang) {
-
-  if (Abs(Ang) <= gp::Resolution() || Abs(Ang) >= M_PI/2.0 - gp::Resolution()) {
-    throw Standard_ConstructionError();
-  }
-  semiAngle = Ang;
-}
-
-
-//=======================================================================
-//function : Apex
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_ConicalSurface::Apex () const 
-{
-
-   XYZ Coord = Position().Direction().XYZ();
-   Coord.Multiply (-radius / Tan (semiAngle));
-   Coord.Add      (Position().Location().XYZ());
-   return Pnt     (Coord);
-}
-
-
-//=======================================================================
-//function : Bounds
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::Bounds (Standard_Real& U1, Standard_Real& U2, 
-				  Standard_Real& V1, Standard_Real& V2) const {
-
-   U1 = 0.0;  U2 = 2.0 * M_PI;  
-   V1 = -Precision::Infinite();  V2 = Precision::Infinite();
-}
-
-
-//=======================================================================
-//function : Coefficients
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::Coefficients (Standard_Real& A1, Standard_Real& A2, Standard_Real& A3,
-					Standard_Real& B1, Standard_Real& B2, Standard_Real& B3,
-					Standard_Real& C1, Standard_Real& C2, Standard_Real& C3, 
-					Standard_Real& D)  const 
-{
-   // Dans le repere du cone :
-   // X**2 + Y**2 - (Myradius - Z * Tan(semiAngle))**2 = 0.0
-
-      Trsf T;
-      T.SetTransformation (pos);
-      Standard_Real KAng = Tan (semiAngle);
-      Standard_Real T11 = T.Value (1, 1);
-      Standard_Real T12 = T.Value (1, 2);
-      Standard_Real T13 = T.Value (1, 3);
-      Standard_Real T14 = T.Value (1, 4);
-      Standard_Real T21 = T.Value (2, 1);
-      Standard_Real T22 = T.Value (2, 2);
-      Standard_Real T23 = T.Value (2, 3);
-      Standard_Real T24 = T.Value (2, 4);
-      Standard_Real T31 = T.Value (3, 1) * KAng;
-      Standard_Real T32 = T.Value (3, 2) * KAng;
-      Standard_Real T33 = T.Value (3, 3) * KAng;
-      Standard_Real T34 = T.Value (3, 4) * KAng;
-      A1 = T11 * T11 + T21 * T21 - T31 * T31;
-      A2 = T12 * T12 + T22 * T22 - T32 * T32;
-      A3 = T13 * T13 + T23 * T23 - T33 * T33;
-      B1 = T11 * T12 + T21 * T22 - T31 * T32;
-      B2 = T11 * T13 + T21 * T23 - T31 * T33;
-      B3 = T12 * T13 + T22 * T23 - T32 * T33;
-      C1 = T11 * T14 + T21 * T24 + radius * T31;
-      C2 = T12 * T14 + T22 * T24 + radius * T32;
-      C3 = T13 * T14 + T23 * T24 + radius * T33;
-      D = T14 * T14 + T24 * T24 - radius * radius - T34 * T34 +
-          2.0 * radius * T34;  
-}
-
-
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::D0 (const Standard_Real U, const Standard_Real V, Pnt& P) const 
-{
-
-  P = ElSLib::ConeValue (U, V, pos, radius, semiAngle);
-}
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::D1 (const Standard_Real U  , const Standard_Real V, 
-			            Pnt& P  , 
-			            Vec& D1U, Vec& D1V     ) const 
-{
-  ElSLib::ConeD1 (U, V, pos, radius, semiAngle, P, D1U, D1V);
-}
-
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::D2 ( const Standard_Real U  , const Standard_Real V, 
-                                     Pnt& P  ,  
-			             Vec& D1U, Vec& D1V, 
-			             Vec& D2U, Vec& D2V, Vec& D2UV) const 
-{
-  ElSLib::ConeD2 (U, V, pos, radius, semiAngle, P, D1U, D1V, 
-		  D2U, D2V, D2UV);
-}
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::D3 (const Standard_Real U, const Standard_Real V, 
-			      Pnt& P      , 
-			      Vec& D1U    , Vec& D1V,
-			      Vec& D2U    , Vec& D2V, Vec& D2UV,
-			      Vec& D3U    , Vec& D3V, Vec& D3UUV, Vec& D3UVV
-			      ) const
-{
-  ElSLib::ConeD3 (U, V, pos, radius, semiAngle, P, D1U, D1V, D2U, D2V,
-		  D2UV, D3U, D3V, D3UUV, D3UVV);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_ConicalSurface::DN (const Standard_Real    U , const Standard_Real     V, 
-			     const Standard_Integer Nu, const Standard_Integer Nv ) const
-{
-  Standard_RangeError_Raise_if (Nu + Nv < 1 || Nu < 0 || Nv < 0, " ");
-  if (Nv > 1) { return Vec (0.0, 0.0, 0.0); }
-  else {
-    return ElSLib::ConeDN (U, V, pos, radius, semiAngle, Nu, Nv);
-  }
-}
-
-
-//=======================================================================
-//function : UIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_ConicalSurface::UIso (const Standard_Real U) const 
-{
-  Handle(Geom_Line) 
-    GL = new Geom_Line(ElSLib::ConeUIso(pos,radius,semiAngle,U));
-  return GL;
-}
-
-
-//=======================================================================
-//function : VIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_ConicalSurface::VIso (const Standard_Real V) const 
-{
-  Handle(Geom_Circle) 
-    GC = new Geom_Circle(ElSLib::ConeVIso(pos,radius,semiAngle,V));
-  return GC;
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::Transform (const Trsf& T) 
-{
-  radius = radius * Abs(T.ScaleFactor());
-  pos.Transform (T);
-}
-
-//=======================================================================
-//function : TransformParameters
-//purpose  : 
-//=======================================================================
-
-void Geom_ConicalSurface::TransformParameters(Standard_Real& ,
-					      Standard_Real& V,
-					      const gp_Trsf& T) 
-const
-{
-  if (!Precision::IsInfinite(V)) V *= Abs(T.ScaleFactor());
-}
-
-//=======================================================================
-//function : ParametricTransformation
-//purpose  : 
-//=======================================================================
-
-gp_GTrsf2d Geom_ConicalSurface::ParametricTransformation(const gp_Trsf& T)
-const
-{
-  gp_GTrsf2d T2;
-  gp_Ax2d Axis(gp::Origin2d(),gp::DX2d());
-  T2.SetAffinity(Axis, Abs(T.ScaleFactor()));
-  return T2;
-}
-

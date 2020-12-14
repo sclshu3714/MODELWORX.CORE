@@ -1,90 +1,86 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeConicalSurface.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
 
+	XGC_MakeConicalSurface::XGC_MakeConicalSurface(GC_MakeConicalSurface* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-#include <GC_MakeConicalSurface.hxx>
-#include <gce_MakeCone.hxx>
-#include <Geom_ConicalSurface.hxx>
-#include <gp.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <StdFail_NotDone.hxx>
+	void XGC_MakeConicalSurface::SetMakeConicalSurfaceHandle(GC_MakeConicalSurface* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeConicalSurface::GC_MakeConicalSurface(const gp_Ax2&       A2    ,
-					       const Standard_Real Ang   ,
-					       const Standard_Real Radius)
-{
-  if (Radius < 0.) { TheError = gce_NegativeRadius; }
-  else if (Ang <= gp::Resolution() || Ang >= M_PI/2. - gp::Resolution()) {
-    TheError = gce_BadAngle;
-  }
-  else {
-    TheError = gce_Done;
-    TheCone = new Geom_ConicalSurface(A2,Ang,Radius);
-  }
-}
+	GC_MakeConicalSurface* XGC_MakeConicalSurface::GetMakeConicalSurface() {
+		return NativeHandle;
+	};
 
-GC_MakeConicalSurface::GC_MakeConicalSurface(const gp_Cone& C)
-{
-  TheError = gce_Done;
-  TheCone = new Geom_ConicalSurface(C);
-}
+	//! A2 defines the local coordinate system of the conical surface.
+	//! Ang is the conical surface semi-angle ]0, PI/2[.
+	//! Radius is the radius of the circle Viso in the placement plane
+	//! of the conical surface defined with "XAxis" and "YAxis".
+	//! The "ZDirection" of A2 defines the direction of the surface's
+	//! axis of symmetry.
+	//! If the location point of A2 is the apex of the surface
+	//! Radius = 0 .
+	//! At the creation the parametrization of the surface is defined
+	//! such that the normal Vector (N = D1U ^ D1V) is oriented towards
+	//! the "outside region" of the surface.
+	//! Status is "NegativeRadius" if Radius < 0.0 or "BadAngle" if
+	//! Ang < Resolution from gp or Ang >= PI/ - Resolution
+	XGC_MakeConicalSurface::XGC_MakeConicalSurface(xgp_Ax2^ A2, Standard_Real Ang, Standard_Real Radius) {
+		NativeHandle = new GC_MakeConicalSurface(*A2->GetAx2(), Ang, Radius);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation of a cone by four points.                                +
-//   two first give the axis.                                     +
-//   the third gives the base radius.                              +
-//   the third and the fourth the half-angle.                          +
-//=========================================================================
+	//! Creates a ConicalSurface from a non persistent Cone from package gp.
+	XGC_MakeConicalSurface::XGC_MakeConicalSurface(xgp_Cone^ C) {
+		NativeHandle = new GC_MakeConicalSurface(*C->GetCone());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeConicalSurface::GC_MakeConicalSurface(const gp_Pnt& P1 ,
-					       const gp_Pnt& P2 ,
-					       const gp_Pnt& P3 ,
-					       const gp_Pnt& P4 ) 
-{
-  gce_MakeCone C = gce_MakeCone(P1,P2,P3,P4);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCone = new Geom_ConicalSurface(C.Value());
-  }
-}
+	//! Make a ConicalSurface from Geom <TheCone> passing through 3
+	//! Pnt <P1>,<P2>,<P3>.
+	//! Its axis is <P1P2> and the radius of its base is
+	//! the distance between <P3> and <P1P2>.
+	//! The distance between <P4> and <P1P2> is the radius of
+	//! the section passing through <P4>.
+	//! An error iss raised if <P1>,<P2>,<P3>,<P4> are
+	//! colinear or if <P3P4> is perpendicular to <P1P2> or
+	//! <P3P4> is colinear to <P1P2>.
+	XGC_MakeConicalSurface::XGC_MakeConicalSurface(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3, xgp_Pnt^ P4) {
+		NativeHandle = new GC_MakeConicalSurface(*P1->GetPnt(), *P2->GetPnt(), *P3->GetPnt(), *P4->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
+	//! Make a ConicalSurface with two points and two radius.
+	//! The axis of the solution is the line passing through
+	//! <P1> and <P2>.
+	//! <R1> is the radius of the section passing through <P1>
+	//! and <R2> the radius of the section passing through <P2>.
+	XGC_MakeConicalSurface::XGC_MakeConicalSurface(xgp_Pnt^ P1, xgp_Pnt^ P2, Standard_Real R1, Standard_Real R2) {
+		NativeHandle = new GC_MakeConicalSurface(*P1->GetPnt(), *P2->GetPnt(), R1, R2);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//=========================================================================
+	//! Returns the constructed cone.
+	//! Exceptions
+	//! StdFail_NotDone if no cone is constructed.
+	XGeom_ConicalSurface^ XGC_MakeConicalSurface::Value() {
+		return gcnew XGeom_ConicalSurface(NativeHandle->Value());
+	};
 
-GC_MakeConicalSurface::GC_MakeConicalSurface(const gp_Pnt&       P1 ,
-					       const gp_Pnt&       P2 ,
-					       const Standard_Real R1 ,
-					       const Standard_Real R2 ) 
-{
-  gce_MakeCone C = gce_MakeCone(P1,P2,R1,R2);
-  TheError = C.Status();
-  if (TheError == gce_Done) {
-    TheCone = new Geom_ConicalSurface(C);
-  }
-}
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeConicalSurface::IsDone() {
+		return NativeHandle->IsDone();
+	};
 
-const Handle(Geom_ConicalSurface)& GC_MakeConicalSurface::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeConicalSurface::Value() - no result");
-  return TheCone;
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeConicalSurface::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

@@ -22,10 +22,10 @@
 #include <XGeom_TrimmedCurve.h>
 #include <XGeom_Circle.h>
 #include <xgp_Circ.h>
-#include <xgp_Ax2.h >
-#include <xgp_Pnt.h >
-#include <xgp_Dir.h >
-#include <xgp_Ax1.h >
+#include <xgp_Ax2.h>
+#include <xgp_Pnt.h>
+#include <xgp_Dir.h>
+#include <xgp_Ax1.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>

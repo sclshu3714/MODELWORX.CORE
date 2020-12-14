@@ -101,6 +101,22 @@
 本地句柄
 </summary>
         </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.GetConicalSurface">
+            <summary />
+            <returns />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.SetConicalSurfaceHandle(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
+            <summary />
+            <param name="handle" />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
+            <summary />
+            <param name="pos" />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor">
+            <summary />
+            <param name="" />
+        </member>
         <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">
             <summary>
 指针映射点
