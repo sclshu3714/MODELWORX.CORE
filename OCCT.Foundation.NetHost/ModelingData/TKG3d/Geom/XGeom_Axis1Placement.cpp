@@ -1,85 +1,85 @@
-// Created on: 1993-03-09
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_Axis1Placement.h>
+namespace TKG3d {
+	//! 
+	XGeom_Axis1Placement::XGeom_Axis1Placement(void) {
+		/*NativeHandle() = new Geom_Axis1Placement();*/
+	};
+
+	//! 
+	XGeom_Axis1Placement::XGeom_Axis1Placement(Handle(Geom_Axis1Placement) pos) {
+		NativeHandle() = pos;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_Axis1Placement::~XGeom_Axis1Placement() {
+		NativeHandle() = NULL;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//! 
+	void XGeom_Axis1Placement::SetAxis1PlacementHandle(Handle(Geom_Axis1Placement) pos) {
+		NativeHandle() = pos;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_Axis1Placement) XGeom_Axis1Placement::GetAxis1Placement() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_AxisPlacement) XGeom_Axis1Placement::GetAxisPlacement() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Axis1Placement::XGeom_Axis1Placement::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Returns a transient copy of A1.
+	XGeom_Axis1Placement::XGeom_Axis1Placement(xgp_Ax1^ A1) {
+		NativeHandle() = new Geom_Axis1Placement(*A1->GetAx1());
+		SetAxisPlacementHandle(NativeHandle());
+	};
 
 
-#include <Geom_Axis1Placement.hxx>
-#include <Geom_Geometry.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_Type.hxx>
+	//! P is the origin of the axis placement and V is the direction
+	//! of the axis placement.
+	XGeom_Axis1Placement::XGeom_Axis1Placement(xgp_Pnt^ P, xgp_Dir^ V) {
+		NativeHandle() = new Geom_Axis1Placement(*P->GetPnt(), *V->GetDir());
+		SetAxisPlacementHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Axis1Placement,Geom_AxisPlacement)
+	//! Returns a non transient copy of <me>.
+	xgp_Ax1^ XGeom_Axis1Placement::Ax1() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Ax1());
+		return gcnew xgp_Ax1(temp);
+	};
 
-typedef Geom_Axis1Placement         Axis1Placement;
-typedef gp_Ax2  Ax2;
-typedef gp_Dir  Dir;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
+	//! Reverses the direction of the axis placement.
+	void XGeom_Axis1Placement::Reverse() {
+		NativeHandle()->Reverse();
+	};
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
+	//! Returns a copy of <me> reversed.
+	XGeom_Axis1Placement^ XGeom_Axis1Placement::Reversed() {
+		return gcnew XGeom_Axis1Placement(NativeHandle()->Reversed());
+	};
 
-Handle(Geom_Geometry) Geom_Axis1Placement::Copy() const {
+	//! Assigns V to the unit vector of this axis.
+	void XGeom_Axis1Placement::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(*V->GetDir());
+	};
 
-  Handle(Geom_Axis1Placement) A1;
-  A1 = new Axis1Placement (axis);
-  return A1;
+	//! Applies the transformation T to this axis.
+	void XGeom_Axis1Placement::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Creates a new object, which is a copy of this axis.
+	XGeom_Geometry^ XGeom_Axis1Placement::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-
-
-
-
-//=======================================================================
-//function : Geom_Axis1Placement
-//purpose  : 
-//=======================================================================
-
-Geom_Axis1Placement::Geom_Axis1Placement (const gp_Ax1& A1) 
-{
- axis = A1;
-}
-
- 
-Geom_Axis1Placement::Geom_Axis1Placement (const Pnt& P, const Dir& V) {
-
- axis = gp_Ax1 (P, V);
-}
-
-
-
-void Geom_Axis1Placement::SetDirection (const Dir& V) {axis.SetDirection (V);}
-
-const gp_Ax1& Geom_Axis1Placement::Ax1 () const { return Axis(); }
-
-void Geom_Axis1Placement::Reverse()  { axis.Reverse(); }
-
-void Geom_Axis1Placement::Transform (const Trsf& T) { axis.Transform (T); }
-
-Handle(Geom_Axis1Placement) Geom_Axis1Placement::Reversed() const {
-
-   gp_Ax1 A1 = axis;
-   A1.Reverse();
-   Handle (Axis1Placement) Temp = new Axis1Placement (A1);
-   return Temp;
-}
-
-

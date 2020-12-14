@@ -1362,6 +1362,12 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Axis1Placement.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Axis2Placement.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1897,6 +1903,12 @@
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Axis1Placement.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Axis2Placement.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>

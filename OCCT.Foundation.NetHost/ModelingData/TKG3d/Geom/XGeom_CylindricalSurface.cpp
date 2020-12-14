@@ -2,7 +2,7 @@
 namespace TKG3d {
 
 	/// <summary>
-	/// 
+	/// 构型
 	/// </summary>
 	/// <param name=""></param>
 	XGeom_CylindricalSurface::XGeom_CylindricalSurface(void) {
@@ -10,7 +10,7 @@ namespace TKG3d {
 	};
 
 	/// <summary>
-	/// 
+	/// 构型
 	/// </summary>
 	/// <param name="pos"></param>
 	XGeom_CylindricalSurface::XGeom_CylindricalSurface(Handle(Geom_CylindricalSurface) pos) {

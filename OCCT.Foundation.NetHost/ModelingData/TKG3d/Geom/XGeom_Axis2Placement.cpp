@@ -1,192 +1,132 @@
-// Created on: 1993-03-09
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_Axis2Placement.h>
+namespace TKG3d {
+	//! 
+	XGeom_Axis2Placement::XGeom_Axis2Placement(void) {
+		//NativeHandle() = new Geom_Axis2Placement();
+	};
+
+	//! 
+	XGeom_Axis2Placement::XGeom_Axis2Placement(Handle(Geom_Axis2Placement) pos) {
+		NativeHandle() = pos;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_Axis2Placement::~XGeom_Axis2Placement() {
+		NativeHandle() = NULL;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//! 
+	void XGeom_Axis2Placement::SetAxis2PlacementHandle(Handle(Geom_Axis2Placement) pos) {
+		NativeHandle() = pos;
+		SetAxisPlacementHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_Axis2Placement) XGeom_Axis2Placement::GetAxis2Placement() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_AxisPlacement) XGeom_Axis2Placement::GetAxisPlacement() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Axis2Placement::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Returns a transient copy of A2.
+	XGeom_Axis2Placement::XGeom_Axis2Placement(xgp_Ax2^ A2) {
+		NativeHandle() = new Geom_Axis2Placement(*A2->GetAx2());
+		SetAxisPlacementHandle(NativeHandle());
+	};
 
 
-#include <Geom_Axis2Placement.hxx>
-#include <Geom_Geometry.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_Type.hxx>
+	//! P is the origin of the axis placement, N is the main
+	//! direction of the axis placement and Vx is the "XDirection".
+	//! If the two directions N and Vx are not orthogonal the
+	//! "XDirection" is computed as follow :
+	//! XDirection = N ^ (Vx ^ N).
+	//! Raised if N and Vx are parallel.
+	XGeom_Axis2Placement::XGeom_Axis2Placement(xgp_Pnt^ P, xgp_Dir^ N, xgp_Dir^ Vx) {
+		NativeHandle() = new Geom_Axis2Placement(*P->GetPnt(), *N->GetDir(), *Vx->GetDir());
+		SetAxisPlacementHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Axis2Placement,Geom_AxisPlacement)
-
-typedef Geom_Axis2Placement Axis2Placement;
-typedef gp_Ax1  Ax1;
-typedef gp_Dir  Dir;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
+	//! Assigns the origin and the three unit vectors of A2 to
+	//! this coordinate system.
+	void XGeom_Axis2Placement::SetAx2(xgp_Ax2^ A2) {
+		NativeHandle()->SetAx2(*A2->GetAx2());
+	};
 
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
+	//! Changes the main direction of the axis placement.
+	//! The "Xdirection" is modified :
+	//! New XDirection = V ^ (Previous_Xdirection ^ V).
+	//!
+	//! Raised if V and the previous "XDirection" are parallel
+	//! because it is impossible to calculate the new "XDirection"
+	//! and the new "YDirection".
+	void XGeom_Axis2Placement::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(*V->GetDir());
+	};
 
-Handle(Geom_Geometry) Geom_Axis2Placement::Copy() const {
 
-  Handle(Geom_Axis2Placement) A2;
-  A2 = new Axis2Placement (axis.Location(), axis.Direction(), vxdir, vydir);
-  return A2;
+	//! Changes the "XDirection" of the axis placement, Vx is the
+	//! new "XDirection". If Vx is not normal to the main direction
+	//! then "XDirection" is computed as follow :
+	//! XDirection = Direction ^ ( Vx ^ Direction).
+	//! The main direction is not modified.
+	//! Raised if Vx and "Direction"  are parallel.
+	void XGeom_Axis2Placement::SetXDirection(xgp_Dir^ Vx) {
+		NativeHandle()->SetXDirection(*Vx->GetDir());
+	};
+
+
+	//! Changes the "YDirection" of the axis placement, Vy is the
+	//! new "YDirection". If Vy is not normal to the main direction
+	//! then "YDirection" is computed as follow :
+	//! YDirection = Direction ^ ( Vy ^ Direction).
+	//! The main direction is not modified. The "XDirection" is
+	//! modified.
+	//! Raised if Vy and the main direction are parallel.
+	void XGeom_Axis2Placement::SetYDirection(xgp_Dir^ Vy) {
+		NativeHandle()->SetYDirection(*Vy->GetDir());
+	};
+
+	//! Returns a non transient copy of <me>.
+	xgp_Ax2^ XGeom_Axis2Placement::Ax2() {
+		gp_Ax2* temp = new gp_Ax2(NativeHandle()->Ax2());
+		return gcnew xgp_Ax2(temp);
+	};
+
+	//! Returns the "XDirection". This is a unit vector.
+	xgp_Dir^ XGeom_Axis2Placement::XDirection() {
+		gp_Dir* temp = new gp_Dir(NativeHandle()->XDirection());
+		return gcnew xgp_Dir(temp);
+	};
+
+	//! Returns the "YDirection". This is a unit vector.
+	xgp_Dir^ XGeom_Axis2Placement::YDirection() {
+		gp_Dir* temp = new gp_Dir(NativeHandle()->YDirection());
+		return gcnew xgp_Dir(temp);
+	};
+
+
+	//! Transforms an axis placement with a Trsf.
+	//! The "Location" point, the "XDirection" and the
+	//! "YDirection" are transformed with T.  The resulting
+	//! main "Direction" of <me> is the cross product between
+	//! the "XDirection" and the "YDirection" after transformation.
+	void XGeom_Axis2Placement::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this coordinate system.
+	XGeom_Geometry^ XGeom_Axis2Placement::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-
-//=======================================================================
-//function : Geom_Axis2Placement
-//purpose  : 
-//=======================================================================
-
-Geom_Axis2Placement::Geom_Axis2Placement (const gp_Ax2& A2) {
-
-   vxdir = A2. XDirection();
-   vydir = A2. YDirection();
-   axis  = A2.Axis();
-}
-
-
-//=======================================================================
-//function : Geom_Axis2Placement
-//purpose  : 
-//=======================================================================
-
-Geom_Axis2Placement::Geom_Axis2Placement (
-
-const gp_Pnt& P,
-const gp_Dir& N,
-const gp_Dir& Vx) {
-
-  axis = gp_Ax1 (P, N);
-  vxdir = N.CrossCrossed (Vx, N);
-  vydir = N.Crossed (vxdir);
-}
-
-
-//=======================================================================
-//function : Geom_Axis2Placement
-//purpose  : 
-//=======================================================================
-
-Geom_Axis2Placement::Geom_Axis2Placement (
-
-const gp_Pnt& P,
-const gp_Dir& Vz,
-const gp_Dir& Vx,
-const gp_Dir& Vy
-
-) : vxdir (Vx), vydir (Vy) {
-
-  axis.SetLocation (P);
-  axis.SetDirection (Vz);
-}
-
-
-//=======================================================================
-//function : XDirection
-//purpose  : 
-//=======================================================================
-
-const gp_Dir& Geom_Axis2Placement::XDirection () const { return vxdir; }
-
-
-//=======================================================================
-//function : YDirection
-//purpose  : 
-//=======================================================================
-
-const gp_Dir& Geom_Axis2Placement::YDirection () const {  return vydir; }
-
-
-//=======================================================================
-//function : SetAx2
-//purpose  : 
-//=======================================================================
-
-void Geom_Axis2Placement::SetAx2 (const gp_Ax2& A2) {
-
-   vxdir = A2.XDirection();
-   vydir = A2.YDirection();
-   axis  = A2.Axis();
-}
-
-
-//=======================================================================
-//function : SetDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_Axis2Placement::SetDirection (const gp_Dir& V) {
-
-   axis.SetDirection (V);
-   vxdir = V.CrossCrossed (vxdir, V);
-   vydir = V.Crossed (vxdir);
-}
-
-
-//=======================================================================
-//function : SetXDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_Axis2Placement::SetXDirection (const gp_Dir& Vx) { 
-
-  vxdir = axis.Direction().CrossCrossed (Vx, axis.Direction());
-  vydir = axis.Direction().Crossed      (vxdir);
-}
-
-
-
-//=======================================================================
-//function : SetYDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_Axis2Placement::SetYDirection (const gp_Dir& Vy) {
-
-  vxdir = Vy.Crossed (axis.Direction());
-  vydir = (axis.Direction()).Crossed (vxdir);
-}
-
-
-//=======================================================================
-//function : Ax2
-//purpose  : 
-//=======================================================================
-
-gp_Ax2 Geom_Axis2Placement::Ax2 () const {
-
-  return gp_Ax2 (axis.Location(), axis.Direction(), vxdir);
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_Axis2Placement::Transform (const gp_Trsf& T) {
-
-  //axis.Location().Transform (T);
-  axis.SetLocation(axis.Location().Transformed(T)); // 10-03-93
-  vxdir.Transform (T);
-  vydir.Transform (T);
-  axis.SetDirection (vxdir.Crossed (vydir));
-}
-
-
-
