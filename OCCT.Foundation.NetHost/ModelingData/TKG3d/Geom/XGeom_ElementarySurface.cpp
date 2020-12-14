@@ -9,18 +9,18 @@ namespace TKG3d {
 	//! 
 	XGeom_ElementarySurface::XGeom_ElementarySurface(Handle(Geom_ElementarySurface) pos) {
 		NativeHandle() = pos;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	//!
 	XGeom_ElementarySurface::~XGeom_ElementarySurface() {
 		NativeHandle() = NULL;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	void XGeom_ElementarySurface::SetElementarySurfaceHandle(Handle(Geom_ElementarySurface) handle) {
 		NativeHandle() = handle;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	//! 

@@ -24,12 +24,12 @@ namespace TKG3d {
 
 	XGeom_Point::XGeom_Point(Handle(Geom_Point) pos) {
 		NativeHandle() = pos;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	void XGeom_Point::SetNativeHandle(Handle(Geom_Point) pos) {
 		NativeHandle() = pos; 
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	Handle(Geom_Point) XGeom_Point::GetPoint() {

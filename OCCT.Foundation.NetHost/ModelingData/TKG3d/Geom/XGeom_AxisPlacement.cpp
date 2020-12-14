@@ -1,48 +1,97 @@
-// Created on: 1993-03-09
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include "XGeom_AxisPlacement.h"
+
+namespace TKG3d {
+	//! 
+	XGeom_AxisPlacement::XGeom_AxisPlacement(void) {
+		//NativeHandle() = new Geom_AxisPlacement();
+	};
+
+	//! 
+	XGeom_AxisPlacement::XGeom_AxisPlacement(Handle(Geom_AxisPlacement) pos) {
+		NativeHandle() = pos;
+		SetGeometryHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_AxisPlacement::~XGeom_AxisPlacement() {
+		NativeHandle() = NULL;
+		SetGeometryHandle(NativeHandle());
+	};
+
+	//! 
+	void XGeom_AxisPlacement::SetAxisPlacementHandle(Handle(Geom_AxisPlacement) pos) {
+		NativeHandle() = pos;
+		SetGeometryHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_AxisPlacement) XGeom_AxisPlacement::GetAxisPlacement() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_AxisPlacement::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Assigns A1 as the "main Axis" of this positioning system. This modifies
+	//! - its origin, and
+	//! - its "main Direction".
+	//! If this positioning system is a
+	//! Geom_Axis2Placement, then its "X Direction" and
+	//! "Y Direction" are recomputed.
+	//! Exceptions
+	//! For a Geom_Axis2Placement:
+	//! Standard_ConstructionError if A1 and the
+	//! previous "X Direction" of the coordinate system are parallel.
+	void XGeom_AxisPlacement::SetAxis(xgp_Ax1^ A1) {
+		NativeHandle()->SetAxis(*A1->GetAx1());
+	};
 
 
-#include <Geom_AxisPlacement.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_AxisPlacement,Geom_Geometry)
-
-typedef gp_Ax1 Ax1;
-typedef gp_Dir Dir;
-typedef gp_Pnt Pnt;
-typedef gp_Vec Vec;
+	//! Changes the direction of the axis placement.
+	//! If <me> is an axis placement two axis the main "Direction"
+	//! is modified and the "XDirection" and "YDirection" are
+	//! recomputed.
+	//! Raises ConstructionError only for an axis placement two axis if V and the
+	//! previous "XDirection" are parallel because it is not possible
+	//! to calculate the new "XDirection" and the new "YDirection".
+	void XGeom_AxisPlacement::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(*V->GetDir());
+	};
 
 
+	//! Assigns the point P as the origin of this positioning  system.
+	void XGeom_AxisPlacement::SetLocation(xgp_Pnt^ P) {
+		NativeHandle()->SetLocation(*P->GetPnt());
+	};
 
-const gp_Ax1& Geom_AxisPlacement::Axis () const { return axis; }
+	//! Computes the angular value, in radians, between the
+	//! "main Direction" of this positioning system and that
+	//! of positioning system Other. The result is a value between 0 and Pi.
+	Standard_Real XGeom_AxisPlacement::Angle(XGeom_AxisPlacement^ Other) {
+		return NativeHandle()->Angle(Other->GetAxisPlacement());
+	};
 
-Dir Geom_AxisPlacement::Direction () const { return axis.Direction(); }
+	//! Returns the main axis of the axis placement.
+	//! For an "Axis2placement" it is the main axis (Location, Direction ).
+	//! For an "Axis1Placement" this method returns a copy of <me>.
+	xgp_Ax1^ XGeom_AxisPlacement::Axis() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Axis());
+		return gcnew xgp_Ax1(temp);
+	};
 
-Pnt Geom_AxisPlacement::Location () const  { return axis.Location(); }
 
-void Geom_AxisPlacement::SetAxis (const Ax1& A1) { axis = A1; }
+	//! Returns the main "Direction" of an axis placement.
+	xgp_Dir^ XGeom_AxisPlacement::Direction() {
+		gp_Dir* temp = new gp_Dir(NativeHandle()->Direction());
+		return gcnew xgp_Dir(temp);
+	};
 
-void Geom_AxisPlacement::SetLocation (const Pnt& P) {axis.SetLocation (P);}
 
-Standard_Real Geom_AxisPlacement::Angle (const Handle(Geom_AxisPlacement)& Other) const {
- return axis.Angle (Other->Axis());
+	//! Returns the Location point (origin) of the axis placement.
+	xgp_Pnt^ XGeom_AxisPlacement::Location() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Location());
+		return gcnew xgp_Pnt(temp);
+	};
 }
-
-

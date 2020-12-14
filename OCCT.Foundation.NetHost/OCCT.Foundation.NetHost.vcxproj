@@ -368,6 +368,7 @@
     <ClInclude Include="ModelingData\TKBRep\TopTools\XTopTools_ListOfShape.h" />
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.h" />
     <ClInclude Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
@@ -635,6 +636,7 @@
     <ClCompile Include="ModelingData\TKBRep\TopoDS\XTopoDS_Wire.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Curve.cpp" />
     <ClCompile Include="ModelingData\TKG2d\Geom2d\XGeom2d_Geometry.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />

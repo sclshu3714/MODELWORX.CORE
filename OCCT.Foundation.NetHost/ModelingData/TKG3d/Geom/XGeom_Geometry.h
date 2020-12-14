@@ -68,7 +68,7 @@ namespace TKG3d
 		~XGeom_Geometry();
 
 		//! 
-		void SetGeomHandle(Handle(Geom_Geometry) pos);
+		void SetGeometryHandle(Handle(Geom_Geometry) pos);
 
 		//!
 		virtual Handle(Geom_Geometry) GetGeometry();

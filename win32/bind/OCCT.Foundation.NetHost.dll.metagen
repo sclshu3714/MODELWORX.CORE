@@ -4566,7 +4566,7 @@ Class TKG3d.XGeom_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    SetGeomHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
+    SetGeometryHandle(handle<Geom_Geometry>*): PrivateScope, Public, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Mirror(xgp_Ax2): PrivateScope, Public, HideBySig
     Mirror(xgp_Ax1): PrivateScope, Public, HideBySig
@@ -6249,6 +6249,32 @@ Class TKBRep.XTopoDS: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Solid(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
     CompSolid(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
     Compound(XTopoDS_Shape): PrivateScope, Public, Static, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_AxisPlacement> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_AxisPlacement: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_AxisPlacement>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetAxisPlacementHandle(handle<Geom_AxisPlacement>*): PrivateScope, Public, HideBySig
+    GetAxisPlacement(handle<Geom_AxisPlacement>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    SetAxis(xgp_Ax1): PrivateScope, Public, HideBySig
+    SetDirection(xgp_Dir): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
+    Angle(XGeom_AxisPlacement): PrivateScope, Public, HideBySig
+    Axis(): PrivateScope, Public, HideBySig
+    Direction(): PrivateScope, Public, HideBySig
+    Location(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_BoundedCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

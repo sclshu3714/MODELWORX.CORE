@@ -26,18 +26,18 @@ namespace TKG3d {
 	//! 
 	XGeom_Curve::XGeom_Curve(Handle(Geom_Curve) pos) {
 		NativeHandle() = pos;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	//!
 	XGeom_Curve::~XGeom_Curve() {
 		NativeHandle() = NULL; 
-		SetGeomHandle(NULL);
+		SetGeometryHandle(NULL);
 	};
 
 	void XGeom_Curve::SetCurveHandle(Handle(Geom_Curve) pos) {
 		NativeHandle() = pos;
-		SetGeomHandle(NativeHandle());
+		SetGeometryHandle(NativeHandle());
 	};
 
 	Handle(Geom_Curve) XGeom_Curve::GetCurve() {
