@@ -85,11 +85,15 @@
             <param name="handle" />
         </member>
         <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
-            <summary />
+            <summary>
+构型
+</summary>
             <param name="pos" />
         </member>
         <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor">
-            <summary />
+            <summary>
+构型
+</summary>
             <param name="" />
         </member>
         <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">

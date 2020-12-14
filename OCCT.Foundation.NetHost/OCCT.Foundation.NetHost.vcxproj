@@ -371,6 +371,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Axis1Placement.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Axis2Placement.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BezierCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
@@ -641,6 +642,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Axis1Placement.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Axis2Placement.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_AxisPlacement.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BezierCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
