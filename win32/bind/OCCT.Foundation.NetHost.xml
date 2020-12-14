@@ -76,6 +76,22 @@
 </summary>
             <param name="pos" />
         </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.GetCylindricalSurface">
+            <summary />
+            <returns />
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.SetCylindricalSurfaceHandle(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
+            <summary />
+            <param name="handle" />
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
+            <summary />
+            <param name="pos" />
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor">
+            <summary />
+            <param name="" />
+        </member>
         <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">
             <summary>
 本地句柄
@@ -575,21 +591,6 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
-        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKV3d.XAIS_InteractiveObject.IHandle">
             <summary>
 本地句柄
@@ -639,6 +640,21 @@ The basis to define an integer attribute.
 指针映射点
 </summary>
             <param name="pos" />
+        </member>
+        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
+            <summary>
+本地句柄
+</summary>
         </member>
         <member name="P:TKLCAF.XTDF_IDFilter.Handle">
             <summary>

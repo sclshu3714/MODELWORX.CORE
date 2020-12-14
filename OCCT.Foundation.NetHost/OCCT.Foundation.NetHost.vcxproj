@@ -374,6 +374,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_ConicalSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Curve.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_CylindricalSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Direction.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_ElementarySurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.h" />
@@ -397,6 +398,7 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeConicalSurface.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCylindricalSurface.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
@@ -639,6 +641,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_ConicalSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Curve.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_CylindricalSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Direction.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_ElementarySurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Ellipse.cpp" />
@@ -657,6 +660,7 @@
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfParabola.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCircle.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeConicalSurface.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCylindricalSurface.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />
