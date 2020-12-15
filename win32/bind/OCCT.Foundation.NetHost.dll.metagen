@@ -6437,6 +6437,86 @@ Class TKG3d.XGeom_BoundedSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom_BezierSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_BezierSurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_BoundedSurface
+    Void .ctor(TKMath.xgp_Pnt[,], Double[,]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt[,]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_BezierSurface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetBezierSurfaceHandle(handle<Geom_BezierSurface>*): PrivateScope, Public, HideBySig
+    GetBezierSurface(handle<Geom_BezierSurface>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetBoundedSurface(handle<Geom_BoundedSurface>*): PrivateScope, Public, Virtual, HideBySig
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    ExchangeUV(): PrivateScope, Public, HideBySig
+    Increase(Int32, Int32): PrivateScope, Public, HideBySig
+    InsertPoleColAfter(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    InsertPoleColAfter(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    InsertPoleColBefore(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    InsertPoleColBefore(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    InsertPoleRowAfter(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    InsertPoleRowAfter(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    InsertPoleRowBefore(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    InsertPoleRowBefore(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    RemovePoleCol(Int32): PrivateScope, Public, HideBySig
+    RemovePoleRow(Int32): PrivateScope, Public, HideBySig
+    Segment(Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    SetPole(Int32, Int32, xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    SetPole(Int32, Int32, xgp_Pnt): PrivateScope, Public, HideBySig
+    SetPoleCol(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    SetPoleCol(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    SetPoleRow(Int32, xgp_Pnt[], Double[]): PrivateScope, Public, HideBySig
+    SetPoleRow(Int32, xgp_Pnt[]): PrivateScope, Public, HideBySig
+    SetWeight(Int32, Int32, Double): PrivateScope, Public, HideBySig
+    SetWeightCol(Int32, Double[]): PrivateScope, Public, HideBySig
+    SetWeightRow(Int32, Double[]): PrivateScope, Public, HideBySig
+    UReverse(): PrivateScope, Public, Virtual, HideBySig
+    UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    VReverse(): PrivateScope, Public, Virtual, HideBySig
+    VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    Bounds(Double&, Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
+    D0(Double, Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    NbUPoles(): PrivateScope, Public, HideBySig
+    NbVPoles(): PrivateScope, Public, HideBySig
+    Pole(Int32, Int32): PrivateScope, Public, HideBySig
+    Poles(): PrivateScope, Public, HideBySig
+    Poles(xgp_Pnt[,]): PrivateScope, Public, HideBySig
+    UDegree(): PrivateScope, Public, HideBySig
+    UIso(Double): PrivateScope, Public, Virtual, HideBySig
+    VDegree(): PrivateScope, Public, HideBySig
+    VIso(Double): PrivateScope, Public, Virtual, HideBySig
+    Weight(Int32, Int32): PrivateScope, Public, HideBySig
+    Weights(): PrivateScope, Public, HideBySig
+    Weights(Double[,]): PrivateScope, Public, HideBySig
+    IsUClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsVClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsCNu(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsCNv(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    IsVPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    IsURational(): PrivateScope, Public, HideBySig
+    IsVRational(): PrivateScope, Public, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    MaxDegree(): PrivateScope, Public, Static, HideBySig
+    Resolution(Double, Double&, Double&): PrivateScope, Public, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
