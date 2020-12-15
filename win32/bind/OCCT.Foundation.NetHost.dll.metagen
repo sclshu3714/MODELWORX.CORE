@@ -6517,6 +6517,107 @@ Class TKG3d.XGeom_BezierSurface: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom_BSplineCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_BSplineCurve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_BoundedCurve
+    Void .ctor(TKMath.xgp_Pnt[], Double[], Double[], Int32[], Int32, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt[], Double[], Int32[], Int32, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_BSplineCurve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetBSplineCurveHandle(handle<Geom_BSplineCurve>*): PrivateScope, Public, HideBySig
+    GetBSplineCurve(handle<Geom_BSplineCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetBoundedCurve(handle<Geom_BoundedCurve>*): PrivateScope, Public, Virtual, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    IncreaseDegree(Int32): PrivateScope, Public, HideBySig
+    IncreaseMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    IncreaseMultiplicity(Int32, Int32): PrivateScope, Public, HideBySig
+    IncrementMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    InsertKnot(Double, Int32, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    InsertKnots(Double[], Int32[], Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RemoveKnot(Int32, Int32, Double): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    Segment(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetKnot(Int32, Double, Int32): PrivateScope, Public, HideBySig
+    SetKnot(Int32, Double): PrivateScope, Public, HideBySig
+    SetKnots(Double[]): PrivateScope, Public, HideBySig
+    PeriodicNormalization(ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    SetPeriodic(): PrivateScope, Public, HideBySig
+    SetOrigin(Double, Double): PrivateScope, Public, HideBySig
+    SetOrigin(Int32): PrivateScope, Public, HideBySig
+    SetNotPeriodic(): PrivateScope, Public, HideBySig
+    SetPole(Int32, xgp_Pnt, Double): PrivateScope, Public, HideBySig
+    SetPole(Int32, xgp_Pnt): PrivateScope, Public, HideBySig
+    SetWeight(Int32, Double): PrivateScope, Public, HideBySig
+    MovePoint(Double, xgp_Pnt, Int32, Int32, Int32&, Int32&): PrivateScope, Public, HideBySig
+    MovePointAndTangent(Double, xgp_Pnt, xgp_Vec, Double, Int32, Int32, Int32&): PrivateScope, Public, HideBySig
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsG1(Double, Double, Double): PrivateScope, Public, HideBySig
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    IsRational(): PrivateScope, Public, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
+    Degree(): PrivateScope, Public, HideBySig
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig
+    LocalValue(Double, Int32, Int32): PrivateScope, Public, HideBySig
+    LocalD0(Double, Int32, Int32, xgp_Pnt): PrivateScope, Public, HideBySig
+    LocalD1(Double, Int32, Int32, xgp_Pnt, xgp_Vec): PrivateScope, Public, HideBySig
+    LocalD2(Double, Int32, Int32, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
+    LocalD3(Double, Int32, Int32, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, HideBySig
+    LocalDN(Double, Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    EndPoint(): PrivateScope, Public, Virtual, HideBySig
+    FirstUKnotIndex(): PrivateScope, Public, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig
+    Knot(Int32): PrivateScope, Public, HideBySig
+    Knots(): PrivateScope, Public, HideBySig
+    Knots(Double[]): PrivateScope, Public, HideBySig
+    KnotSequence(): PrivateScope, Public, HideBySig
+    KnotSequence(Double[]): PrivateScope, Public, HideBySig
+    KnotDistribution(): PrivateScope, Public, HideBySig
+    LastUKnotIndex(): PrivateScope, Public, HideBySig
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig
+    LocateU(Double, Double, ValueType Int32 IsBoxed, ValueType Int32 IsBoxed, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Multiplicity(Int32): PrivateScope, Public, HideBySig
+    Multiplicities(): PrivateScope, Public, HideBySig
+    Multiplicities(Int32[]): PrivateScope, Public, HideBySig
+    NbKnots(): PrivateScope, Public, HideBySig
+    NbPoles(): PrivateScope, Public, HideBySig
+    Pole(Int32): PrivateScope, Public, HideBySig
+    Poles(): PrivateScope, Public, HideBySig
+    Poles(xgp_Pnt[]): PrivateScope, Public, HideBySig
+    StartPoint(): PrivateScope, Public, Virtual, HideBySig
+    Weight(Int32): PrivateScope, Public, HideBySig
+    Weights(): PrivateScope, Public, HideBySig
+    Weights(Double[]): PrivateScope, Public, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    MaxDegree(): PrivateScope, Public, Static, HideBySig
+    Resolution(Double, ValueType Double IsBoxed): PrivateScope, Public, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    IsEqual(XGeom_BSplineCurve, Double): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Struct XGeomAbs_BSplKnotDistribution: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomAbs_BSplKnotDistribution GeomAbs_NonUniform = 0 : Public, Static, Literal, HasDefault
+    XGeomAbs_BSplKnotDistribution GeomAbs_Uniform = 1 : Public, Static, Literal, HasDefault
+    XGeomAbs_BSplKnotDistribution GeomAbs_QuasiUniform = 2 : Public, Static, Literal, HasDefault
+    XGeomAbs_BSplKnotDistribution GeomAbs_PiecewiseBezier = 3 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
