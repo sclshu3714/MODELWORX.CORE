@@ -1,390 +1,292 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-
-#include <ElCLib.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_Hyperbola.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Precision.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_DomainError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_Hyperbola,Geom_Conic)
-
-typedef Geom_Hyperbola         Hyperbola;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Pnt  Pnt;
-typedef gp_Vec  Vec;
-typedef gp_Trsf Trsf;
-typedef gp_XYZ  XYZ;
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_Hyperbola::Copy() const {
-
-  Handle(Geom_Hyperbola) H;
-  H = new Hyperbola (pos, majorRadius, minorRadius);
-  return H;
-}
-
-
-
-
-//=======================================================================
-//function : Geom_Hyperbola
-//purpose  : 
-//=======================================================================
-
-Geom_Hyperbola::Geom_Hyperbola (const gp_Hypr& H) 
-: majorRadius (H.MajorRadius()), minorRadius (H.MinorRadius()) {
-
-  pos = H.Position();
-}
-
-
-//=======================================================================
-//function : Geom_Hyperbola
-//purpose  : 
-//=======================================================================
-
-Geom_Hyperbola::Geom_Hyperbola ( const Ax2& A, 
-                                 const Standard_Real MajorRadius, 
-                                 const Standard_Real MinorRadius) 
- : majorRadius (MajorRadius), minorRadius (MinorRadius) {
-
-  if (MajorRadius < 0.0 || MinorRadius < 0.0) {
-    throw Standard_ConstructionError();
-  }
-  pos = A;
-}
-
-//=======================================================================
-//function : IsClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Hyperbola::IsClosed () const      { return Standard_False; }
-
-//=======================================================================
-//function : IsPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_Hyperbola::IsPeriodic () const    { return Standard_False; } 
-
-//=======================================================================
-//function : FirstParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::FirstParameter () const   
-{ return -Precision::Infinite(); }
-
-//=======================================================================
-//function : LastParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::LastParameter () const    
-{ return Precision::Infinite(); }
-
-//=======================================================================
-//function : MajorRadius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::MajorRadius () const      { return majorRadius; }
-
-//=======================================================================
-//function : MinorRadius
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::MinorRadius () const      { return minorRadius; }
-
-//=======================================================================
-//function : SetHypr
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::SetHypr (const gp_Hypr& H) {
-
-   majorRadius = H.MajorRadius();
-   minorRadius = H.MinorRadius();
-   pos = H.Position();
-}
-
-
-//=======================================================================
-//function : SetMajorRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::SetMajorRadius (const Standard_Real MajorRadius) {
-
-  if (MajorRadius < 0.0) throw Standard_ConstructionError();
-  else                   majorRadius = MajorRadius;
-}
-
-
-//=======================================================================
-//function : SetMinorRadius
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::SetMinorRadius (const Standard_Real MinorRadius) {
-
-  if (MinorRadius < 0.0)  throw Standard_ConstructionError();
-  else                    minorRadius = MinorRadius;
-}
-
-
-//=======================================================================
-//function : Hypr
-//purpose  : 
-//=======================================================================
-
-gp_Hypr Geom_Hyperbola::Hypr () const 
-{
-  return gp_Hypr (pos, majorRadius, minorRadius);
-}
-
-//=======================================================================
-//function : ReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::ReversedParameter( const Standard_Real U) const 
-{
-  return ( -U);
-}
-
-//=======================================================================
-//function : Asymptote1
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Hyperbola::Asymptote1 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.Asymptote1();
-}
-
-
-//=======================================================================
-//function : Asymptote2
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Hyperbola::Asymptote2 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.Asymptote2();
-}
-
-
-//=======================================================================
-//function : ConjugateBranch1
-//purpose  : 
-//=======================================================================
-
-gp_Hypr Geom_Hyperbola::ConjugateBranch1 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.ConjugateBranch1();
-}
-
-//=======================================================================
-//function : ConjugateBranch2
-//purpose  : 
-//=======================================================================
-
-gp_Hypr Geom_Hyperbola::ConjugateBranch2 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.ConjugateBranch2();
-}
-
-
-//=======================================================================
-//function : Directrix1
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Hyperbola::Directrix1 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.Directrix1();
-}
-
-//=======================================================================
-//function : Directrix2
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_Hyperbola::Directrix2 () const {
-
-  gp_Hypr Hv (pos, majorRadius, minorRadius);
-  return Hv.Directrix2();
-}
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::D0 (const Standard_Real U, Pnt& P) const {
-
-  P = ElCLib::HyperbolaValue (U, pos, majorRadius, minorRadius);
-}
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::D1 (const Standard_Real U, Pnt& P, Vec& V1) const {
-
-  ElCLib::HyperbolaD1 (U, pos, majorRadius, minorRadius, P, V1);
-}
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::D2 (const Standard_Real U, Pnt& P, Vec& V1, Vec& V2) const {
-
-  ElCLib::HyperbolaD2 (U, pos, majorRadius, minorRadius, P, V1, V2);
-}
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::D3 (
-const Standard_Real U, Pnt& P, Vec& V1, Vec& V2, Vec& V3) const {
-
-  ElCLib::HyperbolaD3 (U, pos, majorRadius, minorRadius, P, V1, V2, V3);
-}
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_Hyperbola::DN (const Standard_Real U, const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N < 1, " ");  
-  return ElCLib::HyperbolaDN (U, pos, majorRadius, minorRadius, N);
-}
-
-//=======================================================================
-//function : Eccentricity
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::Eccentricity () const {
-
-  Standard_ConstructionError_Raise_if (majorRadius == 0.0, " ")  
-  return (Sqrt(majorRadius*majorRadius + minorRadius*minorRadius))/majorRadius;
-}
-
-//=======================================================================
-//function : Focal
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::Focal () const {
-
-  return 2.0 * Sqrt(majorRadius * majorRadius + minorRadius * minorRadius);
-}
-
-//=======================================================================
-//function : Focus1
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_Hyperbola::Focus1 () const {
-
-  Standard_Real C = Sqrt(majorRadius * majorRadius + minorRadius * minorRadius);
-  Standard_Real Xp, Yp, Zp, Xd, Yd, Zd;
-  pos.Location().Coord (Xp, Yp, Zp);
-  pos.XDirection().Coord (Xd, Yd, Zd);
-  return Pnt (Xp + C * Xd,  Yp + C * Yd, Zp + C * Zd);
-}
-
-//=======================================================================
-//function : Focus2
-//purpose  : 
-//=======================================================================
-
-Pnt Geom_Hyperbola::Focus2 () const {
-
-  Standard_Real C = Sqrt(majorRadius * majorRadius + minorRadius * minorRadius);
-  Standard_Real Xp, Yp, Zp, Xd, Yd, Zd;
-  pos.Location().Coord (Xp, Yp, Zp);
-  pos.XDirection().Coord (Xd, Yd, Zd);
-  return Pnt (Xp - C * Xd,  Yp - C * Yd, Zp - C * Zd);
-}
-
-//=======================================================================
-//function : OtherBranch
-//purpose  : 
-//=======================================================================
-
-gp_Hypr Geom_Hyperbola::OtherBranch () const {
-
-   gp_Hypr Hv (pos, majorRadius, minorRadius);
-   return Hv.OtherBranch ();
-}
-
-//=======================================================================
-//function : Parameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_Hyperbola::Parameter () const {
-
-   Standard_ConstructionError_Raise_if (majorRadius == 0.0, " ");  
-   return (minorRadius * minorRadius)/majorRadius;
-}
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_Hyperbola::Transform (const Trsf& T) {
-
-  majorRadius = majorRadius * Abs(T.ScaleFactor());
-  minorRadius = minorRadius * Abs(T.ScaleFactor());
-  pos.Transform(T);
+#include <XGeom_Hyperbola.h>
+namespace TKG3d {
+	XGeom_Hyperbola::XGeom_Hyperbola() {
+		//NativeHandle() = new Geom_Hyperbola();
+	};
+
+	XGeom_Hyperbola::XGeom_Hyperbola(Handle(Geom_Hyperbola) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
+	};
+
+	void XGeom_Hyperbola::SetHyperbolaHandle(Handle(Geom_Hyperbola) pos) {
+		NativeHandle() = pos;
+		SetConicHandle(NativeHandle());
+	};
+
+	Handle(Geom_Hyperbola) XGeom_Hyperbola::GetHyperbola() {
+		return NativeHandle();
+	};
+
+	Handle(Geom_Conic) XGeom_Hyperbola::GetConic() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Curve) XGeom_Hyperbola::GetCurve() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_Hyperbola::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Constructs a hyperbola by conversion of the gp_Hypr hyperbola H.
+	XGeom_Hyperbola::XGeom_Hyperbola(xgp_Hypr^ H) {
+		NativeHandle() = new Geom_Hyperbola(*H->GetHypr());
+		SetConicHandle(NativeHandle());
+	};
+
+	//! Constructs a hyperbola defined by its major and
+	//! minor radii, MajorRadius and MinorRadius, where A2 locates the
+	//! hyperbola and defines its orientation in 3D space such that:
+	//! - the center of the hyperbola is the origin of A2,
+	//! - the "X Direction" of A2 defines the major axis
+	//! of the hyperbola, i.e. the major radius
+	//! MajorRadius is measured along this axis,
+	//! - the "Y Direction" of A2 defines the minor axis
+	//! of the hyperbola, i.e. the minor radius
+	//! MinorRadius is measured along this axis,
+	//! - A2 is the local coordinate system of the   hyperbola.
+	//! Exceptions
+	//! Standard_ConstructionError if:
+	//! - MajorRadius is less than 0.0,
+	//! - MinorRadius is less than 0.0.
+	XGeom_Hyperbola::XGeom_Hyperbola(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle() = new Geom_Hyperbola(*A2->GetAx2(), MajorRadius, MinorRadius);
+		SetConicHandle(NativeHandle());
+	};
+
+	//! Converts the gp_Hypr hyperbola H into this hyperbola.
+	void XGeom_Hyperbola::SetHypr(xgp_Hypr^ H) {
+		NativeHandle()->SetHypr(*H->GetHypr());
+	};
+
+	//! Assigns a value to the major radius of this hyperbola.
+	//! Exceptions
+	//! Standard_ConstructionError if:
+	//! - MajorRadius is less than 0.0, or
+	//! - MinorRadius is less than 0.0.Raised if MajorRadius < 0.0
+	void XGeom_Hyperbola::SetMajorRadius(Standard_Real MajorRadius) {
+		NativeHandle()->SetMajorRadius(MajorRadius);
+	};
+
+	//! Assigns a value to the minor radius of this hyperbola.
+	//! Exceptions
+	//! Standard_ConstructionError if:
+	//! - MajorRadius is less than 0.0, or
+	//! - MinorRadius is less than 0.0.Raised if MajorRadius < 0.0
+	void XGeom_Hyperbola::SetMinorRadius(Standard_Real MinorRadius) {
+		NativeHandle()->SetMinorRadius(MinorRadius);
+	};
+
+
+	//! returns the non transient parabola from gp with the same
+	//! geometric properties as <me>.
+	xgp_Hypr^ XGeom_Hyperbola::Hypr() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle()->Hypr());
+		return gcnew xgp_Hypr(temp);
+	};
+
+	//! Computes the parameter on the reversed hyperbola,
+	//! for the point of parameter U on this hyperbola.
+	//! For a hyperbola, the returned value is: -U.
+	Standard_Real XGeom_Hyperbola::ReversedParameter(Standard_Real U) {
+		return NativeHandle()->ReversedParameter(U);
+	};
+
+	//! Returns RealFirst from Standard.
+	Standard_Real XGeom_Hyperbola::FirstParameter() {
+		return NativeHandle()->FirstParameter();
+	};
+
+	//! returns RealLast from Standard.
+	Standard_Real XGeom_Hyperbola::LastParameter() {
+		return NativeHandle()->LastParameter();
+	};
+
+	//! Returns False.
+	Standard_Boolean XGeom_Hyperbola::IsClosed() {
+		return NativeHandle()->IsClosed();
+	};
+
+	//! return False for an hyperbola.
+	Standard_Boolean XGeom_Hyperbola::IsPeriodic() {
+		return NativeHandle()->IsPeriodic();
+	};
+
+
+	//! In the local coordinate system of the hyperbola the equation of
+	//! the hyperbola is (X*X)/(A*A) - (Y*Y)/(B*B) = 1.0 and the
+	//! equation of the first asymptote is Y = (B/A)*X.
+	//! Raises ConstructionError if MajorRadius = 0.0
+	xgp_Ax1^ XGeom_Hyperbola::Asymptote1() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Asymptote1());
+		return gcnew xgp_Ax1(temp);
+	};
+
+
+	//! In the local coordinate system of the hyperbola the equation of
+	//! the hyperbola is (X*X)/(A*A) - (Y*Y)/(B*B) = 1.0 and the
+	//! equation of the first asymptote is Y = -(B/A)*X.
+	//! Raises ConstructionError if MajorRadius = 0.0
+	xgp_Ax1^ XGeom_Hyperbola::Asymptote2() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Asymptote2());
+		return gcnew xgp_Ax1(temp);
+	};
+
+
+	//! This branch of hyperbola is on the positive side of the
+	//! YAxis of <me>.
+	xgp_Hypr^ XGeom_Hyperbola::ConjugateBranch1() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle()->ConjugateBranch1());
+		return gcnew xgp_Hypr(temp);
+	};
+
+
+	//! This branch of hyperbola is on the negative side of the
+	//! YAxis of <me>.
+	//! Note: The diagram given under the class purpose
+	//! indicates where these two branches of hyperbola are
+	//! positioned in relation to this branch of hyperbola.
+	xgp_Hypr^ XGeom_Hyperbola::ConjugateBranch2() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle()->ConjugateBranch2());
+		return gcnew xgp_Hypr(temp);
+	};
+
+
+	//! This directrix is the line normal to the XAxis of the hyperbola
+	//! in the local plane (Z = 0) at a distance d = MajorRadius / e
+	//! from the center of the hyperbola, where e is the eccentricity of
+	//! the hyperbola.
+	//! This line is parallel to the YAxis. The intersection point between
+	//! directrix1 and the XAxis is the location point of the directrix1.
+	//! This point is on the positive side of the XAxis.
+	xgp_Ax1^ XGeom_Hyperbola::Directrix1() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Directrix1());
+		return gcnew xgp_Ax1(temp);
+	};
+
+
+	//! This line is obtained by the symmetrical transformation
+	//! of "directrix1" with respect to the YAxis of the hyperbola.
+	xgp_Ax1^ XGeom_Hyperbola::Directrix2() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Directrix2());
+		return gcnew xgp_Ax1(temp);
+	};
+
+
+	//! Returns the excentricity of the hyperbola (e > 1).
+	//! If f is the distance between the location of the hyperbola
+	//! and the Focus1 then the eccentricity e = f / MajorRadius.
+	//! raised if MajorRadius = 0.0
+	Standard_Real XGeom_Hyperbola::Eccentricity() {
+		return NativeHandle()->Eccentricity();
+	};
+
+
+	//! Computes the focal distance. It is the distance between the
+	//! two focus of the hyperbola.
+	Standard_Real XGeom_Hyperbola::Focal() {
+		return NativeHandle()->Focal();
+	};
+
+
+	//! Returns the first focus of the hyperbola. This focus is on the
+	//! positive side of the XAxis of the hyperbola.
+	xgp_Pnt^ XGeom_Hyperbola::Focus1() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Focus1());
+		return gcnew xgp_Pnt(temp);
+	};
+
+
+	//! Returns the second focus of the hyperbola. This focus is on the
+	//! negative side of the XAxis of the hyperbola.
+	xgp_Pnt^ XGeom_Hyperbola::Focus2() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Focus2());
+		return gcnew xgp_Pnt(temp);
+	};
+
+	//! Returns the major or minor radius of this hyperbola.
+	//! The major radius is also the distance between the
+	//! center of the hyperbola and the apex of the main
+	//! branch (located on the "X Axis" of the hyperbola).
+	Standard_Real XGeom_Hyperbola::MajorRadius() {
+		return NativeHandle()->MajorRadius();
+	};
+
+	//! Returns the major or minor radius of this hyperbola.
+	//! The minor radius is also the distance between the
+	//! center of the hyperbola and the apex of a conjugate
+	//! branch (located on the "Y Axis" of the hyperbola).
+	Standard_Real XGeom_Hyperbola::MinorRadius() {
+		return NativeHandle()->MinorRadius();
+	};
+
+	//! Computes the "other" branch of this hyperbola. This
+	//! is the symmetrical branch with respect to the center of this hyperbola.
+	//! Note: The diagram given under the class purpose
+	//! indicates where the "other" branch is positioned in
+	//! relation to this branch of the hyperbola.
+	xgp_Hypr^ XGeom_Hyperbola::OtherBranch() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle()->OtherBranch());
+		return gcnew xgp_Hypr(temp);
+	};
+
+
+	//! Returns p = (e * e - 1) * MajorRadius where e is the
+	//! eccentricity of the hyperbola.
+	//! raised if MajorRadius = 0.0
+	Standard_Real XGeom_Hyperbola::Parameter() {
+		return NativeHandle()->Parameter();
+	};
+
+	//! Returns in P the point of parameter U.
+	//! P = C + MajorRadius * Cosh (U) * XDir +
+	//! MinorRadius * Sinh (U) * YDir
+	//! where C is the center of the hyperbola , XDir the XDirection and
+	//! YDir the YDirection of the hyperbola's local coordinate system.
+	void XGeom_Hyperbola::D0(Standard_Real U, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, *P->GetPnt());
+	};
+
+
+	//! Returns the point P of parameter U and the first derivative V1.
+	void XGeom_Hyperbola::D1(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1) {
+		NativeHandle()->D1(U, *P->GetPnt(), *V1->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U, the first and second
+	//! derivatives V1 and V2.
+	void XGeom_Hyperbola::D2(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2) {
+		NativeHandle()->D2(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec());
+	};
+
+
+	//! Returns the point P of parameter U, the first second and
+	//! third derivatives V1 V2 and V3.
+	void XGeom_Hyperbola::D3(Standard_Real U, xgp_Pnt^ P, xgp_Vec^ V1, xgp_Vec^ V2, xgp_Vec^ V3) {
+		NativeHandle()->D3(U, *P->GetPnt(), *V1->GetVec(), *V2->GetVec(), *V3->GetVec());
+	};
+
+
+	//! The returned vector gives the value of the derivative for the
+	//! order of derivation N.
+	//! Raised if N < 1.
+	xgp_Vec^ XGeom_Hyperbola::DN(Standard_Real U, Standard_Integer N) {
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, N));
+		return gcnew xgp_Vec(temp);
+	};
+
+	//! Applies the transformation T to this hyperbola.
+	void XGeom_Hyperbola::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	}
+
+	//! Creates a new object which is a copy of this hyperbola.
+	XGeom_Geometry^ XGeom_Hyperbola::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }

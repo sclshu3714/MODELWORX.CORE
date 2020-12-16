@@ -1383,6 +1383,9 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_CartesianPoint.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Hyperbola.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1939,6 +1942,9 @@
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_CartesianPoint.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Hyperbola.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>
