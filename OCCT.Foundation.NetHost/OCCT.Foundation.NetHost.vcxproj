@@ -376,6 +376,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BSplineCurve.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_BSplineSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Circle.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Conic.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_ConicalSurface.h" />
@@ -649,6 +650,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedCurve.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BoundedSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BSplineCurve.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_BSplineSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Circle.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Conic.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_ConicalSurface.cpp" />
