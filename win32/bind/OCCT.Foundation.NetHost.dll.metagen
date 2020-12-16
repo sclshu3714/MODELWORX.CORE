@@ -7234,6 +7234,52 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XGeom_Line(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_OffsetCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_OffsetCurve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Curve
+    Void .ctor(TKG3d.XGeom_Curve, Double, TKMath.xgp_Dir, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_OffsetCurve>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetOffsetCurveHandle(handle<Geom_OffsetCurve>*): PrivateScope, Public, HideBySig
+    GetOffsetCurve(handle<Geom_OffsetCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    SetBasisCurve(XGeom_Curve, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
+    SetOffsetValue(Double): PrivateScope, Public, HideBySig
+    BasisCurve(): PrivateScope, Public, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
+    Direction(): PrivateScope, Public, HideBySig
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig
+    FirstParameter(): PrivateScope, Public, Virtual, HideBySig
+    LastParameter(): PrivateScope, Public, Virtual, HideBySig
+    Offset(): PrivateScope, Public, HideBySig
+    IsClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsCN(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    Period(): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    GetBasisCurveContinuity(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Transformation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -8163,10 +8209,6 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
-    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
-    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
     GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     SetComponent(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     Axis2Placement(handle<Geom_Axis2Placement>*): PrivateScope, Public, HideBySig
@@ -8186,6 +8228,10 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XAIS_Axis(): PrivateScope, Public, HideBySig
+    Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
+    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
 Struct XAIS_TypeOfAxis: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -8209,11 +8255,6 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    SetTextureScaleUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    computeHlrPresentation(handle<Prs3d_Projector>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XAIS_Shape(): PrivateScope, Public, HideBySig
     GetShape(handle<AIS_Shape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
     GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
@@ -8261,6 +8302,11 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     TextureOriginUV(): PrivateScope, Public, HideBySig
     SetTextureOriginUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
     TextureScaleUV(): PrivateScope, Public, HideBySig
+    SetTextureScaleUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    computeHlrPresentation(handle<Prs3d_Projector>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XAIS_Shape(): PrivateScope, Public, HideBySig
 Class TKV3d.XGraphic3d_ZLayerSettings: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
