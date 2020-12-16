@@ -4,7 +4,6 @@ namespace TKG3d {
 	/// <summary>
 	/// 构型
 	/// </summary>
-	/// <param name=""></param>
 	XGeom_CylindricalSurface::XGeom_CylindricalSurface(void) {
 		//NativeHandle() = new Geom_CylindricalSurface();
 	};
@@ -12,7 +11,7 @@ namespace TKG3d {
 	/// <summary>
 	/// 构型
 	/// </summary>
-	/// <param name="pos"></param>
+	/// <param name="pos">p</param>
 	XGeom_CylindricalSurface::XGeom_CylindricalSurface(Handle(Geom_CylindricalSurface) pos) {
 		NativeHandle() = pos;
 		SetElementarySurfaceHandle(NativeHandle());
@@ -144,8 +143,10 @@ namespace TKG3d {
 	//! The CylindricalSurface is infinite in the V direction so
 	//! V1 = Realfirst, V2 = RealLast from package Standard.
 	//! U1 = 0 and U2 = 2*PI.
-	void XGeom_CylindricalSurface::Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) {
-		return NativeHandle()->Bounds(U1, U2, V1, V2);
+	void XGeom_CylindricalSurface::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
 	};
 
 

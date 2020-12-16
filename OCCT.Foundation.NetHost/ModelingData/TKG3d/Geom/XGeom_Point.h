@@ -48,15 +48,15 @@ namespace TKG3d {
 
 		XGeom_Point(Handle(Geom_Point) pos);
 
-		void SetNativeHandle(Handle(Geom_Point) pos);
+		void SetPointHandle(Handle(Geom_Point) pos);
 
-		Handle(Geom_Point) GetPoint();
+		virtual Handle(Geom_Point) GetPoint();
 
 		//!
 		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		//! returns the Coordinates of <me>.
-		virtual void Coord(Standard_Real X, Standard_Real Y, Standard_Real Z);
+		virtual void Coord(Standard_Real% X, Standard_Real% Y, Standard_Real% Z);
 
 		//! returns a non transient copy of <me>
 		virtual xgp_Pnt^ Pnt();

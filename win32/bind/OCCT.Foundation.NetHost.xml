@@ -88,13 +88,12 @@
             <summary>
 构型
 </summary>
-            <param name="pos" />
+            <param name="pos">p</param>
         </member>
         <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor">
             <summary>
 构型
 </summary>
-            <param name="" />
         </member>
         <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">
             <summary>
@@ -130,11 +129,15 @@
             <param name="handle" />
         </member>
         <member name="M:TKG3d.XGeom_ConicalSurface.#ctor(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
-            <summary />
+            <summary>
+X
+</summary>
             <param name="pos" />
         </member>
         <member name="M:TKG3d.XGeom_ConicalSurface.#ctor">
-            <summary />
+            <summary>
+X
+</summary>
             <param name="" />
         </member>
         <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">

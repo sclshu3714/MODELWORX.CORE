@@ -4650,7 +4650,7 @@ Class TKG3d.XGeom_Surface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Bounds(Double&, Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsUClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsVClosed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -6752,6 +6752,68 @@ Class TKG3d.XGeom_BSplineSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
     UMultiplicities(Int32[]): PrivateScope, Public, HideBySig
     VDegree(): PrivateScope, Public, HideBySig
     VKnot(Int32): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_Point> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_Point: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Geometry
+    Void .ctor(opencascade.handle<Geom_Point>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetPointHandle(handle<Geom_Point>*): PrivateScope, Public, HideBySig
+    GetPoint(handle<Geom_Point>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    Coord(Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Pnt(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    X(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Y(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Z(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Distance(XGeom_Point): PrivateScope, Public, HideBySig
+    SquareDistance(XGeom_Point): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Point(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_CartesianPoint> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_CartesianPoint: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Point
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_CartesianPoint>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetCartesianPointHandle(handle<Geom_CartesianPoint>*): PrivateScope, Public, HideBySig
+    GetCartesianPoint(handle<Geom_CartesianPoint>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetPoint(handle<Geom_Point>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    SetCoord(Double, Double, Double): PrivateScope, Public, HideBySig
+    SetPnt(xgp_Pnt): PrivateScope, Public, HideBySig
+    SetX(Double): PrivateScope, Public, HideBySig
+    SetY(Double): PrivateScope, Public, HideBySig
+    SetZ(Double): PrivateScope, Public, HideBySig
+    Coord(Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig
+    Pnt(): PrivateScope, Public, Virtual, HideBySig
+    X(): PrivateScope, Public, Virtual, HideBySig
+    Y(): PrivateScope, Public, Virtual, HideBySig
+    Z(): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_CartesianPoint(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6890,7 +6952,7 @@ Class TKG3d.XGeom_ConicalSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
     TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
     ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
     Apex(): PrivateScope, Public, HideBySig
-    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig
+    Bounds(Double&, Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig
     Coefficients(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     RefRadius(): PrivateScope, Public, HideBySig
     SemiAngle(): PrivateScope, Public, HideBySig
@@ -6937,7 +6999,7 @@ Class TKG3d.XGeom_CylindricalSurface: AutoLayout, AnsiClass, Class, Public, Befo
     VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
     TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
     ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
-    Bounds(Double, Double, Double, Double): PrivateScope, Public, Virtual, HideBySig
+    Bounds(Double&, Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig
     Coefficients(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
     Radius(): PrivateScope, Public, HideBySig
     IsUClosed(): PrivateScope, Public, Virtual, HideBySig
@@ -7118,33 +7180,6 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XGeom_Line(): PrivateScope, Public, HideBySig
-Class NCollection_Haft<opencascade::handle<Geom_Point> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKG3d.XGeom_Point: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKG3d.XGeom_Geometry
-    Void .ctor(opencascade.handle<Geom_Point>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    opencascade.handle<Standard_Transient> IHandle 'get set' : 
-  Methods:
-    SetNativeHandle(handle<Geom_Point>*): PrivateScope, Public, HideBySig
-    GetPoint(handle<Geom_Point>*): PrivateScope, Public, HideBySig
-    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
-    Coord(Double, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Pnt(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    X(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Y(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Z(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    Distance(XGeom_Point): PrivateScope, Public, HideBySig
-    SquareDistance(XGeom_Point): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Point(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Transformation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

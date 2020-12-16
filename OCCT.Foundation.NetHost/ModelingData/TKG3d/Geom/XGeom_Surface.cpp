@@ -132,8 +132,10 @@ namespace TKG3d {
 	//! Returns the parametric bounds U1, U2, V1 and V2 of this surface.
 	//! If the surface is infinite, this function can return a value
 	//! equal to Precision::Infinite: instead of Standard_Real::LastReal.
-	void XGeom_Surface::Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) {
-		NativeHandle()->Bounds(U1, U2, V1, V2);
+	void XGeom_Surface::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
 	};
 
 	//! Checks whether this surface is closed in the u

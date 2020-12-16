@@ -352,8 +352,8 @@ namespace TKG3d {
             XKnots.SetValue(i, XReal);
         }
         for (Standard_Integer i = 0; i < Mults->Length; i++) {
-            Standard_Real XReal = (Standard_Real)Mults->GetValue(i);
-            XMults.SetValue(i, XReal);
+            Standard_Integer XInteger = (Standard_Integer)Mults->GetValue(i);
+            XMults.SetValue(i, XInteger);
         }
         NativeHandle()->InsertUKnots(XKnots, XMults, ParametricTolerance, Add);
     };
@@ -385,8 +385,8 @@ namespace TKG3d {
             XKnots.SetValue(i, XReal);
         }
         for (Standard_Integer i = 0; i < Mults->Length; i++) {
-            Standard_Real XReal = (Standard_Real)Mults->GetValue(i);
-            XMults.SetValue(i, XReal);
+            Standard_Integer XInteger = (Standard_Integer)Mults->GetValue(i);
+            XMults.SetValue(i, XInteger);
         }
         NativeHandle()->InsertVKnots(XKnots, XMults, ParametricTolerance, Add);
     };

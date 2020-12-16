@@ -1,152 +1,106 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_CartesianPoint.h>
+namespace TKG3d {
+	XGeom_CartesianPoint::XGeom_CartesianPoint() {
+		//NativeHandle() = new Geom_CartesianPoint();
+	};
+
+	XGeom_CartesianPoint::XGeom_CartesianPoint(Handle(Geom_CartesianPoint) pos) {
+		NativeHandle() = pos;
+		SetPointHandle(NativeHandle());
+	};
+
+	void XGeom_CartesianPoint::SetCartesianPointHandle(Handle(Geom_CartesianPoint) pos) {
+		NativeHandle() = pos;
+		SetPointHandle(NativeHandle());
+	};
+
+	Handle(Geom_CartesianPoint) XGeom_CartesianPoint::GetCartesianPoint() {
+		return NativeHandle();
+	};
+
+	Handle(Geom_Point) XGeom_CartesianPoint::GetPoint() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_CartesianPoint::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! Returns a transient copy of P.
+	XGeom_CartesianPoint::XGeom_CartesianPoint(xgp_Pnt^ P) {
+		NativeHandle() = new Geom_CartesianPoint(*P->GetPnt());
+		SetPointHandle(NativeHandle());
+	};
+
+	//! Constructs a point defined by its three Cartesian coordinates X, Y and Z.
+	XGeom_CartesianPoint::XGeom_CartesianPoint(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+		NativeHandle() = new Geom_CartesianPoint(X, Y, Z);
+		SetPointHandle(NativeHandle());
+	};
+
+	//! Assigns the coordinates X, Y and Z to this point.
+	void XGeom_CartesianPoint::SetCoord(Standard_Real X, Standard_Real Y, Standard_Real Z) {
+		NativeHandle()->SetCoord(X, Y, Z);
+	};
+
+	//! Set <me> to P.X(), P.Y(), P.Z() coordinates.
+	void XGeom_CartesianPoint::SetPnt(xgp_Pnt^ P) {
+		NativeHandle()->SetPnt(*P->GetPnt());
+	};
+
+	//! Changes the X coordinate of me.
+	void XGeom_CartesianPoint::SetX(Standard_Real X) {
+		NativeHandle()->SetX(X);
+	};
+
+	//! Changes the Y coordinate of me.
+	void XGeom_CartesianPoint::SetY(Standard_Real Y) {
+		NativeHandle()->SetY(Y);
+	};
+
+	//! Changes the Z coordinate of me.
+	void XGeom_CartesianPoint::SetZ(Standard_Real Z) {
+		NativeHandle()->SetZ(Z);
+	};
+
+	//! Returns the coordinates of <me>.
+	void XGeom_CartesianPoint::Coord(Standard_Real% X, Standard_Real% Y, Standard_Real% Z) {
+		Standard_Real XX(X); Standard_Real XY(Y); Standard_Real XZ(Z);
+		NativeHandle()->Coord(XX, XY, XZ);
+		X = XX; XY = Y; Z = XZ;
+	};
 
 
-#include <Geom_CartesianPoint.hxx>
-#include <Geom_Geometry.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_Type.hxx>
+	//! Returns a non transient cartesian point with
+	//! the same coordinates as <me>.
+	xgp_Pnt^ XGeom_CartesianPoint::Pnt() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Pnt());
+		return gcnew xgp_Pnt(temp);
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_CartesianPoint,Geom_Point)
+	//! Returns the X coordinate of <me>.
+	Standard_Real XGeom_CartesianPoint::X() {
+		return NativeHandle()->X();
+	};
 
-typedef Geom_CartesianPoint         CartesianPoint;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Vec  Vec;
-typedef gp_Trsf Trsf;
+	//! Returns the Y coordinate of <me>.
+	Standard_Real XGeom_CartesianPoint::Y() {
+		return NativeHandle()->Y();
+	};
 
-//=======================================================================
-//function : Geom_CartesianPoint
-//purpose  : 
-//=======================================================================
+	//! Returns the Z coordinate of <me>.
+	Standard_Real XGeom_CartesianPoint::Z() {
+		return NativeHandle()->Z();
+	};
 
-Geom_CartesianPoint::Geom_CartesianPoint (const gp_Pnt& P) : gpPnt(P) { }
+	//! Applies the transformation T to this point.
+	void XGeom_CartesianPoint::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
 
-
-//=======================================================================
-//function : Geom_CartesianPoint
-//purpose  : 
-//=======================================================================
-
-Geom_CartesianPoint::Geom_CartesianPoint (
-const Standard_Real X, const Standard_Real Y, const Standard_Real Z) : gpPnt (X, Y ,Z) { }
-
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_CartesianPoint::Copy() const {
-
-  Handle(Geom_CartesianPoint) P;
-  P = new CartesianPoint (gpPnt);
-  return P; 
+	//! Creates a new object which is a copy of this point.
+	XGeom_Geometry^ XGeom_CartesianPoint::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-
-//=======================================================================
-//function : SetCoord
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::SetCoord (const Standard_Real X, const Standard_Real Y, const Standard_Real Z) {
-
-  gpPnt.SetCoord (X, Y, Z);
-}
-
-
-//=======================================================================
-//function : SetPnt
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::SetPnt (const gp_Pnt& P) {  gpPnt = P; }
-
-//=======================================================================
-//function : SetX
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::SetX (const Standard_Real X) { gpPnt.SetX (X); }
-
-//=======================================================================
-//function : SetY
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::SetY (const Standard_Real Y) { gpPnt.SetY (Y); }
-
-//=======================================================================
-//function : SetZ
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::SetZ (const Standard_Real Z) { gpPnt.SetZ (Z); }
-
-
-//=======================================================================
-//function : Coord
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::Coord (Standard_Real& X, Standard_Real& Y, Standard_Real& Z) const {
-
-  gpPnt.Coord (X, Y, Z);
-}
-
-
-//=======================================================================
-//function : Pnt
-//purpose  : 
-//=======================================================================
-
-gp_Pnt Geom_CartesianPoint::Pnt () const { return gpPnt; }
-
-//=======================================================================
-//function : X
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_CartesianPoint::X () const { return gpPnt.X(); }
-
-//=======================================================================
-//function : Y
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_CartesianPoint::Y () const { return gpPnt.Y(); }
-
-//=======================================================================
-//function : Z
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_CartesianPoint::Z () const { return gpPnt.Z(); }
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_CartesianPoint::Transform (const Trsf& T) { gpPnt.Transform (T); }
-
-
-
-
-
-

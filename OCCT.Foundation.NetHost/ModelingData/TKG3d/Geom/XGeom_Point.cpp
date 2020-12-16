@@ -27,7 +27,7 @@ namespace TKG3d {
 		SetGeometryHandle(NativeHandle());
 	};
 
-	void XGeom_Point::SetNativeHandle(Handle(Geom_Point) pos) {
+	void XGeom_Point::SetPointHandle(Handle(Geom_Point) pos) {
 		NativeHandle() = pos; 
 		SetGeometryHandle(NativeHandle());
 	};
@@ -42,8 +42,10 @@ namespace TKG3d {
 	};
 
 	//! returns the Coordinates of <me>.
-	void XGeom_Point::Coord(Standard_Real X, Standard_Real Y, Standard_Real Z) {
-		NativeHandle()->Coord(X, Y, Z);
+	void XGeom_Point::Coord(Standard_Real% X, Standard_Real% Y, Standard_Real% Z) {
+		Standard_Real XX(X); Standard_Real XY(Y); Standard_Real XZ(Z);
+		NativeHandle()->Coord(XX, XY, XZ);
+		X = XX; XY = Y; Z = XZ;
 	};
 
 	//! returns a non transient copy of <me>

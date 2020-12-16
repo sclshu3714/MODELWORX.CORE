@@ -1,7 +1,7 @@
 #include <XGeom_ConicalSurface.h>
 namespace TKG3d {
 	/// <summary>
-	/// 
+	/// X
 	/// </summary>
 	/// <param name=""></param>
 	XGeom_ConicalSurface::XGeom_ConicalSurface(void) {
@@ -9,7 +9,7 @@ namespace TKG3d {
 	};
 
 	/// <summary>
-	/// 
+	/// X
 	/// </summary>
 	/// <param name="pos"></param>
 	XGeom_ConicalSurface::XGeom_ConicalSurface(Handle(Geom_ConicalSurface) pos) {
@@ -194,8 +194,10 @@ namespace TKG3d {
 	//! The conical surface is infinite in the V direction so
 	//! V1 = Realfirst from Standard and V2 = RealLast.
 	//! U1 = 0 and U2 = 2*PI.
-	void XGeom_ConicalSurface::Bounds(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2) {
-		return NativeHandle()->Bounds(U1, U2, V1, V2);
+	void XGeom_ConicalSurface::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
 	};
 
 
