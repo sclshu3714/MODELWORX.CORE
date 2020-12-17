@@ -152,7 +152,7 @@ namespace TKG3d
 		//!
 		//! It  can be redefined.  For  example on  the Plane,
 		//! Cylinder, Cone, Revolved and Extruded surfaces.
-		virtual void TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T);
+		virtual void TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T);
 
 		//! Returns a 2d transformation  used to find the  new
 		//! parameters of a point on the transformed surface.

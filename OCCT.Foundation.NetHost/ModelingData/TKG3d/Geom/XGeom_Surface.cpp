@@ -102,8 +102,10 @@ namespace TKG3d {
 	//!
 	//! It  can be redefined.  For  example on  the Plane,
 	//! Cylinder, Cone, Revolved and Extruded surfaces.
-	void XGeom_Surface::TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T) {
-		NativeHandle()->TransformParameters(U, V, *T->GetTrsf());
+	void XGeom_Surface::TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) {
+		Standard_Real XU(U); Standard_Real  XV(V);
+		NativeHandle()->TransformParameters(XU, XV, *T->GetTrsf());
+		U = XU; V = XV;
 	};
 
 	//! Returns a 2d transformation  used to find the  new

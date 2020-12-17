@@ -9,18 +9,18 @@ namespace TKG3d {
 	//! 
 	XGeom_Plane::XGeom_Plane(Handle(Geom_Plane) pos) {
 		NativeHandle() = pos;
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 	//!
 	XGeom_Plane::~XGeom_Plane() {
 		NativeHandle() = NULL;
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 	void XGeom_Plane::SetPlaneHandle(Handle(Geom_Plane) handle) {
 		NativeHandle() = handle;
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 	//! 
@@ -51,14 +51,14 @@ namespace TKG3d {
 	//! curves.
 	XGeom_Plane::XGeom_Plane(xgp_Ax3^ A3) {
 		NativeHandle() = new Geom_Plane(*A3->GetAx3());
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 
 	//! Creates a plane from a non transient plane from package gp.
 	XGeom_Plane::XGeom_Plane(xgp_Pln^ Pl) {
 		NativeHandle() = new Geom_Plane(*Pl->GetPln());
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 
@@ -66,7 +66,7 @@ namespace TKG3d {
 	//! V is the direction normal to the plane.
 	XGeom_Plane::XGeom_Plane(xgp_Pnt^ P, xgp_Dir^ V) {
 		NativeHandle() = new Geom_Plane(*P->GetPnt(), *V->GetDir());
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 
@@ -76,7 +76,7 @@ namespace TKG3d {
 	//! Raised if Sqrt (A*A + B*B + C*C) <= Resolution from gp
 	XGeom_Plane::XGeom_Plane(Standard_Real A, Standard_Real B, Standard_Real C, Standard_Real D) {
 		NativeHandle() = new Geom_Plane(A, B, C, D);
-		SetSurfaceHandle(NativeHandle());
+		SetElementarySurfaceHandle(NativeHandle());
 	};
 
 
@@ -122,7 +122,7 @@ namespace TKG3d {
 	//! parametric of this plane, for any point of v parameter V on this plane.
 	//! In the case of a plane, these methods return -V.
 	Standard_Real XGeom_Plane::VReversedParameter(Standard_Real V) {
-		NativeHandle()->VReversedParameter(V);
+		return NativeHandle()->VReversedParameter(V);
 	};
 
 	//! Computes the  parameters on the  transformed  surface for

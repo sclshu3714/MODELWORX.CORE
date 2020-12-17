@@ -337,8 +337,10 @@ namespace TKG3d
 	//!
 	//! me->TranformParameters(U,V,T)
 	//! This methods calls the basis surface method.
-	void XGeom_OffsetSurface::TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T) {
-		NativeHandle()->TransformParameters(U, V, *T->GetTrsf());
+	void XGeom_OffsetSurface::TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) {
+		Standard_Real XU(U); Standard_Real  XV(V);
+		NativeHandle()->TransformParameters(XU, XV, *T->GetTrsf());
+		U = XU; V = XV;
 	};
 
 	//! Returns a 2d transformation  used to find the  new

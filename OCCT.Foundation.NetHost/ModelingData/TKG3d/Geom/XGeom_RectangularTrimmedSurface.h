@@ -305,7 +305,7 @@ namespace TKG3d {
 		//! me->TranformParameters(U,V,T)
 		//!
 		//! This methods calls the basis surface method.
-		virtual void TransformParameters(Standard_Real U, Standard_Real V, xgp_Trsf^ T) Standard_OVERRIDE;
+		virtual void TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) Standard_OVERRIDE;
 
 		//! Returns a 2d transformation  used to find the  new
 		//! parameters of a point on the transformed surface.
