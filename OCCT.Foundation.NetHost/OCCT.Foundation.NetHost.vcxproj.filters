@@ -1395,6 +1395,9 @@
     <ClInclude Include="inc\resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Parabola.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1963,6 +1966,9 @@
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Parabola.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>
