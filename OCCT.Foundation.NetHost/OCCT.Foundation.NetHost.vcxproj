@@ -231,6 +231,7 @@
     <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.h" />
     <ClInclude Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.h" />
     <ClInclude Include="FoundationClasses\TKMath\Bnd\XBnd_Box.h" />
+    <ClInclude Include="FoundationClasses\TKMath\Bnd\XBnd_Box2d.h" />
     <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_BSplKnotDistribution.h" />
     <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_CurveForm.h" />
     <ClInclude Include="FoundationClasses\TKMath\GeomAbs\XGeomAbs_CurveType.h" />
@@ -544,6 +545,7 @@
     <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_ExtendedString.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\Bnd\XBnd_Box.cpp" />
+    <ClCompile Include="FoundationClasses\TKMath\Bnd\XBnd_Box2d.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp" />
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax2.cpp" />

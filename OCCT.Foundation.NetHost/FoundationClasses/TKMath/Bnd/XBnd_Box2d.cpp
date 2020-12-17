@@ -1,302 +1,206 @@
-// Created on: 1991-10-30
-// Created by: Modelisation
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBnd_Box2d.h>
+namespace TKMath {
+    //! DEFINE_STANDARD_ALLOC
 
+    //! Creates an empty 2D bounding box.
+    //! The constructed box is qualified Void. Its gap is null.
+    XBnd_Box2d::XBnd_Box2d() {
+        NativeHandle = new Bnd_Box2d();
+    };
 
-#include <Bnd_Box2d.hxx>
-#include <gp.hxx>
-#include <gp_Dir2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Trsf2d.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_Stream.hxx>
+    XBnd_Box2d::XBnd_Box2d(Bnd_Box2d* pos) {
+        NativeHandle = pos;
+    };
 
-//-- #include <Precision.hxx> Precision::Infinite() -> 1e+100
-//=======================================================================
-//function : Update
-//purpose  : 
-//=======================================================================
-void Bnd_Box2d::Update (const Standard_Real x, const Standard_Real y, 
-			const Standard_Real X, const Standard_Real Y)
-{
-  if (Flags & VoidMask) {
-    Xmin = x;
-    Ymin = y;
-    Xmax = X;
-    Ymax = Y;
-    Flags &= ~VoidMask;
-  }
-  else {
-    if (!(Flags & XminMask) && (x < Xmin)) Xmin = x;
-    if (!(Flags & XmaxMask) && (X > Xmax)) Xmax = X;
-    if (!(Flags & YminMask) && (y < Ymin)) Ymin = y;
-    if (!(Flags & YmaxMask) && (Y > Ymax)) Ymax = Y;
-  }
-}
+    void XBnd_Box2d::SetBndBox2dHandle(Bnd_Box2d* pos) {
+        NativeHandle = pos;
+    };
 
-//=======================================================================
-//function : Update
-//purpose  : 
-//=======================================================================
+    Bnd_Box2d* XBnd_Box2d::GetBndBox2d() {
+        return NativeHandle;
+    };
 
-void Bnd_Box2d::Update (const Standard_Real X, const Standard_Real Y)
-{
-  if (Flags & VoidMask) {
-    Xmin = X;
-    Ymin = Y;
-    Xmax = X;
-    Ymax = Y;
-    Flags &= ~VoidMask;
-  }
-  else {
-    if      (!(Flags & XminMask) && (X < Xmin)) Xmin = X;
-    else if (!(Flags & XmaxMask) && (X > Xmax)) Xmax = X;
-    if      (!(Flags & YminMask) && (Y < Ymin)) Ymin = Y;
-    else if (!(Flags & YmaxMask) && (Y > Ymax)) Ymax = Y;
-  }
-}
+    //! Sets this bounding box so that it covers the whole 2D
+    //! space, i.e. it is infinite in all directions.
+    void XBnd_Box2d::SetWhole() {
+        NativeHandle->SetWhole();
+    };
 
-//=======================================================================
-//function : Get
-//purpose  : 
-//=======================================================================
+    //! Sets this 2D bounding box so that it is empty. All points are outside a void box.
+    void XBnd_Box2d::SetVoid() {
+        NativeHandle->SetVoid();
+    };
 
-void Bnd_Box2d::Get (Standard_Real& x, Standard_Real& y,
-		     Standard_Real& Xm, Standard_Real& Ym) const
-{
-  if(Flags & VoidMask)
-    throw Standard_ConstructionError("Bnd_Box is void");
-  Standard_Real pinf = 1e+100; //-- Precision::Infinite();
-  if (Flags & XminMask) x = -pinf;
-  else                  x =  Xmin-Gap;
-  if (Flags & XmaxMask) Xm =  pinf;
-  else                  Xm =  Xmax+Gap;
-  if (Flags & YminMask) y = -pinf;
-  else                  y =  Ymin-Gap;
-  if (Flags & YmaxMask) Ym =  pinf;
-  else                  Ym =  Ymax+Gap;
-}
+    //! Sets this 2D bounding box so that it bounds
+    //! the point P. This involves first setting this bounding box
+    //! to be void and then adding the point PThe rectangle bounds   the  point <P>.
+    void XBnd_Box2d::Set(xgp_Pnt2d^ thePnt) {
+        NativeHandle->Set(*thePnt->GetPnt2d());
+    };
 
-//=======================================================================
-//function : Transformed
-//purpose  : 
-//=======================================================================
+    //! Sets this 2D bounding box so that it bounds
+    //! the half-line defined by point P and direction D, i.e. all
+    //! points M defined by M=P+u*D, where u is greater than
+    //! or equal to 0, are inside the bounding area. This involves
+    //! first setting this 2D box to be void and then adding the   half-line.
+    void XBnd_Box2d::Set(xgp_Pnt2d^ thePnt, xgp_Dir2d^ theDir) {
+        NativeHandle->Set(*thePnt->GetPnt2d(), *theDir->GetDir2d());
+    };
 
-Bnd_Box2d Bnd_Box2d::Transformed (const gp_Trsf2d& T) const
-{
-  gp_TrsfForm F = T.Form();
-  Bnd_Box2d newb(*this);
-  if ( IsVoid() ) return newb;
+    //! Enlarges this 2D bounding box, if required, so that it
+    //! contains at least:
+    //! -   interval [ aXmin,aXmax ] in the "X Direction",
+    //! -   interval [ aYmin,aYmax ] in the "Y Direction"
+    void XBnd_Box2d::Update(Standard_Real aXmin, Standard_Real aYmin, Standard_Real aXmax, Standard_Real aYmax) {
+        NativeHandle->Update(aXmin, aYmin, aXmax, aYmax);
+    };
 
-  if      (F == gp_Identity) {}
-  else if (F == gp_Translation) {
-    Standard_Real DX,DY;
-    (T.TranslationPart()).Coord(DX,DY);
-    if (!(Flags & XminMask))  newb.Xmin += DX;
-    if (!(Flags & XmaxMask))  newb.Xmax += DX;
-    if (!(Flags & YminMask))  newb.Ymin += DY;
-    if (!(Flags & YmaxMask))  newb.Ymax += DY;
-  }
-  else {
-    gp_Pnt2d P[4];
-    Standard_Boolean Vertex[4];
-    Standard_Integer i;
-    Vertex[0] = Standard_True;
-    Vertex[1] = Standard_True;
-    Vertex[2] = Standard_True;
-    Vertex[3] = Standard_True;
-    gp_Dir2d D[6];
-//    Standard_Integer vertices = 0;
-    Standard_Integer directions = 0;
+    //! Adds a point of coordinates (X,Y) to this bounding box.
+    void XBnd_Box2d::Update(Standard_Real X, Standard_Real Y) {
+        NativeHandle->Update(X, Y);
+    };
 
-    if (Flags & XminMask) {
-      D[directions].SetCoord(-1., 0.);
-      directions++;
-      Vertex[0] = Vertex[2] = Standard_False;
-    }
-    if (Flags & XmaxMask) {
-      D[directions].SetCoord( 1., 0.);
-      directions++;
-      Vertex[1] = Vertex[3] = Standard_False;
-    }
-    if (Flags & YminMask) {
-      D[directions].SetCoord( 0.,-1.);
-      directions++;
-      Vertex[0] = Vertex[1] = Standard_False;
-    }
-    if (Flags & YmaxMask) {
-      D[directions].SetCoord( 0., 1.);
-      directions++;
-      Vertex[2] = Vertex[3] = Standard_False;
-    }
+    //! Returns the gap of this 2D bounding box.
+    Standard_Real XBnd_Box2d::GetGap() {
+        return  NativeHandle->GetGap();
+    };
 
-    newb.SetVoid();
+    //! Set the gap of this 2D bounding box to abs(Tol).
+    void XBnd_Box2d::SetGap(Standard_Real Tol) {
+        NativeHandle->SetGap(Tol);
+    };
 
-    for (i = 0; i < directions; i++) {
-      D[i].Transform(T);
-      newb.Add(D[i]);
-    }
-    P[0].SetCoord(Xmin,Ymin);
-    P[1].SetCoord(Xmax,Ymin);
-    P[2].SetCoord(Xmin,Ymax);
-    P[3].SetCoord(Xmax,Ymax);
-    if (Vertex[0]) {
-      P[0].Transform(T);
-      newb.Add(P[0]);
-    }
-    if (Vertex[1]) {
-      P[1].Transform(T);
-      newb.Add(P[1]);
-    }
-    if (Vertex[2]) {
-      P[2].Transform(T);
-      newb.Add(P[2]);
-    }
-    if (Vertex[3]) {
-      P[3].Transform(T);
-      newb.Add(P[3]);
-    }
-    newb.Gap=Gap;
-  }
-  return newb;
-}
+    //! Enlarges     the  box  with    a  tolerance  value.
+    //! This means that the minimum values of its X and Y
+    //! intervals of definition, when they are finite, are reduced by
+    //! the absolute value of Tol, while the maximum values are
+    //! increased by the same amount.
+    void XBnd_Box2d::Enlarge(Standard_Real theTol) {
+        NativeHandle->Enlarge(theTol);
+    };
 
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
+    //! Returns the bounds of this 2D bounding box.
+    //! The gap is included. If this bounding box is infinite (i.e. "open"), returned values
+    //! may be equal to +/- Precision::Infinite().
+    //! if IsVoid()
+    void XBnd_Box2d::Get(Standard_Real% aXmin, Standard_Real% aYmin, Standard_Real% aXmax, Standard_Real% aYmax) {
+        Standard_Real aXminX(aXmin); Standard_Real aYminX(aXmin); Standard_Real aXmaxX(aXmax); Standard_Real aYmaxX(aYmax);
+        NativeHandle->Get(aXminX, aYminX, aXmaxX, aYmaxX);
+        aXmin = aXminX; aYmin = aYminX; aXmax = aXmaxX; aYmax =aYmaxX;
+    };
 
-void Bnd_Box2d::Add (const Bnd_Box2d& Other)
-{
-  if (IsWhole()) return;
-  else if (Other.IsVoid()) return; 
-  else if (Other.IsWhole()) SetWhole();
-  else if (IsVoid()) (*this) = Other;
-  else
-  {
-    if ( ! IsOpenXmin() )
-    {
-      if (Other.IsOpenXmin()) OpenXmin();
-      else if (Xmin > Other.Xmin) Xmin = Other.Xmin;
-    }
-    if ( ! IsOpenXmax() )
-    {
-      if (Other.IsOpenXmax()) OpenXmax();
-      else if (Xmax < Other.Xmax) Xmax = Other.Xmax;
-    }
-    if ( ! IsOpenYmin() )
-    {
-      if (Other.IsOpenYmin()) OpenYmin();
-      else if (Ymin > Other.Ymin) Ymin = Other.Ymin;
-    }
-    if ( ! IsOpenYmax() )
-    {
-      if (Other.IsOpenYmax()) OpenYmax();
-      else if (Ymax < Other.Ymax) Ymax = Other.Ymax;
-    }
-    Gap = Max (Gap, Other.Gap);
-  }
-}
+    //! The Box will be infinitely long in the Xmin direction.
+    void XBnd_Box2d::OpenXmin() {
+        NativeHandle->OpenXmin();
+    };
 
-//=======================================================================
-//function : Add
-//purpose  : 
-//=======================================================================
+    //! The Box will be infinitely long in the Xmax direction.
+    void XBnd_Box2d::OpenXmax() {
+        NativeHandle->OpenXmax();
+    };
 
-void Bnd_Box2d::Add (const gp_Dir2d& D)
-{
-  Standard_Real DX = D.X();
-  Standard_Real DY = D.Y();
+    //! The Box will be infinitely long in the Ymin direction.
+    void XBnd_Box2d::OpenYmin() {
+        NativeHandle->OpenYmin();
+    };
 
-  if (DX < -RealEpsilon()) 
-    OpenXmin();
-  else if (DX > RealEpsilon()) 
-    OpenXmax();
+    //! The Box will be infinitely long in the Ymax direction.
+    void XBnd_Box2d::OpenYmax() {
+        NativeHandle->OpenYmax();
+    };
 
-  if (DY < -RealEpsilon())
-    OpenYmin();
-  else if (DY > RealEpsilon())
-    OpenYmax();
-}
+    //! Returns true if this bounding box is open in the Xmin direction.
+    Standard_Boolean XBnd_Box2d::IsOpenXmin() {
+        return NativeHandle->IsOpenXmin();
+    };
 
-//=======================================================================
-//function : IsOut
-//purpose  : 
-//=======================================================================
+    //! Returns true if this bounding box is open in the Xmax direction.
+    Standard_Boolean XBnd_Box2d::IsOpenXmax() {
+        return NativeHandle->IsOpenXmax();
+    };
 
-Standard_Boolean Bnd_Box2d::IsOut (const gp_Pnt2d& P) const
-{
-  if        (IsWhole())  return Standard_False;
-  else if   (IsVoid())   return Standard_True;
-  else {
-    Standard_Real X = P.X();
-    Standard_Real Y = P.Y();
-    if      (!(Flags & XminMask) && (X < (Xmin-Gap))) return Standard_True;
-    else if (!(Flags & XmaxMask) && (X > (Xmax+Gap))) return Standard_True;
-    else if (!(Flags & YminMask) && (Y < (Ymin-Gap))) return Standard_True;
-    else if (!(Flags & YmaxMask) && (Y > (Ymax+Gap))) return Standard_True;
-    else return Standard_False;
-  }
-}
+    //! Returns true if this bounding box is open in the Ymin direction.
+    Standard_Boolean XBnd_Box2d::IsOpenYmin() {
+        return NativeHandle->IsOpenYmin();
+    };
 
-//=======================================================================
-//function : IsOut
-//purpose  : 
-//=======================================================================
+    //! Returns true if this bounding box is open in the Ymax direction.
+    Standard_Boolean XBnd_Box2d::IsOpenYmax() {
+        return NativeHandle->IsOpenYmax();
+    };
 
-Standard_Boolean Bnd_Box2d::IsOut (const Bnd_Box2d& Other) const
-{
-  if        (IsWhole())  return Standard_False;
-  else if   (IsVoid())   return Standard_True;
-  else if   (Other.IsWhole())  return Standard_False;
-  else if   (Other.IsVoid())   return Standard_True;
-  else {
-    Standard_Real OXmin,OXmax,OYmin,OYmax;
-    Other.Get(OXmin,OYmin,OXmax,OYmax);
-    if      (!(Flags & XminMask) && (OXmax < (Xmin-Gap))) return Standard_True;
-    else if (!(Flags & XmaxMask) && (OXmin > (Xmax+Gap))) return Standard_True;
-    else if (!(Flags & YminMask) && (OYmax < (Ymin-Gap))) return Standard_True;
-    else if (!(Flags & YmaxMask) && (OYmin > (Ymax+Gap))) return Standard_True;
-  }
-  return Standard_False;
-}
+    //! Returns true if this bounding box is infinite in all 4
+    //! directions (Whole Space flag).
+    Standard_Boolean XBnd_Box2d::IsWhole() {
+        return NativeHandle->IsWhole();
+    };
 
-//=======================================================================
-//function : Dump
-//purpose  : 
-//=======================================================================
+    //! Returns true if this 2D bounding box is empty (Void flag).
+    Standard_Boolean XBnd_Box2d::IsVoid() {
+        return NativeHandle->IsVoid();
+    };
 
-void Bnd_Box2d::Dump () const
-{
-  std::cout << "Box2d : ";
-  if      (IsVoid())  std::cout << "Void";
-  else if (IsWhole()) std::cout << "Whole";
-  else {
-    std::cout << "\n Xmin : ";
-    if (IsOpenXmin()) std::cout << "Infinite";
-    else              std::cout << Xmin;
-    std::cout << "\n Xmax : ";
-    if (IsOpenXmax()) std::cout << "Infinite";
-    else              std::cout << Xmax;
-    std::cout << "\n Ymin : ";
-    if (IsOpenYmin()) std::cout << "Infinite";
-    else              std::cout << Ymin;
-    std::cout << "\n Ymax : ";
-    if (IsOpenYmax()) std::cout << "Infinite";
-    else              std::cout << Ymax;
-  }
-  std::cout << "\n Gap : " << Gap;
-  std::cout << "\n";
+    //! Returns a bounding box which is the result of applying the
+    //! transformation T to this bounding box.
+    //! Warning
+    //! Applying a geometric transformation (for example, a
+    //! rotation) to a bounding box generally increases its
+    //! dimensions. This is not optimal for algorithms which use it.
+    XBnd_Box2d^ XBnd_Box2d::Transformed(xgp_Trsf2d^ T) {
+        Bnd_Box2d* temp = new Bnd_Box2d(NativeHandle->Transformed(*T->GetTrsf2d()));
+        return gcnew XBnd_Box2d(temp);
+    };
+
+    //! Adds the 2d box <Other> to <me>.
+    void XBnd_Box2d::Add(XBnd_Box2d^ Other) {
+        NativeHandle->Add(*Other->GetBndBox2d());
+    };
+
+    //! Adds the 2d point.
+    void XBnd_Box2d::Add(xgp_Pnt2d^ thePnt) {
+        NativeHandle->Add(*thePnt->GetPnt2d());
+    }; 
+
+    //! Extends bounding box from thePnt in the direction theDir.
+    void XBnd_Box2d::Add(xgp_Pnt2d^ thePnt, xgp_Dir2d^ theDir) {
+        NativeHandle->Add(*thePnt->GetPnt2d(), *theDir->GetDir2d());
+    };
+
+    //! Extends the Box  in the given Direction, i.e. adds
+    //! a half-line. The box may become infinite in 1 or 2
+    //! directions.
+    void XBnd_Box2d::Add(xgp_Dir2d^ D) {
+        NativeHandle->Add(*D->GetDir2d());
+    };
+
+    //! Returns True if the 2d pnt <P> is out <me>.
+    Standard_Boolean XBnd_Box2d::IsOut(xgp_Pnt2d^ P) {
+        return NativeHandle->IsOut(*P->GetPnt2d());
+    };
+
+    //! Returns True if <Box2d> is out <me>.
+    Standard_Boolean XBnd_Box2d::IsOut(XBnd_Box2d^ Other) {
+        return NativeHandle->IsOut(*Other->GetBndBox2d());
+    };
+
+    //! Returns True if transformed <Box2d> is out <me>.
+    Standard_Boolean XBnd_Box2d::IsOut(XBnd_Box2d^ theOther, xgp_Trsf2d^ theTrsf) {
+        return NativeHandle->IsOut(*theOther->GetBndBox2d(), *theTrsf->GetTrsf2d());
+    };
+
+    //! Compares  a transformed  bounding with  a    transformed
+    //! bounding. The default implementation is  to make a copy
+    //! of <me> and <Other>, to transform them and to test.
+    Standard_Boolean XBnd_Box2d::IsOut(xgp_Trsf2d^ T1, XBnd_Box2d^ Other, xgp_Trsf2d^ T2) {
+        return NativeHandle->IsOut(*T1->GetTrsf2d(), *Other->GetBndBox2d(), *T2->GetTrsf2d());
+    };
+
+    void XBnd_Box2d::Dump() {
+        return NativeHandle->Dump();
+    };
+
+    //! Computes the squared diagonal of me.
+    Standard_Real XBnd_Box2d::SquareExtent() {
+        return NativeHandle->SquareExtent();
+    };
 }

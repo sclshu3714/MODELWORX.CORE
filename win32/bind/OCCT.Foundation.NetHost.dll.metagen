@@ -3572,6 +3572,57 @@ Struct TKMath.XMaskFlags: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFi
     TKMath.XMaskFlags ZminMask = 32 : Public, Static, Literal, HasDefault
     TKMath.XMaskFlags ZmaxMask = 64 : Public, Static, Literal, HasDefault
     TKMath.XMaskFlags WholeMask = 126 : Public, Static, Literal, HasDefault
+Class TKMath.XBnd_Box2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Bnd_Box2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Bnd_Box2d* IHandle 'get set' : 
+  Methods:
+    SetBndBox2dHandle(Bnd_Box2d*): PrivateScope, Public, HideBySig
+    GetBndBox2d(): PrivateScope, Public, HideBySig
+    SetWhole(): PrivateScope, Public, HideBySig
+    SetVoid(): PrivateScope, Public, HideBySig
+    Set(xgp_Pnt2d, xgp_Dir2d): PrivateScope, Public, HideBySig
+    Set(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Update(Double, Double): PrivateScope, Public, HideBySig
+    Update(Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    GetGap(): PrivateScope, Public, HideBySig
+    SetGap(Double): PrivateScope, Public, HideBySig
+    Enlarge(Double): PrivateScope, Public, HideBySig
+    Get(Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    OpenXmin(): PrivateScope, Public, HideBySig
+    OpenXmax(): PrivateScope, Public, HideBySig
+    OpenYmin(): PrivateScope, Public, HideBySig
+    OpenYmax(): PrivateScope, Public, HideBySig
+    IsOpenXmin(): PrivateScope, Public, HideBySig
+    IsOpenXmax(): PrivateScope, Public, HideBySig
+    IsOpenYmin(): PrivateScope, Public, HideBySig
+    IsOpenYmax(): PrivateScope, Public, HideBySig
+    IsWhole(): PrivateScope, Public, HideBySig
+    IsVoid(): PrivateScope, Public, HideBySig
+    Transformed(xgp_Trsf2d): PrivateScope, Public, HideBySig
+    Add(xgp_Dir2d): PrivateScope, Public, HideBySig
+    Add(xgp_Pnt2d, xgp_Dir2d): PrivateScope, Public, HideBySig
+    Add(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Add(XBnd_Box2d): PrivateScope, Public, HideBySig
+    IsOut(xgp_Trsf2d, XBnd_Box2d, xgp_Trsf2d): PrivateScope, Public, HideBySig
+    IsOut(XBnd_Box2d, xgp_Trsf2d): PrivateScope, Public, HideBySig
+    IsOut(XBnd_Box2d): PrivateScope, Public, HideBySig
+    IsOut(xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Dump(): PrivateScope, Public, HideBySig
+    SquareExtent(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(Bnd_Box2d*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Struct XMaskFlags: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XMaskFlags VoidMask = 1 : Public, Static, Literal, HasDefault
+    XMaskFlags XminMask = 2 : Public, Static, Literal, HasDefault
+    XMaskFlags XmaxMask = 4 : Public, Static, Literal, HasDefault
+    XMaskFlags YminMask = 8 : Public, Static, Literal, HasDefault
+    XMaskFlags YmaxMask = 16 : Public, Static, Literal, HasDefault
+    XMaskFlags WholeMask = 30 : Public, Static, Literal, HasDefault
 Class TKMath.xgp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -7725,14 +7776,14 @@ Class TKGeomBase.XGC_MakeCircle: AutoLayout, AnsiClass, Class, Public, BeforeFie
   Properties:
     GC_MakeCircle* IHandle 'get set' : 
   Methods:
-    SetMakeCircleHandle(GC_MakeCircle*): PrivateScope, Public, HideBySig
-    GetMakeCircle(): PrivateScope, Public, HideBySig
-    Value(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     IsDone(): PrivateScope, Public, Virtual, HideBySig
     Status(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(GC_MakeCircle*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    SetMakeCircleHandle(GC_MakeCircle*): PrivateScope, Public, HideBySig
+    GetMakeCircle(): PrivateScope, Public, HideBySig
+    Value(): PrivateScope, Public, HideBySig
 Class TKGeomBase.XGC_MakeConicalSurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -7819,6 +7870,13 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<V3d_Viewer> IHandle 'get set' : 
   Methods:
+    IsActive(): PrivateScope, Public, HideBySig
+    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
+    GridType(): PrivateScope, Public, HideBySig
+    GridDrawMode(): PrivateScope, Public, HideBySig
+    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
     SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
     CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
     SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
@@ -7830,6 +7888,11 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     set_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     ~XV3d_Viewer(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    SetViewerHandle(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
+    GetViewer(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IfMoreViews(): PrivateScope, Public, HideBySig
+    CreateView(): PrivateScope, Public, HideBySig
+    SetViewOn(XV3d_View): PrivateScope, Public, HideBySig
     SetViewOn(): PrivateScope, Public, HideBySig
     SetViewOff(XV3d_View): PrivateScope, Public, HideBySig
     SetViewOff(): PrivateScope, Public, HideBySig
@@ -7908,18 +7971,6 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetGridEcho(handle<Graphic3d_AspectMarker3d>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     SetGridEcho(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     GridEcho(): PrivateScope, Public, HideBySig
-    IsActive(): PrivateScope, Public, HideBySig
-    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
-    GridType(): PrivateScope, Public, HideBySig
-    GridDrawMode(): PrivateScope, Public, HideBySig
-    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
-    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
-    SetViewerHandle(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
-    GetViewer(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    IfMoreViews(): PrivateScope, Public, HideBySig
-    CreateView(): PrivateScope, Public, HideBySig
-    SetViewOn(XV3d_View): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<V3d_View> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
