@@ -125,7 +125,7 @@ namespace TKernel {
         //! The calculation is with respect to the current value of <me>
         //! If <DC> is positive then <me> is more contrasty.
         //! If <DI> is positive then <me> is more intense.
-        void Delta(XQuantity_Color^ AColor, Standard_Real& DC, Standard_Real& DI);
+        void Delta(XQuantity_Color^ AColor, Standard_Real% DC, Standard_Real% DI);
 
         //! Returns the distance between two colours. It's a
         //! value between 0 and the square root of 3
@@ -196,12 +196,12 @@ namespace TKernel {
         //!    -1.0 is a special value reserved for grayscale color (S should be 0.0).
         //!  - theR2 is the Lightness  (L) within range [0.0; 1.0]
         //!  - theR3 is the Saturation (S) within range [0.0; 1.0]
-        void Values(Standard_Real& theR1, Standard_Real& theR2, Standard_Real& theR3, XQuantity_TypeOfColor theType);
+        void Values(Standard_Real% theR1, Standard_Real% theR2, Standard_Real% theR3, XQuantity_TypeOfColor theType);
 
         //! Sets the specified value used to compare <me> and
         //! an other color in IsDifferent and in IsEqual methods.
         //! Warning: The default value is 0.0001
-        static void SetEpsilon(const Standard_Real AnEpsilon);
+        static void SetEpsilon(Standard_Real AnEpsilon);
 
         //! Returns the specified value used to compare <me> and
         //! an other color in IsDifferent and in IsEqual methods.
@@ -209,7 +209,7 @@ namespace TKernel {
 
         //! Returns the name of the colour for which the RGB components
         //! are nearest to <R>, <G> and <B>.
-        static XQuantity_NameOfColor Name(const Standard_Real R, Standard_Real G, Standard_Real B);
+        static XQuantity_NameOfColor Name(Standard_Real R, Standard_Real G, Standard_Real B);
 
         //! Returns the name of the color identified by
         //! AName in the Quantity_NameOfColor enumeration.
@@ -224,7 +224,7 @@ namespace TKernel {
         //! For example, the name of the color which
         //! corresponds to "BLACK" is Quantity_NOC_BLACK.
         //! Returns false if name is unknown.
-        static Standard_Boolean ColorFromName(System::String^ theName, XQuantity_NameOfColor& theColor);
+        static Standard_Boolean ColorFromName(System::String^ theName, XQuantity_NameOfColor% theColor);
 
         //! Finds color from predefined names.
         //! For example, the name of the color which
@@ -263,15 +263,15 @@ namespace TKernel {
         }
 
         //! Converts HLS components into RGB ones.
-        static void HlsRgb(const Standard_Real H, Standard_Real L, Standard_Real S, Standard_Real& R, Standard_Real& G, Standard_Real& B);
+        static void HlsRgb(const Standard_Real H, Standard_Real L, Standard_Real S, Standard_Real% R, Standard_Real% G, Standard_Real% B);
 
         //! Converts RGB components into HLS ones.
-        static void RgbHls(const Standard_Real R, Standard_Real G, Standard_Real B, Standard_Real& H, Standard_Real& L, Standard_Real& S);
+        static void RgbHls(const Standard_Real R, Standard_Real G, Standard_Real B, Standard_Real% H, Standard_Real% L, Standard_Real% S);
 
         //! Convert the Color value to ARGB integer value.
         //! theARGB has Alpha equal to zero, so the output is
         //! formatted as 0x00RRGGBB
-        static void Color2argb(XQuantity_Color^ theColor, Standard_Integer& theARGB);
+        static void Color2argb(XQuantity_Color^ theColor, Standard_Integer% theARGB);
 
         //! Convert integer ARGB value to Color. Alpha bits are ignored
         static void Argb2color(const Standard_Integer theARGB, XQuantity_Color^ theColor);

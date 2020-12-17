@@ -64,6 +64,11 @@
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
             <summary>
 指针映射点
@@ -138,7 +143,6 @@ X
             <summary>
 X
 </summary>
-            <param name="" />
         </member>
         <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">
             <summary>
@@ -673,6 +677,26 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
+        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_Label.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_GUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XStandard_UUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="M:TKMath.xgp_Cone.#ctor(gp_Cone*)">
             <summary>
 指针映射点
@@ -701,31 +725,6 @@ The basis to define an integer attribute.
 </summary>
         </member>
         <member name="P:TKG3d.XGeom_Curve.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Label.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_GUID.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XStandard_UUID.Handle">
             <summary>
 本地句柄
 </summary>

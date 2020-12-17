@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Geom_OsculatingSurface_HeaderFile
-#define _Geom_OsculatingSurface_HeaderFile
+#ifndef _XGeom_OsculatingSurface_HeaderFile
+#define _XGeom_OsculatingSurface_HeaderFile
+#pragma once
+#include "NCollection_Haft.h"
+#include "Geom_OsculatingSurface.hxx"
+#include "XGeom_Surface.h"
+#include "XGeom_BSplineSurface.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -31,86 +36,63 @@
 #include <Geom_SequenceOfBSplineSurface.hxx>
 class Geom_Surface;
 class Geom_BSplineSurface;
+class Geom_OsculatingSurface;
 
 
 class Geom_OsculatingSurface;
-DEFINE_STANDARD_HANDLE(Geom_OsculatingSurface, Standard_Transient)
-
-class Geom_OsculatingSurface : public Standard_Transient
+//DEFINE_STANDARD_HANDLE(Geom_OsculatingSurface, Standard_Transient)
+using namespace TKMath;
+namespace TKG3d
 {
-public:
+	ref class XGeom_Surface;
+	ref class XGeom_BSplineSurface;
+	public ref class XGeom_OsculatingSurface //: public Standard_Transient
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//! DEFINE_STANDARD_ALLOC
+		XGeom_OsculatingSurface();
 
-  
-  Standard_EXPORT Geom_OsculatingSurface();
-  
-  //! detects if the  surface has punctual U  or  V
-  //! isoparametric  curve along on  the bounds of the surface
-  //! relativly to the tolerance Tol and Builds the corresponding
-  //! osculating surfaces.
-  Standard_EXPORT Geom_OsculatingSurface(const Handle(Geom_Surface)& BS, const Standard_Real Tol);
-  
-  Standard_EXPORT void Init (const Handle(Geom_Surface)& BS, const Standard_Real Tol);
-  
-  Standard_EXPORT Handle(Geom_Surface) BasisSurface() const;
-  
-  Standard_EXPORT Standard_Real Tolerance() const;
-  
-  //! if Standard_True, L is the local osculating surface
-  //! along U at the point U,V.
-  Standard_EXPORT Standard_Boolean UOscSurf (const Standard_Real U, const Standard_Real V, Standard_Boolean& t, Handle(Geom_BSplineSurface)& L) const;
-  
-  //! if Standard_True, L is the local osculating surface
-  //! along V at the point U,V.
-  Standard_EXPORT Standard_Boolean VOscSurf (const Standard_Real U, const Standard_Real V, Standard_Boolean& t, Handle(Geom_BSplineSurface)& L) const;
+		XGeom_OsculatingSurface(Handle(Geom_OsculatingSurface) pos);
+
+		void SetOsculatingSurfaceHandle(Handle(Geom_OsculatingSurface) pos);
+
+		virtual Handle(Geom_OsculatingSurface) GetOsculatingSurface();
 
 
-  DEFINE_STANDARD_RTTIEXT(Geom_OsculatingSurface,Standard_Transient)
+		//! detects if the  surface has punctual U  or  V
+		//! isoparametric  curve along on  the bounds of the surface
+		//! relativly to the tolerance Tol and Builds the corresponding
+		//! osculating surfaces.
+		XGeom_OsculatingSurface(XGeom_Surface^ BS, Standard_Real Tol);
 
-protected:
+		void Init(XGeom_Surface^ BS, Standard_Real Tol);
 
+		XGeom_Surface^ BasisSurface();
 
+		Standard_Real Tolerance();
 
+		//! if Standard_True, L is the local osculating surface
+		//! along U at the point U,V.
+		Standard_Boolean UOscSurf(Standard_Real U, Standard_Real V, Standard_Boolean% t, XGeom_BSplineSurface^% L);
 
-
-private:
-
-  
-  //! returns False if the osculating surface can't be built
-  Standard_EXPORT Standard_Boolean BuildOsculatingSurface (const Standard_Real Param, const Standard_Integer UKnot, const Standard_Integer VKnot, const Handle(Geom_BSplineSurface)& BS, Handle(Geom_BSplineSurface)& L) const;
-  
-  //! returns    True    if  the    isoparametric     is
-  //! quasi-punctual
-  Standard_EXPORT Standard_Boolean IsQPunctual (const Handle(Geom_Surface)& S, const Standard_Real Param, const GeomAbs_IsoType IT, const Standard_Real TolMin, const Standard_Real TolMax) const;
-  
-  Standard_EXPORT Standard_Boolean HasOscSurf() const;
-  
-  Standard_EXPORT Standard_Boolean IsAlongU() const;
-  
-  Standard_EXPORT Standard_Boolean IsAlongV() const;
-  
-  Standard_EXPORT void ClearOsculFlags();
-  
-  Standard_EXPORT const Geom_SequenceOfBSplineSurface& GetSeqOfL1() const;
-  
-  Standard_EXPORT const Geom_SequenceOfBSplineSurface& GetSeqOfL2() const;
+		//! if Standard_True, L is the local osculating surface
+		//! along V at the point U,V.
+		Standard_Boolean VOscSurf(Standard_Real U, Standard_Real V, Standard_Boolean% t, XGeom_BSplineSurface^% L);
 
 
-  Handle(Geom_Surface) myBasisSurf;
-  Standard_Real myTol;
-  Handle(Geom_HSequenceOfBSplineSurface) myOsculSurf1;
-  Handle(Geom_HSequenceOfBSplineSurface) myOsculSurf2;
-  Handle(TColStd_HSequenceOfInteger) myKdeg;
-  TColStd_Array1OfBoolean myAlong;
+		//! DEFINE_STANDARD_RTTIEXT(Geom_OsculatingSurface, Standard_Transient)
+		virtual property Handle(Standard_Transient) IHandle {
+			Handle(Standard_Transient) get() { //Standard_OVERRIDE {
+				return NativeHandle();
+			}
+			void set(Handle(Standard_Transient) handle) { //Standard_OVERRIDE {
+				NativeHandle() = Handle(Geom_OsculatingSurface)::DownCast(handle);
+			}
+		};
 
-
-};
-
-
-
-
-
-
-
-#endif // _Geom_OsculatingSurface_HeaderFile
+	private:
+		NCollection_Haft<Handle(Geom_OsculatingSurface)> NativeHandle;
+	};
+}
+#endif // _XGeom_OsculatingSurface_HeaderFile

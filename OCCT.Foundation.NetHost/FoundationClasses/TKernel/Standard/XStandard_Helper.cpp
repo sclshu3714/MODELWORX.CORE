@@ -1,9 +1,7 @@
 #include "XStandard_Helper.h"
+#include <windows.h>
 
 namespace TKernel {
-    XStandard_Helper::XStandard_Helper() {
-        
-    }
     //! Auxiliary tool for converting C# string into UTF-8 string.
     TCollection_AsciiString XStandard_Helper::toAsciiString(String^ theString) {
         if (theString == nullptr) {
@@ -38,5 +36,64 @@ namespace TKernel {
         Object^ ObjectResult = gcHandle.Target;
         gcHandle.Free();
         return ObjectResult;
+    };
+
+    XStandard_Helper::XStandard_Helper(void) {
+
+    };
+
+    //Standard_Boolean XStandard_Helper::AddDelayImpDll(LPCTSTR pszDllFileName)
+    //{
+    //    HMODULE hModule = ::LoadLibrary(pszDllFileName);
+    //    if (hModule == NULL)
+    //        return false;
+    //    m_Modeules->push_back(hModule);
+    //    return true;
+    //};
+
+    void XStandard_Helper::OnFreeDll()
+    {
+        for (size_t i = 0; i < m_Modeules->size(); ++i)
+            ::FreeLibrary(m_Modeules->at(i));
+        m_Modeules->clear();
+    };
+
+    // 提取资源
+    bool XStandard_Helper::FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName)
+    {
+        HRSRC hRsrc = FindResource(NULL, MAKEINTRESOURCE(uiResouceName), lpszResourceType);
+        if (hRsrc == NULL)
+        {
+            printf("can't find the resource!\n");
+            return FALSE;
+        }
+        DWORD dwSize = SizeofResource(NULL, hRsrc);
+        if (dwSize <= 0)
+        {
+            printf("the resource's size is error!\n");
+            return FALSE;
+        }
+        HGLOBAL hGlobal = LoadResource(NULL, hRsrc);
+        if (hGlobal == NULL)
+        {
+            printf("load resource error!\n");
+            return FALSE;
+        }
+        LPVOID lpVoid = LockResource(hGlobal);
+        if (lpVoid == NULL)
+        {
+            printf("lock resource error!\n");
+            return FALSE;
+        }
+        FILE* fp = NULL;
+        fopen_s(&fp, lpszSaveFileName, "wb+");
+        if (fp == NULL)
+        {
+            printf("open file error!\n");
+            return FALSE;
+        }
+        fwrite(lpVoid, sizeof(char), dwSize, fp);
+        fclose(fp);
+        return TRUE;
     };
 }

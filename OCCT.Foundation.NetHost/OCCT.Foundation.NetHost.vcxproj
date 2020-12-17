@@ -107,13 +107,14 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)OCCT.Foundation.NetHost.dll</OutputFile>
       <AdditionalLibraryDirectories>$(CSF_OCCTLibPath);E:\Software\OCC\OpenCASCADE7.4.0\Build\win32\vc14\lib;E:\Software\OCC\OpenCASCADE7.4.0\Build\win32\vc14\libd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKDCAF.lib;TKDraw.lib;TKernel.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIGES.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKOffset.lib;TKOpenGl.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKSTEP.lib;TKSTEP209.lib;TKSTEPAttr.lib;TKSTEPBase.lib;TKSTL.lib;TKTObj.lib;TKTObjDRAW.lib;TKTopAlgo.lib;TKTopTest.lib;TKV3d.lib;TKVCAF.lib;TKViewerTest.lib;TKVRML.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXDEIGES.lib;TKXDESTEP.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DelayImp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;TKBin.lib;TKBinL.lib;TKBinTObj.lib;TKBinXCAF.lib;TKBO.lib;TKBool.lib;TKBRep.lib;TKCAF.lib;TKCDF.lib;TKD3DHost.lib;TKDCAF.lib;TKDraw.lib;TKernel.lib;TKFeat.lib;TKFillet.lib;TKG2d.lib;TKG3d.lib;TKGeomAlgo.lib;TKGeomBase.lib;TKHLR.lib;TKIGES.lib;TKIVtk.lib;TKIVtkDraw.lib;TKLCAF.lib;TKMath.lib;TKMesh.lib;TKMeshVS.lib;TKOffset.lib;TKOpenGl.lib;TKPrim.lib;TKQADraw.lib;TKRWMesh.lib;TKService.lib;TKShHealing.lib;TKStd.lib;TKStdL.lib;TKSTEP.lib;TKSTEP209.lib;TKSTEPAttr.lib;TKSTEPBase.lib;TKSTL.lib;TKTObj.lib;TKTObjDRAW.lib;TKTopAlgo.lib;TKTopTest.lib;TKV3d.lib;TKVCAF.lib;TKViewerTest.lib;TKVRML.lib;TKXCAF.lib;TKXDEDRAW.lib;TKXDEIGES.lib;TKXDESTEP.lib;TKXMesh.lib;TKXml.lib;TKXmlL.lib;TKXmlTObj.lib;TKXmlXCAF.lib;TKXSBase.lib;TKXSDRAW.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)OCCT.Foundation.NetHost.pdb</ProgramDatabaseFile>
       <AssemblyDebug>true</AssemblyDebug>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImportLibrary>$(OutDir)OCCT.Foundation.NetHost.lib</ImportLibrary>
       <DelayLoadDLLs>avcodec-57.dll;avdevice-57.dll;avfilter-6.dll;avformat-57.dll;avutil-55.dll;d3dcompiler_47.dll;FreeImage.dll;FreeImagePlus.dll;freetype.dll;gl2ps.dll;libEGL.dll;libGLESv2.dll;liblzma.dll;swscale-4.dll;tbb.dll;tbbbind.dll;tbbmalloc.dll;tbbmalloc_proxy.dll;tbb_preview.dll;tcl86.dll;tk86.dll;TKBin.dll;TKBinL.dll;TKBinTObj.dll;TKBinXCAF.dll;TKBO.dll;TKBool.dll;TKBRep.dll;TKCAF.dll;TKCDF.dll;TKD3DHost.dll;TKDCAF.dll;TKDraw.dll;TKernel.dll;TKFeat.dll;TKFillet.dll;TKG2d.dll;TKG3d.dll;TKGeomAlgo.dll;TKGeomBase.dll;TKHLR.dll;TKIGES.dll;TKIVtk.dll;TKIVtkDraw.dll;TKLCAF.dll;TKMath.dll;TKMesh.dll;TKMeshVS.dll;TKOffset.dll;TKOpenGl.dll;TKPrim.dll;TKQADraw.dll;TKRWMesh.dll;TKService.dll;TKShHealing.dll;TKStd.dll;TKStdL.dll;TKSTEP.dll;TKSTEP209.dll;TKSTEPAttr.dll;TKSTEPBase.dll;TKSTL.dll;TKTObj.dll;TKTObjDRAW.dll;TKTopAlgo.dll;TKTopTest.dll;TKV3d.dll;TKVCAF.dll;TKViewerTest.dll;TKVRML.dll;TKXCAF.dll;TKXDEDRAW.dll;TKXDEIGES.dll;TKXDESTEP.dll;TKXMesh.dll;TKXml.dll;TKXmlL.dll;TKXmlTObj.dll;TKXmlXCAF.dll;TKXSBase.dll;TKXSDRAW.dll;vtkalglib-6.1.dll;vtkCommonComputationalGeometry-6.1.dll;vtkCommonCore-6.1.dll;vtkCommonDataModel-6.1.dll;vtkCommonExecutionModel-6.1.dll;vtkCommonMath-6.1.dll;vtkCommonMisc-6.1.dll;vtkCommonSystem-6.1.dll;vtkCommonTransforms-6.1.dll;vtkDICOMParser-6.1.dll;vtkFiltersCore-6.1.dll;vtkFiltersExtraction-6.1.dll;vtkFiltersGeneral-6.1.dll;vtkFiltersGeometry-6.1.dll;vtkFiltersSources-6.1.dll;vtkFiltersStatistics-6.1.dll;vtkfreetype-6.1.dll;vtkftgl-6.1.dll;vtkImagingCore-6.1.dll;vtkImagingFourier-6.1.dll;vtkImagingHybrid-6.1.dll;vtkInteractionStyle-6.1.dll;vtkIOCore-6.1.dll;vtkIOImage-6.1.dll;vtkjpeg-6.1.dll;vtkmetaio-6.1.dll;vtkpng-6.1.dll;vtkRenderingCore-6.1.dll;vtkRenderingFreeType-6.1.dll;vtkRenderingFreeTypeOpenGL-6.1.dll;vtkRenderingOpenGL-6.1.dll;vtksys-6.1.dll;vtktiff-6.1.dll;vtkzlib-6.1.dll;zlib.dll</DelayLoadDLLs>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -283,6 +284,7 @@
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_XYZ.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Datum3D.h" />
     <ClInclude Include="FoundationClasses\TKMath\TopLoc\XTopLoc_Location.h" />
+    <ClInclude Include="inc\resource.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_GlueEnum.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Operation.h" />
     <ClInclude Include="ModelingAlgorithms\TKBO\BOPAlgo\XBOPAlgo_Options.h" />
@@ -390,6 +392,8 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Hyperbola.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Line.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OffsetCurve.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
@@ -412,7 +416,6 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_GradientFillMethod.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_GridDrawMode.h" />
@@ -667,6 +670,8 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Hyperbola.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Line.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetCurve.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Transformation.cpp" />

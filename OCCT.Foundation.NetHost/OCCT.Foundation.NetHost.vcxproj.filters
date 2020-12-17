@@ -1212,9 +1212,6 @@
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DiagnosticInfo.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ModelingData\TKBRep\BRepTools\XBRepTools.h">
       <Filter>头文件\ModelingData\TKBRep\BRepTools</Filter>
     </ClInclude>
@@ -1388,6 +1385,15 @@
     </ClInclude>
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OffsetCurve.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.h">
+      <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\resource.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1951,6 +1957,12 @@
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetCurve.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>

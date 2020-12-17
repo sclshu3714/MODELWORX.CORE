@@ -93,8 +93,10 @@ namespace TKernel {
     //! The calculation is with respect to the current value of <me>
     //! If <DC> is positive then <me> is more contrasty.
     //! If <DI> is positive then <me> is more intense.
-    void XQuantity_Color::Delta(XQuantity_Color^ AColor, Standard_Real& DC, Standard_Real& DI) {
-        NativeHandle->Delta(*AColor->GetColor(), DC, DI);
+    void XQuantity_Color::Delta(XQuantity_Color^ AColor, Standard_Real% DC, Standard_Real% DI) {
+        Standard_Real XDC = Standard_Real(DC); Standard_Real XDI = Standard_Real(DI);
+        NativeHandle->Delta(*AColor->GetColor(), XDC, XDI);
+        DC = XDC; DI = XDI;
     };
 
     //! Returns the distance between two colours. It's a
@@ -180,8 +182,10 @@ namespace TKernel {
     //!    -1.0 is a special value reserved for grayscale color (S should be 0.0).
     //!  - theR2 is the Lightness  (L) within range [0.0; 1.0]
     //!  - theR3 is the Saturation (S) within range [0.0; 1.0]
-    void XQuantity_Color::Values(Standard_Real& theR1, Standard_Real& theR2, Standard_Real& theR3, XQuantity_TypeOfColor theType) {
-        NativeHandle->Values(theR1, theR2, theR3, safe_cast<Quantity_TypeOfColor>(theType));
+    void XQuantity_Color::Values(Standard_Real% theR1, Standard_Real% theR2, Standard_Real% theR3, XQuantity_TypeOfColor theType) {
+        Standard_Real theR1X = Standard_Real(theR1); Standard_Real theR2X = Standard_Real(theR2); Standard_Real theR3X = Standard_Real(theR3);
+        NativeHandle->Values(theR1X, theR2X, theR3X, safe_cast<Quantity_TypeOfColor>(theType));
+        theR1 = theR1X; theR2 = theR2X; theR3 = theR2X;
     };
 
     //! Sets the specified value used to compare <me> and
@@ -225,11 +229,13 @@ namespace TKernel {
     //! corresponds to "BLACK" is Quantity_NOC_BLACK.
     //! Returns false if name is unknown.
     //! static 
-    Standard_Boolean XQuantity_Color::ColorFromName(System::String^ theName, XQuantity_NameOfColor& theColor) {
+    Standard_Boolean XQuantity_Color::ColorFromName(System::String^ theName, XQuantity_NameOfColor% theColor) {
         TCollection_AsciiString asc = XStandard_Helper::toAsciiString(theName);
         const Standard_CString theColorNameString = asc.ToCString();
-        Quantity_Color theQColor = safe_cast<Quantity_NameOfColor>(theColor);
-        return Quantity_Color::ColorFromName(theColorNameString, theQColor);
+        Quantity_NameOfColor theQColorX = safe_cast<Quantity_NameOfColor>(theColor);
+        Standard_Boolean ISColorFromName = Quantity_Color::ColorFromName(theColorNameString, theQColorX);
+        theColor = safe_cast<XQuantity_NameOfColor>(theQColorX);
+        return ISColorFromName;
     };
 
     //! Parses the string as a hex color (like "#FF0" for short RGB color, or "#FFFF00" for RGB color)
@@ -240,28 +246,34 @@ namespace TKernel {
     bool XQuantity_Color::ColorFromHex(System::String^ theHexColorString, XQuantity_Color^ theColor) {
         TCollection_AsciiString asc = XStandard_Helper::toAsciiString(theHexColorString);
         const Standard_CString theColorNameString = asc.ToCString();
-       return Quantity_Color::ColorFromHex(theColorNameString, *theColor->GetColor());
+        return Quantity_Color::ColorFromHex(theColorNameString, *theColor->GetColor());
     };
 
 
     //! Converts HLS components into RGB ones.
     //! static 
-    void XQuantity_Color::HlsRgb(const Standard_Real H, Standard_Real L, Standard_Real S, Standard_Real& R, Standard_Real& G, Standard_Real& B) {
-        Quantity_Color::HlsRgb(H, L, S, R, G, B);
+    void XQuantity_Color::HlsRgb(const Standard_Real H, Standard_Real L, Standard_Real S, Standard_Real% R, Standard_Real% G, Standard_Real% B) {
+        Standard_Real XR = Standard_Real(R); Standard_Real XG = Standard_Real(G); Standard_Real XB = Standard_Real(B);
+        Quantity_Color::HlsRgb(H, L, S, XR, XG, XB);
+        R = XR; G = XG; B = XB;
     };
 
     //! Converts RGB components into HLS ones.
     //! static 
-    void XQuantity_Color::RgbHls(const Standard_Real R, Standard_Real G, Standard_Real B, Standard_Real& H, Standard_Real& L, Standard_Real& S) {
-        Quantity_Color::RgbHls(R, G, B, H, L, S);
+    void XQuantity_Color::RgbHls(const Standard_Real R, Standard_Real G, Standard_Real B, Standard_Real% H, Standard_Real% L, Standard_Real% S) {
+        Standard_Real XH = Standard_Real(H); Standard_Real XL = Standard_Real(L); Standard_Real XS = Standard_Real(S);
+        Quantity_Color::RgbHls(R, G, B, XH, XL, XS);
+        H = XH; L = XL; S = XS;
     };
 
     //! Convert the Color value to ARGB integer value.
     //! theARGB has Alpha equal to zero, so the output is
     //! formatted as 0x00RRGGBB
     //! static 
-    void XQuantity_Color::Color2argb(XQuantity_Color^ theColor, Standard_Integer& theARGB) {
-        Quantity_Color::Color2argb(*theColor->GetColor(), theARGB);
+    void XQuantity_Color::Color2argb(XQuantity_Color^ theColor, Standard_Integer% theARGB) {
+        Standard_Integer theARGBX = Standard_Integer(theARGB);
+        Quantity_Color::Color2argb(*theColor->GetColor(), theARGBX);
+        theARGB = theARGBX;
     };
 
     //! Convert integer ARGB value to Color. Alpha bits are ignored

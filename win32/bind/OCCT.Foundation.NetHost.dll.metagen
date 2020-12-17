@@ -1193,12 +1193,16 @@ Struct xgp_TrsfForm: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldIn
     xgp_TrsfForm gp_Other = 8 : Public, Static, Literal, HasDefault
 Class TKernel.XStandard_Helper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Methods:
     toAsciiString(TCollection_AsciiString*, String): PrivateScope, Public, Static, HideBySig
     toCString(TCollection_AsciiString*): PrivateScope, Public, Static, HideBySig
     toString(SByte*): PrivateScope, Public, Static, HideBySig
     toString(TCollection_AsciiString*): PrivateScope, Public, Static, HideBySig
     toObject(Void*): PrivateScope, Public, Static, HideBySig
+    FreeEmbedResourse(UInt32, SByte*, SByte*): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKernel.XTCollection_ExtendedString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TCollection_AsciiString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XTCollection_ExtendedString*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1675,7 +1679,7 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     ChangeIntensity(Double IsConst): PrivateScope, Public, HideBySig
     SetValues(Double IsConst, Double, Double, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
     SetValues(XQuantity_NameOfColor IsConst): PrivateScope, Public, HideBySig
-    Delta(XQuantity_Color, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Delta(XQuantity_Color, Double&, Double&): PrivateScope, Public, HideBySig
     Distance(XQuantity_Color): PrivateScope, Public, HideBySig
     SquareDistance(XQuantity_Color): PrivateScope, Public, HideBySig
     Blue(): PrivateScope, Public, HideBySig
@@ -1686,21 +1690,21 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     IsEqual(XQuantity_Color): PrivateScope, Public, HideBySig
     op_Equality(XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName
     Light(): PrivateScope, Public, HideBySig
-    Name(Double IsConst, Double, Double): PrivateScope, Public, Static, HideBySig
+    Name(Double, Double, Double): PrivateScope, Public, Static, HideBySig
     Name(): PrivateScope, Public, HideBySig
     Red(): PrivateScope, Public, HideBySig
     Saturation(): PrivateScope, Public, HideBySig
-    Values(Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
-    SetEpsilon(Double IsConst): PrivateScope, Public, Static, HideBySig
+    Values(Double&, Double&, Double&, XQuantity_TypeOfColor): PrivateScope, Public, HideBySig
+    SetEpsilon(Double): PrivateScope, Public, Static, HideBySig
     Epsilon(): PrivateScope, Public, Static, HideBySig
     StringName(XQuantity_NameOfColor): PrivateScope, Public, Static, HideBySig
     ColorFromName(String, XQuantity_Color): PrivateScope, Public, Static, HideBySig
-    ColorFromName(String, XQuantity_NameOfColor* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    ColorFromName(String, XQuantity_NameOfColor&): PrivateScope, Public, Static, HideBySig
     ColorFromHex(String, XQuantity_Color): PrivateScope, Public, Static, HideBySig
     ColorToHex(TCollection_AsciiString*, XQuantity_Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-    HlsRgb(Double IsConst, Double, Double, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    RgbHls(Double IsConst, Double, Double, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced, Double* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Color2argb(XQuantity_Color, Int32* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    HlsRgb(Double IsConst, Double, Double, Double&, Double&, Double&): PrivateScope, Public, Static, HideBySig
+    RgbHls(Double IsConst, Double, Double, Double&, Double&, Double&): PrivateScope, Public, Static, HideBySig
+    Color2argb(XQuantity_Color, Int32&): PrivateScope, Public, Static, HideBySig
     Argb2color(Int32 IsConst, XQuantity_Color): PrivateScope, Public, Static, HideBySig
     Test(): PrivateScope, Public, Static, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
@@ -7280,6 +7284,90 @@ Class TKG3d.XGeom_OffsetCurve: AutoLayout, AnsiClass, Class, Public, BeforeField
     GetBasisCurveContinuity(): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<Geom_OsculatingSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_OsculatingSurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKG3d.XGeom_Surface, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_OsculatingSurface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetOsculatingSurfaceHandle(handle<Geom_OsculatingSurface>*): PrivateScope, Public, HideBySig
+    GetOsculatingSurface(handle<Geom_OsculatingSurface>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Init(XGeom_Surface, Double): PrivateScope, Public, HideBySig
+    BasisSurface(): PrivateScope, Public, HideBySig
+    Tolerance(): PrivateScope, Public, HideBySig
+    UOscSurf(Double, Double, Boolean&, XGeom_BSplineSurface&): PrivateScope, Public, HideBySig
+    VOscSurf(Double, Double, Boolean&, XGeom_BSplineSurface&): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XGeom_OsculatingSurface(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Geom_OffsetSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKG3d.XGeom_OffsetSurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKG3d.XGeom_Surface
+    Void .ctor(TKG3d.XGeom_Surface, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG3d.XGeom_Surface, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<Geom_OffsetSurface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetOffsetSurfaceHandle(handle<Geom_OffsetSurface>*): PrivateScope, Public, HideBySig
+    GetOffsetSurface(handle<Geom_OffsetSurface>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    SetBasisSurface(XGeom_Surface): PrivateScope, Public, HideBySig
+    SetBasisSurface(XGeom_Surface, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetOffsetValue(Double): PrivateScope, Public, HideBySig
+    Offset(): PrivateScope, Public, HideBySig
+    BasisSurface(): PrivateScope, Public, HideBySig
+    OsculatingSurface(): PrivateScope, Public, HideBySig
+    UReverse(): PrivateScope, Public, Virtual, HideBySig
+    UReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    VReverse(): PrivateScope, Public, Virtual, HideBySig
+    VReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    Bounds(Double&, Double&, Double&, Double&): PrivateScope, Public, Virtual, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
+    IsCNu(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsCNv(Int32): PrivateScope, Public, Virtual, HideBySig
+    IsUClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsVClosed(): PrivateScope, Public, Virtual, HideBySig
+    IsUPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    UPeriod(): PrivateScope, Public, Virtual, HideBySig
+    IsVPeriodic(): PrivateScope, Public, Virtual, HideBySig
+    VPeriod(): PrivateScope, Public, Virtual, HideBySig
+    UIso(Double): PrivateScope, Public, Virtual, HideBySig
+    VIso(Double): PrivateScope, Public, Virtual, HideBySig
+    D0(Double, Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Double, Int32, Int32): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    TransformParameters(Double, Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    Surface(): PrivateScope, Public, HideBySig
+    UOsculatingSurface(Double, Double, Boolean&, XGeom_BSplineSurface&): PrivateScope, Public, HideBySig
+    VOsculatingSurface(Double, Double, Boolean&, XGeom_BSplineSurface&): PrivateScope, Public, HideBySig
+    GetBasisSurfContinuity(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Transformation> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7707,6 +7795,31 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    SetGridActivity(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Dump(SByte*, Graphic3d_BufferType* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, Int32, Int32, Graphic3d_BufferType* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), XV3d_StereoDumpOptions): PrivateScope, Public, HideBySig
+    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, V3d_ImageDumpOptions* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetBackFacingModel(XV3d_TypeOfBackfacingModel): PrivateScope, Public, HideBySig
+    BackFacingModel(): PrivateScope, Public, HideBySig
+    AddClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>*): PrivateScope, Public, HideBySig
+    PlaneLimit(): PrivateScope, Public, HideBySig
+    SetCamera(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Camera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    DefaultCamera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
+    RenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
+    ChangeRenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
+    IsCullingEnabled(): PrivateScope, Public, HideBySig
+    SetFrustumCulling(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    DiagnosticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced, XGraphic3d_DiagnosticInfo): PrivateScope, Public, HideBySig
+    StatisticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    StatisticInformation(): PrivateScope, Public, HideBySig
+    GravityPoint(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     SetViewMappingDefault(): PrivateScope, Public, HideBySig
     ResetViewMapping(): PrivateScope, Public, HideBySig
     Reset(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -7766,31 +7879,6 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     WindowFitAll(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
     FitMinMax(handle<Graphic3d_Camera>* IsImplicitlyDereferenced, XBnd_Box, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     SetGrid(xgp_Ax3, handle<Aspect_Grid>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetGridActivity(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    Dump(SByte*, Graphic3d_BufferType* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, Int32, Int32, Graphic3d_BufferType* IsImplicitlyDereferenced, Boolean(HasFieldMarshal), XV3d_StereoDumpOptions): PrivateScope, Public, HideBySig
-    ToPixMap(Image_PixMap* IsImplicitlyDereferenced, V3d_ImageDumpOptions* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetBackFacingModel(XV3d_TypeOfBackfacingModel): PrivateScope, Public, HideBySig
-    BackFacingModel(): PrivateScope, Public, HideBySig
-    AddClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    RemoveClipPlane(handle<Graphic3d_ClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ClipPlanes(handle<Graphic3d_SequenceOfHClipPlane>*): PrivateScope, Public, HideBySig
-    PlaneLimit(): PrivateScope, Public, HideBySig
-    SetCamera(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Camera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
-    DefaultCamera(handle<Graphic3d_Camera>*): PrivateScope, Public, HideBySig
-    RenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
-    ChangeRenderingParams(Graphic3d_RenderingParams*): PrivateScope, Public, HideBySig
-    IsCullingEnabled(): PrivateScope, Public, HideBySig
-    SetFrustumCulling(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    DiagnosticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced, XGraphic3d_DiagnosticInfo): PrivateScope, Public, HideBySig
-    StatisticInformation(NCollection_IndexedDataMap<TCollection_AsciiString\,TCollection_AsciiString\,TCollection_AsciiString>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    StatisticInformation(): PrivateScope, Public, HideBySig
-    GravityPoint(): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     SetViewHandle(handle<V3d_View>*): PrivateScope, Public, HideBySig
     GetView(handle<V3d_View>*): PrivateScope, Public, HideBySig
     SetWindow(handle<Aspect_Window>* IsImplicitlyDereferenced, Void*): PrivateScope, Public, HideBySig
@@ -8209,6 +8297,10 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
+    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
+    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
     GetPresentableObject(handle<PrsMgr_PresentableObject>*): PrivateScope, Public, Virtual, HideBySig
     SetComponent(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     Axis2Placement(handle<Geom_Axis2Placement>*): PrivateScope, Public, HideBySig
@@ -8228,10 +8320,6 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XAIS_Axis(): PrivateScope, Public, HideBySig
-    Component(handle<Geom_Line>*): PrivateScope, Public, HideBySig
-    GetAxis(handle<AIS_Axis>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetInteractiveObject(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig
-    GetSelectableObject(handle<SelectMgr_SelectableObject>*): PrivateScope, Public, Virtual, HideBySig
 Struct XAIS_TypeOfAxis: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:

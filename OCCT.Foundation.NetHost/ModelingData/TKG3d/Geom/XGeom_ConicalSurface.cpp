@@ -3,7 +3,6 @@ namespace TKG3d {
 	/// <summary>
 	/// X
 	/// </summary>
-	/// <param name=""></param>
 	XGeom_ConicalSurface::XGeom_ConicalSurface(void) {
 		//NativeHandle() = new Geom_ConicalSurface();
 	};
