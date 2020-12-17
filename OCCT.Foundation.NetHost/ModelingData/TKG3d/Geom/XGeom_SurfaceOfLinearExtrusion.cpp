@@ -1,393 +1,278 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-
-#include <BSplCLib.hxx>
-#include <BSplSLib.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Ellipse.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_Hyperbola.hxx>
-#include <Geom_Line.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <Geom_Parabola.hxx>
-#include <Geom_SurfaceOfLinearExtrusion.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <GeomAbs_CurveType.hxx>
-#include <GeomEvaluator_SurfaceOfExtrusion.hxx>
-#include <gp.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Dir.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Precision.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_SurfaceOfLinearExtrusion,Geom_SweptSurface)
-
-#define  POLES    (poles->Array2())
-#define  WEIGHTS  (weights->Array2())
-#define  UKNOTS   (uknots->Array1())
-#define  VKNOTS   (vknots->Array1())
-#define  UFKNOTS  (ufknots->Array1())
-#define  VFKNOTS  (vfknots->Array1())
-#define  FMULTS   (BSplCLib::NoMults())
-
-typedef Geom_SurfaceOfLinearExtrusion         SurfaceOfLinearExtrusion;
-typedef Geom_Curve                            Curve;
-typedef gp_Dir  Dir;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
-typedef gp_XYZ  XYZ;
-
-
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_SurfaceOfLinearExtrusion::Copy () const 
+#include <XGeom_SurfaceOfLinearExtrusion.h>
+namespace TKG3d
 {
-  
-  Handle(Geom_SurfaceOfLinearExtrusion) Sr;
-  Sr = new SurfaceOfLinearExtrusion (basisCurve, direction);
-  return Sr;
-}
-
-
-//=======================================================================
-//function : Geom_SurfaceOfLinearExtrusion
-//purpose  : 
-//=======================================================================
-
-Geom_SurfaceOfLinearExtrusion::Geom_SurfaceOfLinearExtrusion 
-  ( const Handle(Geom_Curve)& C, 
-    const Dir& V) {
-
-   basisCurve = Handle(Geom_Curve)::DownCast(C->Copy());  // Copy 10-03-93
-   direction  = V;
-   smooth     = C->Continuity();
-   myEvaluator = new GeomEvaluator_SurfaceOfExtrusion(basisCurve, direction);
- }
-
-
-//=======================================================================
-//function : UReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::UReverse () { 
-
-  basisCurve->Reverse(); 
-}
-
-
-//=======================================================================
-//function : UReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_SurfaceOfLinearExtrusion::UReversedParameter(const Standard_Real U) const {
-
-  return basisCurve->ReversedParameter(U);
-}
-
-
-//=======================================================================
-//function : VReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::VReverse () {
-
-  direction.Reverse();
-  myEvaluator->SetDirection(direction);
-}
-
-
-//=======================================================================
-//function : VReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_SurfaceOfLinearExtrusion::VReversedParameter( const Standard_Real V) const {
-
-  return (-V);
-}
-
-
-//=======================================================================
-//function : SetDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::SetDirection (const Dir& V)
-{
-  direction = V;
-  myEvaluator->SetDirection(direction);
-}
-
-
-//=======================================================================
-//function : SetBasisCurve
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::SetBasisCurve (const Handle(Geom_Curve)& C) {
-
-   smooth = C->Continuity();
-   basisCurve = Handle(Geom_Curve)::DownCast(C->Copy());  // Copy 10-03-93
-   myEvaluator = new GeomEvaluator_SurfaceOfExtrusion(basisCurve, direction);
-}
-
-
-//=======================================================================
-//function : Bounds
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::Bounds ( Standard_Real& U1, 
-					     Standard_Real& U2,
-					     Standard_Real& V1, 
-					     Standard_Real& V2 ) const {
-
-  V1 = -Precision::Infinite();  V2 = Precision::Infinite();
-  U1 = basisCurve->FirstParameter();  U2 = basisCurve->LastParameter();
-}
-
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::D0 (const Standard_Real U,
-                                        const Standard_Real V,
-                                              Pnt& P)  const
-{
-  myEvaluator->D0(U, V, P);
-}
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::D1 (const Standard_Real U,
-                                        const Standard_Real V,
-                                              Pnt& P,
-                                              Vec& D1U, Vec& D1V) const
-{
-  myEvaluator->D1(U, V, P, D1U, D1V);
-}
-
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::D2 (const Standard_Real U,
-                                        const Standard_Real V,
-                                              Pnt& P,
-                                              Vec& D1U, Vec& D1V,
-                                              Vec& D2U, Vec& D2V, Vec& D2UV) const
-{
-  myEvaluator->D2(U, V, P, D1U, D1V, D2U, D2V, D2UV);
-}
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::D3 (const Standard_Real U,
-                                        const Standard_Real V,
-                                              Pnt& P,
-                                              Vec& D1U, Vec& D1V,
-                                              Vec& D2U, Vec& D2V, Vec& D2UV,
-                                              Vec& D3U, Vec& D3V, Vec& D3UUV, Vec& D3UVV) const
-{
-  myEvaluator->D3(U, V, P, D1U, D1V, D2U, D2V, D2UV, D3U, D3V, D3UUV, D3UVV);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_SurfaceOfLinearExtrusion::DN (const Standard_Real    U,
-                                       const Standard_Real    V,
-                                       const Standard_Integer Nu,
-                                       const Standard_Integer Nv) const
-{
-  return myEvaluator->DN(U, V, Nu, Nv);
-}
-
-
-//=======================================================================
-//function : UIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_SurfaceOfLinearExtrusion::UIso (const Standard_Real U) const {
-
-  Handle(Geom_Line) L; 
-  L = new Geom_Line (basisCurve->Value (U), direction);
-  return L;
-}
-
-
-//=======================================================================
-//function : VIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_SurfaceOfLinearExtrusion::VIso (const Standard_Real V) const {
-    
-  Vec Vdir (direction);
-  Vdir.Multiply (V);
-  Handle(Geom_Curve) C;
-  C = Handle(Geom_Curve)::DownCast(basisCurve->Translated(Vdir));
-  return C;
-}
-
-
-//=======================================================================
-//function : IsCNu
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsCNu (const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N < 0, " ");
-  return basisCurve->IsCN (N);
-}
-
-
-//=======================================================================
-//function : IsCNv
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsCNv (const Standard_Integer ) const {
-
-  return Standard_True;
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::Transform (const Trsf& T) {
-
-   direction.Transform   (T);
-   basisCurve->Transform (T);
-   myEvaluator->SetDirection(direction);
-}
-
-
-
-//=======================================================================
-//function : IsUClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsUClosed () const { 
-
-  return basisCurve->IsClosed ();
-}
-
-
-//=======================================================================
-//function : IsUPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsUPeriodic () const { 
-
-  return basisCurve->IsPeriodic ();
-}
-
-//=======================================================================
-//function : IsVClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsVClosed () const  {
-
-  return Standard_False; 
-}
-
-//=======================================================================
-//function : IsVPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfLinearExtrusion::IsVPeriodic () const { 
-
-  return Standard_False;
-}
-
-//=======================================================================
-//function : TransformParameters
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfLinearExtrusion::TransformParameters(Standard_Real& U,
-							Standard_Real& V,
-							const gp_Trsf& T) 
-const
-{
-  U = basisCurve->TransformedParameter(U,T);
-  if (!Precision::IsInfinite(V)) V *= Abs(T.ScaleFactor());
-}
-
-//=======================================================================
-//function : ParametricTransformation
-//purpose  : 
-//=======================================================================
-
-gp_GTrsf2d Geom_SurfaceOfLinearExtrusion::ParametricTransformation
-(const gp_Trsf& T) const
-{
-  // transformation in the V Direction
-  gp_GTrsf2d TV;
-  gp_Ax2d Axis(gp::Origin2d(),gp::DX2d());
-  TV.SetAffinity(Axis, Abs(T.ScaleFactor()));
-  // transformation in the U Direction
-  gp_GTrsf2d TU;
-  Axis = gp_Ax2d(gp::Origin2d(),gp::DY2d());
-  TU.SetAffinity(Axis, basisCurve->ParametricTransformation(T));
- 
-  return TU * TV;
+	//!
+	XGeom_SurfaceOfLinearExtrusion::XGeom_SurfaceOfLinearExtrusion(void) {
+		/*NativeHandle() = new Geom_SurfaceOfLinearExtrusion();
+		SetSurfaceHandle(NativeHandle());*/
+	};
+
+	//! 
+	XGeom_SurfaceOfLinearExtrusion::XGeom_SurfaceOfLinearExtrusion(Handle(Geom_SurfaceOfLinearExtrusion) pos) {
+		NativeHandle() = pos;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_SurfaceOfLinearExtrusion::~XGeom_SurfaceOfLinearExtrusion() {
+		NativeHandle() = NULL;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	void XGeom_SurfaceOfLinearExtrusion::SetSurfaceOfLinearExtrusionHandle(Handle(Geom_SurfaceOfLinearExtrusion) handle) {
+		NativeHandle() = handle;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_SurfaceOfLinearExtrusion) XGeom_SurfaceOfLinearExtrusion::GetSurfaceOfLinearExtrusion() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_SweptSurface) XGeom_SurfaceOfLinearExtrusion::GetSweptSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Surface) XGeom_SurfaceOfLinearExtrusion::GetSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_SurfaceOfLinearExtrusion::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! V is the direction of extrusion.
+	//! C is the extruded curve.
+	//! The form of a SurfaceOfLinearExtrusion can be :
+	//! . ruled surface (RuledForm),
+	//! . a cylindrical surface if the extruded curve is a circle or
+	//! a trimmed circle (CylindricalForm),
+	//! . a plane surface if the extruded curve is a Line (PlanarForm).
+	//! Warnings :
+	//! Degenerated surface cases are not detected. For example if the
+	//! curve C is a line and V is parallel to the direction of this
+	//! line.
+	XGeom_SurfaceOfLinearExtrusion::XGeom_SurfaceOfLinearExtrusion(XGeom_Curve^ C, xgp_Dir^ V) {
+		NativeHandle() = new Geom_SurfaceOfLinearExtrusion(C->GetCurve(), *V->GetDir());
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//! Assigns V as the "direction of extrusion" for this
+	//! surface of linear extrusion.
+	void XGeom_SurfaceOfLinearExtrusion::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(*V->GetDir());
+	};
+
+	//! Modifies this surface of linear extrusion by redefining
+	//! its "basis curve" (the "extruded curve").
+	void XGeom_SurfaceOfLinearExtrusion::SetBasisCurve(XGeom_Curve^ C) {
+		NativeHandle()->SetBasisCurve(C->GetCurve());
+	};
+
+	//! Changes the orientation of this surface of linear
+	//! extrusion in the u  parametric direction. The
+	//! bounds of the surface are not changed, but the given
+	//! parametric direction is reversed. Hence the
+	//! orientation of the surface is reversed.
+	//! In the case of a surface of linear extrusion:
+	//! - UReverse reverses the basis curve, and
+	//! - VReverse reverses the direction of linear extrusion.
+	void XGeom_SurfaceOfLinearExtrusion::UReverse() {
+		NativeHandle()->UReverse();
+	};
+
+	//! Computes the u parameter on the modified
+	//! surface, produced by reversing its u  parametric
+	//! direction, for any point of u parameter U  on this surface of linear extrusion.
+	//! In the case of an extruded surface:
+	//! - UReverseParameter returns the reversed
+	//! parameter given by the function
+	//! ReversedParameter called with U on the basis   curve,
+	Standard_Real XGeom_SurfaceOfLinearExtrusion::UReversedParameter(Standard_Real U) {
+		return NativeHandle()->UReversedParameter(U);
+	};
+
+	//! Changes the orientation of this surface of linear
+	//! extrusion in the v parametric direction. The
+	//! bounds of the surface are not changed, but the given
+	//! parametric direction is reversed. Hence the
+	//! orientation of the surface is reversed.
+	//! In the case of a surface of linear extrusion:
+	//! - UReverse reverses the basis curve, and
+	//! - VReverse reverses the direction of linear extrusion.
+	void XGeom_SurfaceOfLinearExtrusion::VReverse() {
+		NativeHandle()->VReverse();
+	};
+
+	//! Computes the v parameter on the modified
+	//! surface, produced by reversing its u v parametric
+	//! direction, for any point of v parameter V on this surface of linear extrusion.
+	//! In the case of an extruded surface VReverse returns -V.
+	Standard_Real XGeom_SurfaceOfLinearExtrusion::VReversedParameter(Standard_Real V) {
+		return NativeHandle()->VReversedParameter(V);
+	};
+
+	//! Returns the parametric bounds U1, U2, V1 and V2 of
+	//! this surface of linear extrusion.
+	//! A surface of linear extrusion is infinite in the v
+	//! parametric direction, so:
+	//! - V1 = Standard_Real::RealFirst()
+	//! - V2 = Standard_Real::RealLast().
+	void XGeom_SurfaceOfLinearExtrusion::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
+	};
+
+	//! IsUClosed returns true if the "basis curve" of this
+	//! surface of linear extrusion is closed.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsUClosed() {
+		return NativeHandle()->IsUClosed();
+	};
+
+	//! IsVClosed always returns false.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsVClosed() {
+		return NativeHandle()->IsVClosed();
+	};
+
+	//! IsCNu returns true if the degree of continuity for the
+	//! "basis curve" of this surface of linear extrusion is at least N.
+	//! Raises RangeError if N < 0.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsCNu(Standard_Integer N) {
+		return NativeHandle()->IsCNu(N);
+	};
+
+	//! IsCNv always returns true.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsCNv(Standard_Integer N) {
+		return NativeHandle()->IsCNv(N);
+	};
+
+	//! IsUPeriodic returns true if the "basis curve" of this
+	//! surface of linear extrusion is periodic.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsUPeriodic() {
+		return NativeHandle()->IsUPeriodic();
+	};
+
+	//! IsVPeriodic always returns false.
+	Standard_Boolean XGeom_SurfaceOfLinearExtrusion::IsVPeriodic() {
+		return NativeHandle()->IsVPeriodic();
+	};
+
+	//! Computes the U isoparametric curve of this surface
+	//! of linear extrusion. This is the line parallel to the
+	//! direction of extrusion, passing through the point of
+	//! parameter U of the basis curve.
+	XGeom_Curve^ XGeom_SurfaceOfLinearExtrusion::UIso(Standard_Real U) {
+		return gcnew XGeom_Curve(NativeHandle()->UIso(U));
+	};
+
+	//! Computes the V isoparametric curve of this surface
+	//! of linear extrusion. This curve is obtained by
+	//! translating the extruded curve in the direction of
+	//! extrusion, with the magnitude V.
+	XGeom_Curve^ XGeom_SurfaceOfLinearExtrusion::VIso(Standard_Real V) {
+		return gcnew XGeom_Curve(NativeHandle()->VIso(V));
+	};
+
+
+	//! Computes the  point P (U, V) on the surface.
+	//! The parameter U is the parameter on the extruded curve.
+	//! The parametrization V is a linear parametrization, and
+	//! the direction of parametrization is the direction of
+	//! extrusion. If the point is on the extruded curve, V = 0.0
+	void XGeom_SurfaceOfLinearExtrusion::D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, V, *P->GetPnt());
+	};
+
+
+	//! Computes the current point and the first derivatives in the
+	//! directions U and V.
+	//! Raises UndefinedDerivative if the continuity of the surface is not C1.
+	void XGeom_SurfaceOfLinearExtrusion::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
+		NativeHandle()->D1(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec());
+	};
+
+	//! --- Purpose ;
+	//! Computes the current point, the first and the second derivatives
+	//! in the directions U and V.
+	//! Raises UndefinedDerivative if the continuity of the surface is not C2.
+	void XGeom_SurfaceOfLinearExtrusion::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
+		NativeHandle()->D2(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec());
+	};
+
+
+	//! Computes the current point, the first,the second and the third
+	//! derivatives in the directions U and V.
+	//! Raises UndefinedDerivative if the continuity of the surface is not C3.
+	void XGeom_SurfaceOfLinearExtrusion::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
+		NativeHandle()->D3(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec(), *D3U->GetVec(), *D3V->GetVec(), *D3UUV->GetVec(), *D3UVV->GetVec());
+	};
+
+
+	//! Computes the derivative of order Nu in the direction u
+	//! and Nv in the direction v.
+	//! Raises UndefinedDerivative if the continuity of the surface is not CNu in the u
+	//! direction and CNv in the v direction.
+	//! Raises RangeError if Nu + Nv < 1 or Nu < 0 or Nv < 0.
+	xgp_Vec^ XGeom_SurfaceOfLinearExtrusion::DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) {
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		return gcnew xgp_Vec(temp);
+	};
+
+	//! Applies the transformation T to this surface of linear extrusion.
+	void XGeom_SurfaceOfLinearExtrusion::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Computes the  parameters on the  transformed  surface for
+	//! the transform of the point of parameters U,V on <me>.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are the new values of U,V after calling
+	//!
+	//! me->TranformParameters(U,V,T)
+	//!
+	//! This methods multiplies :
+	//! U by BasisCurve()->ParametricTransformation(T)
+	//! V by T.ScaleFactor()
+	void XGeom_SurfaceOfLinearExtrusion::TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) {
+		Standard_Real XU(U); Standard_Real  XV(V);
+		NativeHandle()->TransformParameters(XU, XV, *T->GetTrsf());
+		U = XU; V = XV;
+	};
+
+	//! Returns a 2d transformation  used to find the  new
+	//! parameters of a point on the transformed surface.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are  obtained by transforming U,V with
+	//! th 2d transformation returned by
+	//!
+	//! me->ParametricTransformation(T)
+	//!
+	//! This  methods  returns  a scale
+	//! U by BasisCurve()->ParametricTransformation(T)
+	//! V by T.ScaleFactor()
+	xgp_GTrsf2d^ XGeom_SurfaceOfLinearExtrusion::ParametricTransformation(xgp_Trsf^ T) {
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(*T->GetTrsf()));
+		return gcnew xgp_GTrsf2d(temp);
+	};
+
+	//! Creates a new object which is a copy of this surface of linear extrusion.
+	XGeom_Geometry^ XGeom_SurfaceOfLinearExtrusion::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }

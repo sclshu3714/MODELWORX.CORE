@@ -26,12 +26,6 @@
 </summary>
             <param name="pos" />
         </member>
-        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
         <member name="P:TKMath.XTopLoc_Datum3D.Handle">
             <summary>
 本地句柄
@@ -70,6 +64,12 @@
 </summary>
         </member>
         <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
             <summary>
 指针映射点
 </summary>
@@ -513,11 +513,6 @@ Proxy class encapsulating calls to OCCT C++ classes within
 C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
-        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
             <summary>
 本地句柄
@@ -579,12 +574,6 @@ Finds, or creates, an Integer attribute and sets the Integer  attribute is retur
             <summary>
 The basis to define an integer attribute.
 </summary>
-        </member>
-        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
         </member>
         <member name="P:TKLCAF.XTDocStd_Document.IHandle">
             <summary>
@@ -672,6 +661,12 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
+        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
         <member name="P:TKLCAF.XTDF_IDFilter.Handle">
             <summary>
 本地句柄
@@ -734,6 +729,11 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
+        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKMath.xgp_Lin.Handle">
             <summary>
 本地句柄
@@ -764,17 +764,17 @@ The basis to define an integer attribute.
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKG3d.XGeom_Geometry.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKBRep.XTopoDS_Iterator.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
         <member name="P:TKMath.XTopLoc_Location.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKG3d.XGeom_Geometry.IHandle">
             <summary>
 本地句柄
 </summary>

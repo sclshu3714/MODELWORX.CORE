@@ -1,459 +1,332 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-
-#include <BSplCLib.hxx>
-#include <BSplSLib.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_SurfaceOfRevolution.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <GeomEvaluator_SurfaceOfRevolution.hxx>
-#include <gp.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Dir.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <Precision.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
-
-IMPLEMENT_STANDARD_RTTIEXT(Geom_SurfaceOfRevolution,Geom_SweptSurface)
-
-#define  POLES    (poles->Array2())
-#define  WEIGHTS  (weights->Array2())
-#define  UKNOTS   (uknots->Array1())
-#define  VKNOTS   (vknots->Array1())
-#define  UFKNOTS  (ufknots->Array1())
-#define  VFKNOTS  (vfknots->Array1())
-#define  FMULTS   (BSplCLib::NoMults())
-
-typedef Geom_SurfaceOfRevolution         SurfaceOfRevolution;
-typedef Geom_Curve                       Curve;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Dir  Dir;
-typedef gp_Lin  Lin;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
-typedef gp_XYZ  XYZ;
-
-
-
-
-
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Geometry) Geom_SurfaceOfRevolution::Copy () const {
-
-  return new Geom_SurfaceOfRevolution (basisCurve, Axis());
-}
-
-
-//=======================================================================
-//function : Geom_SurfaceOfRevolution
-//purpose  : 
-//=======================================================================
-
-Geom_SurfaceOfRevolution::Geom_SurfaceOfRevolution 
-  (const Handle(Geom_Curve)& C , 
-   const Ax1&           A1 ) : loc (A1.Location()) {
-
-  direction  = A1.Direction();
-  SetBasisCurve(C);
-}
-
-
-//=======================================================================
-//function : UReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::UReverse () { 
-
-  direction.Reverse();
-  myEvaluator->SetDirection(direction);
-}
-
-
-//=======================================================================
-//function : UReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_SurfaceOfRevolution::UReversedParameter (const Standard_Real U) const {
-
-  return ( 2.*M_PI - U);
-}
-
-
-//=======================================================================
-//function : VReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::VReverse () { 
-
-  basisCurve->Reverse(); 
-}
-
-
-//=======================================================================
-//function : VReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_SurfaceOfRevolution::VReversedParameter (const Standard_Real V) const {
-
-  return basisCurve->ReversedParameter(V);
-}
-
-
-//=======================================================================
-//function : Location
-//purpose  : 
-//=======================================================================
-
-const gp_Pnt& Geom_SurfaceOfRevolution::Location () const { 
-
-  return loc; 
-}
-
-//=======================================================================
-//function : IsUPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsUPeriodic () const {
-
-  return Standard_True; 
-}
-
-//=======================================================================
-//function : IsCNu
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsCNu (const Standard_Integer ) const  {
-
-  return Standard_True;
-}
-
-//=======================================================================
-//function : Axis
-//purpose  : 
-//=======================================================================
-
-Ax1 Geom_SurfaceOfRevolution::Axis () const  { 
-
-  return Ax1 (loc, direction); 
-}
-
-//=======================================================================
-//function : IsCNv
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsCNv (const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N < 0, " ");
-  return basisCurve->IsCN(N);
-}
-
-
-//=======================================================================
-//function : IsUClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsUClosed () const { 
-
-  return Standard_True; 
-}
-
-//=======================================================================
-//function : IsVClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsVClosed () const 
-{ 
-  return basisCurve->IsClosed();
-}
-
-
-//=======================================================================
-//function : IsVPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_SurfaceOfRevolution::IsVPeriodic () const { 
-
-  return basisCurve->IsPeriodic(); 
-}
-
-
-//=======================================================================
-//function : SetAxis
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::SetAxis (const Ax1& A1) {
-
-   direction = A1.Direction();
-   loc = A1.Location();
-   myEvaluator->SetAxis(A1);
-}
-
-
-//=======================================================================
-//function : SetDirection
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::SetDirection (const Dir& V) {
-
-   direction = V;
-   myEvaluator->SetDirection(direction);
-}
-
-
-//=======================================================================
-//function : SetBasisCurve
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::SetBasisCurve (const Handle(Geom_Curve)& C) {
-
-   basisCurve = Handle(Geom_Curve)::DownCast(C->Copy());
-   smooth     = C->Continuity();
-   myEvaluator = new GeomEvaluator_SurfaceOfRevolution(basisCurve, direction, loc);
-}
-
-
-//=======================================================================
-//function : SetLocation
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::SetLocation (const Pnt& P) {
-
-   loc = P;
-   myEvaluator->SetLocation(loc);
-}
-
-
-//=======================================================================
-//function : Bounds
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::Bounds ( Standard_Real& U1, 
-				        Standard_Real& U2, 
-				        Standard_Real& V1, 
-				        Standard_Real& V2 ) const {
-
-  U1 = 0.0; 
-  U2 = 2.0 * M_PI; 
-  V1 = basisCurve->FirstParameter();  
-  V2 = basisCurve->LastParameter();
-}
-
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::D0
-(const Standard_Real U, const Standard_Real V, Pnt& P) const
+#include <XGeom_SurfaceOfRevolution.h>
+namespace TKG3d
 {
-  myEvaluator->D0(U, V, P);
+	//!
+	XGeom_SurfaceOfRevolution::XGeom_SurfaceOfRevolution(void) {
+		/*NativeHandle() = new Geom_SurfaceOfRevolution();
+		SetSurfaceHandle(NativeHandle());*/
+	};
+
+	//! 
+	XGeom_SurfaceOfRevolution::XGeom_SurfaceOfRevolution(Handle(Geom_SurfaceOfRevolution) pos) {
+		NativeHandle() = pos;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//!
+	XGeom_SurfaceOfRevolution::~XGeom_SurfaceOfRevolution() {
+		NativeHandle() = NULL;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	void XGeom_SurfaceOfRevolution::SetSurfaceOfRevolutionHandle(Handle(Geom_SurfaceOfRevolution) handle) {
+		NativeHandle() = handle;
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//!
+	Handle(Geom_SurfaceOfRevolution) XGeom_SurfaceOfRevolution::GetSurfaceOfRevolution() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_SweptSurface) XGeom_SurfaceOfRevolution::GetSweptSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Surface) XGeom_SurfaceOfRevolution::GetSurface() {
+		return NativeHandle();
+	};
+
+	//!
+	Handle(Geom_Geometry) XGeom_SurfaceOfRevolution::GetGeometry() {
+		return NativeHandle();
+	};
+
+	//! C : is the meridian  or the referenced curve.
+	//! A1 is the axis of revolution.
+	//! The form of a SurfaceOfRevolution can be :
+	//! . a general revolution surface (RevolutionForm),
+	//! . a conical surface if the meridian is a line or a trimmed line
+	//! (ConicalForm),
+	//! . a cylindrical surface if the meridian is a line or a trimmed
+	//! line parallel to the revolution axis (CylindricalForm),
+	//! . a planar surface if the meridian is a line perpendicular to
+	//! the revolution axis of the surface (PlanarForm).
+	//! . a spherical surface,
+	//! . a toroidal surface,
+	//! . a quadric surface.
+	//! Warnings :
+	//! It is not checked that the curve C is planar and that the
+	//! surface axis is in the plane of the curve.
+	//! It is not checked that the revolved curve C doesn't
+	//! self-intersects.
+	XGeom_SurfaceOfRevolution::XGeom_SurfaceOfRevolution(XGeom_Curve^ C, xgp_Ax1^ A1) {
+		NativeHandle() = new Geom_SurfaceOfRevolution(C->GetCurve(), *A1->GetAx1());
+		SetSurfaceHandle(NativeHandle());
+	};
+
+	//! Changes the axis of revolution.
+	//! Warnings :
+	//! It is not checked that the axis is in the plane of the
+	//! revolved curve.
+	void XGeom_SurfaceOfRevolution::SetAxis(xgp_Ax1^ A1) {
+		NativeHandle()->SetAxis(*A1->GetAx1());
+	};
+
+	//! Changes the direction of the revolution axis.
+	//! Warnings :
+	//! It is not checked that the axis is in the plane of the
+	//! revolved curve.
+	void XGeom_SurfaceOfRevolution::SetDirection(xgp_Dir^ V) {
+		NativeHandle()->SetDirection(*V->GetDir());
+	};
+
+	//! Changes the revolved curve of the surface.
+	//! Warnings :
+	//! It is not checked that the curve C is planar and that the
+	//! surface axis is in the plane of the curve.
+	//! It is not checked that the revolved curve C doesn't
+	//! self-intersects.
+	void XGeom_SurfaceOfRevolution::SetBasisCurve(XGeom_Curve^ C) {
+		NativeHandle()->SetBasisCurve(C->GetCurve());
+	};
+
+	//! Changes the location point of the revolution axis.
+	//! Warnings :
+	//! It is not checked that the axis is in the plane of the
+	//! revolved curve.
+	void XGeom_SurfaceOfRevolution::SetLocation(xgp_Pnt^ P) {
+		NativeHandle()->SetLocation(*P->GetPnt());
+	};
+
+	//! Returns the revolution axis of the surface.
+	xgp_Ax1^ XGeom_SurfaceOfRevolution::Axis() {
+		gp_Ax1* temp = new gp_Ax1(NativeHandle()->Axis());
+		return gcnew xgp_Ax1(temp);
+	};
+
+
+	//! Returns the location point of the axis of revolution.
+	xgp_Pnt^ XGeom_SurfaceOfRevolution::Location() {
+		gp_Pnt* temp = new gp_Pnt(NativeHandle()->Location());
+		return gcnew xgp_Pnt(temp);
+	};
+
+
+	//! Computes the position of the reference plane of the surface
+	//! defined by the basis curve and the symmetry axis.
+	//! The location point is the location point of the revolution's
+	//! axis, the XDirection of the plane is given by the revolution's
+	//! axis and the orientation of the normal to the plane is given
+	//! by the sense of revolution.
+	//!
+	//! Raised if the revolved curve is not planar or if the revolved
+	//! curve and the symmetry axis are not in the same plane or if
+	//! the maximum of distance between the axis and the revolved
+	//! curve is lower or equal to Resolution from gp.
+	xgp_Ax2^ XGeom_SurfaceOfRevolution::ReferencePlane() {
+		gp_Ax2* temp = new gp_Ax2(NativeHandle()->ReferencePlane());
+		return gcnew xgp_Ax2(temp);
+	};
+
+	//! Changes the orientation of this surface of revolution
+	//! in the u  parametric direction. The bounds of the
+	//! surface are not changed but the given parametric
+	//! direction is reversed. Hence the orientation of the
+	//! surface is reversed.
+	//! As a consequence:
+	//! - UReverse reverses the direction of the axis of
+	//! revolution of this surface,
+	void XGeom_SurfaceOfRevolution::UReverse() {
+		NativeHandle()->UReverse();
+	};
+
+	//! Computes the u  parameter on the modified
+	//! surface, when reversing its u  parametric
+	//! direction, for any point of u parameter U  on this surface of revolution.
+	//! In the case of a revolved surface:
+	//! - UReversedParameter returns 2.*Pi - U
+	Standard_Real XGeom_SurfaceOfRevolution::UReversedParameter(Standard_Real U) {
+		return NativeHandle()->UReversedParameter(U);
+	};
+
+	//! Changes the orientation of this surface of revolution
+	//! in the v parametric direction. The bounds of the
+	//! surface are not changed but the given parametric
+	//! direction is reversed. Hence the orientation of the
+	//! surface is reversed.
+	//! As a consequence:
+	//! - VReverse reverses the meridian of this surface of revolution.
+	void XGeom_SurfaceOfRevolution::VReverse() {
+		NativeHandle()->VReverse();
+	};
+
+	//! Computes the  v parameter on the modified
+	//! surface, when reversing its  v parametric
+	//! direction, for any point of v parameter V on this surface of revolution.
+	//! In the case of a revolved surface:
+	//! - VReversedParameter returns the reversed
+	//! parameter given by the function
+	//! ReversedParameter called with V on the meridian.
+	Standard_Real XGeom_SurfaceOfRevolution::VReversedParameter(Standard_Real V) {
+		return NativeHandle()->VReversedParameter(V);
+	};
+
+	//! Computes the  parameters on the  transformed  surface for
+	//! the transform of the point of parameters U,V on <me>.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are the new values of U,V after calling
+	//!
+	//! me->TranformParameters(U,V,T)
+	//!
+	//! This methods multiplies V by
+	//! BasisCurve()->ParametricTransformation(T)
+	void XGeom_SurfaceOfRevolution::TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) {
+		Standard_Real XU(U); Standard_Real  XV(V);
+		NativeHandle()->TransformParameters(XU, XV, *T->GetTrsf());
+		U = XU; V = XV;
+	};
+
+	//! Returns a 2d transformation  used to find the  new
+	//! parameters of a point on the transformed surface.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are  obtained by transforming U,V with
+	//! th 2d transformation returned by
+	//!
+	//! me->ParametricTransformation(T)
+	//!
+	//! This  methods  returns  a scale  centered  on  the
+	//! U axis with BasisCurve()->ParametricTransformation(T)
+	xgp_GTrsf2d^ XGeom_SurfaceOfRevolution::ParametricTransformation(xgp_Trsf^ T) {
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(*T->GetTrsf()));
+		return gcnew xgp_GTrsf2d(temp);
+	};
+
+	//! Returns the parametric bounds U1, U2 , V1 and V2 of this surface.
+	//! A surface of revolution is always complete, so U1 = 0, U2 = 2*PI.
+	void XGeom_SurfaceOfRevolution::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
+	};
+
+	//! IsUClosed always returns true.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsUClosed() {
+		return NativeHandle()->IsUClosed();
+	};
+
+	//! IsVClosed returns true if the meridian of this
+	//! surface of revolution is closed.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsVClosed() {
+		return NativeHandle()->IsVClosed();
+	};
+
+	//! IsCNu always returns true.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsCNu(Standard_Integer N) {
+		return NativeHandle()->IsCNu(N);
+	};
+
+	//! IsCNv returns true if the degree of continuity of the
+	//! meridian of this surface of revolution is at least N.
+	//! Raised if N < 0.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsCNv(Standard_Integer N) {
+		return NativeHandle()->IsCNv(N);
+	};
+
+	//! Returns True.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsUPeriodic() {
+		return NativeHandle()->IsUPeriodic();
+	};
+
+	//! IsVPeriodic returns true if the meridian of this
+	//! surface of revolution is periodic.
+	Standard_Boolean XGeom_SurfaceOfRevolution::IsVPeriodic() {
+		return NativeHandle()->IsVPeriodic();
+	};
+
+	//! Computes the U isoparametric curve of this surface
+	//! of revolution. It is the curve obtained by rotating the
+	//! meridian through an angle U about the axis of revolution.
+	XGeom_Curve^ XGeom_SurfaceOfRevolution::UIso(Standard_Real U) {
+		return gcnew XGeom_Curve(NativeHandle()->UIso(U));
+	};
+
+	//! Computes the U isoparametric curve of this surface
+	//! of revolution. It is the curve obtained by rotating the
+	//! meridian through an angle U about the axis of revolution.
+	XGeom_Curve^ XGeom_SurfaceOfRevolution::VIso(Standard_Real V) {
+		return gcnew XGeom_Curve(NativeHandle()->VIso(V));
+	};
+
+	//! Computes the  point P (U, V) on the surface.
+	//! U is the angle of the rotation around the revolution axis.
+	//! The direction of this axis gives the sense of rotation.
+	//! V is the parameter of the revolved curve.
+	void XGeom_SurfaceOfRevolution::D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, V, *P->GetPnt());
+	};
+
+	//! Computes the current point and the first derivatives
+	//! in the directions U and V.
+	//! Raised if the continuity of the surface is not C1.
+	void XGeom_SurfaceOfRevolution::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
+		NativeHandle()->D1(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec());
+	};
+
+	//! Computes the current point, the first and the second derivatives
+	//! in the directions U and V.
+	//! Raised if the continuity of the surface is not C2.
+	void XGeom_SurfaceOfRevolution::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
+		NativeHandle()->D2(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec());
+	};
+
+	//! Computes the current point, the first,the second and the third
+	//! derivatives in the directions U and V.
+	//! Raised if the continuity of the surface is not C3.
+	void XGeom_SurfaceOfRevolution::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
+		NativeHandle()->D3(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec(), *D3U->GetVec(), *D3V->GetVec(), *D3UUV->GetVec(), *D3UVV->GetVec());
+	};
+
+	//! Computes the derivative of order Nu in the direction u and
+	//! Nv in the direction v.
+	//!
+	//! Raised if the continuity of the surface is not CNu in the u
+	//! direction and CNv in the v direction.
+	//! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
+	//! The following  functions  evaluates the  local
+	//! derivatives on surface. Useful to manage discontinuities
+	//! on the surface.
+	//! if    Side  =  1  ->  P  =  S( U+,V )
+	//! if    Side  = -1  ->  P  =  S( U-,V )
+	//! else  P  is betveen discontinuities
+	//! can be evaluated using methods  of
+	//! global evaluations    P  =  S( U ,V )
+	xgp_Vec^ XGeom_SurfaceOfRevolution::DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) {
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		return gcnew xgp_Vec(temp);
+	};
+
+	//! Applies the transformation T to this surface of revolution.
+	void XGeom_SurfaceOfRevolution::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Creates a new object which is a copy of this surface of revolution.
+	XGeom_Geometry^ XGeom_SurfaceOfRevolution::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::D1 
-  (const Standard_Real U, const Standard_Real V, 
-         Pnt& P, 
-         Vec& D1U, Vec& D1V   ) const
-{
-  myEvaluator->D1(U, V, P, D1U, D1V);
-}
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::D2 
-  (const Standard_Real   U, const Standard_Real V,
-         Pnt&   P, 
-         Vec& D1U, Vec& D1V, 
-         Vec& D2U, Vec& D2V, Vec& D2UV ) const
-{
-  myEvaluator->D2(U, V, P, D1U, D1V, D2U, D2V, D2UV);
-}
-
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::D3 
-  (const Standard_Real U, const Standard_Real V,
-         Pnt& P,
-         Vec& D1U, Vec& D1V, 
-         Vec& D2U, Vec& D2V, Vec& D2UV,
-         Vec& D3U, Vec& D3V, Vec& D3UUV, Vec& D3UVV ) const
-{
-  myEvaluator->D3(U, V, P, D1U, D1V, D2U, D2V, D2UV, D3U, D3V, D3UUV, D3UVV);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_SurfaceOfRevolution::DN (const Standard_Real    U , const Standard_Real    V, 
-                                  const Standard_Integer Nu, const Standard_Integer Nv) const
-{
-  return myEvaluator->DN(U, V, Nu, Nv);
-}
-
-
-//=======================================================================
-//function : ReferencePlane
-//purpose  : 
-//=======================================================================
-
-Ax2 Geom_SurfaceOfRevolution::ReferencePlane() const {
-        
-   throw Standard_NotImplemented();
-}
-
-
-//=======================================================================
-//function : UIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_SurfaceOfRevolution::UIso (const Standard_Real U) const {
-
-   Handle(Geom_Curve) C = Handle(Geom_Curve)::DownCast(basisCurve->Copy());
-   Ax1 RotAxis = Ax1 (loc, direction);
-   C->Rotate (RotAxis, U);
-   return C;
-}
-
-
-//=======================================================================
-//function : VIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_SurfaceOfRevolution::VIso (const Standard_Real V) const {
-
-  Handle(Geom_Circle) Circ;
-  Pnt Pc = basisCurve->Value (V);
-  gp_Lin L1(loc,direction);
-  Standard_Real Rad= L1.Distance(Pc);
-
-  Ax2 Rep ;
-  if ( Rad > gp::Resolution()) { 
-    XYZ P  = Pc.XYZ(); 
-    XYZ C;
-    C.SetLinearForm((P-loc.XYZ()).Dot(direction.XYZ()), 
-		    direction.XYZ(), loc.XYZ() );
-    P = P-C;
-    if(P.Modulus() > gp::Resolution()) {
-      gp_Dir D = P.Normalized();
-      Rep = gp_Ax2(C, direction, D);
-    }
-    else 
-      Rep = gp_Ax2(C, direction);
-  }
-  else
-    Rep = gp_Ax2(Pc, direction);
-
-  Circ   = new Geom_Circle (Rep, Rad);
-  return Circ;
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::Transform (const Trsf& T) {
-
-  loc.Transform (T);
-  direction.Transform (T);
-  basisCurve->Transform (T);
-  if(T.ScaleFactor()*T.HVectorialPart().Determinant() < 0.) UReverse(); 
-  myEvaluator->SetDirection(direction);
-  myEvaluator->SetLocation(loc);
-}
-
-//=======================================================================
-//function : TransformParameters
-//purpose  : 
-//=======================================================================
-
-void Geom_SurfaceOfRevolution::TransformParameters(Standard_Real& ,
-						   Standard_Real& V,
-						   const gp_Trsf& T) 
-const
-{
-  V = basisCurve->TransformedParameter(V,T);
-}
-
-//=======================================================================
-//function : ParametricTransformation
-//purpose  : 
-//=======================================================================
-
-gp_GTrsf2d Geom_SurfaceOfRevolution::ParametricTransformation
-(const gp_Trsf& T) const
-{
-  gp_GTrsf2d T2;
-  gp_Ax2d Axis(gp::Origin2d(),gp::DX2d());
-  T2.SetAffinity(Axis, basisCurve->ParametricTransformation(T));
-  return T2;
-}
-

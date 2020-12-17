@@ -1,46 +1,68 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGeom_SweptSurface.h>
+namespace TKG3d
+{
+	//!
+	XGeom_SweptSurface::XGeom_SweptSurface(void) {
+		/*NativeHandle() = new Geom_SweptSurface();*/
+	};
 
+	//! 
+	XGeom_SweptSurface::XGeom_SweptSurface(Handle(Geom_SweptSurface) pos) {
+		NativeHandle() = pos;
+		SetSurfaceHandle(NativeHandle());
+	};
 
-#include <Geom_Curve.hxx>
-#include <Geom_SweptSurface.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_Type.hxx>
+	//!
+	XGeom_SweptSurface::~XGeom_SweptSurface() {
+		NativeHandle() = NULL;
+		SetSurfaceHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_SweptSurface,Geom_Surface)
+	void XGeom_SweptSurface::SetSweptSurfaceHandle(Handle(Geom_SweptSurface) handle) {
+		NativeHandle() = handle;
+		SetSurfaceHandle(NativeHandle());
+	};
 
-//=======================================================================
-//function : Continuity
-//purpose  : 
-//=======================================================================
-GeomAbs_Shape Geom_SweptSurface::Continuity () const { return smooth; }
+	//!
+	Handle(Geom_SweptSurface) XGeom_SweptSurface::GetSweptSurface() {
+		return NativeHandle();
+	};
 
-//=======================================================================
-//function : Direction
-//purpose  : 
-//=======================================================================
+	//!
+	Handle(Geom_Surface) XGeom_SweptSurface::GetSurface() {
+		return NativeHandle();
+	};
 
-const gp_Dir& Geom_SweptSurface::Direction () const  { return direction; }
+	//!
+	Handle(Geom_Geometry) XGeom_SweptSurface::GetGeometry() {
+		return NativeHandle();
+	};
 
-//=======================================================================
-//function : BasisCurve
-//purpose  : 
-//=======================================================================
+	//! returns the continuity of the surface :
+	//! C0 : only geometric continuity,
+	//! C1 : continuity of the first derivative all along the surface,
+	//! C2 : continuity of the second derivative all along the surface,
+	//! C3 : continuity of the third derivative all along the surface,
+	//! G1 : tangency continuity all along the surface,
+	//! G2 : curvature continuity all along the surface,
+	//! CN : the order of continuity is infinite.
+	XGeomAbs_Shape XGeom_SweptSurface::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
+	};
 
-Handle(Geom_Curve) Geom_SweptSurface::BasisCurve () const 
-{ 
-  return basisCurve;
+	//! Returns the reference direction of the swept surface.
+	//! For a surface of revolution it is the direction of the
+	//! revolution axis, for a surface of linear extrusion it is
+	//! the direction of extrusion.
+	xgp_Dir^ XGeom_SweptSurface::Direction() {
+		gp_Dir* temp = new gp_Dir(NativeHandle()->Direction());
+		return gcnew xgp_Dir(temp);
+	};
+
+	//! Returns the referenced curve of the surface.
+	//! For a surface of revolution it is the revolution curve,
+	//! for a surface of linear extrusion it is the extruded curve.
+	XGeom_Curve^ XGeom_SweptSurface::BasisCurve() {
+		return gcnew XGeom_Curve(NativeHandle()->BasisCurve());
+	};
 }
