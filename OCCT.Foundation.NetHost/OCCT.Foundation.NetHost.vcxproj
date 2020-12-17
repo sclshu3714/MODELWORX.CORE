@@ -395,6 +395,7 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Parabola.h" />
+    <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Plane.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Point.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.h" />
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Surface.h" />
@@ -674,6 +675,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OffsetSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Parabola.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Plane.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Transformation.cpp" />
