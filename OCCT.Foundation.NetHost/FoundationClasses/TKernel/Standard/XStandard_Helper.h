@@ -37,18 +37,20 @@ namespace TKernel {
 		//! 帮助类
 		XStandard_Helper(void);
 		virtual ~XStandard_Helper() { OnFreeDll(); };
+
 		////! 添加需要延迟加载的dll路径
-		//Standard_Boolean AddDelayImpDll(LPCTSTR pszDllFileName);
+		//Standard_Boolean AddDelayImportDll(LPCTSTR pszDllFileName);
+		
 		//! 提取资源
-		//! char lpszResourceType[20] = "MYTYPES";
-		//! char szSaveFileName[20] = "555.txt";
-		//! BOOL flag = FreeMyResourse(IDR_MYTYPES2, lpszResourceType, szSaveFileName);
-		//! if (flag == TRUE)
+		//! char lpszResourceType[20] = "DLLS";
+		//! char szSaveFileName[20] = "myDll.dll";
+		//! Standard_Boolean flag = FreeEmbedResourse(IDR_MYTYPES2, lpszResourceType, szSaveFileName);
+		//! if (flag == Standard_True)
 		//! {
 		//! 	printf("the resource is free!\n");
 		//! }
 		//! return 0;
-		bool FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName);
+		Standard_Boolean FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName);
 	protected:
 		void OnFreeDll();
 	private:

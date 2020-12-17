@@ -42,13 +42,13 @@ namespace TKernel {
 
     };
 
-    //Standard_Boolean XStandard_Helper::AddDelayImpDll(LPCTSTR pszDllFileName)
+    //Standard_Boolean XStandard_Helper::AddDelayImportDll(LPCTSTR pszDllFileName)
     //{
     //    HMODULE hModule = ::LoadLibrary(pszDllFileName);
     //    if (hModule == NULL)
-    //        return false;
+    //        return Standard_False;
     //    m_Modeules->push_back(hModule);
-    //    return true;
+    //    return Standard_True;
     //};
 
     void XStandard_Helper::OnFreeDll()
@@ -59,41 +59,41 @@ namespace TKernel {
     };
 
     // 提取资源
-    bool XStandard_Helper::FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName)
+    Standard_Boolean XStandard_Helper::FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName)
     {
         HRSRC hRsrc = FindResource(NULL, MAKEINTRESOURCE(uiResouceName), lpszResourceType);
         if (hRsrc == NULL)
         {
             printf("can't find the resource!\n");
-            return FALSE;
+            return Standard_False;
         }
         DWORD dwSize = SizeofResource(NULL, hRsrc);
         if (dwSize <= 0)
         {
             printf("the resource's size is error!\n");
-            return FALSE;
+            return Standard_False;
         }
         HGLOBAL hGlobal = LoadResource(NULL, hRsrc);
         if (hGlobal == NULL)
         {
             printf("load resource error!\n");
-            return FALSE;
+            return Standard_False;
         }
         LPVOID lpVoid = LockResource(hGlobal);
         if (lpVoid == NULL)
         {
             printf("lock resource error!\n");
-            return FALSE;
+            return Standard_False;
         }
         FILE* fp = NULL;
         fopen_s(&fp, lpszSaveFileName, "wb+");
         if (fp == NULL)
         {
             printf("open file error!\n");
-            return FALSE;
+            return Standard_False;
         }
         fwrite(lpVoid, sizeof(char), dwSize, fp);
         fclose(fp);
-        return TRUE;
+        return Standard_True;
     };
 }
