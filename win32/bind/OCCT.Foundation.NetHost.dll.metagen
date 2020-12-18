@@ -7304,18 +7304,6 @@ Class TKG3d.XGeom_OffsetCurve: AutoLayout, AnsiClass, Class, Public, BeforeField
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    SetOffsetCurveHandle(handle<Geom_OffsetCurve>*): PrivateScope, Public, HideBySig
-    GetOffsetCurve(handle<Geom_OffsetCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
-    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
-    Reverse(): PrivateScope, Public, Virtual, HideBySig
-    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
-    SetBasisCurve(XGeom_Curve, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
-    SetOffsetValue(Double): PrivateScope, Public, HideBySig
-    BasisCurve(): PrivateScope, Public, HideBySig
-    Continuity(): PrivateScope, Public, Virtual, HideBySig
     Direction(): PrivateScope, Public, HideBySig
     D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
     D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
@@ -7335,6 +7323,18 @@ Class TKG3d.XGeom_OffsetCurve: AutoLayout, AnsiClass, Class, Public, BeforeField
     Copy(): PrivateScope, Public, Virtual, HideBySig
     GetBasisCurveContinuity(): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    SetOffsetCurveHandle(handle<Geom_OffsetCurve>*): PrivateScope, Public, HideBySig
+    GetOffsetCurve(handle<Geom_OffsetCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
+    SetBasisCurve(XGeom_Curve, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
+    SetOffsetValue(Double): PrivateScope, Public, HideBySig
+    BasisCurve(): PrivateScope, Public, HideBySig
+    Continuity(): PrivateScope, Public, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_OsculatingSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -8267,6 +8267,25 @@ Class TKGeomBase.XGC_MakeTrimmedCone: AutoLayout, AnsiClass, Class, Public, Befo
     Status(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(GC_MakeTrimmedCone*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class TKGeomBase.XGC_MakeTrimmedCylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.XGC_Root
+    Void .ctor(TKMath.xgp_Ax1, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(GC_MakeTrimmedCylinder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    GC_MakeTrimmedCylinder* IHandle 'get set' : 
+  Methods:
+    SetMakeTrimmedCylinder(GC_MakeTrimmedCylinder*): PrivateScope, Public, HideBySig
+    GetMakeTrimmedCylinder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(GC_MakeTrimmedCylinder*): PrivateScope, Public, HideBySig, SpecialName
 Class TKGeomBase.XGeomTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

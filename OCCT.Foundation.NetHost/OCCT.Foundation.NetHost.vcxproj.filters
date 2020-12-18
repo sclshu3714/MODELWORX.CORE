@@ -1449,6 +1449,9 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2075,6 +2078,9 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

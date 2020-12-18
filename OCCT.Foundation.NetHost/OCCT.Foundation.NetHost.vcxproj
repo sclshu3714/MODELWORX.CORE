@@ -102,6 +102,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
+      <DisableSpecificWarnings>4199;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -432,6 +433,7 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h" />
@@ -724,6 +726,7 @@
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />

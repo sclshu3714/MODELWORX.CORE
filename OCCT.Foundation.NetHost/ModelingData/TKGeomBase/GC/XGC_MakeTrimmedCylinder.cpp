@@ -1,80 +1,77 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeTrimmedCylinder.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	XGC_MakeTrimmedCylinder::XGC_MakeTrimmedCylinder() {
 
+	};
 
-#include <GC_MakeCylindricalSurface.hxx>
-#include <GC_MakeTrimmedCylinder.hxx>
-#include <Geom_CylindricalSurface.hxx>
-#include <Geom_RectangularTrimmedSurface.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <StdFail_NotDone.hxx>
+	XGC_MakeTrimmedCylinder::XGC_MakeTrimmedCylinder(GC_MakeTrimmedCylinder* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation of a cylinder limited by three points <P1>, <P2> and <P3>.         +
-//   the height og the resulting cylinder is the distance from <P1> to <P2>.     +
-//   The radius is the distance from <P3> to axis <P1P2>.                 +
-//=========================================================================
-GC_MakeTrimmedCylinder::GC_MakeTrimmedCylinder(const gp_Pnt& P1 ,
-						 const gp_Pnt& P2 ,
-						 const gp_Pnt& P3 ) 
-{
-  GC_MakeCylindricalSurface Cyl(P1,P2,P3);
-  TheError = Cyl.Status();
-  if (TheError == gce_Done) {
-    TheCyl = new Geom_RectangularTrimmedSurface(Cyl.Value(),0.,2.*M_PI,0.,
-				  P2.Distance(P1),Standard_True,Standard_True);
-  }
-}
+	void XGC_MakeTrimmedCylinder::SetMakeTrimmedCylinder(GC_MakeTrimmedCylinder* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation of a cylinder limited by a circle and height.          +
-//=========================================================================
+	GC_MakeTrimmedCylinder* XGC_MakeTrimmedCylinder::GetMakeTrimmedCylinder() {
+		return NativeHandle;
+	};
 
-GC_MakeTrimmedCylinder::GC_MakeTrimmedCylinder(const gp_Circ&      Circ   ,
-						 const Standard_Real Height ) {
-  GC_MakeCylindricalSurface Cyl(Circ);
-  TheError = Cyl.Status();
-  if (TheError == gce_Done) {
-    TheCyl = new Geom_RectangularTrimmedSurface(Cyl.Value(),0.,2.*M_PI,0.,
-					   Height,Standard_True,Standard_True);
-  }
-}
-     
-//=========================================================================
-//=========================================================================
+	GC_Root* XGC_MakeTrimmedCylinder::GetRoot() {
+		return NativeHandle;
+	};
 
-GC_MakeTrimmedCylinder::GC_MakeTrimmedCylinder(const gp_Ax1&       A1     ,
-						 const Standard_Real Radius ,
-						 const Standard_Real Height ) {
-  GC_MakeCylindricalSurface Cyl(A1,Radius);
-  TheError = Cyl.Status();
-  if (TheError == gce_Done) {
-    TheCyl = new Geom_RectangularTrimmedSurface(Cyl.Value(),0.,2.*M_PI,0.,
-					Height,Standard_True,Standard_True);
-  }
-}
+	//! Make a cylindricalSurface <Cyl> from Geom
+	//! Its axis is is <P1P2> and its radius is the distance
+	//! between <P3> and <P1P2>.
+	//! The height is the distance between P1 and P2.
+	XGC_MakeTrimmedCylinder::XGC_MakeTrimmedCylinder(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3) {
+		NativeHandle = new GC_MakeTrimmedCylinder(*P1->GetPnt(), *P2->GetPnt(), *P3->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-const Handle(Geom_RectangularTrimmedSurface)& GC_MakeTrimmedCylinder::
-       Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeTrimmedCylinder::Value() - no result");
-  return TheCyl;
+	//! Make a cylindricalSurface <Cyl> from gp by its base <Circ>.
+	//! Its axis is the normal to the plane defined bi <Circ>.
+	//! <Height> can be greater than zero or lower than zero.
+	//! In the first case the V parametric direction of the
+	//! result has the same orientation as the normal to <Circ>.
+	//! In the other case it has the opposite orientation.
+	XGC_MakeTrimmedCylinder::XGC_MakeTrimmedCylinder(xgp_Circ^ Circ, Standard_Real Height) {
+		NativeHandle = new GC_MakeTrimmedCylinder(*Circ->GetCirc(), Height);
+		SetRoot(NativeHandle);
+	};
+
+	//! Make a cylindricalSurface <Cyl> from gp by its
+	//! axis <A1> and its radius <Radius>.
+	//! It returns NullObject if <Radius> is lower than zero.
+	//! <Height> can be greater than zero or lower than zero.
+	//! In the first case the V parametric direction of the
+	//! result has the same orientation as <A1>.
+	//! In the other case it has the opposite orientation.
+	XGC_MakeTrimmedCylinder::XGC_MakeTrimmedCylinder(xgp_Ax1^ A1, Standard_Real Radius, Standard_Real Height) {
+		NativeHandle = new GC_MakeTrimmedCylinder(*A1->GetAx1(), Radius, Height);
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns the constructed trimmed cylinder.
+	//! Exceptions
+	//! StdFail_NotDone if no trimmed cylinder is constructed.
+	XGeom_RectangularTrimmedSurface^ XGC_MakeTrimmedCylinder::Value() {
+		return gcnew XGeom_RectangularTrimmedSurface(NativeHandle->Value());
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeTrimmedCylinder::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeTrimmedCylinder::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
