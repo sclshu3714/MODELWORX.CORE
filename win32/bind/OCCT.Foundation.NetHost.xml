@@ -207,6 +207,11 @@ X
 </summary>
             <param name="pos" />
         </member>
+        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="M:OCCTProxy.InitOCCTProxy">
             <summary>
 Initialize OCCTProxy
@@ -729,11 +734,6 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKMath.xgp_Lin.Handle">
             <summary>
 本地句柄
@@ -764,17 +764,17 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKG3d.XGeom_Geometry.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKBRep.XTopoDS_Iterator.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
         <member name="P:TKMath.XTopLoc_Location.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Geometry.IHandle">
             <summary>
 本地句柄
 </summary>

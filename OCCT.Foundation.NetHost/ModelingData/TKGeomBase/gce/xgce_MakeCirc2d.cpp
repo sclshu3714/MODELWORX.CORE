@@ -1,224 +1,128 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeCirc2d.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
+
+	xgce_MakeCirc2d::xgce_MakeCirc2d() {
+
+	};
+
+	xgce_MakeCirc2d::xgce_MakeCirc2d(gce_MakeCirc2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeCirc2d::SetMakeCirc2d(gce_MakeCirc2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeCirc2d* xgce_MakeCirc2d::GetMakeCirc2d() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeCirc2d::GetRoot() {
+		return NativeHandle;
+	};
+
+	//! The location point of XAxis is the center of the circle.
+	//! Warnings :
+	//! It is not forbidden to create a circle with Radius = 0.0
+	//! If Sense is true the local coordinate system of the solution
+	//! is direct and non direct in the other case.
+	//! The status is "NegativeRadius" if Radius < 0.0.
+	//! Standard_Boolean Sense = Standard_True
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Ax2d^ XAxis, Standard_Real Radius, Standard_Boolean Sense) {
+		NativeHandle = new gce_MakeCirc2d(*XAxis->GetAx2d(), Radius, Sense);
+		SetRoot(NativeHandle);
+	};
 
 
-#include <ElCLib.hxx>
-#include <gce_MakeCirc2d.hxx>
-#include <gp.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Ax22d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <IntAna2d_AnaIntersection.hxx>
-#include <IntAna2d_IntPoint.hxx>
-#include <StdFail_NotDone.hxx>
+	//! The location point of Axis is the center of the circle.
+	//! Warnings :
+	//! It is not forbidden to create a circle with Radius = 0.0
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Ax22d^ Axis, Standard_Real Radius) {
+		NativeHandle = new gce_MakeCirc2d(*Axis->GetAx22d(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d un cercle 2d de gp passant par trois points.              +
-//   Trois cas de figures :                                               +
-//      1/ Les trois points sont confondus.                               +
-//      -----------------------------------                               +
-//      Le resultat est le cercle centre en Point1 de rayon zero.         +
-//      2/ Deux des trois points sont confondus.                          +
-//      ----------------------------------------                          +
-//      On cree la mediatrice a deux points non confondus ainsi que la    +
-//      droite passant par ces deux points.                               +
-//      La solution a pour centre l intersection de ces deux droite et    +
-//      pour rayon la distance entre ce centre et l un des trois points.  +
-//      3/ Les trois points sont distinct.                                +
-//      ----------------------------------                                +
-//      On cree la mediatrice a P1P2 ainsi que la mediatrice a P1P3.      +
-//      La solution a pour centre l intersection de ces deux droite et    +
-//      pour rayon la distance entre ce centre et l un des trois points.  +
-//=========================================================================
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Pnt2d&  P1 ,
-			       const gp_Pnt2d&  P2 ,
-			       const gp_Pnt2d&  P3 )
-{
-  gp_Dir2d dirx(1.0,0.0);
+	//! Makes a Circ2d from gp <TheCirc> concentric with another
+	//! circ2d <Circ> with a distance <Dist>.
+	//! If Dist is greater than zero the result encloses
+	//! the circle <Circ>, else the result is enclosed by the
+	//! circle <Circ>.
+	//! The local coordinate system of the solution is the
+	//! same as Circ.
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Circ2d^ Circ, Standard_Real Dist) {
+		NativeHandle = new gce_MakeCirc2d(*Circ->GetCirc2d(), Dist);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Traitement.                                                          +
-//=========================================================================
+	//! Makes a Circ2d from gp <TheCirc> concentric with another
+	//! circ2d <Circ> and passing through a Pnt2d <Point>.
+	//! The local coordinate system of the solution is the
+	//! same as Circ.
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Circ2d^ Circ, xgp_Pnt2d^ Point) {
+		NativeHandle = new gce_MakeCirc2d(*Circ->GetCirc2d(), *Point->GetPnt2d());
+		SetRoot(NativeHandle);
+	};
 
-  Standard_Real dist1 = P1.Distance(P2);
-  Standard_Real dist2 = P1.Distance(P3);
-  Standard_Real dist3 = P2.Distance(P3);
-  
-  if ((dist1<gp::Resolution()) && (dist2<gp::Resolution()) && 
-      (dist3<gp::Resolution())) {
-    TheCirc2d = gp_Circ2d(gp_Ax2d(P1,dirx),0.0);
-    TheError = gce_Done;
-  }
-  else {
-    gp_Lin2d L1;
-    gp_Lin2d L2;
-    Standard_Real x1,y1,x2,y2,x3,y3;
-    P1.Coord(x1,y1);
-    P2.Coord(x2,y2);
-    P3.Coord(x3,y3);
-    if (dist1 >= RealEpsilon()) {
-      L1 = gp_Lin2d(gp_Pnt2d((P1.XY()+P2.XY())/2.0),
-		    gp_Dir2d(P1.Y()-P2.Y(),P2.X()-P1.X()));
-    }
-    if (dist2 >= RealEpsilon()) {
-      L2 = gp_Lin2d(gp_Pnt2d((P1.XY()+P3.XY())/2.0),
-		    gp_Dir2d(P1.Y()-P3.Y(),P3.X()-P1.X()));
-    }
-    if (dist2 <= RealEpsilon()) {
-      L2 = gp_Lin2d(P1,gp_Dir2d(P1.Y()-P2.Y(),P2.X()-P1.X()));
-    }
-    else if (dist1 <= RealEpsilon()) {
-      L1 = gp_Lin2d(P1,gp_Dir2d(P1.Y()-P3.Y(),P3.X()-P1.X()));
-    }
-    else if (dist3 <= RealEpsilon()) {
-      L2 = gp_Lin2d(P1,gp_Dir2d(P1.Y()-P2.Y(),P2.X()-P1.X()));
-    }
-    IntAna2d_AnaIntersection Intp(L1,L2);
-    if (Intp.IsDone()) {
-      if (!Intp.IsEmpty()) {
-	gp_Pnt2d pInt(Intp.Point(1).Value());
-	dist1 = P1.Distance(pInt);
-	dist2 = P2.Distance(pInt);
-	dist3 = P3.Distance(pInt);
-	Standard_Real xc,yc;
-	pInt.Coord(xc,yc);
-	gp_Dir2d d1(x1-xc,y1-yc);
-	gp_Dir2d d2(xc-x3,yc-y3);
-	TheCirc2d = gp_Circ2d(gp_Ax22d(pInt,d1,d2),(dist1+dist2+dist3)/3.);
-	Standard_Real Alpha1 = ElCLib::Parameter(TheCirc2d,P1);
-	Standard_Real Alpha2 = ElCLib::Parameter(TheCirc2d,P2);
-	Standard_Real Alpha3 = ElCLib::Parameter(TheCirc2d,P3);
-	if (!((Alpha1 <= Alpha2) && (Alpha2 <= Alpha3))) {
-	  TheCirc2d.Reverse();
-	}
-	TheError = gce_Done;
-      }
-    }
-    else {
-      TheError = gce_IntersectionError;
-    }
-  }
+	//! Makes a Circ2d from gp <TheCirc> passing through 3
+	//! Pnt2d <P1>,<P2>,<P3>.
+	//! The local coordinate system of the solution is given
+	//! by the three points P1, P2, P3.
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2, xgp_Pnt2d^ P3) {
+		NativeHandle = new gce_MakeCirc2d(*P1->GetPnt2d(), *P2->GetPnt2d(), *P3->GetPnt2d());
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Circ2d from gp <TheCirc> with its center
+	//! <Center> and its radius <Radius>.
+	//! If Sense is true the local coordinate system of
+	//! the solution is direct and non direct in the other case.
+	//! Standard_Boolean Sense = Standard_True
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Pnt2d^ Center, Standard_Real Radius, Standard_Boolean Sense) {
+		NativeHandle = new gce_MakeCirc2d(*Center->GetPnt2d(), Radius, Sense);
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Circ2d from gp <TheCirc> with its center
+	//! <Center> and a point giving the radius.
+	//! If Sense is true the local coordinate system of
+	//! the solution is direct and non direct in the other case.
+	//! Standard_Boolean Sense = Standard_True
+	xgce_MakeCirc2d::xgce_MakeCirc2d(xgp_Pnt2d^ Center, xgp_Pnt2d^ Point, Standard_Boolean Sense) {
+		NativeHandle = new gce_MakeCirc2d(*Center->GetPnt2d(), *Point->GetPnt2d(), Sense);
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns the constructed circle.
+	//! Exceptions StdFail_NotDone if no circle is constructed.
+	xgp_Circ2d^ xgce_MakeCirc2d::Value() {
+		gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Value());
+		return gcnew xgp_Circ2d(temp);
+	};
+
+	xgp_Circ2d^ xgce_MakeCirc2d::Operator() {
+		gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Operator());
+		return gcnew xgp_Circ2d(temp);
+	};
+
+	xgce_MakeCirc2d::operator xgp_Circ2d^() {
+		gp_Circ2d* temp = new gp_Circ2d(NativeHandle->Operator());
+		return gcnew xgp_Circ2d(temp);
+	};
+
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeCirc2d::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeCirc2d::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-//==========================================================================
-//   Creation d un gp_Circ2d par son Axe <XAxis> et son rayon  <Radius>.   +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Ax2d&         XAxis   ,
-			       const Standard_Real    Radius  ,
-			       const Standard_Boolean Sense   )
-{
-  if (Radius >= 0.) {
-    TheCirc2d = gp_Circ2d(XAxis,Radius,Sense);
-    TheError = gce_Done;
-  }
-  else { 
-    TheError = gce_NegativeRadius;
-  }
-}
-
-//==========================================================================
-//   Creation d un gp_Circ2d par son Repere <Axis> et son rayon  <Radius>. +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Ax22d&     Axis   ,
-			       const Standard_Real Radius  )
-{
-  if (Radius >= 0.) {
-    TheCirc2d = gp_Circ2d(Axis,Radius);
-    TheError = gce_Done;
-  }
-  else { 
-    TheError = gce_NegativeRadius;
-  }
-}
-
-//==========================================================================
-//   Creation d un gp_Circ2d par son centre <Center> et son rayon          +
-//   <Radius>.                                                             +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Pnt2d&        Center  ,
-			       const Standard_Real    Radius  ,
-			       const Standard_Boolean Sense   ) 
-{
-  if (Radius >= 0.) {
-    TheCirc2d = gp_Circ2d(gp_Ax2d(Center,gp_Dir2d(1.0,0.0)),Radius,Sense);
-    TheError = gce_Done;
-  }
-  else { 
-    TheError = gce_NegativeRadius;
-  }
-}
-
-//==========================================================================
-//   Creation d un gp_Circ2d par son centre <Center> et un point de sa     +
-//   circonference <Point>.                                                +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Pnt2d&        Center ,
-			       const gp_Pnt2d&        Point  , 
-			       const Standard_Boolean Sense  ) 
-{
-  TheCirc2d = gp_Circ2d(gp_Ax2d(Center,gp_Dir2d(1.0,0.0)),
-			Point.Distance(Center),Sense);
-  TheError = gce_Done;
-}
-
-//==========================================================================
-//   Creation d un cercle <TheCirc2d> concentrique a <Circ> passant par le +
-//   point <Point1>.                                                       +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Circ2d& Circ  ,
-			       const gp_Pnt2d&  Point ) 
-{
-  TheCirc2d = gp_Circ2d(Circ.Axis(),Point.Distance(Circ.Location()));
-  TheError = gce_Done;
-}
-
-//==========================================================================
-//   Creation d un cercle <TheCirc2d> concentrique a <Circ> a une distance +
-//   <Dist1>.                                                              +
-//==========================================================================
-
-gce_MakeCirc2d::gce_MakeCirc2d(const gp_Circ2d&    Circ  ,
-			       const Standard_Real Dist1 ) 
-{
-  TheCirc2d = gp_Circ2d(Circ.Axis(),Abs(Circ.Radius()+Dist1));
-  TheError = gce_Done;
-}
-
-const gp_Circ2d& gce_MakeCirc2d::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeCirc2d::Value() - no result");
-  return TheCirc2d;
-}
-
-const gp_Circ2d& gce_MakeCirc2d::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeCirc2d::operator gp_Circ2d() const
-{
-  return Value();
-}
-
-

@@ -415,6 +415,8 @@
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_ShapeEnum.h" />
     <ClInclude Include="ModelingData\TKG3d\TopAbs\XTopAbs_State.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_ErrorType.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc2d.h" />
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.h" />
@@ -708,6 +710,8 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Vector.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_VectorWithMagnitude.cpp" />
     <ClCompile Include="ModelingData\TKG3d\TopAbs\XTopAbs.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc2d.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfCircle.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeArcOfEllipse.cpp" />

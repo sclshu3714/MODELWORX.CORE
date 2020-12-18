@@ -1452,6 +1452,12 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc.h">
+      <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc2d.h">
+      <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2081,6 +2087,12 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCylinder.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

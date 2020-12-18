@@ -44,23 +44,23 @@ namespace TKGeomBase {
 
         void SetRoot(gce_Root* pos);
 
-        gce_Root* GetRoot();
+        virtual gce_Root* GetRoot();
 
 
         //! Returns true if the construction is successful.
-        Standard_Boolean IsDone();
+        virtual Standard_Boolean IsDone();
 
 
         //! Returns the status of the construction:
         //! -   gce_Done, if the construction is successful, or
         //! -   another value of the gce_ErrorType enumeration
         //! indicating why the construction failed.
-        xgce_ErrorType Status();
+        virtual xgce_ErrorType Status();
 
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-       virtual property  gce_Root* IHandle {
+       property  gce_Root* IHandle {
             gce_Root* get() {
                 return 	NativeHandle;
             }
