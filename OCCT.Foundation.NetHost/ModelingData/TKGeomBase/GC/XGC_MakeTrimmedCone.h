@@ -37,6 +37,7 @@ using namespace TKMath;
 using namespace TKG3d;
 namespace TKGeomBase {
 	ref class TKMath::xgp_Pnt;
+	ref class TKG3d::XGeom_RectangularTrimmedSurface;
 	//! Implements construction algorithms for a trimmed
 	//! cone limited by two planes orthogonal to its axis. The
 	//! result is a Geom_RectangularTrimmedSurface surface.
@@ -49,12 +50,15 @@ namespace TKGeomBase {
 	{
 	public:
 
+		XGC_MakeTrimmedCone();
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeTrimmedCone(GC_MakeTrimmedCone* pos);
 
 		void SetMakeTrimmedConeHandle(GC_MakeTrimmedCone* pos);
 
 		GC_MakeTrimmedCone* GetMakeTrimmedCone();
+
+		virtual GC_Root* GetRoot() Standard_OVERRIDE;
 
 		//! Make a RectangularTrimmedSurface <TheCone> from Geom
 		//! It is trimmed by P3 and P4.
@@ -90,6 +94,15 @@ namespace TKGeomBase {
 		XGeom_RectangularTrimmedSurface^ Value();
 
 		operator XGeom_RectangularTrimmedSurface^() { return Value(); }
+
+		//! Returns true if the construction is successful.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+
+		//! Returns the status of the construction:
+		//! -   gce_Done, if the construction is successful, or
+		//! -   another value of the gce_ErrorType enumeration
+		//! indicating why the construction failed.
+		virtual xgce_ErrorType Status() Standard_OVERRIDE;
 
 		/// <summary>
 		/// ±¾µØ¾ä±ú

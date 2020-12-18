@@ -1,655 +1,354 @@
-// Created on: 1993-03-10
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include "XGeom_RectangularTrimmedSurface.h"
+namespace TKG3d {
+	//!
+	XGeom_RectangularTrimmedSurface::XGeom_RectangularTrimmedSurface(void) {
+		/*NativeHandle() = new Geom_RectangularTrimmedSurface();
+		SetBoundedSurfaceHandle(NativeHandle());*/
+	};
 
-// *******************************************************************
-// *******************************************************************
+	//! 
+	XGeom_RectangularTrimmedSurface::XGeom_RectangularTrimmedSurface(Handle(Geom_RectangularTrimmedSurface) pos) {
+		NativeHandle() = pos;
+		SetBoundedSurfaceHandle(NativeHandle());
+	};
 
-#include <ElCLib.hxx>
-#include <Geom_BezierSurface.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <Geom_ConicalSurface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_CylindricalSurface.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom_OffsetSurface.hxx>
-#include <Geom_Plane.hxx>
-#include <Geom_RectangularTrimmedSurface.hxx>
-#include <Geom_SphericalSurface.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_SurfaceOfLinearExtrusion.hxx>
-#include <Geom_SurfaceOfRevolution.hxx>
-#include <Geom_ToroidalSurface.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedValue.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Vec.hxx>
-#include <Precision.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_Type.hxx>
+	//!
+	XGeom_RectangularTrimmedSurface::~XGeom_RectangularTrimmedSurface() {
+		NativeHandle() = NULL;
+		SetBoundedSurfaceHandle(NativeHandle());
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Geom_RectangularTrimmedSurface,Geom_BoundedSurface)
+	void XGeom_RectangularTrimmedSurface::SetRectangularTrimmedSurfaceHandle(Handle(Geom_RectangularTrimmedSurface) handle) {
+		NativeHandle() = handle;
+		SetBoundedSurfaceHandle(NativeHandle());
+	};
 
-typedef Geom_RectangularTrimmedSurface RectangularTrimmedSurface;
-typedef gp_Ax1  Ax1;
-typedef gp_Ax2  Ax2;
-typedef gp_Pnt  Pnt;
-typedef gp_Trsf Trsf;
-typedef gp_Vec  Vec;
+	//!
+	Handle(Geom_RectangularTrimmedSurface) XGeom_RectangularTrimmedSurface::GetRectangularTrimmedSurface() {
+		return NativeHandle();
+	};
 
-//=======================================================================
-//function : Copy
-//purpose  : 
-//=======================================================================
+	//!
+	Handle(Geom_BoundedSurface) XGeom_RectangularTrimmedSurface::GetBoundedSurface() {
+		return NativeHandle();
+	};
 
-Handle(Geom_Geometry) Geom_RectangularTrimmedSurface::Copy () const {
+	//!
+	Handle(Geom_Surface) XGeom_RectangularTrimmedSurface::GetSurface() {
+		return NativeHandle();
+	};
 
-  Handle(Geom_RectangularTrimmedSurface) S;
+	//!
+	Handle(Geom_Geometry) XGeom_RectangularTrimmedSurface::GetGeometry() {
+		return NativeHandle();
+	};
 
-  if ( isutrimmed && isvtrimmed ) 
-    S = new RectangularTrimmedSurface (basisSurf,
-				       utrim1   , utrim2,
-				       vtrim1   , vtrim2,
-				       Standard_True     , Standard_True   );
-  else if ( isutrimmed)
-    S = new RectangularTrimmedSurface (basisSurf,
-				       utrim1   , utrim2,
-				       Standard_True,      Standard_True   );
-  else if (isvtrimmed)
-    S = new RectangularTrimmedSurface (basisSurf,
-				       vtrim1   , vtrim2,
-				       Standard_False    , Standard_True   );
+	//! The U parametric direction of the surface is oriented from U1
+	//! to U2. The V parametric direction of the surface is oriented
+	//! from V1 to V2.
+	//! These two directions define the orientation of the surface
+	//! (normal). If the surface is not periodic USense and VSense are
+	//! not used for the construction. If the surface S is periodic in
+	//! one direction USense and VSense give the available part of the
+	//! surface. By default in this case the surface has the same
+	//! orientation as the basis surface S.
+	//! The returned surface is not closed and not periodic.
+	//! ConstructionError   Raised if
+	//! S is not periodic in the UDirection and U1 or U2 are out of the
+	//! bounds of S.
+	//! S is not periodic in the VDirection and V1 or V2 are out of the
+	//! bounds of S.
+	//! U1 = U2 or V1 = V2
+	//! Standard_Boolean USense = Standard_True, Standard_Boolean VSense = Standard_True
+	XGeom_RectangularTrimmedSurface::XGeom_RectangularTrimmedSurface(XGeom_Surface^ S, Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2, Standard_Boolean USense, Standard_Boolean VSense) {
+		NativeHandle() = new Geom_RectangularTrimmedSurface(S->GetSurface(), U1, U2, V1, V2, USense, VSense);
+		SetBoundedSurfaceHandle(NativeHandle());
+	};
 
-  return S;
+
+	//! The basis surface S is only trim in one parametric direction.
+	//! If UTrim = True the surface is trimmed in the U parametric
+	//! direction else the surface is trimmed in the V parametric
+	//! direction.
+	//! In the considered parametric direction the resulting surface is
+	//! oriented from Param1 to Param2. If S is periodic Sense gives the
+	//! available part of the surface. By default the trimmed surface has
+	//! the same orientation as the basis surface S in the considered
+	//! parametric direction (Sense = True).
+	//! If the basis surface S is closed or periodic in the parametric
+	//! direction opposite to the trimming direction the trimmed surface
+	//! has the same characteristics as the surface S in this direction.
+	//! Warnings :
+	//! In this package the entities are not shared.
+	//! The RectangularTrimmedSurface is built with a copy of the
+	//! surface S. So when S is modified the RectangularTrimmedSurface
+	//! is not modified
+	//! Raised if
+	//! S is not periodic in the considered parametric direction and
+	//! Param1 or Param2 are out of the bounds of S.
+	//! Param1 = Param2
+	//! Standard_Boolean Sense = Standard_True
+	XGeom_RectangularTrimmedSurface::XGeom_RectangularTrimmedSurface(XGeom_Surface^ S, Standard_Real Param1, Standard_Real Param2, Standard_Boolean UTrim, Standard_Boolean Sense) {
+		NativeHandle() = new Geom_RectangularTrimmedSurface(S->GetSurface(), Param1, Param2, UTrim, Sense);
+		SetBoundedSurfaceHandle(NativeHandle());
+	};
+
+	//! Modifies this patch by changing the trim values
+	//! applied to the original surface
+	//! The u parametric direction of
+	//! this patch is oriented from U1 to U2. The v
+	//! parametric direction of this patch is oriented
+	//! from V1 to V2. USense and VSense are used
+	//! for the construction only if the surface is periodic
+	//! in the corresponding parametric direction, and
+	//! define the available part of the surface; by default
+	//! in this case, this patch has the same orientation
+	//! as the basis surface.
+	//! Raised if
+	//! The BasisSurface is not periodic in the UDirection and U1 or U2
+	//! are out of the bounds of the BasisSurface.
+	//! The BasisSurface is not periodic in the VDirection and V1 or V2
+	//! are out of the bounds of the BasisSurface.
+	//! U1 = U2 or V1 = V2
+	//! Standard_Boolean USense = Standard_True, Standard_Boolean VSense = Standard_True
+	void XGeom_RectangularTrimmedSurface::SetTrim(Standard_Real U1, Standard_Real U2, Standard_Real V1, Standard_Real V2, Standard_Boolean USense, Standard_Boolean VSense) {
+		NativeHandle()->SetTrim(U1, U2, V1, V2, USense, VSense);
+	};
+
+	//! Modifies this patch by changing the trim values
+	//! applied to the original surface
+	//! The basis surface is trimmed only in one parametric direction: if UTrim
+	//! is true, the surface is trimmed in the u parametric
+	//! direction; if it is false, it is trimmed in the v
+	//! parametric direction. In the "trimmed" direction,
+	//! this patch is oriented from Param1 to Param2. If
+	//! the basis surface is periodic in the "trimmed"
+	//! direction, Sense defines its available part. By
+	//! default in this case, this patch has the same
+	//! orientation as the basis surface in this parametric
+	//! direction. If the basis surface is closed or periodic
+	//! in the other parametric direction (i.e. not the
+	//! "trimmed" direction), this patch has the same
+	//! characteristics as the basis surface in that parametric direction.
+	//! Raised if
+	//! The BasisSurface is not periodic in the considered direction and
+	//! Param1 or Param2 are out of the bounds of the BasisSurface.
+	//! Param1 = Param2
+	//!  Standard_Boolean Sense = Standard_True
+	void XGeom_RectangularTrimmedSurface::SetTrim(Standard_Real Param1, Standard_Real Param2, Standard_Boolean UTrim, Standard_Boolean Sense) {
+		NativeHandle()->SetTrim(Param1, Param2, UTrim, Sense);
+	};
+
+	//! Returns the Basis surface of <me>.
+	XGeom_Surface^ XGeom_RectangularTrimmedSurface::BasisSurface() {
+		return gcnew XGeom_Surface(NativeHandle()->BasisSurface());
+	};
+
+	//! Changes the orientation of this patch in the u
+	//! parametric direction. The bounds of the surface are
+	//! not changed, but the given parametric direction is
+	//! reversed. Hence the orientation of the surface is reversed.
+	void XGeom_RectangularTrimmedSurface::UReverse() {
+		NativeHandle()->UReverse();
+	};
+
+	//! Computes the u  parameter on the modified
+	//! surface, produced by when reversing its u
+	//! parametric direction, for any point of u parameter U on this patch.
+	Standard_Real XGeom_RectangularTrimmedSurface::UReversedParameter(Standard_Real U) {
+		return NativeHandle()->UReversedParameter(U);
+	};
+
+	//! Changes the orientation of this patch in the v
+	//! parametric direction. The bounds of the surface are
+	//! not changed, but the given parametric direction is
+	//! reversed. Hence the orientation of the surface is reversed.
+	void XGeom_RectangularTrimmedSurface::VReverse() {
+		NativeHandle()->VReverse();
+	};
+
+	//! Computes the v  parameter on the modified
+	//! surface, produced by when reversing its v
+	//! parametric direction, for any point of v parameter V on this patch.
+	Standard_Real XGeom_RectangularTrimmedSurface::VReversedParameter(Standard_Real V) {
+		return NativeHandle()->VReversedParameter(V);
+	};
+
+	//! Returns the parametric bounds U1, U2, V1 and V2 of this patch.
+	void XGeom_RectangularTrimmedSurface::Bounds(Standard_Real% U1, Standard_Real% U2, Standard_Real% V1, Standard_Real% V2) {
+		Standard_Real XU1 = Standard_Real(U1); Standard_Real XU2 = Standard_Real(U2); Standard_Real XV1 = Standard_Real(V1); Standard_Real XV2 = Standard_Real(V2);
+		NativeHandle()->Bounds(XU1, XU2, XV1, XV2);
+		U1 = XU1; U2 = XU2; V1 = XV1; V2 = XV2;
+	};
+
+
+	//! Returns  the continuity of the surface :
+	//! C0 : only geometric continuity,
+	//! C1 : continuity of the first derivative all along the Surface,
+	//! C2 : continuity of the second derivative all along the Surface,
+	//! C3 : continuity of the third derivative all along the Surface,
+	//! CN : the order of continuity is infinite.
+	XGeomAbs_Shape XGeom_RectangularTrimmedSurface::Continuity() {
+		return safe_cast<XGeomAbs_Shape>(NativeHandle()->Continuity());
+	};
+
+	//! Returns true if this patch is closed in the given parametric direction.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsUClosed() {
+		return NativeHandle()->IsUClosed();
+	};
+
+	//! Returns true if this patch is closed in the given parametric direction.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsVClosed() {
+		return NativeHandle()->IsVClosed();
+	};
+
+
+	//! Returns true if the order of derivation in the U parametric
+	//! direction is N.
+	//! Raised if N < 0.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsCNu(Standard_Integer N) {
+		return NativeHandle()->IsCNu(N);
+	};
+
+
+	//! Returns true if the order of derivation in the V parametric
+	//! direction is N.
+	//! Raised if N < 0.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsCNv(Standard_Integer N) {
+		return NativeHandle()->IsCNv(N);
+	};
+
+	//! Returns true if this patch is periodic and not trimmed in the given
+	//! parametric direction.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsUPeriodic() {
+		return NativeHandle()->IsUPeriodic();
+	};
+
+	//! Returns the period of this patch in the u
+	//! parametric direction.
+	//! raises if the surface is not uperiodic.
+	Standard_Real XGeom_RectangularTrimmedSurface::UPeriod() {
+		return NativeHandle()->UPeriod();
+	};
+
+
+	//! Returns true if this patch is periodic and not trimmed in the given
+	//! parametric direction.
+	Standard_Boolean XGeom_RectangularTrimmedSurface::IsVPeriodic() {
+		return NativeHandle()->IsVPeriodic();
+	};
+
+	//! Returns the period of this patch in the v
+	//! parametric direction.
+	//! raises if the surface is not vperiodic.
+	//! value and derivatives
+	Standard_Real XGeom_RectangularTrimmedSurface::VPeriod() {
+		return NativeHandle()->VPeriod();
+	};
+
+	//! computes the U isoparametric curve.
+	XGeom_Curve^ XGeom_RectangularTrimmedSurface::UIso(Standard_Real U) {
+		return gcnew XGeom_Curve(NativeHandle()->UIso(U));
+	};
+
+	//! Computes the V isoparametric curve.
+	XGeom_Curve^ XGeom_RectangularTrimmedSurface::VIso(Standard_Real V) {
+		return gcnew XGeom_Curve(NativeHandle()->VIso(V));
+	};
+
+
+	//! Can be raised if the basis surface is an OffsetSurface.
+	void XGeom_RectangularTrimmedSurface::D0(Standard_Real U, Standard_Real V, xgp_Pnt^ P) {
+		NativeHandle()->D0(U, V, *P->GetPnt());
+	};
+
+
+	//! The returned derivatives have the same orientation as the
+	//! derivatives of the basis surface even if the trimmed surface
+	//! has not the same parametric orientation.
+	//! Warning!  UndefinedDerivative  raised if the continuity of the surface is not C1.
+	void XGeom_RectangularTrimmedSurface::D1(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V) {
+		NativeHandle()->D1(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec());
+	};
+
+
+	//! The returned derivatives have the same orientation as the
+	//! derivatives of the basis surface even if the trimmed surface
+	//! has not the same parametric orientation.
+	//! Warning! UndefinedDerivative raised if the continuity of the surface is not C2.
+	void XGeom_RectangularTrimmedSurface::D2(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV) {
+		NativeHandle()->D2(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec());
+	};
+
+	//! The returned derivatives have the same orientation as the
+	//! derivatives of the basis surface even if the trimmed surface
+	//! has not the same parametric orientation.
+	//! Warning UndefinedDerivative raised if the continuity of the surface is not C3.
+	void XGeom_RectangularTrimmedSurface::D3(Standard_Real U, Standard_Real V, xgp_Pnt^ P, xgp_Vec^ D1U, xgp_Vec^ D1V, xgp_Vec^ D2U, xgp_Vec^ D2V, xgp_Vec^ D2UV, xgp_Vec^ D3U, xgp_Vec^ D3V, xgp_Vec^ D3UUV, xgp_Vec^ D3UVV) {
+		NativeHandle()->D3(U, V, *P->GetPnt(), *D1U->GetVec(), *D1V->GetVec(), *D2U->GetVec(), *D2V->GetVec(), *D2UV->GetVec(), *D3U->GetVec(), *D3V->GetVec(), *D3UUV->GetVec(), *D3UVV->GetVec());
+	};
+
+	//! The returned derivative has the same orientation as the
+	//! derivative of the basis surface even if the trimmed surface
+	//! has not the same parametric orientation.
+	//! Warning!  UndefinedDerivative raised if the continuity of the surface is not CNu in the U
+	//! parametric direction and CNv in the V parametric direction.
+	//! RangeError Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
+	xgp_Vec^ XGeom_RectangularTrimmedSurface::DN(Standard_Real U, Standard_Real V, Standard_Integer Nu, Standard_Integer Nv) {
+		gp_Vec* temp = new gp_Vec(NativeHandle()->DN(U, V, Nu, Nv));
+		return gcnew xgp_Vec(temp);
+	};
+
+	//! Applies the transformation T to this patch.
+	//! Warning
+	//! As a consequence, the basis surface included in the
+	//! data structure of this patch is also modified.
+	void XGeom_RectangularTrimmedSurface::Transform(xgp_Trsf^ T) {
+		NativeHandle()->Transform(*T->GetTrsf());
+	};
+
+	//! Computes the  parameters on the  transformed  surface for
+	//! the transform of the point of parameters U,V on <me>.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are the new values of U,V after calling
+	//!
+	//! me->TranformParameters(U,V,T)
+	//!
+	//! This methods calls the basis surface method.
+	void XGeom_RectangularTrimmedSurface::TransformParameters(Standard_Real% U, Standard_Real% V, xgp_Trsf^ T) {
+		Standard_Real XU(U); Standard_Real  XV(V);
+		NativeHandle()->TransformParameters(XU, XV, *T->GetTrsf());
+		U = XU; V = XV;
+	};
+
+	//! Returns a 2d transformation  used to find the  new
+	//! parameters of a point on the transformed surface.
+	//!
+	//! me->Transformed(T)->Value(U',V')
+	//!
+	//! is the same point as
+	//!
+	//! me->Value(U,V).Transformed(T)
+	//!
+	//! Where U',V' are  obtained by transforming U,V with
+	//! th 2d transformation returned by
+	//!
+	//! me->ParametricTransformation(T)
+	//!
+	//! This methods calls the basis surface method.
+	xgp_GTrsf2d^ XGeom_RectangularTrimmedSurface::ParametricTransformation(xgp_Trsf^ T) {
+		gp_GTrsf2d* temp = new gp_GTrsf2d(NativeHandle()->ParametricTransformation(*T->GetTrsf()));
+		return gcnew xgp_GTrsf2d(temp);
+	};
+
+	//! Creates a new object which is a copy of this patch.
+	XGeom_Geometry^ XGeom_RectangularTrimmedSurface::Copy() {
+		return gcnew XGeom_Geometry(NativeHandle()->Copy());
+	};
 }
-
-
-//=======================================================================
-//function : Geom_RectangularTrimmedSurface
-//purpose  : 
-//=======================================================================
-
-Geom_RectangularTrimmedSurface::Geom_RectangularTrimmedSurface (
-
-const Handle(Geom_Surface)& S, 
-const Standard_Real             U1, 
-const Standard_Real             U2, 
-const Standard_Real             V1,
-const Standard_Real             V2,
-const Standard_Boolean          USense,
-const Standard_Boolean          VSense)
-
-: utrim1 (U1),
-  vtrim1(V1),
-  utrim2 (U2),
-  vtrim2 (V2),
-  isutrimmed (Standard_True),
-  isvtrimmed (Standard_True)
-{
-
-  // kill trimmed basis surfaces
-  Handle(Geom_RectangularTrimmedSurface) T =
-    Handle(Geom_RectangularTrimmedSurface)::DownCast(S);
-  if (!T.IsNull())
-    basisSurf = Handle(Geom_Surface)::DownCast(T->BasisSurface()->Copy());
-  else
-    basisSurf = Handle(Geom_Surface)::DownCast(S->Copy());
-
-  Handle(Geom_OffsetSurface) O =
-    Handle(Geom_OffsetSurface)::DownCast(basisSurf);
-  if (!O.IsNull()) 
-  {
-    Handle(Geom_RectangularTrimmedSurface) S2 = 
-           new Geom_RectangularTrimmedSurface( O->BasisSurface(),U1,U2, V1, V2, USense, VSense);
-    basisSurf = new Geom_OffsetSurface(S2, O->Offset());
-  }  
-
-  SetTrim( U1, U2, V1, V2, USense, VSense);
-}
-
-
-//=======================================================================
-//function : Geom_RectangularTrimmedSurface
-//purpose  : 
-//=======================================================================
-
-Geom_RectangularTrimmedSurface::Geom_RectangularTrimmedSurface (
-
- const Handle(Geom_Surface)& S,
- const Standard_Real                  Param1, 
- const Standard_Real                  Param2,
- const Standard_Boolean               UTrim,
- const Standard_Boolean               Sense
-) {
-
-  // kill trimmed basis surfaces
-  Handle(Geom_RectangularTrimmedSurface) T =
-    Handle(Geom_RectangularTrimmedSurface)::DownCast(S);
-  if (!T.IsNull())
-    basisSurf = Handle(Geom_Surface)::DownCast(T->BasisSurface()->Copy());
-  else
-    basisSurf = Handle(Geom_Surface)::DownCast(S->Copy());
-
-  Handle(Geom_OffsetSurface) O =
-    Handle(Geom_OffsetSurface)::DownCast(basisSurf);
-  if (!O.IsNull()) 
-  {
-    Handle(Geom_RectangularTrimmedSurface) S2 = 
-           new Geom_RectangularTrimmedSurface( O->BasisSurface(),Param1,Param2, UTrim, Sense);
-    basisSurf = new Geom_OffsetSurface(S2, O->Offset());
-  }  
-
-  SetTrim(Param1, Param2, UTrim, Sense);
-}
-
-
-//=======================================================================
-//function : SetTrim
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::SetTrim (const Standard_Real    U1, 
-					      const Standard_Real    U2, 
-					      const Standard_Real    V1,
-					      const Standard_Real    V2, 
-					      const Standard_Boolean USense, 
-					      const Standard_Boolean VSense ) {
-
-  SetTrim( U1, U2, V1, V2, Standard_True, Standard_True, USense, VSense);
-}
-
-
-
-//=======================================================================
-//function : SetTrim
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::SetTrim (const Standard_Real    Param1,
-					      const Standard_Real    Param2,
-					      const Standard_Boolean UTrim, 
-					      const Standard_Boolean Sense  ) {
-
-  // dummy arguments to call general SetTrim
-  Standard_Real dummy_a = 0.;
-  Standard_Real dummy_b = 0.;
-  Standard_Boolean dummy_Sense = Standard_True;
-
-  if ( UTrim) {
-    SetTrim( Param1        , Param2        , 
-	     dummy_a       , dummy_b       ,
-	     Standard_True , Standard_False,
-	     Sense         , dummy_Sense    );
-  }
-  else {
-    SetTrim( dummy_a       , dummy_b      ,
-	     Param1        , Param2       ,
-	     Standard_False, Standard_True,
-	     dummy_Sense   , Sense         );
-  }
-}
-
-
-//=======================================================================
-//function : SetTrim
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::SetTrim(const Standard_Real U1,
-					     const Standard_Real U2,
-					     const Standard_Real V1,
-					     const Standard_Real V2,
-					     const Standard_Boolean UTrim,
-					     const Standard_Boolean VTrim,
-					     const Standard_Boolean USense,
-					     const Standard_Boolean VSense) {
-  
-  Standard_Boolean UsameSense = Standard_True;
-  Standard_Boolean VsameSense = Standard_True;
-  Standard_Real Udeb, Ufin, Vdeb, Vfin;
-
-  basisSurf->Bounds(Udeb, Ufin, Vdeb, Vfin);
-
-  // Trimming the U-Direction
-  isutrimmed = UTrim;
-  if (!UTrim) {
-    utrim1 = Udeb;
-    utrim2 = Ufin;
-  }
-  else {
-    if ( U1 == U2)
-      throw Standard_ConstructionError("Geom_RectangularTrimmedSurface::U1==U2");
-
-    if (basisSurf->IsUPeriodic()) {
-      UsameSense = USense;
-      
-      // set uTrim1 in the range Udeb , Ufin
-      // set uTrim2 in the range uTrim1 , uTrim1 + Period()
-      utrim1 = U1;
-      utrim2 = U2;
-      ElCLib::AdjustPeriodic(Udeb, Ufin, 
-			     Min(Abs(utrim2-utrim1)/2,Precision::PConfusion()), 
-			     utrim1, utrim2);
-    }
-    else {
-      if (U1 < U2) {
-	UsameSense = USense;
-	utrim1 = U1;
-	utrim2 = U2;
-      }
-      else {
-	UsameSense = !USense;
-	utrim1 = U2;
-	utrim2 = U1;
-      }
-      
-      if ((Udeb-utrim1 > Precision::PConfusion()) ||
-	  (utrim2-Ufin > Precision::PConfusion()))
-	throw Standard_ConstructionError("Geom_RectangularTrimmedSurface::U parameters out of range");
-
-    }
-  }
-
-  // Trimming the V-Direction
-  isvtrimmed = VTrim;
-  if (!VTrim) {
-    vtrim1 = Vdeb;
-    vtrim2 = Vfin;
-  }
-  else {
-    if ( V1 == V2)
-      throw Standard_ConstructionError("Geom_RectangularTrimmedSurface::V1==V2");
-
-    if (basisSurf->IsVPeriodic()) {
-      VsameSense = VSense;
-
-      // set vTrim1 in the range Vdeb , Vfin
-      // set vTrim2 in the range vTrim1 , vTrim1 + Period()
-      vtrim1 = V1;
-      vtrim2 = V2;
-      ElCLib::AdjustPeriodic(Vdeb, Vfin,  
-			     Min(Abs(vtrim2-vtrim1)/2,Precision::PConfusion()), 
-			     vtrim1, vtrim2);
-    }
-    else {
-      if (V1 < V2) {
-	VsameSense = VSense;
-	vtrim1 = V1;
-	vtrim2 = V2;
-      }
-      else {
-	VsameSense = !VSense;
-	vtrim1 = V2;
-	vtrim2 = V1;
-      }
-      
-      if ((Vdeb-vtrim1 > Precision::PConfusion()) ||
-	  (vtrim2-Vfin > Precision::PConfusion()))
-	throw Standard_ConstructionError("Geom_RectangularTrimmedSurface::V parameters out of range");
-
-    }
-  }
-
-  if (!UsameSense) UReverse();
-  if (!VsameSense) VReverse();
-}
-
-
-//=======================================================================
-//function : UReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::UReverse () 
-{
-  Standard_Real U1 = basisSurf->UReversedParameter(utrim2);
-  Standard_Real U2 = basisSurf->UReversedParameter(utrim1);
-  basisSurf->UReverse();
-  SetTrim(U1,U2,vtrim1,vtrim2,
-	  isutrimmed,isvtrimmed,
-	  Standard_True,Standard_True);
-}
-
-
-//=======================================================================
-//function : UReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_RectangularTrimmedSurface::UReversedParameter( const Standard_Real U) const {
-
-  return basisSurf->UReversedParameter(U);
-}
-
-
-//=======================================================================
-//function : VReverse
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::VReverse () 
-{
-  Standard_Real V1 = basisSurf->VReversedParameter(vtrim2);
-  Standard_Real V2 = basisSurf->VReversedParameter(vtrim1);
-  basisSurf->VReverse();
-  SetTrim(utrim1,utrim2,V1,V2,
-	  isutrimmed,isvtrimmed,
-	  Standard_True,Standard_True);
-}
-
-
-//=======================================================================
-//function : VReversedParameter
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_RectangularTrimmedSurface::VReversedParameter( const Standard_Real V) const {
-
-  return basisSurf->VReversedParameter( V);
-}
-
-
-//=======================================================================
-//function : BasisSurface
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Surface) Geom_RectangularTrimmedSurface::BasisSurface () const
-{
-  return basisSurf;
-}
-
-
-//=======================================================================
-//function : Continuity
-//purpose  : 
-//=======================================================================
-
-GeomAbs_Shape Geom_RectangularTrimmedSurface::Continuity () const {
-
-  return basisSurf->Continuity();
-}
-
-
-//=======================================================================
-//function : D0
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::D0
-  (const Standard_Real U, const Standard_Real V,
-         Pnt& P ) const { 
-      
-   basisSurf->D0 (U, V, P);
-}
-
-
-//=======================================================================
-//function : D1
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::D1 
-  (const Standard_Real U, const Standard_Real V, 
-         Pnt& P, 
-         Vec& D1U, Vec& D1V) const {
-
-  basisSurf->D1 (U, V, P, D1U, D1V);
-}
-
-
-//=======================================================================
-//function : D2
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::D2 
-  (const Standard_Real U, const Standard_Real V,
-         Pnt& P, 
-         Vec& D1U, Vec& D1V, 
-         Vec& D2U, Vec& D2V, Vec& D2UV) const {
-
-  basisSurf->D2 (U, V, P, D1U, D1V, D2U, D2V, D2UV);
-}
-
-
-//=======================================================================
-//function : D3
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::D3 
-  (const Standard_Real U, const Standard_Real V, 
-   Pnt& P, 
-   Vec& D1U, Vec& D1V, 
-   Vec& D2U, Vec& D2V, Vec& D2UV, 
-   Vec& D3U, Vec& D3V, Vec& D3UUV, Vec& D3UVV) const {
-
-  basisSurf->D3 (U, V, P, D1U, D1V, D2U, D2V, D2UV, D3U, D3V, D3UUV, D3UVV);
-}
-
-
-//=======================================================================
-//function : DN
-//purpose  : 
-//=======================================================================
-
-Vec Geom_RectangularTrimmedSurface::DN 
-  (const Standard_Real    U , const Standard_Real    V,
-   const Standard_Integer Nu, const Standard_Integer Nv) const {
-
-  return basisSurf->DN (U, V, Nu, Nv);
-}
-
-
-//=======================================================================
-//function : Bounds
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::Bounds (Standard_Real& U1,
-					     Standard_Real& U2, 
-					     Standard_Real& V1, 
-					     Standard_Real& V2) const {
-
-  U1 = utrim1;  
-  U2 = utrim2;  
-  V1 = vtrim1; 
-  V2 = vtrim2;
-}
-
-
-//=======================================================================
-//function : UIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_RectangularTrimmedSurface::UIso (const Standard_Real U) const {
-  
-  Handle(Geom_Curve) C = basisSurf->UIso (U);
-
-  if ( isvtrimmed) {
-    Handle(Geom_TrimmedCurve) Ct;
-    Ct = new Geom_TrimmedCurve (C, vtrim1, vtrim2, Standard_True);
-    return Ct;
-  }
-  else {
-    return C;
-  }
-}
-
-
-//=======================================================================
-//function : VIso
-//purpose  : 
-//=======================================================================
-
-Handle(Geom_Curve) Geom_RectangularTrimmedSurface::VIso (const Standard_Real V) const {
- 
-  Handle(Geom_Curve) C = basisSurf->VIso (V);
-  
-  if ( isutrimmed) {
-    Handle(Geom_TrimmedCurve) Ct;
-    Ct = new Geom_TrimmedCurve (C, utrim1, utrim2, Standard_True);
-    return Ct;
-  }
-  else {
-    return C;
-  }
-}
-
-
-//=======================================================================
-//function : IsCNu
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsCNu (const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N < 0," ");
-  return basisSurf->IsCNu (N);  
-}
-
-
-//=======================================================================
-//function : IsCNv
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsCNv (const Standard_Integer N) const {
-
-  Standard_RangeError_Raise_if (N < 0," ");
-  return basisSurf->IsCNv (N);  
-}
-
-
-//=======================================================================
-//function : Transform
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::Transform (const Trsf& T) 
-{
-  basisSurf->Transform (T);
-  basisSurf->TransformParameters(utrim1,vtrim1,T);
-  basisSurf->TransformParameters(utrim2,vtrim2,T);
-}
-
-
-//=======================================================================
-//function : IsUPeriodic
-//purpose  : 
-// 24/11/98: pmn : Compare la periode a la longeur de l'intervalle
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsUPeriodic () const 
-{
-  if (basisSurf->IsUPeriodic() &&  !isutrimmed) 
-    return Standard_True;
-  return Standard_False;
-}
-
-
-//=======================================================================
-//function : UPeriod
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_RectangularTrimmedSurface::UPeriod() const
-{
-  return basisSurf->UPeriod();
-}
-
-
-//=======================================================================
-//function : IsVPeriodic
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsVPeriodic () const 
-{ 
-  if (basisSurf->IsVPeriodic() && !isvtrimmed)
-    return Standard_True;
-  return Standard_False;
-}
-
-
-//=======================================================================
-//function : VPeriod
-//purpose  : 
-//=======================================================================
-
-Standard_Real Geom_RectangularTrimmedSurface::VPeriod() const
-{
-   return basisSurf->VPeriod(); 
-}
-
-
-//=======================================================================
-//function : IsUClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsUClosed () const { 
-
-  if (isutrimmed)  
-    return Standard_False;
-  else             
-    return basisSurf->IsUClosed();
-}
-
-
-//=======================================================================
-//function : IsVClosed
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean Geom_RectangularTrimmedSurface::IsVClosed () const { 
-
-  if (isvtrimmed) 
-    return Standard_False;
-  else   
-    return basisSurf->IsVClosed();
-}
-
-//=======================================================================
-//function : TransformParameters
-//purpose  : 
-//=======================================================================
-
-void Geom_RectangularTrimmedSurface::TransformParameters(Standard_Real& U,
-							 Standard_Real& V,
-							 const gp_Trsf& T) 
-const
-{
-  basisSurf->TransformParameters(U,V,T);
-}
-
-//=======================================================================
-//function : ParametricTransformation
-//purpose  : 
-//=======================================================================
-
-gp_GTrsf2d Geom_RectangularTrimmedSurface::ParametricTransformation
-(const gp_Trsf& T) const
-{
-  return basisSurf->ParametricTransformation(T);
-}
-

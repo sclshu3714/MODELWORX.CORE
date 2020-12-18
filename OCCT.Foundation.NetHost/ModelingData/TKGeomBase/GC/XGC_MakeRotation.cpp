@@ -1,62 +1,40 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeRotation.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
+	XGC_MakeRotation::XGC_MakeRotation() {
+		//NativeHandle = new GC_MakeRotation();
+	};
 
+	XGC_MakeRotation::XGC_MakeRotation(GC_MakeRotation* pos) {
+		NativeHandle = pos;
+	};
 
-#include <GC_MakeRotation.hxx>
-#include <Geom_Transformation.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	void XGC_MakeRotation::SetMakeRotation(GC_MakeRotation* pos) {
+		NativeHandle = pos;
+	};
 
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a une     +
-//   droite Line.                                                         +
-//=========================================================================
-GC_MakeRotation::GC_MakeRotation(const gp_Lin&  Line  ,
-				   const Standard_Real     Angle ) {
-  TheRotation = new Geom_Transformation();
-  TheRotation->SetRotation(gp_Ax1(Line.Location(),Line.Direction()),Angle);
-}
+	GC_MakeRotation* XGC_MakeRotation::GetMakeRotation() {
+		return NativeHandle;
+	};
 
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a un      +
-//   axe Axis.                                                            +
-//=========================================================================
+	//! Constructs a rotation through angle Angle about the axis defined by the line Line.
+	XGC_MakeRotation::XGC_MakeRotation(xgp_Lin^ Line, Standard_Real Angle) {
+		NativeHandle = new GC_MakeRotation(*Line->GetLin(), Angle);
+	};
 
-GC_MakeRotation::GC_MakeRotation(const gp_Ax1&  Axis  ,
-				   const Standard_Real     Angle ) {
-  TheRotation = new Geom_Transformation();
-  TheRotation->SetRotation(Axis,Angle);
-}
+	//! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
+	XGC_MakeRotation::XGC_MakeRotation(xgp_Ax1^ Axis, Standard_Real Angle) {
+		NativeHandle = new GC_MakeRotation(*Axis->GetAx1(), Angle);
+	};
 
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a une     +
-//   droite issue du point Point et de direction Direc.                   +
-//=========================================================================
+	//! Constructs a rotation through angle Angle about the axis
+	//! defined by the point Point and the unit vector Direc.
+	XGC_MakeRotation::XGC_MakeRotation(xgp_Pnt^ Point, xgp_Dir^ Direc, Standard_Real Angle) {
+		NativeHandle = new GC_MakeRotation(*Point->GetPnt(), *Direc->GetDir(), Angle);
+	};
 
-GC_MakeRotation::GC_MakeRotation(const gp_Pnt&  Point ,
-				   const gp_Dir&  Direc ,
-				   const Standard_Real     Angle ) {
-  TheRotation = new Geom_Transformation();
-  TheRotation->SetRotation(gp_Ax1(Point,Direc),Angle);
-}
-
-const Handle(Geom_Transformation)& GC_MakeRotation::Value() const
-{ 
-  return TheRotation;
+	//! Returns the constructed transformation.
+	XGeom_Transformation^ XGC_MakeRotation::Value() {
+		return gcnew XGeom_Transformation(NativeHandle->Value());
+	};
 }

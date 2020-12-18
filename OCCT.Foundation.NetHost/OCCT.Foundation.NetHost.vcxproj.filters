@@ -1428,6 +1428,27 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.h">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeMirror.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakePlane.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeRotation.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeScale.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2030,6 +2051,30 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeMirror.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakePlane.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeRotation.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeScale.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.cpp">
+      <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

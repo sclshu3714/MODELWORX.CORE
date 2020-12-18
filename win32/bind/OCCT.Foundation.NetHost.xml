@@ -31,6 +31,63 @@
 本地句柄
 </summary>
         </member>
+        <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Get">
+            <summary>
+Returns the integer value contained in the attribute.
+</summary>
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.SetID">
+            <summary>
+Sets default GUID for the attribute.
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.SetID(TKernel.XStandard_GUID)">
+            <summary>
+Sets the explicit GUID (user defined) for the attribute.
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(System.Int32!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Integer methods
+</summary>
+            <param name="V" />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,TKernel.XStandard_GUID,System.Int32!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Finds, or creates, an Integer attribute with explicit user defined guid and sets value.
+The Integer attribute  is  returned.
+</summary>
+            <param name="label" />
+            <param name="guid" />
+            <param name="value" />
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,System.Int32)">
+            <summary>
+Finds, or creates, an Integer attribute and sets the Integer  attribute is returned.
+</summary>
+            <param name="label" />
+            <param name="value" />
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.GetID">
+            <summary>
+ class methods 
+ Returns the GUID for integers.
+</summary>
+            <returns />
+        </member>
+        <member name="T:TKLCAF.XTDataStd_Integer">
+            <summary>
+The basis to define an integer attribute.
+</summary>
+        </member>
         <member name="P:TKernel.XTCollection_AsciiString.Handle">
             <summary>
 本地句柄
@@ -516,63 +573,6 @@ C++/CLI class visible from .Net (CSharp)
         <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
             <summary>
 本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Get">
-            <summary>
-Returns the integer value contained in the attribute.
-</summary>
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.SetID">
-            <summary>
-Sets default GUID for the attribute.
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.SetID(TKernel.XStandard_GUID)">
-            <summary>
-Sets the explicit GUID (user defined) for the attribute.
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(System.Int32!System.Runtime.CompilerServices.IsConst)">
-            <summary>
-Integer methods
-</summary>
-            <param name="V" />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,TKernel.XStandard_GUID,System.Int32!System.Runtime.CompilerServices.IsConst)">
-            <summary>
-Finds, or creates, an Integer attribute with explicit user defined guid and sets value.
-The Integer attribute  is  returned.
-</summary>
-            <param name="label" />
-            <param name="guid" />
-            <param name="value" />
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,System.Int32)">
-            <summary>
-Finds, or creates, an Integer attribute and sets the Integer  attribute is returned.
-</summary>
-            <param name="label" />
-            <param name="value" />
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.GetID">
-            <summary>
- class methods 
- Returns the GUID for integers.
-</summary>
-            <returns />
-        </member>
-        <member name="T:TKLCAF.XTDataStd_Integer">
-            <summary>
-The basis to define an integer attribute.
 </summary>
         </member>
         <member name="P:TKLCAF.XTDocStd_Document.IHandle">

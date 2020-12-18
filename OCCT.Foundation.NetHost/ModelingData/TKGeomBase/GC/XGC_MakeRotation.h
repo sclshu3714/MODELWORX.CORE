@@ -16,6 +16,14 @@
 
 #ifndef _XGC_MakeRotation_HeaderFile
 #define _XGC_MakeRotation_HeaderFile
+#pragma once
+#include <NCollection_Haft.h>
+#include <GC_MakeRotation.hxx>
+#include <xgp_Ax1.h>
+#include <xgp_Lin.h>
+#include <xgp_Pnt.h>
+#include <xgp_Dir.h>
+#include <XGeom_Transformation.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,57 +36,62 @@ class gp_Ax1;
 class gp_Pnt;
 class gp_Dir;
 
+using namespace TKMath;
+using namespace TKG3d;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Ax1;
+	ref class TKMath::xgp_Lin;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Dir;
+	ref class TKG3d::XGeom_Transformation;
+	//! This class implements elementary construction algorithms for a
+	//! rotation in 3D space. The result is a
+	//! Geom_Transformation transformation.
+	//! A MakeRotation object provides a framework for:
+	//! -   defining the construction of the transformation,
+	//! -   implementing the construction algorithm, and
+	//! -   consulting the result.
+	public ref class XGC_MakeRotation
+	{
+	public:
 
-//! This class implements elementary construction algorithms for a
-//! rotation in 3D space. The result is a
-//! Geom_Transformation transformation.
-//! A MakeRotation object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class GC_MakeRotation 
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
+		XGC_MakeRotation();
 
-  DEFINE_STANDARD_ALLOC
+		XGC_MakeRotation(GC_MakeRotation* pos);
 
-  
-  //! Constructs a rotation through angle Angle about the axis defined by the line Line.
-  Standard_EXPORT GC_MakeRotation(const gp_Lin& Line, const Standard_Real Angle);
-  
-  //! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
-  Standard_EXPORT GC_MakeRotation(const gp_Ax1& Axis, const Standard_Real Angle);
-  
-  //! Constructs a rotation through angle Angle about the axis
-  //! defined by the point Point and the unit vector Direc.
-  Standard_EXPORT GC_MakeRotation(const gp_Pnt& Point, const gp_Dir& Direc, const Standard_Real Angle);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const Handle(Geom_Transformation)& Value() const;
-operator const Handle(Geom_Transformation)& () const { return Value(); }
+		void SetMakeRotation(GC_MakeRotation* pos);
 
+		virtual GC_MakeRotation* GetMakeRotation();
 
+		//! Constructs a rotation through angle Angle about the axis defined by the line Line.
+		XGC_MakeRotation(xgp_Lin^ Line, Standard_Real Angle);
 
+		//! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
+		XGC_MakeRotation(xgp_Ax1^ Axis, Standard_Real Angle);
 
-protected:
+		//! Constructs a rotation through angle Angle about the axis
+		//! defined by the point Point and the unit vector Direc.
+		XGC_MakeRotation(xgp_Pnt^ Point, xgp_Dir^ Direc, Standard_Real Angle);
 
+		//! Returns the constructed transformation.
+		XGeom_Transformation^ Value();
+		operator const XGeom_Transformation^() { return Value(); }
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property  GC_MakeRotation* IHandle {
+			GC_MakeRotation* get() {
+				return 	NativeHandle;
+			}
+			void set(GC_MakeRotation* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-
-private:
-
-
-
-  Handle(Geom_Transformation) TheRotation;
-
-
-};
-
-
-
-
-
-
-
+	private:
+		GC_MakeRotation* NativeHandle;
+	};
+}
 #endif // _XGC_MakeRotation_HeaderFile

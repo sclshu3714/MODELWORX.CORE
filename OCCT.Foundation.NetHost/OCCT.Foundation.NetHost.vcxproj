@@ -425,6 +425,13 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeMirror.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakePlane.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeRotation.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeScale.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h" />
@@ -687,6 +694,7 @@
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Parabola.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Plane.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Point.cpp" />
+    <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_RectangularTrimmedSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_SphericalSurface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_Surface.cpp" />
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_SurfaceOfLinearExtrusion.cpp" />
@@ -709,6 +717,13 @@
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeMirror.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakePlane.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeRotation.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeScale.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeSegment.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTranslation.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeTrimmedCone.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />

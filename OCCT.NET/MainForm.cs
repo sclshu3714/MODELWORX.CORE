@@ -288,7 +288,7 @@ namespace OCCT.NET
         /// <param name="e"></param>
         private void BtnDeleteSelect_ItemClick(object sender, ItemClickEventArgs e)
         {
-            render.ClearSelected(true);
+            render.DeleteObjects();
         }
         /// <summary>
         /// 全部清除

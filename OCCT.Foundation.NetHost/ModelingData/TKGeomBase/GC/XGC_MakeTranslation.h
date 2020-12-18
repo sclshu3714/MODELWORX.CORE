@@ -18,8 +18,10 @@
 #define _XGC_MakeTranslation_HeaderFile
 #pragma once
 #include <GC_MakeTranslation.hxx>
+#include <XGC_Root.h>
 #include <xgp_Pnt.h >
 #include <xgp_Vec.h >
+#include <XGeom_Transformation.h>
 
 
 #include <Standard.hxx>
@@ -31,9 +33,11 @@ class gp_Vec;
 class gp_Pnt;
 
 using namespace TKMath;
+using namespace TKG3d;
 namespace TKGeomBase {
 	ref class TKMath::xgp_Pnt;
 	ref class TKMath::xgp_Vec;
+	ref class TKG3d::XGeom_Transformation;
 	//! This class implements elementary construction algorithms for a
 	//! translation in 3D space. The result is a
 	//! Geom_Transformation transformation.
@@ -46,7 +50,13 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
+		XGC_MakeTranslation();
 
+		XGC_MakeTranslation(GC_MakeTranslation* pos);
+
+		void SetMakeTranslation(GC_MakeTranslation* pos);
+
+		virtual GC_MakeTranslation* GetMakeTranslation();
 
 		//! Constructs a translation along the vector " Vect "
 		XGC_MakeTranslation(xgp_Vec^ Vect);
@@ -56,8 +66,23 @@ namespace TKGeomBase {
 		XGC_MakeTranslation(xgp_Pnt^ Point1, xgp_Pnt^ Point2);
 
 		//! Returns the constructed transformation.
-		Standard_EXPORT const Handle(Geom_Transformation)& Value();
-		operator const Handle(Geom_Transformation)& () { return Value(); }
+		XGeom_Transformation^ Value();
+		operator XGeom_Transformation^() { return Value(); }
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property  GC_MakeTranslation* IHandle {
+			GC_MakeTranslation* get() {
+				return 	NativeHandle;
+			}
+			void set(GC_MakeTranslation* handle) {
+				NativeHandle = handle;
+			}
+		}
+
+	private:
+		GC_MakeTranslation* NativeHandle;
 	};
 }
 #endif // _XGC_MakeTranslation_HeaderFile

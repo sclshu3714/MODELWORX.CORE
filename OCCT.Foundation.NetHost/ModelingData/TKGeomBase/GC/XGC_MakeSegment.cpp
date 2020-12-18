@@ -1,71 +1,75 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeSegment.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
+	XGC_MakeSegment::XGC_MakeSegment() {
+		/*NativeHandle = new GC_MakeSegment();
+		SetRoot(NativeHandle);*/
+	};
 
+	XGC_MakeSegment::XGC_MakeSegment(GC_MakeSegment* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-#include <ElCLib.hxx>
-#include <GC_MakeLine.hxx>
-#include <GC_MakeSegment.hxx>
-#include <Geom_Line.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	void XGC_MakeSegment::SetMakeSegment(GC_MakeSegment* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeSegment::GC_MakeSegment(const gp_Pnt& P1 ,
-				 const gp_Pnt& P2 ) 
-{
-  Standard_Real dist = P1.Distance(P2);
-  Handle(Geom_Line) L = GC_MakeLine(P1,P2);
-  TheSegment = new Geom_TrimmedCurve(L,0.,dist,Standard_True);
-  TheError = gce_Done;
-}
+	GC_MakeSegment* XGC_MakeSegment::GetMakeSegment() {
+		return NativeHandle;
+	};
 
-GC_MakeSegment::GC_MakeSegment(const gp_Lin& Line    ,
-				 const gp_Pnt& Point   ,
-				 const Standard_Real U ) 
-{
-  Standard_Real Ufirst = ElCLib::Parameter(Line,Point);
-  Handle(Geom_Line) L = new Geom_Line(Line);
-  TheSegment=new Geom_TrimmedCurve(L,Ufirst,U,Standard_True);
-  TheError = gce_Done;
-}
+	GC_Root* XGC_MakeSegment::GetRoot() {
+		return NativeHandle;
+	};
 
-GC_MakeSegment::GC_MakeSegment(const gp_Lin& Line  ,
-				 const gp_Pnt& P1    ,
-				 const gp_Pnt& P2    ) 
-{
-  Standard_Real Ufirst = ElCLib::Parameter(Line,P1);
-  Standard_Real Ulast = ElCLib::Parameter(Line,P2);
-  Handle(Geom_Line) L = new Geom_Line(Line);
-  TheSegment = new Geom_TrimmedCurve(L,Ufirst,Ulast,Standard_True);
-  TheError = gce_Done;
-}
+	//! Make a segment of Line from the 2 points <P1> and <P2>.
+	//! It returns NullObject if <P1> and <P2> are confused.
+	XGC_MakeSegment::XGC_MakeSegment(xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle = new GC_MakeSegment(*P1->GetPnt(), *P2->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeSegment::GC_MakeSegment(const gp_Lin& Line  ,
-				 const Standard_Real    U1    ,
-				 const Standard_Real    U2    ) 
-{
-  Handle(Geom_Line) L = new Geom_Line(Line);
-  TheSegment = new Geom_TrimmedCurve(L,U1,U2,Standard_True);
-  TheError = gce_Done;
-}
+	//! Make a segment of Line from the line <Line1>
+	//! between the two parameters U1 and U2.
+	//! It returns NullObject if <U1> is equal <U2>.
+	XGC_MakeSegment::XGC_MakeSegment(xgp_Lin^ Line, Standard_Real U1, Standard_Real U2) {
+		NativeHandle = new GC_MakeSegment(*Line->GetLin(), U1, U2);
+		SetRoot(NativeHandle);
+	};
 
-const Handle(Geom_TrimmedCurve)& GC_MakeSegment::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeSegment::Value() - no result");
-  return TheSegment;
+	//! Make a segment of Line from the line <Line1>
+	//! between the point <Point> and the parameter Ulast.
+	//! It returns NullObject if <U1> is equal <U2>.
+	XGC_MakeSegment::XGC_MakeSegment(xgp_Lin^ Line, xgp_Pnt^ Point, Standard_Real Ulast) {
+		NativeHandle = new GC_MakeSegment(*Line->GetLin(), *Point->GetPnt(), Ulast);
+		SetRoot(NativeHandle);
+	};
+
+	//! Make a segment of Line from the line <Line1>
+	//! between the two points <P1> and <P2>.
+	//! It returns NullObject if <U1> is equal <U2>.
+	XGC_MakeSegment::XGC_MakeSegment(xgp_Lin^ Line, xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle = new GC_MakeSegment(*Line->GetLin(), *P1->GetPnt(), *P2->GetPnt());
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns the constructed line segment.
+	XGeom_TrimmedCurve^ XGC_MakeSegment::Value() {
+		return gcnew XGeom_TrimmedCurve(NativeHandle->Value());
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeSegment::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeSegment::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

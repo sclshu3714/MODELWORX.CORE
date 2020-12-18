@@ -84,7 +84,28 @@ namespace TKG3d {
 
 	public:
 
+		//!
+		XGeom_RectangularTrimmedSurface(void);
 
+		//! 
+		XGeom_RectangularTrimmedSurface(Handle(Geom_RectangularTrimmedSurface) pos);
+
+		//!
+		~XGeom_RectangularTrimmedSurface();
+
+		void SetRectangularTrimmedSurfaceHandle(Handle(Geom_RectangularTrimmedSurface) handle);
+
+		//!
+		virtual Handle(Geom_RectangularTrimmedSurface) GetRectangularTrimmedSurface();
+
+		//!
+		virtual Handle(Geom_BoundedSurface) GetBoundedSurface() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Surface) GetSurface() Standard_OVERRIDE;
+
+		//!
+		virtual Handle(Geom_Geometry) GetGeometry() Standard_OVERRIDE;
 
 		//! The U parametric direction of the surface is oriented from U1
 		//! to U2. The V parametric direction of the surface is oriented
