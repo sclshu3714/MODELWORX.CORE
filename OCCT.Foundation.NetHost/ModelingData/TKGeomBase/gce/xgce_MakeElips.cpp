@@ -1,82 +1,86 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeElips.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	xgce_MakeElips::xgce_MakeElips() {
+
+	};
+
+	xgce_MakeElips::xgce_MakeElips(gce_MakeElips* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeElips::SetMakeElips(gce_MakeElips* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeElips* xgce_MakeElips::GetMakeElips() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeElips::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeElips.hxx>
-#include <gp.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! The major radius of the ellipse is on the "XAxis" and the
+	//! minor radius is on the "YAxis" of the ellipse. The "XAxis"
+	//! is defined with the "XDirection" of A2 and the "YAxis" is
+	//! defined with the "YDirection" of A2.
+	//! Warnings :
+	//! It is not forbidden to create an ellipse with
+	//! MajorRadius = MinorRadius.
+	xgce_MakeElips::xgce_MakeElips(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle = new gce_MakeElips(*A2->GetAx2(), MajorRadius, MinorRadius);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d une Ellipse 3d de gp a partir de son Ax2 et de son        +
-//   grand rayon <MajorRadius> et son petit rayon <MinorRadius>.          +
-//=========================================================================
-gce_MakeElips::gce_MakeElips(const gp_Ax2&       A2          ,
-			     const Standard_Real MajorRadius ,
-			     const Standard_Real MinorRadius ) 
-{
-  if (MajorRadius < MinorRadius ) { TheError = gce_InvertRadius;}
-  else if (MinorRadius < 0.0) { TheError = gce_NegativeRadius; }
-  else {
-    TheElips = gp_Elips(A2,MajorRadius,MinorRadius);
-    TheError = gce_Done;
-  }
+	//! Make an ellipse with its center and two points.
+	//! Warning
+	//! The MakeElips class does not prevent the
+	//!ruction of an ellipse where the MajorRadius is
+	//! equal to the MinorRadius.
+	//! If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_InvertRadius if MajorRadius is less than MinorRadius;
+	//! -   gce_NegativeRadius if MinorRadius is less than 0.0;
+	//! -   gce_NullAxis if the points S1 and Center are coincident; or
+	//! -   gce_InvertAxis if:
+	//! -   the major radius computed with Center and S1
+	//! is less than the minor radius computed with Center, S1 and S2, or
+	//! -   Center, S1 and S2 are collinear.
+	xgce_MakeElips::xgce_MakeElips(xgp_Pnt^ S1, xgp_Pnt^ S2, xgp_Pnt^ Center) {
+		NativeHandle = new gce_MakeElips(*S1->GetPnt(), *S2->GetPnt(), *Center->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-}
+	//! Returns theructed ellipse.
+	//! Exceptions StdFail_NotDone if no ellipse isructed.
+	xgp_Elips^ xgce_MakeElips::Value() {
+		gp_Elips* temp = new gp_Elips(NativeHandle->Value());
+		return gcnew xgp_Elips(temp);
+	};
 
-//=========================================================================
-//   Creation d une Ellipse 3d de gp de centre <Center> et de sommets     +
-//   <S1> et <S2>.                                                        +
-//   <S1> donne le grand rayon et <S2> le petit rayon.                    +
-//=========================================================================
+	xgp_Elips^ xgce_MakeElips::Operator() {
+		gp_Elips* temp = new gp_Elips(NativeHandle->Operator());
+		return gcnew xgp_Elips(temp);
+	};
+	xgce_MakeElips::operator xgp_Elips ^ () {
+		gp_Elips* temp = new gp_Elips(NativeHandle->Operator());
+		return gcnew xgp_Elips(temp);
+	};
 
-gce_MakeElips::gce_MakeElips(const gp_Pnt&   S1     ,
-			     const gp_Pnt&   S2     ,
-			     const gp_Pnt&   Center ) 
-{
-  Standard_Real D1 = S1.Distance(Center);
-  if (D1 < gp::Resolution()) { TheError = gce_NullAxis; }
-  else {
-    gp_Dir XAxis(gp_XYZ(S1.XYZ()-Center.XYZ()));
-    Standard_Real D2 = gp_Lin(Center,XAxis).Distance(S2);
-    if (D1 < D2 || D2 < gp::Resolution()) { TheError = gce_InvertAxis; }
-    else {
-      gp_Dir Norm(XAxis.Crossed(gp_Dir(gp_XYZ(S2.XYZ()-Center.XYZ()))));
-      TheElips = gp_Elips(gp_Ax2(Center,Norm,XAxis),D1,D2);
-      TheError = gce_Done;
-    }
-  }
-}
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeElips::IsDone() {
+		return NativeHandle->IsDone();
+	};
 
-const gp_Elips& gce_MakeElips::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeElips::Value() - no result");
-  return TheElips;
-}
-
-const gp_Elips& gce_MakeElips::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeElips::operator gp_Elips() const
-{
-  return Value();
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeElips::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

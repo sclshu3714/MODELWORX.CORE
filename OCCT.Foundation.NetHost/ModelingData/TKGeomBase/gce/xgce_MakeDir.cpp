@@ -1,84 +1,94 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeDir.h>
+namespace TKGeomBase {
+	xgce_MakeDir::xgce_MakeDir() {
+
+	};
+
+	xgce_MakeDir::xgce_MakeDir(gce_MakeDir* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeDir::SetMakeDir(gce_MakeDir* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeDir* xgce_MakeDir::GetMakeDir() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeDir::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeDir.hxx>
-#include <gp.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
-#include <StdFail_NotDone.hxx>
+	//! Normalizes the vector V and creates a direction.
+	//! Status is "NullVector" if V.Magnitude() <= Resolution.
+	xgce_MakeDir::xgce_MakeDir(xgp_Vec^ V) {
+		NativeHandle = new gce_MakeDir(*V->GetVec());
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d une direction 3d (Dir) de gp a partir de 2 Pnt de gp.     +
-//=========================================================================
-gce_MakeDir::gce_MakeDir(const gp_Pnt& P1,
-			 const gp_Pnt& P2)
-{
-  if (P1.Distance(P2) <= gp::Resolution()) { TheError = gce_ConfusedPoints; }
-  else {
-    TheDir = gp_Dir(P2.XYZ()-P1.XYZ());
-    TheError = gce_Done;
-  }
+	//! Creates a direction from a triplet of coordinates.
+	//! Status is "NullVector" if Coord.Modulus() <=
+	//! Resolution from gp.
+	xgce_MakeDir::xgce_MakeDir(xgp_XYZ^ Coord) {
+		NativeHandle = new gce_MakeDir(*Coord->GetXYZ());
+		SetRoot(NativeHandle);
+	};
+
+	//! Creates a direction with its 3 cartesian coordinates.
+	//! Status is "NullVector" if Sqrt(Xv*Xv + Yv*Yv + Zv*Zv)
+	//! <= Resolution
+	xgce_MakeDir::xgce_MakeDir(Standard_Real Xv, Standard_Real Yv, Standard_Real Zv) {
+		NativeHandle = new gce_MakeDir(Xv, Yv, Zv);
+		SetRoot(NativeHandle);
+	};
+
+	//! Make a Dir from gp <TheDir> passing through 2
+	//! Pnt <P1>,<P2>.
+	//! Status is "ConfusedPoints" if <p1> and <P2> are confused.
+	//! Warning
+	//! If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_ConfusedPoints if points P1 and P2 are coincident, or
+	//! -   gce_NullVector if one of the following is less
+	//! than or equal to gp::Resolution():
+	//! -   the magnitude of vector V,
+	//! -   the modulus of Coord,
+	//! -   Sqrt(Xv*Xv + Yv*Yv + Zv*Zv).
+	xgce_MakeDir::xgce_MakeDir(xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle = new gce_MakeDir(*P1->GetPnt(), *P2->GetPnt());
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns theructed unit vector.
+	//! Exceptions StdFail_NotDone if no unit vector isructed.
+	xgp_Dir^ xgce_MakeDir::Value() {
+		gp_Dir* temp = new gp_Dir(NativeHandle->Value());
+		return gcnew xgp_Dir(temp);
+	};
+
+	xgp_Dir^ xgce_MakeDir::Operator() {
+		gp_Dir* temp = new gp_Dir(NativeHandle->Operator());
+		return gcnew xgp_Dir(temp);
+	};
+	xgce_MakeDir::operator xgp_Dir^() {
+		gp_Dir* temp = new gp_Dir(NativeHandle->Operator());
+		return gcnew xgp_Dir(temp);
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeDir::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeDir::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-gce_MakeDir::gce_MakeDir(const gp_XYZ& Coord)
-{
-  if (Coord.Modulus() <= gp::Resolution()) { TheError = gce_NullVector; }
-  else {
-    TheDir = gp_Dir(Coord);
-    TheError = gce_Done;
-  }
-}
-
-gce_MakeDir::gce_MakeDir(const gp_Vec& V)
-{
-  if (V.Magnitude() <= gp::Resolution()) { TheError = gce_NullVector; }
-  else {
-    TheDir = gp_Dir(V);
-    TheError = gce_Done;
-  }
-}
-
-gce_MakeDir::gce_MakeDir(const Standard_Real Xv,
-			 const Standard_Real Yv,
-			 const Standard_Real Zv)
-{
-  if (Xv*Xv+Yv*Yv+Zv*Zv <= gp::Resolution()) { TheError = gce_NullVector; }
-  else {
-    TheDir = gp_Dir(Xv,Yv,Zv);
-    TheError = gce_Done;
-  }
-}
-
-const gp_Dir& gce_MakeDir::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeDir::Value() - no result");
-  return TheDir;
-}
-
-const gp_Dir& gce_MakeDir::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeDir::operator gp_Dir() const
-{
-  return Value();
-}
-

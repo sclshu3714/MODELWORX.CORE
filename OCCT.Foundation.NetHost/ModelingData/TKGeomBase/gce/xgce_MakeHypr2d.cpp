@@ -1,88 +1,87 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeHypr2d.h>
+namespace TKGeomBase {
+	xgce_MakeHypr2d::xgce_MakeHypr2d() {
+		/*NativeHandle = new gce_MakeHypr2d();
+		SetRoot(NativeHandle);*/
+	};
+
+	xgce_MakeHypr2d::xgce_MakeHypr2d(gce_MakeHypr2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeHypr2d::SetMakeHypr2d(gce_MakeHypr2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeHypr2d* xgce_MakeHypr2d::GetMakeHypr2d() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeHypr2d::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeHypr2d.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Ax22d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <StdFail_NotDone.hxx>
+	//! Constructs a hyperbola
+	//! centered on the point Center, where:
+	//! -   the major axis of the hyperbola is defined by Center and point S1,
+	//! -   the major radius is the distance between Center and S1, and
+	//! -   the minor radius is the distance between point S2 and the major axis.
+	xgce_MakeHypr2d::xgce_MakeHypr2d(xgp_Pnt2d^ S1, xgp_Pnt2d^ S2, xgp_Pnt2d^ Center) {
+		NativeHandle = new gce_MakeHypr2d(*S1->GetPnt2d(), *S2->GetPnt2d(), *Center->GetPnt2d());
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d une Hyperbola 2d de gp de centre <Center> et de sommets   +
-//   <S1> et <S2>.                                                        +
-//   <CenterS1> donne le grand axe .                                      +
-//   <S1> donne le grand rayon et <S2> le petit rayon.                    +
-//=========================================================================
-gce_MakeHypr2d::gce_MakeHypr2d(const gp_Pnt2d&   S1     ,
-			       const gp_Pnt2d&   S2     ,
-			       const gp_Pnt2d&   Center )
-{
-  gp_Dir2d XAxis(gp_XY(S1.XY()-Center.XY()));
-  gp_Dir2d YAxis(gp_XY(S2.XY()-Center.XY()));
-  gp_Ax22d Axis(Center,XAxis,YAxis);
-  gp_Lin2d L(Center,XAxis);
-  Standard_Real D1 = S1.Distance(Center);
-  Standard_Real D2 = L.Distance(S2);
-  if (D1 >= D2) {
-    TheHypr2d = gp_Hypr2d(Axis,D1,D2);
-    TheError = gce_Done;
-  }
-  else { TheError = gce_InvertAxis; }
+	//! Constructs a hyperbola with major and minor radii MajorRadius and
+	//! MinorRadius, where:
+	//! -   the center of the hyperbola is the origin of the axis MajorAxis, and
+	//! -   the major axis is defined by MajorAxis if Sense
+	//! is true, or the opposite axis to MajorAxis if Sense is false; or
+	//! -   centered on the origin of the coordinate system
+	//! A, with major and minor radii MajorRadius and
+	//! MinorRadius, where its major axis is the "X Axis"
+	//! of A (A is the local coordinate system of the hyperbola).
+	xgce_MakeHypr2d::xgce_MakeHypr2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
+		NativeHandle = new gce_MakeHypr2d(*MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
+		SetRoot(NativeHandle);
+	};
+
+	//! Creates a Hypr2d centered on the origin of the coordinate system
+	//! A, with major and minor radii MajorRadius and
+	//! MinorRadius, where its major axis is the "X Axis"
+	//! of A (A is the local coordinate system of the hyperbola).
+	xgce_MakeHypr2d::xgce_MakeHypr2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle = new gce_MakeHypr2d(*A->GetAx22d(), MajorRadius, MinorRadius);
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns theructed hyperbola.
+	//! Exceptions StdFail_NotDone if no hyperbola isructed.
+	xgp_Hypr2d^ xgce_MakeHypr2d::Value() {
+		gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Value());
+		return gcnew xgp_Hypr2d(temp);
+	};
+
+	xgp_Hypr2d^ xgce_MakeHypr2d::Operator() {
+		gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Operator());
+		return gcnew xgp_Hypr2d(temp);
+	};
+	xgce_MakeHypr2d::operator xgp_Hypr2d^() {
+		gp_Hypr2d* temp = new gp_Hypr2d(NativeHandle->Operator());
+		return gcnew xgp_Hypr2d(temp);
+	};
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeHypr2d::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeHypr2d::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-gce_MakeHypr2d::gce_MakeHypr2d(const gp_Ax2d&         MajorAxis   ,
-			       const Standard_Real    MajorRadius ,
-			       const Standard_Real    MinorRadius ,
-			       const Standard_Boolean Sense       )
-{
-  if (MajorRadius < 0.0 || MinorRadius < 0.0) { TheError = gce_NegativeRadius;}
-  else {
-    TheHypr2d = gp_Hypr2d(MajorAxis,MajorRadius,MinorRadius,Sense);
-    TheError = gce_Done;
-  }
-}
-
-gce_MakeHypr2d::gce_MakeHypr2d(const gp_Ax22d&     A           ,
-			       const Standard_Real MajorRadius ,
-			       const Standard_Real MinorRadius )
-{
-  if (MajorRadius < 0.0 || MinorRadius < 0.0) { TheError = gce_NegativeRadius;}
-  else {
-    TheHypr2d = gp_Hypr2d(A,MajorRadius,MinorRadius);
-    TheError = gce_Done;
-  }
-}
-
-const gp_Hypr2d& gce_MakeHypr2d::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeHypr2d::Value() - no result");
-  return TheHypr2d;
-}
-
-const gp_Hypr2d& gce_MakeHypr2d::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeHypr2d::operator gp_Hypr2d() const
-{
-  return Value();
-}
-

@@ -1,75 +1,89 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeHypr.h>
+namespace TKGeomBase {
+	xgce_MakeHypr::xgce_MakeHypr() {
+		/*NativeHandle = new gce_MakeHypr();
+		SetRoot(NativeHandle);*/
+	};
+
+	xgce_MakeHypr::xgce_MakeHypr(gce_MakeHypr* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeHypr::SetMakeHypr(gce_MakeHypr* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeHypr* xgce_MakeHypr::GetMakeHypr() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeHypr::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeHypr.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! A2 is the local coordinate system of the hyperbola.
+	//! In the local coordinates system A2 the equation of the
+	//! hyperbola is :
+	//! X*X / MajorRadius*MajorRadius - Y*Y / MinorRadius*MinorRadius = 1.0
+	//! It is not forbidden to create an Hyperbola with MajorRadius =
+	//! MinorRadius.
+	//! For the hyperbola the MajorRadius can be lower than the
+	//! MinorRadius.
+	//! The status is "NegativeRadius" if MajorRadius < 0.0 and
+	//! "InvertRadius" if MinorRadius > MajorRadius.
+	xgce_MakeHypr::xgce_MakeHypr(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle = new gce_MakeHypr(*A2->GetAx2(), MajorRadius, MinorRadius);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d une Hyperbole 3d de gp de centre <Center> et de sommets   +
-//   <S1> et <S2>.                                                        +
-//   <CenterS1> donne le grand axe .                                      +
-//   <S1> donne le grand rayon et <S2> le petit rayon.                    +
-//=========================================================================
-gce_MakeHypr::gce_MakeHypr(const gp_Pnt&   S1     ,
-			   const gp_Pnt&   S2     ,
-			   const gp_Pnt&   Center ) 
-{
-  gp_Dir XAxis(gp_XYZ(S1.XYZ()-Center.XYZ()));
-  gp_Lin L(Center,XAxis);
-  Standard_Real D = S1.Distance(Center);
-  Standard_Real d = L.Distance(S2);
-  if (d > D) { TheError = gce_InvertAxis; }
-  else {
-    gp_Dir Norm(XAxis.Crossed(gp_Dir(gp_XYZ(S2.XYZ()-Center.XYZ()))));
-    TheHypr = gp_Hypr(gp_Ax2(Center,Norm,XAxis),D,d);
-    TheError = gce_Done;
-  }
+	//! Constructs a hyperbola
+	//! -   centered on the point Center, where:
+	//! -   the plane of the hyperbola is defined by Center, S1 and S2,
+	//! -   its major axis is defined by Center and S1,
+	//! -   its major radius is the distance between Center and S1, and
+	//! -   its minor radius is the distance between S2 and the major axis.
+	//! Warning
+	//! If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_NegativeRadius if MajorRadius is less than 0.0;
+	//! -   gce_InvertRadius if:
+	//! -   the major radius (computed with Center, S1) is
+	//! less than the minor radius (computed with Center, S1 and S2), or
+	//! -   MajorRadius is less than MinorRadius; or
+	//! -   gce_ColinearPoints if S1, S2 and Center are collinear.
+	xgce_MakeHypr::xgce_MakeHypr(xgp_Pnt^ S1, xgp_Pnt^ S2, xgp_Pnt^ Center) {
+		NativeHandle = new gce_MakeHypr(*S1->GetPnt(), *S2->GetPnt(), *Center->GetPnt());
+		SetRoot(NativeHandle);
+	};
+	
+	//! Returns theructed hyperbola.
+	//! Exceptions StdFail_NotDone if no hyperbola isructed.
+	xgp_Hypr^ xgce_MakeHypr::Value() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle->Value());
+		return gcnew xgp_Hypr(temp);
+	};
+
+	xgp_Hypr^ xgce_MakeHypr::Operator() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle->Operator());
+		return gcnew xgp_Hypr(temp);
+	};
+	xgce_MakeHypr::operator xgp_Hypr^() {
+		gp_Hypr* temp = new gp_Hypr(NativeHandle->Operator());
+		return gcnew xgp_Hypr(temp);
+	};
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeHypr::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeHypr::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-gce_MakeHypr::gce_MakeHypr(const gp_Ax2&       A2          ,
-			   const Standard_Real MajorRadius ,
-			   const Standard_Real MinorRadius ) 
-{
-  if (MajorRadius < MinorRadius) { TheError = gce_InvertRadius; }
-  else if (MajorRadius < 0.0) { TheError = gce_NegativeRadius; }
-  else {
-    TheHypr = gp_Hypr(A2,MajorRadius,MinorRadius);
-    TheError = gce_Done;
-  }
-}
-
-const gp_Hypr& gce_MakeHypr::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeHypr::Value() - no result");
-  return TheHypr;
-}
-
-const gp_Hypr& gce_MakeHypr::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeHypr::operator gp_Hypr() const
-{
-  return Value();
-}
-

@@ -1,152 +1,109 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeCylinder.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	xgce_MakeCylinder::xgce_MakeCylinder() {
+		/*NativeHandle = new gce_MakeCylinder();
+		SetRoot(NativeHandle);*/
+	};
+
+	xgce_MakeCylinder::xgce_MakeCylinder(gce_MakeCylinder* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeCylinder::SetMakeCylinder(gce_MakeCylinder* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeCylinder* xgce_MakeCylinder::GetMakeCylinder() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeCylinder::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeCylinder.hxx>
-#include <gp.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! <A2> is the local cartesian coordinate system of <me>.
+	//! The status is "NegativeRadius" if R < 0.0
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Ax2^ A2, Standard_Real Radius) {
+		NativeHandle = new gce_MakeCylinder(*A2->GetAx2(), Radius);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//  Constructions d un cylindre de gp par son Ax2 A2 et son rayon         +
-//  Radius.                                                               +
-//=========================================================================
-gce_MakeCylinder::gce_MakeCylinder(const gp_Ax2&       A2     ,
-				   const Standard_Real Radius ) 
-{
-  if (Radius < 0.0) { TheError = gce_NegativeRadius; }
-  else {
-    TheCylinder = gp_Cylinder(A2,Radius);
-    TheError = gce_Done;
-  }
+	//! Makes a Cylinder from gp <TheCylinder> coaxial to another
+	//! Cylinder <Cylinder> and passing through a Pnt <Point>.
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Cylinder^ Cyl, xgp_Pnt^ Point) {
+		NativeHandle = new gce_MakeCylinder(*Cyl->GetCylinder(), *Point->GetPnt());
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Cylinder from gp <TheCylinder> coaxial to another
+	//! Cylinder <Cylinder> at the distance <Dist> which can
+	//! be greater or lower than zero.
+	//! The radius of the result is the absolute value of the
+	//! radius of <Cyl> plus <Dist>
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Cylinder^ Cyl, Standard_Real Dist) {
+		NativeHandle = new gce_MakeCylinder(*Cyl->GetCylinder(), Dist);
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Cylinder from gp <TheCylinder> with 3 points
+	//! <P1>,<P2>,<P3>.
+	//! Its axis is <P1P2> and its radius is the distance
+	//! between <P3> and <P1P2>
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3) {
+		NativeHandle = new gce_MakeCylinder(*P1->GetPnt(), *P2->GetPnt(), *P3->GetPnt());
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Cylinder by its axis <Axis> and radius <Radius>.
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Ax1^ Axis, Standard_Real Radius) {
+		NativeHandle = new gce_MakeCylinder(*Axis->GetAx1(), Radius);
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes a Cylinder by its circular base.
+	//! Warning
+	//! If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_NegativeRadius if:
+	//! -   Radius is less than 0.0, or
+	//! -   Dist is negative and has an absolute value
+	//! which is greater than the radius of Cyl; or
+	//! -   gce_ConfusedPoints if points P1 and P2 are coincident.
+	xgce_MakeCylinder::xgce_MakeCylinder(xgp_Circ^ Circ) {
+		NativeHandle = new gce_MakeCylinder(*Circ->GetCirc());
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns theructed cylinder.
+	//! Exceptions StdFail_NotDone if no cylinder isructed.
+	xgp_Cylinder^ xgce_MakeCylinder::Value() {
+		gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Value());
+		return gcnew xgp_Cylinder(temp);
+	};
+
+	xgp_Cylinder^ xgce_MakeCylinder::Operator() {
+		gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Operator());
+		return gcnew xgp_Cylinder(temp);
+	};
+	xgce_MakeCylinder::operator xgp_Cylinder^() {
+		gp_Cylinder* temp = new gp_Cylinder(NativeHandle->Operator());
+		return gcnew xgp_Cylinder(temp);
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeCylinder::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeCylinder::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-//=========================================================================
-//  Constructions d un cylindre de gp par son axe Axis et son rayon       +
-//  Radius.                                                               +
-//=========================================================================
-
-gce_MakeCylinder::gce_MakeCylinder(const gp_Ax1&       Axis   ,
-				   const Standard_Real Radius ) 
-{
-  if (Radius < 0.0) { TheError = gce_NegativeRadius; }
-  else {
-    gp_Dir D(Axis.Direction());
-    gp_Dir Direc;
-    Standard_Real x = D.X();
-    Standard_Real y = D.Y();
-    Standard_Real z = D.Z();
-    if (Abs(x) > gp::Resolution()) { Direc = gp_Dir(-y,x,0.0); }
-    else if (Abs(y) > gp::Resolution()) { Direc = gp_Dir(-y,x,0.0); }
-    else if (Abs(z) > gp::Resolution()) { Direc = gp_Dir(0.0,-z,y); }
-    TheCylinder = gp_Cylinder(gp_Ax2(Axis.Location(),D,Direc),Radius);
-    TheError = gce_Done;
-  }
-}
-
-//=========================================================================
-//  Constructions d un cylindre de gp par un cercle.                      +
-//=========================================================================
-
-gce_MakeCylinder::gce_MakeCylinder(const gp_Circ& Circ ) 
-{
-  TheCylinder = gp_Cylinder(Circ.Position(),Circ.Radius());
-  TheError = gce_Done;
-}
-
-//=========================================================================
-//  Constructions d un cylindre de gp par trois points P1, P2, P3.        +
-//  P1 et P2 donnent l axe du cylindre, la distance de P3 a l axe donne   +
-//  le rayon du cylindre.                                                 +
-//=========================================================================
-
-gce_MakeCylinder::gce_MakeCylinder(const gp_Pnt& P1 ,
-				   const gp_Pnt& P2 ,
-				   const gp_Pnt& P3 ) 
-{
-  if (P1.Distance(P2) < gp::Resolution()) { TheError = gce_ConfusedPoints; }
-  else {
-    gp_Dir D1(P2.XYZ()-P1.XYZ());
-    gp_Dir D2;
-    Standard_Real x = D1.X();
-    Standard_Real y = D1.Y();
-    Standard_Real z = D1.Z();
-    if (Abs(x) > gp::Resolution()) { D2 = gp_Dir(-y,x,0.0); }
-    else if (Abs(y) > gp::Resolution()) { D2 = gp_Dir(-y,x,0.0); }
-    else if (Abs(z) > gp::Resolution()) { D2 = gp_Dir(0.0,-z,y); }
-    TheCylinder = gp_Cylinder(gp_Ax2(P1,D1,D2 ),gp_Lin(P1,D1).Distance(P3));
-    TheError = gce_Done;
-  }
-}
-
-//=========================================================================
-//  Constructions d un cylindre de gp concentrique a un autre cylindre de +
-//  gp a une distance Dist.                                               +
-//=========================================================================
-
-gce_MakeCylinder::gce_MakeCylinder(const gp_Cylinder&  Cyl  ,
-				   const Standard_Real Dist ) 
-{
-  Standard_Real Rad = Cyl.Radius()+Dist;
-  if (Rad < 0.) { TheError = gce_NegativeRadius; }
-  else {
-    TheCylinder = gp_Cylinder(Cyl);
-    TheCylinder.SetRadius(Rad);
-    TheError = gce_Done;
-  }
-}
-
-//=========================================================================
-//  Constructions d un cylindre de gp concentrique a un autre cylindre de +
-//  gp passant par le point P.                                            +
-//=========================================================================
-
-gce_MakeCylinder::gce_MakeCylinder(const gp_Cylinder& Cyl ,
-				   const gp_Pnt&      P   ) 
-{
-  gp_Lin L(Cyl.Axis());
-  Standard_Real Rad = L.Distance(P);
-  TheCylinder = gp_Cylinder(Cyl);
-  TheCylinder.SetRadius(Rad);
-  TheError = gce_Done;
-}
-
-const gp_Cylinder& gce_MakeCylinder::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeCylinder::Value() - no result");
-  return TheCylinder;
-}
-
-const gp_Cylinder& gce_MakeCylinder::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeCylinder::operator gp_Cylinder() const
-{
-  return Value();
-}
-
-
-
-
-

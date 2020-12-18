@@ -1,90 +1,108 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeElips2d.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	xgce_MakeElips2d::xgce_MakeElips2d() {
+		/*NativeHandle = new gce_MakeElips2d();
+		SetRoot(NativeHandle);*/
+	};
+
+	xgce_MakeElips2d::xgce_MakeElips2d(gce_MakeElips2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void xgce_MakeElips2d::SetMakeElips2d(gce_MakeElips2d* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	gce_MakeElips2d* xgce_MakeElips2d::GetMakeElips2d() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakeElips2d::GetRoot() {
+		return NativeHandle;
+	};
 
 
-#include <gce_MakeElips2d.hxx>
-#include <gp.hxx>
-#include <gp_Ax2d.hxx>
-#include <gp_Ax22d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <StdFail_NotDone.hxx>
+	//! Creates an ellipse with the major axis, the major and the
+	//! minor radius. The location of the MajorAxis is the center
+	//! of the  ellipse.
+	//! The sense of parametrization is given by Sense.
+	//! It is possible to create an ellipse with MajorRadius = MinorRadius.
+	//! the status is "InvertRadius" if MajorRadius < MinorRadius or
+	//! "NegativeRadius" if MinorRadius < 0.0
+	//! Standard_Boolean Sense = Standard_True
+	xgce_MakeElips2d::xgce_MakeElips2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense) {
+		NativeHandle = new gce_MakeElips2d(*MajorAxis->GetAx2d(), MajorRadius, MinorRadius, Sense);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d une Ellipse 2d de gp de centre <Center> et de sommets     +
-//   <S1> et <S2>.                                                        +
-//   <CenterS1> donne le grand axe .                                      +
-//   <S1> donne le grand rayon et <S2> le petit rayon.                    +
-//=========================================================================
-gce_MakeElips2d::gce_MakeElips2d(const gp_Pnt2d&   S1     ,
-				 const gp_Pnt2d&   S2     ,
-				 const gp_Pnt2d&   Center ) 
-{
-  Standard_Real D1 = S1.Distance(Center);
-  gp_Dir2d XAxis(gp_XY(S1.XY()-Center.XY()));
-  gp_Dir2d YAxis(gp_XY(S2.XY()-Center.XY()));
-  Standard_Real D2 = gp_Lin2d(Center,XAxis).Distance(S2);
-  if (D1 < D2) { TheError = gce_InvertAxis; }
-  else if (D2 < gp::Resolution()) { TheError = gce_NullAxis; }
-  else {
-    TheElips2d = gp_Elips2d(gp_Ax22d(Center,XAxis,YAxis),D1,D2);
-    TheError = gce_Done;
-  }
+
+	//! Axis defines the Xaxis and Yaxis of the ellipse which defines
+	//! the origin and the sense of parametrization.
+	//! Creates an ellipse with the AxisPlacement the major and the
+	//! minor radius. The location of Axis is the center
+	//! of the  ellipse.
+	//! It is possible to create an ellipse with MajorRadius = MinorRadius.
+	//! the status is "InvertRadius" if MajorRadius < MinorRadius or
+	//! "NegativeRadius" if MinorRadius < 0.0
+	xgce_MakeElips2d::xgce_MakeElips2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle = new gce_MakeElips2d(*A->GetAx22d(), MajorRadius, MinorRadius);
+		SetRoot(NativeHandle);
+	};
+
+	//! Makes an Elips2d with its center and two points.
+	//! The sense of parametrization is given by S1, S2,
+	//! and Center.
+	//! Depending on theructor, the  implicit orientation of the ellipse is:
+	//! -   the sense defined by A,
+	//! -   the sense defined by points Center, S1 and S2,
+	//! -   the trigonometric sense if Sense is not given or is true, or
+	//! -   the opposite if Sense is false.
+	//! It is possible toruct an ellipse where the major
+	//! and minor radii are equal.
+	//! Warning
+	//! If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_InvertRadius if MajorRadius is less than MinorRadius,
+	//! -   gce_NegativeRadius if MajorRadius or
+	//! MinorRadius is less than 0.0,
+	//! -   gce_NullAxis if points S1, S2 and Center are collinear, or
+	//! -   gce_InvertAxis if the major radius computed with
+	//! Center and S1 is less than the minor radius
+	//! computed with Center, S1 and S2.
+	xgce_MakeElips2d::xgce_MakeElips2d(xgp_Pnt2d^ S1, xgp_Pnt2d^ S2, xgp_Pnt2d^ Center) {
+		NativeHandle = new gce_MakeElips2d(*S1->GetPnt2d(), *S2->GetPnt2d(), *Center->GetPnt2d());
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns theructed ellipse.
+	//! Exceptions StdFail_NotDone if no ellipse isructed.
+	xgp_Elips2d^ xgce_MakeElips2d::Value() {
+		gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Value());
+		return gcnew xgp_Elips2d(temp);
+	};
+
+	xgp_Elips2d^ xgce_MakeElips2d::Operator() {
+		gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Operator());
+		return gcnew xgp_Elips2d(temp);
+	};
+	xgce_MakeElips2d::operator xgp_Elips2d^() {
+		gp_Elips2d* temp = new gp_Elips2d(NativeHandle->Operator());
+		return gcnew xgp_Elips2d(temp);
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakeElips2d::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakeElips2d::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }
-
-gce_MakeElips2d::gce_MakeElips2d(const gp_Ax2d&         MajorAxis   ,
-				 const Standard_Real    MajorRadius ,
-				 const Standard_Real    MinorRadius ,
-				 const Standard_Boolean Sense       ) 
-{
-  if (MajorRadius < 0.0) { TheError = gce_NegativeRadius; }
-  else if (MajorRadius < MinorRadius) { TheError = gce_InvertRadius; }
-  else {
-    TheElips2d = gp_Elips2d(MajorAxis,MajorRadius,MinorRadius,Sense);
-    TheError = gce_Done;
-  }
-}
-
-gce_MakeElips2d::gce_MakeElips2d(const gp_Ax22d&     A           ,
-				 const Standard_Real MajorRadius ,
-				 const Standard_Real MinorRadius ) 
-{
-  if (MajorRadius < 0.0) { TheError = gce_NegativeRadius; }
-  else if (MajorRadius < MinorRadius) { TheError = gce_InvertRadius; }
-  else {
-    TheElips2d = gp_Elips2d(A,MajorRadius,MinorRadius);
-    TheError = gce_Done;
-  }
-}
-
-const gp_Elips2d& gce_MakeElips2d::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakeElips2d::Value() - no result");
-  return TheElips2d;
-}
-
-const gp_Elips2d& gce_MakeElips2d::Operator() const 
-{
-  return Value();
-}
-
-gce_MakeElips2d::operator gp_Elips2d() const
-{
-  return Value();
-}
-

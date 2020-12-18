@@ -31,6 +31,17 @@
 本地句柄
 </summary>
         </member>
+        <member name="M:TKMath.xgp_Sphere.#ctor(gp_Sphere*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
             <summary>
 本地句柄
@@ -580,6 +591,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
+        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
         <member name="P:TKLCAF.XTDocStd_Document.IHandle">
             <summary>
 本地句柄
@@ -589,12 +606,6 @@ C++/CLI class visible from .Net (CSharp)
             <summary>
 本地句柄
 </summary>
-        </member>
-        <member name="M:TKMath.xgp_Sphere.#ctor(gp_Sphere*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
         </member>
         <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
             <summary>
@@ -612,26 +623,6 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
         <member name="P:TKV3d.XPrsMgr_PresentableObject.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKV3d.XPrs3d_Drawer.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKV3d.XPrs3d_LineAspect.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKV3d.XGraphic3d_AspectLine3d.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKV3d.XGraphic3d_PresentationAttributes.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -661,18 +652,22 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
+        <member name="P:TKV3d.XPrs3d_Drawer.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+        <member name="P:TKV3d.XPrs3d_LineAspect.IHandle">
             <summary>
-指针映射点
+本地句柄
 </summary>
-            <param name="pos" />
         </member>
-        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
+        <member name="P:TKV3d.XGraphic3d_AspectLine3d.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKV3d.XGraphic3d_PresentationAttributes.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -688,6 +683,11 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
         <member name="P:TKernel.XStandard_GUID.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
             <summary>
 本地句柄
 </summary>

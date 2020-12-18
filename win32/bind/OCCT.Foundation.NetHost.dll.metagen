@@ -6948,8 +6948,8 @@ Class NCollection_Haft<opencascade::handle<Geom_ElementarySurface> >: AutoLayout
   Interfaces:
     System.IDisposable
   Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
 Class TKG3d.XGeom_ElementarySurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_Surface
     Void .ctor(opencascade.handle<Geom_ElementarySurface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -7259,18 +7259,6 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
-    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
-    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
-    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
-    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig
-    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
-    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
-    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
-    Copy(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Line(): PrivateScope, Public, HideBySig
     SetLineHandle(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     GetHLine(handle<Geom_Line>*): PrivateScope, Public, HideBySig
     GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
@@ -7289,6 +7277,18 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     IsPeriodic(): PrivateScope, Public, Virtual, HideBySig
     Continuity(): PrivateScope, Public, Virtual, HideBySig
     IsCN(Int32): PrivateScope, Public, Virtual, HideBySig
+    D0(Double, xgp_Pnt): PrivateScope, Public, Virtual, HideBySig
+    D1(Double, xgp_Pnt, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D2(Double, xgp_Pnt, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    D3(Double, xgp_Pnt, xgp_Vec, xgp_Vec, xgp_Vec): PrivateScope, Public, Virtual, HideBySig
+    DN(Double, Int32): PrivateScope, Public, Virtual, HideBySig
+    Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    TransformedParameter(Double, xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    ParametricTransformation(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
+    Copy(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    ~XGeom_Line(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_OffsetCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7995,6 +7995,406 @@ Class TKGeomBase.xgce_MakeCirc2d: AutoLayout, AnsiClass, Class, Public, BeforeFi
     Status(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeCirc2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeCone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax1, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Cone, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Cone, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeCone*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeCone* IHandle 'get set' : 
+  Methods:
+    SetMakeCone(gce_MakeCone*): PrivateScope, Public, HideBySig
+    GetMakeCone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeCone*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeCylinder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Circ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax1, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Cylinder, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Cylinder, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeCylinder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeCylinder* IHandle 'get set' : 
+  Methods:
+    SetMakeCylinder(gce_MakeCylinder*): PrivateScope, Public, HideBySig
+    GetMakeCylinder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeCylinder*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeDir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeDir*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeDir* IHandle 'get set' : 
+  Methods:
+    SetMakeDir(gce_MakeDir*): PrivateScope, Public, HideBySig
+    GetMakeDir(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeDir*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeDir2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_XY): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeDir2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeDir2d* IHandle 'get set' : 
+  Methods:
+    SetMakeDir2d(gce_MakeDir2d*): PrivateScope, Public, HideBySig
+    GetMakeDir2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeDir2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeElips: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeElips*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeElips* IHandle 'get set' : 
+  Methods:
+    SetMakeElips(gce_MakeElips*): PrivateScope, Public, HideBySig
+    GetMakeElips(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeElips*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeElips2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeElips2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeElips2d* IHandle 'get set' : 
+  Methods:
+    SetMakeElips2d(gce_MakeElips2d*): PrivateScope, Public, HideBySig
+    GetMakeElips2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeElips2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeHypr: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeHypr*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeHypr* IHandle 'get set' : 
+  Methods:
+    SetMakeHypr(gce_MakeHypr*): PrivateScope, Public, HideBySig
+    GetMakeHypr(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeHypr*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeHypr2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Ax22d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeHypr2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeHypr2d* IHandle 'get set' : 
+  Methods:
+    SetMakeHypr2d(gce_MakeHypr2d*): PrivateScope, Public, HideBySig
+    GetMakeHypr2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeHypr2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeLin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeLin*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeLin* IHandle 'get set' : 
+  Methods:
+    SetMakeLin(gce_MakeLin*): PrivateScope, Public, HideBySig
+    GetMakeLin(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeLin*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeLin2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeLin2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeLin2d* IHandle 'get set' : 
+  Methods:
+    SetMakeLin2d(gce_MakeLin2d*): PrivateScope, Public, HideBySig
+    GetMakeLin2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeLin2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeMirror: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Ax2): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pln): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeMirror* IHandle 'get set' : 
+  Methods:
+    SetMakeMirror(gce_MakeMirror*): PrivateScope, Public, HideBySig
+    GetMakeMirror(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeMirror2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeMirror2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeMirror2d* IHandle 'get set' : 
+  Methods:
+    SetMakeMirror2d(gce_MakeMirror2d*): PrivateScope, Public, HideBySig
+    GetMakeMirror2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeMirror2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeParab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Ax1, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeParab*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeParab* IHandle 'get set' : 
+  Methods:
+    SetMakeParab(gce_MakeParab*): PrivateScope, Public, HideBySig
+    GetMakeParab(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeParab*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeParab2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, TKMath.xgp_Pnt2d, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax22d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2d, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeParab2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeParab2d* IHandle 'get set' : 
+  Methods:
+    SetMakeParab2d(gce_MakeParab2d*): PrivateScope, Public, HideBySig
+    GetMakeParab2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeParab2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakePln: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKGeomBase.xgce_Root
+    Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pln, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pln, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax2): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakePln*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakePln* IHandle 'get set' : 
+  Methods:
+    SetMakePln(gce_MakePln*): PrivateScope, Public, HideBySig
+    GetMakePln(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetRoot(): PrivateScope, Public, Virtual, HideBySig
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Status(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakePln*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeRotation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Ax1, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeRotation* IHandle 'get set' : 
+  Methods:
+    SetMakeRotation(gce_MakeRotation*): PrivateScope, Public, HideBySig
+    GetMakeRotation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeRotation2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt2d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeRotation2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeRotation2d* IHandle 'get set' : 
+  Methods:
+    SetMakeRotation2d(gce_MakeRotation2d*): PrivateScope, Public, HideBySig
+    GetMakeRotation2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeRotation2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeScale: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeScale*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeScale* IHandle 'get set' : 
+  Methods:
+    SetMakeScale(gce_MakeScale*): PrivateScope, Public, HideBySig
+    GetMakeScale(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeScale*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeScale2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt2d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeScale2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeScale2d* IHandle 'get set' : 
+  Methods:
+    SetMakeScale2d(gce_MakeScale2d*): PrivateScope, Public, HideBySig
+    GetMakeScale2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeScale2d*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeTranslation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeTranslation* IHandle 'get set' : 
+  Methods:
+    SetMakeTranslation(gce_MakeTranslation*): PrivateScope, Public, HideBySig
+    GetMakeTranslation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName
+Class TKGeomBase.xgce_MakeTranslation2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(gce_MakeTranslation2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    gce_MakeTranslation2d* IHandle 'get set' : 
+  Methods:
+    SetMakeTranslation2d(gce_MakeTranslation2d*): PrivateScope, Public, HideBySig
+    GetMakeTranslation2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Value(): PrivateScope, Public, HideBySig
+    Operator(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(gce_MakeTranslation2d*): PrivateScope, Public, HideBySig, SpecialName
 Class TKGeomBase.XGC_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(GC_Root*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
