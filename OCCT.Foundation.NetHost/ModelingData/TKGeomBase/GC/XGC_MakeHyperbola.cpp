@@ -1,58 +1,71 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeHyperbola.h>
+namespace TKGeomBase {
+	//! DEFINE_STANDARD_ALLOC
 
+	XGC_MakeHyperbola::XGC_MakeHyperbola() {
+		/*NativeHandle = new GC_MakeHyperbola();
+		SetRoot(NativeHandle);*/
+	};
 
-#include <GC_MakeHyperbola.hxx>
-#include <gce_MakeHypr.hxx>
-#include <Geom_Hyperbola.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	XGC_MakeHyperbola::XGC_MakeHyperbola(GC_MakeHyperbola* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeHyperbola::GC_MakeHyperbola(const gp_Hypr& H)
-{
-  TheError = gce_Done;
-  TheHyperbola = new Geom_Hyperbola(H);
-}
+	void XGC_MakeHyperbola::SetMakeHyperbola(GC_MakeHyperbola* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeHyperbola::GC_MakeHyperbola(const gp_Ax2&       A2         ,
-				     const Standard_Real MajorRadius,
-				     const Standard_Real MinorRadius)
-{
-  if (MajorRadius < 0. || MinorRadius < 0.0) { TheError = gce_NegativeRadius; }
-  else {
-    TheError = gce_Done;
-    TheHyperbola = new Geom_Hyperbola(gp_Hypr(A2,MajorRadius,MinorRadius));
-  }
-}
+	GC_MakeHyperbola* XGC_MakeHyperbola::GetMakeHyperbola() {
+		return NativeHandle;
+	};
 
-GC_MakeHyperbola::GC_MakeHyperbola(const gp_Pnt& S1     ,
-				     const gp_Pnt& S2     ,
-				     const gp_Pnt& Center ) {
-  gce_MakeHypr H = gce_MakeHypr(S1,S2,Center);
-  TheError = H.Status();
-  if (TheError == gce_Done) {
-    TheHyperbola = new Geom_Hyperbola(H.Value());
-  }
-}
+	GC_Root* XGC_MakeHyperbola::GetRoot() {
+		return NativeHandle;
+	};
 
-const Handle(Geom_Hyperbola)& GC_MakeHyperbola::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeHyperbola::Value() - no result");
-  return TheHyperbola;
+	//! Creates  an Hyperbola from a non persistent hyperbola  from package gp by conversion.
+	XGC_MakeHyperbola::XGC_MakeHyperbola(xgp_Hypr^ H) {
+		NativeHandle = new GC_MakeHyperbola(*H->GetHypr());
+		SetRoot(NativeHandle);
+	};
+
+	//! Constructs a hyperbola centered on the origin of the coordinate system
+	//! A2, with major and minor radii MajorRadius and MinorRadius, where:
+	//! the plane of the hyperbola is defined by the "X Axis" and "Y Axis" of A2,
+	//! -   its major axis is the "X Axis" of A2.
+	XGC_MakeHyperbola::XGC_MakeHyperbola(xgp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius) {
+		NativeHandle = new GC_MakeHyperbola(*A2->GetAx2(), MajorRadius, MinorRadius);
+		SetRoot(NativeHandle);
+	};
+
+	//! Constructs a hyperbola centered on the point Center, where
+	//! -   the plane of the hyperbola is defined by Center, S1 and S2,
+	//! -   its major axis is defined by Center and S1,
+	//! -   its major radius is the distance between Center and S1, and
+	//! -   its minor radius is the distance between S2 and the major axis;
+	XGC_MakeHyperbola::XGC_MakeHyperbola(xgp_Pnt^ S1, xgp_Pnt^ S2, xgp_Pnt^ Center) {
+		NativeHandle = new GC_MakeHyperbola(*S1->GetPnt(), *S2->GetPnt(), *Center->GetPnt());
+		SetRoot(NativeHandle);
+	};
+
+	//! Returns the constructed hyperbola.
+	//! Exceptions StdFail_NotDone if no hyperbola is constructed.
+	XGeom_Hyperbola^ XGC_MakeHyperbola::Value() {
+		return gcnew XGeom_Hyperbola(NativeHandle->Value());
+	};
+
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeHyperbola::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeHyperbola::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

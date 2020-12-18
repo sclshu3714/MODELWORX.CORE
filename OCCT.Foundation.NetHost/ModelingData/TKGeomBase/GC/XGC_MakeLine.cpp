@@ -1,74 +1,84 @@
-// Created on: 1992-10-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XGC_MakeLine.h>
+namespace TKGeomBase {
+
+	XGC_MakeLine::XGC_MakeLine() {
+		/*NativeHandle = new GC_MakeLine();
+		SetRoot(NativeHandle);*/
+	};
+
+	XGC_MakeLine::XGC_MakeLine(GC_MakeLine* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	void XGC_MakeLine::SetMakeLine(GC_MakeLine* pos) {
+		NativeHandle = pos;
+		SetRoot(NativeHandle);
+	};
+
+	GC_MakeLine* XGC_MakeLine::GetMakeLine() {
+		return NativeHandle;
+	};
+
+	GC_Root* XGC_MakeLine::GetRoot() {
+		return NativeHandle;
+	};
+
+	//! Creates a line located in 3D space with the axis placement A1.
+	//! The Location of A1 is the origin of the line.
+	XGC_MakeLine::XGC_MakeLine(xgp_Ax1^ A1) {
+		NativeHandle = new GC_MakeLine(*A1->GetAx1());
+		SetRoot(NativeHandle);
+	};
 
 
-#include <GC_MakeLine.hxx>
-#include <gce_MakeLin.hxx>
-#include <Geom_Line.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! Creates a line from a non persistent line from package gp.
+	XGC_MakeLine::XGC_MakeLine(xgp_Lin^ L) {
+		NativeHandle = new GC_MakeLine(*L->GetLin());
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Constructions of 3d geometrical elements from Geom.
-//=========================================================================
-GC_MakeLine::GC_MakeLine(const gp_Pnt& P ,
-			   const gp_Dir& V )
-{
-  TheError = gce_Done;
-  TheLine = new Geom_Line(P,V);
-}
 
-GC_MakeLine::GC_MakeLine(const gp_Ax1& A1 )
-{
-  TheError = gce_Done;
-  TheLine = new Geom_Line(A1);
-}
+	//! P is the origin and V is the direction of the line.
+	XGC_MakeLine::XGC_MakeLine(xgp_Pnt^ P, xgp_Dir^ V) {
+		NativeHandle = new GC_MakeLine(*P->GetPnt(), *V->GetDir());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeLine::GC_MakeLine(const gp_Lin& L )
-{
-  TheError = gce_Done;
-  TheLine = new Geom_Line(L);
-}
+	//! Make a Line from Geom <TheLin> parallel to another
+	//! Lin <Lin> and passing through a Pnt <Point>.
+	XGC_MakeLine::XGC_MakeLine(xgp_Lin^ Lin, xgp_Pnt^ Point) {
+		NativeHandle = new GC_MakeLine(*Lin->GetLin(), *Point->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeLine::GC_MakeLine(const gp_Pnt& P1 ,
-			   const gp_Pnt& P2 ) 
-{
-  gce_MakeLin L(P1,P2);
-  TheError = L.Status();
-  if (TheError == gce_Done) {
-    TheLine = new Geom_Line(L.Value());
-  }
-}
+	//! Make a Line from Geom <TheLin> passing through 2
+	//! Pnt <P1>,<P2>.
+	//! It returns false if <p1> and <P2> are confused.
+	//! Warning
+	//! If the points P1 and P2 are coincident (that is, when
+	//! IsDone returns false), the Status function returns gce_ConfusedPoints.
+	XGC_MakeLine::XGC_MakeLine(xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle = new GC_MakeLine(*P1->GetPnt(), *P2->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-GC_MakeLine::GC_MakeLine(const gp_Lin& Lin   ,
-			   const gp_Pnt& Point ) 
-{
-  gce_MakeLin L(Lin,Point);
-  TheError = L.Status();
-  if (TheError == gce_Done) {
-    TheLine = new Geom_Line(L.Value());
-  }
-}
+	//! Returns the constructed line.
+	//! Exceptions StdFail_NotDone if no line is constructed.
+	XGeom_Line^ XGC_MakeLine::Value() {
+		return gcnew XGeom_Line(NativeHandle->Value());
+	};
 
-const Handle(Geom_Line)& GC_MakeLine::Value() const
-{ 
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "GC_MakeLine::Value() - no result");
-  return TheLine;
+	//! Returns true if the construction is successful.
+	Standard_Boolean XGC_MakeLine::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType XGC_MakeLine::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

@@ -423,6 +423,8 @@
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeConicalSurface.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeCylindricalSurface.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.h" />
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_Root.h" />
     <ClInclude Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.h" />
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_FillMethod.h" />
@@ -705,6 +707,8 @@
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeConicalSurface.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeCylindricalSurface.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeEllipse.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.cpp" />
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_Root.cpp" />
     <ClCompile Include="ModelingData\TKGeomBase\GeomTools\XGeomTools.cpp" />
     <ClCompile Include="OCCTProxy.cpp" />

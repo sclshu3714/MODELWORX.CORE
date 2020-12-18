@@ -1422,6 +1422,12 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_SurfaceOfLinearExtrusion.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.h">
+      <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2018,6 +2024,12 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKG3d\Geom\XGeom_SurfaceOfLinearExtrusion.cpp">
       <Filter>源文件\ModelingData\TKG3d\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeHyperbola.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\GC\XGC_MakeLine.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\GC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

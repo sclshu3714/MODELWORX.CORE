@@ -42,7 +42,7 @@ namespace TKGeomBase {
 
         void SetRoot(GC_Root* pos);
 
-        GC_Root* GetRoot();
+        virtual GC_Root* GetRoot();
 
         //! Returns true if the construction is successful.
         virtual Standard_Boolean IsDone();
