@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeCone_HeaderFile
-#define _gce_MakeCone_HeaderFile
+#ifndef _xgce_MakeCone_HeaderFile
+#define _xgce_MakeCone_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -43,11 +43,11 @@ class gp_Lin;
 //! * Create a Cone by 2 points and 2 radius.
 //! * Create a Cone by an Ax2 an angle and the radius of
 //! its reference section.
-class gce_MakeCone  : public gce_Root
+public ref class xgce_MakeCone  : public gce_Root
 {
 public:
 
-  DEFINE_STANDARD_ALLOC
+  //DEFINE_STANDARD_ALLOC
 
   
 
@@ -58,16 +58,16 @@ public:
   //! the cone.
   //! If Radius is lower than 0.0 the status is "
   //! If Ang < Resolution from gp  or Ang >= (PI/2) - Resolution.
-  Standard_EXPORT gce_MakeCone(const gp_Ax2& A2, const Standard_Real Ang, const Standard_Real Radius);
+  gce_MakeCone(gp_Ax2^ A2, Standard_Real Ang, Standard_Real Radius);
   
   //! Makes a Cone from gp <TheCone> coaxial to another
   //! Cone <Cone> and passing through a Pnt <Point>.
-  Standard_EXPORT gce_MakeCone(const gp_Cone& Cone, const gp_Pnt& Point);
+  gce_MakeCone(gp_Cone^ Cone, gp_Pnt^ Point);
   
   //! Makes a Cone from gp <TheCone> coaxial to another
   //! Cone <Cone> at the distance <Dist> which can
   //! be greater or lower than zero.
-  Standard_EXPORT gce_MakeCone(const gp_Cone& Cone, const Standard_Real Dist);
+  gce_MakeCone(gp_Cone^ Cone, Standard_Real Dist);
   
   //! Makes a Cone from gp <TheCone> by four points <P1>,
   //! <P2>,<P3> and <P4>.
@@ -83,7 +83,7 @@ public:
   //! status "NullAngle".
   //! <P3P4> is colinear to <P1P2> we have the status
   //! "NullAngle".
-  Standard_EXPORT gce_MakeCone(const gp_Pnt& P1, const gp_Pnt& P2, const gp_Pnt& P3, const gp_Pnt& P4);
+  gce_MakeCone(gp_Pnt^ P1, gp_Pnt^ P2, gp_Pnt^ P3, gp_Pnt^ P4);
   
   //! Makes a Cone by its axis <Axis> and and two points.
   //! The distance between <P1> and the axis is the radius
@@ -96,7 +96,7 @@ public:
   //! "NullAngle"
   //! If <P1> and <P2> are confused we have the status
   //! "ConfusedPoints"
-  Standard_EXPORT gce_MakeCone(const gp_Ax1& Axis, const gp_Pnt& P1, const gp_Pnt& P2);
+  gce_MakeCone(gp_Ax1^ Axis, gp_Pnt^ P1, gp_Pnt^ P2);
   
   //! Makes a Cone by its axis <Axis> and and two points.
   //! The distance between <P1> and the axis is the radius
@@ -109,7 +109,7 @@ public:
   //! "NullAngle"
   //! If <P1> and <P2> are confused we have the status
   //! "ConfusedPoints"
-  Standard_EXPORT gce_MakeCone(const gp_Lin& Axis, const gp_Pnt& P1, const gp_Pnt& P2);
+  gce_MakeCone(gp_Lin^ Axis, gp_Pnt^ P1, gp_Pnt^ P2);
   
   //! Makes a Cone with two points and two radius.
   //! The axis of the solution is the line passing through
@@ -134,14 +134,14 @@ public:
   //! -   the vector joining P1 to P2 is perpendicular to the line joining P3 to P4,
   //! -   the vector joining P1 to P2 is perpendicular to Axis, or
   //! -   P1, P2, P3, and P4 are collinear.
-  Standard_EXPORT gce_MakeCone(const gp_Pnt& P1, const gp_Pnt& P2, const Standard_Real R1, const Standard_Real R2);
+  gce_MakeCone(gp_Pnt^ P1, gp_Pnt^ P2, Standard_Real R1, Standard_Real R2);
   
-  //! Returns the constructed cone.
-  //! Exceptions StdFail_NotDone if no cone is constructed.
-  Standard_EXPORT const gp_Cone& Value() const;
+  //! Returns theructed cone.
+  //! Exceptions StdFail_NotDone if no cone isructed.
+  gp_Cone^ Value();
   
-  Standard_EXPORT const gp_Cone& Operator() const;
-Standard_EXPORT operator gp_Cone() const;
+  gp_Cone^ Operator();
+operator gp_Cone();
 
 
 
@@ -167,4 +167,4 @@ private:
 
 
 
-#endif // _gce_MakeCone_HeaderFile
+#endif // _xgce_MakeCone_HeaderFile

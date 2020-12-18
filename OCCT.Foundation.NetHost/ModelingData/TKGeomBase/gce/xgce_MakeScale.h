@@ -14,8 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeScale_HeaderFile
-#define _gce_MakeScale_HeaderFile
+#ifndef _xgce_MakeScale_HeaderFile
+#define _xgce_MakeScale_HeaderFile
+#pragma once
+#include <gce_MakeScale.hxx>
+#include <xgp_Pnt.h>
+#include <xgp_Trsf.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -26,53 +30,55 @@
 class gp_Pnt;
 class gp_Trsf;
 
+using namespace TKMath;
 
-//! Implements an elementary construction algorithm for
-//! a scaling transformation in 3D space. The result is a gp_Trsf transformation.
-//! A MakeScale object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class gce_MakeScale 
-{
-public:
+namespace TKGeomBase {
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Trsf;
+	//! Implements an elementaryruction algorithm for
+	//! a scaling transformation in 3D space. The result is a gp_Trsf transformation.
+	//! A MakeScale object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and
+	//! -   consulting the result.
+	public ref class xgce_MakeScale
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeScale();
 
-  
-  //! Constructs a scaling transformation with
-  //! -   Point as the center of the transformation, and
-  //! -   Scale as the scale factor.
-  Standard_EXPORT gce_MakeScale(const gp_Pnt& Point, const Standard_Real Scale);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf& Value() const;
-  
-  Standard_EXPORT const gp_Trsf& Operator() const;
-Standard_EXPORT operator gp_Trsf() const;
+		xgce_MakeScale(gce_MakeScale* pos);
 
+		void SetMakeScale(gce_MakeScale* pos);
 
+		virtual gce_MakeScale* GetMakeScale();
 
+		//! Constructs a scaling transformation with
+		//! -   Point as the center of the transformation, and
+		//! -   Scale as the scale factor.
+		xgce_MakeScale(xgp_Pnt^ Point, Standard_Real Scale);
 
-protected:
+		//! Returns theructed transformation.
+		xgp_Trsf^ Value();
 
+		xgp_Trsf^ Operator();
+		operator xgp_Trsf^();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeScale* IHandle {
+			gce_MakeScale* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeScale* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-
-private:
-
-
-
-  gp_Trsf TheScale;
-
-
-};
-
-
-
-
-
-
-
-#endif // _gce_MakeScale_HeaderFile
+	private:
+		gce_MakeScale* NativeHandle;
+	};
+}
+#endif // _xgce_MakeScale_HeaderFile

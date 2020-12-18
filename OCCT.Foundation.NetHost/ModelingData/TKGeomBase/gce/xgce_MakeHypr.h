@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeHypr_HeaderFile
-#define _gce_MakeHypr_HeaderFile
+#ifndef _xgce_MakeHypr_HeaderFile
+#define _xgce_MakeHypr_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -67,11 +67,11 @@ class gp_Hypr;
 //! Warnings :
 //! The major radius (on the major axis) can be lower than the
 //! minor radius (on the minor axis).
-class gce_MakeHypr  : public gce_Root
+public ref class xgce_MakeHypr  : public gce_Root
 {
 public:
 
-  DEFINE_STANDARD_ALLOC
+  //DEFINE_STANDARD_ALLOC
 
   
 
@@ -85,7 +85,7 @@ public:
   //! MinorRadius.
   //! The status is "NegativeRadius" if MajorRadius < 0.0 and
   //! "InvertRadius" if MinorRadius > MajorRadius.
-  Standard_EXPORT gce_MakeHypr(const gp_Ax2& A2, const Standard_Real MajorRadius, const Standard_Real MinorRadius);
+  gce_MakeHypr(gp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
   
   //! Constructs a hyperbola
   //! -   centered on the point Center, where:
@@ -102,14 +102,14 @@ public:
   //! less than the minor radius (computed with Center, S1 and S2), or
   //! -   MajorRadius is less than MinorRadius; or
   //! -   gce_ColinearPoints if S1, S2 and Center are collinear.
-  Standard_EXPORT gce_MakeHypr(const gp_Pnt& S1, const gp_Pnt& S2, const gp_Pnt& Center);
+  gce_MakeHypr(gp_Pnt^ S1, gp_Pnt^ S2, gp_Pnt^ Center);
   
-  //! Returns the constructed hyperbola.
-  //! Exceptions StdFail_NotDone if no hyperbola is constructed.
-  Standard_EXPORT const gp_Hypr& Value() const;
+  //! Returns theructed hyperbola.
+  //! Exceptions StdFail_NotDone if no hyperbola isructed.
+  gp_Hypr^ Value();
   
-  Standard_EXPORT const gp_Hypr& Operator() const;
-Standard_EXPORT operator gp_Hypr() const;
+  gp_Hypr^ Operator();
+operator gp_Hypr();
 
 
 
@@ -135,4 +135,4 @@ private:
 
 
 
-#endif // _gce_MakeHypr_HeaderFile
+#endif // _xgce_MakeHypr_HeaderFile

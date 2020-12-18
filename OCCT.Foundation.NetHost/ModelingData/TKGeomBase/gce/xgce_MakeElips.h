@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeElips_HeaderFile
-#define _gce_MakeElips_HeaderFile
+#ifndef _xgce_MakeElips_HeaderFile
+#define _xgce_MakeElips_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -36,11 +36,11 @@ class gp_Elips;
 //! * Create an ellipse from its center, and two points:
 //! one on the ciconference giving the major radius, the
 //! other giving the value of the small radius.
-class gce_MakeElips  : public gce_Root
+public ref class xgce_MakeElips  : public gce_Root
 {
 public:
 
-  DEFINE_STANDARD_ALLOC
+  //DEFINE_STANDARD_ALLOC
 
   
   //! The major radius of the ellipse is on the "XAxis" and the
@@ -50,12 +50,12 @@ public:
   //! Warnings :
   //! It is not forbidden to create an ellipse with
   //! MajorRadius = MinorRadius.
-  Standard_EXPORT gce_MakeElips(const gp_Ax2& A2, const Standard_Real MajorRadius, const Standard_Real MinorRadius);
+  gce_MakeElips(gp_Ax2^ A2, Standard_Real MajorRadius, Standard_Real MinorRadius);
   
   //! Make an ellipse with its center and two points.
   //! Warning
   //! The MakeElips class does not prevent the
-  //! construction of an ellipse where the MajorRadius is
+  //!ruction of an ellipse where the MajorRadius is
   //! equal to the MinorRadius.
   //! If an error occurs (that is, when IsDone returns
   //! false), the Status function returns:
@@ -66,14 +66,14 @@ public:
   //! -   the major radius computed with Center and S1
   //! is less than the minor radius computed with Center, S1 and S2, or
   //! -   Center, S1 and S2 are collinear.
-  Standard_EXPORT gce_MakeElips(const gp_Pnt& S1, const gp_Pnt& S2, const gp_Pnt& Center);
+  gce_MakeElips(gp_Pnt^ S1, gp_Pnt^ S2, gp_Pnt^ Center);
   
-  //! Returns the constructed ellipse.
-  //! Exceptions StdFail_NotDone if no ellipse is constructed.
-  Standard_EXPORT const gp_Elips& Value() const;
+  //! Returns theructed ellipse.
+  //! Exceptions StdFail_NotDone if no ellipse isructed.
+  gp_Elips^ Value();
   
-  Standard_EXPORT const gp_Elips& Operator() const;
-Standard_EXPORT operator gp_Elips() const;
+  gp_Elips^ Operator();
+operator gp_Elips();
 
 
 
@@ -99,4 +99,4 @@ private:
 
 
 
-#endif // _gce_MakeElips_HeaderFile
+#endif // _xgce_MakeElips_HeaderFile

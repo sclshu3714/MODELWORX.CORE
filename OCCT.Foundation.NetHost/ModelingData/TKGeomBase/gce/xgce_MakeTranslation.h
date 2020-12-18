@@ -14,8 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeTranslation_HeaderFile
-#define _gce_MakeTranslation_HeaderFile
+#ifndef _xgce_MakeTranslation_HeaderFile
+#define _xgce_MakeTranslation_HeaderFile
+#pragma once
+#include <gce_MakeTranslation.hxx>
+#include <xgp_Vec.h>
+#include <xgp_Pnt.h>
+#include <xgp_Trsf.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -26,56 +31,60 @@ class gp_Vec;
 class gp_Pnt;
 class gp_Trsf;
 
+using namespace TKMath;
 
-//! This class implements elementary construction algorithms for a
-//! translation in 3D space. The result is a gp_Trsf transformation.
-//! A MakeTranslation object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class gce_MakeTranslation 
-{
-public:
+namespace TKGeomBase {
+	ref class TKMath::xgp_Vec;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Trsf;
+	//! This class implements elementaryruction algorithms for a
+	//! translation in 3D space. The result is a gp_Trsf transformation.
+	//! A MakeTranslation object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and
+	//! -   consulting the result.
+	public ref class xgce_MakeTranslation
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//DEFINE_STANDARD_ALLOC
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeTranslation();
 
-  
-  //! Constructs a translation along the vector " Vect"
-  Standard_EXPORT gce_MakeTranslation(const gp_Vec& Vect);
-  
-  //! Constructs a translation along the vector
-  //! (Point1,Point2) defined from the point Point1 to the point Point2.
-  Standard_EXPORT gce_MakeTranslation(const gp_Pnt& Point1, const gp_Pnt& Point2);
-  
+		xgce_MakeTranslation(gce_MakeTranslation* pos);
 
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf& Value() const;
-  
-  Standard_EXPORT const gp_Trsf& Operator() const;
-Standard_EXPORT operator gp_Trsf() const;
+		void SetMakeTranslation(gce_MakeTranslation* pos);
 
+		virtual gce_MakeTranslation* GetMakeTranslation();
 
+		//! Constructs a translation along the vector " Vect"
+		xgce_MakeTranslation(xgp_Vec^ Vect);
 
-
-protected:
-
-
+		//! Constructs a translation along the vector
+		//! (Point1,Point2) defined from the point Point1 to the point Point2.
+		xgce_MakeTranslation(xgp_Pnt^ Point1, xgp_Pnt^ Point2);
 
 
+		//! Returns theructed transformation.
+		xgp_Trsf^ Value();
 
-private:
+		xgp_Trsf^ Operator();
+		operator xgp_Trsf^();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeTranslation* IHandle {
+			gce_MakeTranslation* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeTranslation* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-  gp_Trsf TheTranslation;
-
-
-};
-
-
-
-
-
-
-
-#endif // _gce_MakeTranslation_HeaderFile
+	private:
+		gce_MakeTranslation* NativeHandle;
+	};
+}
+#endif // _xgce_MakeTranslation_HeaderFile

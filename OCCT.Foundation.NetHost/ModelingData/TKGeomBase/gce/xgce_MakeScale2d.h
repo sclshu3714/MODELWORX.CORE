@@ -14,8 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeScale2d_HeaderFile
-#define _gce_MakeScale2d_HeaderFile
+#ifndef _xgce_MakeScale2d_HeaderFile
+#define _xgce_MakeScale2d_HeaderFile
+#pragma once
+#include <gce_MakeScale2d.hxx>
+#include <xgp_Pnt2d.h>
+#include <xgp_Trsf2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -26,54 +30,56 @@
 class gp_Pnt2d;
 class gp_Trsf2d;
 
+using namespace TKMath;
 
-//! This class implements an elementary construction algorithm for
-//! a scaling transformation in 2D space. The result is a gp_Trsf2d transformation.
-//! A MakeScale2d object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class gce_MakeScale2d 
-{
-public:
+namespace TKGeomBase {
+	ref class TKMath::xgp_Pnt2d;
+	ref class TKMath::xgp_Trsf2d;
+	//! This class implements an elementaryruction algorithm for
+	//! a scaling transformation in 2D space. The result is a gp_Trsf2d transformation.
+	//! A MakeScale2d object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and
+	//! -   consulting the result.
+	public ref class xgce_MakeScale2d
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//DEFINE_STANDARD_ALLOC
 
-  
+		xgce_MakeScale2d();
 
-  //! Constructs a scaling transformation with:
-  //! -   Point as the center of the transformation, and
-  //! -   Scale as the scale factor.
-  Standard_EXPORT gce_MakeScale2d(const gp_Pnt2d& Point, const Standard_Real Scale);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf2d& Value() const;
-  
-  Standard_EXPORT const gp_Trsf2d& Operator() const;
-Standard_EXPORT operator gp_Trsf2d() const;
+		xgce_MakeScale2d(gce_MakeScale2d* pos);
 
+		void SetMakeScale2d(gce_MakeScale2d* pos);
 
+		virtual gce_MakeScale2d* GetMakeScale2d();
 
+		//! Constructs a scaling transformation with:
+		//! -   Point as the center of the transformation, and
+		//! -   Scale as the scale factor.
+		xgce_MakeScale2d(xgp_Pnt2d^ Point, Standard_Real Scale);
 
-protected:
+		//! Returns theructed transformation.
+		xgp_Trsf2d^ Value();
 
+		xgp_Trsf2d^ Operator();
+		operator xgp_Trsf2d^();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeScale2d* IHandle {
+			gce_MakeScale2d* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeScale2d* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-
-private:
-
-
-
-  gp_Trsf2d TheScale2d;
-
-
-};
-
-
-
-
-
-
-
-#endif // _gce_MakeScale2d_HeaderFile
+	private:
+		gce_MakeScale2d* NativeHandle;
+	};
+}
+#endif // _xgce_MakeScale2d_HeaderFile

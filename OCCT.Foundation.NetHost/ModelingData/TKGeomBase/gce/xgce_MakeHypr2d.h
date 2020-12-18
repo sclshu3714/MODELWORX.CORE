@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeHypr2d_HeaderFile
-#define _gce_MakeHypr2d_HeaderFile
+#ifndef _xgce_MakeHypr2d_HeaderFile
+#define _xgce_MakeHypr2d_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -64,11 +64,11 @@ class gp_Hypr2d;
 //! Location point of the hyperbola C and the vertex of the First
 //! (or Second) Conjugate branch.
 //! The major radius can be lower than the minor radius.
-class gce_MakeHypr2d  : public gce_Root
+public ref class xgce_MakeHypr2d  : public gce_Root
 {
 public:
 
-  DEFINE_STANDARD_ALLOC
+  //DEFINE_STANDARD_ALLOC
 
   
   //! Constructs a hyperbola
@@ -76,7 +76,7 @@ public:
   //! -   the major axis of the hyperbola is defined by Center and point S1,
   //! -   the major radius is the distance between Center and S1, and
   //! -   the minor radius is the distance between point S2 and the major axis.
-  Standard_EXPORT gce_MakeHypr2d(const gp_Pnt2d& S1, const gp_Pnt2d& S2, const gp_Pnt2d& Center);
+  gce_MakeHypr2d(gp_Pnt2d^ S1, gp_Pnt2d^ S2, gp_Pnt2d^ Center);
   
   //! Constructs a hyperbola with major and minor radii MajorRadius and
   //! MinorRadius, where:
@@ -87,20 +87,20 @@ public:
   //! A, with major and minor radii MajorRadius and
   //! MinorRadius, where its major axis is the "X Axis"
   //! of A (A is the local coordinate system of the hyperbola).
-  Standard_EXPORT gce_MakeHypr2d(const gp_Ax2d& MajorAxis, const Standard_Real MajorRadius, const Standard_Real MinorRadius, const Standard_Boolean Sense);
+  gce_MakeHypr2d(gp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense);
   
   //! Creates a Hypr2d centered on the origin of the coordinate system
   //! A, with major and minor radii MajorRadius and
   //! MinorRadius, where its major axis is the "X Axis"
   //! of A (A is the local coordinate system of the hyperbola).
-  Standard_EXPORT gce_MakeHypr2d(const gp_Ax22d& A, const Standard_Real MajorRadius, const Standard_Real MinorRadius);
+  gce_MakeHypr2d(gp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius);
   
-  //! Returns the constructed hyperbola.
-  //! Exceptions StdFail_NotDone if no hyperbola is constructed.
-  Standard_EXPORT const gp_Hypr2d& Value() const;
+  //! Returns theructed hyperbola.
+  //! Exceptions StdFail_NotDone if no hyperbola isructed.
+  gp_Hypr2d^ Value();
   
-  Standard_EXPORT const gp_Hypr2d& Operator() const;
-Standard_EXPORT operator gp_Hypr2d() const;
+  gp_Hypr2d^ Operator();
+operator gp_Hypr2d();
 
 
 
@@ -126,4 +126,4 @@ private:
 
 
 
-#endif // _gce_MakeHypr2d_HeaderFile
+#endif // _xgce_MakeHypr2d_HeaderFile

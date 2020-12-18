@@ -14,8 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeMirror2d_HeaderFile
-#define _gce_MakeMirror2d_HeaderFile
+#ifndef _xgce_MakeMirror2d_HeaderFile
+#define _xgce_MakeMirror2d_HeaderFile
+#pragma once
+#include <gce_MakeMirror2d.hxx>
+#include <xgp_Pnt2d.h>
+#include <xgp_Ax2d.h>
+#include <xgp_Lin2d.h>
+#include <xgp_Dir2d.h>
+#include <xgp_Trsf2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -28,58 +35,63 @@ class gp_Lin2d;
 class gp_Dir2d;
 class gp_Trsf2d;
 
+using namespace TKMath;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Pnt2d;
+	ref class TKMath::xgp_Ax2d;
+	ref class TKMath::xgp_Lin2d;
+	ref class TKMath::xgp_Dir2d;
+	ref class TKMath::xgp_Trsf2d;
+	//! This class implements elementaryruction algorithms for a
+	//! symmetrical transformation in 2D space about a point
+	//! or axis. The result is a gp_Trsf2d transformation.
+	//! A MakeMirror2d object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and consulting the result.
+	public ref class xgce_MakeMirror2d
+	{
+	public:
 
-//! This class implements elementary construction algorithms for a
-//! symmetrical transformation in 2D space about a point
-//! or axis. The result is a gp_Trsf2d transformation.
-//! A MakeMirror2d object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and consulting the result.
-class gce_MakeMirror2d 
-{
-public:
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeMirror2d();
 
-  DEFINE_STANDARD_ALLOC
+		xgce_MakeMirror2d(gce_MakeMirror2d* pos);
 
-  
-  Standard_EXPORT gce_MakeMirror2d(const gp_Pnt2d& Point);
-  
-  Standard_EXPORT gce_MakeMirror2d(const gp_Ax2d& Axis);
-  
-  Standard_EXPORT gce_MakeMirror2d(const gp_Lin2d& Line);
-  
-  //! Makes a symmetry transformation af axis defined by
-  //! <Point> and <Direc>.
-  Standard_EXPORT gce_MakeMirror2d(const gp_Pnt2d& Point, const gp_Dir2d& Direc);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf2d& Value() const;
-  
-  Standard_EXPORT const gp_Trsf2d& Operator() const;
-Standard_EXPORT operator gp_Trsf2d() const;
+		void SetMakeMirror2d(gce_MakeMirror2d* pos);
 
+		virtual gce_MakeMirror2d* GetMakeMirror2d();
 
+		xgce_MakeMirror2d(xgp_Pnt2d^ Point);
 
+		xgce_MakeMirror2d(xgp_Ax2d^ Axis);
 
-protected:
+		xgce_MakeMirror2d(xgp_Lin2d^ Line);
 
+		//! Makes a symmetry transformation af axis defined by
+		//! <Point> and <Direc>.
+		xgce_MakeMirror2d(xgp_Pnt2d^ Point, xgp_Dir2d^ Direc);
 
+		//! Returns theructed transformation.
+		xgp_Trsf2d^ Value();
 
-
-
-private:
-
-
-
-  gp_Trsf2d TheMirror2d;
+		xgp_Trsf2d^ Operator();
+		operator xgp_Trsf2d^();
 
 
-};
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeMirror2d* IHandle {
+			gce_MakeMirror2d* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeMirror2d* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-
-
-
-
-
-#endif // _gce_MakeMirror2d_HeaderFile
+	private:
+		gce_MakeMirror2d* NativeHandle;
+	};
+}
+#endif // _xgce_MakeMirror2d_HeaderFile

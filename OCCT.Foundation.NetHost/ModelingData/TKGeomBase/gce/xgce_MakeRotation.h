@@ -14,8 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeRotation_HeaderFile
-#define _gce_MakeRotation_HeaderFile
+#ifndef _xgce_MakeRotation_HeaderFile
+#define _xgce_MakeRotation_HeaderFile
+#pragma once
+#include <gce_MakeRotation.hxx>
+#include <xgp_Lin.h>
+#include <xgp_Ax1.h>
+#include <xgp_Pnt.h>
+#include <xgp_Dir.h>
+#include <xgp_Trsf.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -29,59 +36,63 @@ class gp_Pnt;
 class gp_Dir;
 class gp_Trsf;
 
+using namespace TKMath;
 
-//! This class implements elementary construction algorithms for a
-//! rotation in 3D space. The result is a gp_Trsf transformation.
-//! A MakeRotation object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class gce_MakeRotation 
-{
-public:
+namespace TKGeomBase {
+	ref class TKMath::xgp_Lin;
+	ref class TKMath::xgp_Ax1;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Dir;
+	ref class TKMath::xgp_Trsf;
+	//! This class implements elementaryruction algorithms for a
+	//! rotation in 3D space. The result is a gp_Trsf transformation.
+	//! A MakeRotation object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and
+	//! -   consulting the result.
+	public ref class xgce_MakeRotation
+	{
+	public:
 
-  DEFINE_STANDARD_ALLOC
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeRotation();
 
-  
-  //! Constructs a rotation through angle Angle about the axis defined by the line Line.
-  Standard_EXPORT gce_MakeRotation(const gp_Lin& Line, const Standard_Real Angle);
-  
-  //! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
-  Standard_EXPORT gce_MakeRotation(const gp_Ax1& Axis, const Standard_Real Angle);
-  
+		xgce_MakeRotation(gce_MakeRotation* pos);
 
-  //! Constructs a rotation through angle Angle about the axis defined by:
-  //! the point Point and the unit vector Direc.
-  Standard_EXPORT gce_MakeRotation(const gp_Pnt& Point, const gp_Dir& Direc, const Standard_Real Angle);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf& Value() const;
-  
-  Standard_EXPORT const gp_Trsf& Operator() const;
-Standard_EXPORT operator gp_Trsf() const;
+		void SetMakeRotation(gce_MakeRotation* pos);
 
+		virtual gce_MakeRotation* GetMakeRotation();
 
+		//! Constructs a rotation through angle Angle about the axis defined by the line Line.
+		xgce_MakeRotation(xgp_Lin^ Line, Standard_Real Angle);
 
-
-protected:
+		//! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
+		xgce_MakeRotation(xgp_Ax1^ Axis, Standard_Real Angle);
 
 
+		//! Constructs a rotation through angle Angle about the axis defined by:
+		//! the point Point and the unit vector Direc.
+		xgce_MakeRotation(xgp_Pnt^ Point, xgp_Dir^ Direc, Standard_Real Angle);
 
+		//! Returns theructed transformation.
+		xgp_Trsf^ Value();
 
+		xgp_Trsf^ Operator();
+		operator xgp_Trsf^();
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeRotation* IHandle {
+			gce_MakeRotation* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeRotation* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-private:
-
-
-
-  gp_Trsf TheRotation;
-
-
-};
-
-
-
-
-
-
-
-#endif // _gce_MakeRotation_HeaderFile
+	private:
+		gce_MakeRotation* NativeHandle;
+	};
+}
+#endif // _xgce_MakeRotation_HeaderFile

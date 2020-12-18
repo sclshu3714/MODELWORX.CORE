@@ -14,8 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeTranslation2d_HeaderFile
-#define _gce_MakeTranslation2d_HeaderFile
+#ifndef _xgce_MakeTranslation2d_HeaderFile
+#define _xgce_MakeTranslation2d_HeaderFile
+#pragma once
+#include <gce_MakeTranslation2d.hxx>
+#include <xgp_Vec2d.h>
+#include <xgp_Pnt2d.h>
+#include <xgp_Trsf2d.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -25,56 +31,58 @@
 class gp_Vec2d;
 class gp_Pnt2d;
 class gp_Trsf2d;
+using namespace TKMath;
 
+namespace TKGeomBase {
+	ref class TKMath::xgp_Vec2d;
+	ref class TKMath::xgp_Pnt2d;
+	ref class TKMath::xgp_Trsf2d;
+	//! This class implements elementaryruction algorithms for a
+	//! translation in 2D space. The result is a gp_Trsf2d transformation.
+	//! A MakeTranslation2d object provides a framework for:
+	//! -   defining theruction of the transformation,
+	//! -   implementing theruction algorithm, and
+	//! -   consulting the result.
+	public ref class xgce_MakeTranslation2d
+	{
+	public:
 
-//! This class implements elementary construction algorithms for a
-//! translation in 2D space. The result is a gp_Trsf2d transformation.
-//! A MakeTranslation2d object provides a framework for:
-//! -   defining the construction of the transformation,
-//! -   implementing the construction algorithm, and
-//! -   consulting the result.
-class gce_MakeTranslation2d 
-{
-public:
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeTranslation2d();
 
-  DEFINE_STANDARD_ALLOC
+		xgce_MakeTranslation2d(gce_MakeTranslation2d* pos);
 
-  
-  //! Constructs a translation along the vector Vect.
-  Standard_EXPORT gce_MakeTranslation2d(const gp_Vec2d& Vect);
-  
-  //! Constructs a translation along the vector
-  //! (Point1,Point2) defined from the point Point1 to the point Point2.
-  Standard_EXPORT gce_MakeTranslation2d(const gp_Pnt2d& Point1, const gp_Pnt2d& Point2);
-  
-  //! Returns the constructed transformation.
-  Standard_EXPORT const gp_Trsf2d& Value() const;
-  
-  Standard_EXPORT const gp_Trsf2d& Operator() const;
-Standard_EXPORT operator gp_Trsf2d() const;
+		void SetMakeTranslation2d(gce_MakeTranslation2d* pos);
 
+		virtual gce_MakeTranslation2d* GetMakeTranslation2d();
 
+		//! Constructs a translation along the vector Vect.
+		xgce_MakeTranslation2d(xgp_Vec2d^ Vect);
 
+		//! Constructs a translation along the vector
+		//! (Point1,Point2) defined from the point Point1 to the point Point2.
+		xgce_MakeTranslation2d(xgp_Pnt2d^ Point1, xgp_Pnt2d^ Point2);
 
-protected:
+		//! Returns theructed transformation.
+		xgp_Trsf2d^ Value();
 
+		xgp_Trsf2d^ Operator();
+		operator xgp_Trsf2d ^ ();
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeTranslation2d* IHandle {
+			gce_MakeTranslation2d* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeTranslation2d* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-
-private:
-
-
-
-  gp_Trsf2d TheTranslation2d;
-
-
-};
-
-
-
-
-
-
-
-#endif // _gce_MakeTranslation2d_HeaderFile
+	private:
+		gce_MakeTranslation2d* NativeHandle;
+	};
+}
+#endif // _xgce_MakeTranslation2d_HeaderFile

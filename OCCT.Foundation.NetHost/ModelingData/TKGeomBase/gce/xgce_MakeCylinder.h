@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_MakeCylinder_HeaderFile
-#define _gce_MakeCylinder_HeaderFile
+#ifndef _xgce_MakeCylinder_HeaderFile
+#define _xgce_MakeCylinder_HeaderFile
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -41,36 +41,36 @@ class gp_Circ;
 //! * Create a Cylinder with 3 points.
 //! * Create a Cylinder by its axis and radius.
 //! * Create a cylinder by its circular base.
-class gce_MakeCylinder  : public gce_Root
+public ref class xgce_MakeCylinder  : public gce_Root
 {
 public:
 
-  DEFINE_STANDARD_ALLOC
+  //DEFINE_STANDARD_ALLOC
 
   
   //! <A2> is the local cartesian coordinate system of <me>.
   //! The status is "NegativeRadius" if R < 0.0
-  Standard_EXPORT gce_MakeCylinder(const gp_Ax2& A2, const Standard_Real Radius);
+  gce_MakeCylinder(gp_Ax2^ A2, Standard_Real Radius);
   
   //! Makes a Cylinder from gp <TheCylinder> coaxial to another
   //! Cylinder <Cylinder> and passing through a Pnt <Point>.
-  Standard_EXPORT gce_MakeCylinder(const gp_Cylinder& Cyl, const gp_Pnt& Point);
+  gce_MakeCylinder(gp_Cylinder^ Cyl, gp_Pnt^ Point);
   
   //! Makes a Cylinder from gp <TheCylinder> coaxial to another
   //! Cylinder <Cylinder> at the distance <Dist> which can
   //! be greater or lower than zero.
   //! The radius of the result is the absolute value of the
   //! radius of <Cyl> plus <Dist>
-  Standard_EXPORT gce_MakeCylinder(const gp_Cylinder& Cyl, const Standard_Real Dist);
+  gce_MakeCylinder(gp_Cylinder^ Cyl, Standard_Real Dist);
   
   //! Makes a Cylinder from gp <TheCylinder> with 3 points
   //! <P1>,<P2>,<P3>.
   //! Its axis is <P1P2> and its radius is the distance
   //! between <P3> and <P1P2>
-  Standard_EXPORT gce_MakeCylinder(const gp_Pnt& P1, const gp_Pnt& P2, const gp_Pnt& P3);
+  gce_MakeCylinder(gp_Pnt^ P1, gp_Pnt^ P2, gp_Pnt^ P3);
   
   //! Makes a Cylinder by its axis <Axis> and radius <Radius>.
-  Standard_EXPORT gce_MakeCylinder(const gp_Ax1& Axis, const Standard_Real Radius);
+  gce_MakeCylinder(gp_Ax1^ Axis, Standard_Real Radius);
   
   //! Makes a Cylinder by its circular base.
   //! Warning
@@ -81,14 +81,14 @@ public:
   //! -   Dist is negative and has an absolute value
   //! which is greater than the radius of Cyl; or
   //! -   gce_ConfusedPoints if points P1 and P2 are coincident.
-  Standard_EXPORT gce_MakeCylinder(const gp_Circ& Circ);
+  gce_MakeCylinder(gp_Circ^ Circ);
   
-  //! Returns the constructed cylinder.
-  //! Exceptions StdFail_NotDone if no cylinder is constructed.
-  Standard_EXPORT const gp_Cylinder& Value() const;
+  //! Returns theructed cylinder.
+  //! Exceptions StdFail_NotDone if no cylinder isructed.
+  gp_Cylinder^ Value();
   
-  Standard_EXPORT const gp_Cylinder& Operator() const;
-Standard_EXPORT operator gp_Cylinder() const;
+  gp_Cylinder^ Operator();
+operator gp_Cylinder();
 
 
 
@@ -114,4 +114,4 @@ private:
 
 
 
-#endif // _gce_MakeCylinder_HeaderFile
+#endif // _xgce_MakeCylinder_HeaderFile
