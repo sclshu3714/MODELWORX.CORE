@@ -2157,6 +2157,69 @@
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCirc2d.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
     </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCone.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeCylinder.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeDir.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeDir2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeElips.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeElips2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeHypr.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeHypr2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeLin.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeLin2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeMirror.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeMirror2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeParab.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeParab2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakePln.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeRotation.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeRotation2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeScale.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeScale2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeTranslation.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeTranslation2d.cpp">
+      <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OCCT.Foundation.NetHost.rc">

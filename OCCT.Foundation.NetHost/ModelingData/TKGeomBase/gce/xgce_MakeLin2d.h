@@ -59,7 +59,15 @@ namespace TKGeomBase {
 	public:
 
 		//DEFINE_STANDARD_ALLOC
+		xgce_MakeLin2d();
 
+		xgce_MakeLin2d(gce_MakeLin2d* pos);
+
+		void SetMakeLin2d(gce_MakeLin2d* pos);
+
+		virtual gce_MakeLin2d* GetMakeLin2d();
+
+		virtual gce_Root* GetRoot() Standard_OVERRIDE;
 
 		//! Creates a line located with A.
 		xgce_MakeLin2d(xgp_Ax2d^ A);

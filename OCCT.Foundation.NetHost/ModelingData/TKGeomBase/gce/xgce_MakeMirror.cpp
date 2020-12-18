@@ -1,97 +1,62 @@
-// Created on: 1992-09-04
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeMirror.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	xgce_MakeMirror::xgce_MakeMirror() {
+		//NativeHandle = new gce_MakeMirror();
+	};
 
+	xgce_MakeMirror::xgce_MakeMirror(gce_MakeMirror* pos) {
+		NativeHandle = pos;
+	};
 
-#include <gce_MakeMirror.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
+	void xgce_MakeMirror::SetMakeMirror(gce_MakeMirror* pos) {
+		NativeHandle = pos;
+	};
 
-//=========================================================================
-//   Creation d une symetrie  de gp par rapport a un point.             +
-//=========================================================================
-gce_MakeMirror::gce_MakeMirror(const gp_Pnt&  Point ) 
-{ 
-  TheMirror.SetMirror(Point); 
-}
+	gce_MakeMirror* xgce_MakeMirror::GetMakeMirror() {
+		return NativeHandle;
+	};
 
-//=========================================================================
-//   Creation d une symetrie  de gp par rapport a une droite.           +
-//=========================================================================
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Pnt^ Point) {
+		NativeHandle = new gce_MakeMirror(*Point->GetPnt());
+	};
 
-gce_MakeMirror::gce_MakeMirror(const gp_Ax1& Axis ) 
-{ 
-  TheMirror.SetMirror(Axis); 
-}
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Ax1^ Axis) {
+		NativeHandle = new gce_MakeMirror(*Axis->GetAx1());
+	};
 
-//=========================================================================
-//   Creation d une symetrie  de gp par rapport a une droite.           +
-//=========================================================================
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Lin^ Line) {
+		NativeHandle = new gce_MakeMirror(*Line->GetLin());
+	};
 
-gce_MakeMirror::gce_MakeMirror(const gp_Lin&  Line ) 
-{
-  TheMirror.SetMirror(gp_Ax1(Line.Location(),Line.Direction()));
-}
+	//! Makes a symmetry transformation af axis defined by
+	//! <Point> and <Direc>.
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Pnt^ Point, xgp_Dir^ Direc) {
+		NativeHandle = new gce_MakeMirror(*Point->GetPnt(), *Direc->GetDir());
+	};
 
-//=========================================================================
-//   Creation d une symetrie  de gp par rapport a une droite definie    +
-//   par un point et une direction.                                       +
-//=========================================================================
+	//! Makes a symmetry transformation of plane <Plane>.
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Pln^ Plane) {
+		NativeHandle = new gce_MakeMirror(*Plane->GetPln());
+	};
 
-gce_MakeMirror::gce_MakeMirror(const gp_Pnt&  Point ,
-			       const gp_Dir&  Direc ) 
-{
-  TheMirror.SetMirror(gp_Ax1(Point,Direc));
-}
+	//! Makes a symmetry transformation of plane <Plane>.
+	xgce_MakeMirror::xgce_MakeMirror(xgp_Ax2^ Plane) {
+		NativeHandle = new gce_MakeMirror(*Plane->GetAx2());
+	};
 
-//=========================================================================
-//   Creation d une symetrie 3d de gp par rapport a un plan defini par    +
-//   un Ax2 (Normale au plan et axe x du plan).                           +
-//=========================================================================
+	//! Returns theructed transformation.
+	xgp_Trsf^ xgce_MakeMirror::Value() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Value());
+		return gcnew xgp_Trsf(temp);
+	};
 
-gce_MakeMirror::gce_MakeMirror(const gp_Ax2&  Plane ) 
-{ 
-  TheMirror.SetMirror(Plane); 
-}
-
-//=========================================================================
-//   Creation d une symetrie 3d de gp par rapport a un plan Plane.        +
-//=========================================================================
-
-gce_MakeMirror::gce_MakeMirror(const gp_Pln& Plane ) 
-{
-  TheMirror.SetMirror(Plane.Position().Ax2());
-}
-
-const gp_Trsf& gce_MakeMirror::Value() const
-{ 
-  return TheMirror; 
-}
-
-const gp_Trsf& gce_MakeMirror::Operator() const 
-{
-  return TheMirror;
-}
-
-gce_MakeMirror::operator gp_Trsf() const
-{
-  return TheMirror;
+	xgp_Trsf^ xgce_MakeMirror::Operator() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Operator());
+		return gcnew xgp_Trsf(temp);
+	};
+	xgce_MakeMirror::operator xgp_Trsf^() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Operator());
+		return gcnew xgp_Trsf(temp);
+	};
 }

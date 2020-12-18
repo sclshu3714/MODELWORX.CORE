@@ -16,6 +16,13 @@
 
 #ifndef _xgce_MakeHypr2d_HeaderFile
 #define _xgce_MakeHypr2d_HeaderFile
+#pragma once
+#include <gce_MakeHypr2d.hxx>
+#include <xgce_Root.h>
+#include <xgp_Pnt2d.h>
+#include <xgp_Ax2d.h>
+#include <xgp_Ax22d.h>
+#include <xgp_Hypr2d.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -31,99 +38,113 @@ class gp_Ax2d;
 class gp_Ax22d;
 class gp_Hypr2d;
 
+using namespace TKMath;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Pnt2d;
+	ref class TKMath::xgp_Ax2d;
+	ref class TKMath::xgp_Ax22d;
+	ref class TKMath::xgp_Hypr2d;
+	//! This class implements the following algorithms used to
+	//! create a 2d Hyperbola from gp.
+	//! * Create a 2d Hyperbola from its center and two points:
+	//! one on its axis of symmetry giving the major radius, the
+	//! other giving the value of the small radius.
+	//! * Create a 2d Hyperbola from its major axis and its major
+	//! radius and its minor radius.
+	//!
+	//! ^YAxis
+	//! |
+	//! FirstConjugateBranch
+	//! |
+	//! Other            |                Main
+	//! --------------------- C ------------------------------>XAxis
+	//! Branch           |                Branch
+	//! |
+	//! |
+	//! SecondConjugateBranch
+	//! |
+	//!
+	//! An axis placement (one axis) is associated with the hyperbola.
+	//! This axis is the "XAxis" or major axis of the hyperbola. It is
+	//! the symmetry axis of the main branch of hyperbola.
+	//! The "YAxis" is normal to this axis and pass throught its location
+	//! point. It is the minor axis.
+	//!
+	//! The major radius is the distance between the Location point
+	//! of the hyperbola C and the vertex of the Main Branch (or the
+	//! Other branch). The minor radius is the distance between the
+	//! Location point of the hyperbola C and the vertex of the First
+	//! (or Second) Conjugate branch.
+	//! The major radius can be lower than the minor radius.
+	public ref class xgce_MakeHypr2d : public xgce_Root
+	{
+	public:
 
-//! This class implements the following algorithms used to
-//! create a 2d Hyperbola from gp.
-//! * Create a 2d Hyperbola from its center and two points:
-//! one on its axis of symmetry giving the major radius, the
-//! other giving the value of the small radius.
-//! * Create a 2d Hyperbola from its major axis and its major
-//! radius and its minor radius.
-//!
-//! ^YAxis
-//! |
-//! FirstConjugateBranch
-//! |
-//! Other            |                Main
-//! --------------------- C ------------------------------>XAxis
-//! Branch           |                Branch
-//! |
-//! |
-//! SecondConjugateBranch
-//! |
-//!
-//! An axis placement (one axis) is associated with the hyperbola.
-//! This axis is the "XAxis" or major axis of the hyperbola. It is
-//! the symmetry axis of the main branch of hyperbola.
-//! The "YAxis" is normal to this axis and pass throught its location
-//! point. It is the minor axis.
-//!
-//! The major radius is the distance between the Location point
-//! of the hyperbola C and the vertex of the Main Branch (or the
-//! Other branch). The minor radius is the distance between the
-//! Location point of the hyperbola C and the vertex of the First
-//! (or Second) Conjugate branch.
-//! The major radius can be lower than the minor radius.
-public ref class xgce_MakeHypr2d  : public gce_Root
-{
-public:
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeHypr2d();
 
-  //DEFINE_STANDARD_ALLOC
+		xgce_MakeHypr2d(gce_MakeHypr2d* pos);
 
-  
-  //! Constructs a hyperbola
-  //! centered on the point Center, where:
-  //! -   the major axis of the hyperbola is defined by Center and point S1,
-  //! -   the major radius is the distance between Center and S1, and
-  //! -   the minor radius is the distance between point S2 and the major axis.
-  gce_MakeHypr2d(gp_Pnt2d^ S1, gp_Pnt2d^ S2, gp_Pnt2d^ Center);
-  
-  //! Constructs a hyperbola with major and minor radii MajorRadius and
-  //! MinorRadius, where:
-  //! -   the center of the hyperbola is the origin of the axis MajorAxis, and
-  //! -   the major axis is defined by MajorAxis if Sense
-  //! is true, or the opposite axis to MajorAxis if Sense is false; or
-  //! -   centered on the origin of the coordinate system
-  //! A, with major and minor radii MajorRadius and
-  //! MinorRadius, where its major axis is the "X Axis"
-  //! of A (A is the local coordinate system of the hyperbola).
-  gce_MakeHypr2d(gp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense);
-  
-  //! Creates a Hypr2d centered on the origin of the coordinate system
-  //! A, with major and minor radii MajorRadius and
-  //! MinorRadius, where its major axis is the "X Axis"
-  //! of A (A is the local coordinate system of the hyperbola).
-  gce_MakeHypr2d(gp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius);
-  
-  //! Returns theructed hyperbola.
-  //! Exceptions StdFail_NotDone if no hyperbola isructed.
-  gp_Hypr2d^ Value();
-  
-  gp_Hypr2d^ Operator();
-operator gp_Hypr2d();
+		void SetMakeHypr2d(gce_MakeHypr2d* pos);
+
+		virtual gce_MakeHypr2d* GetMakeHypr2d();
+
+		virtual gce_Root* GetRoot() Standard_OVERRIDE;
 
 
+		//! Constructs a hyperbola
+		//! centered on the point Center, where:
+		//! -   the major axis of the hyperbola is defined by Center and point S1,
+		//! -   the major radius is the distance between Center and S1, and
+		//! -   the minor radius is the distance between point S2 and the major axis.
+		xgce_MakeHypr2d(xgp_Pnt2d^ S1, xgp_Pnt2d^ S2, xgp_Pnt2d^ Center);
 
+		//! Constructs a hyperbola with major and minor radii MajorRadius and
+		//! MinorRadius, where:
+		//! -   the center of the hyperbola is the origin of the axis MajorAxis, and
+		//! -   the major axis is defined by MajorAxis if Sense
+		//! is true, or the opposite axis to MajorAxis if Sense is false; or
+		//! -   centered on the origin of the coordinate system
+		//! A, with major and minor radii MajorRadius and
+		//! MinorRadius, where its major axis is the "X Axis"
+		//! of A (A is the local coordinate system of the hyperbola).
+		xgce_MakeHypr2d(xgp_Ax2d^ MajorAxis, Standard_Real MajorRadius, Standard_Real MinorRadius, Standard_Boolean Sense);
 
-protected:
+		//! Creates a Hypr2d centered on the origin of the coordinate system
+		//! A, with major and minor radii MajorRadius and
+		//! MinorRadius, where its major axis is the "X Axis"
+		//! of A (A is the local coordinate system of the hyperbola).
+		xgce_MakeHypr2d(xgp_Ax22d^ A, Standard_Real MajorRadius, Standard_Real MinorRadius);
 
+		//! Returns theructed hyperbola.
+		//! Exceptions StdFail_NotDone if no hyperbola isructed.
+		xgp_Hypr2d^ Value();
 
+		xgp_Hypr2d^ Operator();
+		operator xgp_Hypr2d^();
+		//! Returns true if the construction is successful.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
+		//! Returns the status of the construction:
+		//! -   gce_Done, if the construction is successful, or
+		//! -   another value of the gce_ErrorType enumeration
+		//! indicating why the construction failed.
+		virtual xgce_ErrorType Status() Standard_OVERRIDE;
 
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeHypr2d* IHandle {
+			gce_MakeHypr2d* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeHypr2d* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-private:
-
-
-
-  gp_Hypr2d TheHypr2d;
-
-
-};
-
-
-
-
-
-
-
+	private:
+		gce_MakeHypr2d* NativeHandle;
+	};
+}
 #endif // _xgce_MakeHypr2d_HeaderFile

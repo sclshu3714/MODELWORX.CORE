@@ -1,146 +1,130 @@
-// Created on: 1992-09-02
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakePln.h>
+namespace TKGeomBase {
+	xgce_MakePln::xgce_MakePln() {
+		//NativeHandle = new gce_MakePln();
+	};
+
+	xgce_MakePln::xgce_MakePln(gce_MakePln* pos) {
+		NativeHandle = pos;
+	};
+
+	void xgce_MakePln::SetMakePln(gce_MakePln* pos) {
+		NativeHandle = pos;
+	};
+
+	gce_MakePln* xgce_MakePln::GetMakePln() {
+		return NativeHandle;
+	};
+
+	gce_Root* xgce_MakePln::GetRoot() {
+		return NativeHandle;
+	};
+
+	//! The coordinate system of the plane is defined with the axis
+	//! placement A2.
+	//! The "Direction" of A2 defines the normal to the plane.
+	//! The "Location" of A2 defines the location (origin) of the plane.
+	//! The "XDirection" and "YDirection" of A2 define the "XAxis" and
+	//! the "YAxis" of the plane used to parametrize the plane.
+	xgce_MakePln::xgce_MakePln(xgp_Ax2^ A2) {
+		NativeHandle = new gce_MakePln(*A2->GetAx2());
+		SetRoot(NativeHandle);
+	};
 
 
-#include <gce_MakePln.hxx>
-#include <gp.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
+	//! Creates a plane with the  "Location" point <P>
+	//! and the normal direction <V>.
+	xgce_MakePln::xgce_MakePln(xgp_Pnt^ P, xgp_Dir^ V) {
+		NativeHandle = new gce_MakePln(*P->GetPnt(), *V->GetDir());
+		SetRoot(NativeHandle);
+	};
 
-gce_MakePln::gce_MakePln(const gp_Ax2& A2)
-{
-  ThePln = gp_Pln(gp_Ax3(A2));
-  TheError = gce_Done;
-}
 
-gce_MakePln::gce_MakePln(const gp_Pnt& P,
-			 const gp_Dir& V)
-{
-  ThePln = gp_Pln(P,V);
-  TheError = gce_Done;
-}
+	//! Creates a plane from its cartesian equation :
+	//! A * X + B * Y + C * Z + D = 0.0
+	//!
+	//! the status is "BadEquation" if Sqrt (A*A + B*B + C*C) <=
+	//! Resolution from gp.
+	xgce_MakePln::xgce_MakePln(Standard_Real A, Standard_Real B, Standard_Real C, Standard_Real D) {
+		NativeHandle = new gce_MakePln(A, B, C, D);
+		SetRoot(NativeHandle);
+	};
 
-gce_MakePln::gce_MakePln(const gp_Pnt& P1,
-			 const gp_Pnt& P2)
-{
-  if (P1.Distance(P2) <= gp::Resolution()) { TheError = gce_ConfusedPoints; }
-  else {
-    gp_Dir dir(P2.XYZ()-P1.XYZ());
-    ThePln = gp_Pln(P1,dir);
-    TheError = gce_Done;
-  }
-}
+	//! Make a Pln from gp <ThePln> parallel to another
+	//! Pln <Pln> and passing through a Pnt <Point>.
+	xgce_MakePln::xgce_MakePln(xgp_Pln^ Pln, xgp_Pnt^ Point) {
+		NativeHandle = new gce_MakePln(*Pln->GetPln(), *Point->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-gce_MakePln::gce_MakePln(const Standard_Real A,
-			 const Standard_Real B,
-			 const Standard_Real C,
-			 const Standard_Real D)
-{
-  if (A*A + B*B + C*C <= gp::Resolution()) {
-    TheError = gce_BadEquation;
-  }
-  else {
-    ThePln = gp_Pln(A,B,C,D);
-    TheError = gce_Done;
-  }
-}
+	//! Make a Pln from gp <ThePln> parallel to another
+	//! Pln <Pln> at the distance <Dist> which can be greater
+	//! or less than zero.
+	//! In the first case the result is at the distance
+	//! <Dist> to the plane <Pln> in the direction of the
+	//! normal to <Pln>.
+	//! Otherwize it is in the opposite direction.
+	xgce_MakePln::xgce_MakePln(xgp_Pln^ Pln, Standard_Real Dist) {
+		NativeHandle = new gce_MakePln(*Pln->GetPln(), Dist);
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d un gp_pln passant par trois points.                       +
-//=========================================================================
+	//! Make a Pln from gp <ThePln> passing through 3
+	//! Pnt <P1>,<P2>,<P3>.
+	//! It returns false if <P1> <P2> <P3> are confused.
+	xgce_MakePln::xgce_MakePln(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3) {
+		NativeHandle = new gce_MakePln(*P1->GetPnt(), *P2->GetPnt(), *P3->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-gce_MakePln::gce_MakePln(const gp_Pnt& P1 ,
-			 const gp_Pnt& P2 ,
-			 const gp_Pnt& P3 ) 
-{
-  gp_XYZ V1(P2.XYZ()-P1.XYZ());
-  gp_XYZ V2(P3.XYZ()-P1.XYZ());
-  gp_XYZ Norm(V1.Crossed(V2));
-  if (Norm.Modulus() < gp::Resolution()) { TheError = gce_ColinearPoints; }
-  else {
-    gp_Dir DNorm(Norm);
-    gp_Dir Dx(V1);
-    ThePln = gp_Pln(gp_Ax3(P1,DNorm,Dx));
-    TheError = gce_Done;
-  }
-}
+	//! Make a Pln from gp <ThePln> perpendicular to the line
+	//! passing through <P1>,<P2>.
+	//! The status is "ConfusedPoints" if <P1> <P2> are confused.
+	xgce_MakePln::xgce_MakePln(xgp_Pnt^ P1, xgp_Pnt^ P2) {
+		NativeHandle = new gce_MakePln(*P1->GetPnt(), *P2->GetPnt());
+		SetRoot(NativeHandle);
+	};
 
-//=========================================================================
-//   Creation d un gp_pln parallele a un autre pln a une distance donnee. +
-//=========================================================================
+	//! Make a pln  passing through the location of <Axis>and
+	//! normal to the Direction of <Axis>.
+	//! Warning -  If an error occurs (that is, when IsDone returns
+	//! false), the Status function returns:
+	//! -   gce_BadEquation if Sqrt(A*A + B*B +
+	//! C*C) is less than or equal to gp::Resolution(),
+	//! -   gce_ConfusedPoints if P1 and P2 are coincident, or
+	//! -   gce_ColinearPoints if P1, P2 and P3 are collinear.
+	xgce_MakePln::xgce_MakePln(xgp_Ax1^ Axis) {
+		NativeHandle = new gce_MakePln(*Axis->GetAx1());
+		SetRoot(NativeHandle);
+	};
 
-gce_MakePln::gce_MakePln(const gp_Pln&       Pl   ,
-			 const Standard_Real Dist ) 
-{
-  gp_Pnt Center(Pl.Location().XYZ()+Dist*gp_XYZ(Pl.Axis().Direction().XYZ()));
-  ThePln=gp_Pln(gp_Ax3(Center,Pl.Axis().Direction(),Pl.XAxis().Direction()));
-  TheError = gce_Done;
-}
+	//! Returns theructed plane.
+	//! Exceptions StdFail_NotDone if no plane isructed.
+	xgp_Pln^ xgce_MakePln::Value() {
+		gp_Pln* temp = new gp_Pln(NativeHandle->Value());
+		return gcnew xgp_Pln(temp);
+	};
 
-//=========================================================================
-//   Creation d un gp_pln parallele a un autre pln passant par un point   +
-//   <Point1>.                                                            +
-//=========================================================================
+	xgp_Pln^ xgce_MakePln::Operator() {
+		gp_Pln* temp = new gp_Pln(NativeHandle->Operator());
+		return gcnew xgp_Pln(temp);
+	};
+	xgce_MakePln::operator xgp_Pln^() {
+		gp_Pln* temp = new gp_Pln(NativeHandle->Operator());
+		return gcnew xgp_Pln(temp);
+	};
 
-gce_MakePln::gce_MakePln(const gp_Pln& Pl    ,
-			 const gp_Pnt& Point ) 
-{
-  ThePln = gp_Pln(gp_Ax3(Point,Pl.Axis().Direction(),Pl.XAxis().Direction()));
-  TheError = gce_Done;
-}
+	//! Returns true if the construction is successful.
+	Standard_Boolean xgce_MakePln::IsDone() {
+		return NativeHandle->IsDone();
+	};
 
-//=========================================================================
-//  Creation d un gp_pln a partir d un Ax1 (Point + Normale).             +
-//=========================================================================
 
-gce_MakePln::gce_MakePln(const gp_Ax1& Axis ) 
-{
-  ThePln = gp_Pln(Axis.Location(),Axis.Direction());
-  TheError = gce_Done;
-}
-
-//=========================================================================
-//  Creation d un gp_pln par un tableau de points.                        +
-//=========================================================================
-
-/*gce_MakePln::gce_MakePln(const gp_Array1OfPnt& Pts     ,
-			       Standard_Real   ErrMax  ,
-			       Standard_Real   ErrMean ) 
-{
-  TheError = gce_ConfusedPoints;
-}
-*/
-const gp_Pln& gce_MakePln::Value () const
-{
-  StdFail_NotDone_Raise_if (TheError != gce_Done,
-                            "gce_MakePln::Value() - no result");
-  return ThePln;
-}
-
-const gp_Pln& gce_MakePln::Operator() const 
-{
-  return Value();
-}
-
-gce_MakePln::operator gp_Pln() const
-{
-  return Value();
+	//! Returns the status of the construction:
+	//! -   gce_Done, if the construction is successful, or
+	//! -   another value of the gce_ErrorType enumeration
+	//! indicating why the construction failed.
+	xgce_ErrorType xgce_MakePln::Status() {
+		return safe_cast<xgce_ErrorType>(NativeHandle->Status());
+	};
 }

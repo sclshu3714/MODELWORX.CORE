@@ -54,48 +54,63 @@ namespace TKGeomBase {
 	public:
 
 		//DEFINE_STANDARD_ALLOC
+		xgce_MakeLin();
 
+		xgce_MakeLin(gce_MakeLin* pos);
+
+		void SetMakeLin(gce_MakeLin* pos);
+
+		virtual gce_MakeLin* GetMakeLin();
+
+		virtual gce_Root* GetRoot() Standard_OVERRIDE;
 
 		//! Creates a line located along the axis A1.
-		gce_MakeLin(gp_Ax1^ A1);
+		xgce_MakeLin(xgp_Ax1^ A1);
 
 
 		//! <P> is the location point (origin) of the line and
 		//! <V> is the direction of the line.
-		gce_MakeLin(gp_Pnt^ P, gp_Dir^ V);
+		xgce_MakeLin(xgp_Pnt^ P, xgp_Dir^ V);
 
 		//! Make a Lin from gp <TheLin> parallel to another
 		//! Lin <Lin> and passing through a Pnt <Point>.
-		gce_MakeLin(gp_Lin^ Lin, gp_Pnt^ Point);
+		xgce_MakeLin(xgp_Lin^ Lin, xgp_Pnt^ Point);
 
 		//! Make a Lin from gp <TheLin> passing through 2
 		//! Pnt <P1>,<P2>.
 		//! It returns false if <p1> and <P2> are confused.
-		gce_MakeLin(gp_Pnt^ P1, gp_Pnt^ P2);
+		xgce_MakeLin(xgp_Pnt^ P1, xgp_Pnt^ P2);
 
 		//! Returns theructed line.
 		//! Exceptions StdFail_NotDone is raised if no line isructed.
-		gp_Lin^ Value();
+		xgp_Lin^ Value();
 
-		gp_Lin^ Operator();
-		operator gp_Lin();
+		xgp_Lin^ Operator();
+		operator xgp_Lin^();
 
+		//! Returns true if the construction is successful.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
+		//! Returns the status of the construction:
+		//! -   gce_Done, if the construction is successful, or
+		//! -   another value of the gce_ErrorType enumeration
+		//! indicating why the construction failed.
+		virtual xgce_ErrorType Status() Standard_OVERRIDE;
 
-
-	protected:
-
-
-
-
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeLin* IHandle {
+			gce_MakeLin* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeLin* handle) {
+				NativeHandle = handle;
+			}
+		}
 
 	private:
-
-
-
-		gp_Lin TheLin;
-
-
+		gce_MakeLin* NativeHandle;
 	};
 }
 #endif // _xgce_MakeLin_HeaderFile

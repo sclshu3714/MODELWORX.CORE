@@ -16,6 +16,14 @@
 
 #ifndef _xgce_MakeCylinder_HeaderFile
 #define _xgce_MakeCylinder_HeaderFile
+#pragma once
+#include <gce_MakeCylinder.hxx>
+#include <xgce_Root.h>
+#include <xgp_Ax2.h>
+#include <xgp_Cylinder.h>
+#include <xgp_Pnt.h>
+#include <xgp_Ax1.h>
+#include <xgp_Circ.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -31,87 +39,102 @@ class gp_Pnt;
 class gp_Ax1;
 class gp_Circ;
 
+using namespace TKMath;
+namespace TKGeomBase {
+	ref class TKMath::xgp_Vec;
+	ref class TKMath::xgp_XYZ;
+	ref class TKMath::xgp_Pnt;
+	ref class TKMath::xgp_Dir;
+	//! This class implements the following algorithms used
+	//! to create a Cylinder from gp.
+	//! * Create a Cylinder coaxial to another and passing
+	//! through a point.
+	//! * Create a Cylinder coaxial to another at a distance
+	//! <Dist>.
+	//! * Create a Cylinder with 3 points.
+	//! * Create a Cylinder by its axis and radius.
+	//! * Create a cylinder by its circular base.
+	public ref class xgce_MakeCylinder : public xgce_Root
+	{
+	public:
 
-//! This class implements the following algorithms used
-//! to create a Cylinder from gp.
-//! * Create a Cylinder coaxial to another and passing
-//! through a point.
-//! * Create a Cylinder coaxial to another at a distance
-//! <Dist>.
-//! * Create a Cylinder with 3 points.
-//! * Create a Cylinder by its axis and radius.
-//! * Create a cylinder by its circular base.
-public ref class xgce_MakeCylinder  : public gce_Root
-{
-public:
+		//DEFINE_STANDARD_ALLOC
+		xgce_MakeCylinder();
 
-  //DEFINE_STANDARD_ALLOC
+		xgce_MakeCylinder(gce_MakeCylinder* pos);
 
-  
-  //! <A2> is the local cartesian coordinate system of <me>.
-  //! The status is "NegativeRadius" if R < 0.0
-  gce_MakeCylinder(gp_Ax2^ A2, Standard_Real Radius);
-  
-  //! Makes a Cylinder from gp <TheCylinder> coaxial to another
-  //! Cylinder <Cylinder> and passing through a Pnt <Point>.
-  gce_MakeCylinder(gp_Cylinder^ Cyl, gp_Pnt^ Point);
-  
-  //! Makes a Cylinder from gp <TheCylinder> coaxial to another
-  //! Cylinder <Cylinder> at the distance <Dist> which can
-  //! be greater or lower than zero.
-  //! The radius of the result is the absolute value of the
-  //! radius of <Cyl> plus <Dist>
-  gce_MakeCylinder(gp_Cylinder^ Cyl, Standard_Real Dist);
-  
-  //! Makes a Cylinder from gp <TheCylinder> with 3 points
-  //! <P1>,<P2>,<P3>.
-  //! Its axis is <P1P2> and its radius is the distance
-  //! between <P3> and <P1P2>
-  gce_MakeCylinder(gp_Pnt^ P1, gp_Pnt^ P2, gp_Pnt^ P3);
-  
-  //! Makes a Cylinder by its axis <Axis> and radius <Radius>.
-  gce_MakeCylinder(gp_Ax1^ Axis, Standard_Real Radius);
-  
-  //! Makes a Cylinder by its circular base.
-  //! Warning
-  //! If an error occurs (that is, when IsDone returns
-  //! false), the Status function returns:
-  //! -   gce_NegativeRadius if:
-  //! -   Radius is less than 0.0, or
-  //! -   Dist is negative and has an absolute value
-  //! which is greater than the radius of Cyl; or
-  //! -   gce_ConfusedPoints if points P1 and P2 are coincident.
-  gce_MakeCylinder(gp_Circ^ Circ);
-  
-  //! Returns theructed cylinder.
-  //! Exceptions StdFail_NotDone if no cylinder isructed.
-  gp_Cylinder^ Value();
-  
-  gp_Cylinder^ Operator();
-operator gp_Cylinder();
+		void SetMakeCylinder(gce_MakeCylinder* pos);
+
+		virtual gce_MakeCylinder* GetMakeCylinder();
+
+		virtual gce_Root* GetRoot() Standard_OVERRIDE;
 
 
+		//! <A2> is the local cartesian coordinate system of <me>.
+		//! The status is "NegativeRadius" if R < 0.0
+		xgce_MakeCylinder(xgp_Ax2^ A2, Standard_Real Radius);
 
+		//! Makes a Cylinder from gp <TheCylinder> coaxial to another
+		//! Cylinder <Cylinder> and passing through a Pnt <Point>.
+		xgce_MakeCylinder(xgp_Cylinder^ Cyl, xgp_Pnt^ Point);
 
-protected:
+		//! Makes a Cylinder from gp <TheCylinder> coaxial to another
+		//! Cylinder <Cylinder> at the distance <Dist> which can
+		//! be greater or lower than zero.
+		//! The radius of the result is the absolute value of the
+		//! radius of <Cyl> plus <Dist>
+		xgce_MakeCylinder(xgp_Cylinder^ Cyl, Standard_Real Dist);
 
+		//! Makes a Cylinder from gp <TheCylinder> with 3 points
+		//! <P1>,<P2>,<P3>.
+		//! Its axis is <P1P2> and its radius is the distance
+		//! between <P3> and <P1P2>
+		xgce_MakeCylinder(xgp_Pnt^ P1, xgp_Pnt^ P2, xgp_Pnt^ P3);
 
+		//! Makes a Cylinder by its axis <Axis> and radius <Radius>.
+		xgce_MakeCylinder(xgp_Ax1^ Axis, Standard_Real Radius);
 
+		//! Makes a Cylinder by its circular base.
+		//! Warning
+		//! If an error occurs (that is, when IsDone returns
+		//! false), the Status function returns:
+		//! -   gce_NegativeRadius if:
+		//! -   Radius is less than 0.0, or
+		//! -   Dist is negative and has an absolute value
+		//! which is greater than the radius of Cyl; or
+		//! -   gce_ConfusedPoints if points P1 and P2 are coincident.
+		xgce_MakeCylinder(xgp_Circ^ Circ);
 
+		//! Returns theructed cylinder.
+		//! Exceptions StdFail_NotDone if no cylinder isructed.
+		xgp_Cylinder^ Value();
 
-private:
+		xgp_Cylinder^ Operator();
+		operator xgp_Cylinder^();
 
+		//! Returns true if the construction is successful.
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
+		//! Returns the status of the construction:
+		//! -   gce_Done, if the construction is successful, or
+		//! -   another value of the gce_ErrorType enumeration
+		//! indicating why the construction failed.
+		virtual xgce_ErrorType Status() Standard_OVERRIDE;
 
-  gp_Cylinder TheCylinder;
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		property gce_MakeCylinder* IHandle {
+			gce_MakeCylinder* get() {
+				return 	NativeHandle;
+			}
+			void set(gce_MakeCylinder* handle) {
+				NativeHandle = handle;
+			}
+		}
 
-
-};
-
-
-
-
-
-
-
+	private:
+		gce_MakeCylinder* NativeHandle;
+	};
+}
 #endif // _xgce_MakeCylinder_HeaderFile

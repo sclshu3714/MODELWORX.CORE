@@ -1,71 +1,51 @@
-// Created on: 1992-09-03
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <xgce_MakeRotation.h>
+namespace TKGeomBase {
+	//DEFINE_STANDARD_ALLOC
+	xgce_MakeRotation::xgce_MakeRotation() {
+		//NativeHandle = new gce_MakeRotation();
+	};
+
+	xgce_MakeRotation::xgce_MakeRotation(gce_MakeRotation* pos) {
+		NativeHandle = pos;
+	};
+
+	void xgce_MakeRotation::SetMakeRotation(gce_MakeRotation* pos) {
+		NativeHandle = pos;
+	};
+
+	gce_MakeRotation* xgce_MakeRotation::GetMakeRotation() {
+		return NativeHandle;
+	};
+
+	//! Constructs a rotation through angle Angle about the axis defined by the line Line.
+	xgce_MakeRotation::xgce_MakeRotation(xgp_Lin^ Line, Standard_Real Angle) {
+		NativeHandle = new gce_MakeRotation(*Line->GetLin(), Angle);
+	};
+
+	//! Constructs a rotation through angle Angle about the axis defined by the axis Axis.
+	xgce_MakeRotation::xgce_MakeRotation(xgp_Ax1^ Axis, Standard_Real Angle) {
+		NativeHandle = new gce_MakeRotation(*Axis->GetAx1(), Angle);
+	};
 
 
-#include <gce_MakeRotation.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Trsf.hxx>
+	//! Constructs a rotation through angle Angle about the axis defined by:
+	//! the point Point and the unit vector Direc.
+	xgce_MakeRotation::xgce_MakeRotation(xgp_Pnt^ Point, xgp_Dir^ Direc, Standard_Real Angle) {
+		NativeHandle = new gce_MakeRotation(*Point->GetPnt(), *Direc->GetDir(), Angle);
+	};
 
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a une     +
-//   droite Line.                                                         +
-//=========================================================================
-gce_MakeRotation::
-  gce_MakeRotation(const gp_Lin&  Line  ,
-		   const Standard_Real     Angle ) {
-   TheRotation.SetRotation(gp_Ax1(Line.Position()),Angle);
- }
+	//! Returns theructed transformation.
+	xgp_Trsf^ xgce_MakeRotation::Value() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Value());
+		return gcnew xgp_Trsf(temp);
+	};
 
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a un      +
-//   axe Axis.                                                            +
-//=========================================================================
-
-gce_MakeRotation::
- gce_MakeRotation(const gp_Ax1&  Axis  ,
-		  const Standard_Real     Angle ) {
-   TheRotation.SetRotation(Axis,Angle);
- }
-
-//=========================================================================
-//   Creation d une rotation 3d de gp d angle Angle par rapport a une     +
-//   droite issue du point Point et de direction Direc.                   +
-//=========================================================================
-
-gce_MakeRotation::
- gce_MakeRotation(const gp_Pnt&  Point ,
-		  const gp_Dir&  Direc ,
-		  const Standard_Real     Angle ) {
-   TheRotation.SetRotation(gp_Ax1(Point,Direc),Angle);
- }
-
-const gp_Trsf& gce_MakeRotation::Value() const
-{ 
-  return TheRotation; 
-}
-
-const gp_Trsf& gce_MakeRotation::Operator() const 
-{
-  return TheRotation;
-}
-
-gce_MakeRotation::operator gp_Trsf() const
-{
-  return TheRotation;
+	xgp_Trsf^ xgce_MakeRotation::Operator() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Operator());
+		return gcnew xgp_Trsf(temp);
+	};
+	xgce_MakeRotation::operator xgp_Trsf^() {
+		gp_Trsf* temp = new gp_Trsf(NativeHandle->Operator());
+		return gcnew xgp_Trsf(temp);
+	};
 }
