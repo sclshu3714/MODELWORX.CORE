@@ -1,9 +1,4 @@
-﻿using DevExpress.XtraBars;
-using OCCT.Foundation.Net.TKBRep;
-using OCCT.Foundation.Net.TKPrim;
-using OCCT.TKMath.GP;
-using OCCT.WinForms.Net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OCCT.Foundation.Net;
+using OCCT.WinForms.Net;
 using TKBO;
 using TKBRep;
 using TKernel;
@@ -23,21 +20,50 @@ using TKV3d;
 
 namespace OCCT.NET
 {
-    public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class MainForm : Form
     {
         private static readonly object lockObject = new object();
-        private RenderWindow render { get; set; } = null;
-        public MainForm()
-        {
+        private RenderWindow IRender { get; set; } = null;
+        public MainForm() {
             InitializeComponent();
             RegistrationEvents();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            render = new RenderWindow(this.RWControl);
-            render.SetDisplayMode(1);
+        private void MainForm_Load(object sender, EventArgs e) {
+            IRender = new RenderWindow(this.RWControl);
+            IRender.SetDisplayMode(1);
+
         }
+
+        private void btnBgColor_Click(object sender, EventArgs e) {
+            IRender.ChangeColor(false);
+        }
+
+        private void btnStep_Click(object sender, EventArgs e) {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = @"D:\DataSource\TESTSTEP";
+            dialog.Filter = "STEP文件(*.stp;*step)|*.stp;*step|所有文件(*.*)|*.*";
+            if(dialog.ShowDialog() == DialogResult.OK)
+                IRender.TranslateModel(ref this.tvwNode, dialog.FileName, CurrentModelFormat.STEP, true);
+            this.tvwNode.ExpandAll();
+        }
+        int index = 0;
+        private void btnSetModel_Click(object sender, EventArgs e) {
+            index = index == 0 ? 1 : 0;
+            IRender.SetDisplayMode(index);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            IRender.AddDisk();
+            IRender.ZoomAllView();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            IRender.RemoveAll(true);
+        }
+
         /// <summary>
         /// 注销事件
         /// </summary>
@@ -48,17 +74,18 @@ namespace OCCT.NET
         /// <summary>
         /// 注册事件
         /// </summary>
-        private void RegistrationEvents() {
+        private void RegistrationEvents()
+        {
             this.Load += MainForm_Load;
-            this.btnGrid.ItemClick += BtnGrid_ItemClick;
-            this.btnLine.ItemClick += BtnLine_ItemClick;
-            this.btnFace.ItemClick += BtnFace_ItemClick;
-            this.btnSolid.ItemClick += BtnSolid_ItemClick;
-            this.btnShell.ItemClick += BtnShell_ItemClick;
+            this.btnGrid.Click += BtnGrid_ItemClick;
+            this.btnLine.Click += BtnLine_ItemClick;
+            this.btnFace.Click += BtnFace_ItemClick;
+            this.btnSolid.Click += BtnSolid_ItemClick;
+            this.btnShell.Click += BtnShell_ItemClick;
 
-            this.btnClearAll.ItemClick += BtnClearAll_ItemClick;
-            this.btnDeleteSelect.ItemClick += BtnDeleteSelect_ItemClick;
-            this.btnAnimation.ItemClick += BtnAnimation_ItemClick;
+            this.btnClearAll.Click += BtnClearAll_ItemClick;
+            this.btnDeleteSelect.Click += BtnDeleteSelect_ItemClick;
+            this.btnAnimation.Click += BtnAnimation_ItemClick;
 
 
         }
@@ -69,18 +96,18 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnAnimation_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnAnimation_ItemClick(object sender, EventArgs e)
         {
             XBRepPrimAPI_MakeBox obj1 = new XBRepPrimAPI_MakeBox(100, 100, 20);
             XAIS_Shape ais_obj1 = new XAIS_Shape(obj1.Shape());
             SetFaceBoundaryAspect(ais_obj1, true);
-            render.AddShape(ais_obj1, true);
+            IRender.AddShape(ais_obj1, true);
 
             xgp_Trsf end_pnt0 = new xgp_Trsf();
             xgp_Trsf end_pnt1 = new xgp_Trsf();
             end_pnt0.SetTranslation(new xgp_Vec(0.0, 0.0, 0.0));
             end_pnt1.SetTranslation(new xgp_Vec(100.0, 100.0, 0.0));
-            XAIS_AnimationObject ais_animation = new XAIS_AnimationObject(new XTCollection_AsciiString($"F1{Guid.NewGuid().ToString()}"), render.GetInteractiveContext(), ais_obj1, end_pnt0, end_pnt1);
+            XAIS_AnimationObject ais_animation = new XAIS_AnimationObject(new XTCollection_AsciiString($"F1{Guid.NewGuid().ToString()}"), IRender.GetInteractiveContext(), ais_obj1, end_pnt0, end_pnt1);
             ais_animation.SetOwnDuration(30.0);
             ais_animation.SetStartPts(0);
             ais_animation.StartTimer(0.0, 1.0, true, false);
@@ -110,12 +137,11 @@ namespace OCCT.NET
                 lock (lockObject)
                 {
                     ais_animation.UpdateTimer();
-                    render.UpdateCurrentViewer();
+                    IRender.UpdateCurrentViewer();
                 }
-            }; 
+            };
         }
         #endregion
-
 
         #region 几何图形
         /// <summary>
@@ -123,7 +149,7 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnShell_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnShell_ItemClick(object sender, EventArgs e)
         {
             xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
             XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
@@ -133,7 +159,7 @@ namespace OCCT.NET
             XAIS_Shape WAIS_ECD = new XAIS_Shape(aRMakeFace.Shape());
             SetFaceBoundaryAspect(WAIS_ECD, true);
 
-            render.AddShape(WAIS_ECD, true);
+            IRender.AddShape(WAIS_ECD, true);
         }
 
 
@@ -142,7 +168,7 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnSolid_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnSolid_ItemClick(object sender, EventArgs e)
         {
             xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
             XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
@@ -159,7 +185,7 @@ namespace OCCT.NET
             }
             XAIS_Shape WAIS_EC = new XAIS_Shape(MFBox.Shape());
             SetFaceBoundaryAspect(WAIS_EC, true);
-            render.AddShape(WAIS_EC, true);
+            IRender.AddShape(WAIS_EC, true);
 
             //XBRepPrimAPI_MakeBox tempA = new XBRepPrimAPI_MakeBox(200.0, 150.0, 100.0);
             //XBRepPrimAPI_MakeBox tempB = new XBRepPrimAPI_MakeBox(new xgp_Pnt(60, 60, 0), 200.0, 150.0, 100.0);
@@ -189,7 +215,7 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnFace_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnFace_ItemClick(object sender, EventArgs e)
         {
             xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
             XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
@@ -197,7 +223,7 @@ namespace OCCT.NET
             XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
             XAIS_Shape WAIS_EC = new XAIS_Shape(S2.Shape());
             SetFaceBoundaryAspect(WAIS_EC, true);
-            render.AddShape(WAIS_EC, true);
+            IRender.AddShape(WAIS_EC, true);
 
             //xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
             //XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
@@ -224,12 +250,12 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnLine_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnLine_ItemClick(object sender, EventArgs e)
         {
             xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
             XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
             XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
-            render.AddShape(S1.Shape(), true);
+            IRender.AddShape(S1.Shape(), true);
         }
 
         /// <summary>
@@ -237,12 +263,12 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnGrid_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnGrid_ItemClick(object sender, EventArgs e)
         {
             xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
             XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
             XTopoDS_Vertex V1 = MV1.Vertex();
-            render.AddShape(V1, true);
+            IRender.AddShape(V1, true);
         }
         #endregion
 
@@ -252,18 +278,18 @@ namespace OCCT.NET
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnDeleteSelect_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnDeleteSelect_ItemClick(object sender, EventArgs e)
         {
-            render.DeleteObjects();
+            IRender.DeleteObjects();
         }
         /// <summary>
         /// 全部清除
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnClearAll_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnClearAll_ItemClick(object sender, EventArgs e)
         {
-            render.RemoveAll(true);
+            IRender.RemoveAll(true);
         }
         #endregion
 

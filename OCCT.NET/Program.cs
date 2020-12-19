@@ -30,18 +30,18 @@ namespace OCCT.NET
             //当类型(Type)通过反射加载失败的时候会触发TypeResolve事件，这里注册TypeResolve事件的处理函数为CurrentDomain_TypeResolve
             AppDomain.CurrentDomain.TypeResolve += new ResolveEventHandler(CurrentDomain_TypeResolve);
 
-            DevExpress.UserSkins.BonusSkins.Register();
-            DevExpress.Skins.SkinManager.EnableFormSkins();
+            //DevExpress.UserSkins.BonusSkins.Register();
+            //DevExpress.Skins.SkinManager.EnableFormSkins();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DevExpress.UserSkins.BonusSkins.Register();//皮肤
-            DevExpress.Skins.SkinManager.EnableFormSkins();
-            string SkinName = "DevExpress Style";// "Office 2019 Colorful";// DesignSettings.AppConfiguration.GetConfig<string>("SkinName");
-            if (SkinName != default(string))
-                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(SkinName);
-            else
-                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
+            //DevExpress.UserSkins.BonusSkins.Register();//皮肤
+            //DevExpress.Skins.SkinManager.EnableFormSkins();
+            //string SkinName = "DevExpress Style";// "Office 2019 Colorful";// DesignSettings.AppConfiguration.GetConfig<string>("SkinName");
+            //if (SkinName != default(string))
+            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(SkinName);
+            //else
+            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
             Application.Run(new MainForm());
         }
         #region 异常捕获
