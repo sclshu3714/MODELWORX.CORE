@@ -81,19 +81,38 @@ namespace OCCT.NET
             end_pnt0.SetTranslation(new xgp_Vec(0.0, 0.0, 0.0));
             end_pnt1.SetTranslation(new xgp_Vec(100.0, 100.0, 0.0));
             XAIS_AnimationObject ais_animation = new XAIS_AnimationObject(new XTCollection_AsciiString($"F1{Guid.NewGuid().ToString()}"), render.GetInteractiveContext(), ais_obj1, end_pnt0, end_pnt1);
-            ais_animation.SetOwnDuration(10.0);
-            ais_animation.SetStartPts(1);
+            ais_animation.SetOwnDuration(30.0);
+            ais_animation.SetStartPts(0);
             ais_animation.StartTimer(0.0, 1.0, true, false);
             ais_animation.Start(true);
-            var task = new Task(() => {
-                while (!ais_animation.IsStopped()) {
-                    lock (lockObject)
-                    {
-                        ais_animation.UpdateTimer();
-                        render.UpdateCurrentViewer();
-                    }
-                }; ais_animation.Stop(); });
-            task.Start();
+            Timer timer = new Timer();
+            timer.Interval = 100;
+            timer.Tag = ais_animation;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            //var task = new Task(() => {
+            //    while (!ais_animation.IsStopped()) {
+            //        lock (lockObject)
+            //        {
+            //            ais_animation.UpdateTimer();
+            //            render.UpdateCurrentViewer();
+            //        }
+            //    }; ais_animation.Stop(); });
+            //task.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Timer timer = sender as Timer;
+            XAIS_AnimationObject ais_animation = timer.Tag as XAIS_AnimationObject;
+            if (ais_animation != null && !ais_animation.IsStopped())
+            {
+                lock (lockObject)
+                {
+                    ais_animation.UpdateTimer();
+                    render.UpdateCurrentViewer();
+                }
+            }; 
         }
         #endregion
 
