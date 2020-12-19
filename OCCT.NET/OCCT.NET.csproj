@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -165,10 +168,6 @@
     <ProjectReference Include="..\OCCT.WinForms.Net\OCCT.WinForms.Net.csproj">
       <Project>{c7694045-4191-4c68-8deb-1104cf900be9}</Project>
       <Name>OCCT.WinForms.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VXHelper\VXDesignHelper.csproj">
-      <Project>{a63b7e8e-f5fb-4aac-8987-2b066e80fbe0}</Project>
-      <Name>VXDesignHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -9067,7 +9067,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetDegenerateModeOn(): PrivateScope, Public, HideBySig
     SetDegenerateModeOff(): PrivateScope, Public, HideBySig
     WindowFitAll(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
-    Place(Int32, Int32, Single): PrivateScope, Public, HideBySig
+    Place(Int32, Int32, Double): PrivateScope, Public, HideBySig
     Zoom(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
     Pan(Int32, Int32): PrivateScope, Public, HideBySig
     Rotation(Int32, Int32): PrivateScope, Public, HideBySig
@@ -9077,7 +9077,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     MoveTo(Int32, Int32): PrivateScope, Public, HideBySig
     ShiftSelect(): PrivateScope, Public, HideBySig
     ShiftSelect(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
-    BackgroundColor(Int32* IsImplicitlyDereferenced, Int32* IsImplicitlyDereferenced, Int32* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    BackgroundColor(Int32, Int32, Int32): PrivateScope, Public, HideBySig
     GetBGColR(): PrivateScope, Public, HideBySig
     GetBGColG(): PrivateScope, Public, HideBySig
     GetBGColB(): PrivateScope, Public, HideBySig
@@ -9098,7 +9098,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetColor(Int32, Int32, Int32): PrivateScope, Public, HideBySig
     GetObjColR(): PrivateScope, Public, HideBySig
     GetObjColG(): PrivateScope, Public, HideBySig
-    ObjectColor(Int32* IsImplicitlyDereferenced, Int32* IsImplicitlyDereferenced, Int32* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ObjectColor(Int32, Int32, Int32): PrivateScope, Public, HideBySig
     GetObjColB(): PrivateScope, Public, HideBySig
     SetBackgroundColor(Int32, Int32, Int32): PrivateScope, Public, HideBySig
     EraseObjects(): PrivateScope, Public, HideBySig

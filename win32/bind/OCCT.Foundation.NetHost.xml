@@ -391,7 +391,7 @@ Set background color R/G/B
 Get object color blue
 </summary>
         </member>
-        <member name="M:OCCTProxy.ObjectColor(System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+        <member name="M:OCCTProxy.ObjectColor(System.Int32,System.Int32,System.Int32)">
             <summary>
 Get object color R/G/B
 </summary>
@@ -487,7 +487,7 @@ Get background color Green
 Get background color Red
 </summary>
         </member>
-        <member name="M:OCCTProxy.BackgroundColor(System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+        <member name="M:OCCTProxy.BackgroundColor(System.Int32,System.Int32,System.Int32)">
             <summary>
 Set background color
 </summary>
@@ -537,7 +537,7 @@ Set Pan
 Set Zoom
 </summary>
         </member>
-        <member name="M:OCCTProxy.Place(System.Int32,System.Int32,System.Single)">
+        <member name="M:OCCTProxy.Place(System.Int32,System.Int32,System.Double)">
             <summary>
 Current place of window
 </summary>

@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VXHelper;
 
 namespace OCCT.NET
 {
@@ -49,35 +48,13 @@ namespace OCCT.NET
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             string strErr = GetExceptionMsg(e.ExceptionObject as Exception, e.ToString());
-            string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
-            //DesignSplashScreen.staticCloseSplashScreenForm();
-            //if(designMessageForm == null || designMessageForm.IsDisposed) {
-            //    designMessageForm = new DesignMessageForm();
-            //    designMessageForm.TopMost = true;
-            //    designMessageForm.SetMessage(string.Format(@"{0}Log\{1}", AppDomain.CurrentDomain.BaseDirectory, logName));
-            //    designMessageForm.Show();
-            //}
-            //else if(!designMessageForm.IsDisposed) {
-            //    designMessageForm.Activate();
-            //    designMessageForm.SetMessage(string.Format(@"{0}Log\{1}", AppDomain.CurrentDomain.BaseDirectory, logName));
-            //}
+            //string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             string strErr = GetExceptionMsg(e.Exception, e.ToString());
-            string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
-            //DesignSplashScreen.staticCloseSplashScreenForm();
-            //if(designMessageForm == null || designMessageForm.IsDisposed) {
-            //    designMessageForm = new DesignMessageForm();
-            //    designMessageForm.TopMost = true;
-            //    designMessageForm.SetMessage(string.Format(@"{0}Log\{1}", AppDomain.CurrentDomain.BaseDirectory, logName));
-            //    designMessageForm.Show();
-            //}
-            //else if(!designMessageForm.IsDisposed) {
-            //    designMessageForm.Activate();
-            //    designMessageForm.SetMessage(string.Format(@"{0}Log\{1}", AppDomain.CurrentDomain.BaseDirectory, logName));
-            //}
+            //string logName = VXRuntime.WriteSystemLog(strErr, "ERROR");
         }
 
         static string GetExceptionMsg(Exception ex, string backStr)

@@ -312,7 +312,7 @@ public:
     /// <summary>
     ///Fit all
     /// </summary>
-    void WindowFitAll(int theXmin, int theYmin, int theXmax, int theYmax) {
+    void WindowFitAll(Standard_Integer theXmin, Standard_Integer theYmin, Standard_Integer theXmax, Standard_Integer theYmax) {
         if (!mainView().IsNull()) {
             mainView()->WindowFitAll(theXmin, theYmin, theXmax, theYmax);
         }
@@ -322,7 +322,7 @@ public:
     ///Current place of window
     /// </summary>
     /// <param name="theZoomFactor">Current zoom</param>
-    void Place(int theX, int theY, float theZoomFactor) {
+    void Place(Standard_Integer theX, Standard_Integer theY, Standard_Real theZoomFactor) {
         Standard_Real aZoomFactor = theZoomFactor;
         if (!mainView().IsNull()) {
             mainView()->Place(theX, theY, aZoomFactor);
@@ -332,7 +332,7 @@ public:
     /// <summary>
     ///Set Zoom
     /// </summary>
-    void Zoom(int theX1, int theY1, int theX2, int theY2) {
+    void Zoom(Standard_Integer theX1, Standard_Integer theY1, Standard_Integer theX2, Standard_Integer theY2) {
         if (!mainView().IsNull()) {
             mainView()->Zoom(theX1, theY1, theX2, theY2);
         }
@@ -341,7 +341,7 @@ public:
     /// <summary>
     ///Set Pan
     /// </summary>
-    void Pan(int theX, int theY) {
+    void Pan(Standard_Integer theX, Standard_Integer theY) {
         if (!mainView().IsNull()) {
             mainView()->Pan(theX, theY);
         }
@@ -350,7 +350,7 @@ public:
     /// <summary>
     ///Rotation
     /// </summary>
-    void Rotation(int theX, int theY) {
+    void Rotation(Standard_Integer theX, Standard_Integer theY) {
         if (!mainView().IsNull()) {
             mainView()->Rotation(theX, theY);
         }
@@ -359,7 +359,7 @@ public:
     /// <summary>
     ///Start rotation
     /// </summary>
-    void StartRotation(int theX, int theY) {
+    void StartRotation(Standard_Integer theX, Standard_Integer theY) {
         if (!mainView().IsNull()) {
             mainView()->StartRotation(theX, theY);
         }
@@ -368,7 +368,7 @@ public:
     /// <summary>
     ///Select by rectangle
     /// </summary>
-    void Select(int theX1, int theY1, int theX2, int theY2) {
+    void Select(Standard_Integer theX1, Standard_Integer theY1, Standard_Integer theX2, Standard_Integer theY2) {
         if (!mainAISContext().IsNull()) {
             mainAISContext()->Select(theX1, theY1, theX2, theY2, mainView(), Standard_True);
         }
@@ -386,7 +386,7 @@ public:
     /// <summary>
     ///Move view
     /// </summary>
-    void MoveTo(int theX, int theY) {
+    void MoveTo(Standard_Integer theX, Standard_Integer theY) {
         if ((!mainAISContext().IsNull()) && (!mainView().IsNull())) {
             mainAISContext()->MoveTo(theX, theY, mainView(), Standard_True);
         }
@@ -395,7 +395,7 @@ public:
     /// <summary>
     ///Select by rectangle with pressed "Shift" key
     /// </summary>
-    void ShiftSelect(int theX1, int theY1, int theX2, int theY2) {
+    void ShiftSelect(Standard_Integer theX1, Standard_Integer theY1, Standard_Integer theX2, Standard_Integer theY2) {
         if ((!mainAISContext().IsNull()) && (!mainView().IsNull())) {
             mainAISContext()->ShiftSelect(theX1, theY1, theX2, theY2, mainView(), Standard_True);
         }
@@ -413,23 +413,23 @@ public:
     /// <summary>
     ///Set background color
     /// </summary>
-    void BackgroundColor(int& theRed, int& theGreen, int& theBlue) {
-        Standard_Real R1;
-        Standard_Real G1;
-        Standard_Real B1;
+    void BackgroundColor(Standard_Integer theRed, Standard_Integer theGreen, Standard_Integer theBlue) {
+        Standard_Real R1 = 0;
+        Standard_Real G1 = 0;
+        Standard_Real B1 = 0;
         if (!mainView().IsNull()) {
             mainView()->BackgroundColor(Quantity_TOC_RGB, R1, G1, B1);
         }
-        theRed = (int)R1 * 255;
-        theGreen = (int)G1 * 255;
-        theBlue = (int)B1 * 255;
+        theRed = (Standard_Integer)(R1 * 255);
+        theGreen = (Standard_Integer)(G1 * 255);
+        theBlue = (Standard_Integer)(B1 * 255);
     }
 
     /// <summary>
     ///Get background color Red
     /// </summary>
-    int GetBGColR(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetBGColR(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         BackgroundColor(aRed, aGreen, aBlue);
         return aRed;
     }
@@ -437,8 +437,8 @@ public:
     /// <summary>
     ///Get background color Green
     /// </summary>
-    int GetBGColG(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetBGColG(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         BackgroundColor(aRed, aGreen, aBlue);
         return aGreen;
     }
@@ -446,8 +446,8 @@ public:
     /// <summary>
     ///Get background color Blue
     /// </summary>
-    int GetBGColB(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetBGColB(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         BackgroundColor(aRed, aGreen, aBlue);
         return aBlue;
     }
@@ -527,12 +527,12 @@ public:
     /// <summary>
     ///Scale
     /// </summary>
-    float Scale(void) {
+    Standard_Real Scale(void) {
         if (mainView().IsNull()) {
             return -1;
         }
         else {
-            return (float)mainView()->Scale();
+            return (Standard_Real)mainView()->Scale();
         }
     }
 
@@ -571,7 +571,7 @@ public:
     ///Set display mode of objects
     /// </summary>
     /// <param name="theMode">Set current mode</param>
-    void SetDisplayMode(int theMode) {
+    void SetDisplayMode(Standard_Integer theMode) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -597,7 +597,7 @@ public:
     /// <summary>
     ///Set color
     /// </summary>
-    void SetColor(int theR, int theG, int theB) {
+    void SetColor(Standard_Integer theR, Standard_Integer theG, Standard_Integer theB) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -611,8 +611,8 @@ public:
     /// <summary>
     ///Get object color red
     /// </summary>
-    int GetObjColR(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetObjColR(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         ObjectColor(aRed, aGreen, aBlue);
         return aRed;
     }
@@ -620,8 +620,8 @@ public:
     /// <summary>
     ///Get object color green
     /// </summary>
-    int GetObjColG(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetObjColG(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         ObjectColor(aRed, aGreen, aBlue);
         return aGreen;
     }
@@ -629,7 +629,7 @@ public:
     /// <summary>
     ///Get object color R/G/B
     /// </summary>
-    void ObjectColor(int& theRed, int& theGreen, int& theBlue) {
+    void ObjectColor(Standard_Integer theRed, Standard_Integer theGreen, Standard_Integer theBlue) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -647,17 +647,17 @@ public:
             mainAISContext()->Color(aCurrent, anObjCol);
             Standard_Real r1, r2, r3;
             anObjCol.Values(r1, r2, r3, Quantity_TOC_RGB);
-            theRed = (int)r1 * 255;
-            theGreen = (int)r2 * 255;
-            theBlue = (int)r3 * 255;
+            theRed = (Standard_Integer)(r1 * 255);
+            theGreen = (Standard_Integer)(r2 * 255);
+            theBlue = (Standard_Integer)(r3 * 255);
         }
     }
 
     /// <summary>
     ///Get object color blue
     /// </summary>
-    int GetObjColB(void) {
-        int aRed, aGreen, aBlue;
+    Standard_Integer GetObjColB(void) {
+        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         ObjectColor(aRed, aGreen, aBlue);
         return aBlue;
     }
@@ -665,7 +665,7 @@ public:
     /// <summary>
     ///Set background color R/G/B
     /// </summary>
-    void SetBackgroundColor(int theRed, int theGreen, int theBlue) {
+    void SetBackgroundColor(Standard_Integer theRed, Standard_Integer theGreen, Standard_Integer theBlue) {
         if (!mainView().IsNull()) {
             mainView()->SetBackgroundColor(Quantity_TOC_RGB, theRed / 255., theGreen / 255., theBlue / 255.);
         }
@@ -686,14 +686,14 @@ public:
     /// <summary>
     ///Get version （获取版本）
     /// </summary>
-    float GetOCCVersion(void) {
-        return (float)OCC_VERSION;
+    Standard_Real GetOCCVersion(void) {
+        return (Standard_Real)OCC_VERSION;
     }
 
     /// <summary>
     ///set material （设置材料）
     /// </summary>
-    void SetMaterial(int theMaterial) {
+    void SetMaterial(Standard_Integer theMaterial) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -706,7 +706,7 @@ public:
     /// <summary>
     ///set transparency (设置透明度)
     /// </summary>
-    void SetTransparency(int theTrans) {
+    void SetTransparency(Standard_Integer theTrans) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -730,11 +730,11 @@ public:
     /// <summary>
     ///Return display mode   (返回显示模式)
     /// </summary>
-    int DisplayMode(void) {
+    Standard_Integer DisplayMode(void) {
         if (mainAISContext().IsNull()) {
             return -1;
         }
-        int aMode = -1;
+        Standard_Integer aMode = -1;
         bool OneOrMoreInShading = false;
         bool OneOrMoreInWireframe = false;
         for (mainAISContext()->InitSelected(); mainAISContext()->MoreSelected(); mainAISContext()->NextSelected()) {
@@ -867,13 +867,13 @@ public:
             bool isFailsonly = false;
             aReader.PrintCheckLoad(isFailsonly, IFSelect_ItemsByEntity);
 
-            int aNbRoot = aReader.NbRootsForTransfer();
+            Standard_Integer aNbRoot = aReader.NbRootsForTransfer();
             aReader.PrintCheckTransfer(isFailsonly, IFSelect_ItemsByEntity);
             for (Standard_Integer n = 1; n <= aNbRoot; n++) {
                 Standard_Boolean ok = aReader.TransferRoot(n);
-                int aNbShap = aReader.NbShapes();
+                Standard_Integer aNbShap = aReader.NbShapes();
                 if (aNbShap > 0) {
-                    for (int i = 1; i <= aNbShap; i++) {
+                    for (Standard_Integer i = 1; i <= aNbShap; i++) {
                         TopoDS_Shape aShape = aReader.Shape(i);
                         mainAISContext()->Display(new AIS_Shape(aShape), Standard_False);
                     }
@@ -1028,7 +1028,7 @@ public:
     /// <param name="theFileName">Name of import file</param>
     bool ImportIges(const TCollection_AsciiString& theFileName) {
         IGESControl_Reader aReader;
-        int aStatus = aReader.ReadFile(theFileName.ToCString());
+        Standard_Integer aStatus = aReader.ReadFile(theFileName.ToCString());
 
         if (aStatus == IFSelect_RetDone) {
             aReader.TransferRoots();
@@ -1160,7 +1160,7 @@ public:
     /// <param name="theFileName">Name of Import/Export file</param>
     /// <param name="theFormat">Determines format of Import/Export file</param>
     /// <param name="theIsImport">Determines is Import or not</param>
-    bool TranslateModel(System::String^ theFileName, int theFormat, bool theIsImport) {
+    bool TranslateModel(System::String^ theFileName, Standard_Integer theFormat, bool theIsImport) {
         bool isResult;
 
         const TCollection_AsciiString aFilename = toAsciiString(theFileName);

@@ -170,11 +170,12 @@ namespace OCCT.WinForms.Net
         /// <param name="sender"></param>
         /// <param name="e"></param>
 		private void RenderWindow_MouseUp(object sender, MouseEventArgs e) {
-            //InputHandler.MouseUp(mCanvas, e, Control.ModifierKeys);
-            switch (e.Button) {
+            switch (e.Button)
+            {
                 case MouseButtons.Left:
                     #region 鼠标左键弹起
-                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                    {
                         if (e.X == myXmin && e.Y == myYmin)
                         {
                             myXmax = e.X; myYmax = e.Y;
@@ -195,16 +196,19 @@ namespace OCCT.WinForms.Net
                         myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
                         return;
                     }
-                    switch (myCurrentMode) {
+                    switch (myCurrentMode)
+                    {
                         case CurrentAction3d.CurAction3d_Nothing:
-                            if (e.X == myXmin && e.Y == myYmin) {
+                            if (e.X == myXmin && e.Y == myYmin)
+                            {
                                 myXmax = e.X; myYmax = e.Y;
                                 if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                                     MultiInputEvent(myXmax, myYmax);
                                 else
                                     InputEvent(myXmax, myYmax);
                             }
-                            else {
+                            else
+                            {
                                 myXmax = e.X; myYmax = e.Y;
                                 DrawRectangle(false);
                                 if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
@@ -252,11 +256,13 @@ namespace OCCT.WinForms.Net
                                 else
                                     DragEvent(myXmax, myYmax, 1);
                             }
-                            if (!myDegenerateModeIsOn) {
+                            if (!myDegenerateModeIsOn)
+                            {
                                 OCCTView.SetDegenerateModeOff();
                                 myDegenerateModeIsOn = false;
                             }
-                            else {
+                            else
+                            {
                                 OCCTView.SetDegenerateModeOn();
                                 myDegenerateModeIsOn = true;
                             }
@@ -269,11 +275,13 @@ namespace OCCT.WinForms.Net
                     break;
                 case MouseButtons.Right:
                     #region 鼠标右键弹起
-                    if (!myDegenerateModeIsOn) {
+                    if (!myDegenerateModeIsOn)
+                    {
                         OCCTView.SetDegenerateModeOff();
                         myDegenerateModeIsOn = false;
                     }
-                    else {
+                    else
+                    {
                         OCCTView.SetDegenerateModeOn();
                         myDegenerateModeIsOn = true;
                     }
@@ -281,11 +289,13 @@ namespace OCCT.WinForms.Net
                     break;
                 case MouseButtons.Middle:
                     #region 鼠标中键弹出
-                    if (!myDegenerateModeIsOn) {
+                    if (!myDegenerateModeIsOn)
+                    {
                         OCCTView.SetDegenerateModeOff();
                         myDegenerateModeIsOn = false;
                     }
-                    else {
+                    else
+                    {
                         OCCTView.SetDegenerateModeOn();
                         myDegenerateModeIsOn = true;
                     }
