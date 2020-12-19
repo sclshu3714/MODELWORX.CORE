@@ -36,7 +36,7 @@ namespace OCCT.NET
         }
 
         private void btnBgColor_Click(object sender, EventArgs e) {
-            IRender.ChangeColor(false);
+            IRender.ChangeColor(IRender.IsSelectObject);
         }
 
         private void btnStep_Click(object sender, EventArgs e) {

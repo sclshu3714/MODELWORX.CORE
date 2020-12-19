@@ -461,6 +461,14 @@ namespace OCCT.WinForms.Net
         #region 设置配置
 
         /// <summary>
+        /// 判断是否选择对象
+        /// </summary>
+        /// <returns></returns>
+        public bool IsSelectObject {
+            get { return OCCTView.GetInteractiveContext().HasSelectedShape(); }
+        }
+
+        /// <summary>
         /// 立即绘制
         /// </summary>
         public void RedrawView() {
@@ -843,7 +851,7 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="anInteractive"></param>
         /// <param name="IsBoundaryDraw"></param>
-        void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw) {
+       public void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw) {
             XPrs3d_Drawer aDrawer = anInteractive.Attributes();
             aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
             if (IsBoundaryDraw) {
