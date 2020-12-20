@@ -585,11 +585,11 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void MakeArcOfCircle()
         {
-            xgp_Pnt P1 = new xgp_Pnt(200, 300, 0);
-            xgp_Dir DV = new xgp_Dir(1, 0, 0);
-            xgp_Vec V = new xgp_Vec(DV);
-            xgp_Pnt P2 = new xgp_Pnt(300, 300, 0);
-            XGC_MakeArcOfCircle tempMake = new XGC_MakeArcOfCircle(P1, V, P2);
+            xgp_Pnt P = new xgp_Pnt(200, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Circ circ = new xgp_Circ(Axes, 80);
+            XGC_MakeArcOfCircle tempMake = new XGC_MakeArcOfCircle(circ, 90, 270, false);
             XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
             IRender.AddShape(tempEdge.Edge(), true, true);
         }
@@ -764,12 +764,11 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void MakeSegment()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
-            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
-            //IRender.AddShape(tempMake.Shape(), true, true);
+            xgp_Pnt P1 = new xgp_Pnt(200, 300, 0);
+            xgp_Pnt P2 = new xgp_Pnt(300, 300, 0);
+            XGC_MakeSegment tempMake = new XGC_MakeSegment(P1, P2);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            IRender.AddShape(tempEdge.Edge(), true, true);
         }
 
         /// <summary>
