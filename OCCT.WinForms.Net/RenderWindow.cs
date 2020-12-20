@@ -26,11 +26,13 @@ namespace OCCT.WinForms.Net
     public partial class RenderWindow : UserControl
     {
         #region 构型
-        public RenderWindow() {
+        public RenderWindow()
+        {
             InitializeComponent();
             OCCTView = new OCCTProxy();
             IsInitViewer = OCCTView.InitViewer(this.Handle);
-            if (!IsInitViewer) {
+            if (!IsInitViewer)
+            {
                 MessageBox.Show("初始化图形失败");
             }
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
@@ -49,8 +51,10 @@ namespace OCCT.WinForms.Net
             this.MouseWheel += RenderWindow_MouseWheel;
         }
 
-        public RenderWindow(Control parent) : this() {
-            if (parent != null) {
+        public RenderWindow(Control parent) : this()
+        {
+            if (parent != null)
+            {
                 parent.Controls.Add(this);
                 Dock = DockStyle.Fill;
             }
@@ -63,7 +67,8 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RenderWindow_SizeChanged(object sender, EventArgs e) {
+        private void RenderWindow_SizeChanged(object sender, EventArgs e)
+        {
             OCCTView.UpdateView();
         }
         /// <summary>
@@ -71,11 +76,13 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RenderWindow_Paint(object sender, PaintEventArgs e) {
+        private void RenderWindow_Paint(object sender, PaintEventArgs e)
+        {
             //if(mCanvas != null) {
             //	mCanvas.GetContext().RequestUpdate(EnumUpdateFlags.Camera);
             //}
-            if (IsInitViewer) {
+            if (IsInitViewer)
+            {
                 OCCTView.RedrawView();
                 OCCTView.UpdateView();
             }
@@ -85,7 +92,8 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RenderWindow_KeyDown(object sender, KeyEventArgs e) {
+        private void RenderWindow_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.Shift)
                 myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
             if (e.Control)
@@ -98,7 +106,8 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RenderWindow_KeyUp(object sender, KeyEventArgs e) {
+        private void RenderWindow_KeyUp(object sender, KeyEventArgs e)
+        {
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
         }
         /// <summary>
@@ -106,9 +115,11 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RenderWindow_MouseDown(object sender, MouseEventArgs e) {
+        private void RenderWindow_MouseDown(object sender, MouseEventArgs e)
+        {
             //InputHandler.MouseDown(mCanvas, e, Control.ModifierKeys);
-            switch (e.Button) {
+            switch (e.Button)
+            {
                 case MouseButtons.Left:
                     #region 鼠标左键按下
                     myXmin = e.X; myYmin = e.Y;
@@ -116,8 +127,10 @@ namespace OCCT.WinForms.Net
                     if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
                         // start the dinamic zooming....
                         myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
-                    else {
-                        switch (myCurrentMode) {
+                    else
+                    {
+                        switch (myCurrentMode)
+                        {
                             case CurrentAction3d.CurAction3d_Nothing:
                                 if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
                                     MultiDragEvent(myXmax, myYmax, -1);
@@ -142,7 +155,8 @@ namespace OCCT.WinForms.Net
                 case MouseButtons.Right:
                     #region 鼠标右键按下
                     //MessageBox.Show("right mouse button is down");
-                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                    {
                         if (!myDegenerateModeIsOn)
                             OCCTView.SetDegenerateModeOn();
                         OCCTView.StartRotation(e.X, e.Y);
@@ -169,7 +183,8 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void RenderWindow_MouseUp(object sender, MouseEventArgs e) {
+		private void RenderWindow_MouseUp(object sender, MouseEventArgs e)
+        {
             switch (e.Button)
             {
                 case MouseButtons.Left:
@@ -311,19 +326,23 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void RenderWindow_MouseMove(object sender, MouseEventArgs e) {
+		private void RenderWindow_MouseMove(object sender, MouseEventArgs e)
+        {
             //InputHandler.MouseMove(mCanvas, e, Control.ModifierKeys);
             if (e.Button == MouseButtons.Left) //left button is pressed
             {
-                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                {
                     //OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
                     //myXmax = e.X; myYmax = e.Y;
                     DrawRectangle(false);
                     myXmax = e.X; myYmax = e.Y;
                     DrawRectangle(true);
                 }
-                else {
-                    switch (myCurrentMode) {
+                else
+                {
+                    switch (myCurrentMode)
+                    {
                         case CurrentAction3d.CurAction3d_Nothing:
                             DrawRectangle(false);
                             myXmax = e.X; myYmax = e.Y;
@@ -353,7 +372,8 @@ namespace OCCT.WinForms.Net
                     }
                 }
             } // e.Button == MouseButtons.Left
-            else if (e.Button == MouseButtons.Middle) {
+            else if (e.Button == MouseButtons.Middle)
+            {
                 OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
                 myXmax = e.X; myYmax = e.Y;
             }//e.Button=MouseButtons.Middle
@@ -376,7 +396,8 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e) {
+		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e)
+        {
             //InputHandler.MouseWheel(mCanvas, e, Control.ModifierKeys);
             int addsd = 1;
             if (e.Delta > 0) addsd = -1;
@@ -385,8 +406,10 @@ namespace OCCT.WinForms.Net
             myXmax = e.X; myYmax = e.Y;
         }
 
-        protected void MultiDragEvent(int x, int y, int theState) {
-            if (theState == -1) {
+        protected void MultiDragEvent(int x, int y, int theState)
+        {
+            if (theState == -1)
+            {
                 theButtonDownX = x;
                 theButtonDownY = y;
             }
@@ -395,7 +418,8 @@ namespace OCCT.WinForms.Net
                         Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
         }
 
-        protected void DragEvent(int x, int y, int theState) {
+        protected void DragEvent(int x, int y, int theState)
+        {
             if (theState == -1) //mouse is down
             {
                 theButtonDownX = x;
@@ -416,15 +440,18 @@ namespace OCCT.WinForms.Net
         //        this.myPopup.Show(this, p);
         //}
 
-        protected void MultiInputEvent(int x, int y) {
+        protected void MultiInputEvent(int x, int y)
+        {
             OCCTView.ShiftSelect();
         }
 
-        protected void InputEvent(int x, int y) {
+        protected void InputEvent(int x, int y)
+        {
             OCCTView.Select();
         }
 
-        private void DrawRectangle(bool draw) {
+        private void DrawRectangle(bool draw)
+        {
             Graphics gr = Graphics.FromHwnd(this.Handle);
             System.Drawing.Pen p = null;
             if (this.IsRectVisible || (!draw))//erase the rect
@@ -436,7 +463,8 @@ namespace OCCT.WinForms.Net
                 this.IsRectVisible = false;
                 this.OCCTView.UpdateView();
             }
-            else if (draw) {
+            else if (draw)
+            {
                 p = new Pen(System.Drawing.Color.White);
                 this.IsRectVisible = true;
             }
@@ -449,11 +477,13 @@ namespace OCCT.WinForms.Net
             this.theRectDownY = Math.Max(this.myYmin, this.myYmax);
         }
 
-        protected void MultiMoveEvent(int x, int y) {
+        protected void MultiMoveEvent(int x, int y)
+        {
             OCCTView.MoveTo(x, y);
         }
 
-        protected void MoveEvent(int x, int y) {
+        protected void MoveEvent(int x, int y)
+        {
             OCCTView.MoveTo(x, y);
         }
         #endregion
@@ -464,14 +494,16 @@ namespace OCCT.WinForms.Net
         /// 判断是否选择对象
         /// </summary>
         /// <returns></returns>
-        public bool IsSelectObject {
+        public bool IsObjectSelected
+        {
             get { return OCCTView.GetInteractiveContext().HasSelectedShape(); }
         }
 
         /// <summary>
         /// 立即绘制
         /// </summary>
-        public void RedrawView() {
+        public void RedrawView()
+        {
             OCCTView.RedrawView();
         }
 
@@ -480,9 +512,32 @@ namespace OCCT.WinForms.Net
         /// Set display mode
         /// </summary>
         /// <param name="aMode">显示模式</param>
-        public void SetDisplayMode(int aMode) {
+        public void SetDisplayMode(int aMode)
+        {
             OCCTView.SetDisplayMode(aMode);
             OCCTView.RedrawView();
+        }
+
+        public int GetDisplayMode()
+        {
+            return OCCTView.DisplayMode();
+        }
+
+        public bool DegenerateMode
+        {
+            get { return this.myDegenerateModeIsOn; }
+            set { this.myDegenerateModeIsOn = value; }
+        }
+
+        public CurrentAction3d Mode
+        {
+            get { return this.myCurrentMode; }
+            set { this.myCurrentMode = value; }
+        }
+
+        public float Zoom
+        {
+            set { this.myCurZoom = value; }
         }
 
         /// <summary>
@@ -490,21 +545,25 @@ namespace OCCT.WinForms.Net
         /// Change the display color or background color of the object
         /// </summary>
         /// <param name="IsObjectColor">是否是对象</param>
-        public void ChangeColor(bool IsObjectColor) {
+        public void ChangeColor(bool IsObjectColor)
+        {
             int r, g, b;
-            if (IsObjectColor) {
+            if (IsObjectColor)
+            {
                 r = OCCTView.GetObjColR();
                 g = OCCTView.GetObjColG();
                 b = OCCTView.GetObjColB();
             }
-            else {
+            else
+            {
                 r = OCCTView.GetBGColR();
                 g = OCCTView.GetBGColG();
                 b = OCCTView.GetBGColB();
             }
             System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
             ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
-            if (ColDlg.ShowDialog() == DialogResult.OK) {
+            if (ColDlg.ShowDialog() == DialogResult.OK)
+            {
                 Color c = ColDlg.Color;
                 r = c.R;
                 g = c.G;
@@ -521,7 +580,8 @@ namespace OCCT.WinForms.Net
         /// 设置透明度
         /// </summary>
         /// <param name="theTrans"></param>
-        public void SetTransparency(int theTrans) {
+        public void SetTransparency(int theTrans)
+        {
             OCCTView.SetTransparency(theTrans);
             OCCTView.RedrawView();
         }
@@ -532,22 +592,27 @@ namespace OCCT.WinForms.Net
         /// </summary>
         /// <param name="IsObjectColor">是否是对象</param>
         /// <param name="color">要修改的颜色</param>
-        public void ChangeColor(bool IsObjectColor, Color color) {
+        public void ChangeColor(bool IsObjectColor, Color color)
+        {
             int r, g, b;
-            if (IsObjectColor) {
+            if (IsObjectColor)
+            {
                 r = OCCTView.GetObjColR();
                 g = OCCTView.GetObjColG();
                 b = OCCTView.GetObjColB();
             }
-            else {
+            else
+            {
                 r = OCCTView.GetBGColR();
                 g = OCCTView.GetBGColG();
                 b = OCCTView.GetBGColB();
             }
-            if (color == Color.Empty) {
+            if (color == Color.Empty)
+            {
                 System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
                 ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
-                if (ColDlg.ShowDialog() == DialogResult.OK) {
+                if (ColDlg.ShowDialog() == DialogResult.OK)
+                {
                     color = ColDlg.Color;
                 }
             }
@@ -564,7 +629,8 @@ namespace OCCT.WinForms.Net
         /// 删除对象
         /// delete objects
         /// </summary>
-        public void DeleteObjects() {
+        public void DeleteObjects()
+        {
             OCCTView.EraseObjects();
             //IE_WinForms.Form1 parent = (IE_WinForms.Form1)this.ParentForm;
             //parent.SelectionChanged();
@@ -575,15 +641,12 @@ namespace OCCT.WinForms.Net
         /// Setting materials
         /// </summary>
         /// <param name="NameOfMaterial"></param>
-        public void SetMaterial(Graphic3d_NameOfMaterial NameOfMaterial) {
+        public void SetMaterial(Graphic3d_NameOfMaterial NameOfMaterial)
+        {
             OCCTView.SetMaterial((int)NameOfMaterial);
             OCCTView.RedrawView();
         }
 
-        public void ZoomAllView()
-        {
-            OCCTView.ZoomAllView();
-        }
         /// <summary>
         /// 删除所有图形
         /// </summary>
@@ -595,16 +658,20 @@ namespace OCCT.WinForms.Net
         }
 
 
-        public void AddShape(XAIS_InteractiveObject theIObj, bool theToUpdateViewer = true)
+        public void AddShape(XAIS_InteractiveObject theIObj,bool IsFaceBoundaryAspect = true, bool theToUpdateViewer = true)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            if (IsFaceBoundaryAspect)
+                SetFaceBoundaryAspect(theIObj, IsFaceBoundaryAspect);
             context.Display(theIObj, theToUpdateViewer);
         }
 
-        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool theToUpdateViewer = true)
+        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool IsFaceBoundaryAspect = true, bool theToUpdateViewer = true)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XAIS_Shape theIObj = new XAIS_Shape(theTObj);
+            if (IsFaceBoundaryAspect)
+                SetFaceBoundaryAspect(theIObj, IsFaceBoundaryAspect);
             context.Display(theIObj, theToUpdateViewer);
             return theIObj;
         }
@@ -615,10 +682,12 @@ namespace OCCT.WinForms.Net
             context.ClearSelected(theToUpdateViewer);
         }
 
-        public void UpdateCurrentViewer() {
+        public void UpdateCurrentViewer()
+        {
             this.OCCTView.UpdateCurrentViewer();
         }
-        public XAIS_InteractiveContext GetInteractiveContext() {
+        public XAIS_InteractiveContext GetInteractiveContext()
+        {
             return this.OCCTView.GetInteractiveContext();
         }
 
@@ -629,11 +698,157 @@ namespace OCCT.WinForms.Net
         {
             return this.OCCTView.GetV3dView();
         }
+
+
+        /// <summary>
+        ///Update view
+        /// </summary>
+        public void UpdateView()
+        {
+            this.OCCTView.UpdateView();
+        }
+
+        /// <summary>
+        ///Set computed mode in false
+        /// </summary>
+        public void SetDegenerateModeOn()
+        {
+
+            this.OCCTView.SetDegenerateModeOn();
+        }
+
+        /// <summary>
+        ///Set computed mode in true
+        /// </summary>
+        public void SetDegenerateModeOff()
+        {
+            this.OCCTView.SetDegenerateModeOff();
+        }
+
+        /// <summary>
+        ///Fit all
+        /// </summary>
+        public void WindowFitAll(int theXmin, int theYmin, int theXmax, int theYmax)
+        {
+            this.OCCTView.WindowFitAll(theXmin, theYmin, theXmax, theYmax);
+        }
+
+        /// <summary>
+        ///Front side
+        /// </summary>
+        public void FrontView()
+        {
+            this.OCCTView.FrontView();
+        }
+
+        /// <summary>
+        ///Top side
+        /// </summary>
+        public void TopView()
+        {
+            this.OCCTView.TopView();
+        }
+
+        /// <summary>
+        ///Left side
+        /// </summary>
+        public void LeftView()
+        {
+            this.OCCTView.LeftView();
+        }
+
+        /// <summary>
+        ///Back side
+        /// </summary>
+        public void BackView()
+        {
+            this.OCCTView.BackView();
+        }
+
+        /// <summary>
+        ///Right side
+        /// </summary>
+        public void RightView()
+        {
+            this.OCCTView.RightView();
+        }
+
+        /// <summary>
+        ///Bottom side
+        /// </summary>
+        public void BottomView()
+        {
+            this.OCCTView.BottomView();
+        }
+
+        /// <summary>
+        ///Axo side
+        /// </summary>
+        public void AxoView()
+        {
+            this.OCCTView.AxoView();
+        }
+
+        /// <summary>
+        ///Zoom in all view
+        /// </summary>
+        public void ZoomAllView()
+        {
+            this.OCCTView.ZoomAllView();
+        }
+
+        /// <summary>
+        ///Scale
+        /// </summary>
+        public double Scale()
+        {
+            return this.OCCTView.Scale();
+        }
+
+
+        public void SetLight(bool OnLight)
+        {
+            this.OCCTView.SetLight(OnLight);
+        }
+
+        public void SetGridActivity(bool GridActivity)
+        {
+            this.OCCTView.SetLight(GridActivity);
+        }
+
+
+        /// <summary>
+        ///Reset view
+        /// </summary>
+        public void Reset()
+        {
+            this.OCCTView.Reset();
+        }
+
+        /// <summary>
+        /// 图形显示边框
+        /// </summary>
+        /// <param name="anInteractive"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        public void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw)
+        {
+            XPrs3d_Drawer aDrawer = anInteractive.Attributes();
+            aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
+            if (IsBoundaryDraw)
+            {
+                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();
+                aBoundaryAspect.SetColor(new XQuantity_Color(0.0, 0.0, 0.0, XQuantity_TypeOfColor.Quantity_TOC_RGB));
+                aBoundaryAspect.SetTypeOfLine(XAspect_TypeOfLine.Aspect_TOL_SOLID);
+                aBoundaryAspect.SetWidth(1.0);
+            }
+        }
+
         #endregion
 
         #region 导入/导出
         private int index = 0;
-        public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
+        public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport)
+        {
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
@@ -683,7 +898,7 @@ namespace OCCT.WinForms.Net
         {
             if (!theLabel.IsNull() && !theLabel.HasChild()) // && XXCAFDoc_ShapeTool.IsShape(theLabel))
             {
-               
+
                 XTDF_Attribute aName = new XTDataStd_Name();
                 if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
                 {
@@ -702,7 +917,7 @@ namespace OCCT.WinForms.Net
                     CNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
                     TempNode.Nodes.Add(CNode);
                 }
-                
+
                 Display(theLabel, IsBoundaryDraw);
                 return;
             }
@@ -727,7 +942,8 @@ namespace OCCT.WinForms.Net
                     TempNode.Nodes.Add(PNode);
 
                 }
-                else {
+                else
+                {
                     PNode = new TreeNode();
                     PNode.Name = "NoName";
                     PNode.Text = "没有名称";
@@ -749,7 +965,8 @@ namespace OCCT.WinForms.Net
         /// <param name="theFileName">Name of Import/Export file</param>
         /// <param name="theFormat">Determines format of Import/Export file</param>
         /// <param name="theIsImport">Determines is Import or not</param>
-        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport) {
+        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport)
+        {
             bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
@@ -802,7 +1019,7 @@ namespace OCCT.WinForms.Net
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XTDF_Attribute aName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetID(),ref aName))
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
             {
                 //std::cout << "  Name: " << aName.Get() << std::endl;
                 XTDataStd_Name XName = aName as XTDataStd_Name;
@@ -813,7 +1030,7 @@ namespace OCCT.WinForms.Net
             }
             XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
             XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
-            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(),ref aPrs))
+            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs))
             {
                 xPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
                 xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
@@ -846,22 +1063,7 @@ namespace OCCT.WinForms.Net
         }
         #endregion
 
-        /// <summary>
-        /// 图形显示边框
-        /// </summary>
-        /// <param name="anInteractive"></param>
-        /// <param name="IsBoundaryDraw"></param>
-       public void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw) {
-            XPrs3d_Drawer aDrawer = anInteractive.Attributes();
-            aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
-            if (IsBoundaryDraw) {
-                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();
-                aBoundaryAspect.SetColor(new XQuantity_Color(0.0, 0.0, 0.0, XQuantity_TypeOfColor.Quantity_TOC_RGB));
-                aBoundaryAspect.SetTypeOfLine(XAspect_TypeOfLine.Aspect_TOL_SOLID);
-                aBoundaryAspect.SetWidth(1.0);
-            }
-        }
-
+        #region 测试基本图形
         /// <summary>
         /// 绘制磁盘图形
         /// </summary>
@@ -871,18 +1073,19 @@ namespace OCCT.WinForms.Net
         /// <param name="Thickness">厚度</param>
         /// <param name="Message">绘图返回消息，当Message!=null时，绘图出错，显示错误信息</param>
         /// <returns></returns>
-        public XAIS_Shape MakeDisk(xgp_Ax2 Axis, double OuterRadius, double InnerRadius, double Thickness, ref string Message) {
+        public XAIS_Shape MakeDisk(xgp_Ax2 Axis, double OuterRadius, double InnerRadius, double Thickness, ref string Message)
+        {
             if (OuterRadius <= InnerRadius)
             {
                 Message = "外径必须大于内径！";
-                return null;                
+                return null;
             }
             //绘制外圆
             xgp_Circ OuterCirc = new xgp_Circ(Axis, OuterRadius);
             XTopoDS_Edge OuterEdge = new XBRepBuilderAPI_MakeEdge(OuterCirc).Edge();
             XTopoDS_Wire OuterWire = new XBRepBuilderAPI_MakeWire(OuterEdge).Wire();
             XBRepBuilderAPI_MakeFace OuterFace = new XBRepBuilderAPI_MakeFace(OuterWire, false);
-            if(!OuterFace.IsDone())
+            if (!OuterFace.IsDone())
                 Message = OuterFace.Error().ToString();
             //绘制内圆
             xgp_Circ InnerCirc = new xgp_Circ(Axis, InnerRadius);
@@ -895,23 +1098,25 @@ namespace OCCT.WinForms.Net
             XBRepAlgoAPI_Cut Section = new XBRepAlgoAPI_Cut(OuterFace.Shape(), InnerFace.Shape());
             if (Section.Shape().IsNull())
                 Message = "XBRepAlgoAPI_Cut 出错。";
-            if (Thickness > 0) { //拉伸方向
+            if (Thickness > 0)
+            { //拉伸方向
                 xgp_Vec drawVec = new xgp_Vec(Axis.Direction().X() * Thickness, Axis.Direction().Y() * Thickness, Axis.Direction().Z() * Thickness);
                 XBRepPrimAPI_MakePrism MakePrismDisk = new XBRepPrimAPI_MakePrism(Section.Shape(), drawVec, false, false);
                 XAIS_Shape DiskShape = new XAIS_Shape(MakePrismDisk.Shape());
                 return DiskShape;
             }
-            else {
+            else
+            {
                 XAIS_Shape DiskShape = new XAIS_Shape(Section.Shape());
                 return DiskShape;
             }
         }
 
-        #region 测试基本图形
-        public void AddDisk() {
+        public void AddDisk()
+        {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             context.RemoveAll(true);
-            xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0),new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
             XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
             XTopoDS_Wire RWc = new XBRepBuilderAPI_MakeWire(REc).Wire();
             XBRepBuilderAPI_MakeFace aRMakeFace = new XBRepBuilderAPI_MakeFace(RWc, false);
@@ -980,22 +1185,21 @@ namespace OCCT.WinForms.Net
 
         #endregion
 
-
         #region 字段
         protected CurrentAction3d myCurrentMode;
-		protected CurrentPressedKey myCurrentPressedKey;
-		protected float myCurZoom;
-		protected bool myDegenerateModeIsOn;
-		protected int myXmin;
-		protected int myYmin;
-		protected int myXmax;
-		protected int myYmax;
-		protected int theButtonDownX;
-		protected int theButtonDownY;
-		// for erasing of rectangle
-		protected int theRectDownX;
-		protected int theRectDownY;
-		protected bool IsRectVisible;
+        protected CurrentPressedKey myCurrentPressedKey;
+        protected float myCurZoom;
+        protected bool myDegenerateModeIsOn;
+        protected int myXmin;
+        protected int myYmin;
+        protected int myXmax;
+        protected int myYmax;
+        protected int theButtonDownX;
+        protected int theButtonDownY;
+        // for erasing of rectangle
+        protected int theRectDownX;
+        protected int theRectDownY;
+        protected bool IsRectVisible;
 
         public OCCTProxy OCCTView { get; set; } = null;
         public bool IsInitViewer { get; set; } = false;

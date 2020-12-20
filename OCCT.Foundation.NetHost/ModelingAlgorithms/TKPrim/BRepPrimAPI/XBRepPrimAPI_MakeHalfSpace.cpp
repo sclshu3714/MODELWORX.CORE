@@ -27,11 +27,13 @@ namespace TKPrim {
 	//! Make a HalfSpace defined with a Face and a Point.
 	XBRepPrimAPI_MakeHalfSpace::XBRepPrimAPI_MakeHalfSpace(XTopoDS_Face^ Face, xgp_Pnt^ RefPnt) {
 		NativeHandle = new BRepPrimAPI_MakeHalfSpace(*Face->GetFace(), *RefPnt->GetPnt());
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Make a HalfSpace defined with a Shell and a Point.
 	XBRepPrimAPI_MakeHalfSpace::XBRepPrimAPI_MakeHalfSpace(XTopoDS_Shell^ Shell, xgp_Pnt^ RefPnt) {
 		NativeHandle = new BRepPrimAPI_MakeHalfSpace(*Shell->GetShell(), *RefPnt->GetPnt());
+		SetMakeShapeHandle(NativeHandle);
 	};
 
 	//! Returns the constructed half-space as a solid.
