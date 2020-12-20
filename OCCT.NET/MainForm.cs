@@ -49,6 +49,7 @@ namespace OCCT.NET
             OCCTView = new OCCTViewForm();
             OCCTView.HideOnClose = true;
             OCCTView.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
+            OCCTView.OnOperationEvent += SelectionChanged;
             OCCTView.Show(this.MainPanel);
 
             PropertyView = new PropertyGridForm();
@@ -109,7 +110,7 @@ namespace OCCT.NET
             }
         }
 
-        public void SelectionChanged()
+        public void SelectionChanged(params object[] args)
         {
             switch (OCCTView.DisplayMode())
             {
@@ -522,6 +523,34 @@ namespace OCCT.NET
                     break;
                 case "SetObjectColor":
                     OCCTView.ChangeColor(true);
+                    break;
+                case "Graphic3d_NOM_BRASS":
+                case "Graphic3d_NOM_BRONZE":
+                case "Graphic3d_NOM_COPPER":
+                case "Graphic3d_NOM_GOLD":
+                case "Graphic3d_NOM_PEWTER":
+                case "Graphic3d_NOM_PLASTER":
+                case "Graphic3d_NOM_PLASTIC":
+                case "Graphic3d_NOM_SILVER":
+                case "Graphic3d_NOM_STEEL":
+                case "Graphic3d_NOM_STONE":
+                case "Graphic3d_NOM_SHINY_PLASTIC":
+                case "Graphic3d_NOM_SATIN":
+                case "Graphic3d_NOM_METALIZED":
+                case "Graphic3d_NOM_NEON_GNC":
+                case "Graphic3d_NOM_CHROME":
+                case "Graphic3d_NOM_ALUMINIUM":
+                case "Graphic3d_NOM_OBSIDIAN":
+                case "Graphic3d_NOM_NEON_PHC":
+                case "Graphic3d_NOM_JADE":
+                case "Graphic3d_NOM_CHARCOAL":
+                case "Graphic3d_NOM_WATER":
+                case "Graphic3d_NOM_GLASS":
+                case "Graphic3d_NOM_DIAMOND":
+                case "Graphic3d_NOM_TRANSPARENT":
+                case "Graphic3d_NOM_DEFAULT":
+                case "Graphic3d_NOM_UserDefined":
+                    OCCTView.SetMaterial((Graphic3d_NameOfMaterial)Enum.Parse(typeof(Graphic3d_NameOfMaterial), tempMenu.Tag.ToString()));
                     break;
                 #endregion
                 #region//分析 -

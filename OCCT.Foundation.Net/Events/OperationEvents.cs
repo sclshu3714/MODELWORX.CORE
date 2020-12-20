@@ -9,6 +9,11 @@ namespace OCCT.Foundation.Net
 {
     public class OperationEvents
     {
+        /// <summary>
+        /// 操作事件
+        /// </summary>
+        /// <param name="args"></param>
+        public delegate void OperationEvent(params object[] args);
         public OperationEvents() { }
 
         public void InputEvent_Remove() {

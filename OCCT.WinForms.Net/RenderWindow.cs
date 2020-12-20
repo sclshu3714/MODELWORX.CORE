@@ -496,7 +496,7 @@ namespace OCCT.WinForms.Net
         /// <returns></returns>
         public bool IsObjectSelected
         {
-            get { return OCCTView.GetInteractiveContext().HasSelectedShape(); }
+            get { return OCCTView.IsObjectSelected(); }
         }
 
         /// <summary>

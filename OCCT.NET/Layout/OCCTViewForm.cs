@@ -20,6 +20,7 @@ using TKV3d;
 using System.IO;
 using TKG3d;
 using TKGeomBase;
+using static OCCT.Foundation.Net.OperationEvents;
 
 namespace OCCT.NET.Layout
 {
@@ -29,6 +30,17 @@ namespace OCCT.NET.Layout
         private RenderWindow IRender { get; set; } = null;
 
         private int ModeIndex = 1;
+
+        private OperationEvent operationEvent;
+        /// <summary>
+        /// 委托操作
+        /// </summary>
+        public event OperationEvent OnOperationEvent
+        {
+            add { operationEvent += value; }
+            remove { operationEvent -= value; }
+        }
+
         public OCCTViewForm()
         {
             InitializeComponent();
@@ -40,6 +52,12 @@ namespace OCCT.NET.Layout
         {
             IRender = new RenderWindow(this.RWControl);
             IRender.SetDisplayMode(ModeIndex);
+            IRender.MouseUp += IRender_MouseUp;
+        }
+
+        private void IRender_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (operationEvent != null) operationEvent();
         }
 
         #region 导出文件
