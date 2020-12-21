@@ -410,7 +410,7 @@ namespace OCCT.NET.Layout
             xgp_Pnt P = new xgp_Pnt(300, 0, 0);
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax2 Axes = new xgp_Ax2(P, V);
-            XBRepPrimAPI_MakeCylinder tempMake = new XBRepPrimAPI_MakeCylinder(Axes, 80, 100, 90);
+            XBRepPrimAPI_MakeCylinder tempMake = new XBRepPrimAPI_MakeCylinder(Axes, 80, 100, Math.PI);
             IRender.AddShape(tempMake.Shape(), true, true);
         }
 
@@ -534,12 +534,13 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void BMakeShell()
         {
-            xgp_Pnt P = new xgp_Pnt(600, 200, 0);
-            xgp_Dir V = new xgp_Dir(1, 0, 0);
-            xgp_Ax3 Axes = new xgp_Ax3(P, V);
-            XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(Axes, 80);
-            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(cylindricalSurface, false);
-            IRender.AddShape(tempMake.Shape(), true, true);
+            //xgp_Pnt P = new xgp_Pnt(600, 200, 0);
+            //xgp_Dir V = new xgp_Dir(0, 0, 1);
+            //xgp_Ax3 Axes = new xgp_Ax3(P, V);
+            //xgp_Cylinder cylinder = new xgp_Cylinder(Axes, 80);
+            //XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(cylinder);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(cylindricalSurface, true);
+            //IRender.AddShape(tempMake.Shape(), true, true);
         }
 
         /// <summary>
@@ -547,13 +548,13 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void BMakeSolid()
         {
-            xgp_Pnt P = new xgp_Pnt(600, 200, 0);
-            xgp_Dir V = new xgp_Dir(1, 0, 0);
-            xgp_Ax3 Axes = new xgp_Ax3(P, V);
-            XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(Axes, 80);
-            XBRepBuilderAPI_MakeShell tempMakeShell = new XBRepBuilderAPI_MakeShell(cylindricalSurface, false);
-            XBRepBuilderAPI_MakeSolid tempMake = new XBRepBuilderAPI_MakeSolid(tempMakeShell.Shell());
-            IRender.AddShape(tempMake.Shape(), true, true);
+            //xgp_Pnt P = new xgp_Pnt(600, 400, 0);
+            //xgp_Dir V = new xgp_Dir(0, 0, 1);
+            //xgp_Ax3 Axes = new xgp_Ax3(P, V);
+            //XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(Axes, 80);
+            //XBRepBuilderAPI_MakeShell tempMakeShell = new XBRepBuilderAPI_MakeShell(cylindricalSurface, true);
+            //XBRepBuilderAPI_MakeSolid tempMake = new XBRepBuilderAPI_MakeSolid(tempMakeShell.Shell());
+            //IRender.AddShape(tempMake.Shape(), true, true);
         }
 
         /// <summary>
@@ -603,9 +604,7 @@ namespace OCCT.NET.Layout
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax2 Axes = new xgp_Ax2(P, V);
             xgp_Elips elips = new xgp_Elips(Axes, 80, 40);
-            xgp_Pnt P1 = new xgp_Pnt(480, 300, 0);
-            xgp_Pnt P2 = new xgp_Pnt(320, 300, 0);
-            XGC_MakeArcOfEllipse tempMake = new XGC_MakeArcOfEllipse(elips, P1, P2, false);
+            XGC_MakeArcOfEllipse tempMake = new XGC_MakeArcOfEllipse(elips, 90, 270, false);
             XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
             IRender.AddShape(tempEdge.Edge(), true, true);
         }
@@ -619,8 +618,7 @@ namespace OCCT.NET.Layout
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax2 Axes = new xgp_Ax2(P, V);
             xgp_Hypr hypr = new xgp_Hypr(Axes, 80, 40);
-            xgp_Pnt P2 = new xgp_Pnt(700, 300, 0);
-            XGC_MakeArcOfHyperbola tempMake = new XGC_MakeArcOfHyperbola(hypr, P, P2, false);
+            XGC_MakeArcOfHyperbola tempMake = new XGC_MakeArcOfHyperbola(hypr, 90, 270, false);
             XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
             IRender.AddShape(tempEdge.Edge(), true, true);
         }
@@ -633,10 +631,9 @@ namespace OCCT.NET.Layout
             xgp_Pnt P = new xgp_Pnt(600, 300, 0);
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            xgp_Pnt F = new xgp_Pnt(650, 300, 0);
+            xgp_Pnt F = new xgp_Pnt(650, 300, 300);
             xgp_Parab parab = new xgp_Parab(Axes, F);
-            xgp_Pnt P2 = new xgp_Pnt(700, 300, 0);
-            XGC_MakeArcOfParabola tempMake = new XGC_MakeArcOfParabola(parab, P, P2, false);
+            XGC_MakeArcOfParabola tempMake = new XGC_MakeArcOfParabola(parab, 90, 180, false);
             XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
             IRender.AddShape(tempEdge.Edge(), true, true);
         }
@@ -729,7 +726,7 @@ namespace OCCT.NET.Layout
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax1 Axes = new xgp_Ax1(P, V);
             XGC_MakePlane tempGC = new XGC_MakePlane(Axes);
-            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), 200, 400, 200, 400, false);
             IRender.AddShape(tempMake.Shape(), true, true);
         }
 
@@ -752,10 +749,8 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void MakeScale()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            xgp_Pnt P = new xgp_Pnt(600, 600, 200);
+            XGC_MakeScale tempGC = new XGC_MakeScale(P, 1.0);
             //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
             //IRender.AddShape(tempMake.Shape(), true, true);
         }
