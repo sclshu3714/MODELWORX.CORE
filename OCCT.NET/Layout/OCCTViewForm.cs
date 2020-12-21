@@ -603,8 +603,9 @@ namespace OCCT.NET.Layout
             xgp_Dir V = new xgp_Dir(1, 0, 0);
             xgp_Ax2 Axes = new xgp_Ax2(P, V);
             xgp_Elips elips = new xgp_Elips(Axes, 80, 40);
-            xgp_Pnt P2 = new xgp_Pnt(500, 300, 0);
-            XGC_MakeArcOfEllipse tempMake = new XGC_MakeArcOfEllipse(elips, P, P2, false);
+            xgp_Pnt P1 = new xgp_Pnt(480, 300, 0);
+            xgp_Pnt P2 = new xgp_Pnt(320, 300, 0);
+            XGC_MakeArcOfEllipse tempMake = new XGC_MakeArcOfEllipse(elips, P1, P2, false);
             XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
             IRender.AddShape(tempEdge.Edge(), true, true);
         }

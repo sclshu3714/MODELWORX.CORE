@@ -26,21 +26,21 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin7 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
-            WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin7 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
-            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient19 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient43 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin7 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
-            WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient7 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient44 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient20 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient45 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient7 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient46 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient47 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient21 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient48 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient49 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
+            WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin1 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient1 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient2 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient2 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient3 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient4 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient5 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient3 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient6 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient7 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -122,6 +122,33 @@
             this.menuItem72 = new System.Windows.Forms.MenuItem();
             this.menuItem73 = new System.Windows.Forms.MenuItem();
             this.menuItem74 = new System.Windows.Forms.MenuItem();
+            this.menuItem76 = new System.Windows.Forms.MenuItem();
+            this.menuItem77 = new System.Windows.Forms.MenuItem();
+            this.menuItem78 = new System.Windows.Forms.MenuItem();
+            this.menuItem79 = new System.Windows.Forms.MenuItem();
+            this.menuItem80 = new System.Windows.Forms.MenuItem();
+            this.menuItem81 = new System.Windows.Forms.MenuItem();
+            this.menuItem82 = new System.Windows.Forms.MenuItem();
+            this.menuItem83 = new System.Windows.Forms.MenuItem();
+            this.menuItem84 = new System.Windows.Forms.MenuItem();
+            this.menuItem85 = new System.Windows.Forms.MenuItem();
+            this.menuItem86 = new System.Windows.Forms.MenuItem();
+            this.menuItem87 = new System.Windows.Forms.MenuItem();
+            this.menuItem88 = new System.Windows.Forms.MenuItem();
+            this.menuItem89 = new System.Windows.Forms.MenuItem();
+            this.menuItem90 = new System.Windows.Forms.MenuItem();
+            this.menuItem91 = new System.Windows.Forms.MenuItem();
+            this.menuItem92 = new System.Windows.Forms.MenuItem();
+            this.menuItem93 = new System.Windows.Forms.MenuItem();
+            this.menuItem94 = new System.Windows.Forms.MenuItem();
+            this.menuItem95 = new System.Windows.Forms.MenuItem();
+            this.menuItem96 = new System.Windows.Forms.MenuItem();
+            this.menuItem97 = new System.Windows.Forms.MenuItem();
+            this.menuItem98 = new System.Windows.Forms.MenuItem();
+            this.menuItem99 = new System.Windows.Forms.MenuItem();
+            this.menuItem100 = new System.Windows.Forms.MenuItem();
+            this.menuItem101 = new System.Windows.Forms.MenuItem();
+            this.menuItem102 = new System.Windows.Forms.MenuItem();
             this.tsmiAnalysis = new System.Windows.Forms.MenuItem();
             this.menuItem69 = new System.Windows.Forms.MenuItem();
             this.menuItem70 = new System.Windows.Forms.MenuItem();
@@ -156,42 +183,15 @@
             this.material = new System.Windows.Forms.ToolBarButton();
             this.transparency = new System.Windows.Forms.ToolBarButton();
             this.delete = new System.Windows.Forms.ToolBarButton();
-            this.menuItem76 = new System.Windows.Forms.MenuItem();
-            this.menuItem77 = new System.Windows.Forms.MenuItem();
-            this.menuItem78 = new System.Windows.Forms.MenuItem();
-            this.menuItem79 = new System.Windows.Forms.MenuItem();
-            this.menuItem80 = new System.Windows.Forms.MenuItem();
-            this.menuItem81 = new System.Windows.Forms.MenuItem();
-            this.menuItem82 = new System.Windows.Forms.MenuItem();
-            this.menuItem83 = new System.Windows.Forms.MenuItem();
-            this.menuItem84 = new System.Windows.Forms.MenuItem();
-            this.menuItem85 = new System.Windows.Forms.MenuItem();
-            this.menuItem86 = new System.Windows.Forms.MenuItem();
-            this.menuItem87 = new System.Windows.Forms.MenuItem();
-            this.menuItem88 = new System.Windows.Forms.MenuItem();
-            this.menuItem89 = new System.Windows.Forms.MenuItem();
-            this.menuItem90 = new System.Windows.Forms.MenuItem();
-            this.menuItem91 = new System.Windows.Forms.MenuItem();
-            this.menuItem92 = new System.Windows.Forms.MenuItem();
-            this.menuItem93 = new System.Windows.Forms.MenuItem();
-            this.menuItem94 = new System.Windows.Forms.MenuItem();
-            this.menuItem95 = new System.Windows.Forms.MenuItem();
-            this.menuItem96 = new System.Windows.Forms.MenuItem();
-            this.menuItem97 = new System.Windows.Forms.MenuItem();
-            this.menuItem98 = new System.Windows.Forms.MenuItem();
-            this.menuItem99 = new System.Windows.Forms.MenuItem();
-            this.menuItem100 = new System.Windows.Forms.MenuItem();
-            this.menuItem101 = new System.Windows.Forms.MenuItem();
-            this.menuItem102 = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 643);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 809);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 9, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1247, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1663, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip";
             // 
@@ -741,342 +741,6 @@
             this.menuItem74.Tag = "SetObjectColor";
             this.menuItem74.Text = "设置颜色";
             // 
-            // tsmiAnalysis
-            // 
-            this.tsmiAnalysis.Index = 4;
-            this.tsmiAnalysis.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem69});
-            this.tsmiAnalysis.Text = "分析(&N)";
-            // 
-            // menuItem69
-            // 
-            this.menuItem69.Index = 0;
-            this.menuItem69.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem70,
-            this.menuItem71});
-            this.menuItem69.Text = "动画";
-            // 
-            // menuItem70
-            // 
-            this.menuItem70.Index = 0;
-            this.menuItem70.Tag = "StartAnimation";
-            this.menuItem70.Text = "开始";
-            // 
-            // menuItem71
-            // 
-            this.menuItem71.Index = 1;
-            this.menuItem71.Tag = "EndAnimation";
-            this.menuItem71.Text = "停止";
-            // 
-            // tsmiHelper
-            // 
-            this.tsmiHelper.Index = 5;
-            this.tsmiHelper.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem75});
-            this.tsmiHelper.Text = "系统(&H)";
-            // 
-            // menuItem75
-            // 
-            this.menuItem75.Index = 0;
-            this.menuItem75.Tag = "SetBackgroundColor";
-            this.menuItem75.Text = "背景色";
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.ActiveAutoHideContent = null;
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.DockBackColor = System.Drawing.SystemColors.Control;
-            this.MainPanel.Location = new System.Drawing.Point(0, 56);
-            this.MainPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.MainPanel.RightToLeftLayout = true;
-            this.MainPanel.ShowDocumentIcon = true;
-            this.MainPanel.Size = new System.Drawing.Size(1247, 587);
-            dockPanelGradient19.EndColor = System.Drawing.SystemColors.ControlLight;
-            dockPanelGradient19.StartColor = System.Drawing.SystemColors.ControlLight;
-            autoHideStripSkin7.DockStripGradient = dockPanelGradient19;
-            tabGradient43.EndColor = System.Drawing.SystemColors.Control;
-            tabGradient43.StartColor = System.Drawing.SystemColors.Control;
-            tabGradient43.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-            autoHideStripSkin7.TabGradient = tabGradient43;
-            dockPanelSkin7.AutoHideStripSkin = autoHideStripSkin7;
-            tabGradient44.EndColor = System.Drawing.SystemColors.ControlLightLight;
-            tabGradient44.StartColor = System.Drawing.SystemColors.ControlLightLight;
-            tabGradient44.TextColor = System.Drawing.SystemColors.ControlText;
-            dockPaneStripGradient7.ActiveTabGradient = tabGradient44;
-            dockPanelGradient20.EndColor = System.Drawing.SystemColors.Control;
-            dockPanelGradient20.StartColor = System.Drawing.SystemColors.Control;
-            dockPaneStripGradient7.DockStripGradient = dockPanelGradient20;
-            tabGradient45.EndColor = System.Drawing.SystemColors.ControlLight;
-            tabGradient45.StartColor = System.Drawing.SystemColors.ControlLight;
-            tabGradient45.TextColor = System.Drawing.SystemColors.ControlText;
-            dockPaneStripGradient7.InactiveTabGradient = tabGradient45;
-            dockPaneStripSkin7.DocumentGradient = dockPaneStripGradient7;
-            tabGradient46.EndColor = System.Drawing.SystemColors.ActiveCaption;
-            tabGradient46.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            tabGradient46.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
-            tabGradient46.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dockPaneStripToolWindowGradient7.ActiveCaptionGradient = tabGradient46;
-            tabGradient47.EndColor = System.Drawing.SystemColors.Control;
-            tabGradient47.StartColor = System.Drawing.SystemColors.Control;
-            tabGradient47.TextColor = System.Drawing.SystemColors.ControlText;
-            dockPaneStripToolWindowGradient7.ActiveTabGradient = tabGradient47;
-            dockPanelGradient21.EndColor = System.Drawing.SystemColors.ControlLight;
-            dockPanelGradient21.StartColor = System.Drawing.SystemColors.ControlLight;
-            dockPaneStripToolWindowGradient7.DockStripGradient = dockPanelGradient21;
-            tabGradient48.EndColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            tabGradient48.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            tabGradient48.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            tabGradient48.TextColor = System.Drawing.SystemColors.ControlText;
-            dockPaneStripToolWindowGradient7.InactiveCaptionGradient = tabGradient48;
-            tabGradient49.EndColor = System.Drawing.Color.Transparent;
-            tabGradient49.StartColor = System.Drawing.Color.Transparent;
-            tabGradient49.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-            dockPaneStripToolWindowGradient7.InactiveTabGradient = tabGradient49;
-            dockPaneStripSkin7.ToolWindowGradient = dockPaneStripToolWindowGradient7;
-            dockPanelSkin7.DockPaneStripSkin = dockPaneStripSkin7;
-            this.MainPanel.Skin = dockPanelSkin7;
-            this.MainPanel.TabIndex = 14;
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "");
-            this.imageList.Images.SetKeyName(1, "");
-            this.imageList.Images.SetKeyName(2, "");
-            this.imageList.Images.SetKeyName(3, "");
-            this.imageList.Images.SetKeyName(4, "");
-            this.imageList.Images.SetKeyName(5, "");
-            this.imageList.Images.SetKeyName(6, "");
-            this.imageList.Images.SetKeyName(7, "");
-            this.imageList.Images.SetKeyName(8, "");
-            this.imageList.Images.SetKeyName(9, "");
-            this.imageList.Images.SetKeyName(10, "");
-            this.imageList.Images.SetKeyName(11, "");
-            this.imageList.Images.SetKeyName(12, "");
-            this.imageList.Images.SetKeyName(13, "");
-            this.imageList.Images.SetKeyName(14, "");
-            this.imageList.Images.SetKeyName(15, "");
-            this.imageList.Images.SetKeyName(16, "");
-            this.imageList.Images.SetKeyName(17, "");
-            this.imageList.Images.SetKeyName(18, "");
-            this.imageList.Images.SetKeyName(19, "");
-            this.imageList.Images.SetKeyName(20, "");
-            this.imageList.Images.SetKeyName(21, "");
-            this.imageList.Images.SetKeyName(22, "");
-            this.imageList.Images.SetKeyName(23, "");
-            // 
-            // toolBarView
-            // 
-            this.toolBarView.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
-            this.toolBarView.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-            this.ZoomAll,
-            this.ZoomWin,
-            this.ZoomProg,
-            this.Pan,
-            this.PanGlo,
-            this.Front,
-            this.Back,
-            this.TOP,
-            this.BOTTOM,
-            this.LEFT,
-            this.RIGHT,
-            this.Axo,
-            this.Rot,
-            this.Reset,
-            this.HlrOn,
-            this.HlrOff});
-            this.toolBarView.DropDownArrows = true;
-            this.toolBarView.ImageList = this.imageList;
-            this.toolBarView.Location = new System.Drawing.Point(0, 28);
-            this.toolBarView.Name = "toolBarView";
-            this.toolBarView.ShowToolTips = true;
-            this.toolBarView.Size = new System.Drawing.Size(1247, 28);
-            this.toolBarView.TabIndex = 18;
-            this.toolBarView.Visible = false;
-            this.toolBarView.Wrappable = false;
-            // 
-            // ZoomAll
-            // 
-            this.ZoomAll.ImageIndex = 8;
-            this.ZoomAll.Name = "ZoomAll";
-            this.ZoomAll.ToolTipText = "FitAll";
-            // 
-            // ZoomWin
-            // 
-            this.ZoomWin.ImageIndex = 9;
-            this.ZoomWin.Name = "ZoomWin";
-            this.ZoomWin.ToolTipText = "Zoom Window";
-            // 
-            // ZoomProg
-            // 
-            this.ZoomProg.ImageIndex = 10;
-            this.ZoomProg.Name = "ZoomProg";
-            this.ZoomProg.ToolTipText = "Dynamic Zooming";
-            // 
-            // Pan
-            // 
-            this.Pan.ImageIndex = 11;
-            this.Pan.Name = "Pan";
-            this.Pan.ToolTipText = "Dynamic Panning";
-            // 
-            // PanGlo
-            // 
-            this.PanGlo.ImageIndex = 12;
-            this.PanGlo.Name = "PanGlo";
-            this.PanGlo.ToolTipText = "GlobalPanning";
-            // 
-            // Front
-            // 
-            this.Front.ImageIndex = 13;
-            this.Front.Name = "Front";
-            this.Front.ToolTipText = "Front";
-            // 
-            // Back
-            // 
-            this.Back.ImageIndex = 14;
-            this.Back.Name = "Back";
-            this.Back.ToolTipText = "Back";
-            // 
-            // TOP
-            // 
-            this.TOP.ImageIndex = 15;
-            this.TOP.Name = "TOP";
-            this.TOP.ToolTipText = "Top";
-            // 
-            // BOTTOM
-            // 
-            this.BOTTOM.ImageIndex = 16;
-            this.BOTTOM.Name = "BOTTOM";
-            this.BOTTOM.ToolTipText = "Bottom";
-            // 
-            // LEFT
-            // 
-            this.LEFT.ImageIndex = 17;
-            this.LEFT.Name = "LEFT";
-            this.LEFT.ToolTipText = "Left";
-            // 
-            // RIGHT
-            // 
-            this.RIGHT.ImageIndex = 18;
-            this.RIGHT.Name = "RIGHT";
-            this.RIGHT.ToolTipText = "Right";
-            // 
-            // Axo
-            // 
-            this.Axo.ImageIndex = 19;
-            this.Axo.Name = "Axo";
-            this.Axo.ToolTipText = "Axo";
-            // 
-            // Rot
-            // 
-            this.Rot.ImageIndex = 20;
-            this.Rot.Name = "Rot";
-            this.Rot.ToolTipText = "Dynamic Rotation";
-            // 
-            // Reset
-            // 
-            this.Reset.ImageIndex = 21;
-            this.Reset.Name = "Reset";
-            this.Reset.ToolTipText = "Reset";
-            // 
-            // HlrOn
-            // 
-            this.HlrOn.ImageIndex = 22;
-            this.HlrOn.Name = "HlrOn";
-            this.HlrOn.Pushed = true;
-            this.HlrOn.ToolTipText = "Hidden On";
-            // 
-            // HlrOff
-            // 
-            this.HlrOff.ImageIndex = 23;
-            this.HlrOff.Name = "HlrOff";
-            this.HlrOff.ToolTipText = "Hidden Off";
-            // 
-            // toolBarTool
-            // 
-            this.toolBarTool.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
-            this.toolBarTool.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-            this.About,
-            this.toolBarButton1,
-            this.wireframe,
-            this.shading,
-            this.color,
-            this.material,
-            this.transparency,
-            this.delete});
-            this.toolBarTool.DropDownArrows = true;
-            this.toolBarTool.ImageList = this.imageList;
-            this.toolBarTool.Location = new System.Drawing.Point(0, 0);
-            this.toolBarTool.Name = "toolBarTool";
-            this.toolBarTool.ShowToolTips = true;
-            this.toolBarTool.Size = new System.Drawing.Size(1247, 28);
-            this.toolBarTool.TabIndex = 17;
-            // 
-            // About
-            // 
-            this.About.ImageIndex = 1;
-            this.About.Name = "About";
-            this.About.ToolTipText = "About(F1)";
-            this.About.Visible = ((bool)(configurationAppSettings.GetValue("About.Visible", typeof(bool))));
-            // 
-            // toolBarButton1
-            // 
-            this.toolBarButton1.Name = "toolBarButton1";
-            this.toolBarButton1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-            // 
-            // wireframe
-            // 
-            this.wireframe.Enabled = ((bool)(configurationAppSettings.GetValue("wireframe.Enabled", typeof(bool))));
-            this.wireframe.ImageIndex = 2;
-            this.wireframe.Name = "wireframe";
-            this.wireframe.Pushed = ((bool)(configurationAppSettings.GetValue("wireframe.Pushed", typeof(bool))));
-            this.wireframe.ToolTipText = "Wireframe";
-            this.wireframe.Visible = ((bool)(configurationAppSettings.GetValue("wireframe.Visible", typeof(bool))));
-            // 
-            // shading
-            // 
-            this.shading.Enabled = ((bool)(configurationAppSettings.GetValue("shading.Enabled", typeof(bool))));
-            this.shading.ImageIndex = 3;
-            this.shading.Name = "shading";
-            this.shading.Pushed = ((bool)(configurationAppSettings.GetValue("shading.Pushed", typeof(bool))));
-            this.shading.ToolTipText = "Shading";
-            this.shading.Visible = ((bool)(configurationAppSettings.GetValue("shading.Visible", typeof(bool))));
-            // 
-            // color
-            // 
-            this.color.Enabled = ((bool)(configurationAppSettings.GetValue("color.Enabled", typeof(bool))));
-            this.color.ImageIndex = 4;
-            this.color.Name = "color";
-            this.color.ToolTipText = "Color";
-            this.color.Visible = ((bool)(configurationAppSettings.GetValue("color.Visible", typeof(bool))));
-            // 
-            // material
-            // 
-            this.material.Enabled = ((bool)(configurationAppSettings.GetValue("material.Enabled", typeof(bool))));
-            this.material.ImageIndex = 5;
-            this.material.Name = "material";
-            this.material.ToolTipText = "Material";
-            this.material.Visible = ((bool)(configurationAppSettings.GetValue("material.Visible", typeof(bool))));
-            // 
-            // transparency
-            // 
-            this.transparency.Enabled = ((bool)(configurationAppSettings.GetValue("transparency.Enabled", typeof(bool))));
-            this.transparency.ImageIndex = 6;
-            this.transparency.Name = "transparency";
-            this.transparency.ToolTipText = "Transparency";
-            this.transparency.Visible = ((bool)(configurationAppSettings.GetValue("transparency.Visible", typeof(bool))));
-            // 
-            // delete
-            // 
-            this.delete.Enabled = ((bool)(configurationAppSettings.GetValue("delete.Enabled", typeof(bool))));
-            this.delete.ImageIndex = 7;
-            this.delete.Name = "delete";
-            this.delete.ToolTipText = "Delete";
-            this.delete.Visible = ((bool)(configurationAppSettings.GetValue("delete.Visible", typeof(bool))));
-            // 
             // menuItem76
             // 
             this.menuItem76.Index = 3;
@@ -1265,19 +929,357 @@
             this.menuItem102.Tag = "Graphic3d_NOM_UserDefined";
             this.menuItem102.Text = "Graphic3d_NOM_UserDefined";
             // 
+            // tsmiAnalysis
+            // 
+            this.tsmiAnalysis.Index = 4;
+            this.tsmiAnalysis.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem69});
+            this.tsmiAnalysis.Text = "分析(&N)";
+            // 
+            // menuItem69
+            // 
+            this.menuItem69.Index = 0;
+            this.menuItem69.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem70,
+            this.menuItem71});
+            this.menuItem69.Text = "动画";
+            // 
+            // menuItem70
+            // 
+            this.menuItem70.Index = 0;
+            this.menuItem70.Tag = "StartAnimation";
+            this.menuItem70.Text = "开始";
+            // 
+            // menuItem71
+            // 
+            this.menuItem71.Index = 1;
+            this.menuItem71.Tag = "EndAnimation";
+            this.menuItem71.Text = "停止";
+            // 
+            // tsmiHelper
+            // 
+            this.tsmiHelper.Index = 5;
+            this.tsmiHelper.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem75});
+            this.tsmiHelper.Text = "系统(&H)";
+            // 
+            // menuItem75
+            // 
+            this.menuItem75.Index = 0;
+            this.menuItem75.Tag = "SetBackgroundColor";
+            this.menuItem75.Text = "背景色";
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.ActiveAutoHideContent = null;
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.DockBackColor = System.Drawing.SystemColors.Control;
+            this.MainPanel.Location = new System.Drawing.Point(0, 56);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.MainPanel.RightToLeftLayout = true;
+            this.MainPanel.ShowDocumentIcon = true;
+            this.MainPanel.Size = new System.Drawing.Size(1663, 753);
+            dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
+            dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
+            autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
+            tabGradient1.EndColor = System.Drawing.SystemColors.Control;
+            tabGradient1.StartColor = System.Drawing.SystemColors.Control;
+            tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+            autoHideStripSkin1.TabGradient = tabGradient1;
+            dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
+            tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
+            dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
+            dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
+            dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
+            tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+            tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+            tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
+            dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
+            tabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption;
+            tabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            tabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
+            tabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dockPaneStripToolWindowGradient1.ActiveCaptionGradient = tabGradient4;
+            tabGradient5.EndColor = System.Drawing.SystemColors.Control;
+            tabGradient5.StartColor = System.Drawing.SystemColors.Control;
+            tabGradient5.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripToolWindowGradient1.ActiveTabGradient = tabGradient5;
+            dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+            dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+            dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
+            tabGradient6.EndColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            tabGradient6.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
+            tabGradient7.EndColor = System.Drawing.Color.Transparent;
+            tabGradient7.StartColor = System.Drawing.Color.Transparent;
+            tabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+            dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
+            dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
+            dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
+            this.MainPanel.Skin = dockPanelSkin1;
+            this.MainPanel.TabIndex = 14;
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "");
+            this.imageList.Images.SetKeyName(1, "");
+            this.imageList.Images.SetKeyName(2, "");
+            this.imageList.Images.SetKeyName(3, "");
+            this.imageList.Images.SetKeyName(4, "");
+            this.imageList.Images.SetKeyName(5, "");
+            this.imageList.Images.SetKeyName(6, "");
+            this.imageList.Images.SetKeyName(7, "");
+            this.imageList.Images.SetKeyName(8, "");
+            this.imageList.Images.SetKeyName(9, "");
+            this.imageList.Images.SetKeyName(10, "");
+            this.imageList.Images.SetKeyName(11, "");
+            this.imageList.Images.SetKeyName(12, "");
+            this.imageList.Images.SetKeyName(13, "");
+            this.imageList.Images.SetKeyName(14, "");
+            this.imageList.Images.SetKeyName(15, "");
+            this.imageList.Images.SetKeyName(16, "");
+            this.imageList.Images.SetKeyName(17, "");
+            this.imageList.Images.SetKeyName(18, "");
+            this.imageList.Images.SetKeyName(19, "");
+            this.imageList.Images.SetKeyName(20, "");
+            this.imageList.Images.SetKeyName(21, "");
+            this.imageList.Images.SetKeyName(22, "");
+            this.imageList.Images.SetKeyName(23, "");
+            // 
+            // toolBarView
+            // 
+            this.toolBarView.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
+            this.toolBarView.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            this.ZoomAll,
+            this.ZoomWin,
+            this.ZoomProg,
+            this.Pan,
+            this.PanGlo,
+            this.Front,
+            this.Back,
+            this.TOP,
+            this.BOTTOM,
+            this.LEFT,
+            this.RIGHT,
+            this.Axo,
+            this.Rot,
+            this.Reset,
+            this.HlrOn,
+            this.HlrOff});
+            this.toolBarView.DropDownArrows = true;
+            this.toolBarView.ImageList = this.imageList;
+            this.toolBarView.Location = new System.Drawing.Point(0, 28);
+            this.toolBarView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toolBarView.Name = "toolBarView";
+            this.toolBarView.ShowToolTips = true;
+            this.toolBarView.Size = new System.Drawing.Size(1663, 28);
+            this.toolBarView.TabIndex = 18;
+            this.toolBarView.Visible = false;
+            this.toolBarView.Wrappable = false;
+            // 
+            // ZoomAll
+            // 
+            this.ZoomAll.ImageIndex = 8;
+            this.ZoomAll.Name = "ZoomAll";
+            this.ZoomAll.ToolTipText = "FitAll";
+            // 
+            // ZoomWin
+            // 
+            this.ZoomWin.ImageIndex = 9;
+            this.ZoomWin.Name = "ZoomWin";
+            this.ZoomWin.ToolTipText = "Zoom Window";
+            // 
+            // ZoomProg
+            // 
+            this.ZoomProg.ImageIndex = 10;
+            this.ZoomProg.Name = "ZoomProg";
+            this.ZoomProg.ToolTipText = "Dynamic Zooming";
+            // 
+            // Pan
+            // 
+            this.Pan.ImageIndex = 11;
+            this.Pan.Name = "Pan";
+            this.Pan.ToolTipText = "Dynamic Panning";
+            // 
+            // PanGlo
+            // 
+            this.PanGlo.ImageIndex = 12;
+            this.PanGlo.Name = "PanGlo";
+            this.PanGlo.ToolTipText = "GlobalPanning";
+            // 
+            // Front
+            // 
+            this.Front.ImageIndex = 13;
+            this.Front.Name = "Front";
+            this.Front.ToolTipText = "Front";
+            // 
+            // Back
+            // 
+            this.Back.ImageIndex = 14;
+            this.Back.Name = "Back";
+            this.Back.ToolTipText = "Back";
+            // 
+            // TOP
+            // 
+            this.TOP.ImageIndex = 15;
+            this.TOP.Name = "TOP";
+            this.TOP.ToolTipText = "Top";
+            // 
+            // BOTTOM
+            // 
+            this.BOTTOM.ImageIndex = 16;
+            this.BOTTOM.Name = "BOTTOM";
+            this.BOTTOM.ToolTipText = "Bottom";
+            // 
+            // LEFT
+            // 
+            this.LEFT.ImageIndex = 17;
+            this.LEFT.Name = "LEFT";
+            this.LEFT.ToolTipText = "Left";
+            // 
+            // RIGHT
+            // 
+            this.RIGHT.ImageIndex = 18;
+            this.RIGHT.Name = "RIGHT";
+            this.RIGHT.ToolTipText = "Right";
+            // 
+            // Axo
+            // 
+            this.Axo.ImageIndex = 19;
+            this.Axo.Name = "Axo";
+            this.Axo.ToolTipText = "Axo";
+            // 
+            // Rot
+            // 
+            this.Rot.ImageIndex = 20;
+            this.Rot.Name = "Rot";
+            this.Rot.ToolTipText = "Dynamic Rotation";
+            // 
+            // Reset
+            // 
+            this.Reset.ImageIndex = 21;
+            this.Reset.Name = "Reset";
+            this.Reset.ToolTipText = "Reset";
+            // 
+            // HlrOn
+            // 
+            this.HlrOn.ImageIndex = 22;
+            this.HlrOn.Name = "HlrOn";
+            this.HlrOn.Pushed = true;
+            this.HlrOn.ToolTipText = "Hidden On";
+            // 
+            // HlrOff
+            // 
+            this.HlrOff.ImageIndex = 23;
+            this.HlrOff.Name = "HlrOff";
+            this.HlrOff.ToolTipText = "Hidden Off";
+            // 
+            // toolBarTool
+            // 
+            this.toolBarTool.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
+            this.toolBarTool.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            this.About,
+            this.toolBarButton1,
+            this.wireframe,
+            this.shading,
+            this.color,
+            this.material,
+            this.transparency,
+            this.delete});
+            this.toolBarTool.DropDownArrows = true;
+            this.toolBarTool.ImageList = this.imageList;
+            this.toolBarTool.Location = new System.Drawing.Point(0, 0);
+            this.toolBarTool.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toolBarTool.Name = "toolBarTool";
+            this.toolBarTool.ShowToolTips = true;
+            this.toolBarTool.Size = new System.Drawing.Size(1663, 28);
+            this.toolBarTool.TabIndex = 17;
+            // 
+            // About
+            // 
+            this.About.ImageIndex = 1;
+            this.About.Name = "About";
+            this.About.ToolTipText = "About(F1)";
+            this.About.Visible = ((bool)(configurationAppSettings.GetValue("About.Visible", typeof(bool))));
+            // 
+            // toolBarButton1
+            // 
+            this.toolBarButton1.Name = "toolBarButton1";
+            this.toolBarButton1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // wireframe
+            // 
+            this.wireframe.Enabled = ((bool)(configurationAppSettings.GetValue("wireframe.Enabled", typeof(bool))));
+            this.wireframe.ImageIndex = 2;
+            this.wireframe.Name = "wireframe";
+            this.wireframe.Pushed = ((bool)(configurationAppSettings.GetValue("wireframe.Pushed", typeof(bool))));
+            this.wireframe.ToolTipText = "Wireframe";
+            this.wireframe.Visible = ((bool)(configurationAppSettings.GetValue("wireframe.Visible", typeof(bool))));
+            // 
+            // shading
+            // 
+            this.shading.Enabled = ((bool)(configurationAppSettings.GetValue("shading.Enabled", typeof(bool))));
+            this.shading.ImageIndex = 3;
+            this.shading.Name = "shading";
+            this.shading.Pushed = ((bool)(configurationAppSettings.GetValue("shading.Pushed", typeof(bool))));
+            this.shading.ToolTipText = "Shading";
+            this.shading.Visible = ((bool)(configurationAppSettings.GetValue("shading.Visible", typeof(bool))));
+            // 
+            // color
+            // 
+            this.color.Enabled = ((bool)(configurationAppSettings.GetValue("color.Enabled", typeof(bool))));
+            this.color.ImageIndex = 4;
+            this.color.Name = "color";
+            this.color.ToolTipText = "Color";
+            this.color.Visible = ((bool)(configurationAppSettings.GetValue("color.Visible", typeof(bool))));
+            // 
+            // material
+            // 
+            this.material.Enabled = ((bool)(configurationAppSettings.GetValue("material.Enabled", typeof(bool))));
+            this.material.ImageIndex = 5;
+            this.material.Name = "material";
+            this.material.ToolTipText = "Material";
+            this.material.Visible = ((bool)(configurationAppSettings.GetValue("material.Visible", typeof(bool))));
+            // 
+            // transparency
+            // 
+            this.transparency.Enabled = ((bool)(configurationAppSettings.GetValue("transparency.Enabled", typeof(bool))));
+            this.transparency.ImageIndex = 6;
+            this.transparency.Name = "transparency";
+            this.transparency.ToolTipText = "Transparency";
+            this.transparency.Visible = ((bool)(configurationAppSettings.GetValue("transparency.Visible", typeof(bool))));
+            // 
+            // delete
+            // 
+            this.delete.Enabled = ((bool)(configurationAppSettings.GetValue("delete.Enabled", typeof(bool))));
+            this.delete.ImageIndex = 7;
+            this.delete.Name = "delete";
+            this.delete.ToolTipText = "Delete";
+            this.delete.Visible = ((bool)(configurationAppSettings.GetValue("delete.Visible", typeof(bool))));
+            // 
             // MainForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Application;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1247, 665);
+            this.ClientSize = new System.Drawing.Size(1663, 831);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.toolBarView);
             this.Controls.Add(this.toolBarTool);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Menu = this.menuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
