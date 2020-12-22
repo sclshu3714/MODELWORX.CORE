@@ -14,8 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepFill_Pipe_HeaderFile
-#define _BRepFill_Pipe_HeaderFile
+#ifndef _XBRepFill_Pipe_HeaderFile
+#define _XBRepFill_Pipe_HeaderFile
+#pragma once
+#include <BRepFill_Pipe.hxx>
+#include <XGeomFill_Trihedron.h>
+#include <XTopoDS_Wire.h>
+#include <XTopoDS_Shape.h>
+#include <XTopoDS_Face.h>
+#include <XTopoDS_Edge.h>
+#include <XTopoDS_Vertex.h>
+#include <xgp_Pnt.h>
+#include <XTopTools_ListOfShape.h>
+
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -44,134 +55,93 @@ class TopoDS_Vertex;
 class gp_Pnt;
 class BRepFill_Sweep;
 
+using namespace TKBRep;
+using namespace TKMath;
+namespace TKBool {
+    ref class TKBRep::XTopoDS_Wire;
+    ref class TKBRep::XTopoDS_Shape;
+    ref class TKBRep::XTopoDS_Face;
+    ref class TKBRep::XTopoDS_Edge;
+    ref class TKBRep::XTopoDS_Vertex;
+    ref class TKBRep::XTopTools_ListOfShape;
+    ref class TKMath::xgp_Pnt;
+    //! Create a  shape by sweeping a shape  (the profile)
+    //! along a wire (the spine).
+    //!
+    //! For each edge  or vertex from the spine  the  user
+    //! may ask for the shape generated from each subshape
+    //! of the profile.
+    public ref class XBRepFill_Pipe
+    {
+    public:
 
-//! Create a  shape by sweeping a shape  (the profile)
-//! along a wire (the spine).
-//!
-//! For each edge  or vertex from the spine  the  user
-//! may ask for the shape generated from each subshape
-//! of the profile.
-class BRepFill_Pipe 
-{
-public:
-
-  DEFINE_STANDARD_ALLOC
-
-  
-  Standard_EXPORT BRepFill_Pipe();
-  
-  Standard_EXPORT BRepFill_Pipe(const TopoDS_Wire& Spine,
-                                const TopoDS_Shape& Profile,
-                                const GeomFill_Trihedron aMode = GeomFill_IsCorrectedFrenet,
-                                const Standard_Boolean ForceApproxC1 = Standard_False,
-                                const Standard_Boolean GeneratePartCase = Standard_False);
-  
-  Standard_EXPORT void Perform (const TopoDS_Wire& Spine,
-                                const TopoDS_Shape& Profile,
-                                const Standard_Boolean GeneratePartCase = Standard_False);
-  
-  Standard_EXPORT const TopoDS_Shape& Spine() const;
-  
-  Standard_EXPORT const TopoDS_Shape& Profile() const;
-  
-  Standard_EXPORT const TopoDS_Shape& Shape() const;
-  
-  Standard_EXPORT Standard_Real ErrorOnSurface() const;
-  
-  Standard_EXPORT const TopoDS_Shape& FirstShape() const;
-  
-  Standard_EXPORT const TopoDS_Shape& LastShape() const;
-  
-  //! Returns the  list   of shapes generated   from the
-  //! shape <S>.
-  Standard_EXPORT void Generated (const TopoDS_Shape& S, TopTools_ListOfShape& L);
-  
-  //! Returns the face created from an edge of the spine
-  //! and an edge of the profile.
-  //! if the edges are not in the spine or the profile
-  Standard_EXPORT TopoDS_Face Face (const TopoDS_Edge& ESpine, const TopoDS_Edge& EProfile);
-  
-  //! Returns the edge created from an edge of the spine
-  //! and a vertex of the profile.
-  //! if the edge or the vertex are not in  the spine or
-  //! the profile.
-  Standard_EXPORT TopoDS_Edge Edge (const TopoDS_Edge& ESpine, const TopoDS_Vertex& VProfile);
-  
-  //! Returns  the shape created from the profile at the
-  //! position of the vertex VSpine.
-  //! if the vertex is not in the Spine
-  Standard_EXPORT TopoDS_Shape Section (const TopoDS_Vertex& VSpine) const;
-  
-  //! Create a Wire by sweeping the Point along the <spine>
-  //! if the <Spine> is undefined
-  Standard_EXPORT TopoDS_Wire PipeLine (const gp_Pnt& Point);
+        //! DEFINE_STANDARD_ALLOC
 
 
+        XBRepFill_Pipe();
 
+        XBRepFill_Pipe(BRepFill_Pipe* pos);
 
-protected:
+        void SetPipeHandle(BRepFill_Pipe* pos);
 
+        BRepFill_Pipe* GetPipeHandle();
 
+        //GeomFill_Trihedron aMode = GeomFill_IsCorrectedFrenet, Standard_Boolean ForceApproxC1 = Standard_False, Standard_Boolean GeneratePartCase = Standard_False
+        XBRepFill_Pipe(XTopoDS_Wire^ Spine, XTopoDS_Shape^ Profile,XGeomFill_Trihedron aMode, Standard_Boolean ForceApproxC1, Standard_Boolean GeneratePartCase);
 
+        //Standard_Boolean GeneratePartCase = Standard_False
+        void Perform(XTopoDS_Wire^ Spine, XTopoDS_Shape^ Profile, Standard_Boolean GeneratePartCase);
 
+        XTopoDS_Shape^ Spine();
 
-private:
+        XTopoDS_Shape^ Profile();
 
-  
-  //! Auxiliary  recursive  method  used  to  build  the
-  //! result.
-  Standard_EXPORT TopoDS_Shape MakeShape (const TopoDS_Shape& S,
-                                          const TopoDS_Shape& theOriginalS,
-                                          const TopoDS_Shape& FirstShape,
-                                          const TopoDS_Shape& LastShape);
-  
-  //! Auxiliary recursive method used to find the edge's index
-  Standard_EXPORT Standard_Integer FindEdge (const TopoDS_Shape& S,
-                                             const TopoDS_Edge& E,
-                                             Standard_Integer& Init) const;
-  
-  Standard_EXPORT Standard_Integer FindVertex (const TopoDS_Shape& S, const
-                                               TopoDS_Vertex& V,
-                                               Standard_Integer& Init) const;
-  
-  Standard_EXPORT void DefineRealSegmax();
-  
-  Standard_EXPORT void RebuildTopOrBottomFace (const TopoDS_Shape& aFace,
-                                               const Standard_Boolean IsTop) const;
-  
-  Standard_EXPORT void BuildHistory (const BRepFill_Sweep& theSweep,
-                                     const TopoDS_Shape&   theSection);
+        XTopoDS_Shape^ Shape();
 
+        Standard_Real ErrorOnSurface();
 
-  TopoDS_Wire mySpine;
-  TopoDS_Shape myProfile;
-  TopoDS_Shape myShape;
-  gp_Trsf myTrsf;
-  Handle(BRepFill_LocationLaw) myLoc;
-  Handle(TopTools_HArray2OfShape) mySections;
-  Handle(TopTools_HArray2OfShape) myFaces;
-  Handle(TopTools_HArray2OfShape) myEdges;
-  TopTools_MapOfShape myReversedEdges;
-  BRepFill_DataMapOfShapeHArray2OfShape myTapes;
-  BRepFill_DataMapOfShapeHArray2OfShape myRails;
-  Standard_Integer myCurIndexOfSectionEdge;
-  TopoDS_Shape myFirst;
-  TopoDS_Shape myLast;
-  TopTools_DataMapOfShapeListOfShape myGenMap;
-  Standard_Integer myDegmax;
-  Standard_Integer mySegmax;
-  GeomAbs_Shape myContinuity;
-  GeomFill_Trihedron myMode;
-  Standard_Boolean myForceApproxC1;
-  Standard_Real myErrorOnSurf;
+        XTopoDS_Shape^ FirstShape();
 
+        XTopoDS_Shape^ LastShape();
 
-};
+        //! Returns the  list   of shapes generated   from the
+        //! shape <S>.
+        void Generated(XTopoDS_Shape^ S, XTopTools_ListOfShape^ L);
 
+        //! Returns the face created from an edge of the spine
+        //! and an edge of the profile.
+        //! if the edges are not in the spine or the profile
+        XTopoDS_Face^ Face(XTopoDS_Edge^ ESpine, XTopoDS_Edge^ EProfile);
 
+        //! Returns the edge created from an edge of the spine
+        //! and a vertex of the profile.
+        //! if the edge or the vertex are not in  the spine or
+        //! the profile.
+        XTopoDS_Edge^ Edge(XTopoDS_Edge^ ESpine, XTopoDS_Vertex^ VProfile);
 
+        //! Returns  the shape created from the profile at the
+        //! position of the vertex VSpine.
+        //! if the vertex is not in the Spine
+        XTopoDS_Shape^ Section(XTopoDS_Vertex^ VSpine);
 
+        //! Create a Wire by sweeping the Point along the <spine>
+        //! if the <Spine> is undefined
+        XTopoDS_Wire^ PipeLine(xgp_Pnt^ Point);
 
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property BRepFill_Pipe* IHandle {
+            BRepFill_Pipe* get() {
+                return NativeHandle;
+            }
+            void set(BRepFill_Pipe* handle) {
+                NativeHandle = handle;
+            }
+        }
 
-
-#endif // _BRepFill_Pipe_HeaderFile
+    private:
+        BRepFill_Pipe* NativeHandle;
+    };
+}
+#endif // _XBRepFill_Pipe_HeaderFile

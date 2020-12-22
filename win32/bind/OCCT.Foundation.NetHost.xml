@@ -15,6 +15,11 @@
 本地句柄
 </summary>
         </member>
+        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKBRep.XTopoDS_Shape.IHandle">
             <summary>
 本地句柄
@@ -188,6 +193,11 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
+        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.Handle">
             <summary>
 本地句柄
@@ -217,11 +227,6 @@ X
 指针映射点
 </summary>
             <param name="pos" />
-        </member>
-        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
-            <summary>
-本地句柄
-</summary>
         </member>
         <member name="M:OCCTProxy.InitOCCTProxy">
             <summary>
@@ -586,32 +591,6 @@ Proxy class encapsulating calls to OCCT C++ classes within
 C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
-        <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKLCAF.XTDocStd_Document.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKV3d.XAIS_InteractiveObject.IHandle">
             <summary>
 本地句柄
@@ -642,7 +621,23 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+        <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDocStd_Document.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
             <summary>
 本地句柄
 </summary>
@@ -704,6 +699,11 @@ C++/CLI class visible from .Net (CSharp)
             <param name="pos" />
         </member>
         <member name="P:TKG3d.XGeom_Transformation.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
             <summary>
 本地句柄
 </summary>

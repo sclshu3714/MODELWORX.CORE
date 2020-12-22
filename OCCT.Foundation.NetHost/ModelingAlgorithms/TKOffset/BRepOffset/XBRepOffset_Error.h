@@ -1,6 +1,6 @@
-// Created on: 1993-10-06
+// Created on: 1995-10-12
 // Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1995-1999 Matra Datavision
 // Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
@@ -14,17 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-//function : Surface
-//purpose  : 
-//=======================================================================
+#ifndef _XBRepOffset_Error_HeaderFile
+#define _XBRepOffset_Error_HeaderFile
 
-inline const Handle(Geom_BezierSurface)&  GeomFill_BezierCurves::Surface() 
-     const 
+
+public enum class XBRepOffset_Error
 {
-  return mySurface;
-}
+	BRepOffset_NoError,
+	BRepOffset_UnknownError,
+	BRepOffset_BadNormalsOnGeometry,
+	BRepOffset_C0Geometry,
+	BRepOffset_NullOffset,
+	BRepOffset_NotConnectedShell
+};
 
-
-
-
+#endif // _XBRepOffset_Error_HeaderFile

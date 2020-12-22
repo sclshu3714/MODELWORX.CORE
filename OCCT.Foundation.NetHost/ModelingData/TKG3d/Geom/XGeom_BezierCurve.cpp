@@ -356,7 +356,7 @@ namespace TKG3d {
 	List<Standard_Real>^ XGeom_BezierCurve::Weights() {
 		List<Standard_Real>^ P = gcnew List<Standard_Real>();
 		const TColStd_Array1OfReal* TW = NativeHandle()->Weights();
-		for (Standard_Real i = 0; i < TW->Length(); i++) {
+		for (Standard_Integer i = 0; i < TW->Length(); i++) {
 			P->Add(TW->Value(i));
 		}
 		return P;

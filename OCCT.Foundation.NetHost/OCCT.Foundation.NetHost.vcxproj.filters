@@ -445,6 +445,42 @@
     <Filter Include="源文件\ModelingData\TKGeomBase\gce">
       <UniqueIdentifier>{7d09fc38-9746-4e68-8df8-193fb623c928}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKOffset">
+      <UniqueIdentifier>{386794d2-ac38-4f98-a4fe-46f4f7d544b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKOffset\BRepOffset">
+      <UniqueIdentifier>{7594e188-a2bc-4663-a4c2-f32173c561d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKOffset\BRepOffsetAPI">
+      <UniqueIdentifier>{7ab5dcf2-0cf0-4a81-9c67-f41d104e1cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKOffset">
+      <UniqueIdentifier>{857055d4-19f4-4732-a6ce-e503b6a166d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKOffset\BRepOffset">
+      <UniqueIdentifier>{18ad4276-88a7-4b27-b7dd-d3cc12e56fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKOffset\BRepOffsetAPI">
+      <UniqueIdentifier>{7b005003-b7ef-4157-a8ce-4460e69b2369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBool">
+      <UniqueIdentifier>{e437e1ba-8862-45bc-a002-9bd079156f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKBool\BRepFill">
+      <UniqueIdentifier>{9533d103-408b-48ce-bcbb-5aa9b465b5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKGeomAlgo">
+      <UniqueIdentifier>{ce057064-6d2e-4435-baf5-0474d92e04b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKGeomAlgo\GeomFill">
+      <UniqueIdentifier>{2f336bcc-f1fa-4632-80a8-6854ba299531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBool">
+      <UniqueIdentifier>{0601e812-bb59-4d9d-b89f-a85385dddb83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ModelingAlgorithms\TKBool\BRepFill">
+      <UniqueIdentifier>{7221ddd2-795a-45b0-9eab-d136f06913ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1521,6 +1557,27 @@
     <ClInclude Include="ModelingData\TKGeomBase\gce\xgce_MakeTranslation2d.h">
       <Filter>头文件\ModelingData\TKGeomBase\gce</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\BRepOffset\XBRepOffset_Error.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\BRepOffset</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\BRepOffset\XBRepOffset_Type.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\BRepOffset</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\BRepOffset\XBRepOffset.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\BRepOffset</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\BRepOffset\XBRepOffset_Status.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\BRepOffset</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\BRepOffsetAPI\XBRepOffsetAPI_MakePipe.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\BRepOffsetAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKBool\BRepFill\XBRepFill_Pipe.h">
+      <Filter>头文件\ModelingAlgorithms\TKBool\BRepFill</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKGeomAlgo\GeomFill\XGeomFill_Trihedron.h">
+      <Filter>头文件\ModelingAlgorithms\TKGeomAlgo\GeomFill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2219,6 +2276,15 @@
     </ClCompile>
     <ClCompile Include="ModelingData\TKGeomBase\gce\xgce_MakeTranslation2d.cpp">
       <Filter>源文件\ModelingData\TKGeomBase\gce</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKOffset\BRepOffset\XBRepOffset.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKOffset\BRepOffset</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKBool\BRepFill\XBRepFill_Pipe.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKBool\BRepFill</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKOffset\BRepOffsetAPI\XBRepOffsetAPI_MakePipe.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKOffset\BRepOffsetAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
-// Created on: 1994-04-14
+// Created on: 1993-09-28
 // Created by: Bruno DUMORTIER
-// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1993-1999 Matra Datavision
 // Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
@@ -14,12 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-//function : NbSections
-//purpose  : 
-//=======================================================================
+#ifndef _XGeomFill_Trihedron_HeaderFile
+#define _XGeomFill_Trihedron_HeaderFile
 
-inline Standard_Integer GeomFill_SweepSectionGenerator::NbSections() const 
+
+public enum class XGeomFill_Trihedron
 {
-  return myNbSections;
-}
+	GeomFill_IsCorrectedFrenet,
+	GeomFill_IsFixed,
+	GeomFill_IsFrenet,
+	GeomFill_IsConstantNormal,
+	GeomFill_IsDarboux,
+	GeomFill_IsGuideAC,
+	GeomFill_IsGuidePlan,
+	GeomFill_IsGuideACWithContact,
+	GeomFill_IsGuidePlanWithContact,
+	GeomFill_IsDiscreteTrihedron
+};
+
+#endif // _XGeomFill_Trihedron_HeaderFile

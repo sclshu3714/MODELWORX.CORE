@@ -4298,40 +4298,6 @@ Class TKMath.XTopLoc_Datum3D: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
-Class TKBO.XBOPAlgo_Options: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(opencascade.handle<NCollection_BaseAllocator>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
-  Properties:
-    BOPAlgo_Options* IHandle 'get set' : 
-  Methods:
-    SetAlgoOptionsHandle(BOPAlgo_Options*): PrivateScope, Public, HideBySig
-    GetOptions(): PrivateScope, Public, HideBySig
-    Allocator(): PrivateScope, Public, HideBySig
-    Clear(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    AddError(handle<Message_Alert>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    AddWarning(handle<Message_Alert>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    HasErrors(): PrivateScope, Public, HideBySig
-    HasError(handle<Standard_Type>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    HasWarnings(): PrivateScope, Public, HideBySig
-    HasWarning(handle<Standard_Type>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    GetReport(): PrivateScope, Public, HideBySig
-    DumpErrors(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    DumpWarnings(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    ClearWarnings(): PrivateScope, Public, HideBySig
-    GetParallelMode(): PrivateScope, Public, Static, HideBySig
-    SetParallelMode(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-    SetRunParallel(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    RunParallel(): PrivateScope, Public, HideBySig
-    SetFuzzyValue(Double): PrivateScope, Public, HideBySig
-    FuzzyValue(): PrivateScope, Public, HideBySig
-    SetProgressIndicator(handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    SetUseOBB(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    UseOBB(): PrivateScope, Public, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(BOPAlgo_Options*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -4462,30 +4428,14 @@ Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
-Class TKBRep.XTopTools_ListOfShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(NCollection_List<TopoDS_Shape>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    GetXListOfShapes(): PrivateScope, Public, HideBySig
-    GetListOfShapes(): PrivateScope, Public, HideBySig
-Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     TopoDS_Shape* IHandle 'get set' : 
   Methods:
-    GetVertex(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    TopoDS_Shape* IHandle 'get set' : 
-  Methods:
-    GetEdge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetWire(): PrivateScope, Public, HideBySig
     GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
@@ -4500,34 +4450,70 @@ Class TKBRep.XTopoDS_Face: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKBO.XBOPAlgo_PaveFiller: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-    Void .ctor(BOPAlgo_PaveFiller*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(opencascade.handle<NCollection_BaseAllocator>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class TKBRep.XTopoDS_Edge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Edge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Interfaces:
-    System.IDisposable
   Properties:
-    BOPAlgo_PaveFiller* IHandle 'get set' : 
+    TopoDS_Shape* IHandle 'get set' : 
   Methods:
-    SetPaveFillerHandle(BOPAlgo_PaveFiller*): PrivateScope, Public, HideBySig
-    GetPaveFiller(): PrivateScope, Public, HideBySig
-    DS(): PrivateScope, Public, HideBySig
-    PDS(): PrivateScope, Public, HideBySig
-    SetArguments(XTopTools_ListOfShape): PrivateScope, Public, HideBySig
-    AddArgument(XTopoDS_Shape): PrivateScope, Public, HideBySig
-    Arguments(): PrivateScope, Public, HideBySig
-    Context(handle<IntTools_Context>*): PrivateScope, Public, HideBySig
-    SetSectionAttribute(BOPAlgo_SectionAttribute): PrivateScope, Public, HideBySig
-    SetNonDestructive(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    NonDestructive(): PrivateScope, Public, HideBySig
-    Perform(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetGlue(XBOPAlgo_GlueEnum): PrivateScope, Public, HideBySig
-    Glue(): PrivateScope, Public, HideBySig
-    SetAvoidBuildPCurve(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    IsAvoidBuildPCurve(): PrivateScope, Public, HideBySig
+    GetEdge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopoDS_Vertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKBRep.XTopoDS_Shape
+    Void .ctor(TopoDS_Vertex*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    TopoDS_Shape* IHandle 'get set' : 
+  Methods:
+    GetVertex(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKBRep.XTopTools_ListOfShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(NCollection_List<TopoDS_Shape>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetXListOfShapes(): PrivateScope, Public, HideBySig
+    GetListOfShapes(): PrivateScope, Public, HideBySig
+Class TKBool.XBRepFill_Pipe: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKBRep.XTopoDS_Wire, TKBRep.XTopoDS_Shape, XGeomFill_Trihedron, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepFill_Pipe*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepFill_Pipe* IHandle 'get set' : 
+  Methods:
+    SetPipeHandle(BRepFill_Pipe*): PrivateScope, Public, HideBySig
+    GetPipeHandle(): PrivateScope, Public, HideBySig
+    Perform(XTopoDS_Wire, XTopoDS_Shape, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Spine(): PrivateScope, Public, HideBySig
+    Profile(): PrivateScope, Public, HideBySig
+    Shape(): PrivateScope, Public, HideBySig
+    ErrorOnSurface(): PrivateScope, Public, HideBySig
+    FirstShape(): PrivateScope, Public, HideBySig
+    LastShape(): PrivateScope, Public, HideBySig
+    Generated(XTopoDS_Shape, XTopTools_ListOfShape): PrivateScope, Public, HideBySig
+    Face(XTopoDS_Edge, XTopoDS_Edge): PrivateScope, Public, HideBySig
+    Edge(XTopoDS_Edge, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Section(XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    PipeLine(xgp_Pnt): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    set_IHandle(BOPAlgo_PaveFiller*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    set_IHandle(BRepFill_Pipe*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Struct XGeomFill_Trihedron: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGeomFill_Trihedron GeomFill_IsCorrectedFrenet = 0 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsFixed = 1 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsFrenet = 2 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsConstantNormal = 3 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsDarboux = 4 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsGuideAC = 5 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsGuidePlan = 6 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsGuideACWithContact = 7 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsGuidePlanWithContact = 8 : Public, Static, Literal, HasDefault
+    XGeomFill_Trihedron GeomFill_IsDiscreteTrihedron = 9 : Public, Static, Literal, HasDefault
 Struct XTopAbs_Orientation: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -4557,6 +4543,68 @@ Struct XTopAbs_State: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldI
     XTopAbs_State TopAbs_OUT = 1 : Public, Static, Literal, HasDefault
     XTopAbs_State TopAbs_ON = 2 : Public, Static, Literal, HasDefault
     XTopAbs_State TopAbs_UNKNOWN = 3 : Public, Static, Literal, HasDefault
+Class TKBO.XBOPAlgo_Options: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<NCollection_BaseAllocator>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    BOPAlgo_Options* IHandle 'get set' : 
+  Methods:
+    SetAlgoOptionsHandle(BOPAlgo_Options*): PrivateScope, Public, HideBySig
+    GetOptions(): PrivateScope, Public, HideBySig
+    Allocator(): PrivateScope, Public, HideBySig
+    Clear(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddError(handle<Message_Alert>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    AddWarning(handle<Message_Alert>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasErrors(): PrivateScope, Public, HideBySig
+    HasError(handle<Standard_Type>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasWarnings(): PrivateScope, Public, HideBySig
+    HasWarning(handle<Standard_Type>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    GetReport(): PrivateScope, Public, HideBySig
+    DumpErrors(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    DumpWarnings(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    ClearWarnings(): PrivateScope, Public, HideBySig
+    GetParallelMode(): PrivateScope, Public, Static, HideBySig
+    SetParallelMode(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    SetRunParallel(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RunParallel(): PrivateScope, Public, HideBySig
+    SetFuzzyValue(Double): PrivateScope, Public, HideBySig
+    FuzzyValue(): PrivateScope, Public, HideBySig
+    SetProgressIndicator(handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetUseOBB(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UseOBB(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BOPAlgo_Options*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKBO.XBOPAlgo_PaveFiller: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(BOPAlgo_PaveFiller*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<NCollection_BaseAllocator>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    BOPAlgo_PaveFiller* IHandle 'get set' : 
+  Methods:
+    SetPaveFillerHandle(BOPAlgo_PaveFiller*): PrivateScope, Public, HideBySig
+    GetPaveFiller(): PrivateScope, Public, HideBySig
+    DS(): PrivateScope, Public, HideBySig
+    PDS(): PrivateScope, Public, HideBySig
+    SetArguments(XTopTools_ListOfShape): PrivateScope, Public, HideBySig
+    AddArgument(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Arguments(): PrivateScope, Public, HideBySig
+    Context(handle<IntTools_Context>*): PrivateScope, Public, HideBySig
+    SetSectionAttribute(BOPAlgo_SectionAttribute): PrivateScope, Public, HideBySig
+    SetNonDestructive(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    NonDestructive(): PrivateScope, Public, HideBySig
+    Perform(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetGlue(XBOPAlgo_GlueEnum): PrivateScope, Public, HideBySig
+    Glue(): PrivateScope, Public, HideBySig
+    SetAvoidBuildPCurve(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    IsAvoidBuildPCurve(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BOPAlgo_PaveFiller*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XBOPAlgo_GlueEnum: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -5009,17 +5057,57 @@ Struct XChFi2d_ConstructionError: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XChFi2d_ConstructionError ChFi2d_LastEdgeDegenerated = 10 : Public, Static, Literal, HasDefault
     XChFi2d_ConstructionError ChFi2d_BothEdgesDegenerated = 11 : Public, Static, Literal, HasDefault
     XChFi2d_ConstructionError ChFi2d_NotAuthorized = 12 : Public, Static, Literal, HasDefault
-Class TKBRep.XTopoDS_Wire: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKBRep.XTopoDS_Shape
-    Void .ctor(TopoDS_Wire*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class TKPrim.XBRepPrimAPI_MakeSweep: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
-    TopoDS_Shape* IHandle 'get set' : 
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
-    GetWire(): PrivateScope, Public, HideBySig
-    GetShape(): PrivateScope, Public, Virtual, HideBySig
+    SetMakeSweepHandle(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig
+    GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    FirstShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    LastShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKOffset.XBRepOffsetAPI_MakePipe: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKPrim.XBRepPrimAPI_MakeSweep
+    Void .ctor(TKBRep.XTopoDS_Wire, TKBRep.XTopoDS_Shape, XGeomFill_Trihedron, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Wire, TKBRep.XTopoDS_Shape): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepOffsetAPI_MakePipe*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakePipeHandle(BRepOffsetAPI_MakePipe*): PrivateScope, Public, HideBySig
+    GetMakePipe(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Shape(): PrivateScope, Public, Virtual, HideBySig
+    Pipe(): PrivateScope, Public, HideBySig
+    Build(): PrivateScope, Public, Virtual, HideBySig
+    FirstShape(): PrivateScope, Public, Virtual, HideBySig
+    LastShape(): PrivateScope, Public, Virtual, HideBySig
+    Generated(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Generated(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    ErrorOnSurface(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKOffset.XBRepOffset: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Surface(XGeom_Surface, Double, XBRepOffset_Status, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CollapseSingularities(XGeom_Surface, XTopoDS_Face, Double): PrivateScope, Public, Static, HideBySig
+Struct XBRepOffset_Status: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XBRepOffset_Status BRepOffset_Good = 0 : Public, Static, Literal, HasDefault
+    XBRepOffset_Status BRepOffset_Reversed = 1 : Public, Static, Literal, HasDefault
+    XBRepOffset_Status BRepOffset_Degenerated = 2 : Public, Static, Literal, HasDefault
+    XBRepOffset_Status BRepOffset_Unknown = 3 : Public, Static, Literal, HasDefault
 Class TKBRep.XTopoDS_Shell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Shape
     Void .ctor(TopoDS_Shell*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5530,21 +5618,6 @@ Class TKPrim.XBRepPrimAPI_MakeHalfSpace: AutoLayout, AnsiClass, Class, Public, B
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     Solid(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
-    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKPrim.XBRepPrimAPI_MakeSweep: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKTopAlgo.XBRepBuilderAPI_MakeShape
-    Void .ctor(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
-  Methods:
-    SetMakeSweepHandle(BRepPrimAPI_MakeSweep*): PrivateScope, Public, HideBySig
-    GetMakeSweep(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
-    Shape(): PrivateScope, Public, Virtual, HideBySig
-    FirstShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    LastShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKPrim.XBRepPrimAPI_MakePrism: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -6690,6 +6763,15 @@ Class TKG3d.XGeom_BSplineSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    UKnots(): PrivateScope, Public, HideBySig
+    UKnots(Double[]): PrivateScope, Public, HideBySig
+    UKnotSequence(): PrivateScope, Public, HideBySig
+    UKnotSequence(Double[]): PrivateScope, Public, HideBySig
+    UMultiplicity(Int32): PrivateScope, Public, HideBySig
+    UMultiplicities(): PrivateScope, Public, HideBySig
+    UMultiplicities(Int32[]): PrivateScope, Public, HideBySig
+    VDegree(): PrivateScope, Public, HideBySig
+    VKnot(Int32): PrivateScope, Public, HideBySig
     VKnotDistribution(): PrivateScope, Public, HideBySig
     VKnots(): PrivateScope, Public, HideBySig
     VKnots(Double[]): PrivateScope, Public, HideBySig
@@ -6798,15 +6880,6 @@ Class TKG3d.XGeom_BSplineSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
     UDegree(): PrivateScope, Public, HideBySig
     UKnot(Int32): PrivateScope, Public, HideBySig
     UKnotDistribution(): PrivateScope, Public, HideBySig
-    UKnots(): PrivateScope, Public, HideBySig
-    UKnots(Double[]): PrivateScope, Public, HideBySig
-    UKnotSequence(): PrivateScope, Public, HideBySig
-    UKnotSequence(Double[]): PrivateScope, Public, HideBySig
-    UMultiplicity(Int32): PrivateScope, Public, HideBySig
-    UMultiplicities(): PrivateScope, Public, HideBySig
-    UMultiplicities(Int32[]): PrivateScope, Public, HideBySig
-    VDegree(): PrivateScope, Public, HideBySig
-    VKnot(Int32): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Point> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6948,8 +7021,8 @@ Class NCollection_Haft<opencascade::handle<Geom_ElementarySurface> >: AutoLayout
   Interfaces:
     System.IDisposable
   Methods:
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XGeom_ElementarySurface: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_Surface
     Void .ctor(opencascade.handle<Geom_ElementarySurface>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

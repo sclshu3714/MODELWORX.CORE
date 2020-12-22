@@ -14,20 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepOffset_Status_HeaderFile
-#define _BRepOffset_Status_HeaderFile
+#ifndef _XBRepOffset_Type_HeaderFile
+#define _XBRepOffset_Type_HeaderFile
 
-//! status of an offset face
-//! Good :
-//! Reversed : e.g. Offset > Radius of a cylinder
-//! Degenerated : e.g. Offset = Radius of a cylinder
-//! Unknown : e.g. for a Beziersurf
-enum BRepOffset_Status
+
+public enum class XBRepOffset_Type
 {
-BRepOffset_Good,
-BRepOffset_Reversed,
-BRepOffset_Degenerated,
-BRepOffset_Unknown
+	BRepOffset_Concave,
+	BRepOffset_Convex,
+	BRepOffset_Tangent,
+	BRepOffset_FreeBoundary,
+	BRepOffset_Other
 };
 
-#endif // _BRepOffset_Status_HeaderFile
+#endif // _XBRepOffset_Type_HeaderFile
