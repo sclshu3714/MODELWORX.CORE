@@ -811,12 +811,12 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void EMakeCirc()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
-            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
-            //IRender.AddShape(tempMake.Shape(), true, true);
+            xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            xgce_MakeCirc tempGCE = new xgce_MakeCirc(Axes, 270);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGCE.Value());
+            IRender.AddShape(tempMake.Shape(), true, true);
         }
 
         /// <summary>
@@ -824,11 +824,13 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void EMakeCirc2d()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
-            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            xgp_Pnt2d P = new xgp_Pnt2d(400, 400);
+            xgp_Dir2d V = new xgp_Dir2d(1, 0);
+            xgp_Ax2d A = new xgp_Ax2d(P, V);
+            xgp_Ax22d Axis = new xgp_Ax22d(A, false);
+            xgp_Circ2d Axes = new xgp_Circ2d(Axis, 80);
+            xgce_MakeCirc2d tempGCE = new xgce_MakeCirc2d(Axes, 60);
+            //XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGCE.Value());
             //IRender.AddShape(tempMake.Shape(), true, true);
         }
 
@@ -837,12 +839,11 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void EMakeCone()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
-            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
-            //IRender.AddShape(tempMake.Shape(), true, true);
+            xgp_Pnt P1 = new xgp_Pnt(400, 400, 0);
+            xgp_Pnt P2 = new xgp_Pnt(400, 600, 0);
+            xgce_MakeCone tempGCE = new xgce_MakeCone(P1, P2, 80, 80);
+            XBRepBuilderAPI_MakeFace tempMake = new XBRepBuilderAPI_MakeFace(tempGCE.Value());
+            IRender.AddShape(tempMake.Shape(), true, true);
         }
 
         /// <summary>
@@ -850,12 +851,12 @@ namespace OCCT.NET.Layout
         /// </summary>
         internal void EMakeCylinder()
         {
-            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
-            //xgp_Dir V = new xgp_Dir(1, 0, 0);
-            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
-            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
-            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
-            //IRender.AddShape(tempMake.Shape(), true, true);
+            xgp_Pnt P1 = new xgp_Pnt(400, 400, 0);
+            xgp_Pnt P2 = new xgp_Pnt(400, 600, 0);
+            xgp_Cylinder Cyl = new xgp_Cylinder();
+            xgce_MakeCylinder tempGCE = new xgce_MakeCylinder(Cyl, 80);
+            XBRepBuilderAPI_MakeFace tempMake = new XBRepBuilderAPI_MakeFace(tempGCE.Value());
+            IRender.AddShape(tempMake.Shape(), true, true);
         }
 
         /// <summary>
