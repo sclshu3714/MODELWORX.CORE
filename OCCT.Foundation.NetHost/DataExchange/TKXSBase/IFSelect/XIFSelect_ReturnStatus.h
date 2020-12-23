@@ -14,19 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFSelect_PrintFail_HeaderFile
-#define _IFSelect_PrintFail_HeaderFile
+#ifndef _XIFSelect_ReturnStatus_HeaderFile
+#define _XIFSelect_ReturnStatus_HeaderFile
 
-//! Indicates whether there will
-//! be information on warnings as well as on failures. The
-//! terms of this enumeration have the following semantics:
-//! - IFSelect_FailOnly gives information on failures only
-//! - IFSelect_FailAndWarn gives information on both
-//! failures and warnings. used to pilot PrintCheckList
-enum IFSelect_PrintFail
+//! Qualifies an execution status :
+//! RetVoid  : normal execution which created nothing, or
+//! no data to process
+//! RetDone  : normal execution with a result
+//! RetError : error in command or input data, no execution
+//! RetFail  : execution was run and has failed
+//! RetStop  : indicates end or stop (such as Raise)
+public enum class XIFSelect_ReturnStatus
 {
-IFSelect_FailOnly,
-IFSelect_FailAndWarn
+	IFSelect_RetVoid,
+	IFSelect_RetDone,
+	IFSelect_RetError,
+	IFSelect_RetFail,
+	IFSelect_RetStop
 };
 
-#endif // _IFSelect_PrintFail_HeaderFile
+#endif // _XIFSelect_ReturnStatus_HeaderFile

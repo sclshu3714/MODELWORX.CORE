@@ -14,23 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFSelect_ReturnStatus_HeaderFile
-#define _IFSelect_ReturnStatus_HeaderFile
+#ifndef _XIFSelect_RemainMode_HeaderFile
+#define _XIFSelect_RemainMode_HeaderFile
 
-//! Qualifies an execution status :
-//! RetVoid  : normal execution which created nothing, or
-//! no data to process
-//! RetDone  : normal execution with a result
-//! RetError : error in command or input data, no execution
-//! RetFail  : execution was run and has failed
-//! RetStop  : indicates end or stop (such as Raise)
-enum IFSelect_ReturnStatus
+
+public enum class XIFSelect_RemainMode
 {
-IFSelect_RetVoid,
-IFSelect_RetDone,
-IFSelect_RetError,
-IFSelect_RetFail,
-IFSelect_RetStop
+	IFSelect_RemainForget,
+	IFSelect_RemainCompute,
+	IFSelect_RemainDisplay,
+	IFSelect_RemainUndo
 };
 
-#endif // _IFSelect_ReturnStatus_HeaderFile
+#endif // _XIFSelect_RemainMode_HeaderFile

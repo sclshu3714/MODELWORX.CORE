@@ -481,6 +481,12 @@
     <Filter Include="源文件\ModelingAlgorithms\TKBool\BRepFill">
       <UniqueIdentifier>{7221ddd2-795a-45b0-9eab-d136f06913ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\DataExchange\TKXSBase">
+      <UniqueIdentifier>{2510857d-fab6-4c9c-83a1-bf35170ae9b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DataExchange\TKXSBase\IFSelect">
+      <UniqueIdentifier>{70f731b8-6b5a-499e-9592-c0be8dcb1d6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1577,6 +1583,18 @@
     </ClInclude>
     <ClInclude Include="ModelingAlgorithms\TKGeomAlgo\GeomFill\XGeomFill_Trihedron.h">
       <Filter>头文件\ModelingAlgorithms\TKGeomAlgo\GeomFill</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_PrintCount.h">
+      <Filter>头文件\DataExchange\TKXSBase\IFSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_PrintFail.h">
+      <Filter>头文件\DataExchange\TKXSBase\IFSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_RemainMode.h">
+      <Filter>头文件\DataExchange\TKXSBase\IFSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_ReturnStatus.h">
+      <Filter>头文件\DataExchange\TKXSBase\IFSelect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

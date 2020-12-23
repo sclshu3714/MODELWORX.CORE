@@ -30,17 +30,16 @@ namespace TKXDESTEP {
 
     //! Loads a file and returns the read status
     //! Provided for use like single-file reader
-    IFSelect_ReturnStatus XSTEPCAFControl_Reader::ReadFile(const Standard_CString filename) {
-        return NativeHandle->ReadFile(filename);
+    XIFSelect_ReturnStatus XSTEPCAFControl_Reader::ReadFile(const Standard_CString filename) {
+        return safe_cast<XIFSelect_ReturnStatus>(NativeHandle->ReadFile(filename));
     };
 
     //! Loads a file and returns the read status
     //! Provided for use like single-file reader
     //! IFSelect_ReturnStatus
-    Standard_Integer XSTEPCAFControl_Reader::ReadFile(System::String^ theFileName) {
+    XIFSelect_ReturnStatus XSTEPCAFControl_Reader::ReadFile(System::String^ theFileName) {
         const TCollection_AsciiString aFilename = toAsciiString(theFileName);
-        Standard_Integer ReturnStatus = ReadFile(aFilename.ToCString());
-        return ReturnStatus;
+        return ReadFile(aFilename.ToCString());
     };
 
     //! Returns number of roots recognized for transfer

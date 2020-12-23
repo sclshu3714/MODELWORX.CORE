@@ -14,8 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFSelect_PrintCount_HeaderFile
-#define _IFSelect_PrintCount_HeaderFile
+#ifndef _XIFSelect_PrintCount_HeaderFile
+#define _XIFSelect_PrintCount_HeaderFile
 
 
 //! Lets you choose the manner in which you want to analyze an
@@ -45,17 +45,17 @@
 //! -       Mapping of the IGES root entities to the resulting Open
 //! CASCADE shape (including type and form of the IGES entity
 //! and type of the resulting shape).
-enum IFSelect_PrintCount
+public enum class XIFSelect_PrintCount
 {
-IFSelect_ItemsByEntity,
-IFSelect_CountByItem,
-IFSelect_ShortByItem,
-IFSelect_ListByItem,
-IFSelect_EntitiesByItem,
-IFSelect_CountSummary,
-IFSelect_GeneralInfo,
-IFSelect_Mapping,
-IFSelect_ResultCount
+	IFSelect_ItemsByEntity,
+	IFSelect_CountByItem,
+	IFSelect_ShortByItem,
+	IFSelect_ListByItem,
+	IFSelect_EntitiesByItem,
+	IFSelect_CountSummary,
+	IFSelect_GeneralInfo,
+	IFSelect_Mapping,
+	IFSelect_ResultCount
 };
 
-#endif // _IFSelect_PrintCount_HeaderFile
+#endif // _XIFSelect_PrintCount_HeaderFile

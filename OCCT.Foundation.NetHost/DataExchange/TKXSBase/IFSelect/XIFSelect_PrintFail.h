@@ -14,16 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFSelect_RemainMode_HeaderFile
-#define _IFSelect_RemainMode_HeaderFile
+#ifndef _XIFSelect_PrintFail_HeaderFile
+#define _XIFSelect_PrintFail_HeaderFile
 
-
-enum IFSelect_RemainMode
+//! Indicates whether there will
+//! be information on warnings as well as on failures. The
+//! terms of this enumeration have the following semantics:
+//! - IFSelect_FailOnly gives information on failures only
+//! - IFSelect_FailAndWarn gives information on both
+//! failures and warnings. used to pilot PrintCheckList
+public enum class XIFSelect_PrintFail
 {
-IFSelect_RemainForget,
-IFSelect_RemainCompute,
-IFSelect_RemainDisplay,
-IFSelect_RemainUndo
+	IFSelect_FailOnly,
+	IFSelect_FailAndWarn
 };
 
-#endif // _IFSelect_RemainMode_HeaderFile
+#endif // _XIFSelect_PrintFail_HeaderFile

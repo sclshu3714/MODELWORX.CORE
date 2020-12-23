@@ -21,6 +21,7 @@
 #include "XTDF_Label.h"
 #include <STEPCAFControl_Reader.hxx>
 #include "XTDocStd_Document.h"
+#include <XIFSelect_ReturnStatus.h>
 
 #include <Resource_FormatType.hxx>
 #include <STEPControl_Reader.hxx>
@@ -87,12 +88,12 @@ namespace TKXDESTEP {
 
         //! Loads a file and returns the read status
         //! Provided for use like single-file reader
-        IFSelect_ReturnStatus ReadFile(const Standard_CString filename);
+        XIFSelect_ReturnStatus ReadFile(const Standard_CString filename);
 
         //! Loads a file and returns the read status
         //! Provided for use like single-file reader
         //! IFSelect_ReturnStatus
-        Standard_Integer ReadFile(System::String^ theFileName);
+        XIFSelect_ReturnStatus ReadFile(System::String^ theFileName);
 
         //! Returns number of roots recognized for transfer
         //! Shortcut for Reader().NbRootsForTransfer()

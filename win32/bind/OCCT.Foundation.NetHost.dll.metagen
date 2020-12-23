@@ -3406,6 +3406,15 @@ Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, Be
     SetViewMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetViewMode(): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+Struct XIFSelect_ReturnStatus: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XIFSelect_ReturnStatus IFSelect_RetVoid = 0 : Public, Static, Literal, HasDefault
+    XIFSelect_ReturnStatus IFSelect_RetDone = 1 : Public, Static, Literal, HasDefault
+    XIFSelect_ReturnStatus IFSelect_RetError = 2 : Public, Static, Literal, HasDefault
+    XIFSelect_ReturnStatus IFSelect_RetFail = 3 : Public, Static, Literal, HasDefault
+    XIFSelect_ReturnStatus IFSelect_RetStop = 4 : Public, Static, Literal, HasDefault
 Class TKMath.xgp_Lin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Dir): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
