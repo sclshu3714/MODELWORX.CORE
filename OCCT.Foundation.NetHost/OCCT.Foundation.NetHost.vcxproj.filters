@@ -487,6 +487,9 @@
     <Filter Include="头文件\DataExchange\TKXSBase\IFSelect">
       <UniqueIdentifier>{70f731b8-6b5a-499e-9592-c0be8dcb1d6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ModelingAlgorithms\TKOffset\Draft">
+      <UniqueIdentifier>{dbeb61b9-5fe5-4b83-bc3a-c4cf86ba60cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1596,6 +1599,18 @@
     <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_ReturnStatus.h">
       <Filter>头文件\DataExchange\TKXSBase\IFSelect</Filter>
     </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKOffset\Draft\XDraft_ErrorStatus.h">
+      <Filter>头文件\ModelingAlgorithms\TKOffset\Draft</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_ModifyShape.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_Transform.h">
+      <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2303,6 +2318,15 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKOffset\BRepOffsetAPI\XBRepOffsetAPI_MakePipe.cpp">
       <Filter>源文件\ModelingAlgorithms\TKOffset\BRepOffsetAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_ModifyShape.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_Transform.cpp">
+      <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

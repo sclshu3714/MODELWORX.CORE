@@ -1,108 +1,74 @@
-// Created on: 1994-12-09
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XBRepBuilderAPI_Transform.h>
+namespace TKTopAlgo {
+	XBRepBuilderAPI_Transform::XBRepBuilderAPI_Transform() {
+		//NativeHandle = new BRepBuilderAPI_Transform();
+	};
 
+	void XBRepBuilderAPI_Transform::SetTransformHandle(BRepBuilderAPI_Transform* handle) {
+		NativeHandle = handle;
+		SetModifyShapeHandle(NativeHandle);
+	};
 
-#include <BRepBuilderAPI_Transform.hxx>
-#include <BRepTools_TrsfModification.hxx>
-#include <gp.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TopoDS_Shape.hxx>
+	BRepBuilderAPI_Transform* XBRepBuilderAPI_Transform::GetTransform() {
+		return NativeHandle;
+	};
 
-//=======================================================================
-//function : BRepBuilderAPI_Transform
-//purpose  : 
-//=======================================================================
-BRepBuilderAPI_Transform::BRepBuilderAPI_Transform (const gp_Trsf& T) :
-  myTrsf(T)
-{
-  myModification = new BRepTools_TrsfModification(T);
+	BRepBuilderAPI_ModifyShape* XBRepBuilderAPI_Transform::GetModifyShape() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepBuilderAPI_Transform::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	//! Constructs a framework for applying the geometric
+	//! transformation T to a shape. Use the function Perform
+	//! to define the shape to transform.
+	XBRepBuilderAPI_Transform::XBRepBuilderAPI_Transform(xgp_Trsf^ T) {
+		NativeHandle = new BRepBuilderAPI_Transform(*T->GetTrsf());
+		SetModifyShapeHandle(NativeHandle);
+	};
+
+	//! Creates a transformation from the gp_Trsf <T>, and
+	//! applies it to the shape <S>. If the transformation
+	//! is  direct   and isometric (determinant  =  1) and
+	//! <Copy> =  Standard_False,  the resulting shape  is
+	//! <S> on   which  a  new  location has    been  set.
+	//! Otherwise,  the   transformation is applied   on a
+	//! duplication of <S>.
+	//! const Standard_Boolean Copy = Standard_False
+	XBRepBuilderAPI_Transform::XBRepBuilderAPI_Transform(XTopoDS_Shape^ S, xgp_Trsf^ T, Standard_Boolean Copy) {
+		NativeHandle = new BRepBuilderAPI_Transform(*S->GetShape(), *T->GetTrsf(), Copy);
+		SetModifyShapeHandle(NativeHandle);
+	};
+
+	//! pplies the geometric transformation defined at the
+	//! time of construction of this framework to the shape S.
+	//! - If the transformation T is direct and isometric, in
+	//! other words, if the determinant of the vectorial part
+	//! of T is equal to 1., and if Copy equals false (the
+	//! default value), the resulting shape is the same as
+	//! the original but with a new location assigned to it.
+	//! -   In all other cases, the transformation is applied to a duplicate of S.
+	//! Use the function Shape to access the result.
+	//! Note: this framework can be reused to apply the same
+	//! geometric transformation to other shapes. You only
+	//! need to specify them by calling the function Perform again.
+	//! Standard_Boolean Copy = Standard_False
+	void XBRepBuilderAPI_Transform::Perform(XTopoDS_Shape^ S, Standard_Boolean Copy) {
+		NativeHandle->Perform(*S->GetShape(), Copy);
+	};
+
+	//! Returns the modified shape corresponding to <S>.
+	XTopoDS_Shape^ XBRepBuilderAPI_Transform::ModifiedShape(XTopoDS_Shape^ S) {
+		TopoDS_Shape* temp = new TopoDS_Shape(NativeHandle->ModifiedShape(*S->GetShape()));
+		return gcnew XTopoDS_Shape(temp);
+	};
+
+	//! Returns the list  of shapes modified from the shape
+	//! <S>.
+	XTopTools_ListOfShape^ XBRepBuilderAPI_Transform::Modified(XTopoDS_Shape^ S) {
+		TopTools_ListOfShape* temp = new TopTools_ListOfShape(NativeHandle->Modified(*S->GetShape()));
+		return gcnew XTopTools_ListOfShape(temp);
+	};
 }
-
-
-//=======================================================================
-//function : BRepBuilderAPI_Transform
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_Transform::BRepBuilderAPI_Transform (const TopoDS_Shape& S,
-				      const gp_Trsf& T,
-				      const Standard_Boolean Copy) :
-  myTrsf(T)
-{
-  myModification = new BRepTools_TrsfModification(T);
-  Perform(S,Copy);
-}
-
-
-
-//=======================================================================
-//function : Perform
-//purpose  : 
-//=======================================================================
-
-void BRepBuilderAPI_Transform::Perform(const TopoDS_Shape& S,
-				const Standard_Boolean Copy)
-{
-//  myUseModif = Copy || myTrsf.IsNegative(); bug gp_Trsf.
-  myUseModif = Copy || 
-    myTrsf.ScaleFactor()*myTrsf.HVectorialPart().Determinant() < 0. ||
-      Abs(Abs(myTrsf.ScaleFactor()) - 1) > gp::Resolution();
-  if (myUseModif) {
-    Handle(BRepTools_TrsfModification) theModif = 
-      Handle(BRepTools_TrsfModification)::DownCast(myModification);
-    theModif->Trsf() = myTrsf;
-    DoModif(S,myModification);
-  }
-  else {
-    myLocation = myTrsf;
-    myShape = S.Moved(myLocation);
-    Done();
-  }
-
-}
-
-//=======================================================================
-//function : ModifiedShape
-//purpose  : 
-//=======================================================================
-
-TopoDS_Shape BRepBuilderAPI_Transform::ModifiedShape
-  (const TopoDS_Shape& S) const
-{  
-  if (myUseModif) {
-    return myModifier.ModifiedShape(S);
-  }
-  return S.Moved (myLocation);
-}
-
-
-//=======================================================================
-//function : Modified
-//purpose  : 
-//=======================================================================
-
-const TopTools_ListOfShape& BRepBuilderAPI_Transform::Modified
-  (const TopoDS_Shape& F)
-{
-  if (!myUseModif) {
-    myGenerated.Clear();
-    myGenerated.Append(F.Moved(myLocation));
-    return myGenerated;
-  }
-  return BRepBuilderAPI_ModifyShape::Modified(F);
-}
-

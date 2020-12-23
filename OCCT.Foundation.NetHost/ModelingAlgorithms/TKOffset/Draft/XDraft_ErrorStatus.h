@@ -14,16 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Draft_ErrorStatus_HeaderFile
-#define _Draft_ErrorStatus_HeaderFile
+#ifndef _XDraft_ErrorStatus_HeaderFile
+#define _XDraft_ErrorStatus_HeaderFile
 
 
-enum Draft_ErrorStatus
+public enum class XDraft_ErrorStatus
 {
-Draft_NoError,
-Draft_FaceRecomputation,
-Draft_EdgeRecomputation,
-Draft_VertexRecomputation
+	Draft_NoError,
+	Draft_FaceRecomputation,
+	Draft_EdgeRecomputation,
+	Draft_VertexRecomputation
 };
 
-#endif // _Draft_ErrorStatus_HeaderFile
+#endif // _XDraft_ErrorStatus_HeaderFile
