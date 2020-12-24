@@ -288,7 +288,7 @@ namespace TKTopAlgo {
 		void Init(XGeom2d_Curve^ C, XGeom_Surface^ S, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2);
 
 		//! Returns true if the edge is built.
-		virtual Standard_Boolean IsDone();// Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
 		//! Returns the construction status
 		//! -   BRepBuilderAPI_EdgeDone if the edge is built, or

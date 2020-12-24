@@ -52,6 +52,14 @@ namespace TKTopAlgo {
 	Standard_Boolean XBRepBuilderAPI_MakeShape::IsDeleted(XTopoDS_Shape^ S) {
 		return NativeHandle->IsDeleted(*S->GetShape());
 	};
+	Standard_Boolean XBRepBuilderAPI_MakeShape::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Raises NotDone if done is false.
+	void XBRepBuilderAPI_MakeShape::Check() {
+		NativeHandle->Check();
+	};
 }
 
 

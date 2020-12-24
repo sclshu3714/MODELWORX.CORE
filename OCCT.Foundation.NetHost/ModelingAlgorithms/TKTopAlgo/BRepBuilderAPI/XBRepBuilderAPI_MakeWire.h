@@ -165,7 +165,7 @@ namespace TKTopAlgo {
 		//! IsDone returns false if:
 		//! -   there are no edges in the wire, or
 		//! -   the last edge which you tried to add was not connectable.
-		virtual Standard_Boolean IsDone();// Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
 		//! Returns the construction status
 		//! -   BRepBuilderAPI_WireDone if the wire is built, or

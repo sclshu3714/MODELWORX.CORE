@@ -107,7 +107,7 @@ namespace TKTopAlgo {
 		void Init(XGeom_Surface^ S, Standard_Real UMin, Standard_Real UMax, Standard_Real VMin, Standard_Real VMax, Standard_Boolean Segment);
 
 		//! Returns true if the shell is built.
-		virtual Standard_Boolean IsDone();// Standard_OVERRIDE;
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
 
 		//! Returns the construction status:
 		//! -   BRepBuilderAPI_ShellDone if the shell is built, or

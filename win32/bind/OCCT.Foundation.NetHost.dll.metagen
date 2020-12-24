@@ -4836,6 +4836,8 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShape: AutoLayout, AnsiClass, Class, Public,
     Generated(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Check(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class TKFillet.XBRepFilletAPI_LocalOperation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -5933,6 +5935,50 @@ Class TKTopAlgo.XBRepBuilderAPI: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Plane(XGeom_Plane): PrivateScope, Public, Static, HideBySig
     Precision(): PrivateScope, Public, Static, HideBySig
     Precision(Double): PrivateScope, Public, Static, HideBySig
+Class TKTopAlgo.XBRepBuilderAPI_ModifyShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetModifyShapeHandle(BRepBuilderAPI_ModifyShape*): PrivateScope, Public, HideBySig
+    GetModifyShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    ModifiedShape(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKTopAlgo.XBRepBuilderAPI_Copy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_ModifyShape
+    Void .ctor(TKBRep.XTopoDS_Shape, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetCopyHandle(BRepBuilderAPI_Copy*): PrivateScope, Public, HideBySig
+    GetCopy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetModifyShape(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Perform(XTopoDS_Shape, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class TKTopAlgo.XBRepBuilderAPI_GTransform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_ModifyShape
+    Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_GTrsf, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_GTrsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetGTransformHandle(BRepBuilderAPI_GTransform*): PrivateScope, Public, HideBySig
+    GetGTransform(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetModifyShape(): PrivateScope, Public, Virtual, HideBySig
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Perform(XTopoDS_Shape, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    ModifiedShape(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKG2d.XGeom2d_Curve, TKG3d.XGeom_Surface, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5990,7 +6036,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeEdge: AutoLayout, AnsiClass, Class, Public, 
     Init(XGeom_Curve, xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     Init(XGeom_Curve, Double, Double): PrivateScope, Public, HideBySig
     Init(XGeom_Curve): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
     Error(): PrivateScope, Public, HideBySig
     Edge(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -6042,7 +6088,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, 
     Init(XGeom_Surface, Boolean(HasFieldMarshal), Double): PrivateScope, Public, HideBySig
     Init(XTopoDS_Face): PrivateScope, Public, HideBySig
     Add(XTopoDS_Wire): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
     Error(): PrivateScope, Public, HideBySig
     Face(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -6061,6 +6107,35 @@ Struct XBRepBuilderAPI_FaceError: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XBRepBuilderAPI_FaceError BRepBuilderAPI_NotPlanar = 2 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_CurveProjectionFailed = 3 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_FaceError BRepBuilderAPI_ParametersOutOfRange = 4 : Public, Static, Literal, HasDefault
+Class TKTopAlgo.XBRepBuilderAPI_MakePolygon: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, TKMath.xgp_Pnt, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepBuilderAPI_MakePolygon*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakePolygonHandle(BRepBuilderAPI_MakePolygon*): PrivateScope, Public, HideBySig
+    GetMakePolygon(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Add(XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Add(xgp_Pnt): PrivateScope, Public, HideBySig
+    Added(): PrivateScope, Public, HideBySig
+    Close(): PrivateScope, Public, HideBySig
+    FirstVertex(): PrivateScope, Public, HideBySig
+    LastVertex(): PrivateScope, Public, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Edge(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    Wire(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeShell: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKG3d.XGeom_Surface, Double, Double, Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6070,7 +6145,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShell: AutoLayout, AnsiClass, Class, Public,
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
     Init(XGeom_Surface, Double, Double, Double, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
     Error(): PrivateScope, Public, HideBySig
     Shell(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -6100,7 +6175,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeSolid: AutoLayout, AnsiClass, Class, Public,
     SetMakeSolidHandle(BRepBuilderAPI_MakeSolid*): PrivateScope, Public, HideBySig
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     Add(XTopoDS_Shell): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
     Solid(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     IsDeleted(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
@@ -6132,7 +6207,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     Add(XTopTools_ListOfShape): PrivateScope, Public, HideBySig
     Add(XTopoDS_Wire): PrivateScope, Public, HideBySig
     Add(XTopoDS_Edge): PrivateScope, Public, HideBySig
-    IsDone(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
     Error(): PrivateScope, Public, HideBySig
     Wire(): PrivateScope, Public, HideBySig
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
@@ -6143,19 +6218,86 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeWire: AutoLayout, AnsiClass, Class, Public, 
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-Class TKTopAlgo.XBRepBuilderAPI_ModifyShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+Class TKTopAlgo.XBRepBuilderAPI_NurbsConvert: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_ModifyShape
+    Void .ctor(TKBRep.XTopoDS_Shape, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
-    SetModifyShapeHandle(BRepBuilderAPI_ModifyShape*): PrivateScope, Public, HideBySig
-    GetModifyShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetNurbsConvertHandle(BRepBuilderAPI_NurbsConvert*): PrivateScope, Public, HideBySig
+    GetNurbsConvert(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetModifyShape(): PrivateScope, Public, Virtual, HideBySig
     GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Perform(XTopoDS_Shape, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Modified(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
-    ModifiedShape(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    ModifiedShape(XTopoDS_Shape): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<BRepBuilderAPI_Sewing> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKTopAlgo.XBRepBuilderAPI_Sewing: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Double, Boolean, Boolean, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<BRepBuilderAPI_Sewing> IHandle 'get set' : 
+  Methods:
+    SetSewingHandle(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, HideBySig
+    GetSewing(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Init(Double, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Load(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Perform(handle<Message_ProgressIndicator>*): PrivateScope, Public, HideBySig
+    SewedShape(): PrivateScope, Public, HideBySig
+    SetContext(handle<BRepTools_ReShape>*): PrivateScope, Public, HideBySig
+    GetContext(handle<BRepTools_ReShape>*): PrivateScope, Public, HideBySig
+    NbFreeEdges(): PrivateScope, Public, HideBySig
+    FreeEdge(Int32): PrivateScope, Public, HideBySig
+    NbMultipleEdges(): PrivateScope, Public, HideBySig
+    MultipleEdge(Int32): PrivateScope, Public, HideBySig
+    NbContigousEdges(): PrivateScope, Public, HideBySig
+    ContigousEdge(Int32): PrivateScope, Public, HideBySig
+    ContigousEdgeCouple(Int32): PrivateScope, Public, HideBySig
+    IsSectionBound(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    SectionToBoundary(XTopoDS_Edge): PrivateScope, Public, HideBySig
+    NbDegeneratedShapes(): PrivateScope, Public, HideBySig
+    DegeneratedShape(Int32): PrivateScope, Public, HideBySig
+    IsDegenerated(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    IsModified(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Modified(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    IsModifiedSubShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    ModifiedSubShape(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Dump(): PrivateScope, Public, HideBySig
+    NbDeletedFaces(): PrivateScope, Public, HideBySig
+    DeletedFace(Int32): PrivateScope, Public, HideBySig
+    WhichFace(XTopoDS_Edge, Int32): PrivateScope, Public, HideBySig
+    SameParameterMode(): PrivateScope, Public, HideBySig
+    SetSameParameterMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Tolerance(): PrivateScope, Public, HideBySig
+    SetTolerance(Double): PrivateScope, Public, HideBySig
+    MinTolerance(): PrivateScope, Public, HideBySig
+    SetMinTolerance(Double): PrivateScope, Public, HideBySig
+    MaxTolerance(): PrivateScope, Public, HideBySig
+    SetMaxTolerance(Double): PrivateScope, Public, HideBySig
+    FaceMode(): PrivateScope, Public, HideBySig
+    SetFaceMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    FloatingEdgesMode(): PrivateScope, Public, HideBySig
+    SetFloatingEdgesMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    LocalTolerancesMode(): PrivateScope, Public, HideBySig
+    SetLocalTolerancesMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetNonManifoldMode(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    NonManifoldMode(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XBRepBuilderAPI_Sewing(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI_Transform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_ModifyShape
     Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_Trsf, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6518,6 +6660,10 @@ Class TKG3d.XGeom_AxisPlacement: AutoLayout, AnsiClass, Class, Public, BeforeFie
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    Direction(): PrivateScope, Public, HideBySig
+    Location(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     SetAxisPlacementHandle(handle<Geom_AxisPlacement>*): PrivateScope, Public, HideBySig
     GetAxisPlacement(handle<Geom_AxisPlacement>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
@@ -6526,10 +6672,6 @@ Class TKG3d.XGeom_AxisPlacement: AutoLayout, AnsiClass, Class, Public, BeforeFie
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     Angle(XGeom_AxisPlacement): PrivateScope, Public, HideBySig
     Axis(): PrivateScope, Public, HideBySig
-    Direction(): PrivateScope, Public, HideBySig
-    Location(): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Axis1Placement> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6788,6 +6930,20 @@ Class TKG3d.XGeom_BSplineCurve: AutoLayout, AnsiClass, Class, Public, BeforeFiel
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    SetBSplineCurveHandle(handle<Geom_BSplineCurve>*): PrivateScope, Public, HideBySig
+    GetBSplineCurve(handle<Geom_BSplineCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetBoundedCurve(handle<Geom_BoundedCurve>*): PrivateScope, Public, Virtual, HideBySig
+    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
+    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
+    IncreaseDegree(Int32): PrivateScope, Public, HideBySig
+    IncreaseMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    IncreaseMultiplicity(Int32, Int32): PrivateScope, Public, HideBySig
+    IncrementMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
+    InsertKnot(Double, Int32, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    InsertKnots(Double[], Int32[], Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RemoveKnot(Int32, Int32, Double): PrivateScope, Public, HideBySig
+    Reverse(): PrivateScope, Public, Virtual, HideBySig
+    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
     Segment(Double, Double, Double): PrivateScope, Public, HideBySig
     SetKnot(Int32, Double, Int32): PrivateScope, Public, HideBySig
     SetKnot(Int32, Double): PrivateScope, Public, HideBySig
@@ -6851,20 +7007,6 @@ Class TKG3d.XGeom_BSplineCurve: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     IsEqual(XGeom_BSplineCurve, Double): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    SetBSplineCurveHandle(handle<Geom_BSplineCurve>*): PrivateScope, Public, HideBySig
-    GetBSplineCurve(handle<Geom_BSplineCurve>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetBoundedCurve(handle<Geom_BoundedCurve>*): PrivateScope, Public, Virtual, HideBySig
-    GetCurve(handle<Geom_Curve>*): PrivateScope, Public, Virtual, HideBySig
-    GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
-    IncreaseDegree(Int32): PrivateScope, Public, HideBySig
-    IncreaseMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
-    IncreaseMultiplicity(Int32, Int32): PrivateScope, Public, HideBySig
-    IncrementMultiplicity(Int32, Int32, Int32): PrivateScope, Public, HideBySig
-    InsertKnot(Double, Int32, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    InsertKnots(Double[], Int32[], Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    RemoveKnot(Int32, Int32, Double): PrivateScope, Public, HideBySig
-    Reverse(): PrivateScope, Public, Virtual, HideBySig
-    ReversedParameter(Double): PrivateScope, Public, Virtual, HideBySig
 Struct XGeomAbs_BSplKnotDistribution: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:

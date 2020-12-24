@@ -76,6 +76,11 @@ namespace TKTopAlgo {
 		//! Returns true if the shape S has been deleted.
 		virtual Standard_Boolean IsDeleted(XTopoDS_Shape^ S);
 
+		virtual Standard_Boolean IsDone();
+
+		//! Raises NotDone if done is false.
+		void Check();
+
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
