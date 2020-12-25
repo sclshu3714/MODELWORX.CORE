@@ -5962,6 +5962,62 @@ Class TKTopAlgo.XBRepBuilderAPI_Copy: AutoLayout, AnsiClass, Class, Public, Befo
     Perform(XTopoDS_Shape, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+Class NCollection_Haft<opencascade::handle<BRepBuilderAPI_FastSewing> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKTopAlgo.XBRepBuilderAPI_FastSewing: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(opencascade.handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<BRepBuilderAPI_FastSewing> IHandle 'get set' : 
+  Methods:
+    SetFastSewingHandle(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, HideBySig
+    GetFastSewing(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Add(XGeom_Surface): PrivateScope, Public, HideBySig
+    Add(XTopoDS_Shape): PrivateScope, Public, HideBySig
+    Perform(): PrivateScope, Public, HideBySig
+    SetTolerance(Double): PrivateScope, Public, HideBySig
+    GetTolerance(): PrivateScope, Public, HideBySig
+    GetResult(): PrivateScope, Public, HideBySig
+    GetStatuses(basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, HideBySig
+    get_IHandle(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XBRepBuilderAPI_FastSewing(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct XFS_Statuses: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XFS_Statuses FS_OK = 0 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_Degenerated = 1 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_FindVertexError = 2 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_FindEdgeError = 4 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_FaceWithNullSurface = 8 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_NotNaturalBoundsFace = 16 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_InfiniteSurface = 32 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_EmptyInput = 64 : Public, Static, Literal, HasDefault
+    XFS_Statuses FS_Exception = 128 : Public, Static, Literal, HasDefault
+Class TKTopAlgo.XBRepBuilderAPI_FindPlane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(TKBRep.XTopoDS_Shape, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BRepBuilderAPI_FindPlane*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_FindPlane* IHandle 'get set' : 
+  Methods:
+    SetFindPlaneHandle(BRepBuilderAPI_FindPlane*): PrivateScope, Public, HideBySig
+    GetFindPlane(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Init(XTopoDS_Shape, Double): PrivateScope, Public, HideBySig
+    Found(): PrivateScope, Public, HideBySig
+    Plane(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(BRepBuilderAPI_FindPlane*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_GTransform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_ModifyShape
     Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_GTrsf, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6634,6 +6690,7 @@ Class TKBRep.XTopoDS_TSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     opencascade.handle<TopoDS_TShape> IHandle 'get set' : 
   Methods:
+    SetTSolidHandle(handle<TopoDS_TSolid>*): PrivateScope, Public, HideBySig
     GetTSolid(handle<TopoDS_TSolid>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetTShape(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig
     ShapeType(): PrivateScope, Public, Virtual, HideBySig
@@ -6641,7 +6698,6 @@ Class TKBRep.XTopoDS_TSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XTopoDS_TSolid(): PrivateScope, Public, HideBySig
-    SetTSolidHandle(handle<TopoDS_TSolid>*): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TCompSolid> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
