@@ -6056,6 +6056,57 @@ Struct XBRepBuilderAPI_EdgeError: AutoLayout, AnsiClass, Class, Public, Sealed, 
     XBRepBuilderAPI_EdgeError BRepBuilderAPI_PointWithInfiniteParameter = 4 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_EdgeError BRepBuilderAPI_DifferentsPointAndParameter = 5 : Public, Static, Literal, HasDefault
     XBRepBuilderAPI_EdgeError BRepBuilderAPI_LineThroughIdenticPoints = 6 : Public, Static, Literal, HasDefault
+Class TKTopAlgo.XBRepBuilderAPI_MakeEdge2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :TKTopAlgo.XBRepBuilderAPI_MakeShape
+    Void .ctor(TKG2d.XGeom2d_Curve, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKG2d.XGeom2d_Curve): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab2d, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Parab2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr2d, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Hypr2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips2d, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Elips2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ2d, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Circ2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d, TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d, TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Lin2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(TKBRep.XTopoDS_Vertex, TKBRep.XTopoDS_Vertex): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    BRepBuilderAPI_MakeShape* IHandle 'get set' : 
+  Methods:
+    SetMakeEdge2dHandle(BRepBuilderAPI_MakeEdge2d*): PrivateScope, Public, HideBySig
+    GetMakeEdge2d(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetMakeShape(): PrivateScope, Public, Virtual, HideBySig
+    Init(XGeom2d_Curve, XTopoDS_Vertex, XTopoDS_Vertex, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, xgp_Pnt2d, xgp_Pnt2d, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve, Double, Double): PrivateScope, Public, HideBySig
+    Init(XGeom2d_Curve): PrivateScope, Public, HideBySig
+    IsDone(): PrivateScope, Public, Virtual, HideBySig
+    Error(): PrivateScope, Public, HideBySig
+    Edge(): PrivateScope, Public, HideBySig
+    op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
+    Vertex1(): PrivateScope, Public, HideBySig
+    Vertex2(): PrivateScope, Public, HideBySig
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI_MakeFace: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(TKBRep.XTopoDS_Face, TKBRep.XTopoDS_Wire): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6583,7 +6634,6 @@ Class TKBRep.XTopoDS_TSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
   Properties:
     opencascade.handle<TopoDS_TShape> IHandle 'get set' : 
   Methods:
-    SetTSolidHandle(handle<TopoDS_TSolid>*): PrivateScope, Public, HideBySig
     GetTSolid(handle<TopoDS_TSolid>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetTShape(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig
     ShapeType(): PrivateScope, Public, Virtual, HideBySig
@@ -6591,6 +6641,7 @@ Class TKBRep.XTopoDS_TSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XTopoDS_TSolid(): PrivateScope, Public, HideBySig
+    SetTSolidHandle(handle<TopoDS_TSolid>*): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TCompSolid> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6660,10 +6711,6 @@ Class TKG3d.XGeom_AxisPlacement: AutoLayout, AnsiClass, Class, Public, BeforeFie
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    Direction(): PrivateScope, Public, HideBySig
-    Location(): PrivateScope, Public, HideBySig
-    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     SetAxisPlacementHandle(handle<Geom_AxisPlacement>*): PrivateScope, Public, HideBySig
     GetAxisPlacement(handle<Geom_AxisPlacement>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
@@ -6672,6 +6719,10 @@ Class TKG3d.XGeom_AxisPlacement: AutoLayout, AnsiClass, Class, Public, BeforeFie
     SetLocation(xgp_Pnt): PrivateScope, Public, HideBySig
     Angle(XGeom_AxisPlacement): PrivateScope, Public, HideBySig
     Axis(): PrivateScope, Public, HideBySig
+    Direction(): PrivateScope, Public, HideBySig
+    Location(): PrivateScope, Public, HideBySig
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Geom_Axis1Placement> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

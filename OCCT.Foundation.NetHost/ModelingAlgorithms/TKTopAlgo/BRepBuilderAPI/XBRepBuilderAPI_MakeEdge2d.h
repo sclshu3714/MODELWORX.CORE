@@ -14,8 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_MakeEdge2d_HeaderFile
-#define _BRepBuilderAPI_MakeEdge2d_HeaderFile
+#ifndef _XBRepBuilderAPI_MakeEdge2d_HeaderFile
+#define _XBRepBuilderAPI_MakeEdge2d_HeaderFile
+#pragma once
+#include <BRepBuilderAPI_MakeEdge2d.hxx>
+#include <XBRepBuilderAPI_MakeShape.h>
+#include <xgp_Pnt2d.h>
+#include <xgp_Lin2d.h>
+#include <xgp_Circ2d.h>
+#include <xgp_Elips2d.h>
+#include <xgp_Hypr2d.h>
+#include <xgp_Parab2d.h>
+#include <XTopoDS_Edge.h>
+#include <XTopoDS_Vertex.h>
+#include <XGeom2d_Curve.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -26,160 +38,170 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_EdgeError.hxx>
+#include <XBRepBuilderAPI_EdgeError.h>
 class StdFail_NotDone;
-class TopoDS_Vertex;
 class gp_Pnt2d;
 class gp_Lin2d;
 class gp_Circ2d;
 class gp_Elips2d;
 class gp_Hypr2d;
 class gp_Parab2d;
-class Geom2d_Curve;
 class TopoDS_Edge;
+class TopoDS_Vertex;
+class Geom2d_Curve;
 
+using namespace TKMath;
+using namespace TKBRep;
+using namespace TKG2d;
+namespace TKTopAlgo {
+	ref class TKMath::xgp_Pnt2d;
+	ref class TKMath::xgp_Lin2d;
+	ref class TKMath::xgp_Circ2d;
+	ref class TKMath::xgp_Elips2d;
+	ref class TKMath::xgp_Hypr2d;
+	ref class TKMath::xgp_Parab2d;
+	ref class TKBRep::XTopoDS_Edge;
+	ref class TKBRep::XTopoDS_Vertex;
+	ref class TKG2d::XGeom2d_Curve;
+	//! Provides methods to build edges.
+	//!
+	//! The   methods have  the  following   syntax, where
+	//! TheCurve is one of Lin2d, Circ2d, ...
+	//!
+	//! Create(C : TheCurve)
+	//!
+	//! Makes an edge on  the whole curve.  Add vertices
+	//! on finite curves.
+	//!
+	//! Create(C : TheCurve; p1,p2 : Real)
+	//!
+	//! Make an edge  on the curve between parameters p1
+	//! and p2. if p2 < p1 the edge will be REVERSED. If
+	//! p1  or p2 is infinite the  curve will be open in
+	//! that  direction. Vertices are created for finite
+	//! values of p1 and p2.
+	//!
+	//! Create(C : TheCurve; P1, P2 : Pnt2d from gp)
+	//!
+	//! Make an edge on the curve  between the points P1
+	//! and P2. The  points are projected on   the curve
+	//! and the   previous method is  used. An  error is
+	//! raised if the points are not on the curve.
+	//!
+	//! Create(C : TheCurve; V1, V2 : Vertex from TopoDS)
+	//!
+	//! Make an edge  on the curve  between the vertices
+	//! V1 and V2. Same as the  previous but no vertices
+	//! are created. If a vertex is  Null the curve will
+	//! be open in this direction.
+	public ref class XBRepBuilderAPI_MakeEdge2d : public XBRepBuilderAPI_MakeShape
+	{
+	public:
 
-//! Provides methods to build edges.
-//!
-//! The   methods have  the  following   syntax, where
-//! TheCurve is one of Lin2d, Circ2d, ...
-//!
-//! Create(C : TheCurve)
-//!
-//! Makes an edge on  the whole curve.  Add vertices
-//! on finite curves.
-//!
-//! Create(C : TheCurve; p1,p2 : Real)
-//!
-//! Make an edge  on the curve between parameters p1
-//! and p2. if p2 < p1 the edge will be REVERSED. If
-//! p1  or p2 is infinite the  curve will be open in
-//! that  direction. Vertices are created for finite
-//! values of p1 and p2.
-//!
-//! Create(C : TheCurve; P1, P2 : Pnt2d from gp)
-//!
-//! Make an edge on the curve  between the points P1
-//! and P2. The  points are projected on   the curve
-//! and the   previous method is  used. An  error is
-//! raised if the points are not on the curve.
-//!
-//! Create(C : TheCurve; V1, V2 : Vertex from TopoDS)
-//!
-//! Make an edge  on the curve  between the vertices
-//! V1 and V2. Same as the  previous but no vertices
-//! are created. If a vertex is  Null the curve will
-//! be open in this direction.
-class BRepBuilderAPI_MakeEdge2d  : public BRepBuilderAPI_MakeShape
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
+		XBRepBuilderAPI_MakeEdge2d();
 
-  DEFINE_STANDARD_ALLOC
+		void SetMakeEdge2dHandle(BRepBuilderAPI_MakeEdge2d* handle);
 
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L, const gp_Pnt2d& P1, const gp_Pnt2d& P2, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C, const gp_Pnt2d& P1, const gp_Pnt2d& P2);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C, const gp_Pnt2d& P1, const gp_Pnt2d& P2, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT void Init (const Handle(Geom2d_Curve)& C, const TopoDS_Vertex& V1, const TopoDS_Vertex& V2, const Standard_Real p1, const Standard_Real p2);
-  
-  Standard_EXPORT virtual Standard_Boolean IsDone() const Standard_OVERRIDE;
-  
-  //! Returns the error description when NotDone.
-  Standard_EXPORT BRepBuilderAPI_EdgeError Error() const;
-  
-  Standard_EXPORT const TopoDS_Edge& Edge();
-  Standard_EXPORT operator TopoDS_Edge();
-  
-  //! Returns the first vertex of the edge. May be Null.
-  Standard_EXPORT const TopoDS_Vertex& Vertex1() const;
-  
-  //! Returns the second vertex of the edge. May be Null.
-  Standard_EXPORT const TopoDS_Vertex& Vertex2() const;
+		virtual BRepBuilderAPI_MakeEdge2d* GetMakeEdge2d();
 
+		virtual BRepBuilderAPI_MakeShape* GetMakeShape() Standard_OVERRIDE;
 
+		XBRepBuilderAPI_MakeEdge2d(XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
 
-protected:
+		XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, Standard_Real p1, Standard_Real p2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L);
 
-private:
+		XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, Standard_Real p1, Standard_Real p2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
-  BRepLib_MakeEdge2d myMakeEdge2d;
+		XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, Standard_Real p1, Standard_Real p2);
 
-};
+		XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, Standard_Real p1, Standard_Real p2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
 
+		XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L);
 
-#endif // _BRepBuilderAPI_MakeEdge2d_HeaderFile
+		XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, Standard_Real p1, Standard_Real p2);
+
+		XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
+
+		XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, Standard_Real p1, Standard_Real p2);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2, Standard_Real p1, Standard_Real p2);
+
+		XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2);
+
+		void Init(XGeom2d_Curve^ C);
+
+		void Init(XGeom2d_Curve^ C, Standard_Real p1, Standard_Real p2);
+
+		void Init(XGeom2d_Curve^ C, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2);
+
+		void Init(XGeom2d_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2);
+
+		void Init(XGeom2d_Curve^ C, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2, Standard_Real p1, Standard_Real p2);
+
+		void Init(XGeom2d_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2);
+
+		virtual Standard_Boolean IsDone() Standard_OVERRIDE;
+
+		//! Returns the error description when NotDone.
+		XBRepBuilderAPI_EdgeError Error();
+
+		XTopoDS_Edge^ Edge();
+		operator XTopoDS_Edge^();
+
+		//! Returns the first vertex of the edge. May be Null.
+		XTopoDS_Vertex^ Vertex1();
+
+		//! Returns the second vertex of the edge. May be Null.
+		XTopoDS_Vertex^ Vertex2();
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property BRepBuilderAPI_MakeShape* IHandle {
+			BRepBuilderAPI_MakeShape* get() Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
+				NativeHandle = static_cast<BRepBuilderAPI_MakeEdge2d*>(handle);
+			}
+		}
+
+	private:
+		BRepBuilderAPI_MakeEdge2d* NativeHandle;
+	};
+}
+#endif // _XBRepBuilderAPI_MakeEdge2d_HeaderFile

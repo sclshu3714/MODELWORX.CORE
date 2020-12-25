@@ -347,6 +347,7 @@
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_FaceError.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_GTransform.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.h" />
+    <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge2d.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakePolygon.h" />
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.h" />
@@ -684,6 +685,7 @@
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_Copy.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_GTransform.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge.cpp" />
+    <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeEdge2d.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeFace.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakePolygon.cpp" />
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_MakeShape.cpp" />

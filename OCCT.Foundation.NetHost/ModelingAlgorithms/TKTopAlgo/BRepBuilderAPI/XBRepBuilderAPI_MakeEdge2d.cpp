@@ -1,657 +1,214 @@
-// Created on: 1993-07-23
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
-
-
-#include <BRepBuilderAPI_MakeEdge2d.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const TopoDS_Vertex& V1, 
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Pnt2d& P1, 
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L)
-: myMakeEdge2d(L)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, 
-				       const Standard_Real p1, 
-				       const Standard_Real p2)
-: myMakeEdge2d(L,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, 
-				       const gp_Pnt2d& P1, 
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(L,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Lin2d& L, 
-				       const TopoDS_Vertex& V1, 
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(L,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& C) 
-: myMakeEdge2d(C)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& C,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-:myMakeEdge2d(C,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& C,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(C,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Circ2d& C,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(C,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& E) 
-: myMakeEdge2d(E)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& E,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(E,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& E,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(E,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Elips2d& E,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(E,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& H)
-: myMakeEdge2d(H)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& H,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(H,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& H,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(H,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Hypr2d& H,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(H,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& P)
-: myMakeEdge2d(P)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& P,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(P,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& P,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(P,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const gp_Parab2d& P,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(P,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L)
-: myMakeEdge2d(L)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(L,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2)
-: myMakeEdge2d(L,P1,P2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2)
-: myMakeEdge2d(L,V1,V2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L,
-				       const gp_Pnt2d& P1,
-				       const gp_Pnt2d& P2,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(L,P1,P2,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : BRepBuilderAPI_MakeEdge2d
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::BRepBuilderAPI_MakeEdge2d(const Handle(Geom2d_Curve)& L,
-				       const TopoDS_Vertex& V1,
-				       const TopoDS_Vertex& V2,
-				       const Standard_Real p1,
-				       const Standard_Real p2)
-: myMakeEdge2d(L,V1,V2,p1,p2)
-{
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& C)
-{
-  myMakeEdge2d.Init(C);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& C,
-			       const Standard_Real p1,
-			       const Standard_Real p2)
-{
-  myMakeEdge2d.Init(C,p1,p2);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& C,
-			       const gp_Pnt2d& P1,
-			       const gp_Pnt2d& P2)
-{
-  myMakeEdge2d.Init(C,P1,P2);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& C,
-			       const TopoDS_Vertex& V1,
-			       const TopoDS_Vertex& V2)
-{
-  myMakeEdge2d.Init(C,V1,V2);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& C,
-			       const gp_Pnt2d& P1,
-			       const gp_Pnt2d& P2,
-			       const Standard_Real p1,
-			       const Standard_Real p2)
-{
-  myMakeEdge2d.Init(C,P1,P2,p1,p2);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-
-void  BRepBuilderAPI_MakeEdge2d::Init(const Handle(Geom2d_Curve)& CC,
-			       const TopoDS_Vertex& VV1,
-			       const TopoDS_Vertex& VV2,
-			       const Standard_Real pp1,
-			       const Standard_Real pp2)
-{
-  myMakeEdge2d.Init(CC,VV1,VV2,pp1,pp2);
-  if ( myMakeEdge2d.IsDone()) {
-    Done();
-    myShape = myMakeEdge2d.Shape();
-  }
-}
-
-//=======================================================================
-//function : IsDone
-//purpose  : 
-//=======================================================================
-
-Standard_Boolean BRepBuilderAPI_MakeEdge2d::IsDone() const
-{
-  return myMakeEdge2d.IsDone();
-}
-
-
-//=======================================================================
-//function : Error
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_EdgeError BRepBuilderAPI_MakeEdge2d::Error() const
-{
-  switch ( myMakeEdge2d.Error()) {
-
-  case BRepLib_EdgeDone:
-    return BRepBuilderAPI_EdgeDone;
-
-  case BRepLib_PointProjectionFailed:
-    return BRepBuilderAPI_PointProjectionFailed;
-
-  case BRepLib_ParameterOutOfRange:
-    return BRepBuilderAPI_ParameterOutOfRange;
-
-  case BRepLib_DifferentPointsOnClosedCurve:
-    return BRepBuilderAPI_DifferentPointsOnClosedCurve;
-
-  case BRepLib_PointWithInfiniteParameter:
-    return BRepBuilderAPI_PointWithInfiniteParameter;
-
-  case BRepLib_DifferentsPointAndParameter:
-    return BRepBuilderAPI_DifferentsPointAndParameter;
-
-  case BRepLib_LineThroughIdenticPoints:
-    return BRepBuilderAPI_LineThroughIdenticPoints;
-
-  }
-
-  // portage WNT
-  return BRepBuilderAPI_EdgeDone;
-}
-
-//=======================================================================
-//function : Edge
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Edge&  BRepBuilderAPI_MakeEdge2d::Edge()
-{
-  return myMakeEdge2d.Edge();
-}
-
-
-//=======================================================================
-//function : Vertex1
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Vertex&  BRepBuilderAPI_MakeEdge2d::Vertex1()const 
-{
-  return myMakeEdge2d.Vertex1();
-}
-
-
-//=======================================================================
-//function : Vertex2
-//purpose  : 
-//=======================================================================
-
-const TopoDS_Vertex&  BRepBuilderAPI_MakeEdge2d::Vertex2()const 
-{
-  return myMakeEdge2d.Vertex2();
-}
-
-
-
-//=======================================================================
-//function : operator
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_MakeEdge2d::operator TopoDS_Edge()
-{
-  return Edge();
+#include <XBRepBuilderAPI_MakeEdge2d.h>
+namespace TKTopAlgo {
+	//! DEFINE_STANDARD_ALLOC
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d() {
+		//NativeHandle = new BRepBuilderAPI_MakeEdge2d();
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::SetMakeEdge2dHandle(BRepBuilderAPI_MakeEdge2d* handle) {
+		NativeHandle = handle;
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	BRepBuilderAPI_MakeEdge2d* XBRepBuilderAPI_MakeEdge2d::GetMakeEdge2d() {
+		return NativeHandle;
+	};
+
+	BRepBuilderAPI_MakeShape* XBRepBuilderAPI_MakeEdge2d::GetMakeShape() {
+		return NativeHandle;
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetLin2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetLin2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetLin2d(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Lin2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetLin2d(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetCirc2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetCirc2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetCirc2d(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Circ2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetCirc2d(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetElips2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetElips2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetElips2d(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Elips2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetElips2d(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetHypr2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetHypr2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetHypr2d(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Hypr2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetHypr2d(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetParab2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetParab2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetParab2d(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(xgp_Parab2d^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(*L->GetParab2d(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve(), *P1->GetPnt2d(), *P2->GetPnt2d());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve(), *V1->GetVertex(), *V2->GetVertex());
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve(), *P1->GetPnt2d(), *P2->GetPnt2d(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	XBRepBuilderAPI_MakeEdge2d::XBRepBuilderAPI_MakeEdge2d(XGeom2d_Curve^ L, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2) {
+		NativeHandle = new BRepBuilderAPI_MakeEdge2d(L->GetCurve(), *V1->GetVertex(), *V2->GetVertex(), p1, p2);
+		SetMakeShapeHandle(NativeHandle);
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C) {
+		NativeHandle->Init(C->GetCurve());
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C, Standard_Real p1, Standard_Real p2) {
+		NativeHandle->Init(C->GetCurve(), p1, p2);
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2) {
+		NativeHandle->Init(C->GetCurve(), *P1->GetPnt2d(), *P2->GetPnt2d());
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2) {
+		NativeHandle->Init(C->GetCurve(), *V1->GetVertex(), *V2->GetVertex());
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C, xgp_Pnt2d^ P1, xgp_Pnt2d^ P2, Standard_Real p1, Standard_Real p2) {
+		NativeHandle->Init(C->GetCurve(), *P1->GetPnt2d(), *P2->GetPnt2d(), p1, p2);
+	};
+
+	void XBRepBuilderAPI_MakeEdge2d::Init(XGeom2d_Curve^ C, XTopoDS_Vertex^ V1, XTopoDS_Vertex^ V2, Standard_Real p1, Standard_Real p2) {
+		NativeHandle->Init(C->GetCurve(), *V1->GetVertex(), *V2->GetVertex(), p1, p2);
+	};
+
+	Standard_Boolean XBRepBuilderAPI_MakeEdge2d::IsDone() {
+		return NativeHandle->IsDone();
+	};
+
+	//! Returns the error description when NotDone.
+	XBRepBuilderAPI_EdgeError XBRepBuilderAPI_MakeEdge2d::Error() {
+		return safe_cast<XBRepBuilderAPI_EdgeError>(NativeHandle->Error());
+	};
+
+	XTopoDS_Edge^ XBRepBuilderAPI_MakeEdge2d::Edge() {
+		TopoDS_Edge* temp = new TopoDS_Edge(NativeHandle->Edge());
+		return gcnew XTopoDS_Edge(temp);
+	};
+	XBRepBuilderAPI_MakeEdge2d::operator XTopoDS_Edge^() {
+		TopoDS_Edge* temp = new TopoDS_Edge(NativeHandle->Edge());
+		return gcnew XTopoDS_Edge(temp);
+	};
+
+	//! Returns the first vertex of the edge. May be Null.
+	XTopoDS_Vertex^ XBRepBuilderAPI_MakeEdge2d::Vertex1() {
+		TopoDS_Vertex* temp = new TopoDS_Vertex(NativeHandle->Vertex1());
+		return gcnew XTopoDS_Vertex(temp);
+	};
+
+	//! Returns the second vertex of the edge. May be Null.
+	XTopoDS_Vertex^ XBRepBuilderAPI_MakeEdge2d::Vertex2() {
+		TopoDS_Vertex* temp = new TopoDS_Vertex(NativeHandle->Vertex2());
+		return gcnew XTopoDS_Vertex(temp);
+	};
 }
