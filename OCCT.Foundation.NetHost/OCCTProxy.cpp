@@ -48,6 +48,9 @@
 #include <ViewerTest.hxx>
 #include <TPrsStd_AISViewer.hxx>
 #include <XV3d_View.h>
+#include <AIS_TextLabel.hxx>
+#include <Resource_ConvertUnicode.hxx>//Resource_Unicode
+#include <Resource_Unicode.hxx>
 
 #pragma region required OCCT libraries
 //// list of required OCCT libraries
@@ -254,7 +257,19 @@ public:
         mainAISContext()->UpdateCurrentViewer();
         mainView()->Redraw();
         mainView()->MustBeResized();
+
+        AISTextLabel("sclshu3714@163.com");
         return true;
+    }
+
+    bool AISTextLabel(Standard_CString CString) {
+        TCollection_ExtendedString toExtendedString;
+        Resource_Unicode::ConvertGBToUnicode(CString, toExtendedString);
+        Handle(AIS_TextLabel) aLabel = new AIS_TextLabel();
+        aLabel->SetText(toExtendedString);
+        aLabel->SetColor(Quantity_NOC_RED);
+        aLabel->SetFont("SimHei");//一定要设置合适的字体，不然不能实现功能
+        mainAISContext()->Display(aLabel, Standard_True);
     }
 #pragma endregion
 
