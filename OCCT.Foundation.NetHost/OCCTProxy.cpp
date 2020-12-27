@@ -262,7 +262,7 @@ public:
         return true;
     }
 
-    bool AISTextLabel(Standard_CString CString) {
+    void AISTextLabel(Standard_CString CString) {
         TCollection_ExtendedString toExtendedString;
         Resource_Unicode::ConvertGBToUnicode(CString, toExtendedString);
         Handle(AIS_TextLabel) aLabel = new AIS_TextLabel();

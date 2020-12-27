@@ -13,20 +13,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_InteriorStyle_HeaderFile
-#define _Aspect_InteriorStyle_HeaderFile
+#ifndef _XAspect_InteriorStyle_HeaderFile
+#define _XAspect_InteriorStyle_HeaderFile
 
 //! Interior types for primitive faces.
-enum Aspect_InteriorStyle
+public enum class XAspect_InteriorStyle
 {
-  Aspect_IS_EMPTY = -1, //!< no interior
-  Aspect_IS_SOLID =  0, //!< normally filled surface interior
-  Aspect_IS_HATCH,      //!< hatched surface interior
-  Aspect_IS_HIDDENLINE, //!< interior is filled with viewer background color
-  Aspect_IS_POINT,      //!< display only vertices of surface (obsolete)
+	  Aspect_IS_EMPTY = -1, //!< no interior
+	  Aspect_IS_SOLID =  0, //!< normally filled surface interior
+	  Aspect_IS_HATCH,      //!< hatched surface interior
+	  Aspect_IS_HIDDENLINE, //!< interior is filled with viewer background color
+	  Aspect_IS_POINT,      //!< display only vertices of surface (obsolete)
 
-  // obsolete aliases
-  Aspect_IS_HOLLOW = Aspect_IS_EMPTY, //!< transparent surface interior
+	  // obsolete aliases
+	  Aspect_IS_HOLLOW = Aspect_IS_EMPTY, //!< transparent surface interior
 };
 
-#endif // _Aspect_InteriorStyle_HeaderFile
+#endif // _XAspect_InteriorStyle_HeaderFile

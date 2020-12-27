@@ -1,58 +1,36 @@
-// Created by: NW,JPB,CAL
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include <XAspect_Background.h>
+namespace TKService {
+	//! Creates a window background.
+	//! Default color : NOC_MATRAGRAY.
+	XAspect_Background::XAspect_Background() {
+		NativeHandle = new Aspect_Background();
+	};
 
-//-Version	
-//-Design	Declaration des variables specifiques aux fonds d'ecran.
-//-Warning	Un fond d'ecran est defini par une couleur.
-//-References	
-//-Language	C++ 2.0
-//-Declarations
-// for the class
+	XAspect_Background::XAspect_Background(Aspect_Background* pos) {
+		NativeHandle = pos;
+	};
 
-#include <Aspect_Background.hxx>
-#include <Quantity_Color.hxx>
+	void XAspect_Background::SetBackgroundHandle(Aspect_Background* pos) {
+		NativeHandle = pos;
+	};
 
-//-Aliases
-//-Global data definitions
-//	-- la couleur associee au fond d'ecran
-//	MyColor	:	Color;
-//-Constructors
-//-Destructors
-//-Methods, in order
-Aspect_Background::Aspect_Background () {
+	Aspect_Background* XAspect_Background::GetBackground() {
+		return NativeHandle;
+	};
 
-Quantity_Color MatraGray (Quantity_NOC_MATRAGRAY);
+	//! Creates a window background with the colour <AColor>.
+	XAspect_Background::XAspect_Background(XQuantity_Color^ AColor) {
+		NativeHandle = new Aspect_Background(*AColor->GetColor());
+	};
 
-	MyColor	= MatraGray;
+	//! Modifies the colour of the window background <me>.
+	void XAspect_Background::SetColor(XQuantity_Color^ AColor) {
+		NativeHandle->SetColor(*AColor->GetColor());
+	};
 
-}
-
-Aspect_Background::Aspect_Background (const Quantity_Color& AColor) {
-
-	MyColor	= AColor;
-
-}
-
-void Aspect_Background::SetColor (const Quantity_Color& AColor) {
-
-	MyColor	= AColor;
-
-}
-
-Quantity_Color Aspect_Background::Color () const {
-
-	return (MyColor);
-
+	//! Returns the colour of the window background <me>.
+	XQuantity_Color^ XAspect_Background::Color() {
+		Quantity_Color* temp = new Quantity_Color(NativeHandle->Color());
+		return gcnew XQuantity_Color(temp);
+	};
 }

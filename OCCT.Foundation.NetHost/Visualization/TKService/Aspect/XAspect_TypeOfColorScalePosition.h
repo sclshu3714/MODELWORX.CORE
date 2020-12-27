@@ -13,16 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfColorScalePosition_HeaderFile
-#define _Aspect_TypeOfColorScalePosition_HeaderFile
+#ifndef _XAspect_TypeOfColorScalePosition_HeaderFile
+#define _XAspect_TypeOfColorScalePosition_HeaderFile
 
 //! Defines the type of position for color scale labels
-enum Aspect_TypeOfColorScalePosition
+public enum class XAspect_TypeOfColorScalePosition
 {
-Aspect_TOCSP_NONE,
-Aspect_TOCSP_LEFT,
-Aspect_TOCSP_RIGHT,
-Aspect_TOCSP_CENTER
+	Aspect_TOCSP_NONE,
+	Aspect_TOCSP_LEFT,
+	Aspect_TOCSP_RIGHT,
+	Aspect_TOCSP_CENTER
 };
 
-#endif // _Aspect_TypeOfColorScalePosition_HeaderFile
+#endif // _XAspect_TypeOfColorScalePosition_HeaderFile

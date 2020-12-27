@@ -14,8 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_Background_HeaderFile
-#define _Aspect_Background_HeaderFile
+#ifndef _XAspect_Background_HeaderFile
+#define _XAspect_Background_HeaderFile
+#pragma once
+#include <Aspect_Background.hxx>
+#include <XQuantity_Color.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -24,51 +27,47 @@
 #include <Quantity_Color.hxx>
 class Quantity_Color;
 
+using namespace TKernel;
+namespace TKService {
+	ref class TKernel::XQuantity_Color;
+	//! This class allows the definition of
+	//! a window background.
+	public ref class XAspect_Background
+	{
+	public:
 
-//! This class allows the definition of
-//! a window background.
-class Aspect_Background 
-{
-public:
+		//! DEFINE_STANDARD_ALLOC
+		//! Creates a window background.
+		//! Default color : NOC_MATRAGRAY.
+		XAspect_Background();
 
-  DEFINE_STANDARD_ALLOC
+		XAspect_Background(Aspect_Background* pos);
 
-  
-  //! Creates a window background.
-  //! Default color : NOC_MATRAGRAY.
-  Standard_EXPORT Aspect_Background();
-  
-  //! Creates a window background with the colour <AColor>.
-  Standard_EXPORT Aspect_Background(const Quantity_Color& AColor);
-  
-  //! Modifies the colour of the window background <me>.
-  Standard_EXPORT void SetColor (const Quantity_Color& AColor);
-  
-  //! Returns the colour of the window background <me>.
-  Standard_EXPORT Quantity_Color Color() const;
+		void SetBackgroundHandle(Aspect_Background* pos);
 
+		Aspect_Background* GetBackground();
 
+		//! Creates a window background with the colour <AColor>.
+		XAspect_Background(XQuantity_Color^ AColor);
 
+		//! Modifies the colour of the window background <me>.
+		void SetColor(XQuantity_Color^ AColor);
 
-protected:
-
-
-
-
-
-private:
-
-
-
-  Quantity_Color MyColor;
-
-
-};
-
-
-
-
-
-
-
-#endif // _Aspect_Background_HeaderFile
+		//! Returns the colour of the window background <me>.
+		XQuantity_Color^ Color();
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property Aspect_Background* IHandle {
+			Aspect_Background* get() { // Standard_OVERRIDE {
+				return NativeHandle;
+			}
+			void set(Aspect_Background* handle) { // Standard_OVERRIDE {
+				NativeHandle = handle;
+			}
+		}
+	private:
+		Aspect_Background* NativeHandle;
+	};
+}
+#endif // _XAspect_Background_HeaderFile

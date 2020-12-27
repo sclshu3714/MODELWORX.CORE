@@ -13,16 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfColorScaleOrientation_HeaderFile
-#define _Aspect_TypeOfColorScaleOrientation_HeaderFile
+#ifndef _XAspect_TypeOfColorScaleOrientation_HeaderFile
+#define _XAspect_TypeOfColorScaleOrientation_HeaderFile
 
 //! Defines the type of color scale orientation
-enum Aspect_TypeOfColorScaleOrientation
+public enum class XAspect_TypeOfColorScaleOrientation
 {
-Aspect_TOCSO_NONE,
-Aspect_TOCSO_LEFT,
-Aspect_TOCSO_RIGHT,
-Aspect_TOCSO_CENTER
+	Aspect_TOCSO_NONE,
+	Aspect_TOCSO_LEFT,
+	Aspect_TOCSO_RIGHT,
+	Aspect_TOCSO_CENTER
 };
 
-#endif // _Aspect_TypeOfColorScaleOrientation_HeaderFile
+#endif // _XAspect_TypeOfColorScaleOrientation_HeaderFile

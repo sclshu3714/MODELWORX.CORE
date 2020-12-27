@@ -34,15 +34,15 @@ class Standard_ConstructionError;
 class gp_Dir2d;
 class gp_Trsf2d;
 
-public enum class XMaskFlags
-{
-    VoidMask = 0x01,
-    XminMask = 0x02,
-    XmaxMask = 0x04,
-    YminMask = 0x08,
-    YmaxMask = 0x10,
-    WholeMask = 0x1e
-};
+//public enum class XMaskFlags
+//{
+//    VoidMask = 0x01,
+//    XminMask = 0x02,
+//    XmaxMask = 0x04,
+//    YminMask = 0x08,
+//    YmaxMask = 0x10,
+//    WholeMask = 0x1e
+//};
 
 namespace TKMath {
     //! Bit flags.

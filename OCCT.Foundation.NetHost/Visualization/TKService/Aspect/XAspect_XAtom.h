@@ -13,15 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_XAtom_HeaderFile
-#define _Aspect_XAtom_HeaderFile
+#ifndef _XAspect_XAtom_HeaderFile
+#define _XAspect_XAtom_HeaderFile
 
 //! Defines custom identifiers(atoms) for X window custom named properties
 //!
 //! Category: Instantiated classes
-enum Aspect_XAtom
+public enum class XAspect_XAtom
 {
-Aspect_XA_DELETE_WINDOW
+	Aspect_XA_DELETE_WINDOW
 };
 
-#endif // _Aspect_XAtom_HeaderFile
+#endif // _XAspect_XAtom_HeaderFile

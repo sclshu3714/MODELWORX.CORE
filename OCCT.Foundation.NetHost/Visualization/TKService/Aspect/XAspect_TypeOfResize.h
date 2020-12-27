@@ -13,23 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfResize_HeaderFile
-#define _Aspect_TypeOfResize_HeaderFile
+#ifndef _XAspect_TypeOfResize_HeaderFile
+#define _XAspect_TypeOfResize_HeaderFile
 
 //! Defines the type of Resize Window method applied
 //! by the user.
-enum Aspect_TypeOfResize
+public enum class XAspect_TypeOfResize
 {
-Aspect_TOR_UNKNOWN,
-Aspect_TOR_NO_BORDER,
-Aspect_TOR_TOP_BORDER,
-Aspect_TOR_RIGHT_BORDER,
-Aspect_TOR_BOTTOM_BORDER,
-Aspect_TOR_LEFT_BORDER,
-Aspect_TOR_TOP_AND_RIGHT_BORDER,
-Aspect_TOR_RIGHT_AND_BOTTOM_BORDER,
-Aspect_TOR_BOTTOM_AND_LEFT_BORDER,
-Aspect_TOR_LEFT_AND_TOP_BORDER
+	Aspect_TOR_UNKNOWN,
+	Aspect_TOR_NO_BORDER,
+	Aspect_TOR_TOP_BORDER,
+	Aspect_TOR_RIGHT_BORDER,
+	Aspect_TOR_BOTTOM_BORDER,
+	Aspect_TOR_LEFT_BORDER,
+	Aspect_TOR_TOP_AND_RIGHT_BORDER,
+	Aspect_TOR_RIGHT_AND_BOTTOM_BORDER,
+	Aspect_TOR_BOTTOM_AND_LEFT_BORDER,
+	Aspect_TOR_LEFT_AND_TOP_BORDER
 };
 
-#endif // _Aspect_TypeOfResize_HeaderFile
+#endif // _XAspect_TypeOfResize_HeaderFile

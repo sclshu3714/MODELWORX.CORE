@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfStyleText_HeaderFile
-#define _Aspect_TypeOfStyleText_HeaderFile
+#ifndef _XAspect_TypeOfStyleText_HeaderFile
+#define _XAspect_TypeOfStyleText_HeaderFile
 
 //! Define the style of the text.
 //!
@@ -23,10 +23,10 @@
 //! point of view.
 //! TOST_ANNOTATION     The text is always visible. The texte is displayed
 //! over the other object according to the priority.
-enum Aspect_TypeOfStyleText
+public enum class XAspect_TypeOfStyleText
 {
-Aspect_TOST_NORMAL,
-Aspect_TOST_ANNOTATION
+	Aspect_TOST_NORMAL,
+	Aspect_TOST_ANNOTATION
 };
 
-#endif // _Aspect_TypeOfStyleText_HeaderFile
+#endif // _XAspect_TypeOfStyleText_HeaderFile

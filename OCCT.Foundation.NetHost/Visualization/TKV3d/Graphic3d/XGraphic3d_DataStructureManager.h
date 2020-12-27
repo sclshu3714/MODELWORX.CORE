@@ -13,8 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_DataStructureManager_HeaderFile
-#define _Graphic3d_DataStructureManager_HeaderFile
+#ifndef _XGraphic3d_DataStructureManager_HeaderFile
+#define _XGraphic3d_DataStructureManager_HeaderFile
+#pragma once
+#include <Graphic3d_DataStructureManager.hxx>
+#include <NCollection_Haft.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -23,38 +26,40 @@
 
 
 class Graphic3d_DataStructureManager;
-DEFINE_STANDARD_HANDLE(Graphic3d_DataStructureManager, Standard_Transient)
+//DEFINE_STANDARD_HANDLE(Graphic3d_DataStructureManager, Standard_Transient)
 
-//! This class allows the definition of a manager to
-//! which the graphic objects are associated.
-//! It allows them to be globally manipulated.
-//! It defines the global attributes.
-class Graphic3d_DataStructureManager : public Standard_Transient
-{
+namespace TKV3d {
+	//! This class allows the definition of a manager to
+	//! which the graphic objects are associated.
+	//! It allows them to be globally manipulated.
+	//! It defines the global attributes.
+	public ref class XGraphic3d_DataStructureManager //: public Standard_Transient
+	{
 
-public:
+	public:
 
-  DEFINE_STANDARD_RTTIEXT(Graphic3d_DataStructureManager,Standard_Transient)
+		XGraphic3d_DataStructureManager();
 
-protected:
+        XGraphic3d_DataStructureManager(Handle(Graphic3d_DataStructureManager) handle);
 
-  
-  //! Initializes the manager <me>.
-  Standard_EXPORT Graphic3d_DataStructureManager();
+        void SetDataStructureManagerHandle(Handle(Graphic3d_DataStructureManager) handle);
 
+        Handle(Graphic3d_DataStructureManager) GetDataStructureManager();
 
-
-private:
-
-
-
-
-};
-
-
-
-
-
-
-
-#endif // _Graphic3d_DataStructureManager_HeaderFile
+		//DEFINE_STANDARD_RTTIEXT(Graphic3d_DataStructureManager, Standard_Transient)
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Graphic3d_DataStructureManager) IHandle {
+            Handle(Graphic3d_DataStructureManager) get() { // Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Graphic3d_DataStructureManager) handle) { // Standard_OVERRIDE {
+                NativeHandle() = handle;
+            }
+        }
+    private:
+        NCollection_Haft<Handle(Graphic3d_DataStructureManager)> NativeHandle;
+	};
+}
+#endif // _XGraphic3d_DataStructureManager_HeaderFile

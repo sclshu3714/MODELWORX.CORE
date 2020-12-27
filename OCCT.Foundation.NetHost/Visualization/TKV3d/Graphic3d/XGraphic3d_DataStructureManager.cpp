@@ -22,13 +22,21 @@
 //-Declarations
 // for the class
 
-#include <Graphic3d_DataStructureManager.hxx>
-#include <Standard_Type.hxx>
+#include <XGraphic3d_DataStructureManager.h>
+namespace TKV3d {
+	XGraphic3d_DataStructureManager::XGraphic3d_DataStructureManager() {
+		//NativeHandle() = new Graphic3d_DataStructureManager();
+	};
 
-IMPLEMENT_STANDARD_RTTIEXT(Graphic3d_DataStructureManager,Standard_Transient)
+	XGraphic3d_DataStructureManager::XGraphic3d_DataStructureManager(Handle(Graphic3d_DataStructureManager) handle) {
+		NativeHandle() = handle;
+	};
 
-//-Aliases
-//-Global data definitions
-//-Constructors
-Graphic3d_DataStructureManager::Graphic3d_DataStructureManager () {
+	void XGraphic3d_DataStructureManager::SetDataStructureManagerHandle(Handle(Graphic3d_DataStructureManager) handle) {
+		NativeHandle() = handle;
+	};
+
+	Handle(Graphic3d_DataStructureManager) XGraphic3d_DataStructureManager::GetDataStructureManager() {
+		return NativeHandle();
+	};
 }

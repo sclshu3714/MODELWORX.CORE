@@ -1635,6 +1635,48 @@
     <ClInclude Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_FastSewing.h">
       <Filter>头文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_XAtom.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_WidthOfLine.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfStyleText.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfColorScaleData.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfColorScaleOrientation.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfColorScalePosition.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfDisplayText.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfMarker.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfResize.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_HatchStyle.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_InteriorStyle.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_PolygonOffsetMode.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Aspect\XAspect_Background.h">
+      <Filter>头文件\Visualization\TKService\Aspect</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2375,6 +2417,12 @@
     </ClCompile>
     <ClCompile Include="ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI\XBRepBuilderAPI_FastSewing.cpp">
       <Filter>源文件\ModelingAlgorithms\TKTopAlgo\BRepBuilderAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Aspect\XAspect_Background.cpp">
+      <Filter>源文件\Visualization\TKService\Aspect</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.cpp">
+      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

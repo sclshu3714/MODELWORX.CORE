@@ -13,14 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfColorScaleData_HeaderFile
-#define _Aspect_TypeOfColorScaleData_HeaderFile
+#ifndef _XAspect_TypeOfColorScaleData_HeaderFile
+#define _XAspect_TypeOfColorScaleData_HeaderFile
 
 //! Defines the using type of colors and labels
-enum Aspect_TypeOfColorScaleData
+public enum class XAspect_TypeOfColorScaleData
 {
-Aspect_TOCSD_AUTO,
-Aspect_TOCSD_USER
+	Aspect_TOCSD_AUTO,
+	Aspect_TOCSD_USER
 };
 
-#endif // _Aspect_TypeOfColorScaleData_HeaderFile
+#endif // _XAspect_TypeOfColorScaleData_HeaderFile
