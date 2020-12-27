@@ -490,6 +490,12 @@
     <Filter Include="头文件\ModelingAlgorithms\TKOffset\Draft">
       <UniqueIdentifier>{dbeb61b9-5fe5-4b83-bc3a-c4cf86ba60cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\FoundationClasses\TKernel\NCollection">
+      <UniqueIdentifier>{1149b8c8-7952-428b-80c7-ac3dd3501940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FoundationClasses\TKernel\NCollection">
+      <UniqueIdentifier>{37569cd8-6c3c-4825-9cdd-fef3a1a0f78e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -767,9 +773,6 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_TypeOfPresentation3d.h">
       <Filter>头文件\Visualization\TKV3d\PrsMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h">
-      <Filter>头文件\FoundationClasses\TKernel\TCollection</Filter>
     </ClInclude>
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h">
       <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
@@ -1676,6 +1679,9 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h">
+      <Filter>头文件\FoundationClasses\TKernel\NCollection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

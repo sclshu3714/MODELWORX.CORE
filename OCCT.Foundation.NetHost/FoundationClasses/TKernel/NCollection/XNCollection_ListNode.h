@@ -35,27 +35,27 @@ namespace TKernel {
 	public:
 		//! The only constructor
 		XNCollection_ListNode(Handle(NCollection_ListNode) theNext)
-			: myNext(theNext) {}
+			: NativeHandle(theNext) {}
 
 		void SetListNode(Handle(NCollection_ListNode) pos) {
-			myNext() = pos;
+			NativeHandle() = pos;
 		}
 
 		Handle(NCollection_ListNode) GetListNode()
 		{
-			return myNext();
+			return NativeHandle();
 		}
 
 		//! Next pointer access
-		Handle(XNCollection_ListNode) Next(void)
+		XNCollection_ListNode^ Next(void)
 		{
-			return myNext()->Next();
+			return gcnew XNCollection_ListNode(NativeHandle()->Next());
 		}
 
 		//! Next pointer const access
-		Handle(XNCollection_ListNode) Next(void)
+		XNCollection_ListNode^ Next(void)
 		{
-			return myNext()->Next();
+			return gcnew XNCollection_ListNode(NativeHandle()->Next());
 		}
 
 	private:
@@ -63,10 +63,10 @@ namespace TKernel {
 		Handle(NCollection_ListNode)* operator= (Handle(NCollection_ListNode)*);
 
 		//! copy constructor - forbidden
-		XNCollection_ListNode(Handle(NCollection_ListNode));
+		XNCollection_ListNode(XNCollection_ListNode^ ListNode);
 
 	private:
-		NCollection_Haft<Handle(NCollection_ListNode)> myNext; //!< Pointer to the next node
+		NCollection_Haft<Handle(NCollection_ListNode)> NativeHandle; //!< Pointer to the next node
 	};
 }
 #endif

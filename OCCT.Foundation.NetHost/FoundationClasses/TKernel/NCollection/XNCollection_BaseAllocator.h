@@ -24,8 +24,10 @@
 //              CommonBaseAllocator.
 //              Note that this object is managed by Handle.
 
-#ifndef NCollection_BaseAllocator_HeaderFile
-#define NCollection_BaseAllocator_HeaderFile
+#ifndef XNCollection_BaseAllocator_HeaderFile
+#define XNCollection_BaseAllocator_HeaderFile
+#pragma once
+#include <NCollection_BaseAllocator.hxx>
 
 #include <Standard_Transient.hxx>
 #include <Standard_Type.hxx>
@@ -44,43 +46,38 @@
 *              CommonBaseAllocator.
 *              Note that this object is managed by Handle.
 */              
-class NCollection_BaseAllocator : public Standard_Transient
+public ref class XNCollection_BaseAllocator //: public Standard_Transient
 {
  public:
   // ---------- PUBLIC METHODS ------------
-  Standard_EXPORT virtual void* Allocate (const size_t size);
-  Standard_EXPORT virtual void  Free     (void * anAddress);
+  virtual void* Allocate (const size_t size);
+  virtual void  Free     (void * anAddress);
   
   //! CommonBaseAllocator
   //! This method is designed to have the only one BaseAllocator (to avoid
   //! useless copying of collections). However one can use operator new to
   //! create more BaseAllocators, but it is injurious.
-  Standard_EXPORT static const Handle(NCollection_BaseAllocator)&
-    CommonBaseAllocator(void);
+  static XNCollection_BaseAllocator^ CommonBaseAllocator(void);
 
   //! Callback function to register alloc/free calls
-  Standard_EXPORT static void StandardCallBack
-                    (const Standard_Boolean theIsAlloc,
-                     const Standard_Address theStorage,
-                     const Standard_Size theRoundSize,
-                     const Standard_Size theSize);
+  static void StandardCallBack(Standard_Boolean theIsAlloc, Standard_Address theStorage, Standard_Size theRoundSize, Standard_Size theSize);
 
   //! Prints memory usage statistics cumulated by StandardCallBack
-  Standard_EXPORT static void PrintMemUsageStatistics();
+  static void PrintMemUsageStatistics();
 
  protected:
   //! Constructor - prohibited
-  NCollection_BaseAllocator(void) {}
+	 XNCollection_BaseAllocator(void);
 
  private:
   //! Copy constructor - prohibited
-  NCollection_BaseAllocator(const NCollection_BaseAllocator&);
+  XNCollection_BaseAllocator(XNCollection_BaseAllocator^ BaseAllocator);
 
  public:
   // ---------- CasCade RunTime Type Information
-  DEFINE_STANDARD_RTTIEXT(NCollection_BaseAllocator,Standard_Transient)
+  //DEFINE_STANDARD_RTTIEXT(NCollection_BaseAllocator,Standard_Transient)
 };
 
-DEFINE_STANDARD_HANDLE(NCollection_BaseAllocator,Standard_Transient)
+//DEFINE_STANDARD_HANDLE(NCollection_BaseAllocator,Standard_Transient)
 
-#endif
+#endif XNCollection_BaseAllocator_HeaderFile

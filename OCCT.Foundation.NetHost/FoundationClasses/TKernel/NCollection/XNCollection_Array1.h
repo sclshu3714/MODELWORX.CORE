@@ -13,8 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_Array1_HeaderFile
-#define NCollection_Array1_HeaderFile
+#ifndef XNCollection_Array1_HeaderFile
+#define XNCollection_Array1_HeaderFile
+#pragma once
+#include <NCollection_Array1.hxx>
+#include <NCollection_Haft.h>
 
 #include <Standard_DimensionMismatch.hxx>
 #include <Standard_OutOfMemory.hxx>
@@ -25,438 +28,202 @@
 
 // *********************************************** Template for Array1 class
 
-/**
-* Purpose:     The class Array1 represents unidimensional arrays 
-*              of fixed size known at run time. 
-*              The range of the index is user defined.
-*              An array1 can be constructed with a "C array".
-*              This functionality is useful to call methods expecting
-*              an Array1. It allows to carry the bounds inside the arrays.
-*              
-* Examples:    Item tab[100]; //  An example with a C array
-*              Array1OfItem ttab (tab[0],1,100);
-*              
-*              Array1OfItem tttab (ttab(10),10,20); // a slice of ttab
-*              
-*              If you want to reindex an array from 1 to Length do :
-*              
-*              Array1 tab1(tab(tab.Lower()),1,tab.Length());
-*                          
-* Warning:     Programs client of such a class must be independant
-*              of the range of the first element. Then, a C++ for
-*              loop must be written like this
-*              
-*              for (i = A.Lower(); i <= A.Upper(); i++)
-*              
-* Changes:     In  comparison  to  TCollection  the  flag  isAllocated  was
-*              renamed into myDeletable (alike in  the Array2).  For naming
-*              compatibility the method IsAllocated remained in class along
-*              with IsDeletable.
-*/              
-template <class TheItemType>
-class NCollection_Array1
-{
-public:
-  //! STL-compliant typedef for value type
-  typedef TheItemType value_type;
-
-public:
-  //! Implementation of the Iterator interface.
-  class Iterator
-  {
-  public:
-
-    //! Empty constructor - for later Init
-    Iterator (void) :
-      myPtrCur (NULL),
-      myPtrEnd (NULL)
+namespace TKernel {
+    /**
+    * Purpose:     The class Array1 represents unidimensional arrays
+    *              of fixed size known at run time.
+    *              The range of the index is user defined.
+    *              An array1 can be constructed with a "C array".
+    *              This functionality is useful to call methods expecting
+    *              an Array1. It allows to carry the bounds inside the arrays.
+    *
+    * Examples:    Item tab[100]; //  An example with a C array
+    *              Array1OfItem ttab (tab[0],1,100);
+    *
+    *              Array1OfItem tttab (ttab(10),10,20); // a slice of ttab
+    *
+    *              If you want to reindex an array from 1 to Length do :
+    *
+    *              Array1 tab1(tab(tab.Lower()),1,tab.Length());
+    *
+    * Warning:     Programs client of such a class must be independant
+    *              of the range of the first element. Then, a C++ for
+    *              loop must be written like this
+    *
+    *              for (i = A.Lower(); i <= A.Upper(); i++)
+    *
+    * Changes:     In  comparison  to  TCollection  the  flag  isAllocated  was
+    *              renamed into myDeletable (alike in  the Array2).  For naming
+    *              compatibility the method IsAllocated remained in class along
+    *              with IsDeletable.
+    */
+    template <class TheItemType>
+    public ref class XNCollection_Array1
     {
-      //
-    }
+    public:
+        //! STL-compliant typedef for value type
+        //typedef TheItemType^ value_type;
 
-    //! Constructor with initialization
-    Iterator (const NCollection_Array1& theArray, Standard_Boolean theToEnd = Standard_False) :
-      myPtrEnd (const_cast<TheItemType*> (&theArray.Last() + 1))
-    {
-      myPtrCur = theToEnd ? myPtrEnd : const_cast<TheItemType*> (&theArray.First());
-    }
+    public:
+        //! Implementation of the Iterator interface.
+        ref class XIterator
+        {
+        public:
 
-    //! Initialisation
-    void Init (const NCollection_Array1& theArray)
-    { 
-      myPtrCur = const_cast<TheItemType*> (&theArray.First());
-      myPtrEnd = const_cast<TheItemType*> (&theArray.Last() + 1);
-    }
+            //! Empty constructor - for later Init
+            XIterator(void);
 
-    //! Assignment
-    Iterator& operator= (const Iterator& theOther)
-    {
-      myPtrCur = theOther.myPtrCur;
-      myPtrEnd = theOther.myPtrEnd;
-      return *this;
-    }
+            //! Constructor with initialization
+            //! Standard_Boolean theToEnd = Standard_False
+            XIterator(XNCollection_Array1^ theArray, Standard_Boolean theToEnd);
 
-    //! Check end
-    Standard_Boolean More (void) const
-    { return myPtrCur < myPtrEnd; }
-    
-    //! Increment operator
-    void Next (void)
-    { ++myPtrCur; }
+            //! Initialisation
+            void Init(XNCollection_Array1^ theArray);
 
-    //! Decrement operator
-    void Previous()
-    { --myPtrCur; }
+            //! Assignment
+            XIterator^ operator= (XIterator^ theOther);
 
-    //! Offset operator.
-    void Offset (ptrdiff_t theOffset)
-    { myPtrCur += theOffset; }
+            //! Check end
+            Standard_Boolean More(void);
 
-    //! Difference operator.
-    ptrdiff_t Differ (const Iterator& theOther) const
-    { return myPtrCur - theOther.myPtrCur; }
+            //! Increment operator
+            void Next(void);
 
-    //! Constant value access
-    const TheItemType& Value (void) const
-    { return *myPtrCur; }
+            //! Decrement operator
+            void Previous();
 
-    //! Variable value access
-    TheItemType& ChangeValue (void) const 
-    { return *myPtrCur; }
+            //! Offset operator.
+            void Offset(ptrdiff_t theOffset);
 
-    //! Performs comparison of two iterators
-    Standard_Boolean IsEqual (const Iterator& theOther) const
-    { return myPtrCur == theOther.myPtrCur; }
+            //! Difference operator.
+            ptrdiff_t Differ(XIterator^ theOther);
 
-  private:
-    TheItemType* myPtrCur; //!< Pointer to the current element in the array
-    TheItemType* myPtrEnd; //!< Pointer to the past-the-end element in the array
-  }; // End of the nested class Iterator
+            //! Constant value access
+            TheItemType^ Value(void);
 
-  //! Shorthand for a regular iterator type.
-  typedef NCollection_StlIterator<std::random_access_iterator_tag, Iterator, TheItemType, false> iterator;
+            //! Variable value access
+            TheItemType^ ChangeValue(void);
 
-  //! Shorthand for a constant iterator type.
-  typedef NCollection_StlIterator<std::random_access_iterator_tag, Iterator, TheItemType, true> const_iterator;
+            //! Performs comparison of two iterators
+            Standard_Boolean IsEqual(XIterator^ theOther);
 
-  //! Returns an iterator pointing to the first element in the array.
-  iterator begin() const { return Iterator (*this, false); }
+        private:
+            NCollection_Array1::Iterator* NativeHandle;
 
-  //! Returns an iterator referring to the past-the-end element in the array.
-  iterator end() const { return Iterator (*this, true); }
-  
-  //! Returns a const iterator pointing to the first element in the array.
-  const_iterator cbegin() const { return Iterator (*this, false); }
+        }; // End of the nested class Iterator
 
-  //! Returns a const iterator referring to the past-the-end element in the array.
-  const_iterator cend() const { return Iterator (*this, true); }
+    public:
+        // ---------- PUBLIC METHODS ------------
 
- public:
-  // ---------- PUBLIC METHODS ------------
+        //! Empty constructor; should be used with caution.
+        //! @sa methods Resize() and Move().
+        XNCollection_Array1();
 
-  //! Empty constructor; should be used with caution.
-  //! @sa methods Resize() and Move().
-  NCollection_Array1()
-  : myLowerBound (1),
-    myUpperBound (0),
-    myDeletable  (Standard_False),
-    myData (NULL)
-  {
-    //
-  }
+        //! Constructor
+        XNCollection_Array1(Standard_Integer theLower, Standard_Integer theUpper);
 
-  //! Constructor
-  NCollection_Array1(const Standard_Integer theLower,
-                     const Standard_Integer theUpper) :
-                myLowerBound                             (theLower),
-                myUpperBound                             (theUpper),
-                myDeletable                              (Standard_True)
-  {
-    Standard_RangeError_Raise_if (theUpper < theLower, "NCollection_Array1::Create");
-    TheItemType* pBegin = new TheItemType[Length()];
-    Standard_OutOfMemory_Raise_if (!pBegin, "NCollection_Array1 : Allocation failed");
+        //! Copy constructor 
+        XNCollection_Array1(XNCollection_Array1^ theOther);
 
-    myData = pBegin - theLower;
-  }
+        //! C array-based constructor.
+        //!
+        //! Makes this array to use the buffer pointed by theBegin
+        //! instead of allocating it dynamically.
+        //! Argument theBegin should be a reference to the first element
+        //! of the pre-allocated buffer (usually local C array buffer),
+        //! with size at least theUpper - theLower + 1 items.
+        //!
+        //! Warning: returning array object created using this constructor
+        //! from function by value will result in undefined behavior
+        //! if compiler performs return value optimization (this is likely
+        //! to be true for all modern compilers in release mode).
+        //! The same happens if array is copied using Move() function
+        //! or move constructor and target object's lifespan is longer
+        //! than that of the buffer.
+        XNCollection_Array1(TheItemType^ theBegin, Standard_Integer theLower, Standard_Integer theUpper);
 
-  //! Copy constructor 
-  NCollection_Array1 (const NCollection_Array1& theOther) :
-    myLowerBound                                (theOther.Lower()),
-    myUpperBound                                (theOther.Upper()),
-    myDeletable                                 (Standard_True)
-  {
-    TheItemType* pBegin = new TheItemType[Length()];
-    Standard_OutOfMemory_Raise_if (!pBegin, "NCollection_Array1 : Allocation failed");
-    myData = pBegin - myLowerBound;
+        //! Initialise the items with theValue
+        void Init(TheItemType^ theValue);
 
-    Assign (theOther);
-  }
+        //! Size query
+        Standard_Integer Size(void);
+        //! Length query (the same)
+        Standard_Integer Length(void);
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
-  //! Move constructor
-  NCollection_Array1 (NCollection_Array1&& theOther)
-  : myLowerBound (theOther.myLowerBound),
-    myUpperBound (theOther.myUpperBound),
-    myDeletable  (theOther.myDeletable),
-    myData       (theOther.myData)
-  {
-    theOther.myDeletable  = false;
-  }
-#endif
+        //! Return TRUE if array has zero length.
+        Standard_Boolean IsEmpty();
 
-  //! C array-based constructor.
-  //!
-  //! Makes this array to use the buffer pointed by theBegin
-  //! instead of allocating it dynamically.
-  //! Argument theBegin should be a reference to the first element
-  //! of the pre-allocated buffer (usually local C array buffer),
-  //! with size at least theUpper - theLower + 1 items.
-  //!
-  //! Warning: returning array object created using this constructor
-  //! from function by value will result in undefined behavior
-  //! if compiler performs return value optimization (this is likely
-  //! to be true for all modern compilers in release mode).
-  //! The same happens if array is copied using Move() function
-  //! or move constructor and target object's lifespan is longer
-  //! than that of the buffer.
-  NCollection_Array1 (const TheItemType& theBegin,
-                      const Standard_Integer theLower,
-                      const Standard_Integer theUpper) :
-    myLowerBound                                (theLower),
-    myUpperBound                                (theUpper),
-    myDeletable                                 (Standard_False)
-  {
-    Standard_RangeError_Raise_if (theUpper < theLower, "NCollection_Array1::Create");
-  #if (defined(__GNUC__) && __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
-    // gcc emits -Warray-bounds warning when NCollection_Array1 is initialized
-    // from local array with lower index 1 (so that (&theBegin - 1) points out of array bounds).
-    // NCollection_Array1 initializes myData with a shift to avoid this shift within per-element access.
-    // It is undesired changing this logic, and -Warray-bounds is not useful here.
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Warray-bounds"
-  #endif
-    myData = (TheItemType *) &theBegin - theLower;
-  #if (defined(__GNUC__) && __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
-    #pragma GCC diagnostic pop
-  #endif
-  }
+        //! Lower bound
+        Standard_Integer Lower(void);
+        //! Upper bound
+        Standard_Integer Upper(void);
 
-  //! Initialise the items with theValue
-  void Init (const TheItemType& theValue) 
-  {
-    TheItemType *pCur = &myData[myLowerBound], *pEnd=&myData[myUpperBound];
-    for(; pCur <= pEnd; pCur++)
-      *pCur = (TheItemType&) theValue;
-  }
+        //! myDeletable flag
+        Standard_Boolean IsDeletable(void);
 
-  //! Size query
-  Standard_Integer Size (void) const
-  { return Length(); }
-  //! Length query (the same)
-  Standard_Integer Length (void) const
-  { return (myUpperBound-myLowerBound+1); }
+        //! IsAllocated flag - for naming compatibility
+        Standard_Boolean IsAllocated(void);
 
-  //! Return TRUE if array has zero length.
-  Standard_Boolean IsEmpty() const { return myUpperBound < myLowerBound; }
+        //! Copies data of theOther array to this.
+        //! This array should be pre-allocated and have the same length as theOther;
+        //! otherwise exception Standard_DimensionMismatch is thrown.
+        XNCollection_Array1^ Assign(XNCollection_Array1^ theOther);
 
-  //! Lower bound
-  Standard_Integer Lower (void) const
-  { return myLowerBound; }
-  //! Upper bound
-  Standard_Integer Upper (void) const
-  { return myUpperBound; }
+        //! Move assignment.
+        //! This array will borrow all the data from theOther.
+        //! The moved object will keep pointer to the memory buffer and
+        //! range, but it will not free the buffer on destruction.
+        XNCollection_Array1^ Move(XNCollection_Array1^ theOther);
 
-  //! myDeletable flag
-  Standard_Boolean IsDeletable (void) const
-  { return myDeletable; }
+        //! Assignment operator; @sa Assign()
+        XNCollection_Array1^ operator= (XNCollection_Array1^ theOther);
 
-  //! IsAllocated flag - for naming compatibility
-  Standard_Boolean IsAllocated (void) const
-  { return myDeletable; }
+        //! @return first element
+        TheItemType^ First();
 
-  //! Copies data of theOther array to this.
-  //! This array should be pre-allocated and have the same length as theOther;
-  //! otherwise exception Standard_DimensionMismatch is thrown.
-  NCollection_Array1& Assign (const NCollection_Array1& theOther)
-  {
-    if (&theOther == this)
-      return *this;
+        //! @return first element
+        TheItemType^ ChangeFirst();
 
-    Standard_DimensionMismatch_Raise_if (Length() != theOther.Length(), "NCollection_Array1::operator=");
-    if (myData == NULL)
-    {
-      return *this;
-    }
+        //! @return last element
+        TheItemType^ Last();
 
-    TheItemType * pMyItem        = &myData[myLowerBound];
-    TheItemType * const pEndItem = &(theOther.myData)[theOther.myUpperBound];
-    TheItemType * pItem          = &(theOther.myData)[theOther.myLowerBound];
-    while (pItem <= pEndItem) * pMyItem ++ = * pItem ++;
-    return *this;
-  }
+        //! @return last element
+        TheItemType^ ChangeLast();
 
-  //! Move assignment.
-  //! This array will borrow all the data from theOther.
-  //! The moved object will keep pointer to the memory buffer and
-  //! range, but it will not free the buffer on destruction.
-  NCollection_Array1& Move (NCollection_Array1& theOther)
-  {
-    if (&theOther == this)
-    {
-      return *this;
-    }
+        //! Constant value access
+        TheItemType^ Value(Standard_Integer theIndex);
 
-    if (myDeletable)
-    {
-      delete[] &myData[myLowerBound];
-    }
+        //! operator() - alias to Value
+        TheItemType^ operator() (Standard_Integer theIndex);
 
-    myLowerBound = theOther.myLowerBound;
-    myUpperBound = theOther.myUpperBound;
-    myDeletable  = theOther.myDeletable;
-    myData       = theOther.myData;
+        //! operator[] - alias to Value
+        TheItemType^ operator[] (Standard_Integer theIndex);
 
-    theOther.myDeletable = Standard_False;
+        //! Variable value access
+        TheItemType^ ChangeValue(Standard_Integer theIndex);
 
-    return *this;
-  }
+        //! operator() - alias to ChangeValue
+        TheItemType^ operator() (Standard_Integer theIndex);
 
-  //! Assignment operator; @sa Assign()
-  NCollection_Array1& operator= (const NCollection_Array1& theOther)
-  { 
-    return Assign (theOther);
-  }
+        //! operator[] - alias to ChangeValue
+        TheItemType^ operator[] (Standard_Integer theIndex);
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
-  //! Move assignment operator; @sa Move()
-  NCollection_Array1& operator= (NCollection_Array1&& theOther)
-  {
-    return Move (theOther);
-  }
-#endif
+        //! Set value 
+        void SetValue(Standard_Integer theIndex, TheItemType^ theItem);
 
-  //! @return first element
-  const TheItemType& First() const
-  {
-    return myData[myLowerBound];
-  }
+        //! Resizes the array to specified bounds.
+        //! No re-allocation will be done if length of array does not change,
+        //! but existing values will not be discarded if theToCopyData set to FALSE.
+        //! @param theLower new lower bound of array
+        //! @param theUpper new upper bound of array
+        //! @param theToCopyData flag to copy existing data into new array
+        void Resize(Standard_Integer theLower, Standard_Integer theUpper, Standard_Boolean theToCopyData);
 
-  //! @return first element
-  TheItemType& ChangeFirst()
-  {
-    return myData[myLowerBound];
-  }
+        //! Destructor - releases the memory
+        ~XNCollection_Array1(void);
 
-  //! @return last element
-  const TheItemType& Last() const
-  {
-    return myData[myUpperBound];
-  }
-
-  //! @return last element
-  TheItemType& ChangeLast()
-  {
-    return myData[myUpperBound];
-  }
-
-  //! Constant value access
-  const TheItemType& Value (const Standard_Integer theIndex) const
-  {
-    Standard_OutOfRange_Raise_if (theIndex < myLowerBound || theIndex > myUpperBound, "NCollection_Array1::Value");
-    return myData[theIndex];
-  }
-
-  //! operator() - alias to Value
-  const TheItemType& operator() (const Standard_Integer theIndex) const
-  { return Value (theIndex); }
-
-  //! operator[] - alias to Value
-  const TheItemType& operator[] (Standard_Integer theIndex) const { return Value (theIndex); }
-
-  //! Variable value access
-  TheItemType& ChangeValue (const Standard_Integer theIndex)
-  {
-    Standard_OutOfRange_Raise_if (theIndex < myLowerBound || theIndex > myUpperBound, "NCollection_Array1::ChangeValue");
-    return myData[theIndex];
-  }
-
-  //! operator() - alias to ChangeValue
-  TheItemType& operator() (const Standard_Integer theIndex)
-  { return ChangeValue (theIndex); }
-
-  //! operator[] - alias to ChangeValue
-  TheItemType& operator[] (Standard_Integer theIndex) { return ChangeValue (theIndex); }
-
-  //! Set value 
-  void SetValue (const Standard_Integer theIndex,
-                 const TheItemType&     theItem)
-  {
-    Standard_OutOfRange_Raise_if (theIndex < myLowerBound || theIndex > myUpperBound, "NCollection_Array1::SetValue");
-    myData[theIndex] = theItem;
-  }
-
-  //! Resizes the array to specified bounds.
-  //! No re-allocation will be done if length of array does not change,
-  //! but existing values will not be discarded if theToCopyData set to FALSE.
-  //! @param theLower new lower bound of array
-  //! @param theUpper new upper bound of array
-  //! @param theToCopyData flag to copy existing data into new array
-  void Resize (const Standard_Integer theLower,
-               const Standard_Integer theUpper,
-               const Standard_Boolean theToCopyData)
-  {
-    Standard_RangeError_Raise_if (theUpper < theLower, "NCollection_Array1::Resize");
-    const Standard_Integer anOldLen   = Length();
-    const Standard_Integer aNewLen    = theUpper - theLower + 1;
-    const Standard_Integer aLowerOld  = myLowerBound;
-
-    TheItemType* aBeginOld = &myData[aLowerOld];
-    myLowerBound = theLower;
-    myUpperBound = theUpper;
-    if (aNewLen == anOldLen)
-    {
-      myData = aBeginOld - theLower;
-      return;
-    }
-
-    if (!theToCopyData && myDeletable)
-    {
-      delete[] aBeginOld;
-    }
-    TheItemType* aBeginNew = new TheItemType[aNewLen];
-    Standard_OutOfMemory_Raise_if (aBeginNew == NULL, "NCollection_Array1 : Allocation failed");
-    myData = aBeginNew - theLower;
-    if (!theToCopyData)
-    {
-      myDeletable = Standard_True;
-      return;
-    }
-
-    const Standard_Integer aLenCopy = Min (anOldLen, aNewLen);
-    for (Standard_Integer anIter = 0; anIter < aLenCopy; ++anIter)
-    {
-      aBeginNew[anIter] = aBeginOld[anIter];
-    }
-    if (myDeletable)
-    {
-      delete[] aBeginOld;
-    }
-    myDeletable = Standard_True;
-  }
-
-  //! Destructor - releases the memory
-  ~NCollection_Array1 (void)
-  { 
-    if (myDeletable) 
-      delete [] &(myData[myLowerBound]);
-  }
-
- protected:
-  // ---------- PROTECTED FIELDS -----------
-  Standard_Integer     myLowerBound;
-  Standard_Integer     myUpperBound;
-  Standard_Boolean     myDeletable; //!< Flag showing who allocated the array
-  TheItemType*         myData;      //!< Pointer to '0'th array item
-};
-
-#endif
+    private:
+        NCollection_Array1* NativeHandle;
+    };
+}
+#endif //XNCollection_Array1
