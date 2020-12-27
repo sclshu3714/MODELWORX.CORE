@@ -1683,6 +1683,9 @@
     <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h">
       <Filter>头文件\FoundationClasses\TKernel\NCollection</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.h">
+      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2428,6 +2431,9 @@
       <Filter>源文件\Visualization\TKService\Aspect</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.cpp">
+      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.cpp">
       <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClCompile>
   </ItemGroup>

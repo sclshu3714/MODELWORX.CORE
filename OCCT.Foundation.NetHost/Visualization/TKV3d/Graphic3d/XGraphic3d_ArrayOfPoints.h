@@ -22,14 +22,14 @@
 //! Contains points array definition.
 public class XGraphic3d_ArrayOfPoints : public Graphic3d_ArrayOfPrimitives
 {
-  DEFINE_STANDARD_RTTIEXT(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
+  //DEFINE_STANDARD_RTTIEXT(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
 public:
 
   //! Creates an array of points (Graphic3d_TOPA_POINTS).
   //! The array must be filled using the AddVertex(Point) method.
   //! @param theMaxVertexs maximum number of points
   //! @param theArrayFlags array flags
-  Graphic3d_ArrayOfPoints (Standard_Integer theMaxVertexs,
+  XGraphic3d_ArrayOfPoints (Standard_Integer theMaxVertexs,
                            Graphic3d_ArrayFlags theArrayFlags)
   : Graphic3d_ArrayOfPrimitives (Graphic3d_TOPA_POINTS, theMaxVertexs, 0, 0, theArrayFlags) {}
 
@@ -47,6 +47,6 @@ public:
 
 };
 
-DEFINE_STANDARD_HANDLE(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
+//DEFINE_STANDARD_HANDLE(Graphic3d_ArrayOfPoints, Graphic3d_ArrayOfPrimitives)
 
 #endif // _XGraphic3d_ArrayOfPoints_HeaderFile

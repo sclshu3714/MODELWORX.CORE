@@ -6450,6 +6450,20 @@ Class TKBRep.XBRepTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKBRep.XBRep_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
+    SetUVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    SetUVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Pnt(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Parameters(XTopoDS_Vertex, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxTolerance(XTopoDS_Shape, XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
@@ -6485,20 +6499,6 @@ Class TKBRep.XBRep_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Range(XTopoDS_Edge, Double, Double): PrivateScope, Public, Static, HideBySig
     UVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
     UVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
-    SetUVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
-    SetUVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    MaxContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    Pnt(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    Parameters(XTopoDS_Vertex, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    MaxTolerance(XTopoDS_Shape, XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
 Class TKBRep.XTopExp_Explorer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKBRep.XTopoDS_Shape, XTopAbs_ShapeEnum, XTopAbs_ShapeEnum): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TopExp_Explorer*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6525,9 +6525,6 @@ Class TKBRep.XTopExp_Explorer: AutoLayout, AnsiClass, Class, Public, BeforeField
 Class TKBRep.XTopExp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
-    Vertices(XTopoDS_Wire, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
-    Vertices(XTopoDS_Edge, XTopoDS_Vertex, XTopoDS_Vertex, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-    CommonVertex(XTopoDS_Edge, XTopoDS_Edge, XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
     MapShapes(XTopoDS_Shape, NCollection_Map<TopoDS_Shape\,TopTools_ShapeMapHasher>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     MapShapes(XTopoDS_Shape, NCollection_IndexedMap<TopoDS_Shape\,TopTools_ShapeMapHasher>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     MapShapes(XTopoDS_Shape, XTopAbs_ShapeEnum, NCollection_IndexedMap<TopoDS_Shape\,TopTools_ShapeMapHasher>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
@@ -6535,6 +6532,9 @@ Class TKBRep.XTopExp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     MapShapesAndUniqueAncestors(XTopoDS_Shape, XTopAbs_ShapeEnum, XTopAbs_ShapeEnum, NCollection_IndexedDataMap<TopoDS_Shape\,NCollection_List<TopoDS_Shape>\,TopTools_ShapeMapHasher>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     FirstVertex(XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     LastVertex(XTopoDS_Edge, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Vertices(XTopoDS_Wire, XTopoDS_Vertex, XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    Vertices(XTopoDS_Edge, XTopoDS_Vertex, XTopoDS_Vertex, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CommonVertex(XTopoDS_Edge, XTopoDS_Edge, XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_HShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9854,6 +9854,74 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XAIS_Shape(): PrivateScope, Public, HideBySig
+Class XGraphic3d_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    XGraphic3d_TypeOfAttribute Id : Public
+    XGraphic3d_TypeOfData DataType : Public
+  Methods:
+    Stride(XGraphic3d_TypeOfData): PrivateScope, Public, Static, HideBySig
+    Stride(): PrivateScope, Public, HideBySig
+Class NCollection_Haft<opencascade::handle<Graphic3d_Buffer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class TKV3d.XGraphic3d_Buffer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(opencascade.handle<Graphic3d_Buffer>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    opencascade.handle<Standard_Transient> IHandle 'get set' : 
+  Methods:
+    SetBufferHandle(handle<Graphic3d_Buffer>*): PrivateScope, Public, HideBySig
+    GetBuffer(handle<Graphic3d_Buffer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NbMaxElements(): PrivateScope, Public, HideBySig
+    AttributesArray(): PrivateScope, Public, HideBySig
+    Attribute(Int32): PrivateScope, Public, HideBySig
+    ChangeAttribute(Int32): PrivateScope, Public, HideBySig
+    FindAttribute(XGraphic3d_TypeOfAttribute): PrivateScope, Public, HideBySig
+    AttributeOffset(Int32): PrivateScope, Public, HideBySig
+    Data(Int32): PrivateScope, Public, HideBySig
+    ChangeData(Int32): PrivateScope, Public, HideBySig
+    value(Int32): PrivateScope, Public, HideBySig
+    changeValue(Int32): PrivateScope, Public, HideBySig
+    ChangeAttributeData(XGraphic3d_TypeOfAttribute, Int32&, UInt32&): PrivateScope, Public, HideBySig
+    AttributeData(XGraphic3d_TypeOfAttribute, Int32&, UInt32&): PrivateScope, Public, HideBySig
+    release(): PrivateScope, Public, HideBySig
+    Init(Int32, NCollection_Array1<Graphic3d_Attribute>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Init(Int32, XGraphic3d_Attribute, Int32): PrivateScope, Public, HideBySig
+    IsInterleaved(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    IsMutable(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    InvalidatedRange(Graphic3d_BufferRange*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Validate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Invalidate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ~XGraphic3d_Buffer(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct XGraphic3d_TypeOfAttribute: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_TypeOfAttribute Graphic3d_TOA_POS = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfAttribute Graphic3d_TOA_NORM = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfAttribute Graphic3d_TOA_UV = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfAttribute Graphic3d_TOA_COLOR = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfAttribute Graphic3d_TOA_CUSTOM = 4 : Public, Static, Literal, HasDefault
+Struct XGraphic3d_TypeOfData: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    XGraphic3d_TypeOfData Graphic3d_TOD_USHORT = 0 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_UINT = 1 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_VEC2 = 2 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_VEC3 = 3 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_VEC4 = 4 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_VEC4UB = 5 : Public, Static, Literal, HasDefault
+    XGraphic3d_TypeOfData Graphic3d_TOD_FLOAT = 6 : Public, Static, Literal, HasDefault
 Class NCollection_Haft<opencascade::handle<Graphic3d_DataStructureManager> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:

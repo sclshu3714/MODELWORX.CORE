@@ -529,6 +529,7 @@
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AlphaMode.h" />
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ArrayFlags.h" />
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.h" />
+    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.h" />
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_BufferType.h" />
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_CappingFlags.h" />
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.h" />
@@ -840,6 +841,7 @@
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.cpp" />
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Shape.cpp" />
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.cpp" />
+    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.cpp" />
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.cpp" />
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_MaterialAspect.cpp" />
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_PresentationAttributes.cpp" />
