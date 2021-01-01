@@ -3,8 +3,6 @@ Assembly OCCT.Foundation.NetHost, Version=0.0.*, Culture=固定语言(固定国�
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
-Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
-	hash=None, flags=None
 Class TKernel.XStandard_UUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(UInt32, UInt16, UInt16, Byte[]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5867,7 +5865,6 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
     GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
@@ -5897,6 +5894,7 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

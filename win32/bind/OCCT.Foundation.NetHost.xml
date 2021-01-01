@@ -4,173 +4,14 @@
         "OCCT.Foundation.NetHost"
     </assembly>
     <members>
-        <member name="M:TKMath.xgp_Elips.#ctor(gp_Elips*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKLCAF.XTDataStd_Name.IHandle">
+        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
+        <member name="P:TKG3d.XGeom_Transformation.IHandle">
             <summary>
 本地句柄
-</summary>
-        </member>
-        <member name="P:TKBRep.XTopoDS_Shape.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Circ.#ctor(gp_Circ*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKMath.XTopLoc_Datum3D.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Sphere.#ctor(gp_Sphere*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Get">
-            <summary>
-Returns the integer value contained in the attribute.
-</summary>
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.SetID">
-            <summary>
-Sets default GUID for the attribute.
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.SetID(TKernel.XStandard_GUID)">
-            <summary>
-Sets the explicit GUID (user defined) for the attribute.
-</summary>
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(System.Int32!System.Runtime.CompilerServices.IsConst)">
-            <summary>
-Integer methods
-</summary>
-            <param name="V" />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,TKernel.XStandard_GUID,System.Int32!System.Runtime.CompilerServices.IsConst)">
-            <summary>
-Finds, or creates, an Integer attribute with explicit user defined guid and sets value.
-The Integer attribute  is  returned.
-</summary>
-            <param name="label" />
-            <param name="guid" />
-            <param name="value" />
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,System.Int32)">
-            <summary>
-Finds, or creates, an Integer attribute and sets the Integer  attribute is returned.
-</summary>
-            <param name="label" />
-            <param name="value" />
-            <returns />
-        </member>
-        <member name="M:TKLCAF.XTDataStd_Integer.GetID">
-            <summary>
- class methods 
- Returns the GUID for integers.
-</summary>
-            <returns />
-        </member>
-        <member name="T:TKLCAF.XTDataStd_Integer">
-            <summary>
-The basis to define an integer attribute.
-</summary>
-        </member>
-        <member name="P:TKernel.XTCollection_AsciiString.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Elips2d.#ctor(gp_Elips2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKMath.xgp.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKXCAF.XXCAFDoc_DocumentTool.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Hypr.#ctor(gp_Hypr*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="M:TKMath.xgp_Torus.#ctor(gp_Torus*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="M:TKG3d.XGeom_CylindricalSurface.GetCylindricalSurface">
-            <summary />
-            <returns />
-        </member>
-        <member name="M:TKG3d.XGeom_CylindricalSurface.SetCylindricalSurfaceHandle(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
-            <summary />
-            <param name="handle" />
-        </member>
-        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
-            <summary>
-构型
-</summary>
-            <param name="pos">p</param>
-        </member>
-        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor">
-            <summary>
-构型
 </summary>
         </member>
         <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">
@@ -183,46 +24,17 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
-        <member name="P:TKLCAF.XTDocStd_Application.IHandle">
+        <member name="P:TKMath.XTopLoc_Datum3D.Handle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKXCAF.XXCAFPrs_Driver.Handle">
+        <member name="P:TKVCAF.XTPrsStd_AISPresentation.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKG3d.XGeom_ConicalSurface.GetConicalSurface">
-            <summary />
-            <returns />
-        </member>
-        <member name="M:TKG3d.XGeom_ConicalSurface.SetConicalSurfaceHandle(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
-            <summary />
-            <param name="handle" />
-        </member>
-        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
-            <summary>
-X
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor">
-            <summary>
-X
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">
+        <member name="M:TKMath.xgp_Pln.#ctor(gp_Pln*)">
             <summary>
 指针映射点
 </summary>
@@ -591,6 +403,232 @@ Proxy class encapsulating calls to OCCT C++ classes within
 C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
+        <member name="P:TKBRep.XTopoDS_Shape.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Cone.#ctor(gp_Cone*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKXCAF.XXCAFPrs_Driver.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Hypr.#ctor(gp_Hypr*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDocStd_Application.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKG3d.XGeom_Line.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Lin2d.#ctor(gp_Lin2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Cylinder.#ctor(gp_Cylinder*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Circ.#ctor(gp_Circ*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKLCAF.XTDataStd_Integer.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Get">
+            <summary>
+Returns the integer value contained in the attribute.
+</summary>
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.SetID">
+            <summary>
+Sets default GUID for the attribute.
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.SetID(TKernel.XStandard_GUID)">
+            <summary>
+Sets the explicit GUID (user defined) for the attribute.
+</summary>
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(System.Int32!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Integer methods
+</summary>
+            <param name="V" />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,TKernel.XStandard_GUID,System.Int32!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Finds, or creates, an Integer attribute with explicit user defined guid and sets value.
+The Integer attribute  is  returned.
+</summary>
+            <param name="label" />
+            <param name="guid" />
+            <param name="value" />
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.Set(TKLCAF.XTDF_Label,System.Int32)">
+            <summary>
+Finds, or creates, an Integer attribute and sets the Integer  attribute is returned.
+</summary>
+            <param name="label" />
+            <param name="value" />
+            <returns />
+        </member>
+        <member name="M:TKLCAF.XTDataStd_Integer.GetID">
+            <summary>
+ class methods 
+ Returns the GUID for integers.
+</summary>
+            <returns />
+        </member>
+        <member name="T:TKLCAF.XTDataStd_Integer">
+            <summary>
+The basis to define an integer attribute.
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Elips.#ctor(gp_Elips*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Hypr2d.#ctor(gp_Hypr2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Elips2d.#ctor(gp_Elips2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKMath.xgp_Sphere.#ctor(gp_Sphere*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKernel.XTCollection_AsciiString.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Torus.#ctor(gp_Torus*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKXCAF.XXCAFDoc_DocumentTool.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.GetConicalSurface">
+            <summary />
+            <returns />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.SetConicalSurfaceHandle(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
+            <summary />
+            <param name="handle" />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor(opencascade.handle&lt;Geom_ConicalSurface&gt;)">
+            <summary>
+X
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="M:TKG3d.XGeom_ConicalSurface.#ctor">
+            <summary>
+X
+</summary>
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.GetCylindricalSurface">
+            <summary />
+            <returns />
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.SetCylindricalSurfaceHandle(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
+            <summary />
+            <param name="handle" />
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor(opencascade.handle&lt;Geom_CylindricalSurface&gt;)">
+            <summary>
+构型
+</summary>
+            <param name="pos">p</param>
+        </member>
+        <member name="M:TKG3d.XGeom_CylindricalSurface.#ctor">
+            <summary>
+构型
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDocStd_Document.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
         <member name="P:TKV3d.XAIS_InteractiveObject.IHandle">
             <summary>
 本地句柄
@@ -602,47 +640,6 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
         <member name="P:TKV3d.XPrsMgr_PresentableObject.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKMath.xgp_GTrsf.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_GTrsf.#ctor(gp_GTrsf*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKG3d.XGeom_AxisPlacement.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Circ2d.#ctor(gp_Circ2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKLCAF.XTDocStd_Document.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
             <summary>
 本地句柄
 </summary>
@@ -667,7 +664,57 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
+        <member name="P:TKernel.XQuantity_Color.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp_GTrsf.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_GTrsf.#ctor(gp_GTrsf*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKV3d.XAIS_InteractiveContext.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKLCAF.XTDataStd_Name.IHandle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="P:TKMath.xgp_Ax22d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Ax22d.#ctor(gp_Ax22d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKXCAF.XXCAFDoc_ShapeTool.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -677,12 +724,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKernel.XStandard_GUID.Handle">
+        <member name="P:TKLCAF.XTDF_Attribute.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKTopAlgo.XBRepBuilderAPI_MakeEdge.IHandle">
+        <member name="P:TKernel.XStandard_GUID.Handle">
             <summary>
 本地句柄
 </summary>
@@ -692,44 +739,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="M:TKMath.xgp_Cone.#ctor(gp_Cone*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKG3d.XGeom_Transformation.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKernel.XQuantity_Color.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Pln.#ctor(gp_Pln*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
         <member name="P:TKG3d.XGeom_BoundedCurve.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
         <member name="P:TKG3d.XGeom_Curve.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKG3d.XGeom_Line.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="P:TKPrim.XBRepPrim_Builder.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -749,26 +764,6 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKMath.xgp_Ax22d.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Ax22d.#ctor(gp_Ax22d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKG3d.XGeom_Geometry.IHandle">
-            <summary>
-本地句柄
-</summary>
-        </member>
         <member name="P:TKBRep.XTopoDS_Iterator.IHandle">
             <summary>
 本地句柄
@@ -779,27 +774,17 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKMath.xgp_GTrsf2d.Handle">
+        <member name="P:TKG3d.XGeom_Geometry.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="M:TKMath.xgp_GTrsf2d.#ctor(gp_GTrsf2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKMath.xgp_Trsf2d.Handle">
+        <member name="P:TKMath.xgp_Ax2d.Handle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="M:TKMath.xgp_Trsf2d.#ctor(gp_Trsf2d*)">
+        <member name="M:TKMath.xgp_Ax2d.#ctor(gp_Ax2d*)">
             <summary>
 指针映射点
 </summary>
@@ -839,36 +824,6 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKMath.xgp_Ax2d.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Ax2d.#ctor(gp_Ax2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
-        <member name="P:TKMath.xgp_Pnt2d.Handle">
-            <summary>
-本地句柄
-</summary>
-        </member>
-        <member name="M:TKMath.xgp_Pnt2d.#ctor(gp_Pnt2d*)">
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-            <summary>
-指针映射点
-</summary>
-            <param name="pos" />
-        </member>
         <member name="P:TKMath.xgp_XY.Handle">
             <summary>
 本地句柄
@@ -890,6 +845,51 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
         </member>
         <member name="M:TKMath.xgp_Mat2d.#ctor(gp_Mat2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Trsf2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Trsf2d.#ctor(gp_Trsf2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_GTrsf2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_GTrsf2d.#ctor(gp_GTrsf2d*)">
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+            <summary>
+指针映射点
+</summary>
+            <param name="pos" />
+        </member>
+        <member name="P:TKMath.xgp_Pnt2d.Handle">
+            <summary>
+本地句柄
+</summary>
+        </member>
+        <member name="M:TKMath.xgp_Pnt2d.#ctor(gp_Pnt2d*)">
             <summary>
 指针映射点
 </summary>
