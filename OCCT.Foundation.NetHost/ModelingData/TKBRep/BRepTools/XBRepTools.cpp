@@ -185,7 +185,7 @@ namespace TKBRep {
     //! Writes <Sh> on <S> in an ASCII format.
     //! PR = NULL
     //! static 
-    void XBRepTools::Write(XTopoDS_Shape^ Sh, Standard_OStream S, Handle(Message_ProgressIndicator)& PR) {
+    void XBRepTools::Write(XTopoDS_Shape^ Sh, Standard_OStream S, const Message_ProgressRange& PR) {
         BRepTools::Write(*Sh->GetShape(), S, PR);
     };
 
@@ -193,14 +193,14 @@ namespace TKBRep {
     //! <B> is used to build the shape.
     //! PR = NULL
     //! static 
-    void XBRepTools::Read(XTopoDS_Shape^ Sh, Standard_IStream S, XBRep_Builder^ B, Handle(Message_ProgressIndicator)& PR) {
+    void XBRepTools::Read(XTopoDS_Shape^ Sh, Standard_IStream S, XBRep_Builder^ B, const Message_ProgressRange& PR) {
         BRepTools::Read(*Sh->GetShape(), S, *B->GetBRepBuilder(), PR);
     };
 
     //! Writes <Sh> in <File>.
     //! PR = NULL
     //! static 
-    Standard_Boolean XBRepTools::Write(XTopoDS_Shape^ Sh, Standard_CString File, Handle(Message_ProgressIndicator)& PR) {
+    Standard_Boolean XBRepTools::Write(XTopoDS_Shape^ Sh, Standard_CString File, const Message_ProgressRange& PR) {
         return BRepTools::Write(*Sh->GetShape(), File, PR);
     };
 
@@ -208,7 +208,7 @@ namespace TKBRep {
     //! <B> is used to build the shape.
     //! PR = NULL
     //! static 
-    Standard_Boolean XBRepTools::Read(XTopoDS_Shape^ Sh, Standard_CString File, XBRep_Builder^ B, Handle(Message_ProgressIndicator)& PR) {
+    Standard_Boolean XBRepTools::Read(XTopoDS_Shape^ Sh, Standard_CString File, XBRep_Builder^ B, const Message_ProgressRange& PR) {
         return BRepTools::Read(*Sh->GetShape(), File,*B->GetBRepBuilder(), PR);
     };
 

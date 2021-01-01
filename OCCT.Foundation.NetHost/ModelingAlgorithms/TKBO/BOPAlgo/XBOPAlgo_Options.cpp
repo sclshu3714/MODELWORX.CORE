@@ -130,7 +130,7 @@ namespace TKBO {
     //!@name Progress indicator
 
     //! Set the Progress Indicator object.
-    void XBOPAlgo_Options::SetProgressIndicator(const Handle(Message_ProgressIndicator)& theObj) {
+    void XBOPAlgo_Options::SetProgressIndicator(const Message_ProgressScope& theObj) {
         NativeHandle->SetProgressIndicator(theObj);
     };
 

@@ -40,6 +40,7 @@
 #include <PrsMgr_Presentations.hxx>
 #include <PrsMgr_TypeOfPresentation3d.hxx>
 #include <TColStd_ListOfInteger.hxx>
+#include <TopLoc_Datum3D.hxx>
 
 //class PrsMgr_PresentationManager;
 //typedef PrsMgr_PresentationManager PrsMgr_PresentationManager3d;
@@ -215,7 +216,7 @@ namespace TKV3d {
         //! Return the local transformation.
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const Handle(Geom_Transformation)& LocalTransformationGeom();
+        const Handle(TopLoc_Datum3D)& LocalTransformationGeom();
 
         //! Sets local transformation to theTransformation.
         //! Note that the local transformation of the object having Transformation Persistence
@@ -225,7 +226,7 @@ namespace TKV3d {
         //! Sets local transformation to theTransformation.
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        void SetLocalTransformation(const Handle(Geom_Transformation)& theTrsf);
+        void SetLocalTransformation(const Handle(TopLoc_Datum3D)& theTrsf);
 
         //! Returns true if object has a transformation that is different from the identity.
         Standard_Boolean HasTransformation();
@@ -233,7 +234,7 @@ namespace TKV3d {
         //! Return the transformation taking into account transformation of parent object(s).
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const Handle(Geom_Transformation)& TransformationGeom();
+        const Handle(TopLoc_Datum3D)& TransformationGeom();
 
         //! Return the local transformation.
         //! Note that the local transformation of the object having Transformation Persistence
@@ -249,7 +250,7 @@ namespace TKV3d {
         const xgp_GTrsf^ InversedTransformation();
 
         //! Return combined parent transformation.
-        const Handle(Geom_Transformation)& CombinedParentTransformation();
+        const Handle(TopLoc_Datum3D)& CombinedParentTransformation();
 
         //! resets local transformation to identity.
         virtual void ResetTransformation();

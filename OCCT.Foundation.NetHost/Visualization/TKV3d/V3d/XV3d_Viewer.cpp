@@ -247,22 +247,22 @@ namespace TKV3d {
     };// { return V3d_ListOfViewIterator(myActiveViews); }
 
     //! Initializes an internal iterator on the active views.
-    void XV3d_Viewer::InitActiveViews() {
-        NativeHandle()->InitActiveViews();
-    };// { myActiveViewsIterator.Initialize(myActiveViews); }
+    //void XV3d_Viewer::InitActiveViews() {
+    //    NativeHandle()->InitActiveViews();
+    //};// { myActiveViewsIterator.Initialize(myActiveViews); }
 
     //! Returns true if there are more active view(s) to return.
-    Standard_Boolean XV3d_Viewer::MoreActiveViews() {
-        return NativeHandle()->MoreActiveViews();
-    };// { return myActiveViewsIterator.More(); }
+    //Standard_Boolean XV3d_Viewer::MoreActiveViews() {
+    //    return NativeHandle()->MoreActiveViews();
+    //};// { return myActiveViewsIterator.More(); }
 
     //! Go to the next active view (if there is not, ActiveView will raise an exception)
-    void XV3d_Viewer::NextActiveViews() {
-        NativeHandle()->NextActiveViews();
-    };// { if (!myActiveViews.IsEmpty()) myActiveViewsIterator.Next(); }
+    //void XV3d_Viewer::NextActiveViews() {
+    //    NativeHandle()->NextActiveViews();
+    //};// { if (!myActiveViews.IsEmpty()) myActiveViewsIterator.Next(); }
 
-    XV3d_View^ XV3d_Viewer::ActiveView() {
-        return gcnew XV3d_View(NativeHandle()->ActiveView());
+    V3d_ListOfView XV3d_Viewer::ActiveViews() {
+        return NativeHandle()->ActiveViews();
     };// { return myActiveViewsIterator.Value(); }
 
     //! returns true if there is only one active view.
@@ -277,22 +277,22 @@ namespace TKV3d {
     };// { return V3d_ListOfViewIterator(myDefinedViews); }
 
     //! Initializes an internal iterator on the Defined views.
-    void XV3d_Viewer::InitDefinedViews() {
-        NativeHandle()->InitDefinedViews();
-    };// { myDefinedViewsIterator.Initialize(myDefinedViews); }
+    //void XV3d_Viewer::InitDefinedViews() {
+    //    NativeHandle()->InitDefinedViews();
+    //};// { myDefinedViewsIterator.Initialize(myDefinedViews); }
 
     //! returns true if there are more Defined view(s) to return.
-    Standard_Boolean XV3d_Viewer::MoreDefinedViews() {
-        return NativeHandle()->MoreDefinedViews();
-    };// { return myDefinedViewsIterator.More(); }
+    //Standard_Boolean XV3d_Viewer::MoreDefinedViews() {
+    //    return NativeHandle()->MoreDefinedViews();
+    //};// { return myDefinedViewsIterator.More(); }
 
     //! Go to the next Defined view (if there is not, DefinedView will raise an exception)
-    void XV3d_Viewer::NextDefinedViews() {
-        NativeHandle()->NextDefinedViews();
-    };// { if (!myDefinedViews.IsEmpty()) myDefinedViewsIterator.Next(); }
+    //void XV3d_Viewer::NextDefinedViews() {
+    //    NativeHandle()->NextDefinedViews();
+    //};// { if (!myDefinedViews.IsEmpty()) myDefinedViewsIterator.Next(); }
 
-    XV3d_View^ XV3d_Viewer::DefinedView() {
-        return gcnew XV3d_View(NativeHandle()->DefinedView());
+    V3d_ListOfView XV3d_Viewer::DefinedViews() {
+        return NativeHandle()->DefinedViews();
     };// { return myDefinedViewsIterator.Value(); }
 
     //! @name lights management
@@ -351,22 +351,22 @@ namespace TKV3d {
     };// { return V3d_ListOfLightIterator(myActiveLights); }
 
     //! Initializes an internal iteratator on the active Lights.
-    void XV3d_Viewer::InitActiveLights() {
-        NativeHandle()->InitActiveLights();
-    };// { myActiveLightsIterator.Initialize(myActiveLights); }
+    //void XV3d_Viewer::InitActiveLights() {
+    //    NativeHandle()->InitActiveLights();
+    //};// { myActiveLightsIterator.Initialize(myActiveLights); }
 
     //! returns true if there are more active Light(s) to return.
-    Standard_Boolean XV3d_Viewer::MoreActiveLights() {
-        return NativeHandle()->MoreActiveLights();
-    };// { return myActiveLightsIterator.More(); }
+    //Standard_Boolean XV3d_Viewer::MoreActiveLights() {
+    //    return NativeHandle()->MoreActiveLights();
+    //};// { return myActiveLightsIterator.More(); }
 
     //! Go to the next active Light (if there is not, ActiveLight() will raise an exception)
-    void XV3d_Viewer::NextActiveLights() {
-        NativeHandle()->NextActiveLights();
-    };// { myActiveLightsIterator.Next(); }
+    //void XV3d_Viewer::NextActiveLights() {
+    //    NativeHandle()->NextActiveLights();
+    //};// { myActiveLightsIterator.Next(); }
 
-    Handle(V3d_Light) XV3d_Viewer::ActiveLight() {
-        return NativeHandle()->ActiveLight();
+    V3d_ListOfLight XV3d_Viewer::ActiveLights() {
+        return NativeHandle()->ActiveLights();
     };// { return myActiveLightsIterator.Value(); }
 
     //! Return an iterator for defined lights.
@@ -375,22 +375,22 @@ namespace TKV3d {
     };// { return V3d_ListOfLightIterator(myDefinedLights); }
 
     //! Initializes an internal iterattor on the Defined Lights.
-    void XV3d_Viewer::InitDefinedLights() {
-        NativeHandle()->InitDefinedLights();
-    };// { myDefinedLightsIterator.Initialize(myDefinedLights); }
+    //void XV3d_Viewer::InitDefinedLights() {
+    //    NativeHandle()->InitDefinedLights();
+    //};// { myDefinedLightsIterator.Initialize(myDefinedLights); }
 
     //! Returns true if there are more Defined Light(s) to return.
-    Standard_Boolean XV3d_Viewer::MoreDefinedLights() {
-        return NativeHandle()->MoreDefinedLights();
-    };// { return myDefinedLightsIterator.More(); }
+    //Standard_Boolean XV3d_Viewer::MoreDefinedLights() {
+    //    return NativeHandle()->MoreDefinedLights();
+    //};// { return myDefinedLightsIterator.More(); }
 
     //! Go to the next Defined Light (if there is not, DefinedLight() will raise an exception)
-    void XV3d_Viewer::NextDefinedLights() {
-        NativeHandle()->NextDefinedLights();
-    };// { if (!myDefinedLights.IsEmpty()) myDefinedLightsIterator.Next(); }
+    //void XV3d_Viewer::NextDefinedLights() {
+    //    NativeHandle()->NextDefinedLights();
+    //};// { if (!myDefinedLights.IsEmpty()) myDefinedLightsIterator.Next(); }
 
-    Handle(V3d_Light) XV3d_Viewer::DefinedLight() {
-        return NativeHandle()->DefinedLight();
+    V3d_ListOfLight XV3d_Viewer::DefinedLights() {
+        return NativeHandle()->DefinedLights();
     };// { return myDefinedLightsIterator.Value(); }
 
     //! @name objects management

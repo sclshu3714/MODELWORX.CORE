@@ -282,12 +282,6 @@ namespace TKernel {
         Quantity_Color::Argb2color(theARGB, *theColor->GetColor());
     };
 
-    //! Internal test
-    //! static 
-    void XQuantity_Color::Test() {
-        Quantity_Color::Test();
-    };
-
     //! Dumps the content of me into the stream
     //! theDepth = -1
     void XQuantity_Color::DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth) {

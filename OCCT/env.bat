@@ -119,12 +119,14 @@ rem ----- For compatability with external application using CASROOT -----
 if ["%CASROOT%"] == [""] set "CASROOT=%SCRIPTROOT%"
 
 rem ----- Define path to 3rdparty products -----
-set "THIRDPARTY_DIR=E:/Software/OCC/OpenCASCADE7.4.0/3rdparty/x32"
+if ["%THIRDPARTY_DIR%"] == [""] set "THIRDPARTY_DIR=E:/Software/OCC/opencascade-7.5.0/3rdparty/vc14/x32"
 
 if ["%ARCH%"] == ["32"] set VCARCH=x86
 if ["%ARCH%"] == ["64"] set VCARCH=amd64
 
 if /I ["%1"] == ["vc141"] set "VCVER=vc14"
+if /I ["%1"] == ["vc142"] set "VCVER=vc14"
+
 if exist "%CASROOT%\custom.bat" (
   call "%CASROOT%\custom.bat" %VCVER% %ARCH% %CASDEB%
 )
@@ -138,7 +140,11 @@ if not ["%GLES2_DIR%"] == [""]         set "PATH=%GLES2_DIR%;%PATH%"
 if not ["%TBB_DIR%"] == [""]           set "PATH=%TBB_DIR%;%PATH%"
 if not ["%VTK_DIR%"] == [""]           set "PATH=%VTK_DIR%;%PATH%"
 if not ["%FFMPEG_DIR%"] == [""]        set "PATH=%FFMPEG_DIR%;%PATH%"
-if not ["%QTDIR%"] == [""]             set "PATH=%QTDIR%/bin;%PATH%"
+if not ["%OPENVR_DIR%"] == [""]        set "PATH=%OPENVR_DIR%;%PATH%"
+if not ["%QTDIR%"] == [""] (
+  set "PATH=%QTDIR%/bin;%PATH%"
+  set "QT_PLUGIN_PATH=%QTDIR%/plugins"
+)
 
 rem ----- Set path to 3rd party and OCCT libraries -----
 if not "%CSF_OCCTBinPath%" == "" (

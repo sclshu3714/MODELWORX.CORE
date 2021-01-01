@@ -148,12 +148,12 @@ namespace TKXDESTEP {
 
         Standard_Boolean GetNameMode();
 
-        //! Return the encoding of STEP file for converting names into UNICODE.
-        //! Initialized from "read.stepcaf.codepage" variable by constructor, which is Resource_UTF8 by default.
-        Resource_FormatType SourceCodePage();
+        ////! Return the encoding of STEP file for converting names into UNICODE.
+        ////! Initialized from "read.stepcaf.codepage" variable by constructor, which is Resource_UTF8 by default.
+        //Resource_FormatType SourceCodePage();
 
-        //! Return the encoding of STEP file for converting names into UNICODE.
-        void SetSourceCodePage(Resource_FormatType theCode);
+        ////! Return the encoding of STEP file for converting names into UNICODE.
+        //void SetSourceCodePage(Resource_FormatType theCode);
 
         //! Set LayerMode for indicate read Layers or not.
         void SetLayerMode(const Standard_Boolean layermode);

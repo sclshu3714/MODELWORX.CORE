@@ -805,9 +805,9 @@ namespace TKV3d {
 
     //! Returns True if One light more can be
     //! activated in this View.
-    Standard_Boolean XV3d_View::IfMoreLights() {
+   /* Standard_Boolean XV3d_View::IfMoreLights() {
         return NativeHandle()->IfMoreLights();
-    };
+    };*/
 
     //! Return iterator for defined lights.
     V3d_ListOfLightIterator XV3d_View::ActiveLightIterator() {
@@ -815,22 +815,22 @@ namespace TKV3d {
     };// { return V3d_ListOfLightIterator(myActiveLights); }
 
     //! initializes an iteration on the active Lights.
-    void XV3d_View::InitActiveLights() {
-        NativeHandle()->InitActiveLights();
-    };// { myActiveLightsIterator.Initialize(myActiveLights); }
+    //void XV3d_View::InitActiveLights() {
+    //    NativeHandle()->InitActiveLights();
+    //};// { myActiveLightsIterator.Initialize(myActiveLights); }
 
     //! returns true if there are more active Light(s) to return.
-    Standard_Boolean XV3d_View::MoreActiveLights() {
-        return NativeHandle()->MoreActiveLights();
-    };// { return myActiveLightsIterator.More(); }
+    //Standard_Boolean XV3d_View::MoreActiveLights() {
+    //    return NativeHandle()->MoreActiveLights();
+    //};// { return myActiveLightsIterator.More(); }
 
     //! Go to the next active Light (if there is not, ActiveLight will raise an exception)
-    void XV3d_View::NextActiveLights() {
-        NativeHandle()->NextActiveLights();
-    };// { myActiveLightsIterator.Next(); }
+    //void XV3d_View::NextActiveLights() {
+    //    NativeHandle()->NextActiveLights();
+    //};// { myActiveLightsIterator.Next(); }
 
-    Handle(V3d_Light) XV3d_View::ActiveLight() {
-        return NativeHandle()->ActiveLight();
+    V3d_ListOfLight XV3d_View::ActiveLights() {
+        return NativeHandle()->ActiveLights();
     };// { return myActiveLightsIterator.Value(); }
 
     //! Returns the MAX number of light associated to the view.

@@ -189,9 +189,9 @@ namespace TKV3d {
     //! of hidden lines created by different viewpoints in
     //! different presentations. The Default value is 0.02.
     //! Also sets the hasOwnHLRDeviationCoefficient flag to Standard_True and myPreviousHLRDeviationCoefficient
-    void XPrs3d_Drawer::SetHLRDeviationCoefficient(const Standard_Real theCoefficient) {
+    /*void XPrs3d_Drawer::SetHLRDeviationCoefficient(const Standard_Real theCoefficient) {
         NativeHandle()->SetHLRDeviationCoefficient(theCoefficient);
-    };
+    };*/
 
     //! Returns the real number value of the hidden line
     //! removal deviation coefficient in this framework, if the flag
@@ -212,25 +212,25 @@ namespace TKV3d {
     //! triangles, a deviation coefficient allowing greater
     //! tolerance is used. This increases efficiency in calculation.
     //! The Default value is 0.02.
-    Standard_Real XPrs3d_Drawer::HLRDeviationCoefficient() {
+    /*Standard_Real XPrs3d_Drawer::HLRDeviationCoefficient() {
         return  NativeHandle()->HLRDeviationCoefficient();
-    };
+    };*/
 
     //! Sets the hasOwnHLRDeviationCoefficient flag to Standard_False 
-    void XPrs3d_Drawer::SetHLRDeviationCoefficient() {
+   /* void XPrs3d_Drawer::SetHLRDeviationCoefficient() {
         NativeHandle()->SetHLRDeviationCoefficient();
-    };
+    };*/
 
     //! Returns true if the there is a setting for HLR deviation
     //! coefficient in this framework for a specific interactive object.
-    Standard_Boolean XPrs3d_Drawer::HasOwnHLRDeviationCoefficient() {
+    /*Standard_Boolean XPrs3d_Drawer::HasOwnHLRDeviationCoefficient() {
         return  NativeHandle()->HasOwnHLRDeviationCoefficient();
-    };
+    };*/
 
     //! Returns the previous value of the hidden line removal deviation coefficient.
-    Standard_Real XPrs3d_Drawer::PreviousHLRDeviationCoefficient() {
+   /* Standard_Real XPrs3d_Drawer::PreviousHLRDeviationCoefficient() {
         return  NativeHandle()->PreviousHLRDeviationCoefficient();
-    };
+    };*/
 
     //! Sets the deviation angle theAngle.
     //! Also sets the hasOwnDeviationAngle flag to Standard_True, and myPreviousDeviationAngle.
@@ -268,31 +268,31 @@ namespace TKV3d {
     //! different viewpoints in different presentations.
     //! The default value is 20 * M_PI / 180.
     //! Also sets the hasOwnHLRDeviationAngle flag to Standard_True and myPreviousHLRDeviationAngle.
-    void XPrs3d_Drawer::SetHLRAngle(const Standard_Real theAngle) {
+   /* void XPrs3d_Drawer::SetHLRAngle(const Standard_Real theAngle) {
         NativeHandle()->SetHLRAngle(theAngle);
-    };
+    };*/
 
     //! Returns the real number value of the deviation angle
     //! in hidden line removal views. The default value is 20 * M_PI / 180.
-    Standard_Real XPrs3d_Drawer::HLRAngle() {
+   /* Standard_Real XPrs3d_Drawer::HLRAngle() {
         return  NativeHandle()->HLRAngle();
-    };
+    };*/
 
     //! Sets the hasOwnHLRDeviationAngle flag to Standard_False
-    void XPrs3d_Drawer::SetHLRAngle() {
+    /*void XPrs3d_Drawer::SetHLRAngle() {
         NativeHandle()->SetHLRAngle();
-    };
+    };*/
 
     //! Returns true if the there is a setting for HLR deviation
     //! angle in this framework for a specific interactive object.
-    Standard_Boolean XPrs3d_Drawer::HasOwnHLRDeviationAngle() {
+   /* Standard_Boolean XPrs3d_Drawer::HasOwnHLRDeviationAngle() {
         return  NativeHandle()->HasOwnHLRDeviationAngle();
-    };
+    };*/
 
     //! Returns the previous value of the HLR deviation angle.
-    Standard_Real XPrs3d_Drawer::PreviousHLRDeviationAngle() {
+    /*Standard_Real XPrs3d_Drawer::PreviousHLRDeviationAngle() {
         return  NativeHandle()->PreviousHLRDeviationAngle();
-    };
+    };*/
 
     //! Sets IsAutoTriangulated on or off by setting the parameter theIsEnabled to true or false.
     //! If this flag is True automatic re-triangulation with deflection-check logic will be applied.

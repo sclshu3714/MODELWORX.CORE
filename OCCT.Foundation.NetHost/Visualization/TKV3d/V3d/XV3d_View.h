@@ -702,21 +702,21 @@ namespace TKV3d {
 
         //! Returns True if One light more can be
         //! activated in this View.
-        Standard_Boolean IfMoreLights();
+        //Standard_Boolean IfMoreLights();
 
         //! Return iterator for defined lights.
         V3d_ListOfLightIterator ActiveLightIterator();// { return V3d_ListOfLightIterator(myActiveLights); }
 
         //! initializes an iteration on the active Lights.
-        void InitActiveLights();// { myActiveLightsIterator.Initialize(myActiveLights); }
+        //void InitActiveLights();// { myActiveLightsIterator.Initialize(myActiveLights); }
 
         //! returns true if there are more active Light(s) to return.
-        Standard_Boolean MoreActiveLights();// { return myActiveLightsIterator.More(); }
+       // Standard_Boolean MoreActiveLights();// { return myActiveLightsIterator.More(); }
 
         //! Go to the next active Light (if there is not, ActiveLight will raise an exception)
-        void NextActiveLights();// { myActiveLightsIterator.Next(); }
+        //void NextActiveLights();// { myActiveLightsIterator.Next(); }
 
-        Handle(V3d_Light) ActiveLight();// { return myActiveLightsIterator.Value(); }
+        V3d_ListOfLight ActiveLights();// { return myActiveLightsIterator.Value(); }
 
         //! Returns the MAX number of light associated to the view.
         Standard_Integer LightLimit();

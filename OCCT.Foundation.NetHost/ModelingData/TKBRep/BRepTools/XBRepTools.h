@@ -227,21 +227,21 @@ namespace TKBRep {
 
         //! Writes <Sh> on <S> in an ASCII format.
         //! PR = NULL
-        static void Write(XTopoDS_Shape^ Sh, Standard_OStream S, Handle(Message_ProgressIndicator)& PR);
+        static void Write(XTopoDS_Shape^ Sh, Standard_OStream S, const Message_ProgressRange& PR);
 
         //! Reads a Shape  from <S> in  returns it in  <Sh>.
         //! <B> is used to build the shape.
         //! PR = NULL
-        static void Read(XTopoDS_Shape^ Sh, Standard_IStream S, XBRep_Builder^ B, Handle(Message_ProgressIndicator)& PR);
+        static void Read(XTopoDS_Shape^ Sh, Standard_IStream S, XBRep_Builder^ B, const Message_ProgressRange& PR);
 
         //! Writes <Sh> in <File>.
         //! PR = NULL
-        static Standard_Boolean Write(XTopoDS_Shape^ Sh, Standard_CString File, Handle(Message_ProgressIndicator)& PR);
+        static Standard_Boolean Write(XTopoDS_Shape^ Sh, Standard_CString File, const Message_ProgressRange& PR);
 
         //! Reads a Shape  from <File>,  returns it in  <Sh>.
         //! <B> is used to build the shape.
         //! PR = NULL
-        static Standard_Boolean Read(XTopoDS_Shape^ Sh, Standard_CString File, XBRep_Builder^ B, Handle(Message_ProgressIndicator)& PR);
+        static Standard_Boolean Read(XTopoDS_Shape^ Sh, Standard_CString File, XBRep_Builder^ B, const Message_ProgressRange& PR);
 
         //! Evals real tolerance of edge  <theE>.
         //! <theC3d>, <theC2d>, <theS>, <theF>, <theL> are

@@ -414,11 +414,11 @@ namespace TKV3d
 
         //! Returns true if there is a detected shape in local context.
         //! @sa HasDetected()/DetectedShape()
-        //Standard_Boolean HasDetectedShape();
+        //! Standard_Boolean HasDetectedShape();
 
         //! Returns the shape detected in local context.
         //! @sa DetectedOwner()
-        //TopoDS_Shape DetectedShape();
+        //! TopoDS_Shape DetectedShape();
 
         //! returns True if other entities were detected in the last mouse detection
         //! @sa HilightPreviousDetected()/HilightNextDetected().
@@ -898,13 +898,13 @@ namespace TKV3d
 
         //! Sets the deviation coefficient aCoefficient for removal of hidden lines created by different viewpoints in different presentations.
         //! The Default value is 0.02.
-        void SetHLRDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj,  Standard_Real theCoefficient,  Standard_Boolean theToUpdateViewer);
+        //! void SetHLRDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj,  Standard_Real theCoefficient,  Standard_Boolean theToUpdateViewer);
 
-        void SetHLRDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer);
+        //! void SetHLRDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer);
 
         //! Computes a HLRAngle and a HLRDeviationCoefficient by means of the angle anAngle
         //! and sets the corresponding methods in the default drawing tool with these values.
-        void SetHLRAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer);
+        //! void SetHLRAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer);
 
         //! Sets the deviation coefficient theCoefficient.
         //! Drawings of curves or patches are made with respect to a maximal chordal deviation.
@@ -941,7 +941,7 @@ namespace TKV3d
 
         //! Sets the deviation coefficient aCoefficient for removal of hidden lines created by different viewpoints in different presentations.
         //! The Default value is 0.02.
-        void SetHLRDeviationCoefficient(Standard_Real aCoefficient);
+        //! void SetHLRDeviationCoefficient(Standard_Real aCoefficient);
 
         //! Returns the real number value of the hidden line removal deviation coefficient.
         //! A Deviation coefficient is used in the shading display mode.
@@ -955,19 +955,19 @@ namespace TKV3d
         //! a deviation coefficient allowing greater tolerance is used.
         //! This increases efficiency in calculation.
         //! The Default value is 0.02.
-        Standard_Real HLRDeviationCoefficient();
+       //!  Standard_Real HLRDeviationCoefficient();
 
         //! Sets the HLR angle.
-        void SetHLRAngle(Standard_Real theAngle);
+        //! void SetHLRAngle(Standard_Real theAngle);
 
         //! Returns the real number value of the deviation angle in hidden line removal views in this interactive context.
         //! The default value is 20*PI/180.
-        Standard_Real HLRAngle();
+       //!  Standard_Real HLRAngle();
 
         //! compute with theAngle a HLRAngle and a HLRDeviationCoefficient
         //! and set them in myHLRAngle and in myHLRDeviationCoefficient of myDefaultDrawer;
         //! theAngle is in radian; ( 1 deg < angle in deg < 20 deg)
-        void SetHLRAngleAndDeviation(Standard_Real theAngle);
+        //! void SetHLRAngleAndDeviation(Standard_Real theAngle);
 
     public: //! @name HLR (Hidden Line Removal) display attributes
 

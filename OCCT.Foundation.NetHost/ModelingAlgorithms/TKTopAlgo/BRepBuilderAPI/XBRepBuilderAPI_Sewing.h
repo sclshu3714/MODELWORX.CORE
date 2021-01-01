@@ -136,7 +136,7 @@ namespace TKTopAlgo {
         //! Computing
         //! thePI - progress indicator of algorithm
         //! thePI = 0
-        void Perform(Handle(Message_ProgressIndicator) thePI);
+        void Perform(const Message_ProgressRange& thePI);
 
         //! Gives the sewed shape
         //! a null shape if nothingructed

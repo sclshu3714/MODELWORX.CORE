@@ -22,6 +22,6 @@ foreach f [explode result f] {
 
 checkshape result
 checknbshapes result -wire 11 -face 10 -shell 1 -solid 1
-checkprops result -s 865.851 -v 1622.17
+checkprops result -s 866.155 -v 1622.85
 
 checkview -display result -2d -path ${imagedir}/${test_image}.png

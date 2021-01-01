@@ -28,7 +28,6 @@
 #include <Geom_Axis1Placement.hxx>
 #include <Geom_Axis2Placement.hxx>
 #include <Prs3d_LineAspect.hxx>
-#include <Prs3d_Projector.hxx>
 
 class Geom_Line;
 class Geom_Axis1Placement;
@@ -104,15 +103,6 @@ namespace TKV3d {
 
 		//! Returns true if the interactive object accepts the display mode aMode.
 		Standard_Boolean AcceptDisplayMode(Standard_Integer aMode) Standard_OVERRIDE;
-
-		//! computes the presentation according to a point of view
-		//! given by <aProjector>.
-		//! To be Used when the associated degenerated Presentations
-		//! have been transformed by <aTrsf> which is not a Pure
-		//! Translation. The HLR Prs can't be deducted automatically
-		//! WARNING :<aTrsf> must be applied
-		//! to the object to display before computation  !!!
-		virtual void Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, Handle(Prs3d_Presentation) aPresentation);// Standard_OVERRIDE;
 
 		virtual Standard_Integer Signature() Standard_OVERRIDE;
 

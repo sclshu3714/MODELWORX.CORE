@@ -1414,16 +1414,8 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     SetDeviationAngle(Double): PrivateScope, Public, HideBySig
     SetDeviationAngle(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     SetAngleAndDeviation(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    SetHLRDeviationCoefficient(Double): PrivateScope, Public, HideBySig
-    SetHLRDeviationCoefficient(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    SetHLRDeviationAngle(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
-    SetHLRAngleAndDeviation(Double): PrivateScope, Public, HideBySig
-    SetHLRAngleAndDeviation(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     DeviationCoefficient(): PrivateScope, Public, HideBySig
     DeviationAngle(): PrivateScope, Public, HideBySig
-    HLRDeviationCoefficient(): PrivateScope, Public, HideBySig
-    SetHLRAngle(Double): PrivateScope, Public, HideBySig
-    HLRAngle(): PrivateScope, Public, HideBySig
     HiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
     SetHiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
     DrawHiddenLine(): PrivateScope, Public, HideBySig
@@ -1517,7 +1509,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     CurrentViewer(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
     SelectionManager(handle<SelectMgr_SelectionManager>*): PrivateScope, Public, HideBySig
     MainPrsMgr(handle<PrsMgr_PresentationManager>*): PrivateScope, Public, HideBySig
-    MainSelector(handle<StdSelect_ViewerSelector3d>*): PrivateScope, Public, HideBySig
+    MainSelector(handle<SelectMgr_ViewerSelector3d>*): PrivateScope, Public, HideBySig
     UpdateCurrentViewer(): PrivateScope, Public, HideBySig
     DisplayedObjects(AIS_KindOfInteractive, Int32, NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
     DisplayedObjects(NCollection_List<opencascade::handle<AIS_InteractiveObject> >*): PrivateScope, Public, HideBySig
@@ -1706,7 +1698,6 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     RgbHls(Double IsConst, Double, Double, Double&, Double&, Double&): PrivateScope, Public, Static, HideBySig
     Color2argb(XQuantity_Color, Int32&): PrivateScope, Public, Static, HideBySig
     Argb2color(Int32 IsConst, XQuantity_Color): PrivateScope, Public, Static, HideBySig
-    Test(): PrivateScope, Public, Static, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     get_Handle(): PrivateScope, Public, HideBySig, SpecialName
 Class NCollection_Haft<opencascade::handle<Graphic3d_PresentationAttributes> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -1811,16 +1802,6 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    HasOwnArrowAspect(): PrivateScope, Public, HideBySig
-    SetLineArrowDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
-    LineArrowDraw(): PrivateScope, Public, HideBySig
-    HasOwnLineArrowDraw(): PrivateScope, Public, HideBySig
-    HiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
-    SetHiddenLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    HasOwnHiddenLineAspect(): PrivateScope, Public, HideBySig
-    DrawHiddenLine(): PrivateScope, Public, HideBySig
-    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
-    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
     HasOwnDrawHiddenLine(): PrivateScope, Public, HideBySig
     VectorAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
     SetVectorAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -1912,22 +1893,12 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     HasOwnDeviationCoefficient(): PrivateScope, Public, HideBySig
     PreviousDeviationCoefficient(): PrivateScope, Public, HideBySig
     UpdatePreviousDeviationCoefficient(): PrivateScope, Public, HideBySig
-    SetHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
-    SetHLRDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
-    HLRDeviationCoefficient(): PrivateScope, Public, HideBySig
-    HasOwnHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
-    PreviousHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
     SetDeviationAngle(): PrivateScope, Public, HideBySig
     SetDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
     DeviationAngle(): PrivateScope, Public, HideBySig
     HasOwnDeviationAngle(): PrivateScope, Public, HideBySig
     PreviousDeviationAngle(): PrivateScope, Public, HideBySig
     UpdatePreviousDeviationAngle(): PrivateScope, Public, HideBySig
-    SetHLRAngle(): PrivateScope, Public, HideBySig
-    SetHLRAngle(Double IsConst): PrivateScope, Public, HideBySig
-    HLRAngle(): PrivateScope, Public, HideBySig
-    HasOwnHLRDeviationAngle(): PrivateScope, Public, HideBySig
-    PreviousHLRDeviationAngle(): PrivateScope, Public, HideBySig
     SetAutoTriangulation(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     IsAutoTriangulation(): PrivateScope, Public, HideBySig
     HasOwnIsAutoTriangulation(): PrivateScope, Public, HideBySig
@@ -1967,6 +1938,16 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     HasOwnPlaneAspect(): PrivateScope, Public, HideBySig
     ArrowAspect(handle<Prs3d_ArrowAspect>*): PrivateScope, Public, HideBySig
     SetArrowAspect(handle<Prs3d_ArrowAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnArrowAspect(): PrivateScope, Public, HideBySig
+    SetLineArrowDraw(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
+    LineArrowDraw(): PrivateScope, Public, HideBySig
+    HasOwnLineArrowDraw(): PrivateScope, Public, HideBySig
+    HiddenLineAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
+    SetHiddenLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    HasOwnHiddenLineAspect(): PrivateScope, Public, HideBySig
+    DrawHiddenLine(): PrivateScope, Public, HideBySig
+    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
 Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKernel.XTCollection_AsciiString, TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XTCollection_AsciiString, SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -2180,7 +2161,7 @@ Class TKV3d.XPrsMgr_PresentableObject: AutoLayout, AnsiClass, Class, Public, Bef
     TransformPersistence(): PrivateScope, Public, HideBySig
     SetTransformPersistence(handle<Graphic3d_TransformPers>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     LocalTransformationGeom(): PrivateScope, Public, HideBySig
-    SetLocalTransformation(handle<Geom_Transformation>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetLocalTransformation(handle<TopLoc_Datum3D>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     SetLocalTransformation(xgp_Trsf): PrivateScope, Public, HideBySig
     HasTransformation(): PrivateScope, Public, HideBySig
     TransformationGeom(): PrivateScope, Public, HideBySig
@@ -3391,8 +3372,6 @@ Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, Be
     GetColorMode(): PrivateScope, Public, HideBySig
     SetNameMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetNameMode(): PrivateScope, Public, HideBySig
-    SourceCodePage(): PrivateScope, Public, HideBySig
-    SetSourceCodePage(Resource_FormatType): PrivateScope, Public, HideBySig
     SetLayerMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetLayerMode(): PrivateScope, Public, HideBySig
     SetPropsMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
@@ -4570,7 +4549,7 @@ Class TKBO.XBOPAlgo_Options: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     RunParallel(): PrivateScope, Public, HideBySig
     SetFuzzyValue(Double): PrivateScope, Public, HideBySig
     FuzzyValue(): PrivateScope, Public, HideBySig
-    SetProgressIndicator(handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    SetProgressIndicator(Message_ProgressScope* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     SetUseOBB(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     UseOBB(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
@@ -5888,6 +5867,7 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
     GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
@@ -5917,7 +5897,6 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Transform(xgp_Trsf): PrivateScope, Public, Virtual, HideBySig
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKTopAlgo.XBRepBuilderAPI: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -6351,7 +6330,7 @@ Class TKTopAlgo.XBRepBuilderAPI_Sewing: AutoLayout, AnsiClass, Class, Public, Be
     Init(Double, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Load(XTopoDS_Shape): PrivateScope, Public, HideBySig
     Add(XTopoDS_Shape): PrivateScope, Public, HideBySig
-    Perform(handle<Message_ProgressIndicator>*): PrivateScope, Public, HideBySig
+    Perform(Message_ProgressRange* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     SewedShape(): PrivateScope, Public, HideBySig
     SetContext(handle<BRepTools_ReShape>*): PrivateScope, Public, HideBySig
     GetContext(handle<BRepTools_ReShape>*): PrivateScope, Public, HideBySig
@@ -6442,28 +6421,14 @@ Class TKBRep.XBRepTools: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     IsReallyClosed(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
     DetectClosedness(XTopoDS_Face, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
     Dump(XTopoDS_Shape, basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, Static, HideBySig
-    Write(XTopoDS_Shape, SByte*, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Write(XTopoDS_Shape, basic_ostream<char\,std::char_traits<char> >*, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Read(XTopoDS_Shape, SByte*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
-    Read(XTopoDS_Shape, basic_istream<char\,std::char_traits<char> >*, XBRep_Builder, handle<Message_ProgressIndicator>* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Write(XTopoDS_Shape, SByte*, Message_ProgressRange* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Write(XTopoDS_Shape, basic_ostream<char\,std::char_traits<char> >*, Message_ProgressRange* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Read(XTopoDS_Shape, SByte*, XBRep_Builder, Message_ProgressRange* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    Read(XTopoDS_Shape, basic_istream<char\,std::char_traits<char> >*, XBRep_Builder, Message_ProgressRange* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
     EvalAndUpdateTol(XTopoDS_Edge, XGeom_Curve, XGeom2d_Curve, XGeom_Surface, Double, Double): PrivateScope, Public, Static, HideBySig
 Class TKBRep.XBRep_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
-    SetUVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
-    SetUVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    HasContinuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    MaxContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    Pnt(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    Parameter(XTopoDS_Vertex, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
-    Parameters(XTopoDS_Vertex, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
-    MaxTolerance(XTopoDS_Shape, XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, handle<Poly_Triangulation>* IsImplicitlyDereferenced, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
     IsClosed(XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
@@ -6499,6 +6464,20 @@ Class TKBRep.XBRep_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Range(XTopoDS_Edge, Double, Double): PrivateScope, Public, Static, HideBySig
     UVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
     UVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    SetUVPoints(XTopoDS_Edge, XTopoDS_Face, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    SetUVPoints(XTopoDS_Edge, XGeom_Surface, XTopLoc_Location, xgp_Pnt2d, xgp_Pnt2d): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    HasContinuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XGeom_Surface, XGeom_Surface, XTopLoc_Location, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Continuity(XTopoDS_Edge, XTopoDS_Face, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxContinuity(XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Pnt(XTopoDS_Vertex): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XGeom_Surface, XTopLoc_Location): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    Parameter(XTopoDS_Vertex, XTopoDS_Edge): PrivateScope, Public, Static, HideBySig
+    Parameters(XTopoDS_Vertex, XTopoDS_Face): PrivateScope, Public, Static, HideBySig
+    MaxTolerance(XTopoDS_Shape, XTopAbs_ShapeEnum): PrivateScope, Public, Static, HideBySig
 Class TKBRep.XTopExp_Explorer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKBRep.XTopoDS_Shape, XTopAbs_ShapeEnum, XTopAbs_ShapeEnum): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TopExp_Explorer*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -9123,18 +9102,6 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<V3d_Viewer> IHandle 'get set' : 
   Methods:
-    IsActive(): PrivateScope, Public, HideBySig
-    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
-    GridType(): PrivateScope, Public, HideBySig
-    GridDrawMode(): PrivateScope, Public, HideBySig
-    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
-    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
-    SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
-    CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
-    SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
-    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
     ShowGridEcho(XV3d_View, Graphic3d_Vertex* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     HideGridEcho(XV3d_View): PrivateScope, Public, HideBySig
     get_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
@@ -9181,16 +9148,10 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ZLayerSettings(Graphic3d_ZLayerSettings*, Int32): PrivateScope, Public, HideBySig
     SetZLayerSettings(Int32, Graphic3d_ZLayerSettings* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     ActiveViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
-    InitActiveViews(): PrivateScope, Public, HideBySig
-    MoreActiveViews(): PrivateScope, Public, HideBySig
-    NextActiveViews(): PrivateScope, Public, HideBySig
-    ActiveView(): PrivateScope, Public, HideBySig
+    ActiveViews(NCollection_List<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
     LastActiveView(): PrivateScope, Public, HideBySig
     DefinedViewIterator(NCollection_TListIterator<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
-    InitDefinedViews(): PrivateScope, Public, HideBySig
-    MoreDefinedViews(): PrivateScope, Public, HideBySig
-    NextDefinedViews(): PrivateScope, Public, HideBySig
-    DefinedView(): PrivateScope, Public, HideBySig
+    DefinedViews(NCollection_List<opencascade::handle<V3d_View> >*): PrivateScope, Public, HideBySig
     SetDefaultLights(): PrivateScope, Public, HideBySig
     SetLightOn(): PrivateScope, Public, HideBySig
     SetLightOn(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -9201,15 +9162,9 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     UpdateLights(): PrivateScope, Public, HideBySig
     IsGlobalLight(handle<Graphic3d_CLight>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     ActiveLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
-    InitActiveLights(): PrivateScope, Public, HideBySig
-    MoreActiveLights(): PrivateScope, Public, HideBySig
-    NextActiveLights(): PrivateScope, Public, HideBySig
-    ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    ActiveLights(NCollection_List<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
     DefinedLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
-    InitDefinedLights(): PrivateScope, Public, HideBySig
-    MoreDefinedLights(): PrivateScope, Public, HideBySig
-    NextDefinedLights(): PrivateScope, Public, HideBySig
-    DefinedLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    DefinedLights(NCollection_List<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
     Erase(): PrivateScope, Public, HideBySig
     UnHighlight(): PrivateScope, Public, HideBySig
     ComputedMode(): PrivateScope, Public, HideBySig
@@ -9224,6 +9179,18 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetGridEcho(handle<Graphic3d_AspectMarker3d>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     SetGridEcho(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     GridEcho(): PrivateScope, Public, HideBySig
+    IsActive(): PrivateScope, Public, HideBySig
+    Grid(handle<Aspect_Grid>*): PrivateScope, Public, HideBySig
+    GridType(): PrivateScope, Public, HideBySig
+    GridDrawMode(): PrivateScope, Public, HideBySig
+    RectangularGridValues(Double&, Double&, Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridValues(Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig
+    CircularGridValues(Double&, Double&, Double&, Int32&, Double&): PrivateScope, Public, HideBySig
+    SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
+    CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
+    SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
+    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<V3d_View> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9274,12 +9241,8 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     ShadingModel(): PrivateScope, Public, HideBySig
     TextureEnv(handle<Graphic3d_TextureEnv>*): PrivateScope, Public, HideBySig
     Visualization(): PrivateScope, Public, HideBySig
-    IfMoreLights(): PrivateScope, Public, HideBySig
     ActiveLightIterator(NCollection_TListIterator<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
-    InitActiveLights(): PrivateScope, Public, HideBySig
-    MoreActiveLights(): PrivateScope, Public, HideBySig
-    NextActiveLights(): PrivateScope, Public, HideBySig
-    ActiveLight(handle<Graphic3d_CLight>*): PrivateScope, Public, HideBySig
+    ActiveLights(NCollection_List<opencascade::handle<Graphic3d_CLight> >*): PrivateScope, Public, HideBySig
     LightLimit(): PrivateScope, Public, HideBySig
     Viewer(): PrivateScope, Public, HideBySig
     IfWindow(): PrivateScope, Public, HideBySig
@@ -9769,7 +9732,6 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetTypeOfAxis(XAIS_TypeOfAxis): PrivateScope, Public, HideBySig
     IsXYZAxis(): PrivateScope, Public, HideBySig
     AcceptDisplayMode(Int32): PrivateScope, Public, Virtual, HideBySig
-    Compute(handle<Prs3d_Projector>*, handle<Geom_Transformation>*, handle<Graphic3d_Structure>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Signature(): PrivateScope, Public, Virtual, HideBySig
     Type(): PrivateScope, Public, Virtual, HideBySig
     SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig
@@ -9815,19 +9777,12 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Set(XTopoDS_Shape): PrivateScope, Public, HideBySig
     SetOwnDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
     SetOwnDeviationCoefficient(): PrivateScope, Public, HideBySig
-    SetOwnHLRDeviationCoefficient(Double IsConst): PrivateScope, Public, HideBySig
-    SetOwnHLRDeviationCoefficient(): PrivateScope, Public, HideBySig
     SetOwnDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
     SetOwnDeviationAngle(): PrivateScope, Public, HideBySig
-    SetOwnHLRDeviationAngle(Double IsConst): PrivateScope, Public, HideBySig
-    SetOwnHLRDeviationAngle(): PrivateScope, Public, HideBySig
     SetAngleAndDeviation(Double IsConst): PrivateScope, Public, HideBySig
     UserAngle(): PrivateScope, Public, HideBySig
-    SetHLRAngleAndDeviation(Double IsConst): PrivateScope, Public, HideBySig
     OwnDeviationCoefficient(Double, Double): PrivateScope, Public, HideBySig
-    OwnHLRDeviationCoefficient(Double, Double): PrivateScope, Public, HideBySig
     OwnDeviationAngle(Double, Double): PrivateScope, Public, HideBySig
-    OwnHLRDeviationAngle(Double, Double): PrivateScope, Public, HideBySig
     SetTypeOfHLR(XPrs3d_TypeOfHLR): PrivateScope, Public, HideBySig
     TypeOfHLR(): PrivateScope, Public, HideBySig
     SetColor(XQuantity_Color): PrivateScope, Public, Virtual, HideBySig
@@ -9850,7 +9805,7 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetTextureOriginUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
     TextureScaleUV(): PrivateScope, Public, HideBySig
     SetTextureScaleUV(xgp_Pnt2d): PrivateScope, Public, HideBySig
-    computeHlrPresentation(handle<Prs3d_Projector>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
+    computeHlrPresentation(handle<Graphic3d_Camera>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     ~XAIS_Shape(): PrivateScope, Public, HideBySig
@@ -9953,7 +9908,7 @@ Class TKV3d.XGraphic3d_ZLayerSettings: AutoLayout, AnsiClass, Class, Public, Bef
     Lights(handle<Graphic3d_LightSet>*): PrivateScope, Public, HideBySig
     SetLights(handle<Graphic3d_LightSet>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Origin(): PrivateScope, Public, HideBySig
-    OriginTransformation(handle<Geom_Transformation>*): PrivateScope, Public, HideBySig
+    OriginTransformation(handle<TopLoc_Datum3D>*): PrivateScope, Public, HideBySig
     SetOrigin(xgp_XYZ): PrivateScope, Public, HideBySig
     HasCullingDistance(): PrivateScope, Public, HideBySig
     CullingDistance(): PrivateScope, Public, HideBySig

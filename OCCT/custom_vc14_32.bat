@@ -16,6 +16,7 @@ if /I "%VCVER%" == "vc14" (
     set "TBB_DIR="
     set "VTK_DIR="
     set "FFMPEG_DIR="
+    set "OPENVR_DIR="
 
     if not "" == "" (
       set "QTDIR="

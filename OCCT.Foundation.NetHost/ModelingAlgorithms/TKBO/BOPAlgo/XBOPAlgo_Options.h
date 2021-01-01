@@ -124,7 +124,7 @@ namespace TKBO {
         //!@name Progress indicator
 
         //! Set the Progress Indicator object.
-        void SetProgressIndicator(const Handle(Message_ProgressIndicator)& theObj);
+        void SetProgressIndicator(const Message_ProgressScope& theObj);
 
         //!@name Usage of Oriented Bounding boxes
 

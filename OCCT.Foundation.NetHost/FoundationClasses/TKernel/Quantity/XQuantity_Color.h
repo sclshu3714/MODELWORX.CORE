@@ -276,9 +276,6 @@ namespace TKernel {
         //! Convert integer ARGB value to Color. Alpha bits are ignored
         static void Argb2color(const Standard_Integer theARGB, XQuantity_Color^ theColor);
 
-        //! Internal test
-        static void Test();
-
         //! Dumps the content of me into the stream
         //! theDepth = -1
         void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth);

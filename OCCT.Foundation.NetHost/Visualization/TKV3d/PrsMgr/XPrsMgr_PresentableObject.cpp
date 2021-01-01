@@ -220,7 +220,7 @@ namespace TKV3d {
     //! Return the local transformation.
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::LocalTransformationGeom() {
+    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::LocalTransformationGeom() {
           return NativeHandle()->LocalTransformationGeom();
     };
 
@@ -234,7 +234,7 @@ namespace TKV3d {
     //! Sets local transformation to theTransformation.
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    void XPrsMgr_PresentableObject::SetLocalTransformation(const Handle(Geom_Transformation)& theTrsf) {
+    void XPrsMgr_PresentableObject::SetLocalTransformation(const Handle(TopLoc_Datum3D)& theTrsf) {
         NativeHandle()->SetLocalTransformation(theTrsf);
     };
 
@@ -246,7 +246,7 @@ namespace TKV3d {
     //! Return the transformation taking into account transformation of parent object(s).
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::TransformationGeom() {
+    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::TransformationGeom() {
         return NativeHandle()->TransformationGeom();
     };
 
@@ -273,7 +273,7 @@ namespace TKV3d {
     };
 
     //! Return combined parent transformation.
-    const Handle(Geom_Transformation)& XPrsMgr_PresentableObject::CombinedParentTransformation() {
+    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::CombinedParentTransformation() {
         return NativeHandle()->CombinedParentTransformation();
     };
 

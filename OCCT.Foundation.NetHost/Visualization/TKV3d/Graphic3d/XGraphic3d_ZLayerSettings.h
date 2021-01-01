@@ -59,7 +59,7 @@ namespace TKV3d {
         xgp_XYZ^ Origin();// { return myOrigin; }
 
         //! Return the transformation to the origin.
-        Handle(Geom_Transformation) OriginTransformation();// { return myOriginTrsf; }
+        Handle(TopLoc_Datum3D) OriginTransformation();// { return myOriginTrsf; }
 
         //! Set the origin of all objects within the layer.
         void SetOrigin(xgp_XYZ^ theOrigin);

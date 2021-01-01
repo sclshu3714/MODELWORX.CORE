@@ -125,16 +125,16 @@ namespace TKXDESTEP {
         return NativeHandle->GetNameMode();
     };
 
-    //! Return the encoding of STEP file for converting names into UNICODE.
-    //! Initialized from "read.stepcaf.codepage" variable by constructor, which is Resource_UTF8 by default.
-    Resource_FormatType XSTEPCAFControl_Reader::SourceCodePage() {
-        return NativeHandle->SourceCodePage();
-    };
+    ////! Return the encoding of STEP file for converting names into UNICODE.
+    ////! Initialized from "read.stepcaf.codepage" variable by constructor, which is Resource_UTF8 by default.
+    //Resource_FormatType XSTEPCAFControl_Reader::SourceCodePage() {
+    //    return NativeHandle->SourceCodePage();
+    //};
 
-    //! Return the encoding of STEP file for converting names into UNICODE.
-    void XSTEPCAFControl_Reader::SetSourceCodePage(Resource_FormatType theCode) {
-        NativeHandle->SetSourceCodePage(theCode);
-    };
+    ////! Return the encoding of STEP file for converting names into UNICODE.
+    //void XSTEPCAFControl_Reader::SetSourceCodePage(Resource_FormatType theCode) {
+    //    NativeHandle->SetSourceCodePage(theCode);
+    //};
 
     //! Set LayerMode for indicate read Layers or not.
     void XSTEPCAFControl_Reader::SetLayerMode(const Standard_Boolean layermode) {

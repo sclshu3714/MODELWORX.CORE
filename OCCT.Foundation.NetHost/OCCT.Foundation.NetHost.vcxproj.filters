@@ -654,9 +654,6 @@
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_Helper.h">
       <Filter>头文件\FoundationClasses\TKernel\Standard</Filter>
     </ClInclude>
-    <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h">
-      <Filter>头文件\DataExchange\TKXCAF\XCAFApp</Filter>
-    </ClInclude>
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
     </ClInclude>
@@ -674,9 +671,6 @@
     </ClInclude>
     <ClInclude Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.h">
       <Filter>头文件\ApplicationFramework\TKVCAF\TPrsStd</Filter>
-    </ClInclude>
-    <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h">
-      <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfMaterial.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
@@ -773,12 +767,6 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_TypeOfPresentation3d.h">
       <Filter>头文件\Visualization\TKV3d\PrsMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h">
-      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
-    </ClInclude>
-    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.h">
-      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
     </ClInclude>
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_LabelSequence.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
@@ -1686,6 +1674,18 @@
     <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.h">
       <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFApp</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -1839,9 +1839,6 @@
     <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_Helper.cpp">
       <Filter>源文件\FoundationClasses\TKernel\Standard</Filter>
     </ClCompile>
-    <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp">
-      <Filter>源文件\DataExchange\TKXCAF\XCAFApp</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDocStd</Filter>
     </ClCompile>
@@ -1859,9 +1856,6 @@
     </ClCompile>
     <ClCompile Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.cpp">
       <Filter>源文件\ApplicationFramework\TKVCAF\TPrsStd</Filter>
-    </ClCompile>
-    <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp">
-      <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClCompile>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
@@ -1889,12 +1883,6 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.cpp">
       <Filter>源文件\Visualization\TKV3d\SelectMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.cpp">
-      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
-    </ClCompile>
-    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.cpp">
-      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
     </ClCompile>
     <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.cpp">
       <Filter>源文件\FoundationClasses\TKernel\TCollection</Filter>
@@ -2435,6 +2423,18 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.cpp">
       <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFApp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

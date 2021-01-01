@@ -686,28 +686,28 @@ namespace TKV3d {
     //function : SetHLRDeviationCoefficient
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRDeviationCoefficient(Standard_Real theCoefficient)
+   /* void XAIS_InteractiveContext::SetHLRDeviationCoefficient(Standard_Real theCoefficient)
     {
         NativeHandle()->SetHLRDeviationCoefficient(theCoefficient);
-    };
+    };*/
 
     //=======================================================================
     //function : HLRDeviationCoefficient
     //purpose  :
     //=======================================================================
-    Standard_Real XAIS_InteractiveContext::HLRDeviationCoefficient()
+    /*Standard_Real XAIS_InteractiveContext::HLRDeviationCoefficient()
     {
         return NativeHandle()->HLRDeviationCoefficient();
-    };
+    };*/
 
     //=======================================================================
     //function : SetHLRAngle
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRAngle(Standard_Real theAngle)
+    /*void XAIS_InteractiveContext::SetHLRAngle(Standard_Real theAngle)
     {
         NativeHandle()->SetHLRAngle(theAngle);
-    };
+    };*/
 
     //=======================================================================
     //function : SetHLRAngleAndDeviation
@@ -715,19 +715,19 @@ namespace TKV3d {
     //           and set them in myHLRAngle and in myHLRDeviationCoefficient
     //           of myDefaultDrawer 
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRAngleAndDeviation(Standard_Real theAngle)
+    /*void XAIS_InteractiveContext::SetHLRAngleAndDeviation(Standard_Real theAngle)
     {
         NativeHandle()->SetHLRAngleAndDeviation(theAngle);
-    };
+    };*/
 
     //=======================================================================
     //function : HLRAngle
     //purpose  :
     //=======================================================================
-    Standard_Real XAIS_InteractiveContext::HLRAngle()
+    /*Standard_Real XAIS_InteractiveContext::HLRAngle()
     {
         return NativeHandle()->HLRAngle();
-    };
+    };*/
 
     //=======================================================================
     //function : SetDisplayMode
@@ -796,10 +796,10 @@ namespace TKV3d {
     //function : SetHLRDeviationCoefficient
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
+    /*void XAIS_InteractiveContext::SetHLRDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRDeviationCoefficient(theIObj, theCoefficient, theToUpdateViewer);
-    };
+    };*/
 
     //=======================================================================
     //function : SetDeviationAngle
@@ -823,19 +823,19 @@ namespace TKV3d {
     //function : SetHLRAngleAndDeviation
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+    /*void XAIS_InteractiveContext::SetHLRAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRAngleAndDeviation(theIObj, theAngle, theToUpdateViewer);
-    };
+    };*/
 
     //=======================================================================
     //function : SetHLRDeviationAngle
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetHLRDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+   /* void XAIS_InteractiveContext::SetHLRDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRDeviationAngle(theIObj, theAngle, theToUpdateViewer);
-    };
+    };*/
 
     //=======================================================================
     //function : UnsetColor

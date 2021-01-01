@@ -102,16 +102,6 @@ namespace TKV3d {
 		return NativeHandle()->AcceptDisplayMode(aMode);
 	};
 
-	//! computes the presentation according to a point of view
-	//! given by <aProjector>.
-	//! To be Used when the associated degenerated Presentations
-	//! have been transformed by <aTrsf> which is not a Pure
-	//! Translation. The HLR Prs can't be deducted automatically
-	//! WARNING :<aTrsf> must be applied
-	//! to the object to display before computation  !!!
-	void XAIS_Axis::Compute(Handle(Prs3d_Projector) aProjector, Handle(Geom_Transformation) aTrsf, Handle(Prs3d_Presentation) aPresentation) {
-		NativeHandle()->Compute(aProjector, aTrsf, aPresentation);
-	};
 
 	Standard_Integer XAIS_Axis::Signature() {
 		return NativeHandle()->Signature();

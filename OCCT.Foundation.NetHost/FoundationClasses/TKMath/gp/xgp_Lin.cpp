@@ -169,7 +169,7 @@ namespace TKMath
     };
 
     void xgp_Lin::Mirror(xgp_Ax2^ A2){ 
-        NativeHandle->Mirrored(*A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 

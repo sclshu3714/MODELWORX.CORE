@@ -257,15 +257,15 @@ namespace TKV3d {
         V3d_ListOfViewIterator ActiveViewIterator();// { return V3d_ListOfViewIterator(myActiveViews); }
 
         //! Initializes an internal iterator on the active views.
-        void InitActiveViews();// { myActiveViewsIterator.Initialize(myActiveViews); }
+        //void InitActiveViews();// { myActiveViewsIterator.Initialize(myActiveViews); }
 
         //! Returns true if there are more active view(s) to return.
-        Standard_Boolean MoreActiveViews();// { return myActiveViewsIterator.More(); }
+        //Standard_Boolean MoreActiveViews();// { return myActiveViewsIterator.More(); }
 
         //! Go to the next active view (if there is not, ActiveView will raise an exception)
-        void NextActiveViews();// { if (!myActiveViews.IsEmpty()) myActiveViewsIterator.Next(); }
+       // void NextActiveViews();// { if (!myActiveViews.IsEmpty()) myActiveViewsIterator.Next(); }
 
-        XV3d_View^ ActiveView();// { return myActiveViewsIterator.Value(); }
+        V3d_ListOfView ActiveViews();// { return myActiveViewsIterator.Value(); }
 
         //! returns true if there is only one active view.
         Standard_Boolean LastActiveView();// { return myActiveViews.Extent() == 1; }
@@ -275,15 +275,15 @@ namespace TKV3d {
         V3d_ListOfViewIterator DefinedViewIterator();// { return V3d_ListOfViewIterator(myDefinedViews); }
 
         //! Initializes an internal iterator on the Defined views.
-        void InitDefinedViews();// { myDefinedViewsIterator.Initialize(myDefinedViews); }
+        //void InitDefinedViews();// { myDefinedViewsIterator.Initialize(myDefinedViews); }
 
         //! returns true if there are more Defined view(s) to return.
-        Standard_Boolean MoreDefinedViews();// { return myDefinedViewsIterator.More(); }
+        //Standard_Boolean MoreDefinedViews();// { return myDefinedViewsIterator.More(); }
 
         //! Go to the next Defined view (if there is not, DefinedView will raise an exception)
-        void NextDefinedViews();// { if (!myDefinedViews.IsEmpty()) myDefinedViewsIterator.Next(); }
+        //void NextDefinedViews();// { if (!myDefinedViews.IsEmpty()) myDefinedViewsIterator.Next(); }
 
-        XV3d_View^ DefinedView();// { return myDefinedViewsIterator.Value(); }
+        V3d_ListOfView DefinedViews();// { return myDefinedViewsIterator.Value(); }
 
         //! @name lights management
 
@@ -321,29 +321,29 @@ namespace TKV3d {
         V3d_ListOfLightIterator ActiveLightIterator();// { return V3d_ListOfLightIterator(myActiveLights); }
 
         //! Initializes an internal iteratator on the active Lights.
-        void InitActiveLights();// { myActiveLightsIterator.Initialize(myActiveLights); }
+        //void InitActiveLights();// { myActiveLightsIterator.Initialize(myActiveLights); }
 
         //! returns true if there are more active Light(s) to return.
-        Standard_Boolean MoreActiveLights();// { return myActiveLightsIterator.More(); }
+        //Standard_Boolean MoreActiveLights();// { return myActiveLightsIterator.More(); }
 
         //! Go to the next active Light (if there is not, ActiveLight() will raise an exception)
-        void NextActiveLights();// { myActiveLightsIterator.Next(); }
+        //void NextActiveLights();// { myActiveLightsIterator.Next(); }
 
-        Handle(V3d_Light) ActiveLight();// { return myActiveLightsIterator.Value(); }
+        V3d_ListOfLight ActiveLights();// { return myActiveLightsIterator.Value(); }
 
         //! Return an iterator for defined lights.
         V3d_ListOfLightIterator DefinedLightIterator();// { return V3d_ListOfLightIterator(myDefinedLights); }
 
         //! Initializes an internal iterattor on the Defined Lights.
-        void InitDefinedLights();// { myDefinedLightsIterator.Initialize(myDefinedLights); }
+        //void InitDefinedLights();// { myDefinedLightsIterator.Initialize(myDefinedLights); }
 
         //! Returns true if there are more Defined Light(s) to return.
-        Standard_Boolean MoreDefinedLights();// { return myDefinedLightsIterator.More(); }
+        //Standard_Boolean MoreDefinedLights();// { return myDefinedLightsIterator.More(); }
 
         //! Go to the next Defined Light (if there is not, DefinedLight() will raise an exception)
-        void NextDefinedLights();// { if (!myDefinedLights.IsEmpty()) myDefinedLightsIterator.Next(); }
+        //void NextDefinedLights();// { if (!myDefinedLights.IsEmpty()) myDefinedLightsIterator.Next(); }
 
-        Handle(V3d_Light) DefinedLight();// { return myDefinedLightsIterator.Value(); }
+        V3d_ListOfLight DefinedLights();// { return myDefinedLightsIterator.Value(); }
 
         //! @name objects management
 

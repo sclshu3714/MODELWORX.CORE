@@ -72,9 +72,9 @@ namespace TKV3d {
     };
 
     //! Sets a local value for HLR deviation coefficient for this specific shape.
-    Standard_Boolean XAIS_Shape::SetOwnHLRDeviationCoefficient() {
-        return NativeHandle()->SetOwnHLRDeviationCoefficient();
-    };
+        /*Standard_Boolean XAIS_Shape::SetOwnHLRDeviationCoefficient() {
+            return NativeHandle()->SetOwnHLRDeviationCoefficient();
+        };*/
 
     //! Sets a local value for deviation angle for this specific shape.
     Standard_Boolean XAIS_Shape::SetOwnDeviationAngle() {
@@ -82,9 +82,9 @@ namespace TKV3d {
     };
 
     //! Sets a local value for HLR deviation angle for this specific shape.
-    Standard_Boolean XAIS_Shape::SetOwnHLRDeviationAngle() {
+    /*Standard_Boolean XAIS_Shape::SetOwnHLRDeviationAngle() {
         return NativeHandle()->SetOwnHLRDeviationAngle();
-    };
+    };*/
 
     //! Sets a local value for deviation coefficient for this specific shape.
     void XAIS_Shape::SetOwnDeviationCoefficient(const Standard_Real aCoefficient) {
@@ -93,9 +93,9 @@ namespace TKV3d {
 
     //! sets myOwnHLRDeviationCoefficient field in Prs3d_Drawer &
     //! recomputes presentation
-    void XAIS_Shape::SetOwnHLRDeviationCoefficient(const Standard_Real aCoefficient) {
+    /*void XAIS_Shape::SetOwnHLRDeviationCoefficient(const Standard_Real aCoefficient) {
         NativeHandle()->SetOwnHLRDeviationCoefficient(aCoefficient);
-    };
+    };*/
 
     //! this compute a new angle and Deviation from the value anAngle
     //! and set the values stored in myDrawer with these that become local to the shape
@@ -115,14 +115,14 @@ namespace TKV3d {
 
     //! this compute a new Angle and Deviation from the value anAngle for HLR
     //! and set the values stored in myDrawer for with these that become local to the shape
-    void XAIS_Shape::SetHLRAngleAndDeviation(const Standard_Real anAngle) {
+    /*void XAIS_Shape::SetHLRAngleAndDeviation(const Standard_Real anAngle) {
         NativeHandle()->SetHLRAngleAndDeviation(anAngle);
-    };
+    };*/
 
     //! sets myOwnHLRDeviationAngle field in Prs3d_Drawer & recomputes presentation
-    void XAIS_Shape::SetOwnHLRDeviationAngle(const Standard_Real anAngle) {
+    /*void XAIS_Shape::SetOwnHLRDeviationAngle(const Standard_Real anAngle) {
         NativeHandle()->SetOwnHLRDeviationAngle(anAngle);
-    };
+    };*/
 
     //! Returns true and the values of the deviation
     //! coefficient aCoefficient and the previous deviation
@@ -136,9 +136,9 @@ namespace TKV3d {
     //! coefficient aCoefficient and the previous HLR
     //! deviation coefficient aPreviousCoefficient. If these
     //! values are not already set, false is returned.
-    Standard_Boolean XAIS_Shape::OwnHLRDeviationCoefficient(Standard_Real aCoefficient, Standard_Real aPreviousCoefficient) {
+    /*Standard_Boolean XAIS_Shape::OwnHLRDeviationCoefficient(Standard_Real aCoefficient, Standard_Real aPreviousCoefficient) {
         return NativeHandle()->OwnHLRDeviationCoefficient(aCoefficient, aPreviousCoefficient);
-    };
+    };*/
 
     //! Returns true and the values of the deviation angle
     //! anAngle and the previous deviation angle aPreviousAngle.
@@ -151,9 +151,9 @@ namespace TKV3d {
     //! angle anAngle and of the previous HLR deviation
     //! angle aPreviousAngle. If these values are not
     //! already set, false is returned.
-    Standard_Boolean XAIS_Shape::OwnHLRDeviationAngle(Standard_Real anAngle, Standard_Real aPreviousAngle) {
+    /*Standard_Boolean XAIS_Shape::OwnHLRDeviationAngle(Standard_Real anAngle, Standard_Real aPreviousAngle) {
         return NativeHandle()->OwnHLRDeviationAngle(anAngle, aPreviousAngle);
-    };
+    };*/
 
     //! Sets the type of HLR algorithm used by the shape
     void XAIS_Shape::SetTypeOfHLR(XPrs3d_TypeOfHLR theTypeOfHLR) {
@@ -289,7 +289,7 @@ namespace TKV3d {
 
     //! Compute HLR presentation for specified shape.
     //! static 
-    void XAIS_Shape::computeHlrPresentation(const Handle(Prs3d_Projector)& theProjector, Handle(Prs3d_Presentation)& thePrs, XTopoDS_Shape^ theShape, XPrs3d_Drawer^ theDrawer) {
+    void XAIS_Shape::computeHlrPresentation(const Handle(Graphic3d_Camera)& theProjector, Handle(Prs3d_Presentation)& thePrs, XTopoDS_Shape^ theShape, XPrs3d_Drawer^ theDrawer) {
         AIS_Shape::computeHlrPresentation(theProjector, thePrs, *theShape->GetShape(), theDrawer->GetDrawer());
     };
 }

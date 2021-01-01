@@ -115,20 +115,20 @@ namespace TKV3d {
         Standard_Boolean SetOwnDeviationCoefficient();
 
         //! Sets a local value for HLR deviation coefficient for this specific shape.
-        Standard_Boolean SetOwnHLRDeviationCoefficient();
+        //! Standard_Boolean SetOwnHLRDeviationCoefficient();
 
         //! Sets a local value for deviation angle for this specific shape.
         Standard_Boolean SetOwnDeviationAngle();
 
         //! Sets a local value for HLR deviation angle for this specific shape.
-        Standard_Boolean SetOwnHLRDeviationAngle();
+        //! Standard_Boolean SetOwnHLRDeviationAngle();
 
         //! Sets a local value for deviation coefficient for this specific shape.
         void SetOwnDeviationCoefficient(const Standard_Real aCoefficient);
 
         //! sets myOwnHLRDeviationCoefficient field in Prs3d_Drawer &
         //! recomputes presentation
-        void SetOwnHLRDeviationCoefficient(const Standard_Real aCoefficient);
+        //! void SetOwnHLRDeviationCoefficient(const Standard_Real aCoefficient);
 
         //! this compute a new angle and Deviation from the value anAngle
         //! and set the values stored in myDrawer with these that become local to the shape
@@ -142,10 +142,10 @@ namespace TKV3d {
 
         //! this compute a new Angle and Deviation from the value anAngle for HLR
         //! and set the values stored in myDrawer for with these that become local to the shape
-        void SetHLRAngleAndDeviation(const Standard_Real anAngle);
+        //! void SetHLRAngleAndDeviation(const Standard_Real anAngle);
 
         //! sets myOwnHLRDeviationAngle field in Prs3d_Drawer & recomputes presentation
-        void SetOwnHLRDeviationAngle(const Standard_Real anAngle);
+        //! void SetOwnHLRDeviationAngle(const Standard_Real anAngle);
 
         //! Returns true and the values of the deviation
         //! coefficient aCoefficient and the previous deviation
@@ -157,7 +157,7 @@ namespace TKV3d {
         //! coefficient aCoefficient and the previous HLR
         //! deviation coefficient aPreviousCoefficient. If these
         //! values are not already set, false is returned.
-        Standard_Boolean OwnHLRDeviationCoefficient(Standard_Real aCoefficient, Standard_Real aPreviousCoefficient);
+        //! Standard_Boolean OwnHLRDeviationCoefficient(Standard_Real aCoefficient, Standard_Real aPreviousCoefficient);
 
         //! Returns true and the values of the deviation angle
         //! anAngle and the previous deviation angle aPreviousAngle.
@@ -168,7 +168,7 @@ namespace TKV3d {
         //! angle anAngle and of the previous HLR deviation
         //! angle aPreviousAngle. If these values are not
         //! already set, false is returned.
-        Standard_Boolean OwnHLRDeviationAngle(Standard_Real anAngle, Standard_Real aPreviousAngle);
+       //!  Standard_Boolean OwnHLRDeviationAngle(Standard_Real anAngle, Standard_Real aPreviousAngle);
 
         //! Sets the type of HLR algorithm used by the shape
         void SetTypeOfHLR(XPrs3d_TypeOfHLR theTypeOfHLR);
@@ -297,7 +297,7 @@ namespace TKV3d {
         void SetTextureScaleUV(xgp_Pnt2d^ theScaleUV);
 
         //! Compute HLR presentation for specified shape.
-        static void computeHlrPresentation(const Handle(Prs3d_Projector)& theProjector, Handle(Prs3d_Presentation)& thePrs, XTopoDS_Shape^ theShape, XPrs3d_Drawer^ theDrawer);
+        static void computeHlrPresentation(const Handle(Graphic3d_Camera)& theProjector, Handle(Prs3d_Presentation)& thePrs, XTopoDS_Shape^ theShape, XPrs3d_Drawer^ theDrawer);
 
 
         /// <summary>

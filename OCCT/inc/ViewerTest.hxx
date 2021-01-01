@@ -34,6 +34,7 @@ class V3d_View;
 class V3d_Viewer;
 class ViewerTest_EventManager;
 class TopoDS_Shape;
+class WNT_WClass;
 
 class ViewerTest
 {
@@ -147,35 +148,6 @@ public:
 
   Standard_EXPORT static void RemoveSelected();
 
-  Standard_EXPORT static Quantity_NameOfColor GetColorFromName (const Standard_CString name);
-
-  //! Parses RGB(A) color argument(s) specified within theArgVec[0], theArgVec[1], theArgVec[2] and theArgVec[3].
-  //! Handles either color specified by name (single argument)
-  //! or by RGB(A) components (3-4 arguments) in range 0..1.
-  //! The result is stored in theColor on success.
-  //! Returns number of handled arguments (1, 2, 3 or 4) or 0 on syntax error.
-  static Standard_Integer ParseColor (const Standard_Integer   theArgNb,
-                                      const char* const* const theArgVec,
-                                      Quantity_ColorRGBA&      theColor)
-  {
-    return parseColor (theArgNb, theArgVec, theColor, true);
-  }
-
-  //! Parses RGB color argument(s).
-  //! Returns number of handled arguments (1 or 3) or 0 on syntax error.
-  static Standard_Integer ParseColor (const Standard_Integer   theArgNb,
-                                      const char* const* const theArgVec,
-                                      Quantity_Color&          theColor)
-  {
-    Quantity_ColorRGBA anRgba;
-    const Standard_Integer aNbParsed = parseColor (theArgNb, theArgVec, anRgba, false);
-    if (aNbParsed != 0)
-    {
-      theColor = anRgba.GetRGB();
-    }
-    return aNbParsed;
-  }
-
   //! redraws all defined views.
   Standard_EXPORT static void RedrawAllViews();
 
@@ -186,18 +158,23 @@ public:
                                                           TCollection_AsciiString&       theName,
                                                           TCollection_AsciiString&       theValue);
 
-  //! Parses boolean argument.
-  //! Handles either flag specified by 0|1 or on|off.
-  Standard_EXPORT static Standard_Boolean ParseOnOff (Standard_CString  theArg,
-                                                      Standard_Boolean& theIsOn);
-
   //! Returns list of selected shapes.
   Standard_EXPORT static void GetSelectedShapes (TopTools_ListOfShape& theShapes);
 
   //! Parses line type argument.
   //! Handles either enumeration (integer) value or string constant.
-  Standard_EXPORT static Standard_Boolean ParseLineType (Standard_CString   theArg,
-                                                         Aspect_TypeOfLine& theType);
+  Standard_EXPORT static Standard_Boolean ParseLineType (Standard_CString theArg,
+                                                         Aspect_TypeOfLine& theType,
+                                                         uint16_t& thePattern);
+
+  //! Parses line type argument.
+  //! Handles either enumeration (integer) value or string constant.
+  static Standard_Boolean ParseLineType (Standard_CString theArg,
+                                         Aspect_TypeOfLine& theType)
+  {
+    uint16_t aPattern = 0xFFFF;
+    return ParseLineType (theArg, theType, aPattern);
+  }
 
   //! Parses marker type argument.
   //! Handles either enumeration (integer) value or string constant.
@@ -230,17 +207,31 @@ public:
     return parseZLayer (theArg, true, theLayer);
   }
 
-private:
+public: //! @name deprecated methods
 
   //! Parses RGB(A) color argument(s) specified within theArgVec[0], theArgVec[1], theArgVec[2] and theArgVec[3].
-  //! Handles either color specified by name (single argument)
-  //! or by RGB(A) components (3-4 arguments) in range 0..1.
-  //! The result is stored in theColor on success.
-  //! Returns number of handled arguments (1, 2, 3 or 4) or 0 on syntax error.
-  Standard_EXPORT static Standard_Integer parseColor (Standard_Integer    theArgNb,
-                                                      const char* const*  theArgVec,
-                                                      Quantity_ColorRGBA& theColor,
-                                                      bool                theToParseAlpha);
+  Standard_DEPRECATED("Method has been moved to Draw::ParseColor()")
+  Standard_EXPORT static Standard_Integer ParseColor (const Standard_Integer   theArgNb,
+                                                      const char* const* const theArgVec,
+                                                      Quantity_ColorRGBA&      theColor);
+
+  //! Parses RGB color argument(s).
+  //! Returns number of handled arguments (1 or 3) or 0 on syntax error.
+  Standard_DEPRECATED("Method has been moved to Draw::ParseColor()")
+  Standard_EXPORT static Standard_Integer ParseColor (const Standard_Integer   theArgNb,
+                                                      const char* const* const theArgVec,
+                                                      Quantity_Color&          theColor);
+
+  //! Parses boolean argument.
+  //! Handles either flag specified by 0|1 or on|off.
+  Standard_DEPRECATED("Method has been moved to Draw::ParseOnOff()")
+  Standard_EXPORT static Standard_Boolean ParseOnOff (Standard_CString  theArg,
+                                                      Standard_Boolean& theIsOn);
+
+  Standard_DEPRECATED("Method has been moved to Quantity_Color::ColorFromName()")
+  Standard_EXPORT static Quantity_NameOfColor GetColorFromName (const Standard_CString name);
+
+private:
 
   //! Parses ZLayer name.
   //! @param theArg [in] layer name, enumeration alias or index (of existing Layer)
@@ -257,7 +248,7 @@ private:
   //! Ctrl+MB2 for pan, etc) and keyboard shortcuts.
   //! This method is relevant for MS Windows only and respectively
   //! returns WNT_WClass handle.
-  static const Handle(Standard_Transient)& WClass();
+  static const Handle(WNT_WClass)& WClass();
 };
 
 #endif // _ViewerTest_HeaderFile

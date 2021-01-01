@@ -34,7 +34,7 @@ namespace TKV3d {
     };// { return myOrigin; }
 
     //! Return the transformation to the origin.
-    Handle(Geom_Transformation) XGraphic3d_ZLayerSettings::OriginTransformation() {
+    Handle(TopLoc_Datum3D) XGraphic3d_ZLayerSettings::OriginTransformation() {
         return  NativeHandle->OriginTransformation();
     };// { return myOriginTrsf; }
 

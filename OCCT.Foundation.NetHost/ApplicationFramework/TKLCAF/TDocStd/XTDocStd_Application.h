@@ -41,7 +41,7 @@ class Standard_NoSuchObject;
 class TDocStd_Document;
 class TCollection_ExtendedString;
 
-//class TDocStd_Application;
+class TDocStd_Application;
 //DEFINE_STANDARD_HANDLE(TDocStd_Application, CDF_Application)
 
 

@@ -42,7 +42,7 @@ namespace TKTopAlgo {
     //! Computing
     //! thePI - progress indicator of algorithm
     //! thePI = 0
-    void XBRepBuilderAPI_Sewing::Perform(Handle(Message_ProgressIndicator) thePI) {
+    void XBRepBuilderAPI_Sewing::Perform(const Message_ProgressRange& thePI) {
         NativeHandle()->Perform(thePI);
     };
 
