@@ -166,7 +166,7 @@ namespace TKMath
     };
 
     void xgp_Ax22d::Mirror(xgp_Ax2d^ A) {
-        NativeHandle->Mirrored(*A->GetAx2d());
+        NativeHandle->Mirror(*A->GetAx2d());
     };
 
 

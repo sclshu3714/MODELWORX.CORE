@@ -235,7 +235,7 @@ namespace TKMath
     };
 
     void xgp_Elips::Mirror(xgp_Ax2^ A2) {
-        NativeHandle->Mirrored(*A2->GetAx2());
+        NativeHandle->Mirror(*A2->GetAx2());
     };
 
 
