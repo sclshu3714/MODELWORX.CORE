@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\FlushMemoryHelper.cs" />
     <Compile Include="Layout\OCCTViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,8 +187,6 @@
   <ItemGroup>
     <None Include="Resources\article_16x16.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

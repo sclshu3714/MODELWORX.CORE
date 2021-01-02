@@ -18,6 +18,7 @@ using TKMath;
 using TKPrim;
 using TKTopAlgo;
 using TKV3d;
+using VXHelper;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace OCCT.NET
@@ -30,6 +31,12 @@ namespace OCCT.NET
         public MainForm() {
             InitializeComponent(); 
             this.Load += MainForm_Load;
+            this.FormClosed += MainForm_FormClosed;
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FlushMemory.StaticFlush();
         }
 
         private void MainForm_Load(object sender, EventArgs e) {

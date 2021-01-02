@@ -9374,6 +9374,12 @@ Class NCollection_Haft<opencascade::handle<OpenGl_GraphicDriver> >: AutoLayout, 
   Methods:
     op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NCollection_Haft<opencascade::handle<Graphic3d_AspectText3d> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9381,6 +9387,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     InitViewer(IntPtr): PrivateScope, Public, HideBySig
     AISTextLabel(SByte*): PrivateScope, Public, HideBySig
+    DisplayExplainText(SByte*, Double, Double, Double): PrivateScope, Public, HideBySig
     Dump(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     RedrawView(): PrivateScope, Public, HideBySig
     UpdateView(): PrivateScope, Public, HideBySig

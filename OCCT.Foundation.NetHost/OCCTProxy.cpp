@@ -51,7 +51,7 @@
 #include <AIS_TextLabel.hxx>
 #include <Resource_ConvertUnicode.hxx>//Resource_Unicode
 #include <Resource_Unicode.hxx>
-
+#include <Graphic3d_Layer.hxx>
 #pragma region required OCCT libraries
 //// list of required OCCT libraries
 //#pragma comment(lib, "TKernel.lib")
@@ -259,6 +259,15 @@ public:
         mainView()->MustBeResized();
 
         AISTextLabel("sclshu3714@163.com");
+        DisplayExplainText("中间 - sclshu3714@163.com - 中间", 0, 0, 0);
+        DisplayExplainText("左中 - sclshu3714@163.com - 左中", -1, 0, 0);
+        DisplayExplainText("左上 - sclshu3714@163.com - 左上", -1, 1, -1);
+        DisplayExplainText("上中 - sclshu3714@163.com - 上中", 0, 1, -1);
+        DisplayExplainText("右上 - sclshu3714@163.com - 右上",1, 1, -1);
+        DisplayExplainText("右中 - sclshu3714@163.com - 右中", 1, 0, -1);
+        DisplayExplainText("右下 - sclshu3714@163.com - 右下", 1, -1, -1);
+        DisplayExplainText("下中 - sclshu3714@163.com - 下中", 0, -1, 0);
+        DisplayExplainText("左下 - sclshu3714@163.com - 左下", -1, -1, 0);
         return true;
     }
 
@@ -270,6 +279,24 @@ public:
         aLabel->SetColor(Quantity_NOC_RED);
         aLabel->SetFont("SimHei");//一定要设置合适的字体，不然不能实现功能
         mainAISContext()->Display(aLabel, Standard_True);
+    }
+    /// <summary>
+    /// 左上角显示text
+    /// </summary>
+    /// <param name="CString"></param>
+    void DisplayExplainText(Standard_CString CString, Standard_Real X, Standard_Real Y, Standard_Real Z)
+    {
+        //Handle(AIS_InteractiveContext) aContext = ...;
+        //Handle(AIS_InteractiveObject) anObj = ...; // create an AIS object
+        TCollection_ExtendedString toExtendedString;
+        Resource_Unicode::ConvertGBToUnicode(CString, toExtendedString);
+        Handle(AIS_TextLabel) anObj = new AIS_TextLabel();
+        anObj->SetText(toExtendedString);
+        anObj->SetColor(Quantity_NOC_RED);
+        anObj->SetFont("SimHei");//一定要设置合适的字体，不然不能实现功能
+        anObj->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
+        anObj->SetTransformPersistence(Graphic3d_TransformPers::FromDeprecatedParams(Graphic3d_TMF_2d, gp_Pnt(X, Y, Z)));
+        mainAISContext()->Display(anObj, Standard_True); // display the object
     }
 #pragma endregion
 
@@ -1239,4 +1266,5 @@ private:
     NCollection_Haft<Handle(V3d_View)>               mainView;
     NCollection_Haft<Handle(AIS_InteractiveContext)> mainAISContext;
     NCollection_Haft<Handle(OpenGl_GraphicDriver)>   mainGraphicDriver;
+    NCollection_Haft<Handle(Graphic3d_AspectText3d)> m_hLayer;
 };
