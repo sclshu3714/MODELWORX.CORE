@@ -261,15 +261,17 @@ public:
 
         AISTextLabel("sclshu3714@163.com");
         //Aspect_TypeOfTriedronPosition
-        DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER);
-        DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_RIGHT);
-        DisplayExplainText("左上 - sclshu3714@163.com - 左上", Aspect_TOTP_LEFT_UPPER);
-        DisplayExplainText("上中 - sclshu3714@163.com - 上中", Aspect_TOTP_TOP);
-        DisplayExplainText("右上 - sclshu3714@163.com - 右上", Aspect_TOTP_RIGHT_UPPER);
-        DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_LEFT);
-        DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER);
-        DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM);
-        DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER);
+        string str = "右上 - sclshu3714@163.com - 右上";
+        Graphic3d_Vec2i anoffset(0, 10);
+        DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER, anoffset = Graphic3d_Vec2i(127, 0));
+        DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_LEFT, anoffset = Graphic3d_Vec2i(0, 0));
+        DisplayExplainText("左上 - sclshu3714@163.com - 左上", Aspect_TOTP_LEFT_UPPER, anoffset = Graphic3d_Vec2i(0, 15));
+        DisplayExplainText("上中 - sclshu3714@163.com - 上中", Aspect_TOTP_TOP, anoffset = Graphic3d_Vec2i(127, 15));
+        DisplayExplainText("右上 - sclshu3714@163.com - 右上", Aspect_TOTP_RIGHT_UPPER, anoffset = Graphic3d_Vec2i(254, 15));
+        DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_RIGHT, anoffset = Graphic3d_Vec2i(254, 0));
+        DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER, anoffset = Graphic3d_Vec2i(254, 0));
+        DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));
+        DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
         return true;
     }
 
@@ -286,7 +288,7 @@ public:
     /// 左上角显示text
     /// </summary>
     /// <param name="CString"></param>
-    void DisplayExplainText(Standard_CString CString, Aspect_TypeOfTriedronPosition post)
+    void DisplayExplainText(Standard_CString CString, Aspect_TypeOfTriedronPosition post, Graphic3d_Vec2i anoffset)
     {
         //Handle(AIS_InteractiveContext) aContext = ...;
         //Handle(AIS_InteractiveObject) anObj = ...; // create an AIS object
@@ -297,7 +299,7 @@ public:
         anObj->SetColor(Quantity_NOC_RED);
         anObj->SetFont("SimHei");//一定要设置合适的字体，不然不能实现功能
         anObj->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
-        Handle(Graphic3d_TransformPers) TransformPers = new Graphic3d_TransformPers(Graphic3d_TMF_2d, post);
+        Handle(Graphic3d_TransformPers) TransformPers = new Graphic3d_TransformPers(Graphic3d_TMF_2d, post, anoffset);
         anObj->SetTransformPersistence(TransformPers);
         mainAISContext()->Display(anObj, Standard_True); // display the object
     }
@@ -1257,10 +1259,15 @@ public:
     ///Initialize OCCTProxy
     /// </summary>
     void InitOCCTProxy(void) {
-        mainGraphicDriver() = NULL;
-        mainViewer() = NULL;
-        mainView() = NULL;
+       /* mainAISContext()->~AIS_InteractiveContext();
+        mainView()->Delete();
+        mainViewer()->Delete();
+        mainGraphicDriver()->~OpenGl_GraphicDriver();*/
         mainAISContext() = NULL;
+        mainView() = NULL;
+        mainViewer() = NULL;
+        mainGraphicDriver()->Delete();
+        mainGraphicDriver() = NULL;
     }
 
 private:

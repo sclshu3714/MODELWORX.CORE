@@ -41,15 +41,20 @@ namespace OCCT.WinForms.Net
                 Dock = DockStyle.Fill;
             }
         }
+        public void InitOCCTProxy()
+        {
+            if (IsInitViewer && OCCTView != null)
+                OCCTView.InitOCCTProxy();
+        }
 
         private void RenderWindow_Load(object sender, EventArgs e)
         {
-            Initialize();
+            //Initialize();
         }
 
         public bool Initialize() {
             OCCTView = new OCCTProxy();
-            IsInitViewer = OCCTView.InitViewer(this.RWControl.Handle);
+            IsInitViewer = OCCTView.InitViewer(this.Handle);
             if (!IsInitViewer)
             {
                 MessageBox.Show("初始化图形失败");
@@ -61,14 +66,14 @@ namespace OCCT.WinForms.Net
             IsRectVisible = false;
             OCCTView.SetLight(true);
 
-            this.RWControl.SizeChanged += RenderWindow_SizeChanged;
-            this.RWControl.Paint += RenderWindow_Paint;
-            this.RWControl.KeyDown += RenderWindow_KeyDown;
-            this.RWControl.KeyUp += RenderWindow_KeyUp;
-            this.RWControl.MouseDown += RenderWindow_MouseDown;
-            this.RWControl.MouseUp += RenderWindow_MouseUp;
-            this.RWControl.MouseMove += RenderWindow_MouseMove;
-            this.RWControl.MouseWheel += RenderWindow_MouseWheel;
+            this.SizeChanged += RenderWindow_SizeChanged;
+            this.Paint += RenderWindow_Paint;
+            this.KeyDown += RenderWindow_KeyDown;
+            this.KeyUp += RenderWindow_KeyUp;
+            this.MouseDown += RenderWindow_MouseDown;
+            this.MouseUp += RenderWindow_MouseUp;
+            this.MouseMove += RenderWindow_MouseMove;
+            this.MouseWheel += RenderWindow_MouseWheel;
             return IsInitViewer;
         }
 

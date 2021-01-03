@@ -9387,7 +9387,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     InitViewer(IntPtr): PrivateScope, Public, HideBySig
     AISTextLabel(SByte*): PrivateScope, Public, HideBySig
-    DisplayExplainText(SByte*, Aspect_TypeOfTriedronPosition): PrivateScope, Public, HideBySig
+    DisplayExplainText(SByte*, Aspect_TypeOfTriedronPosition, NCollection_Vec2<int>): PrivateScope, Public, HideBySig
     Dump(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     RedrawView(): PrivateScope, Public, HideBySig
     UpdateView(): PrivateScope, Public, HideBySig

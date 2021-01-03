@@ -51,8 +51,15 @@ namespace OCCT.NET.Layout
         private void OCCTViewForm_Load(object sender, EventArgs e)
         {
             IRender = new RenderWindow(this.RWControl);
+            IRender.Initialize();
             IRender.SetDisplayMode(ModeIndex);
             IRender.MouseUp += IRender_MouseUp;
+        }
+
+        public void InitOCCTProxy()
+        {
+            if (IRender.IsInitViewer && IRender.OCCTView != null)
+                IRender.InitOCCTProxy();
         }
 
         private void IRender_MouseUp(object sender, MouseEventArgs e)

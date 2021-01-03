@@ -25,22 +25,12 @@
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent() {
-            this.RWControl = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // RWControl
-            // 
-            this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RWControl.Location = new System.Drawing.Point(0, 0);
-            this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(518, 402);
-            this.RWControl.TabIndex = 0;
             // 
             // RenderWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.RWControl);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "RenderWindow";
             this.Size = new System.Drawing.Size(518, 402);
@@ -49,7 +39,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel RWControl;
     }
 }

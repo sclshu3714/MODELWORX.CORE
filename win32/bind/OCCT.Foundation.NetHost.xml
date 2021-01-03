@@ -391,7 +391,7 @@ Make dump of current view to file
 </summary>
             <param name="theFileName">Name of dump file</param>
         </member>
-        <member name="M:OCCTProxy.DisplayExplainText(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,Aspect_TypeOfTriedronPosition)">
+        <member name="M:OCCTProxy.DisplayExplainText(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,Aspect_TypeOfTriedronPosition,NCollection_Vec2&lt;System.Int32&gt;)">
             <summary>
 左上角显示text
 </summary>

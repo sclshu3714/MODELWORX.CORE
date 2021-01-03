@@ -36,6 +36,8 @@ namespace OCCT.NET
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (OCCTView != null)
+                OCCTView.InitOCCTProxy();
             FlushMemory.StaticFlush();
         }
 
