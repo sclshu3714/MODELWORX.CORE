@@ -1266,7 +1266,7 @@ public:
         mainAISContext() = NULL;
         mainView() = NULL;
         mainViewer() = NULL;
-        mainGraphicDriver()->Delete();
+        mainGraphicDriver()->~OpenGl_GraphicDriver();
         mainGraphicDriver() = NULL;
     }
 
