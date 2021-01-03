@@ -51,7 +51,8 @@
 #include <AIS_TextLabel.hxx>
 #include <Resource_ConvertUnicode.hxx>//Resource_Unicode
 #include <Resource_Unicode.hxx>
-#include <Graphic3d_Layer.hxx>
+#include <Aspect_TypeOfTriedronPosition.hxx>
+
 #pragma region required OCCT libraries
 //// list of required OCCT libraries
 //#pragma comment(lib, "TKernel.lib")
@@ -259,15 +260,16 @@ public:
         mainView()->MustBeResized();
 
         AISTextLabel("sclshu3714@163.com");
-        DisplayExplainText("中间 - sclshu3714@163.com - 中间", 0, 0, 0);
-        DisplayExplainText("左中 - sclshu3714@163.com - 左中", -1, 0, 0);
-        DisplayExplainText("左上 - sclshu3714@163.com - 左上", -1, 1, -1);
-        DisplayExplainText("上中 - sclshu3714@163.com - 上中", 0, 1, -1);
-        DisplayExplainText("右上 - sclshu3714@163.com - 右上",1, 1, -1);
-        DisplayExplainText("右中 - sclshu3714@163.com - 右中", 1, 0, -1);
-        DisplayExplainText("右下 - sclshu3714@163.com - 右下", 1, -1, -1);
-        DisplayExplainText("下中 - sclshu3714@163.com - 下中", 0, -1, 0);
-        DisplayExplainText("左下 - sclshu3714@163.com - 左下", -1, -1, 0);
+        //Aspect_TypeOfTriedronPosition
+        DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER);
+        DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_RIGHT);
+        DisplayExplainText("左上 - sclshu3714@163.com - 左上", Aspect_TOTP_LEFT_UPPER);
+        DisplayExplainText("上中 - sclshu3714@163.com - 上中", Aspect_TOTP_TOP);
+        DisplayExplainText("右上 - sclshu3714@163.com - 右上", Aspect_TOTP_RIGHT_UPPER);
+        DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_LEFT);
+        DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER);
+        DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM);
+        DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER);
         return true;
     }
 
@@ -284,7 +286,7 @@ public:
     /// 左上角显示text
     /// </summary>
     /// <param name="CString"></param>
-    void DisplayExplainText(Standard_CString CString, Standard_Real X, Standard_Real Y, Standard_Real Z)
+    void DisplayExplainText(Standard_CString CString, Aspect_TypeOfTriedronPosition post)
     {
         //Handle(AIS_InteractiveContext) aContext = ...;
         //Handle(AIS_InteractiveObject) anObj = ...; // create an AIS object
@@ -295,7 +297,8 @@ public:
         anObj->SetColor(Quantity_NOC_RED);
         anObj->SetFont("SimHei");//一定要设置合适的字体，不然不能实现功能
         anObj->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
-        anObj->SetTransformPersistence(Graphic3d_TransformPers::FromDeprecatedParams(Graphic3d_TMF_2d, gp_Pnt(X, Y, Z)));
+        Handle(Graphic3d_TransformPers) TransformPers = new Graphic3d_TransformPers(Graphic3d_TMF_2d, post);
+        anObj->SetTransformPersistence(TransformPers);
         mainAISContext()->Display(anObj, Standard_True); // display the object
     }
 #pragma endregion

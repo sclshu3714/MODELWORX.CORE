@@ -29,27 +29,9 @@ namespace OCCT.WinForms.Net
         public RenderWindow()
         {
             InitializeComponent();
-            OCCTView = new OCCTProxy();
-            IsInitViewer = OCCTView.InitViewer(this.Handle);
-            if (!IsInitViewer)
-            {
-                MessageBox.Show("初始化图形失败");
-            }
-            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-            myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
-            myDegenerateModeIsOn = true;
-            IsRectVisible = false;
-            OCCTView.SetLight(true);
-
-            this.SizeChanged += RenderWindow_SizeChanged;
-            this.Paint += RenderWindow_Paint;
-            this.KeyDown += RenderWindow_KeyDown;
-            this.KeyUp += RenderWindow_KeyUp;
-            this.MouseDown += RenderWindow_MouseDown;
-            this.MouseUp += RenderWindow_MouseUp;
-            this.MouseMove += RenderWindow_MouseMove;
-            this.MouseWheel += RenderWindow_MouseWheel;
+            this.Load += RenderWindow_Load;
         }
+
 
         public RenderWindow(Control parent) : this()
         {
@@ -59,6 +41,37 @@ namespace OCCT.WinForms.Net
                 Dock = DockStyle.Fill;
             }
         }
+
+        private void RenderWindow_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        public bool Initialize() {
+            OCCTView = new OCCTProxy();
+            IsInitViewer = OCCTView.InitViewer(this.RWControl.Handle);
+            if (!IsInitViewer)
+            {
+                MessageBox.Show("初始化图形失败");
+                return IsInitViewer;
+            }
+            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+            myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
+            myDegenerateModeIsOn = true;
+            IsRectVisible = false;
+            OCCTView.SetLight(true);
+
+            this.RWControl.SizeChanged += RenderWindow_SizeChanged;
+            this.RWControl.Paint += RenderWindow_Paint;
+            this.RWControl.KeyDown += RenderWindow_KeyDown;
+            this.RWControl.KeyUp += RenderWindow_KeyUp;
+            this.RWControl.MouseDown += RenderWindow_MouseDown;
+            this.RWControl.MouseUp += RenderWindow_MouseUp;
+            this.RWControl.MouseMove += RenderWindow_MouseMove;
+            this.RWControl.MouseWheel += RenderWindow_MouseWheel;
+            return IsInitViewer;
+        }
+
         #endregion
 
         #region 操作事件
