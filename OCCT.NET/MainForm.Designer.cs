@@ -1285,6 +1285,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OCCT";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

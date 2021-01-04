@@ -30,8 +30,7 @@ namespace OCCT.NET
         public PropertyGridForm PropertyView { get; set; }
         public MainForm() {
             InitializeComponent(); 
-            this.Load += MainForm_Load;
-            this.FormClosed += MainForm_FormClosed;
+            
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -107,6 +106,7 @@ namespace OCCT.NET
             //this.btnClearAll.Click += OCCTView.RemoveAll;
             //this.btnDeleteSelect.Click += OCCTView.DeleteObjects;
             //this.btnAnimation.Click += OCCTView.StartAnimation;
+            this.FormClosed += MainForm_FormClosed;
         }
 
         private void SubMenuItems(MenuItem item)
