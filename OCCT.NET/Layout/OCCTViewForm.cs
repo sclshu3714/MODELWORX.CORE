@@ -60,6 +60,7 @@ namespace OCCT.NET.Layout
         {
             if (IRender.IsInitViewer && IRender.OCCTView != null)
                 IRender.InitOCCTProxy();
+            this.Controls.Clear();
         }
 
         private void IRender_MouseUp(object sender, MouseEventArgs e)
