@@ -32,6 +32,8 @@ namespace UniversalCAD
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ToolStripMain = new System.Windows.Forms.ToolStrip();
+            this.img32List = new System.Windows.Forms.ImageList(this.components);
+            this.img16List = new System.Windows.Forms.ImageList(this.components);
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -41,8 +43,6 @@ namespace UniversalCAD
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.img32List = new System.Windows.Forms.ImageList(this.components);
-            this.img16List = new System.Windows.Forms.ImageList(this.components);
             this.ToolStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,10 +70,22 @@ namespace UniversalCAD
             this.ToolStripMain.TabIndex = 0;
             this.ToolStripMain.Text = "tspMain";
             // 
+            // img32List
+            // 
+            this.img32List.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.img32List.ImageSize = new System.Drawing.Size(32, 32);
+            this.img32List.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // img16List
+            // 
+            this.img16List.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.img16List.ImageSize = new System.Drawing.Size(16, 16);
+            this.img16List.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // btnOpen
             // 
             this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnOpen.Image = global::UniversalCAD.Properties.Resources.Img_226;
+            this.btnOpen.Image = global::UniversalCAD.Properties.Resources.Img_245;
             this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpen.Margin = new System.Windows.Forms.Padding(0);
             this.btnOpen.Name = "btnOpen";
@@ -171,18 +183,6 @@ namespace UniversalCAD
             this.toolStripButton9.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStripButton9.Size = new System.Drawing.Size(68, 52);
             this.toolStripButton9.Text = "toolStripButton9";
-            // 
-            // img32List
-            // 
-            this.img32List.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.img32List.ImageSize = new System.Drawing.Size(32, 32);
-            this.img32List.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // img16List
-            // 
-            this.img16List.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.img16List.ImageSize = new System.Drawing.Size(16, 16);
-            this.img16List.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm
             // 

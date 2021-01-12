@@ -1039,7 +1039,7 @@ public:
     void Display(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw) {
         Handle(TDataStd_Name) aName;
         if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {
-            std::cout << "  Name: " << aName->Get() << std::endl;
+            //std::cout << "  Name: " << aName->Get() << std::endl;
         }
         Handle(TPrsStd_AISPresentation) aPrs;
         if (!theLabel.FindAttribute(TPrsStd_AISPresentation::GetID(), aPrs)) {
