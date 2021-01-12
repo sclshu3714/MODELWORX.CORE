@@ -52,13 +52,20 @@ namespace UniversalCAD
                 return;
             }
             this.ToolStripMain.ItemClicked += ToolStripMain_ItemClicked;
+            this.FormClosed += MainForm_FormClosed;
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (InitViewer) {
+                OCCTView.InitOCCTProxy();
+            }
         }
 
         public bool Initialize()
         {
             OCCTView = new OCCTProxy();
-            InitViewer = OCCTView.InitViewer(this.Handle);
-            if (!InitViewer)
+            if (!(InitViewer = OCCTView.InitViewer(this.Handle)))
             {
                 MessageBox.Show("初始化图形失败");
                 return InitViewer;

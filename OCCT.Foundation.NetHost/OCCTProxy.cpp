@@ -124,7 +124,7 @@ public:
         mainViewer()->SetLightOn();
         mainView() = mainViewer()->CreateView();
         mainView()->ZBufferTriedronSetup();
-        mainView()->TriedronDisplay(Aspect_TOTP_LEFT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //画三维坐标系
+        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //画三维坐标系
         Handle(WNT_Window) aWNTWindow = new WNT_Window(reinterpret_cast<HWND> (theWnd.ToPointer()));
         mainView()->SetWindow(aWNTWindow);
         if (!aWNTWindow->IsMapped()) {
@@ -1135,15 +1135,10 @@ public:
     ///Initialize OCCTProxy
     /// </summary>
     void InitOCCTProxy(void) {
-       /* mainAISContext()->~AIS_InteractiveContext();
-        mainView()->Delete();
-        mainViewer()->Delete();
-        mainGraphicDriver()->~OpenGl_GraphicDriver();*/
-        mainAISContext() = NULL;
-        mainView() = NULL;
-        mainViewer() = NULL;
-        mainGraphicDriver()->~OpenGl_GraphicDriver();
         mainGraphicDriver() = NULL;
+        mainViewer() = NULL;
+        mainView() = NULL;
+        mainAISContext() = NULL;
     }
 
 private:
