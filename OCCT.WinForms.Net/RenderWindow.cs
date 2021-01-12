@@ -985,43 +985,53 @@ namespace OCCT.WinForms.Net
         /// <param name="theIsImport">Determines is Import or not</param>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport)
         {
-            bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
-            OCCTView.SetDisplayMode(1);
-            OCCTView.RedrawView();
-            OCCTView.ZoomAllView();
-            //XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
-            //aReader.SetColorMode(true);
-            //aReader.SetNameMode(true);
-            //IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            //XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
-            //XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
-            //anApp.NewDocument("XSEFSTEP", aDoc);
-            //if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
-            //    return false;
-            ////XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
-            ////XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
-            ////Assembly.GetFreeShapes(ref aRootLabels);
-            ////XTDF_XIterator aRootIter = aRootLabels.Iterator();
-            ////for (; aRootIter.More(); aRootIter.Next())
-            ////{
-            ////    XTDF_Label aRootLabel = aRootIter.Value();
-            ////    VisibleSettings(aRootLabel, true);
-            ////}
-            //XTDF_Label aRootLabel = aDoc.Main();
-            //VisibleSettings(aRootLabel, true);
+            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
             //OCCTView.SetDisplayMode(1);
             //OCCTView.RedrawView();
             //OCCTView.ZoomAllView();
+            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            aReader.SetColorMode(true);
+            aReader.SetNameMode(true);
+            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            anApp.NewDocument("XSEFSTEP", aDoc);
+            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+                return false;
+            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
+            //XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            //Assembly.GetFreeShapes(ref aRootLabels);
+            //XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            //for (; aRootIter.More(); aRootIter.Next())
+            //{
+            //    XTDF_Label aRootLabel = aRootIter.Value();
+            //    VisibleSettings(aRootLabel, true);
+            //}
+            XTDF_Label aRootLabel = aDoc.Main();
+            VisibleSettings(aRootLabel, true);
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
             return true;
         }
 
         private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
-            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsShape(theLabel))
+            XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(theLabel);
+            XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            Assembly.GetFreeShapes(ref aRootLabels);
+            XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            for (; aRootIter.More(); aRootIter.Next())
             {
-                Display(theLabel, IsBoundaryDraw);
+                XTDF_Label aRootLabel = aRootIter.Value();
+                Display(aRootLabel, IsBoundaryDraw);
                 return;
             }
+            //if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
+            //{
+            //    Display(theLabel, IsBoundaryDraw);
+            //    return;
+            //}
             XTDF_ChildIterator iter = new XTDF_ChildIterator();
             for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
             {

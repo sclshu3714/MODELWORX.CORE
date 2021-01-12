@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D740D34-DED3-4CFE-9D4F-A47E43277387}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UniversalCAD</RootNamespace>
+    <AssemblyName>UniversalCAD</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OCCT.Foundation.NetHost, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\OCCT.Foundation.NetHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\Img_10.png" />
+    <None Include="Resources\Img_100.png" />
+    <None Include="Resources\Img_101.png" />
+    <None Include="Resources\Img_102.png" />
+    <None Include="Resources\Img_103.png" />
+    <None Include="Resources\Img_104.png" />
+    <None Include="Resources\Img_105.png" />
+    <None Include="Resources\Img_106.png" />
+    <None Include="Resources\Img_107.png" />
+    <None Include="Resources\Img_108.png" />
+    <None Include="Resources\Img_109.png" />
+    <None Include="Resources\Img_11.png" />
+    <None Include="Resources\Img_110.png" />
+    <None Include="Resources\Img_111.png" />
+    <None Include="Resources\Img_112.png" />
+    <None Include="Resources\Img_113.png" />
+    <None Include="Resources\Img_114.png" />
+    <None Include="Resources\Img_115.png" />
+    <None Include="Resources\Img_116.png" />
+    <None Include="Resources\Img_117.png" />
+    <None Include="Resources\Img_118.png" />
+    <None Include="Resources\Img_119.png" />
+    <None Include="Resources\Img_12.png" />
+    <None Include="Resources\Img_120.png" />
+    <None Include="Resources\Img_121.png" />
+    <None Include="Resources\Img_122.png" />
+    <None Include="Resources\Img_123.png" />
+    <None Include="Resources\Img_124.png" />
+    <None Include="Resources\Img_125.png" />
+    <None Include="Resources\Img_126.png" />
+    <None Include="Resources\Img_127.png" />
+    <None Include="Resources\Img_128.png" />
+    <None Include="Resources\Img_129.png" />
+    <None Include="Resources\Img_13.png" />
+    <None Include="Resources\Img_130.png" />
+    <None Include="Resources\Img_131.png" />
+    <None Include="Resources\Img_132.png" />
+    <None Include="Resources\Img_133.png" />
+    <None Include="Resources\Img_134.png" />
+    <None Include="Resources\Img_135.png" />
+    <None Include="Resources\Img_136.png" />
+    <None Include="Resources\Img_137.png" />
+    <None Include="Resources\Img_138.png" />
+    <None Include="Resources\Img_139.png" />
+    <None Include="Resources\Img_14.png" />
+    <None Include="Resources\Img_140.png" />
+    <None Include="Resources\Img_141.png" />
+    <None Include="Resources\Img_142.png" />
+    <None Include="Resources\Img_143.png" />
+    <None Include="Resources\Img_144.png" />
+    <None Include="Resources\Img_145.png" />
+    <None Include="Resources\Img_146.png" />
+    <None Include="Resources\Img_147.png" />
+    <None Include="Resources\Img_148.png" />
+    <None Include="Resources\Img_149.png" />
+    <None Include="Resources\Img_15.png" />
+    <None Include="Resources\Img_150.png" />
+    <None Include="Resources\Img_151.png" />
+    <None Include="Resources\Img_152.png" />
+    <None Include="Resources\Img_153.png" />
+    <None Include="Resources\Img_154.png" />
+    <None Include="Resources\Img_155.png" />
+    <None Include="Resources\Img_156.png" />
+    <None Include="Resources\Img_157.png" />
+    <None Include="Resources\Img_158.png" />
+    <None Include="Resources\Img_159.png" />
+    <None Include="Resources\Img_16.png" />
+    <None Include="Resources\Img_160.png" />
+    <None Include="Resources\Img_161.png" />
+    <None Include="Resources\Img_162.png" />
+    <None Include="Resources\Img_163.png" />
+    <None Include="Resources\Img_164.png" />
+    <None Include="Resources\Img_165.png" />
+    <None Include="Resources\Img_166.png" />
+    <None Include="Resources\Img_167.png" />
+    <None Include="Resources\Img_168.png" />
+    <None Include="Resources\Img_169.png" />
+    <None Include="Resources\Img_17.png" />
+    <None Include="Resources\Img_170.png" />
+    <None Include="Resources\Img_171.png" />
+    <None Include="Resources\Img_172.png" />
+    <None Include="Resources\Img_173.png" />
+    <None Include="Resources\Img_174.png" />
+    <None Include="Resources\Img_175.png" />
+    <None Include="Resources\Img_176.png" />
+    <None Include="Resources\Img_177.png" />
+    <None Include="Resources\Img_178.png" />
+    <None Include="Resources\Img_179.png" />
+    <None Include="Resources\Img_18.png" />
+    <None Include="Resources\Img_180.png" />
+    <None Include="Resources\Img_181.png" />
+    <None Include="Resources\Img_182.png" />
+    <None Include="Resources\Img_183.png" />
+    <None Include="Resources\Img_184.png" />
+    <None Include="Resources\Img_185.png" />
+    <None Include="Resources\Img_186.png" />
+    <None Include="Resources\Img_187.png" />
+    <None Include="Resources\Img_188.png" />
+    <None Include="Resources\Img_189.png" />
+    <None Include="Resources\Img_19.png" />
+    <None Include="Resources\Img_190.png" />
+    <None Include="Resources\Img_191.png" />
+    <None Include="Resources\Img_192.png" />
+    <None Include="Resources\Img_193.png" />
+    <None Include="Resources\Img_194.png" />
+    <None Include="Resources\Img_195.png" />
+    <None Include="Resources\Img_196.png" />
+    <None Include="Resources\Img_197.png" />
+    <None Include="Resources\Img_198.png" />
+    <None Include="Resources\Img_199.png" />
+    <None Include="Resources\Img_2.png" />
+    <None Include="Resources\Img_20.png" />
+    <None Include="Resources\Img_200.png" />
+    <None Include="Resources\Img_201.png" />
+    <None Include="Resources\Img_202.png" />
+    <None Include="Resources\Img_203.png" />
+    <None Include="Resources\Img_204.png" />
+    <None Include="Resources\Img_205.png" />
+    <None Include="Resources\Img_206.png" />
+    <None Include="Resources\Img_207.png" />
+    <None Include="Resources\Img_208.png" />
+    <None Include="Resources\Img_209.png" />
+    <None Include="Resources\Img_21.png" />
+    <None Include="Resources\Img_210.png" />
+    <None Include="Resources\Img_211.png" />
+    <None Include="Resources\Img_212.png" />
+    <None Include="Resources\Img_213.png" />
+    <None Include="Resources\Img_214.png" />
+    <None Include="Resources\Img_215.png" />
+    <None Include="Resources\Img_216.png" />
+    <None Include="Resources\Img_217.png" />
+    <None Include="Resources\Img_218.png" />
+    <None Include="Resources\Img_219.png" />
+    <None Include="Resources\Img_22.png" />
+    <None Include="Resources\Img_220.png" />
+    <None Include="Resources\Img_221.png" />
+    <None Include="Resources\Img_222.png" />
+    <None Include="Resources\Img_223.png" />
+    <None Include="Resources\Img_224.png" />
+    <None Include="Resources\Img_225.png" />
+    <None Include="Resources\Img_226.png" />
+    <None Include="Resources\Img_227.png" />
+    <None Include="Resources\Img_228.png" />
+    <None Include="Resources\Img_229.png" />
+    <None Include="Resources\Img_23.png" />
+    <None Include="Resources\Img_230.png" />
+    <None Include="Resources\Img_231.png" />
+    <None Include="Resources\Img_232.png" />
+    <None Include="Resources\Img_233.png" />
+    <None Include="Resources\Img_234.png" />
+    <None Include="Resources\Img_235.png" />
+    <None Include="Resources\Img_236.png" />
+    <None Include="Resources\Img_237.png" />
+    <None Include="Resources\Img_238.png" />
+    <None Include="Resources\Img_239.png" />
+    <None Include="Resources\Img_24.png" />
+    <None Include="Resources\Img_240.png" />
+    <None Include="Resources\Img_241.png" />
+    <None Include="Resources\Img_242.png" />
+    <None Include="Resources\Img_243.png" />
+    <None Include="Resources\Img_244.png" />
+    <None Include="Resources\Img_245.png" />
+    <None Include="Resources\Img_246.png" />
+    <None Include="Resources\Img_247.png" />
+    <None Include="Resources\Img_248.png" />
+    <None Include="Resources\Img_249.png" />
+    <None Include="Resources\Img_25.png" />
+    <None Include="Resources\Img_250.png" />
+    <None Include="Resources\Img_251.png" />
+    <None Include="Resources\Img_252.png" />
+    <None Include="Resources\Img_253.png" />
+    <None Include="Resources\Img_254.png" />
+    <None Include="Resources\Img_255.png" />
+    <None Include="Resources\Img_256.png" />
+    <None Include="Resources\Img_257.png" />
+    <None Include="Resources\Img_258.png" />
+    <None Include="Resources\Img_259.png" />
+    <None Include="Resources\Img_26.png" />
+    <None Include="Resources\Img_260.png" />
+    <None Include="Resources\Img_261.png" />
+    <None Include="Resources\Img_262.png" />
+    <None Include="Resources\Img_263.png" />
+    <None Include="Resources\Img_264.png" />
+    <None Include="Resources\Img_265.png" />
+    <None Include="Resources\Img_266.png" />
+    <None Include="Resources\Img_267.png" />
+    <None Include="Resources\Img_268.png" />
+    <None Include="Resources\Img_269.png" />
+    <None Include="Resources\Img_27.png" />
+    <None Include="Resources\Img_270.png" />
+    <None Include="Resources\Img_271.png" />
+    <None Include="Resources\Img_272.png" />
+    <None Include="Resources\Img_273.png" />
+    <None Include="Resources\Img_274.png" />
+    <None Include="Resources\Img_275.png" />
+    <None Include="Resources\Img_276.png" />
+    <None Include="Resources\Img_277.png" />
+    <None Include="Resources\Img_278.png" />
+    <None Include="Resources\Img_279.png" />
+    <None Include="Resources\Img_28.png" />
+    <None Include="Resources\Img_280.png" />
+    <None Include="Resources\Img_281.png" />
+    <None Include="Resources\Img_282.png" />
+    <None Include="Resources\Img_283.png" />
+    <None Include="Resources\Img_284.png" />
+    <None Include="Resources\Img_285.png" />
+    <None Include="Resources\Img_286.png" />
+    <None Include="Resources\Img_287.png" />
+    <None Include="Resources\Img_288.png" />
+    <None Include="Resources\Img_289.png" />
+    <None Include="Resources\Img_29.png" />
+    <None Include="Resources\Img_290.png" />
+    <None Include="Resources\Img_291.png" />
+    <None Include="Resources\Img_292.png" />
+    <None Include="Resources\Img_293.png" />
+    <None Include="Resources\Img_294.png" />
+    <None Include="Resources\Img_295.png" />
+    <None Include="Resources\Img_296.png" />
+    <None Include="Resources\Img_297.png" />
+    <None Include="Resources\Img_298.png" />
+    <None Include="Resources\Img_299.png" />
+    <None Include="Resources\Img_3.png" />
+    <None Include="Resources\Img_30.png" />
+    <None Include="Resources\Img_300.png" />
+    <None Include="Resources\Img_301.png" />
+    <None Include="Resources\Img_302.png" />
+    <None Include="Resources\Img_303.png" />
+    <None Include="Resources\Img_304.png" />
+    <None Include="Resources\Img_305.png" />
+    <None Include="Resources\Img_306.png" />
+    <None Include="Resources\Img_307.png" />
+    <None Include="Resources\Img_308.png" />
+    <None Include="Resources\Img_309.png" />
+    <None Include="Resources\Img_31.png" />
+    <None Include="Resources\Img_310.png" />
+    <None Include="Resources\Img_311.png" />
+    <None Include="Resources\Img_312.png" />
+    <None Include="Resources\Img_313.png" />
+    <None Include="Resources\Img_314.png" />
+    <None Include="Resources\Img_315.png" />
+    <None Include="Resources\Img_316.png" />
+    <None Include="Resources\Img_317.png" />
+    <None Include="Resources\Img_318.png" />
+    <None Include="Resources\Img_319.png" />
+    <None Include="Resources\Img_32.png" />
+    <None Include="Resources\Img_320.png" />
+    <None Include="Resources\Img_321.png" />
+    <None Include="Resources\Img_322.png" />
+    <None Include="Resources\Img_323.png" />
+    <None Include="Resources\Img_324.png" />
+    <None Include="Resources\Img_325.png" />
+    <None Include="Resources\Img_326.png" />
+    <None Include="Resources\Img_327.png" />
+    <None Include="Resources\Img_328.png" />
+    <None Include="Resources\Img_329.png" />
+    <None Include="Resources\Img_33.png" />
+    <None Include="Resources\Img_330.png" />
+    <None Include="Resources\Img_331.png" />
+    <None Include="Resources\Img_332.png" />
+    <None Include="Resources\Img_333.png" />
+    <None Include="Resources\Img_334.png" />
+    <None Include="Resources\Img_335.png" />
+    <None Include="Resources\Img_336.png" />
+    <None Include="Resources\Img_337.png" />
+    <None Include="Resources\Img_338.png" />
+    <None Include="Resources\Img_339.png" />
+    <None Include="Resources\Img_34.png" />
+    <None Include="Resources\Img_340.png" />
+    <None Include="Resources\Img_341.png" />
+    <None Include="Resources\Img_342.png" />
+    <None Include="Resources\Img_343.png" />
+    <None Include="Resources\Img_344.png" />
+    <None Include="Resources\Img_345.png" />
+    <None Include="Resources\Img_346.png" />
+    <None Include="Resources\Img_347.png" />
+    <None Include="Resources\Img_348.png" />
+    <None Include="Resources\Img_349.png" />
+    <None Include="Resources\Img_35.png" />
+    <None Include="Resources\Img_350.png" />
+    <None Include="Resources\Img_351.png" />
+    <None Include="Resources\Img_352.png" />
+    <None Include="Resources\Img_353.png" />
+    <None Include="Resources\Img_354.png" />
+    <None Include="Resources\Img_355.png" />
+    <None Include="Resources\Img_356.png" />
+    <None Include="Resources\Img_357.png" />
+    <None Include="Resources\Img_358.png" />
+    <None Include="Resources\Img_359.png" />
+    <None Include="Resources\Img_36.png" />
+    <None Include="Resources\Img_360.png" />
+    <None Include="Resources\Img_361.png" />
+    <None Include="Resources\Img_362.png" />
+    <None Include="Resources\Img_363.png" />
+    <None Include="Resources\Img_364.png" />
+    <None Include="Resources\Img_365.png" />
+    <None Include="Resources\Img_366.png" />
+    <None Include="Resources\Img_367.png" />
+    <None Include="Resources\Img_368.png" />
+    <None Include="Resources\Img_369.png" />
+    <None Include="Resources\Img_37.png" />
+    <None Include="Resources\Img_370.png" />
+    <None Include="Resources\Img_371.png" />
+    <None Include="Resources\Img_372.png" />
+    <None Include="Resources\Img_373.png" />
+    <None Include="Resources\Img_374.png" />
+    <None Include="Resources\Img_375.png" />
+    <None Include="Resources\Img_376.png" />
+    <None Include="Resources\Img_377.png" />
+    <None Include="Resources\Img_378.png" />
+    <None Include="Resources\Img_379.png" />
+    <None Include="Resources\Img_38.png" />
+    <None Include="Resources\Img_380.png" />
+    <None Include="Resources\Img_381.png" />
+    <None Include="Resources\Img_382.png" />
+    <None Include="Resources\Img_383.png" />
+    <None Include="Resources\Img_384.png" />
+    <None Include="Resources\Img_385.png" />
+    <None Include="Resources\Img_386.png" />
+    <None Include="Resources\Img_387.png" />
+    <None Include="Resources\Img_388.png" />
+    <None Include="Resources\Img_389.png" />
+    <None Include="Resources\Img_39.png" />
+    <None Include="Resources\Img_390.png" />
+    <None Include="Resources\Img_391.png" />
+    <None Include="Resources\Img_392.png" />
+    <None Include="Resources\Img_393.png" />
+    <None Include="Resources\Img_394.png" />
+    <None Include="Resources\Img_395.png" />
+    <None Include="Resources\Img_396.png" />
+    <None Include="Resources\Img_397.png" />
+    <None Include="Resources\Img_398.png" />
+    <None Include="Resources\Img_399.png" />
+    <None Include="Resources\Img_4.png" />
+    <None Include="Resources\Img_40.png" />
+    <None Include="Resources\Img_400.png" />
+    <None Include="Resources\Img_401.png" />
+    <None Include="Resources\Img_402.png" />
+    <None Include="Resources\Img_403.png" />
+    <None Include="Resources\Img_404.png" />
+    <None Include="Resources\Img_405.png" />
+    <None Include="Resources\Img_406.png" />
+    <None Include="Resources\Img_407.png" />
+    <None Include="Resources\Img_408.png" />
+    <None Include="Resources\Img_409.png" />
+    <None Include="Resources\Img_41.png" />
+    <None Include="Resources\Img_410.png" />
+    <None Include="Resources\Img_411.png" />
+    <None Include="Resources\Img_412.png" />
+    <None Include="Resources\Img_413.png" />
+    <None Include="Resources\Img_414.png" />
+    <None Include="Resources\Img_415.png" />
+    <None Include="Resources\Img_416.png" />
+    <None Include="Resources\Img_417.png" />
+    <None Include="Resources\Img_418.png" />
+    <None Include="Resources\Img_419.png" />
+    <None Include="Resources\Img_42.png" />
+    <None Include="Resources\Img_420.png" />
+    <None Include="Resources\Img_421.png" />
+    <None Include="Resources\Img_422.png" />
+    <None Include="Resources\Img_423.png" />
+    <None Include="Resources\Img_424.png" />
+    <None Include="Resources\Img_425.png" />
+    <None Include="Resources\Img_426.png" />
+    <None Include="Resources\Img_427.png" />
+    <None Include="Resources\Img_428.png" />
+    <None Include="Resources\Img_429.png" />
+    <None Include="Resources\Img_43.png" />
+    <None Include="Resources\Img_430.png" />
+    <None Include="Resources\Img_431.png" />
+    <None Include="Resources\Img_432.png" />
+    <None Include="Resources\Img_433.png" />
+    <None Include="Resources\Img_434.png" />
+    <None Include="Resources\Img_435.png" />
+    <None Include="Resources\Img_436.png" />
+    <None Include="Resources\Img_437.png" />
+    <None Include="Resources\Img_438.png" />
+    <None Include="Resources\Img_439.png" />
+    <None Include="Resources\Img_44.png" />
+    <None Include="Resources\Img_440.png" />
+    <None Include="Resources\Img_441.png" />
+    <None Include="Resources\Img_442.png" />
+    <None Include="Resources\Img_443.png" />
+    <None Include="Resources\Img_444.png" />
+    <None Include="Resources\Img_445.png" />
+    <None Include="Resources\Img_446.png" />
+    <None Include="Resources\Img_447.png" />
+    <None Include="Resources\Img_448.png" />
+    <None Include="Resources\Img_449.png" />
+    <None Include="Resources\Img_45.png" />
+    <None Include="Resources\Img_450.png" />
+    <None Include="Resources\Img_451.png" />
+    <None Include="Resources\Img_452.png" />
+    <None Include="Resources\Img_453.png" />
+    <None Include="Resources\Img_454.png" />
+    <None Include="Resources\Img_455.png" />
+    <None Include="Resources\Img_456.png" />
+    <None Include="Resources\Img_457.png" />
+    <None Include="Resources\Img_458.png" />
+    <None Include="Resources\Img_459.png" />
+    <None Include="Resources\Img_46.png" />
+    <None Include="Resources\Img_460.png" />
+    <None Include="Resources\Img_461.png" />
+    <None Include="Resources\Img_462.png" />
+    <None Include="Resources\Img_463.png" />
+    <None Include="Resources\Img_464.png" />
+    <None Include="Resources\Img_465.png" />
+    <None Include="Resources\Img_466.png" />
+    <None Include="Resources\Img_467.png" />
+    <None Include="Resources\Img_468.png" />
+    <None Include="Resources\Img_469.png" />
+    <None Include="Resources\Img_47.png" />
+    <None Include="Resources\Img_470.png" />
+    <None Include="Resources\Img_471.png" />
+    <None Include="Resources\Img_472.png" />
+    <None Include="Resources\Img_473.png" />
+    <None Include="Resources\Img_474.png" />
+    <None Include="Resources\Img_475.png" />
+    <None Include="Resources\Img_476.png" />
+    <None Include="Resources\Img_477.png" />
+    <None Include="Resources\Img_478.png" />
+    <None Include="Resources\Img_479.png" />
+    <None Include="Resources\Img_48.png" />
+    <None Include="Resources\Img_480.png" />
+    <None Include="Resources\Img_481.png" />
+    <None Include="Resources\Img_482.png" />
+    <None Include="Resources\Img_483.png" />
+    <None Include="Resources\Img_484.png" />
+    <None Include="Resources\Img_485.png" />
+    <None Include="Resources\Img_486.png" />
+    <None Include="Resources\Img_487.png" />
+    <None Include="Resources\Img_488.png" />
+    <None Include="Resources\Img_489.png" />
+    <None Include="Resources\Img_49.png" />
+    <None Include="Resources\Img_490.png" />
+    <None Include="Resources\Img_491.png" />
+    <None Include="Resources\Img_492.png" />
+    <None Include="Resources\Img_493.png" />
+    <None Include="Resources\Img_494.png" />
+    <None Include="Resources\Img_495.png" />
+    <None Include="Resources\Img_496.png" />
+    <None Include="Resources\Img_497.png" />
+    <None Include="Resources\Img_498.png" />
+    <None Include="Resources\Img_499.png" />
+    <None Include="Resources\Img_5.png" />
+    <None Include="Resources\Img_50.png" />
+    <None Include="Resources\Img_500.png" />
+    <None Include="Resources\Img_501.png" />
+    <None Include="Resources\Img_502.png" />
+    <None Include="Resources\Img_503.png" />
+    <None Include="Resources\Img_504.png" />
+    <None Include="Resources\Img_505.png" />
+    <None Include="Resources\Img_506.png" />
+    <None Include="Resources\Img_507.png" />
+    <None Include="Resources\Img_508.png" />
+    <None Include="Resources\Img_509.png" />
+    <None Include="Resources\Img_51.png" />
+    <None Include="Resources\Img_510.png" />
+    <None Include="Resources\Img_511.png" />
+    <None Include="Resources\Img_512.png" />
+    <None Include="Resources\Img_513.png" />
+    <None Include="Resources\Img_514.png" />
+    <None Include="Resources\Img_515.png" />
+    <None Include="Resources\Img_516.png" />
+    <None Include="Resources\Img_517.png" />
+    <None Include="Resources\Img_518.png" />
+    <None Include="Resources\Img_519.png" />
+    <None Include="Resources\Img_52.png" />
+    <None Include="Resources\Img_520.png" />
+    <None Include="Resources\Img_521.png" />
+    <None Include="Resources\Img_522.png" />
+    <None Include="Resources\Img_523.png" />
+    <None Include="Resources\Img_524.png" />
+    <None Include="Resources\Img_525.png" />
+    <None Include="Resources\Img_526.png" />
+    <None Include="Resources\Img_527.png" />
+    <None Include="Resources\Img_528.png" />
+    <None Include="Resources\Img_529.png" />
+    <None Include="Resources\Img_53.png" />
+    <None Include="Resources\Img_530.png" />
+    <None Include="Resources\Img_531.png" />
+    <None Include="Resources\Img_532.png" />
+    <None Include="Resources\Img_533.png" />
+    <None Include="Resources\Img_534.png" />
+    <None Include="Resources\Img_535.png" />
+    <None Include="Resources\Img_536.png" />
+    <None Include="Resources\Img_537.png" />
+    <None Include="Resources\Img_538.png" />
+    <None Include="Resources\Img_539.png" />
+    <None Include="Resources\Img_54.png" />
+    <None Include="Resources\Img_540.png" />
+    <None Include="Resources\Img_541.png" />
+    <None Include="Resources\Img_542.png" />
+    <None Include="Resources\Img_543.png" />
+    <None Include="Resources\Img_544.png" />
+    <None Include="Resources\Img_545.png" />
+    <None Include="Resources\Img_546.png" />
+    <None Include="Resources\Img_547.png" />
+    <None Include="Resources\Img_548.png" />
+    <None Include="Resources\Img_549.png" />
+    <None Include="Resources\Img_55.png" />
+    <None Include="Resources\Img_56.png" />
+    <None Include="Resources\Img_57.png" />
+    <None Include="Resources\Img_58.png" />
+    <None Include="Resources\Img_59.png" />
+    <None Include="Resources\Img_6.png" />
+    <None Include="Resources\Img_60.png" />
+    <None Include="Resources\Img_61.png" />
+    <None Include="Resources\Img_62.png" />
+    <None Include="Resources\Img_63.png" />
+    <None Include="Resources\Img_64.png" />
+    <None Include="Resources\Img_65.png" />
+    <None Include="Resources\Img_66.png" />
+    <None Include="Resources\Img_67.png" />
+    <None Include="Resources\Img_68.png" />
+    <None Include="Resources\Img_69.png" />
+    <None Include="Resources\Img_7.png" />
+    <None Include="Resources\Img_70.png" />
+    <None Include="Resources\Img_71.png" />
+    <None Include="Resources\Img_72.png" />
+    <None Include="Resources\Img_73.png" />
+    <None Include="Resources\Img_74.png" />
+    <None Include="Resources\Img_75.png" />
+    <None Include="Resources\Img_76.png" />
+    <None Include="Resources\Img_77.png" />
+    <None Include="Resources\Img_78.png" />
+    <None Include="Resources\Img_79.png" />
+    <None Include="Resources\Img_8.png" />
+    <None Include="Resources\Img_80.png" />
+    <None Include="Resources\Img_81.png" />
+    <None Include="Resources\Img_82.png" />
+    <None Include="Resources\Img_83.png" />
+    <None Include="Resources\Img_84.png" />
+    <None Include="Resources\Img_85.png" />
+    <None Include="Resources\Img_86.png" />
+    <None Include="Resources\Img_87.png" />
+    <None Include="Resources\Img_88.png" />
+    <None Include="Resources\Img_89.png" />
+    <None Include="Resources\Img_9.png" />
+    <None Include="Resources\Img_90.png" />
+    <None Include="Resources\Img_91.png" />
+    <None Include="Resources\Img_92.png" />
+    <None Include="Resources\Img_93.png" />
+    <None Include="Resources\Img_94.png" />
+    <None Include="Resources\Img_95.png" />
+    <None Include="Resources\Img_96.png" />
+    <None Include="Resources\Img_97.png" />
+    <None Include="Resources\Img_98.png" />
+    <None Include="Resources\Img_99.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
