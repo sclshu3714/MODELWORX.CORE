@@ -114,19 +114,17 @@ public:
         TCHAR path[MAX_PATH] = L".\\3dparty\\OCCT" ;
         SetDllDirectory(path);
         try {
-            Handle(Aspect_DisplayConnection) aDisplayConnection = new Aspect_DisplayConnection();
+            Handle(Aspect_DisplayConnection) aDisplayConnection;// = new Aspect_DisplayConnection();
             mainGraphicDriver() = new OpenGl_GraphicDriver(aDisplayConnection);
         }
         catch (Standard_Failure) {
             return false;
         }
-        HWND hWND = reinterpret_cast<HWND> (theWnd.ToPointer());
         mainViewer() = new V3d_Viewer(mainGraphicDriver());
         mainViewer()->SetDefaultLights();
         mainViewer()->SetLightOn();
         mainView() = mainViewer()->CreateView();
-        const Aspect_Handle aHandle = (Aspect_Handle)hWND;
-        Handle(WNT_Window) aWNTWindow = new WNT_Window(aHandle);
+        Handle(WNT_Window) aWNTWindow = new WNT_Window(reinterpret_cast<HWND>(theWnd.ToPointer()));
         mainView()->SetWindow(aWNTWindow);
         if (!aWNTWindow->IsMapped()) {
             aWNTWindow->Map();
@@ -152,10 +150,10 @@ public:
         DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));
         DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
 
-        //把图片添加到句柄控件上
-        Standard_Real Width = 0.0;
-        Standard_Real Height = 0.0;
-        mainView()->Size(Width, Height);
+        ////把图片添加到句柄控件上
+        //Standard_Real Width = 0.0;
+        //Standard_Real Height = 0.0;
+        //mainView()->Size(Width, Height);
 
         return true;
     }

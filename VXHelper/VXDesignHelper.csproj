@@ -13,6 +13,7 @@
     <PackageId>VXDesignHelper.Core</PackageId>
     <Authors>VXDesignHelper.Core</Authors>
     <Product>VXDesignHelper.Core</Product>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

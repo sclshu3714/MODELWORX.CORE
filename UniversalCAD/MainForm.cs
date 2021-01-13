@@ -65,6 +65,7 @@ namespace UniversalCAD
         public bool Initialize()
         {
             OCCTView = new OCCTProxy();
+            OCCTView.InitOCCTProxy();
             if (!(InitViewer = OCCTView.InitViewer(this.Handle)))
             {
                 MessageBox.Show("初始化图形失败");
@@ -114,8 +115,8 @@ namespace UniversalCAD
         {
             if (InitViewer)
             {
-                //OCCTView.RedrawView();
-                //OCCTView.UpdateView();
+                OCCTView.RedrawView();
+                OCCTView.UpdateView();
                 OCCTView.UpdateCurrentViewer();
             }
         }

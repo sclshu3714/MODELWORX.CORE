@@ -17,6 +17,7 @@
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Company>sclshu</Company>
         <AssemblyName>SQLExtension.Core</AssemblyName>
+        <Platforms>AnyCPU;x86</Platforms>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,8 +25,17 @@
         <DebugType>Full</DebugType>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+      <DocumentationFile>bin\Debug\netstandard2.0\SQLExtension.xml</DocumentationFile>
+      <DebugType>Full</DebugType>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <DocumentationFile>bin\Release\netstandard2.0\SQLBuilder.Core.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+      <DocumentationFile>bin\Release\netstandard2.0\SQLBuilder.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

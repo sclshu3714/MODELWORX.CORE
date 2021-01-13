@@ -3,6 +3,8 @@ Assembly OCCT.Foundation.NetHost, Version=0.0.*, Culture=固定语言(固定国�
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
 Class TKernel.XStandard_UUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(UInt32, UInt16, UInt16, Byte[]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
