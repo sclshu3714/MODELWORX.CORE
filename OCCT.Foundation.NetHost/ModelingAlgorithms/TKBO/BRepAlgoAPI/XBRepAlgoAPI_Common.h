@@ -33,6 +33,7 @@ class TopoDS_Shape;
 //! The class provides Boolean common operation
 //! between arguments and tools (Boolean Intersection).
 using namespace TKBRep;
+using namespace TKernel;
 namespace TKBO {
 	ref class TKBRep::XTopoDS_Shape;
 	public ref class XBRepAlgoAPI_Common  //: public BRepAlgoAPI_BooleanOperation

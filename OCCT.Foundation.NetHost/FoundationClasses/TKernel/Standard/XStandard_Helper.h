@@ -4,12 +4,13 @@
 #undef UNICODE
 #include <vcclr.h>
 #include <vector>
-#include <TCollection_AsciiString.hxx>
 #include <wtypes.h>
 #include <vector>
 #include <windows.h>
 #include <stdio.h>
-#include "resource.h"
+#include <resource.h>
+#include <TCollection_AsciiString.hxx>
+
 
 #define MAKEINTRESOURCEA(i) ((LPSTR)((ULONG_PTR)((WORD)(i))))
 #define MAKEINTRESOURCEW(i) ((LPWSTR)((ULONG_PTR)((WORD)(i))))
@@ -34,6 +35,12 @@ namespace TKernel {
 		static String^ toString(TCollection_AsciiString AsciiString);
 		static String^ toString(Standard_CString CString);
 		static Object^ toObject(Standard_Address SAddress);
+		//! 激活验证
+		//! hWnd is 窗体句柄
+		//! X is 提示信息显示位置X值
+		//! Y is 提示信息显示位置Y值
+		//static Standard_Boolean ActivateValidation(HWND hWnd, Standard_Real X, Standard_Real Y);
+
 		//! 帮助类
 		XStandard_Helper(void);
 		virtual ~XStandard_Helper() { OnFreeDll(); };

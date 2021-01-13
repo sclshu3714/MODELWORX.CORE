@@ -1,3 +1,4 @@
+#pragma once
 // include required OCCT headers
 #include <Standard_Version.hxx>
 #include <Message_ProgressIndicator.hxx>
@@ -108,7 +109,7 @@ public:
     ///Initialize a viewer
     /// </summary>
     /// <param name="theWnd">System.IntPtr that contains the window handle (HWND) of the control</param>
-    bool InitViewer(System::IntPtr theWnd) {
+    bool InitViewer(System::IntPtr theWnd) {        
         //SetDllDirectory((LPCWSTR)L".\\3dparty\OCCT");
         TCHAR path[MAX_PATH] = L".\\3dparty\\OCCT" ;
         SetDllDirectory(path);
@@ -119,17 +120,19 @@ public:
         catch (Standard_Failure) {
             return false;
         }
+        HWND hWND = reinterpret_cast<HWND> (theWnd.ToPointer());
         mainViewer() = new V3d_Viewer(mainGraphicDriver());
         mainViewer()->SetDefaultLights();
         mainViewer()->SetLightOn();
         mainView() = mainViewer()->CreateView();
-        mainView()->ZBufferTriedronSetup();
-        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //画三维坐标系
-        Handle(WNT_Window) aWNTWindow = new WNT_Window(reinterpret_cast<HWND> (theWnd.ToPointer()));
+        const Aspect_Handle aHandle = (Aspect_Handle)hWND;
+        Handle(WNT_Window) aWNTWindow = new WNT_Window(aHandle);
         mainView()->SetWindow(aWNTWindow);
         if (!aWNTWindow->IsMapped()) {
             aWNTWindow->Map();
         }
+        mainView()->ZBufferTriedronSetup();
+        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //画三维坐标系
         mainAISContext() = new AIS_InteractiveContext(mainViewer());
         mainAISContext()->UpdateCurrentViewer();
         mainView()->Redraw();
@@ -148,6 +151,12 @@ public:
         DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));
         DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
+
+        //把图片添加到句柄控件上
+        Standard_Real Width = 0.0;
+        Standard_Real Height = 0.0;
+        mainView()->Size(Width, Height);
+
         return true;
     }
 

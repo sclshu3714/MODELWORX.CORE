@@ -16,10 +16,10 @@
 #ifndef _XQuantity_Color_HeaderFile
 #define _XQuantity_Color_HeaderFile
 #pragma once
+#include "XStandard_Helper.h"
 #include "Quantity_Color.hxx"
 #include "XQuantity_TypeOfColor.h"
 #include "XQuantity_NameOfColor.h"
-#include "XStandard_Helper.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -48,7 +48,7 @@ class Quantity_ColorDefinitionError;
 //! identifies them by their name.
 using namespace System;
 namespace TKernel {
-    ref class XStandard_Helper;
+    //ref class XStandard_Helper;
     public ref class XQuantity_Color
     {
     public:

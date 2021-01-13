@@ -53,7 +53,7 @@ class TCollection_ExtendedString;
 //! not handles to strings, and are copied through assignment.
 //! You may use HAsciiString objects to get handles to strings.
 namespace TKernel {
-    ref class XStandard_Helper;
+    //ref class XStandard_Helper;
     public ref class XTCollection_AsciiString
     {
     public:

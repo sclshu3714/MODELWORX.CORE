@@ -1428,9 +1428,6 @@
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_OsculatingSurface.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
-    <ClInclude Include="inc\resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ModelingData\TKG3d\Geom\XGeom_Parabola.h">
       <Filter>头文件\ModelingData\TKG3d\Geom</Filter>
     </ClInclude>
@@ -1685,6 +1682,9 @@
     </ClInclude>
     <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.h">
       <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2451,6 +2451,9 @@
     </Image>
     <Image Include="GC.png">
       <Filter>头文件\ModelingData\TKGeomBase\GC</Filter>
+    </Image>
+    <Image Include="helper.png">
+      <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
 </Project>

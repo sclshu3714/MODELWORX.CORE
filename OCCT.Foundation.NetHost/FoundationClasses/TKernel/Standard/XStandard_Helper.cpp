@@ -1,5 +1,6 @@
 #include "XStandard_Helper.h"
-#include <windows.h>
+//#include <WinUser.h>
+//#include <afxwin.h>
 
 namespace TKernel {
     //! Auxiliary tool for converting C# string into UTF-8 string.
@@ -37,6 +38,20 @@ namespace TKernel {
         gcHandle.Free();
         return ObjectResult;
     };
+
+    //Standard_Boolean XStandard_Helper::ActivateValidation(HWND hWnd, Standard_Real X, Standard_Real Y) {
+
+    //    //CWnd wnd;
+    //    //wnd.Attach(hWnd);//句柄到对象
+    //    //CDC* cdc = wnd.GetDC();
+    //    //HDC hdc = cdc->GetSafeHdc();
+    //    ////CDC* pDC = CDC::FromHandle(CHWND);
+    //    ////HDC hdc = GetDC(hWND);//或者hdc=GetWindowDC(hwnd);两者有一点差别
+    //    ////MoveToEx(hdc, 100, 100, NULL);//起点定在坐标(100,100)处
+    //    ////LineTo(hdc, 200, 200);//画一个（100，100）到（200，200）的线条
+    //    ////ReleaseDC(reinterpret_cast<HWND> (theWnd.ToPointer()), hdc);//Over
+    //    return Standard_False;
+    //};
 
     XStandard_Helper::XStandard_Helper(void) {
 

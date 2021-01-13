@@ -26,6 +26,7 @@
 #include <XGeomAbs_Shape.h>
 #include <XChFi3d_FilletShape.h>
 #include <XChFiDS_ErrorStatus.h>
+#include <XStandard_Helper.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -57,11 +58,13 @@ class BRepFilletAPI_MakeFillet;
 using namespace TKBRep;
 using namespace TKTopAlgo;
 using namespace TKG3d;
+using namespace TKernel;
 namespace TKFillet {
 	ref class TKBRep::XTopoDS_Shape;
 	ref class TKBRep::XTopoDS_Edge;
 	ref class TKBRep::XTopoDS_Vertex;
 	ref class TKG3d::XGeom_Surface;
+	ref class TKernel::XStandard_Helper;
 	//! Describes functions to build fillets on the broken edges of a shell or solid.
 	//! A MakeFillet object provides a framework for:
 	//! -   initializing the construction algorithm with a given shape,

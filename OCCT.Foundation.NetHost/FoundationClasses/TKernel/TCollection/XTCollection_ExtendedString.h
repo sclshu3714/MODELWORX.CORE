@@ -59,7 +59,7 @@ class TCollection_AsciiString;
 //! 
 namespace TKernel {
 
-    ref class XStandard_Helper;
+    //ref class XStandard_Helper;
    public ref class XTCollection_ExtendedString
     {
     public:

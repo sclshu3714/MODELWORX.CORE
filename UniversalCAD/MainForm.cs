@@ -114,8 +114,9 @@ namespace UniversalCAD
         {
             if (InitViewer)
             {
-                OCCTView.RedrawView();
-                OCCTView.UpdateView();
+                //OCCTView.RedrawView();
+                //OCCTView.UpdateView();
+                OCCTView.UpdateCurrentViewer();
             }
         }
         /// <summary>
