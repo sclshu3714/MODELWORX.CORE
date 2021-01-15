@@ -34,8 +34,8 @@ namespace UniversalCAD
                 }
                 else base.OnRenderButtonBackground(e);
 
-                var y = e.ToolStrip.Height - 1;
-                e.Graphics.DrawLine(new Pen(SystemColors.ControlDark, 1), new Point(0, y), new Point(e.ToolStrip.Width, y));
+                //var y = e.ToolStrip.Height - 1;
+                //e.Graphics.DrawLine(new Pen(SystemColors.ControlDark, 1), new Point(0, y), new Point(e.ToolStrip.Width, y));
             }
         }
 
@@ -104,7 +104,12 @@ namespace UniversalCAD
         /// <param name="e"></param>
         private void RenderWindow_SizeChanged(object sender, EventArgs e)
         {
-            OCCTView.UpdateView();
+            if (InitViewer)
+            {
+                OCCTView.RedrawView();
+                OCCTView.UpdateView();
+                OCCTView.UpdateCurrentViewer();
+            }
         }
         /// <summary>
         /// 窗体绘制事件
