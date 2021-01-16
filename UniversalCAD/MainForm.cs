@@ -19,6 +19,7 @@ namespace UniversalCAD
             this.ToolStripMain.Renderer = new CustomRenderer() { RoundedEdges = false };
             this.Load += MainForm_Load;
         }
+
         /// <summary>
         /// 选中样式
         /// </summary>
@@ -35,7 +36,18 @@ namespace UniversalCAD
                 else base.OnRenderButtonBackground(e);
 
                 //var y = e.ToolStrip.Height - 1;
-                //e.Graphics.DrawLine(new Pen(SystemColors.ControlDark, 1), new Point(0, y), new Point(e.ToolStrip.Width, y));
+                //e.Graphics.DrawLine(new Pen(Color.Red, 1), new Point(0, y), new Point(e.ToolStrip.Width, y));
+            }
+
+            protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
+            {
+                if (e.ToolStrip.RenderMode == ToolStripRenderMode.Custom)
+                {
+                    Rectangle rect = new Rectangle(0, 0, e.ToolStrip.Width, e.ToolStrip.Height - 2);
+                    e.Graphics.SetClip(rect);
+                }
+                else
+                    base.OnRenderToolStripBackground(e);
             }
         }
 
@@ -92,6 +104,29 @@ namespace UniversalCAD
         {
             ToolStripButton stripButton = e.ClickedItem as ToolStripButton;
             stripButton.Checked = !stripButton.Checked;
+            switch (stripButton.Tag?.ToString())
+            {
+                case "Open":            //打开
+                    break;
+                case "Save":            //保存
+                    break;
+                case "TLable":          //结构
+                    break;
+                case "Demonstration":   //演示
+                    break;
+                case "Operation":       //操作
+                    break;
+                case "Section":         //切面
+                    break;
+                case "Measure":         //标记
+                    break;
+                case "Setting":         //设置
+                    break;
+                case "Help":            //帮助
+                    break;
+                default:
+                    break;
+            }
         }
 
 

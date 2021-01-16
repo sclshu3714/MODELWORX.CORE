@@ -32,17 +32,17 @@ namespace UniversalCAD
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ToolStripMain = new System.Windows.Forms.ToolStrip();
+            this.btnOpen = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.btnTLable = new System.Windows.Forms.ToolStripButton();
+            this.btnDemonstration = new System.Windows.Forms.ToolStripButton();
+            this.btnOperation = new System.Windows.Forms.ToolStripButton();
+            this.btnSection = new System.Windows.Forms.ToolStripButton();
+            this.btnMeasure = new System.Windows.Forms.ToolStripButton();
+            this.btnHelp = new System.Windows.Forms.ToolStripButton();
+            this.btnSetting = new System.Windows.Forms.ToolStripButton();
             this.img32List = new System.Windows.Forms.ImageList(this.components);
             this.img16List = new System.Windows.Forms.ImageList(this.components);
-            this.btnOpen = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,25 +50,139 @@ namespace UniversalCAD
             // 
             this.ToolStripMain.AutoSize = false;
             this.ToolStripMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.ToolStripMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ToolStripMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ToolStripMain.GripMargin = new System.Windows.Forms.Padding(0);
             this.ToolStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ToolStripMain.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.ToolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnOpen,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripButton7,
-            this.toolStripButton8,
-            this.toolStripButton9});
+            this.btnSave,
+            this.btnTLable,
+            this.btnDemonstration,
+            this.btnOperation,
+            this.btnSection,
+            this.btnMeasure,
+            this.btnHelp,
+            this.btnSetting});
             this.ToolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.ToolStripMain.Location = new System.Drawing.Point(0, 0);
             this.ToolStripMain.Name = "ToolStripMain";
-            this.ToolStripMain.Size = new System.Drawing.Size(70, 663);
+            this.ToolStripMain.Padding = new System.Windows.Forms.Padding(3);
+            this.ToolStripMain.Size = new System.Drawing.Size(70, 653);
             this.ToolStripMain.TabIndex = 0;
             this.ToolStripMain.Text = "tspMain";
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnOpen.Image = global::UniversalCAD.Properties.Resources.Img_245;
+            this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Padding = new System.Windows.Forms.Padding(8, 9, 8, 7);
+            this.btnOpen.Size = new System.Drawing.Size(63, 52);
+            this.btnOpen.Tag = "Open";
+            this.btnOpen.Text = "打开文件&(Ctrl+O)";
+            // 
+            // btnSave
+            // 
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = global::UniversalCAD.Properties.Resources.Img_216;
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
+            this.btnSave.Size = new System.Drawing.Size(63, 51);
+            this.btnSave.Tag = "Save";
+            this.btnSave.Text = "保存文件";
+            // 
+            // btnTLable
+            // 
+            this.btnTLable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnTLable.Image = global::UniversalCAD.Properties.Resources.Img_176;
+            this.btnTLable.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTLable.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTLable.Name = "btnTLable";
+            this.btnTLable.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
+            this.btnTLable.Size = new System.Drawing.Size(63, 51);
+            this.btnTLable.Tag = "TLable";
+            this.btnTLable.Text = "模型结构";
+            // 
+            // btnDemonstration
+            // 
+            this.btnDemonstration.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDemonstration.Image = global::UniversalCAD.Properties.Resources.Img_254;
+            this.btnDemonstration.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDemonstration.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDemonstration.Name = "btnDemonstration";
+            this.btnDemonstration.Padding = new System.Windows.Forms.Padding(8);
+            this.btnDemonstration.Size = new System.Drawing.Size(63, 52);
+            this.btnDemonstration.Tag = "Demonstration";
+            this.btnDemonstration.Text = "演示模式";
+            // 
+            // btnOperation
+            // 
+            this.btnOperation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnOperation.Image = global::UniversalCAD.Properties.Resources.Img_178;
+            this.btnOperation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOperation.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOperation.Name = "btnOperation";
+            this.btnOperation.Padding = new System.Windows.Forms.Padding(8);
+            this.btnOperation.Size = new System.Drawing.Size(63, 52);
+            this.btnOperation.Tag = "Operation";
+            this.btnOperation.Text = "操作设置";
+            // 
+            // btnSection
+            // 
+            this.btnSection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSection.Image = global::UniversalCAD.Properties.Resources.Img_273;
+            this.btnSection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSection.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSection.Name = "btnSection";
+            this.btnSection.Padding = new System.Windows.Forms.Padding(8);
+            this.btnSection.Size = new System.Drawing.Size(63, 52);
+            this.btnSection.Tag = "Section";
+            this.btnSection.Text = "切面";
+            // 
+            // btnMeasure
+            // 
+            this.btnMeasure.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnMeasure.Image = global::UniversalCAD.Properties.Resources.Img_32;
+            this.btnMeasure.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMeasure.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMeasure.Name = "btnMeasure";
+            this.btnMeasure.Padding = new System.Windows.Forms.Padding(8);
+            this.btnMeasure.Size = new System.Drawing.Size(63, 52);
+            this.btnMeasure.Tag = "Measure";
+            this.btnMeasure.Text = "标记";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnHelp.Image = global::UniversalCAD.Properties.Resources.Img_280;
+            this.btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Padding = new System.Windows.Forms.Padding(8);
+            this.btnHelp.Size = new System.Drawing.Size(63, 52);
+            this.btnHelp.Tag = "Help";
+            this.btnHelp.Text = "帮助";
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnSetting.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSetting.Image = global::UniversalCAD.Properties.Resources.Img_320;
+            this.btnSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Padding = new System.Windows.Forms.Padding(8);
+            this.btnSetting.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnSetting.Size = new System.Drawing.Size(63, 52);
+            this.btnSetting.Tag = "Setting";
+            this.btnSetting.Text = "设置";
             // 
             // img32List
             // 
@@ -82,113 +196,12 @@ namespace UniversalCAD
             this.img16List.ImageSize = new System.Drawing.Size(16, 16);
             this.img16List.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // btnOpen
-            // 
-            this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnOpen.Image = global::UniversalCAD.Properties.Resources.Img_245;
-            this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(0);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Padding = new System.Windows.Forms.Padding(8, 9, 8, 7);
-            this.btnOpen.Size = new System.Drawing.Size(68, 52);
-            this.btnOpen.Text = "打开文件&(Ctrl+O)";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::UniversalCAD.Properties.Resources.Img_216;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 51);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::UniversalCAD.Properties.Resources.Img_176;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
-            this.toolStripButton3.Size = new System.Drawing.Size(68, 51);
-            this.toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::UniversalCAD.Properties.Resources.Img_254;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton4.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton4.Text = "toolStripButton4";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::UniversalCAD.Properties.Resources.Img_178;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton5.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton5.Text = "toolStripButton5";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = global::UniversalCAD.Properties.Resources.Img_273;
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton6.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton6.Text = "toolStripButton6";
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = global::UniversalCAD.Properties.Resources.Img_32;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton7.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton7.Text = "toolStripButton7";
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = global::UniversalCAD.Properties.Resources.Img_280;
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton8.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton8.Text = "toolStripButton8";
-            // 
-            // toolStripButton9
-            // 
-            this.toolStripButton9.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = global::UniversalCAD.Properties.Resources.Img_320;
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Padding = new System.Windows.Forms.Padding(8);
-            this.toolStripButton9.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton9.Size = new System.Drawing.Size(68, 52);
-            this.toolStripButton9.Text = "toolStripButton9";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1192, 663);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.ClientSize = new System.Drawing.Size(1182, 653);
             this.Controls.Add(this.ToolStripMain);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -205,14 +218,14 @@ namespace UniversalCAD
 
         private System.Windows.Forms.ToolStrip ToolStripMain;
         private System.Windows.Forms.ToolStripButton btnOpen;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.ToolStripButton btnTLable;
+        private System.Windows.Forms.ToolStripButton btnDemonstration;
+        private System.Windows.Forms.ToolStripButton btnOperation;
+        private System.Windows.Forms.ToolStripButton btnSection;
+        private System.Windows.Forms.ToolStripButton btnMeasure;
+        private System.Windows.Forms.ToolStripButton btnHelp;
+        private System.Windows.Forms.ToolStripButton btnSetting;
         private System.Windows.Forms.ImageList img32List;
         private System.Windows.Forms.ImageList img16List;
     }

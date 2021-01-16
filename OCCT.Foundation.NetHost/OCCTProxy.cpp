@@ -130,7 +130,8 @@ public:
             aWNTWindow->Map();
         }
         mainView()->ZBufferTriedronSetup();
-        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.08, V3d_ZBUFFER);   //画三维坐标系
+        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
+        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.15, V3d_WIREFRAME);   //画三维坐标系
         mainAISContext() = new AIS_InteractiveContext(mainViewer());
         mainAISContext()->UpdateCurrentViewer();
         mainView()->Redraw();
