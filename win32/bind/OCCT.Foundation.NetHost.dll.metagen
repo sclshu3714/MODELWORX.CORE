@@ -5854,8 +5854,8 @@ Class NCollection_Haft<opencascade::handle<Geom_Plane> >: AutoLayout, AnsiClass,
   Interfaces:
     System.IDisposable
   Methods:
-    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
 Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_ElementarySurface
     Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

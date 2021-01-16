@@ -1,5 +1,5 @@
-﻿using OCCT.Foundation.Net;
-using System;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +7,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TKBO;
+using TKBRep;
+using TKernel;
+using TKFillet;
+using TKMath;
+using TKPrim;
+using TKTopAlgo;
+using TKV3d;
+using TKG3d;
+using TKGeomBase;
+using OCCT.Foundation.Net;
+using TKLCAF;
+using TKVCAF;
+using TKXCAF;
+using TKXDESTEP;
 
 namespace UniversalCAD
 {
@@ -552,6 +567,1503 @@ namespace UniversalCAD
             OCCTView.MoveTo(x, y);
         }
         #endregion
+
+        #region 导入/导出
+        private int index = 0;
+        public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport)
+        {
+            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            aReader.SetColorMode(true);
+            aReader.SetNameMode(true);
+            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            anApp.NewDocument("XSEFSTEP", aDoc);
+            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+                return false;
+            TreeNode PNode = null;
+            XTDF_Label aRootLabel = aDoc.Main();
+            XTDF_Attribute aName = new XTDataStd_Name();
+            XTDF_Attribute aInteger = new XTDataStd_Integer();
+            if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+            {
+                XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                if (!aRootLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                    XInteger = XTDataStd_Integer.Set(aRootLabel, index++);
+                else
+                    XInteger = aInteger as XTDataStd_Integer;
+                XTDataStd_Name XName = aName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                string text = EString.GetValueString();
+                PNode = new TreeNode();
+                PNode.Name = text;
+                PNode.Text = $"{text}_{XInteger.Get()}";
+                PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                TempNode.Nodes.Add(PNode);
+
+            }
+            if (PNode == null)
+            {
+                PNode = new TreeNode();
+                PNode.Name = "ShapesSTEP";
+                PNode.Text = "ShapesSTEP";
+                //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                TempNode.Nodes.Add(PNode);
+            }
+            VisibleSettings(ref PNode, aRootLabel, true);
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
+            return true;
+        }
+
+        private void VisibleSettings(ref TreeNode TempNode, XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            if (!theLabel.IsNull() && !theLabel.HasChild()) // && XXCAFDoc_ShapeTool.IsShape(theLabel))
+            {
+
+                XTDF_Attribute aName = new XTDataStd_Name();
+                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+                {
+                    XTDF_Attribute aInteger = new XTDataStd_Integer();
+                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
+                    else
+                        XInteger = aInteger as XTDataStd_Integer;
+                    XTDataStd_Name XName = aName as XTDataStd_Name;
+                    XTCollection_ExtendedString EString = XName.Get();
+                    string text = EString.GetValueString();
+                    TreeNode CNode = new TreeNode();
+                    CNode.Name = text;
+                    CNode.Text = $"{text}_{XInteger.Get()}";
+                    CNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(CNode);
+                }
+
+                Display(theLabel, IsBoundaryDraw);
+                return;
+            }
+            TreeNode PNode = null;
+            {
+                XTDF_Attribute aInteger = new XTDataStd_Integer();
+                XTDF_Attribute aName = new XTDataStd_Name();
+                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+                {
+                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
+                    else
+                        XInteger = aInteger as XTDataStd_Integer;
+                    XTDataStd_Name XName = aName as XTDataStd_Name;
+                    XTCollection_ExtendedString EString = XName.Get();
+                    string text = EString.GetValueString();
+                    PNode = new TreeNode();
+                    PNode.Name = text;
+                    PNode.Text = $"{text}_{XInteger.Get()}";
+                    PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(PNode);
+
+                }
+                else
+                {
+                    PNode = new TreeNode();
+                    PNode.Name = "NoName";
+                    PNode.Text = "没有名称";
+                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                    TempNode.Nodes.Add(PNode);
+                }
+            }
+            XTDF_ChildIterator iter = new XTDF_ChildIterator();
+            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
+            {
+                VisibleSettings(ref PNode, iter.Value(), IsBoundaryDraw);
+            }
+        }
+
+        /// <summary>
+        /// 定义必须调用的导入/导出函数
+        /// Define which Import/Export function must be called
+        /// </summary>
+        /// <param name="theFileName">Name of Import/Export file</param>
+        /// <param name="theFormat">Determines format of Import/Export file</param>
+        /// <param name="theIsImport">Determines is Import or not</param>
+        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport)
+        {
+            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
+            //OCCTView.SetDisplayMode(1);
+            //OCCTView.RedrawView();
+            //OCCTView.ZoomAllView();
+            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
+            aReader.SetColorMode(true);
+            aReader.SetNameMode(true);
+            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
+            anApp.NewDocument("XSEFSTEP", aDoc);
+            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+                return false;
+            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
+            //XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            //Assembly.GetFreeShapes(ref aRootLabels);
+            //XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            //for (; aRootIter.More(); aRootIter.Next())
+            //{
+            //    XTDF_Label aRootLabel = aRootIter.Value();
+            //    VisibleSettings(aRootLabel, true);
+            //}
+            XTDF_Label aRootLabel = aDoc.Main();
+            VisibleSettings(aRootLabel, true);
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
+            return true;
+        }
+
+        private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(theLabel);
+            XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            Assembly.GetFreeShapes(ref aRootLabels);
+            XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            for (; aRootIter.More(); aRootIter.Next())
+            {
+                XTDF_Label aRootLabel = aRootIter.Value();
+                Display(aRootLabel, IsBoundaryDraw);
+                return;
+            }
+            //if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
+            //{
+            //    Display(theLabel, IsBoundaryDraw);
+            //    return;
+            //}
+            XTDF_ChildIterator iter = new XTDF_ChildIterator();
+            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
+            {
+                VisibleSettings(iter.Value(), IsBoundaryDraw);
+            }
+        }
+        /// <summary>
+        /// 显示图形
+        /// </summary>
+        /// <param name="theLabel"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            XTDF_Attribute aName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+            {
+                //std::cout << "  Name: " << aName.Get() << std::endl;
+                XTDataStd_Name XName = aName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                //MessageBox.Show($"Name:{EString.GetValueString()}");
+                //context.RemoveAll(true);
+
+            }
+            XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
+            XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
+            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs))
+            {
+                xPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
+                xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
+                xPrs.Display(true);
+            }
+            else
+                xPrs = aPrs as XTPrsStd_AISPresentation;
+            XAIS_InteractiveObject anInteractive = xPrs.GetAIS();
+            if (anInteractive != null)
+            {
+                // get drawer
+                XPrs3d_Drawer aDrawer = anInteractive.Attributes();
+                // default attributes
+                float aRed = 0.0f;
+                float aGreen = 0.0f;
+                float aBlue = 0.0f;
+                //float aWidth = 1.0f;
+                //XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
+                // turn boundaries on/off
+                bool isBoundaryDraw = true;
+                aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
+                XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();//  new XPrs3d_LineAspect(aColor, aLineType, aWidth);
+                aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
+                context.Display(anInteractive, true);
+                OCCTView.SetDisplayMode(1);
+                OCCTView.ZoomAllView();
+            }
+            //mainAISContext()->UpdateCurrentViewer();
+        }
+        #endregion
+
+        #region 动画
+        /// <summary>
+        /// 动画
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void StartAnimation()
+        {
+            XBRepPrimAPI_MakeBox obj1 = new XBRepPrimAPI_MakeBox(100, 100, 20);
+            XAIS_Shape ais_obj1 = new XAIS_Shape(obj1.Shape());
+            SetFaceBoundaryAspect(ais_obj1, true);
+            AddShape(ais_obj1, true);
+
+            xgp_Trsf end_pnt0 = new xgp_Trsf();
+            xgp_Trsf end_pnt1 = new xgp_Trsf();
+            end_pnt0.SetTranslation(new xgp_Vec(0.0, 0.0, 0.0));
+            end_pnt1.SetTranslation(new xgp_Vec(100.0, 100.0, 0.0));
+            XAIS_AnimationObject ais_animation = new XAIS_AnimationObject(new XTCollection_AsciiString($"F1{Guid.NewGuid().ToString()}"), GetInteractiveContext(), ais_obj1, end_pnt0, end_pnt1);
+            ais_animation.SetOwnDuration(30.0);
+            ais_animation.SetStartPts(0);
+            ais_animation.StartTimer(0.0, 1.0, true, false);
+            ais_animation.Start(true);
+            Timer timer = new Timer();
+            timer.Interval = 100;
+            timer.Tag = ais_animation;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            //var task = new Task(() => {
+            //    while (!ais_animation.IsStopped()) {
+            //        lock (lockObject)
+            //        {
+            //            ais_animation.UpdateTimer();
+            //            render.UpdateCurrentViewer();
+            //        }
+            //    }; ais_animation.Stop(); });
+            //task.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Timer timer = sender as Timer;
+            XAIS_AnimationObject ais_animation = timer.Tag as XAIS_AnimationObject;
+            if (ais_animation != null && !ais_animation.IsStopped())
+            {
+                lock (lockObject)
+                {
+                    ais_animation.UpdateTimer();
+                    UpdateCurrentViewer();
+                }
+            };
+        }
+        #endregion
+
+        #region 几何图形
+        /// <summary>
+        /// 绘制壳图像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MakePrism_Shell(object sender, EventArgs e)
+        {
+            xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
+            XTopoDS_Wire RWc = new XBRepBuilderAPI_MakeWire(REc).Wire();
+            XBRepBuilderAPI_MakeFace aRMakeFace = new XBRepBuilderAPI_MakeFace(RWc, false);
+            //XBRepBuilderAPI_MakeShell tempA = new XBRepBuilderAPI_MakeShell();
+            XAIS_Shape WAIS_ECD = new XAIS_Shape(aRMakeFace.Shape());
+            SetFaceBoundaryAspect(WAIS_ECD, true);
+
+            AddShape(WAIS_ECD, true);
+        }
+
+
+        /// <summary>
+        /// 绘制体图像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MakePrism_Solid(object sender, EventArgs e)
+        {
+            xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism S3 = new XBRepPrimAPI_MakePrism(S2.Shape(), new xgp_Vec(0.0, 0.0, 100.0), false, true);
+            //倒圆
+            XBRepFilletAPI_MakeFillet MFBox = new XBRepFilletAPI_MakeFillet(S3.Shape(), XChFi3d_FilletShape.ChFi3d_Rational);
+            XTopExp_Explorer exp = new XTopExp_Explorer(S3.Shape(), XTopAbs_ShapeEnum.TopAbs_EDGE, XTopAbs_ShapeEnum.TopAbs_SHAPE);
+            while (exp.More())
+            {
+                MFBox.Add(5, XTopoDS.Edge(exp.Current()));
+                exp.Next();
+            }
+            XAIS_Shape WAIS_EC = new XAIS_Shape(MFBox.Shape());
+            SetFaceBoundaryAspect(WAIS_EC, true);
+            AddShape(WAIS_EC, true);
+
+            //XBRepPrimAPI_MakeBox tempA = new XBRepPrimAPI_MakeBox(200.0, 150.0, 100.0);
+            //XBRepPrimAPI_MakeBox tempB = new XBRepPrimAPI_MakeBox(new xgp_Pnt(60, 60, 0), 200.0, 150.0, 100.0);
+            //XBRepPrimAPI_MakeBox tempC = new XBRepPrimAPI_MakeBox(new xgp_Pnt(60, 60, 0), new xgp_Pnt(200.0, 150.0, 100.0));
+            //XBRepPrimAPI_MakeBox tempD = new XBRepPrimAPI_MakeBox(new xgp_Ax2(new xgp_Pnt(100.0, 80.0, 70.0), new xgp_Dir(1.0, 2.0, 1.0)), 80.0, 90.0, 120.0);
+
+            //XAIS_Shape WAIS_ECA = new XAIS_Shape(tempA.Shape());
+            //SetFaceBoundaryAspect(WAIS_ECA, true);
+
+            //XAIS_Shape WAIS_ECB = new XAIS_Shape(tempB.Shape());
+            //SetFaceBoundaryAspect(WAIS_ECB, true);
+
+            //XAIS_Shape WAIS_ECC = new XAIS_Shape(tempC.Shape());
+            //SetFaceBoundaryAspect(WAIS_ECC, true);
+
+            //XAIS_Shape WAIS_ECD = new XAIS_Shape(tempD.Shape());
+            //SetFaceBoundaryAspect(WAIS_ECD, true);
+
+            //render.AddShape(WAIS_ECA, true);
+            //render.AddShape(WAIS_ECB, true);
+            //render.AddShape(WAIS_ECC, true);
+            //render.AddShape(WAIS_ECD, true);
+        }
+
+        /// <summary>
+        /// 绘制面图像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MakePrism_Face(object sender, EventArgs e)
+        {
+            xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
+            XAIS_Shape WAIS_EC = new XAIS_Shape(S2.Shape());
+            SetFaceBoundaryAspect(WAIS_EC, true);
+            AddShape(WAIS_EC, true);
+
+            //xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            //XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
+            //XTopoDS_Wire RWc = new XBRepBuilderAPI_MakeWire(REc).Wire();
+            //XBRepBuilderAPI_MakeFace aRMakeFace = new XBRepBuilderAPI_MakeFace(RWc, false);
+
+            //xgp_Circ Cr = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(200.0, 200.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 60.0);
+            //XTopoDS_Edge rEc = new XBRepBuilderAPI_MakeEdge(Cr).Edge();
+            //XTopoDS_Wire rWc = new XBRepBuilderAPI_MakeWire(rEc).Wire();
+            //XBRepBuilderAPI_MakeFace arMakeFace = new XBRepBuilderAPI_MakeFace(rWc, false);
+
+            //XBRepAlgoAPI_Cut PipeProfile = new XBRepAlgoAPI_Cut(aRMakeFace.Shape(), arMakeFace.Shape());
+
+            //xgp_Vec sVec = new xgp_Vec(0, 0, 1 * 200);
+            //XBRepPrimAPI_MakePrism BRPA_MP = new XBRepPrimAPI_MakePrism(PipeProfile.Shape(), sVec, false, false);
+            //XAIS_Shape WAIS_EC = new XAIS_Shape(BRPA_MP.Shape());
+            //SetFaceBoundaryAspect(WAIS_EC, true);
+            //render.AddShape(WAIS_EC, true);
+        }
+
+
+
+        /// <summary>
+        /// 绘制线视图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MakePrism_Line(object sender, EventArgs e)
+        {
+            xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
+            AddShape(S1.Shape(), true);
+        }
+
+        /// <summary>
+        /// 绘制点图像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void MakeVertex(object sender, EventArgs e)
+        {
+            xgp_Pnt P = new xgp_Pnt(0.0, 0.0, 0.0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XTopoDS_Vertex V1 = MV1.Vertex();
+            AddShape(V1, true);
+        }
+        #endregion
+
+        #region 演示图形
+        /// <summary>
+        /// MakeBox
+        /// </summary>
+        internal void MakeBox()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 0, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeBox tempMake = new XBRepPrimAPI_MakeBox(Axes, 80, 80, 80);
+            AddShape(tempMake.Shape(), true, true);
+        }
+        /// <summary>
+        /// MakeCone
+        /// </summary>
+        internal void PMakeCone()
+        {
+            xgp_Pnt P = new xgp_Pnt(200, 0, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeCone tempMake = new XBRepPrimAPI_MakeCone(Axes, 80, 40, 100);
+            AddShape(tempMake.Shape(), true, true);
+        }
+        /// <summary>
+        /// MakeCylinder
+        /// </summary>
+        internal void PMakeCylinder()
+        {
+            xgp_Pnt P = new xgp_Pnt(300, 0, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeCylinder tempMake = new XBRepPrimAPI_MakeCylinder(Axes, 80, 100, Math.PI);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeHalfSpace
+        /// </summary>
+        internal void PMakeHalfSpace()
+        {
+            xgp_Circ CR = new xgp_Circ(new xgp_Ax2(new xgp_Pnt(400.0, 400.0, 0.0), new xgp_Dir(0.0, 0.0, 1.0)), 80.0);
+            XTopoDS_Edge REc = new XBRepBuilderAPI_MakeEdge(CR).Edge();
+            XTopoDS_Wire RWc = new XBRepBuilderAPI_MakeWire(REc).Wire();
+            XBRepBuilderAPI_MakeFace aRMakeFace = new XBRepBuilderAPI_MakeFace(RWc, false);
+            xgp_Pnt P = new xgp_Pnt(400, 400, 400);
+            XBRepPrimAPI_MakeHalfSpace tempMake = new XBRepPrimAPI_MakeHalfSpace(aRMakeFace.Face(), P);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakePrism
+        /// </summary>
+        internal void PMakePrism()
+        {
+            xgp_Pnt P = new xgp_Pnt(500.0, 0.0, 0.0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism tempMake = new XBRepPrimAPI_MakePrism(S2.Shape(), new xgp_Vec(0.0, 0.0, 100.0), false, true);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeRevol
+        /// </summary>
+        internal void PMakeRevol()
+        {
+            xgp_Pnt P = new xgp_Pnt(600.0, 0.0, 0.0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            XBRepBuilderAPI_MakeVertex MV1 = new XBRepBuilderAPI_MakeVertex(P);
+            XBRepPrimAPI_MakePrism S1 = new XBRepPrimAPI_MakePrism(MV1.Shape(), new xgp_Vec(100.0, 0.0, 0.0), false, true);
+            XBRepPrimAPI_MakePrism S2 = new XBRepPrimAPI_MakePrism(S1.Shape(), new xgp_Vec(0.0, 100.0, 0.0), false, true);
+            XBRepPrimAPI_MakeRevol tempMake = new XBRepPrimAPI_MakeRevol(S2.Shape(), new xgp_Ax1(P, V), false);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeRevolution
+        /// </summary>
+        internal void PMakeRevolution()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 200.0, 0.0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            XGeom_Line line = new XGeom_Line(P, V);
+            XBRepPrimAPI_MakeRevolution tempMake = new XBRepPrimAPI_MakeRevolution(line, 270);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeSphere
+        /// </summary>
+        internal void PMakeSphere()
+        {
+            xgp_Pnt P = new xgp_Pnt(100, 200, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeSphere tempMake = new XBRepPrimAPI_MakeSphere(Axes, 80);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeTorus
+        /// </summary>
+        internal void PMakeTorus()
+        {
+            xgp_Pnt P = new xgp_Pnt(200, 200, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeTorus tempMake = new XBRepPrimAPI_MakeTorus(Axes, 80, 40);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeWedge
+        /// </summary>
+        internal void PMakeWedge()
+        {
+            xgp_Pnt P = new xgp_Pnt(300, 200, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            XBRepPrimAPI_MakeWedge tempMake = new XBRepPrimAPI_MakeWedge(Axes, 40, 40, 40, 10);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeEdge
+        /// </summary>
+        internal void BMakeEdge()
+        {
+            xgp_Pnt P = new xgp_Pnt(400, 200, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Circ circ = new xgp_Circ(Axes, 80);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(circ);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeFace
+        /// </summary>
+        internal void BMakeFace()
+        {
+            xgp_Pnt P = new xgp_Pnt(500, 200, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax3 Axes = new xgp_Ax3(P, V);
+            xgp_Cylinder C = new xgp_Cylinder(Axes, 80);
+            XBRepBuilderAPI_MakeFace tempMake = new XBRepBuilderAPI_MakeFace(C);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeShell
+        /// </summary>
+        internal void BMakeShell()
+        {
+            //xgp_Pnt P = new xgp_Pnt(600, 200, 0);
+            //xgp_Dir V = new xgp_Dir(0, 0, 1);
+            //xgp_Ax3 Axes = new xgp_Ax3(P, V);
+            //xgp_Cylinder cylinder = new xgp_Cylinder(Axes, 80);
+            //XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(cylinder);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(cylindricalSurface, true);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeSolid
+        /// </summary>
+        internal void BMakeSolid()
+        {
+            //xgp_Pnt P = new xgp_Pnt(600, 400, 0);
+            //xgp_Dir V = new xgp_Dir(0, 0, 1);
+            //xgp_Ax3 Axes = new xgp_Ax3(P, V);
+            //XGeom_CylindricalSurface cylindricalSurface = new XGeom_CylindricalSurface(Axes, 80);
+            //XBRepBuilderAPI_MakeShell tempMakeShell = new XBRepBuilderAPI_MakeShell(cylindricalSurface, true);
+            //XBRepBuilderAPI_MakeSolid tempMake = new XBRepBuilderAPI_MakeSolid(tempMakeShell.Shell());
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeVertex
+        /// </summary>
+        internal void BMakeVertex()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 300, 0);
+            XBRepBuilderAPI_MakeVertex tempMake = new XBRepBuilderAPI_MakeVertex(P);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeWire
+        /// </summary>
+        internal void BMakeWire()
+        {
+            xgp_Pnt P = new xgp_Pnt(100, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Circ circ = new xgp_Circ(Axes, 80);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(circ);
+            XBRepBuilderAPI_MakeWire tempMake = new XBRepBuilderAPI_MakeWire(tempEdge.Edge());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeArcOfCircle
+        /// </summary>
+        internal void MakeArcOfCircle()
+        {
+            xgp_Pnt P = new xgp_Pnt(200, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Circ circ = new xgp_Circ(Axes, 80);
+            XGC_MakeArcOfCircle tempMake = new XGC_MakeArcOfCircle(circ, 90, 270, false);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// MakeArcOfEllipse
+        /// </summary>
+        internal void MakeArcOfEllipse()
+        {
+            xgp_Pnt P = new xgp_Pnt(400, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Elips elips = new xgp_Elips(Axes, 80, 40);
+            XGC_MakeArcOfEllipse tempMake = new XGC_MakeArcOfEllipse(elips, 90, 270, false);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// MakeArcOfHyperbola
+        /// </summary>
+        internal void MakeArcOfHyperbola()
+        {
+            xgp_Pnt P = new xgp_Pnt(600, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Hypr hypr = new xgp_Hypr(Axes, 80, 40);
+            XGC_MakeArcOfHyperbola tempMake = new XGC_MakeArcOfHyperbola(hypr, 90, 270, false);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// MakeArcOfParabola
+        /// </summary>
+        internal void MakeArcOfParabola()
+        {
+            xgp_Pnt P = new xgp_Pnt(600, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            xgp_Pnt F = new xgp_Pnt(650, 300, 300);
+            xgp_Parab parab = new xgp_Parab(Axes, F);
+            XGC_MakeArcOfParabola tempMake = new XGC_MakeArcOfParabola(parab, 90, 180, false);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// MakeCircle
+        /// </summary>
+        internal void MakeCircle()
+        {
+            xgp_Pnt P = new xgp_Pnt(600, 300, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            XGC_MakeCircle tempMake = new XGC_MakeCircle(Axes, 80);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// MakeConicalSurface
+        /// </summary>
+        internal void MakeConicalSurface()
+        {
+            xgp_Pnt P1 = new xgp_Pnt(700, 300, 0);
+            xgp_Pnt P2 = new xgp_Pnt(800, 300, 0);
+            XGC_MakeConicalSurface tempSurface = new XGC_MakeConicalSurface(P1, P2, 80, 60);
+            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempSurface.Value(), false);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeCylindricalSurface
+        /// </summary>
+        internal void MakeCylindricalSurface()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Circ circ = new xgp_Circ();
+            XGC_MakeCylindricalSurface tempSurface = new XGC_MakeCylindricalSurface(circ);
+            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempSurface.Value(), false);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeEllipse
+        /// </summary>
+        internal void MakeEllipse()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Elips elips = new xgp_Elips(Axes, 80, 60);
+            XGC_MakeEllipse tempSurface = new XGC_MakeEllipse(elips);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempSurface.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeHyperbola
+        /// </summary>
+        internal void MakeHyperbola()
+        {
+            xgp_Pnt P = new xgp_Pnt(0, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax2 Axes = new xgp_Ax2(P, V);
+            xgp_Hypr hypr = new xgp_Hypr(Axes, 80, 60);
+            XGC_MakeHyperbola tempGC = new XGC_MakeHyperbola(hypr);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGC.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeLine
+        /// </summary>
+        internal void MakeLine()
+        {
+            xgp_Pnt P = new xgp_Pnt(200, 400, 0);
+            xgp_Pnt P1 = new xgp_Pnt(300, 400, 0);
+            XGC_MakeLine tempGC = new XGC_MakeLine(P, P1);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGC.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakePlane
+        /// </summary>
+        internal void MakePlane()
+        {
+            xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            XGC_MakePlane tempGC = new XGC_MakePlane(Axes);
+            XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), 200, 400, 200, 400, false);
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+
+        /// <summary>
+        /// MakeRotation
+        /// </summary>
+        internal void MakeRotation()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeScale
+        /// </summary>
+        internal void MakeScale()
+        {
+            xgp_Pnt P = new xgp_Pnt(600, 600, 200);
+            XGC_MakeScale tempGC = new XGC_MakeScale(P, 1.0);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeSegment
+        /// </summary>
+        internal void MakeSegment()
+        {
+            xgp_Pnt P1 = new xgp_Pnt(200, 300, 0);
+            xgp_Pnt P2 = new xgp_Pnt(300, 300, 0);
+            XGC_MakeSegment tempMake = new XGC_MakeSegment(P1, P2);
+            XBRepBuilderAPI_MakeEdge tempEdge = new XBRepBuilderAPI_MakeEdge(tempMake.Value());
+            AddShape(tempEdge.Edge(), true, true);
+        }
+
+        /// <summary>
+        /// Transformation
+        /// </summary>
+        internal void Transformation()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeTrimmedCone
+        /// </summary>
+        internal void MakeTrimmedCone()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// MakeTrimmedCylinder
+        /// </summary>
+        internal void MakeTrimmedCylinder()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeCirc
+        /// </summary>
+        internal void EMakeCirc()
+        {
+            xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            xgp_Dir V = new xgp_Dir(1, 0, 0);
+            xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            xgce_MakeCirc tempGCE = new xgce_MakeCirc(Axes, 270);
+            XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGCE.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeCirc2d
+        /// </summary>
+        internal void EMakeCirc2d()
+        {
+            xgp_Pnt2d P = new xgp_Pnt2d(400, 400);
+            xgp_Dir2d V = new xgp_Dir2d(1, 0);
+            xgp_Ax2d A = new xgp_Ax2d(P, V);
+            xgp_Ax22d Axis = new xgp_Ax22d(A, false);
+            xgp_Circ2d Axes = new xgp_Circ2d(Axis, 80);
+            xgce_MakeCirc2d tempGCE = new xgce_MakeCirc2d(Axes, 60);
+            //XBRepBuilderAPI_MakeEdge tempMake = new XBRepBuilderAPI_MakeEdge(tempGCE.Value());
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeCone
+        /// </summary>
+        internal void EMakeCone()
+        {
+            xgp_Pnt P1 = new xgp_Pnt(400, 400, 0);
+            xgp_Pnt P2 = new xgp_Pnt(400, 600, 0);
+            xgce_MakeCone tempGCE = new xgce_MakeCone(P1, P2, 80, 80);
+            XBRepBuilderAPI_MakeFace tempMake = new XBRepBuilderAPI_MakeFace(tempGCE.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeCylinder
+        /// </summary>
+        internal void EMakeCylinder()
+        {
+            xgp_Pnt P1 = new xgp_Pnt(400, 400, 0);
+            xgp_Pnt P2 = new xgp_Pnt(400, 600, 0);
+            xgp_Cylinder Cyl = new xgp_Cylinder();
+            xgce_MakeCylinder tempGCE = new xgce_MakeCylinder(Cyl, 80);
+            XBRepBuilderAPI_MakeFace tempMake = new XBRepBuilderAPI_MakeFace(tempGCE.Value());
+            AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeDir
+        /// </summary>
+        internal void EMakeDir()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeDir2d
+        /// </summary>
+        internal void EMakeDir2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeElips
+        /// </summary>
+        internal void EMakeElips()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeElips2d
+        /// </summary>
+        internal void EMakeElips2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeHypr
+        /// </summary>
+        internal void EMakeHypr()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeHypr2d
+        /// </summary>
+        internal void EMakeHypr2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeLin
+        /// </summary>
+        internal void EMakeLin()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeLin2d
+        /// </summary>
+        internal void EMakeLin2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeMirror
+        /// </summary>
+        internal void EMakeMirror()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeMirror2d
+        /// </summary>
+        internal void EMakeMirror2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeParab
+        /// </summary>
+        internal void EMakeParab()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeParab2d
+        /// </summary>
+        internal void EMakeParab2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakePln
+        /// </summary>
+        internal void EMakePln()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeRotation
+        /// </summary>
+        internal void EMakeRotation()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeRotation2d
+        /// </summary>
+        internal void EMakeRotation2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeScale
+        /// </summary>
+        internal void EMakeScale()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeScale2d
+        /// </summary>
+        internal void EMakeScale2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeTranslation
+        /// </summary>
+        internal void EMakeTranslation()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+
+        /// <summary>
+        /// EMakeTranslation2d
+        /// </summary>
+        internal void EMakeTranslation2d()
+        {
+            //xgp_Pnt P = new xgp_Pnt(400, 400, 0);
+            //xgp_Dir V = new xgp_Dir(1, 0, 0);
+            //xgp_Ax1 Axes = new xgp_Ax1(P, V);
+            //XGC_MakeRotation tempGC = new XGC_MakeRotation(Axes, 270);
+            //XBRepBuilderAPI_MakeShell tempMake = new XBRepBuilderAPI_MakeShell(tempGC.Value(), false);
+            //IRender.AddShape(tempMake.Shape(), true, true);
+        }
+        #endregion
+
+        #region 设置配置
+
+        /// <summary>
+        /// 判断是否选择对象
+        /// </summary>
+        /// <returns></returns>
+        public bool IsObjectSelected
+        {
+            get { return OCCTView.IsObjectSelected(); }
+        }
+
+        /// <summary>
+        /// 立即绘制
+        /// </summary>
+        public void RedrawView()
+        {
+            OCCTView.RedrawView();
+        }
+
+        /// <summary>
+        /// 设置显示模式
+        /// Set display mode
+        /// </summary>
+        /// <param name="aMode">显示模式</param>
+        public void SetDisplayMode(int aMode)
+        {
+            OCCTView.SetDisplayMode(aMode);
+            OCCTView.RedrawView();
+        }
+
+        public int GetDisplayMode()
+        {
+            return OCCTView.DisplayMode();
+        }
+
+        public bool DegenerateMode
+        {
+            get { return this.myDegenerateModeIsOn; }
+            set { this.myDegenerateModeIsOn = value; }
+        }
+
+        public CurrentAction3d Mode
+        {
+            get { return this.myCurrentMode; }
+            set { this.myCurrentMode = value; }
+        }
+
+        public float Zoom
+        {
+            set { this.myCurZoom = value; }
+        }
+
+        /// <summary>
+        /// 修改对象的显示颜色或者背景色
+        /// Change the display color or background color of the object
+        /// </summary>
+        /// <param name="IsObjectColor">是否是对象</param>
+        public void ChangeColor(bool IsObjectColor)
+        {
+            int r, g, b;
+            if (IsObjectColor)
+            {
+                r = OCCTView.GetObjColR();
+                g = OCCTView.GetObjColG();
+                b = OCCTView.GetObjColB();
+            }
+            else
+            {
+                r = OCCTView.GetBGColR();
+                g = OCCTView.GetBGColG();
+                b = OCCTView.GetBGColB();
+            }
+            System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
+            ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
+            if (ColDlg.ShowDialog() == DialogResult.OK)
+            {
+                Color c = ColDlg.Color;
+                r = c.R;
+                g = c.G;
+                b = c.B;
+                if (IsObjectColor)
+                    OCCTView.SetColor(r, g, b);
+                else
+                    OCCTView.SetBackgroundColor(r, g, b);
+            }
+            this.OCCTView.UpdateCurrentViewer();
+        }
+
+        /// <summary>
+        /// 设置透明度
+        /// </summary>
+        /// <param name="theTrans"></param>
+        public void SetTransparency(int theTrans)
+        {
+            OCCTView.SetTransparency(theTrans);
+            OCCTView.RedrawView();
+        }
+
+        /// <summary>
+        /// 修改对象的显示颜色或者背景色
+        /// Change the display color or background color of the object
+        /// </summary>
+        /// <param name="IsObjectColor">是否是对象</param>
+        /// <param name="color">要修改的颜色</param>
+        public void ChangeColor(bool IsObjectColor, Color color)
+        {
+            int r, g, b;
+            if (IsObjectColor)
+            {
+                r = OCCTView.GetObjColR();
+                g = OCCTView.GetObjColG();
+                b = OCCTView.GetObjColB();
+            }
+            else
+            {
+                r = OCCTView.GetBGColR();
+                g = OCCTView.GetBGColG();
+                b = OCCTView.GetBGColB();
+            }
+            if (color == Color.Empty)
+            {
+                System.Windows.Forms.ColorDialog ColDlg = new ColorDialog();
+                ColDlg.Color = System.Drawing.Color.FromArgb(r, g, b);
+                if (ColDlg.ShowDialog() == DialogResult.OK)
+                {
+                    color = ColDlg.Color;
+                }
+            }
+            r = color.R; g = color.G; b = color.B;
+            if (IsObjectColor)
+                OCCTView.SetColor(r, g, b);
+            else
+                OCCTView.SetBackgroundColor(r, g, b);
+            this.OCCTView.UpdateCurrentViewer();
+
+        }
+
+        /// <summary>
+        /// 删除对象
+        /// delete objects
+        /// </summary>
+        public void DeleteObjects()
+        {
+            OCCTView.EraseObjects();
+            //IE_WinForms.Form1 parent = (IE_WinForms.Form1)this.ParentForm;
+            //parent.SelectionChanged();
+        }
+
+        /// <summary>
+        /// 设置材料
+        /// Setting materials
+        /// </summary>
+        /// <param name="NameOfMaterial"></param>
+        public void SetMaterial(Graphic3d_NameOfMaterial NameOfMaterial)
+        {
+            OCCTView.SetMaterial((int)NameOfMaterial);
+            OCCTView.RedrawView();
+        }
+
+        /// <summary>
+        /// 删除所有图形
+        /// </summary>
+        /// <param name="theToUpdateViewer"></param>
+        public void RemoveAll(bool theToUpdateViewer)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            context.RemoveAll(theToUpdateViewer);
+        }
+
+
+        public void AddShape(XAIS_InteractiveObject theIObj, bool IsFaceBoundaryAspect = true, bool theToUpdateViewer = true)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            if (IsFaceBoundaryAspect)
+                SetFaceBoundaryAspect(theIObj, IsFaceBoundaryAspect);
+            context.Display(theIObj, theToUpdateViewer);
+        }
+
+        public XAIS_Shape AddShape(XTopoDS_Shape theTObj, bool IsFaceBoundaryAspect = true, bool theToUpdateViewer = true)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            XAIS_Shape theIObj = new XAIS_Shape(theTObj);
+            if (IsFaceBoundaryAspect)
+                SetFaceBoundaryAspect(theIObj, IsFaceBoundaryAspect);
+            context.Display(theIObj, theToUpdateViewer);
+            return theIObj;
+        }
+
+        public void ClearSelected(bool theToUpdateViewer)
+        {
+            XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
+            context.ClearSelected(theToUpdateViewer);
+        }
+
+        public void UpdateCurrentViewer()
+        {
+            this.OCCTView.UpdateCurrentViewer();
+        }
+        public XAIS_InteractiveContext GetInteractiveContext()
+        {
+            return this.OCCTView.GetInteractiveContext();
+        }
+
+        /// <summary>
+        ///Get V3d_View
+        /// </summary>
+        public XV3d_View GetV3dView()
+        {
+            return this.OCCTView.GetV3dView();
+        }
+
+
+        /// <summary>
+        ///Update view
+        /// </summary>
+        public void UpdateView()
+        {
+            this.OCCTView.UpdateView();
+        }
+
+        /// <summary>
+        ///Set computed mode in false
+        /// </summary>
+        public void SetDegenerateModeOn()
+        {
+
+            this.OCCTView.SetDegenerateModeOn();
+        }
+
+        /// <summary>
+        ///Set computed mode in true
+        /// </summary>
+        public void SetDegenerateModeOff()
+        {
+            this.OCCTView.SetDegenerateModeOff();
+        }
+
+        /// <summary>
+        ///Fit all
+        /// </summary>
+        public void WindowFitAll(int theXmin, int theYmin, int theXmax, int theYmax)
+        {
+            this.OCCTView.WindowFitAll(theXmin, theYmin, theXmax, theYmax);
+        }
+
+        /// <summary>
+        ///Front side
+        /// </summary>
+        public void FrontView()
+        {
+            this.OCCTView.FrontView();
+        }
+
+        /// <summary>
+        ///Top side
+        /// </summary>
+        public void TopView()
+        {
+            this.OCCTView.TopView();
+        }
+
+        /// <summary>
+        ///Left side
+        /// </summary>
+        public void LeftView()
+        {
+            this.OCCTView.LeftView();
+        }
+
+        /// <summary>
+        ///Back side
+        /// </summary>
+        public void BackView()
+        {
+            this.OCCTView.BackView();
+        }
+
+        /// <summary>
+        ///Right side
+        /// </summary>
+        public void RightView()
+        {
+            this.OCCTView.RightView();
+        }
+
+        /// <summary>
+        ///Bottom side
+        /// </summary>
+        public void BottomView()
+        {
+            this.OCCTView.BottomView();
+        }
+
+        /// <summary>
+        ///Axo side
+        /// </summary>
+        public void AxoView()
+        {
+            this.OCCTView.AxoView();
+        }
+
+        /// <summary>
+        ///Zoom in all view
+        /// </summary>
+        public void ZoomAllView()
+        {
+            this.OCCTView.ZoomAllView();
+        }
+
+        /// <summary>
+        ///Scale
+        /// </summary>
+        public double Scale()
+        {
+            return this.OCCTView.Scale();
+        }
+
+
+        public void SetLight(bool OnLight)
+        {
+            this.OCCTView.SetLight(OnLight);
+        }
+
+        public void SetGridActivity(bool GridActivity)
+        {
+            this.OCCTView.SetLight(GridActivity);
+        }
+
+
+        /// <summary>
+        ///Reset view
+        /// </summary>
+        public void Reset()
+        {
+            this.OCCTView.Reset();
+        }
+
+        /// <summary>
+        /// 图形显示边框
+        /// </summary>
+        /// <param name="anInteractive"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        public void SetFaceBoundaryAspect(XAIS_InteractiveObject anInteractive, bool IsBoundaryDraw)
+        {
+            XPrs3d_Drawer aDrawer = anInteractive.Attributes();
+            aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
+            if (IsBoundaryDraw)
+            {
+                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();
+                aBoundaryAspect.SetColor(new XQuantity_Color(0.0, 0.0, 0.0, XQuantity_TypeOfColor.Quantity_TOC_RGB));
+                aBoundaryAspect.SetTypeOfLine(XAspect_TypeOfLine.Aspect_TOL_SOLID);
+                aBoundaryAspect.SetWidth(1.0);
+            }
+        }
+
+        #endregion
+
         #region 字段
         protected CurrentAction3d myCurrentMode;
         protected CurrentPressedKey myCurrentPressedKey;
@@ -570,6 +2082,8 @@ namespace UniversalCAD
 
         public OCCTProxy OCCTView { get; set; } = null;
         public bool InitViewer { get; set; } = false;
+
+        private static object lockObject = new object();
         #endregion
     }
 }

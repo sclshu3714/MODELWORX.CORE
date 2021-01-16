@@ -54,6 +54,7 @@
 #include <Resource_Unicode.hxx>
 #include <Aspect_TypeOfTriedronPosition.hxx>
 #include <TDataStd_Integer.hxx>
+#include <AIS_ViewCube.hxx>
 
 #pragma region required OCCT libraries
 // list of required OCCT libraries
@@ -129,13 +130,19 @@ public:
         if (!aWNTWindow->IsMapped()) {
             aWNTWindow->Map();
         }
-        mainView()->ZBufferTriedronSetup();
-        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
-        mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.15, V3d_WIREFRAME);   //画三维坐标系
         mainAISContext() = new AIS_InteractiveContext(mainViewer());
         mainAISContext()->UpdateCurrentViewer();
         mainView()->Redraw();
         mainView()->MustBeResized();
+
+        //mainView()->ZBufferTriedronSetup();
+        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
+        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.15, V3d_WIREFRAME);   //画三维坐标系
+        Handle(AIS_ViewCube) HViewCube = new AIS_ViewCube();
+        HViewCube->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
+        //SetTransformPersistence (new Graphic3d_TransformPers (Graphic3d_TMF_TriedronPers, Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i (100, 100));
+        HViewCube->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, Aspect_TOTP_RIGHT_LOWER, Graphic3d_Vec2i(100, 100))); // set 2d flag, coordinate origin is set to down-left corner
+        mainAISContext()->Display(HViewCube, Standard_True);
 
         AISTextLabel("sclshu3714@163.com");
         //Aspect_TypeOfTriedronPosition
