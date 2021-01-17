@@ -68,8 +68,8 @@ namespace UniversalCAD
             this.ToolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.ToolStripMain.Location = new System.Drawing.Point(0, 0);
             this.ToolStripMain.Name = "ToolStripMain";
-            this.ToolStripMain.Padding = new System.Windows.Forms.Padding(3);
-            this.ToolStripMain.Size = new System.Drawing.Size(70, 653);
+            this.ToolStripMain.Padding = new System.Windows.Forms.Padding(0);
+            this.ToolStripMain.Size = new System.Drawing.Size(52, 522);
             this.ToolStripMain.TabIndex = 0;
             this.ToolStripMain.Text = "tspMain";
             // 
@@ -81,7 +81,7 @@ namespace UniversalCAD
             this.btnOpen.Margin = new System.Windows.Forms.Padding(0);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Padding = new System.Windows.Forms.Padding(8, 9, 8, 7);
-            this.btnOpen.Size = new System.Drawing.Size(63, 52);
+            this.btnOpen.Size = new System.Drawing.Size(51, 52);
             this.btnOpen.Tag = "Open";
             this.btnOpen.Text = "打开文件&(Ctrl+O)";
             // 
@@ -93,7 +93,7 @@ namespace UniversalCAD
             this.btnSave.Margin = new System.Windows.Forms.Padding(0);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
-            this.btnSave.Size = new System.Drawing.Size(63, 51);
+            this.btnSave.Size = new System.Drawing.Size(51, 51);
             this.btnSave.Tag = "Save";
             this.btnSave.Text = "保存文件";
             // 
@@ -105,7 +105,7 @@ namespace UniversalCAD
             this.btnTLable.Margin = new System.Windows.Forms.Padding(0);
             this.btnTLable.Name = "btnTLable";
             this.btnTLable.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
-            this.btnTLable.Size = new System.Drawing.Size(63, 51);
+            this.btnTLable.Size = new System.Drawing.Size(51, 51);
             this.btnTLable.Tag = "TLable";
             this.btnTLable.Text = "模型结构";
             // 
@@ -117,7 +117,7 @@ namespace UniversalCAD
             this.btnDemonstration.Margin = new System.Windows.Forms.Padding(0);
             this.btnDemonstration.Name = "btnDemonstration";
             this.btnDemonstration.Padding = new System.Windows.Forms.Padding(8);
-            this.btnDemonstration.Size = new System.Drawing.Size(63, 52);
+            this.btnDemonstration.Size = new System.Drawing.Size(51, 52);
             this.btnDemonstration.Tag = "Demonstration";
             this.btnDemonstration.Text = "演示模式";
             // 
@@ -129,7 +129,7 @@ namespace UniversalCAD
             this.btnOperation.Margin = new System.Windows.Forms.Padding(0);
             this.btnOperation.Name = "btnOperation";
             this.btnOperation.Padding = new System.Windows.Forms.Padding(8);
-            this.btnOperation.Size = new System.Drawing.Size(63, 52);
+            this.btnOperation.Size = new System.Drawing.Size(51, 52);
             this.btnOperation.Tag = "Operation";
             this.btnOperation.Text = "操作设置";
             // 
@@ -141,7 +141,7 @@ namespace UniversalCAD
             this.btnSection.Margin = new System.Windows.Forms.Padding(0);
             this.btnSection.Name = "btnSection";
             this.btnSection.Padding = new System.Windows.Forms.Padding(8);
-            this.btnSection.Size = new System.Drawing.Size(63, 52);
+            this.btnSection.Size = new System.Drawing.Size(51, 52);
             this.btnSection.Tag = "Section";
             this.btnSection.Text = "切面";
             // 
@@ -153,7 +153,7 @@ namespace UniversalCAD
             this.btnMeasure.Margin = new System.Windows.Forms.Padding(0);
             this.btnMeasure.Name = "btnMeasure";
             this.btnMeasure.Padding = new System.Windows.Forms.Padding(8);
-            this.btnMeasure.Size = new System.Drawing.Size(63, 52);
+            this.btnMeasure.Size = new System.Drawing.Size(51, 52);
             this.btnMeasure.Tag = "Measure";
             this.btnMeasure.Text = "标记";
             // 
@@ -166,7 +166,7 @@ namespace UniversalCAD
             this.btnHelp.Margin = new System.Windows.Forms.Padding(0);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Padding = new System.Windows.Forms.Padding(8);
-            this.btnHelp.Size = new System.Drawing.Size(63, 52);
+            this.btnHelp.Size = new System.Drawing.Size(51, 52);
             this.btnHelp.Tag = "Help";
             this.btnHelp.Text = "帮助";
             // 
@@ -180,7 +180,7 @@ namespace UniversalCAD
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(8);
             this.btnSetting.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnSetting.Size = new System.Drawing.Size(63, 52);
+            this.btnSetting.Size = new System.Drawing.Size(51, 52);
             this.btnSetting.Tag = "Setting";
             this.btnSetting.Text = "设置";
             // 
@@ -198,13 +198,14 @@ namespace UniversalCAD
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1182, 653);
+            this.ClientSize = new System.Drawing.Size(886, 522);
             this.Controls.Add(this.ToolStripMain);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAD";

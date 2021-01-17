@@ -58,7 +58,7 @@ namespace UniversalCAD
             {
                 if (e.ToolStrip.RenderMode == ToolStripRenderMode.Custom)
                 {
-                    Rectangle rect = new Rectangle(0, 0, e.ToolStrip.Width, e.ToolStrip.Height - 2);
+                    Rectangle rect = new Rectangle(0, 0, e.ToolStrip.Width + 1, e.ToolStrip.Height);
                     e.Graphics.SetClip(rect);
                 }
                 else
@@ -122,8 +122,12 @@ namespace UniversalCAD
             switch (stripButton.Tag?.ToString())
             {
                 case "Open":            //打开
+
+                    stripButton.Checked = false;
                     break;
                 case "Save":            //保存
+
+                    stripButton.Checked = false;
                     break;
                 case "TLable":          //结构
                     break;
@@ -136,8 +140,12 @@ namespace UniversalCAD
                 case "Measure":         //标记
                     break;
                 case "Setting":         //设置
+
+                    stripButton.Checked = false;
                     break;
                 case "Help":            //帮助
+
+                    stripButton.Checked = false;
                     break;
                 default:
                     break;

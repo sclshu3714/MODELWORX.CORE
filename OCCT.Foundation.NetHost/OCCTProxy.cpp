@@ -135,11 +135,15 @@ public:
         mainView()->Redraw();
         mainView()->MustBeResized();
 
+        //mainView()->SetBgGradientColors(Quantity_Color(217 / 255., 217 / 255., 217 / 255., Quantity_TOC_RGB), Quantity_Color(236 / 255., 236 / 255., 236 / 255., Quantity_TOC_RGB));
+
         //mainView()->ZBufferTriedronSetup();
         //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
         //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.15, V3d_WIREFRAME);   //画三维坐标系
         Handle(AIS_ViewCube) HViewCube = new AIS_ViewCube();
-        HViewCube->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
+        //HViewCube->SetTransparency(0.1);
+        //HViewCube->SetTextColor(Quantity_Color(Quantity_NOC_BLACK));
+        //HViewCube->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
         //SetTransformPersistence (new Graphic3d_TransformPers (Graphic3d_TMF_TriedronPers, Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i (100, 100));
         HViewCube->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, Aspect_TOTP_RIGHT_LOWER, Graphic3d_Vec2i(100, 100))); // set 2d flag, coordinate origin is set to down-left corner
         mainAISContext()->Display(HViewCube, Standard_True);
