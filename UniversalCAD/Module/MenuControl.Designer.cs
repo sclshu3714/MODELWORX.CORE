@@ -132,25 +132,26 @@ namespace UniversalCAD.Module
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 3);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 55);
+            this.panel1.Size = new System.Drawing.Size(220, 54);
             this.panel1.TabIndex = 3;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox4.Image = global::UniversalCAD.Properties.Resources.Img_97;
-            this.pictureBox4.Location = new System.Drawing.Point(173, 0);
+            this.pictureBox4.Location = new System.Drawing.Point(171, 0);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(47, 55);
+            this.pictureBox4.Size = new System.Drawing.Size(47, 52);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
@@ -161,7 +162,7 @@ namespace UniversalCAD.Module
             this.label2.Font = new System.Drawing.Font("宋体", 14F);
             this.label2.Location = new System.Drawing.Point(49, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 55);
+            this.label2.Size = new System.Drawing.Size(169, 52);
             this.label2.TabIndex = 1;
             this.label2.Text = "本地";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,7 +174,7 @@ namespace UniversalCAD.Module
             this.pictureBox3.Location = new System.Drawing.Point(0, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(49, 55);
+            this.pictureBox3.Size = new System.Drawing.Size(49, 52);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
@@ -186,9 +187,9 @@ namespace UniversalCAD.Module
             this.panel2.Controls.Add(this.pictureBox5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 453);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 45);
+            this.panel2.Size = new System.Drawing.Size(220, 44);
             this.panel2.TabIndex = 4;
             // 
             // pictureBox5
@@ -198,7 +199,7 @@ namespace UniversalCAD.Module
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(49, 45);
+            this.pictureBox5.Size = new System.Drawing.Size(49, 44);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
@@ -209,7 +210,7 @@ namespace UniversalCAD.Module
             this.label3.Font = new System.Drawing.Font("宋体", 14F);
             this.label3.Location = new System.Drawing.Point(49, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 45);
+            this.label3.Size = new System.Drawing.Size(171, 44);
             this.label3.TabIndex = 1;
             this.label3.Text = "网络";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -222,9 +223,9 @@ namespace UniversalCAD.Module
             this.panel3.Controls.Add(this.pictureBox6);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 498);
-            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(220, 45);
+            this.panel3.Size = new System.Drawing.Size(220, 44);
             this.panel3.TabIndex = 5;
             // 
             // panel4
@@ -246,7 +247,7 @@ namespace UniversalCAD.Module
             this.pictureBox6.Image = global::UniversalCAD.Properties.Resources.Img_516;
             this.pictureBox6.Location = new System.Drawing.Point(0, 0);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(49, 45);
+            this.pictureBox6.Size = new System.Drawing.Size(49, 44);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
@@ -268,7 +269,7 @@ namespace UniversalCAD.Module
             this.label4.Font = new System.Drawing.Font("宋体", 14F);
             this.label4.Location = new System.Drawing.Point(49, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(171, 45);
+            this.label4.Size = new System.Drawing.Size(171, 44);
             this.label4.TabIndex = 1;
             this.label4.Text = "收藏";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -291,9 +292,9 @@ namespace UniversalCAD.Module
             this.tableLayoutPanel1.SetColumnSpan(this.treeView1, 3);
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 105);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(0);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(220, 348);
+            this.treeView1.Size = new System.Drawing.Size(220, 347);
             this.treeView1.TabIndex = 7;
             // 
             // MenuControl
