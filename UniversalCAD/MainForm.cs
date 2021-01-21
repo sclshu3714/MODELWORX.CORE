@@ -31,7 +31,7 @@ namespace UniversalCAD
         {
             InitializeComponent();
             //OCCTView = new OCCTProxy();
-            this.ToolStripMain.Renderer = new CustomRenderer() { RoundedEdges = false };
+           // this.ToolStripMain.Renderer = new CustomRenderer() { RoundedEdges = false };
             this.Load += MainForm_Load;
         }
 
@@ -78,7 +78,7 @@ namespace UniversalCAD
                 Application.Exit();
                 return;
             }
-            this.ToolStripMain.ItemClicked += ToolStripMain_ItemClicked;
+            //this.ToolStripMain.ItemClicked += ToolStripMain_ItemClicked;
             this.FormClosed += MainForm_FormClosed;
         }
 
@@ -733,12 +733,11 @@ namespace UniversalCAD
             XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(theLabel);
             XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
             Assembly.GetFreeShapes(ref aRootLabels);
-            XTDF_XIterator aRootIter = aRootLabels.Iterator();
-            for (; aRootIter.More(); aRootIter.Next())
+            XTDF_XIterator aRootIter;// = aRootLabels.Iterator();
+            for (aRootIter = aRootLabels.Iterator(); aRootIter.More(); aRootIter.Next())
             {
                 XTDF_Label aRootLabel = aRootIter.Value();
                 Display(aRootLabel, IsBoundaryDraw);
-                return;
             }
             //if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
             //{
