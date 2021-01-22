@@ -119,7 +119,7 @@ rem ----- For compatability with external application using CASROOT -----
 if ["%CASROOT%"] == [""] set "CASROOT=%SCRIPTROOT%"
 
 rem ----- Define path to 3rdparty products -----
-if ["%THIRDPARTY_DIR%"] == [""] set "THIRDPARTY_DIR=E:/Software/OCC/opencascade-7.5.0/3rdparty/vc14/x32"
+if ["%THIRDPARTY_DIR%"] == [""] set "THIRDPARTY_DIR=E:/Software/OCC/OpenCASCADE7.5.0/3rdparty/vc14/x32"
 
 if ["%ARCH%"] == ["32"] set VCARCH=x86
 if ["%ARCH%"] == ["64"] set VCARCH=amd64
