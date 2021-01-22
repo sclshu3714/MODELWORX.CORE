@@ -355,7 +355,7 @@ public:
     /// <summary>
     ///Set background color
     /// </summary>
-    void BackgroundColor(Standard_Integer theRed, Standard_Integer theGreen, Standard_Integer theBlue) {
+    void BackgroundColor(Standard_Integer% theRed, Standard_Integer% theGreen, Standard_Integer% theBlue) {
         Standard_Real R1 = 0;
         Standard_Real G1 = 0;
         Standard_Real B1 = 0;
@@ -610,6 +610,15 @@ public:
     void SetBackgroundColor(Standard_Integer theRed, Standard_Integer theGreen, Standard_Integer theBlue) {
         if (!mainView().IsNull()) {
             mainView()->SetBackgroundColor(Quantity_TOC_RGB, theRed / 255., theGreen / 255., theBlue / 255.);
+        }
+    }
+
+    /// <summary>
+    /// …Ë÷√Ω•±‰±≥æ∞…´
+    /// </summary>
+    void SetBgGradientColors(XQuantity_Color^ theColor1, XQuantity_Color^ theColor2, XAspect_GradientFillMethod theFillStyle, Standard_Boolean theToUpdate) {
+        if (!mainView().IsNull()) {
+            mainView()->SetBgGradientColors(*theColor1->GetColor(), *theColor2->GetColor(), safe_cast<Aspect_GradientFillMethod>(theFillStyle), theToUpdate);
         }
     }
 

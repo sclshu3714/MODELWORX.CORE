@@ -386,6 +386,11 @@ Get version （获取版本）
 Erase objects（删除对象）
 </summary>
         </member>
+        <member name="M:OCCTProxy.SetBgGradientColors(TKernel.XQuantity_Color,TKernel.XQuantity_Color,XAspect_GradientFillMethod,System.Boolean)">
+            <summary>
+设置渐变背景色
+</summary>
+        </member>
         <member name="M:OCCTProxy.SetBackgroundColor(System.Int32,System.Int32,System.Int32)">
             <summary>
 Set background color R/G/B
@@ -492,7 +497,7 @@ Get background color Green
 Get background color Red
 </summary>
         </member>
-        <member name="M:OCCTProxy.BackgroundColor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:OCCTProxy.BackgroundColor(System.Int32@,System.Int32@,System.Int32@)">
             <summary>
 Set background color
 </summary>

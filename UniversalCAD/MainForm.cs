@@ -93,25 +93,28 @@ namespace UniversalCAD
         {
             OCCTView = new OCCTProxy();
             OCCTView.InitOCCTProxy();
-            if (!(InitViewer = OCCTView.InitViewer(this.Handle)))
+            if (!(InitViewer = OCCTView.InitViewer(this.RWControl.Handle)))
             {
                 MessageBox.Show("初始化图形失败");
                 return InitViewer;
             }
+            OCCTView.SetBgGradientColors(new XQuantity_Color(158 / 255.0, 165 / 255.0, 172 / 255.0, XQuantity_TypeOfColor.Quantity_TOC_RGB),  
+                                         new XQuantity_Color(229 / 255.0, 234 / 255.0, 236 / 255.0, XQuantity_TypeOfColor.Quantity_TOC_RGB),
+                                         XAspect_GradientFillMethod.Aspect_GFM_VER, false);
             myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
             myDegenerateModeIsOn = true;
             IsRectVisible = false;
             OCCTView.SetLight(true);
 
-            this.SizeChanged += RenderWindow_SizeChanged;
-            this.Paint += RenderWindow_Paint;
-            this.KeyDown += RenderWindow_KeyDown;
-            this.KeyUp += RenderWindow_KeyUp;
-            this.MouseDown += RenderWindow_MouseDown;
-            this.MouseUp += RenderWindow_MouseUp;
-            this.MouseMove += RenderWindow_MouseMove;
-            this.MouseWheel += RenderWindow_MouseWheel;
+            this.RWControl.SizeChanged += RenderWindow_SizeChanged;
+            this.RWControl.Paint += RenderWindow_Paint;
+            this.RWControl.KeyDown += RenderWindow_KeyDown;
+            this.RWControl.KeyUp += RenderWindow_KeyUp;
+            this.RWControl.MouseDown += RenderWindow_MouseDown;
+            this.RWControl.MouseUp += RenderWindow_MouseUp;
+            this.RWControl.MouseMove += RenderWindow_MouseMove;
+            this.RWControl.MouseWheel += RenderWindow_MouseWheel;
             return InitViewer;
         }
 
@@ -167,6 +170,7 @@ namespace UniversalCAD
                 OCCTView.RedrawView();
                 OCCTView.UpdateView();
                 OCCTView.UpdateCurrentViewer();
+                this.RWControl.Select();
             }
         }
         /// <summary>
@@ -181,6 +185,7 @@ namespace UniversalCAD
                 OCCTView.RedrawView();
                 OCCTView.UpdateView();
                 OCCTView.UpdateCurrentViewer();
+                this.RWControl.Select();
             }
         }
         /// <summary>
