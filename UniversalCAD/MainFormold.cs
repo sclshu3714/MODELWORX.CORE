@@ -25,9 +25,9 @@ using TKXDESTEP;
 
 namespace UniversalCAD
 {
-    public partial class MainForm : Form
+    public partial class MainFormold : Form
     {
-        public MainForm()
+        public MainFormold()
         {
             InitializeComponent();
             //OCCTView = new OCCTProxy();

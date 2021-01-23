@@ -41,7 +41,7 @@ namespace UniversalCAD
             //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(SkinName);
             //else
             //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
-            Application.Run(new MainForm());
+            Application.Run(new MainFormold());
         }
         #region 异常捕获
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

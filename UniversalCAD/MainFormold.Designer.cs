@@ -1,7 +1,7 @@
 ﻿
 namespace UniversalCAD
 {
-    partial class MainForm
+    partial class MainFormold
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -30,7 +30,7 @@ namespace UniversalCAD
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormold));
             this.img32List = new System.Windows.Forms.ImageList(this.components);
             this.img16List = new System.Windows.Forms.ImageList(this.components);
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
