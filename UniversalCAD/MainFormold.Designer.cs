@@ -243,12 +243,11 @@ namespace UniversalCAD
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(0);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
-            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl1.OptionsMinimizing.VerticalTextOrientation = DevExpress.XtraBars.Docking.VerticalTextOrientation.TopToBottom;
             this.accordionControl1.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl1.Size = new System.Drawing.Size(52, 684);
+            this.accordionControl1.Size = new System.Drawing.Size(250, 684);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.Text = "accordionControl1";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
@@ -461,12 +460,12 @@ namespace UniversalCAD
             // RWControl
             // 
             this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RWControl.Location = new System.Drawing.Point(52, 0);
+            this.RWControl.Location = new System.Drawing.Point(250, 0);
             this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(1046, 684);
+            this.RWControl.Size = new System.Drawing.Size(848, 684);
             this.RWControl.TabIndex = 2;
             // 
-            // MainForm
+            // MainFormold
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -477,7 +476,7 @@ namespace UniversalCAD
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "MainForm";
+            this.Name = "MainFormold";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAD";
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
