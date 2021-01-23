@@ -54,7 +54,7 @@ namespace TKV3d
 
 		//!
 		~XAIS_InteractiveObject();
-
+		!XAIS_InteractiveObject() { IHandle = NULL; };
 		//!
 		void SetNativeHandle(Handle(AIS_InteractiveObject) pos);
 

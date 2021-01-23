@@ -46,7 +46,7 @@ namespace TKV3d {
 
         //! Destructor.
         virtual ~XGraphic3d_PresentationAttributes();
-
+        !XGraphic3d_PresentationAttributes() { IHandle = NULL; };
         virtual Handle(Graphic3d_PresentationAttributes) GetPresentationAttributes();
 
         void SetNativeHandle(Handle(Graphic3d_PresentationAttributes) pos);

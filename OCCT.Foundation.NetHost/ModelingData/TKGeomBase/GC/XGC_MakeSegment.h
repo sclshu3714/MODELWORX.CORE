@@ -54,6 +54,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeSegment() { IHandle = NULL; };
+		~XGC_MakeSegment() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeSegment();
 

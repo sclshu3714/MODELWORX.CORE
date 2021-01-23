@@ -89,7 +89,8 @@ namespace TKG3d {
 
 	public:
 
-
+		!XGeom_Ellipse() { IHandle = NULL; };
+		~XGeom_Ellipse() { IHandle = NULL; };
 		//! Constructs an ellipse by conversion of the gp_Elips ellipse E.
 		XGeom_Ellipse(xgp_Elips^ E);
 

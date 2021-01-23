@@ -49,7 +49,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrim_Torus() { IHandle = NULL; };
+		~XBRepPrim_Torus() { IHandle = NULL; };
 		//! 
 		XBRepPrim_Torus();
 

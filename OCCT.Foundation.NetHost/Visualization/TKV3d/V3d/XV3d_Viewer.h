@@ -95,6 +95,8 @@ namespace TKV3d {
         //! DEFINE_STANDARD_RTTIEXT(V3d_Viewer, Standard_Transient)
     public:
 
+        !XV3d_Viewer() { IHandle = NULL; };
+        ~XV3d_Viewer() { IHandle = NULL; };
         //! Create a Viewer with the given graphic driver and with default parameters:
         //! - View orientation: V3d_XposYnegZpos
         //! - View background: Quantity_NOC_GRAY30

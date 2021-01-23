@@ -62,6 +62,9 @@ namespace TKBRep {
     {
 
     public:
+        !XTopoDS_TShape() { IHandle = NULL; };
+        ~XTopoDS_TShape() { IHandle = NULL; };
+
         XTopoDS_TShape();
 
         XTopoDS_TShape(Handle(TopoDS_TShape) pos);

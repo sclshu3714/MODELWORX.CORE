@@ -56,7 +56,7 @@ namespace TKMath {
 
         //! ÊÍ·Å
         ~XTopLoc_Location();
-
+        !XTopLoc_Location() { IHandle = NULL; };
         //!
         virtual TopLoc_Location* GetLocation();
 
@@ -157,12 +157,14 @@ namespace TKMath {
         /// <summary>
         /// 本地句柄
         /// </summary>
-        property TopLoc_Location* Handle {
+        virtual property TopLoc_Location* IHandle {
             TopLoc_Location* get() {
-                return  NativeHandle;
+                return NativeHandle;
             }
-        };
-
+            void set(TopLoc_Location* handle) {
+                NativeHandle = handle;
+            }
+        }
     private:
         TopLoc_Location* NativeHandle;
     };

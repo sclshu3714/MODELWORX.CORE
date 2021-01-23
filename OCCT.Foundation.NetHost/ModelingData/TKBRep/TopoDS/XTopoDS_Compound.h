@@ -42,7 +42,8 @@ namespace TKBRep {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_Compound() { IHandle = NULL; };
+        ~XTopoDS_Compound() { IHandle = NULL; };
 
         //! Constructs an Undefined Compound.
         XTopoDS_Compound();

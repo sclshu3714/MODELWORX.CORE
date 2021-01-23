@@ -67,7 +67,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrim_FaceBuilder() { IHandle = NULL; };
+		~XBRepPrim_FaceBuilder() { IHandle = NULL; };
 
 		XBRepPrim_FaceBuilder();
 

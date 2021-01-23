@@ -76,7 +76,8 @@ namespace TKFillet {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepFilletAPI_MakeFillet() { IHandle = NULL; };
+		~XBRepFilletAPI_MakeFillet() { IHandle = NULL; };
 		XBRepFilletAPI_MakeFillet();
 		//! Initializes   the computation    of   the  fillets.
 		//! <FShape> sets   the type   of fillet  surface. The

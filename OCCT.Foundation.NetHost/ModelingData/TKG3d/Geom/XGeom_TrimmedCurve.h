@@ -73,7 +73,7 @@ namespace TKG3d {
 
 		//!
 		~XGeom_TrimmedCurve();
-
+		!XGeom_TrimmedCurve() { IHandle = NULL; };
 		//! 
 		XGeom_TrimmedCurve(Handle(Geom_TrimmedCurve) pos);
 

@@ -35,6 +35,8 @@ namespace TKGeomBase {
     {
     public:
 
+        !XGC_Root() { IHandle = NULL; };
+        ~XGC_Root() { IHandle = NULL; };
         //! DEFINE_STANDARD_ALLOC
         XGC_Root();
 

@@ -85,6 +85,9 @@ namespace TKG2d {
 
 	public:
 
+		!XGeom2d_Curve() { IHandle = NULL; };
+		~XGeom2d_Curve() { IHandle = NULL; };
+
 		XGeom2d_Curve(Handle(Geom2d_Curve) pos);
 
 		void SetCurveHandle(Handle(Geom2d_Curve) pos);

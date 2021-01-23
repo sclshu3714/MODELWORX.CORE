@@ -38,7 +38,8 @@ namespace TKBRep {
 
     public:
 
-
+        !XTopoDS_HShape() { IHandle = NULL; };
+        ~XTopoDS_HShape() { IHandle = NULL; };
         //! Constructs an empty shape object
         XTopoDS_HShape();
 

@@ -39,7 +39,8 @@ namespace TKV3d {
 	public:
 
 		XGraphic3d_DataStructureManager();
-
+        !XGraphic3d_DataStructureManager() { IHandle = NULL; };
+        ~XGraphic3d_DataStructureManager() { IHandle = NULL; };
         XGraphic3d_DataStructureManager(Handle(Graphic3d_DataStructureManager) handle);
 
         void SetDataStructureManagerHandle(Handle(Graphic3d_DataStructureManager) handle);

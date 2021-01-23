@@ -68,7 +68,8 @@ namespace TKXDESTEP {
     public ref class XSTEPCAFControl_Reader
     {
     public:
-
+        !XSTEPCAFControl_Reader() { IHandle = NULL; };
+        ~XSTEPCAFControl_Reader() { IHandle = NULL; };
         //! Creates a reader with an empty
         //! STEP model and sets ColorMode, LayerMode, NameMode and
         //! PropsMode to Standard_True.
@@ -189,12 +190,15 @@ namespace TKXDESTEP {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property STEPCAFControl_Reader* Handle
-        {
+        virtual property STEPCAFControl_Reader* IHandle {
             STEPCAFControl_Reader* get() {
                 return NativeHandle;
             }
+            void set(STEPCAFControl_Reader* handle) {
+                NativeHandle = handle;
+            }
         }
+
     private:
         STEPCAFControl_Reader* NativeHandle;
     };

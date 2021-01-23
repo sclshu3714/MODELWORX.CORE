@@ -49,7 +49,8 @@ namespace TKTopAlgo {
 
 		//! DEFINE_STANDARD_ALLOC
 
-
+		!XBRepBuilderAPI_FindPlane() { IHandle = NULL; };
+		~XBRepBuilderAPI_FindPlane() { IHandle = NULL; };
 		//! Initializes an empty algorithm. The function Init is then used to define the shape.
 		XBRepBuilderAPI_FindPlane();
 

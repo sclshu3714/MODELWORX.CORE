@@ -45,6 +45,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!xgce_MakeScale() { IHandle = NULL; };
+		~xgce_MakeScale() { IHandle = NULL; };
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeScale();
 

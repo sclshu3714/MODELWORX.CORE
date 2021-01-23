@@ -75,7 +75,8 @@ namespace TKLCAF {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XTDF_Label() { IHandle = NULL; };
+        ~XTDF_Label() { IHandle = NULL; };
         //! Constructs an empty label object.
         XTDF_Label();
 
@@ -310,13 +311,14 @@ namespace TKLCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TDF_Label* Handle
-        {
+        virtual property TDF_Label* IHandle {
             TDF_Label* get() {
                 return NativeHandle;
             }
+            void set(TDF_Label* handle) {
+                NativeHandle = handle;
+            }
         }
-
     private:
         TDF_Label* NativeHandle;
     };

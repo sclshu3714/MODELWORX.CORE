@@ -40,7 +40,8 @@ namespace TKBRep {
 
     public:
 
-
+        !XTopoDS_TSolid() { IHandle = NULL; };
+        ~XTopoDS_TSolid() { IHandle = NULL; };
         //! Creates an empty TSolid.
         XTopoDS_TSolid();
 

@@ -77,6 +77,9 @@ namespace TKTopAlgo {
     {
     public:
 
+        !XBRepBuilderAPI_FastSewing() { IHandle = NULL; };
+        ~XBRepBuilderAPI_FastSewing() { IHandle = NULL; };
+
         XBRepBuilderAPI_FastSewing();
 
         XBRepBuilderAPI_FastSewing(Handle(BRepBuilderAPI_FastSewing) handle);

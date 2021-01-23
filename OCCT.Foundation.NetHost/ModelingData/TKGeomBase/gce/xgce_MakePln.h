@@ -70,7 +70,8 @@ namespace TKGeomBase {
 		//DEFINE_STANDARD_ALLOC
 
 		xgce_MakePln();
-
+		!xgce_MakePln() { IHandle = NULL; };
+		~xgce_MakePln() { IHandle = NULL; };
 		xgce_MakePln(gce_MakePln* pos);
 
 		void SetMakePln(gce_MakePln* pos);

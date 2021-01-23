@@ -54,7 +54,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrimAPI_MakeTorus() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeTorus() { IHandle = NULL; };
 
 		XBRepPrimAPI_MakeTorus();
 

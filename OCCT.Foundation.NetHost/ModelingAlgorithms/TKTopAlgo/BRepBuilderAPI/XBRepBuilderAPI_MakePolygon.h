@@ -66,7 +66,8 @@ namespace TKTopAlgo {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepBuilderAPI_MakePolygon() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakePolygon() { IHandle = NULL; };
 
 		//! Initializes an empty polygonal wire, to which points or
 		//! vertices are added using the Add function.

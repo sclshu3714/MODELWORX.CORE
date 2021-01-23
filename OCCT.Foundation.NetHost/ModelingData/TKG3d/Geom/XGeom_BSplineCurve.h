@@ -160,6 +160,9 @@ namespace TKG3d {
         //!
         ~XGeom_BSplineCurve();
 
+        !XGeom_BSplineCurve() { IHandle = NULL; };
+
+
         void SetBSplineCurveHandle(Handle(Geom_BSplineCurve) pos);
 
         //!

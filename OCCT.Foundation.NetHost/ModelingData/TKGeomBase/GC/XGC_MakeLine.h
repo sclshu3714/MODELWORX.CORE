@@ -62,7 +62,8 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XGC_MakeLine() { IHandle = NULL; };
+		~XGC_MakeLine() { IHandle = NULL; };
 
 		XGC_MakeLine();
 

@@ -63,7 +63,8 @@ namespace TKFillet {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepFilletAPI_MakeChamfer() { IHandle = NULL; };
+		~XBRepFilletAPI_MakeChamfer() { IHandle = NULL; };
 
 		XBRepFilletAPI_MakeChamfer();
 

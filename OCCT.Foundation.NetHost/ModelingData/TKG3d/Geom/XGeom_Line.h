@@ -74,6 +74,8 @@ namespace TKG3d {
 
 	public:
 
+		!XGeom_Line() { IHandle = NULL; };
+		~XGeom_Line() { IHandle = NULL; };
 		//! Creates a line located in 3D space with the axis placement A1.
 		//! The Location of A1 is the origin of the line.
 		XGeom_Line(xgp_Ax1^ A1);

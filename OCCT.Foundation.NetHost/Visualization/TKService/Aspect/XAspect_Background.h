@@ -40,7 +40,8 @@ namespace TKService {
 		//! Creates a window background.
 		//! Default color : NOC_MATRAGRAY.
 		XAspect_Background();
-
+		!XAspect_Background() { IHandle = NULL; };
+		~XAspect_Background() { IHandle = NULL; };
 		XAspect_Background(Aspect_Background* pos);
 
 		void SetBackgroundHandle(Aspect_Background* pos);

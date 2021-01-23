@@ -59,7 +59,7 @@ namespace TKernel {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XTCollection_AsciiString() { IHandle = NULL; };
 
         //! Initializes a AsciiString to an empty AsciiString.
         XTCollection_AsciiString();
@@ -688,10 +688,12 @@ namespace TKernel {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TCollection_AsciiString* Handle
-        {
+        virtual property TCollection_AsciiString* IHandle {
             TCollection_AsciiString* get() {
                 return NativeHandle;
+            }
+            void set(TCollection_AsciiString* handle) {
+                NativeHandle = handle;
             }
         }
     private:

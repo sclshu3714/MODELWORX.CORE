@@ -116,6 +116,8 @@ namespace TKG3d
 		//!
 		~XGeom_SurfaceOfRevolution();
 
+		!XGeom_SurfaceOfRevolution() { IHandle = NULL; };
+
 		void SetSurfaceOfRevolutionHandle(Handle(Geom_SurfaceOfRevolution) handle);
 
 		//!

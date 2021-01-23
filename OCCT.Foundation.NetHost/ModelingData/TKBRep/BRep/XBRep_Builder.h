@@ -96,7 +96,8 @@ namespace TKBRep {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBRep_Builder() { IHandle = NULL; };
+        ~XBRep_Builder() { IHandle = NULL; };
         //! Creates from a Builder.
         XBRep_Builder(BRep_Builder* pos);
 

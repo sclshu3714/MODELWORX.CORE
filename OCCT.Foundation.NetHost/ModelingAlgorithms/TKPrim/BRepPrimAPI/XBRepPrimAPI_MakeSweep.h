@@ -56,6 +56,8 @@ namespace TKPrim {
 	{
 	public:
 		//! DEFINE_STANDARD_ALLOC
+		!XBRepPrimAPI_MakeSweep() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeSweep() { IHandle = NULL; };
 		//! 
 		XBRepPrimAPI_MakeSweep();
 

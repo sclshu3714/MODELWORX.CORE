@@ -148,7 +148,8 @@ namespace TKLCAF {
 
     public:
         XTDF_Attribute();
-
+        !XTDF_Attribute() { IHandle = NULL; };
+        ~XTDF_Attribute() { IHandle = NULL; };
         //!
         XTDF_Attribute(Handle(TDF_Attribute) pos);
 

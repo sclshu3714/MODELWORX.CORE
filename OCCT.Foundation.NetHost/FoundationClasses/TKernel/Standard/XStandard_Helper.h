@@ -44,7 +44,7 @@ namespace TKernel {
 		//! 帮助类
 		XStandard_Helper(void);
 		virtual ~XStandard_Helper() { OnFreeDll(); };
-
+		!XStandard_Helper() { OnFreeDll(); };
 		////! 添加需要延迟加载的dll路径
 		//Standard_Boolean AddDelayImportDll(LPCTSTR pszDllFileName);
 		

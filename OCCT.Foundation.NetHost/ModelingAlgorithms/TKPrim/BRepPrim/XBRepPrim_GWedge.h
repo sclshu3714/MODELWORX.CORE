@@ -82,7 +82,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrim_GWedge() { IHandle = NULL; };
+		~XBRepPrim_GWedge() { IHandle = NULL; };
 		XBRepPrim_GWedge();
 
 		XBRepPrim_GWedge(BRepPrim_GWedge* handle);

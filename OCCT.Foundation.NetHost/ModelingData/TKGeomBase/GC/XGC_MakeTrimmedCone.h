@@ -50,6 +50,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeTrimmedCone() { IHandle = NULL; };
+		~XGC_MakeTrimmedCone() { IHandle = NULL; };
 		XGC_MakeTrimmedCone();
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeTrimmedCone(GC_MakeTrimmedCone* pos);

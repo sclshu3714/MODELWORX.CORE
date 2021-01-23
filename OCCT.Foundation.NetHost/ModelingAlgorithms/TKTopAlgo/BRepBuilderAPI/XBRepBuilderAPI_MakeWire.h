@@ -82,7 +82,8 @@ namespace TKTopAlgo {
 	public:
 
 		//!DEFINE_STANDARD_ALLOC
-
+		!XBRepBuilderAPI_MakeWire() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeWire() { IHandle = NULL; };
 		
 		//! Constructs an empty wire framework, to which edges
 		//! are added using the Add function.

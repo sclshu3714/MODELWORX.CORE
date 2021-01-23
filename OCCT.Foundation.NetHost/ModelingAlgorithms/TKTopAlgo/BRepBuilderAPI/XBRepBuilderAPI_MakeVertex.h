@@ -50,7 +50,8 @@ namespace TKTopAlgo {
 
 		//!
 		//!  DEFINE_STANDARD_ALLOC
-
+		!XBRepBuilderAPI_MakeVertex() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeVertex() { IHandle = NULL; };
 
 		//! Constructs a vertex from point P.
 		//! Example create a vertex from a 3D point.

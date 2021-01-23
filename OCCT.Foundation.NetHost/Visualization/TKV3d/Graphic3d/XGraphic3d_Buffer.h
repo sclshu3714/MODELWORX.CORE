@@ -84,7 +84,8 @@ namespace TKV3d {
         //XGraphic3d_Buffer(Handle(NCollection_BaseAllocator)& theAlloc);
 
         XGraphic3d_Buffer(Handle(Graphic3d_Buffer) pos);
-
+        !XGraphic3d_Buffer() { IHandle = NULL; };
+        ~XGraphic3d_Buffer() { IHandle = NULL; };
         void SetBufferHandle(Handle(Graphic3d_Buffer) pos);
 
         virtual Handle(Graphic3d_Buffer) GetBuffer();

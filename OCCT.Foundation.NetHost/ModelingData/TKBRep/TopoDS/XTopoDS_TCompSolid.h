@@ -37,6 +37,8 @@ namespace TKBRep {
 
     public:
 
+        !XTopoDS_TCompSolid() { IHandle = NULL; };
+        ~XTopoDS_TCompSolid() { IHandle = NULL; };
         //! Creates an empty TCompSolid.
         XTopoDS_TCompSolid();
 

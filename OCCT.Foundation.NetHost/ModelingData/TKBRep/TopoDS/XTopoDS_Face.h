@@ -41,7 +41,8 @@ namespace TKBRep {
     public:
 
         //!    DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_Face() { IHandle = NULL; };
+        ~XTopoDS_Face() { IHandle = NULL; };
 
         //! Undefined Face.
         XTopoDS_Face();

@@ -17,6 +17,7 @@
 #ifndef _XTDataStd_Integer_HeaderFile
 #define _XTDataStd_Integer_HeaderFile
 #pragma once
+#include "pch.h"
 #include <TDataStd_Integer.hxx>
 #include <NCollection_Haft.h>
 #include "XTDF_Attribute.h"
@@ -52,6 +53,8 @@ namespace TKLCAF {
 
 	public:
 
+		!XTDataStd_Integer() { IHandle = NULL; };
+		~XTDataStd_Integer() { IHandle = NULL; };
 		/// <summary>
 		///  class methods 
 		///  Returns the GUID for integers.

@@ -59,6 +59,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeTrimmedCylinder() { IHandle = NULL; };
+		~XGC_MakeTrimmedCylinder() { IHandle = NULL; };
 		//DEFINE_STANDARD_ALLOC
 		XGC_MakeTrimmedCylinder();
 

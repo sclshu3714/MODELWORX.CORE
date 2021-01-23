@@ -74,7 +74,8 @@ namespace TKG3d {
 	{
 		//DEFINE_STANDARD_RTTIEXT(Geom_Transformation, Standard_Transient)
 	public:
-
+		!XGeom_Transformation() { IHandle = NULL; };
+		~XGeom_Transformation() { IHandle = NULL; };
 		//! Creates an identity transformation.
 		XGeom_Transformation();
 

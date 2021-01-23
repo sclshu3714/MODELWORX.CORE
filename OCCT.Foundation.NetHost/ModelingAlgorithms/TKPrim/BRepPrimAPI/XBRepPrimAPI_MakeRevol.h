@@ -81,6 +81,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
+		!XBRepPrimAPI_MakeRevol() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeRevol() { IHandle = NULL; };
 
 		XBRepPrimAPI_MakeRevol();
 

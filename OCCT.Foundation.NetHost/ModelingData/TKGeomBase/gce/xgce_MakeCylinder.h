@@ -60,7 +60,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeCylinder();
-
+		!xgce_MakeCylinder() { IHandle = NULL; };
+		~xgce_MakeCylinder() { IHandle = NULL; };
 		xgce_MakeCylinder(gce_MakeCylinder* pos);
 
 		void SetMakeCylinder(gce_MakeCylinder* pos);

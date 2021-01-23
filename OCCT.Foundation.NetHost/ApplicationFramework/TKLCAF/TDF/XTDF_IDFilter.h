@@ -40,7 +40,8 @@ namespace TKLCAF {
     public ref class XTDF_IDFilter
     {
     public:
-
+        !XTDF_IDFilter() { IHandle = NULL; };
+        ~XTDF_IDFilter() { IHandle = NULL; };
         //! Creates an ID/attribute filter based on an ID
         //! list. The default mode is "ignore all but...".
         //!
@@ -134,13 +135,14 @@ namespace TKLCAF {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TDF_IDFilter* Handle
-        {
+        virtual property TDF_IDFilter* IHandle {
             TDF_IDFilter* get() {
                 return NativeHandle;
             }
+            void set(TDF_IDFilter* handle) {
+                NativeHandle = handle;
+            }
         }
-
     private:
         TDF_IDFilter* NativeHandle;
     };

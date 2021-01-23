@@ -49,6 +49,9 @@ namespace TKTopAlgo {
 
 	//!	DEFINE_STANDARD_ALLOC
 
+		!XBRepBuilderAPI_MakeShape() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeShape() { IHandle = NULL; };
+
 		XBRepBuilderAPI_MakeShape();
 
 		void SetMakeShapeHandle(BRepBuilderAPI_MakeShape* handle);

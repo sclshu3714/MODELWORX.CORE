@@ -46,6 +46,9 @@ namespace TKG3d {
 
 	public:
 
+		!XGeom_Vector() { IHandle = NULL; };
+		~XGeom_Vector() { IHandle = NULL; };
+
 		XGeom_Vector();
 
 		XGeom_Vector(Handle(Geom_Vector) pos);

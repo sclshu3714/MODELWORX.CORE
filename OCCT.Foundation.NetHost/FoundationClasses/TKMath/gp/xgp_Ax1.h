@@ -190,16 +190,18 @@ namespace TKMath
         //! the vector (P1, P2) defined from point P1 to point P2.
         //! and creates a new one.
         xgp_Ax1^ Translated(xgp_Pnt^ P1, xgp_Pnt^ P2);
+
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property gp_Ax1* Handle
-        {
+        virtual property gp_Ax1* IHandle {
             gp_Ax1* get() {
                 return NativeHandle;
             }
+            void set(gp_Ax1* handle) {
+                NativeHandle = handle;
+            }
         }
-
     private:
         gp_Ax1* NativeHandle;
     };

@@ -91,7 +91,7 @@ namespace TKV3d
 
         //! Destructor.
         virtual ~XAIS_InteractiveContext();
-
+        !XAIS_InteractiveContext() { IHandle = NULL; };
         //! Returns the display status of the entity anIobj.
         //! This will be one of the following:
         //! - AIS_DS_Displayed displayed in main viewer

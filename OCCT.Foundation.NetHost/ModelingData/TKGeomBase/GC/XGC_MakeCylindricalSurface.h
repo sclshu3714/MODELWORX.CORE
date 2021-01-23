@@ -79,7 +79,8 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XGC_MakeCylindricalSurface() { IHandle = NULL; };
+		~XGC_MakeCylindricalSurface() { IHandle = NULL; };
 		//!
 		XGC_MakeCylindricalSurface(GC_MakeCylindricalSurface* pos);
 

@@ -40,6 +40,8 @@ namespace TKMath
 
     public:
 
+        !xgp_QuaternionNLerp() { IHandle = NULL; };
+        ~xgp_QuaternionNLerp() { IHandle = NULL; };
         //! Empty constructor,
         xgp_QuaternionNLerp() {}
 
@@ -72,10 +74,12 @@ namespace TKMath
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property gp_QuaternionNLerp* Handle
-        {
+        virtual property gp_QuaternionNLerp* IHandle {
             gp_QuaternionNLerp* get() {
                 return NativeHandle;
+            }
+            void set(gp_QuaternionNLerp* handle) {
+                NativeHandle = handle;
             }
         }
 

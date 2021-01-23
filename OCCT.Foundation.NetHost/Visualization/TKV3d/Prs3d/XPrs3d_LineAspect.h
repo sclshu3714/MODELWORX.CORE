@@ -47,6 +47,8 @@ namespace TKV3d {
 		//! DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)
 	public:
 
+		!XPrs3d_LineAspect() { IHandle = NULL; };
+		~XPrs3d_LineAspect() { IHandle = NULL; };
 		//! Constructs a framework for line aspect defined by
 		//! -   the color aColor
 		//! -   the type of line aType and

@@ -61,7 +61,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeMirror();
-
+		!xgce_MakeMirror() { IHandle = NULL; };
+		~xgce_MakeMirror() { IHandle = NULL; };
 		xgce_MakeMirror(gce_MakeMirror* pos);
 
 		void SetMakeMirror(gce_MakeMirror* pos);

@@ -66,7 +66,8 @@ namespace TKV3d {
 
         //! Default constructor.
         XPrs3d_Drawer();
-
+        !XPrs3d_Drawer() { IHandle = NULL; };
+        ~XPrs3d_Drawer() { IHandle = NULL; };
         //! Default constructor.
         XPrs3d_Drawer(Handle(Prs3d_Drawer) pos);
 

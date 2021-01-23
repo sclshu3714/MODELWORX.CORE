@@ -38,6 +38,9 @@ namespace TKBRep {
     {
 
     public:
+        !XTopoDS_TVertex() { IHandle = NULL; };
+        ~XTopoDS_TVertex() { IHandle = NULL; };
+
         XTopoDS_TVertex();
 
         XTopoDS_TVertex(Handle(TopoDS_TVertex) pos);

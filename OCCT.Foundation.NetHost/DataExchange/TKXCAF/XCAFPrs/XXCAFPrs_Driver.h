@@ -50,8 +50,8 @@ namespace TKXCAF {
 	{
 
 	public:
-
-
+		!XXCAFPrs_Driver() { IHandle = NULL; };
+		~XXCAFPrs_Driver() { IHandle = NULL; };
 		virtual Standard_Boolean Update(const TDF_Label& L, Handle(AIS_InteractiveObject)& ais);// Standard_OVERRIDE;
 
 		virtual Standard_Boolean Update(XTDF_Label^ L, XAIS_InteractiveObject^ ais);
@@ -61,13 +61,14 @@ namespace TKXCAF {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property XCAFPrs_Driver* Handle
-		{
+		virtual property XCAFPrs_Driver* IHandle {
 			XCAFPrs_Driver* get() {
 				return NativeHandle;
 			}
-		};
-
+			void set(XCAFPrs_Driver* handle) {
+				NativeHandle = handle;
+			}
+		}
 	private:
 		XCAFPrs_Driver* NativeHandle;
 		//NCollection_Haft<Handle(AIS_InteractiveObject)> NativeHandle;

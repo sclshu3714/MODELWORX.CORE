@@ -43,7 +43,8 @@ namespace TKBRep {
     public:
 
      //!   DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_Edge() { IHandle = NULL; };
+        ~XTopoDS_Edge() { IHandle = NULL; };
 
         //! Undefined Edge.
         XTopoDS_Edge();

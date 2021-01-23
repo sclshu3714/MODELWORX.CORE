@@ -39,7 +39,8 @@ namespace TKBRep {
 
     public:
 
-
+        !XTopoDS_TFace() { IHandle = NULL; };
+        ~XTopoDS_TFace() { IHandle = NULL; };
         //! Creates an empty TFace.
         XTopoDS_TFace();
 

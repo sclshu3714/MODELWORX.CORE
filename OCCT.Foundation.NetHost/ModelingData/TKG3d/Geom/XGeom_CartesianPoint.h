@@ -48,6 +48,9 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_CartesianPoint() { IHandle = NULL; };
+		~XGeom_CartesianPoint() { IHandle = NULL; };
+
 		XGeom_CartesianPoint();
 
 		XGeom_CartesianPoint(Handle(Geom_CartesianPoint) pos);

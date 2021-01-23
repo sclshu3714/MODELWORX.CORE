@@ -59,7 +59,8 @@ namespace TKOffset {
 	public ref class XBRepOffsetAPI_MakePipe : public XBRepPrimAPI_MakeSweep
 	{
 	public:
-
+		!XBRepOffsetAPI_MakePipe() { IHandle = NULL; };
+		~XBRepOffsetAPI_MakePipe() { IHandle = NULL; };
 		//DEFINE_STANDARD_ALLOC
 		XBRepOffsetAPI_MakePipe();
 

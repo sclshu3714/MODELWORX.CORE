@@ -40,7 +40,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrim_Wedge() { IHandle = NULL; };
+		~XBRepPrim_Wedge() { IHandle = NULL; };
 
 		XBRepPrim_Wedge(BRepPrim_Wedge* handle);
 

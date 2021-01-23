@@ -21,6 +21,9 @@ namespace TKernel {
 	typedef GUID Standard_UUID;
 	public ref class XStandard_UUID {
 	public:
+
+		!XStandard_UUID() { IHandle = NULL; };
+		~XStandard_UUID() { IHandle = NULL; };
 		XStandard_UUID() {
 			NativeHandle = new Standard_UUID();
 		};
@@ -42,10 +45,12 @@ namespace TKernel {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Standard_UUID* Handle
-		{
+		virtual property Standard_UUID* IHandle {
 			Standard_UUID* get() {
 				return NativeHandle;
+			}
+			void set(Standard_UUID* handle) {
+				NativeHandle = handle;
 			}
 		}
 	private:

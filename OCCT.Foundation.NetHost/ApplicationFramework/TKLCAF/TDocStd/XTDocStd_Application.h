@@ -85,6 +85,8 @@ namespace TKLCAF {
 
     public:
 
+        !XTDocStd_Application() { IHandle = NULL; };
+        ~XTDocStd_Application() { IHandle = NULL; };
         //! Constructs the new instance and registers it in CDM_Session
         XTDocStd_Application();
 

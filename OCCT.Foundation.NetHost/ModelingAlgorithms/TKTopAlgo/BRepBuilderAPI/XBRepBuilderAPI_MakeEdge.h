@@ -116,6 +116,8 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_MakeEdge() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeEdge() { IHandle = NULL; };
 		//!DEFINE_STANDARD_ALLOC
 		void Initialize(BRepBuilderAPI_MakeEdge* pos);
 

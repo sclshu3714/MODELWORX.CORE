@@ -49,6 +49,9 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		!XBRepSweep_Revol() { IHandle = NULL; };
+		~XBRepSweep_Revol() { IHandle = NULL; };
+
 		XBRepSweep_Revol();
 
 		XBRepSweep_Revol(BRepSweep_Revol* pos);

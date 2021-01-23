@@ -108,6 +108,9 @@ namespace TKTopAlgo {
     {
 
     public:
+        !XBRepBuilderAPI_Sewing() { IHandle = NULL; };
+        ~XBRepBuilderAPI_Sewing() { IHandle = NULL; };
+
         XBRepBuilderAPI_Sewing();
 
         void SetSewingHandle(Handle(BRepBuilderAPI_Sewing) handle);

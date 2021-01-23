@@ -73,6 +73,8 @@ namespace TKLCAF {
         //! exception if the document is not found.
         static Handle(TDocStd_Document) Get(XTDF_Label^ L);
 
+        !XTDocStd_Document() { IHandle = NULL; };
+        ~XTDocStd_Document() { IHandle = NULL; };
         //! Constructs a document object defined by the
         //! string astorageformat.
         XTDocStd_Document(Handle(TDocStd_Document) pos);

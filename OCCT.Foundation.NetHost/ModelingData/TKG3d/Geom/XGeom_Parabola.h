@@ -93,6 +93,8 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_Parabola() { IHandle = NULL; };
+		~XGeom_Parabola() { IHandle = NULL; };
 
 		XGeom_Parabola();
 

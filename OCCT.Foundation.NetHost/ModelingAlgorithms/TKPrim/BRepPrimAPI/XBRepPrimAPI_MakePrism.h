@@ -67,6 +67,9 @@ namespace TKPrim {
 
 		//!	DEFINE_STANDARD_ALLOC
 
+		!XBRepPrimAPI_MakePrism() { IHandle = NULL; };
+		~XBRepPrimAPI_MakePrism() { IHandle = NULL; };
+
 		void SetMakePrismHandle(BRepPrimAPI_MakePrism* pos);
 
 		virtual BRepPrimAPI_MakePrism* GetMakePrism();

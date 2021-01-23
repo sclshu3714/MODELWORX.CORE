@@ -64,6 +64,9 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		!XBRepPrimAPI_MakeHalfSpace() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeHalfSpace() { IHandle = NULL; };
+
 		XBRepPrimAPI_MakeHalfSpace();
 
 		XBRepPrimAPI_MakeHalfSpace(BRepPrimAPI_MakeHalfSpace* handle);

@@ -49,6 +49,9 @@ namespace TKTopAlgo {
 
 		//DEFINE_STANDARD_ALLOC
 
+		!XBRepBuilderAPI_NurbsConvert() { IHandle = NULL; };
+		~XBRepBuilderAPI_NurbsConvert() { IHandle = NULL; };
+
 		void SetNurbsConvertHandle(BRepBuilderAPI_NurbsConvert* handle);
 
 		virtual BRepBuilderAPI_NurbsConvert* GetNurbsConvert();

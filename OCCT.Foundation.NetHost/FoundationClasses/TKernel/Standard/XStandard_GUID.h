@@ -42,6 +42,9 @@ namespace TKernel {
 	{
 	public:
 
+		!XStandard_GUID() { IHandle = NULL; };
+		~XStandard_GUID() { IHandle = NULL; };
+
 		XStandard_GUID();
 
 		//! build a GUID from an ascii string with the
@@ -129,10 +132,12 @@ namespace TKernel {
 		/// <summary>
 		/// ±¾µØ¾ä±ú
 		/// </summary>
-		property Standard_GUID* Handle
-		{
+		virtual property Standard_GUID* IHandle {
 			Standard_GUID* get() {
 				return NativeHandle;
+			}
+			void set(Standard_GUID* handle) {
+				NativeHandle = handle;
 			}
 		}
 	private:

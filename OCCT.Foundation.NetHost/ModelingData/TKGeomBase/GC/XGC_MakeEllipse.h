@@ -55,6 +55,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeEllipse() { IHandle = NULL; };
+		~XGC_MakeEllipse() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeEllipse(GC_MakeEllipse* pos);
 

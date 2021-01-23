@@ -57,7 +57,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrimAPI_MakeSphere() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeSphere() { IHandle = NULL; };
 
 		XBRepPrimAPI_MakeSphere();
 

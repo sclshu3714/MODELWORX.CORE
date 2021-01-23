@@ -98,6 +98,8 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_MakeEdge2d() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeEdge2d() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XBRepBuilderAPI_MakeEdge2d();
 

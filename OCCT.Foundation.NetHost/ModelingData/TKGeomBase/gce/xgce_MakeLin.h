@@ -55,7 +55,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeLin();
-
+		!xgce_MakeLin() { IHandle = NULL; };
+		~xgce_MakeLin() { IHandle = NULL; };
 		xgce_MakeLin(gce_MakeLin* pos);
 
 		void SetMakeLin(gce_MakeLin* pos);

@@ -60,6 +60,8 @@ namespace TKPrim {
 	{
 	public:
 
+		!XBRepPrimAPI_MakeBox() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeBox() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XBRepPrimAPI_MakeBox(BRepPrimAPI_MakeBox* handle);
 

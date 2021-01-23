@@ -98,7 +98,6 @@ namespace TKBRep {
 
        //! DEFINE_STANDARD_ALLOC
 
-
         //! Creates an empty explorer, becomes usefull after Init.
         XTopExp_Explorer();
 

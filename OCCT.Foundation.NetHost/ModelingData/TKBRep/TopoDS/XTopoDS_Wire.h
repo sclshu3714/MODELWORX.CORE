@@ -41,7 +41,8 @@ namespace TKBRep {
     public:
 
        //! DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_Wire() { IHandle = NULL; };
+        ~XTopoDS_Wire() { IHandle = NULL; };
 
         //! Undefined Wire.
         XTopoDS_Wire();

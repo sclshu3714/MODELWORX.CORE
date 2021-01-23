@@ -99,6 +99,8 @@ namespace TKG3d {
 		//!
 		~XGeom_Plane();
 
+		!XGeom_Plane() { IHandle = NULL; };
+
 		void SetPlaneHandle(Handle(Geom_Plane) handle);
 
 		//! 

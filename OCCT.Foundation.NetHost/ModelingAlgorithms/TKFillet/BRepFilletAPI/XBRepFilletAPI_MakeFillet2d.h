@@ -67,7 +67,8 @@ namespace TKFillet {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBRepFilletAPI_MakeFillet2d() { IHandle = NULL; };
+        ~XBRepFilletAPI_MakeFillet2d() { IHandle = NULL; };
 
         //! Initializes an empty algorithm for computing fillets and
         //! chamfers. The face on which the fillets and

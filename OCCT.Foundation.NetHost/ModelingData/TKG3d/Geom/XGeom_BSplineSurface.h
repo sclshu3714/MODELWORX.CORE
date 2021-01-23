@@ -193,6 +193,8 @@ namespace TKG3d {
         //!
         ~XGeom_BSplineSurface();
 
+        !XGeom_BSplineSurface() { IHandle = NULL; };
+
         void SetBSplineSurfaceHandle(Handle(Geom_BSplineSurface) handle);
 
         //!

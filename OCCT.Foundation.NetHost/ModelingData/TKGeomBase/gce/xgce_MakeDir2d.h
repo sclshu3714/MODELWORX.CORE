@@ -55,7 +55,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeDir2d();
-
+		!xgce_MakeDir2d() { IHandle = NULL; };
+		~xgce_MakeDir2d() { IHandle = NULL; };
 		xgce_MakeDir2d(gce_MakeDir2d* pos);
 
 		void SetMakeDir2d(gce_MakeDir2d* pos);

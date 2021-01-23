@@ -132,7 +132,7 @@ namespace TKBO {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBOPAlgo_PaveFiller() { IHandle = NULL; };
 
         XBOPAlgo_PaveFiller();
 

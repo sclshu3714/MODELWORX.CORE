@@ -44,6 +44,9 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_Point() { IHandle = NULL; };
+		~XGeom_Point() { IHandle = NULL; };
+
 		XGeom_Point();
 
 		XGeom_Point(Handle(Geom_Point) pos);

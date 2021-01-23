@@ -9,6 +9,8 @@ namespace TKLCAF {
 	public ref class XTDF_XIterator //: public NCollection_BaseSequence::Iterator
 	{
 	public:
+		!XTDF_XIterator() { NativeIterator = NULL; };
+		~XTDF_XIterator() { NativeIterator = NULL; };
 		//! Empty constructor - for later Init
 		XTDF_XIterator(void) {
 			NativeIterator = new TDF_LabelSequence::Iterator();

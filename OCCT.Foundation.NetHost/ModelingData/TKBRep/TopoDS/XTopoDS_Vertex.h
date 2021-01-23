@@ -42,7 +42,8 @@ namespace TKBRep {
 
         //! DEFINE_STANDARD_ALLOC
 
-
+        !XTopoDS_Vertex() { IHandle = NULL; };
+        ~XTopoDS_Vertex() { IHandle = NULL; };
         //! Undefined Vertex.
         XTopoDS_Vertex();
 

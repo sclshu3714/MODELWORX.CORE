@@ -52,6 +52,9 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_VectorWithMagnitude() { IHandle = NULL; };
+		~XGeom_VectorWithMagnitude() { IHandle = NULL; };
+
 		XGeom_VectorWithMagnitude();
 
 		XGeom_VectorWithMagnitude(Handle(Geom_VectorWithMagnitude) pos);

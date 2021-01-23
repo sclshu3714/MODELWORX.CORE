@@ -40,7 +40,8 @@ namespace TKBRep {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_Shell() { IHandle = NULL; };
+        ~XTopoDS_Shell() { IHandle = NULL; };
 
         //! Constructs an Undefined Shell.
         XTopoDS_Shell();

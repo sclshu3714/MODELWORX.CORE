@@ -85,7 +85,7 @@ namespace TKPrim {
 	public ref class XBRepPrim_OneAxis
 	{
 	public:
-
+		!XBRepPrim_OneAxis() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XBRepPrim_OneAxis();
 

@@ -111,6 +111,9 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_Hyperbola() { IHandle = NULL; };
+		~XGeom_Hyperbola() { IHandle = NULL; };
+
 		XGeom_Hyperbola();
 
 		XGeom_Hyperbola(Handle(Geom_Hyperbola) pos);

@@ -96,6 +96,8 @@ namespace TKG3d {
 		//!
 		~XGeom_ElementarySurface();
 
+		!XGeom_ElementarySurface() { IHandle = NULL; };
+
 		void SetElementarySurfaceHandle(Handle(Geom_ElementarySurface) handle);
 
 		//! 

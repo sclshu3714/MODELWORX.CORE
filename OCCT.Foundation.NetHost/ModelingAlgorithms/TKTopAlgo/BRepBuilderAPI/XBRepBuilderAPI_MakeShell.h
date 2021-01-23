@@ -73,7 +73,8 @@ namespace TKTopAlgo {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepBuilderAPI_MakeShell() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeShell() { IHandle = NULL; };
 
 		//! Constructs an empty shell framework. The Init
 		//! function is used to define the construction arguments.

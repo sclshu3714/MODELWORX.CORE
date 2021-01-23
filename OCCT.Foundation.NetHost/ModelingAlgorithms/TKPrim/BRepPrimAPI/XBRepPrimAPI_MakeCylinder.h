@@ -57,6 +57,9 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		!XBRepPrimAPI_MakeCylinder() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeCylinder() { IHandle = NULL; };
+
 		XBRepPrimAPI_MakeCylinder();
 
 		XBRepPrimAPI_MakeCylinder(BRepPrimAPI_MakeCylinder* handle);

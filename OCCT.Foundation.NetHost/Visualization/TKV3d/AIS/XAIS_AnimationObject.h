@@ -43,7 +43,8 @@ namespace TKV3d {
        /* XAIS_AnimationObject(XTCollection_AsciiString^ theAnimationName);
 
         XAIS_AnimationObject(Handle(AIS_AnimationObject) pos);*/
-
+        !XAIS_AnimationObject() { IHandle = NULL; };
+        ~XAIS_AnimationObject() { IHandle = NULL; };
         void SetAnimationObjectHandle(Handle(AIS_AnimationObject) pos);
 
         virtual Handle(AIS_AnimationObject) GetAnimationObject();

@@ -134,7 +134,7 @@ namespace TKV3d {
     {
 
     public:
-
+        !XV3d_View() { IHandle = NULL; };
         //! Initializes the view.
         //! V3d_TypeOfView theType = V3d_ORTHOGRAPHIC
         XV3d_View(XV3d_Viewer^ theViewer, XV3d_TypeOfView theType);

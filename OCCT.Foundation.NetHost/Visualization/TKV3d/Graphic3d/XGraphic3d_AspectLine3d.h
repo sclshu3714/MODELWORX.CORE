@@ -40,7 +40,8 @@ namespace TKV3d {
         //! Type  = Aspect_TOL_SOLID;
         //! Width = 1.0;
         XGraphic3d_AspectLine3d();
-
+        !XGraphic3d_AspectLine3d() { IHandle = NULL; };
+        ~XGraphic3d_AspectLine3d() { IHandle = NULL; };
         XGraphic3d_AspectLine3d(Handle(Graphic3d_AspectLine3d) posAspectLine);
 
         //! Creates a context table for line primitives defined with the specified values.

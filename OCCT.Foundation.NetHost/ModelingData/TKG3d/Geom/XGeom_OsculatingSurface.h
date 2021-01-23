@@ -50,6 +50,9 @@ namespace TKG3d
 	{
 	public:
 
+		!XGeom_OsculatingSurface() { IHandle = NULL; };
+		~XGeom_OsculatingSurface() { IHandle = NULL; };
+
 		//! DEFINE_STANDARD_ALLOC
 		XGeom_OsculatingSurface();
 

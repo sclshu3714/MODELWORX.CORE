@@ -60,6 +60,8 @@ namespace TKG3d {
 		//!
 		~XGeom_BoundedCurve();
 
+		!XGeom_BoundedCurve() { IHandle = NULL; };
+
 		void SetBoundedCurveHandle(Handle(Geom_BoundedCurve) pos);
 
 		//!

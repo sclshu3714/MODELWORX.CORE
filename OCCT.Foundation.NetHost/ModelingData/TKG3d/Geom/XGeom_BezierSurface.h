@@ -144,6 +144,8 @@ namespace TKG3d {
         //!
         ~XGeom_BezierSurface();
 
+        !XGeom_BezierSurface() { IHandle = NULL; };
+
         void SetBezierSurfaceHandle(Handle(Geom_BezierSurface) handle);
 
         //!

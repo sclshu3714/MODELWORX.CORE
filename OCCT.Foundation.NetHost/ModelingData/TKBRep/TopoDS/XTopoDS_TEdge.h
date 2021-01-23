@@ -39,6 +39,9 @@ namespace TKBRep {
 
     public:
 
+        !XTopoDS_TEdge() { IHandle = NULL; };
+        ~XTopoDS_TEdge() { IHandle = NULL; };
+
         XTopoDS_TEdge();
 
         XTopoDS_TEdge(Handle(TopoDS_TEdge) pos);

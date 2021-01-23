@@ -37,7 +37,8 @@ namespace TKBRep {
 
     public:
 
-
+        !XTopoDS_TWire() { IHandle = NULL; };
+        ~XTopoDS_TWire() { IHandle = NULL; };
         //! Creates an empty TWire.
         XTopoDS_TWire();
 

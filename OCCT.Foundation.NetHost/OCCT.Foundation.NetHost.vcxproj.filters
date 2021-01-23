@@ -1686,6 +1686,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2435,6 +2438,9 @@
     </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFApp</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrimAPI_MakeRevolution() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeRevolution() { IHandle = NULL; };
 		XBRepPrimAPI_MakeRevolution();
 
 		XBRepPrimAPI_MakeRevolution(BRepPrimAPI_MakeRevolution* handle);

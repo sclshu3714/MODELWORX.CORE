@@ -58,6 +58,8 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_ModifyShape() { IHandle = NULL; };
+		~XBRepBuilderAPI_ModifyShape() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XBRepBuilderAPI_ModifyShape();
 

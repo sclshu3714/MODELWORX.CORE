@@ -72,7 +72,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeCirc();
-
+		!xgce_MakeCirc() { IHandle = NULL; };
+		~xgce_MakeCirc() { IHandle = NULL; };
 		xgce_MakeCirc(gce_MakeCirc* pos);
 
 		void SetMakeCirc(gce_MakeCirc* pos);

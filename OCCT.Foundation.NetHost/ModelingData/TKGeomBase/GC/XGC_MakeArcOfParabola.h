@@ -51,6 +51,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeArcOfParabola() { IHandle = NULL; };
+		~XGC_MakeArcOfParabola() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeArcOfParabola(GC_MakeArcOfParabola* pos);
 

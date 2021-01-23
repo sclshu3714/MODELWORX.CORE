@@ -53,6 +53,7 @@ namespace TKV3d {
         //!    friend class SelectMgr_SelectionManager;
     public:
         XSelectMgr_SelectableObject();
+        !XSelectMgr_SelectableObject() { IHandle = NULL; };
         //!
         XSelectMgr_SelectableObject(Handle(SelectMgr_SelectableObject) pos);
 

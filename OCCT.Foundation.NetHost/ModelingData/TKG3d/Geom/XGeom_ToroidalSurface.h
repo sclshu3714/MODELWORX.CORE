@@ -117,6 +117,10 @@ namespace TKG3d {
 		//!
 		~XGeom_ToroidalSurface();
 
+		!XGeom_ToroidalSurface() { IHandle = NULL; };
+
+
+		
 		void SetToroidalSurfaceHandle(Handle(Geom_ToroidalSurface) handle);
 
 		//! 

@@ -41,7 +41,8 @@ namespace TKLCAF {
     public ref class XTDF_ChildIterator
     {
     public:
-
+        !XTDF_ChildIterator() { IHandle = NULL; };
+        ~XTDF_ChildIterator() { IHandle = NULL; };
         //! Creates an empty iterator  object to
         //! explore the children of a label.
         XTDF_ChildIterator();
@@ -117,12 +118,14 @@ namespace TKLCAF {
         const XTDF_Label^ Value();
 
         /// <summary>
-      /// 本地句柄
-      /// </summary>
-        property TDF_ChildIterator* Handle
-        {
+        /// 本地句柄
+        /// </summary>
+        virtual property TDF_ChildIterator* IHandle {
             TDF_ChildIterator* get() {
                 return NativeHandle;
+            }
+            void set(TDF_ChildIterator* handle) {
+                NativeHandle = handle;
             }
         }
     private:

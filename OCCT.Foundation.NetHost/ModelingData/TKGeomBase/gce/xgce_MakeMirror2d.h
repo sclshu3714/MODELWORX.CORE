@@ -54,7 +54,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeMirror2d();
-
+		!xgce_MakeMirror2d() { IHandle = NULL; };
+		~xgce_MakeMirror2d() { IHandle = NULL; };
 		xgce_MakeMirror2d(gce_MakeMirror2d* pos);
 
 		void SetMakeMirror2d(gce_MakeMirror2d* pos);

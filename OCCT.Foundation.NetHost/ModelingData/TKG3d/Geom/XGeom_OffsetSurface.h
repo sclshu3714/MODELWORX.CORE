@@ -105,6 +105,8 @@ namespace TKG3d
 		//!
 		~XGeom_OffsetSurface();
 
+		!XGeom_OffsetSurface() { IHandle = NULL; };
+
 		void SetOffsetSurfaceHandle(Handle(Geom_OffsetSurface) handle);
 
 		//!

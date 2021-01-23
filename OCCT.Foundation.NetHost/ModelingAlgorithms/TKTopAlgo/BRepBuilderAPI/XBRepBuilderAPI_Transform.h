@@ -56,7 +56,8 @@ namespace TKTopAlgo {
 	public ref class XBRepBuilderAPI_Transform : public XBRepBuilderAPI_ModifyShape
 	{
 	public:
-
+		!XBRepBuilderAPI_Transform() { IHandle = NULL; };
+		~XBRepBuilderAPI_Transform() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		//! DEFINE_STANDARD_ALLOC
 		XBRepBuilderAPI_Transform();

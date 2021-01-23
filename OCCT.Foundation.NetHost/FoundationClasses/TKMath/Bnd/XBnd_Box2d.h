@@ -74,7 +74,8 @@ namespace TKMath {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBnd_Box2d() { IHandle = NULL; };
+        ~XBnd_Box2d() { IHandle = NULL; };
         //! Creates an empty 2D bounding box.
         //! The constructed box is qualified Void. Its gap is null.
         XBnd_Box2d();

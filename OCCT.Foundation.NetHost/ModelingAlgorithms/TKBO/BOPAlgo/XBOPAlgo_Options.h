@@ -58,7 +58,7 @@ namespace TKBO {
 
         //! Destructor
         virtual ~XBOPAlgo_Options();
-
+        !XBOPAlgo_Options() { IHandle = NULL; };
         //! Returns allocator
         const Handle(NCollection_BaseAllocator)& Allocator();
 

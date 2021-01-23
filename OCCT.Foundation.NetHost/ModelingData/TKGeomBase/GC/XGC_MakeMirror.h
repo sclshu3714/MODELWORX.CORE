@@ -60,6 +60,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeMirror() { IHandle = NULL; };
+		~XGC_MakeMirror() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeMirror();
 

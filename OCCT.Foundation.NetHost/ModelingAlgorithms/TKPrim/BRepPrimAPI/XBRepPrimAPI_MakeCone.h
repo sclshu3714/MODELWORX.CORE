@@ -55,6 +55,9 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 
+		!XBRepPrimAPI_MakeCone() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeCone() { IHandle = NULL; };
+
 		XBRepPrimAPI_MakeCone();
 
 		XBRepPrimAPI_MakeCone(BRepPrimAPI_MakeCone* handle);

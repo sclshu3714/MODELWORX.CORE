@@ -43,7 +43,7 @@ namespace TKBRep {
     {
     public:
 
-        
+        !XTopoDS_Shape() { IHandle = NULL; };
         //! Creates a NULL Shape referring to nothing.
         XTopoDS_Shape(void);
 

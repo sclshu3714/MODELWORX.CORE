@@ -71,6 +71,8 @@ namespace TKV3d {
     public:
         //!
         XPrsMgr_PresentableObject();
+        !XPrsMgr_PresentableObject() { IHandle = NULL; };
+        ~XPrsMgr_PresentableObject() { IHandle = NULL; };
         //!
         XPrsMgr_PresentableObject(Handle(PrsMgr_PresentableObject) pos);
 

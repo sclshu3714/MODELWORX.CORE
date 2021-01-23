@@ -55,7 +55,8 @@ namespace TKPrim {
 	public ref class XBRepPrimAPI_MakeWedge : public XBRepBuilderAPI_MakeShape
 	{
 	public:
-
+		!XBRepPrimAPI_MakeWedge() { IHandle = NULL; };
+		~XBRepPrimAPI_MakeWedge() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XBRepPrimAPI_MakeWedge();
 

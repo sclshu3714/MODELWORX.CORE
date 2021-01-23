@@ -55,6 +55,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeRotation() { IHandle = NULL; };
+		~XGC_MakeRotation() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeRotation();
 

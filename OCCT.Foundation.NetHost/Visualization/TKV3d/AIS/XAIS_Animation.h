@@ -90,6 +90,8 @@ namespace TKV3d {
         //! Destruct object, clear arguments
         virtual ~XAIS_Animation();
 
+        !XAIS_Animation() { IHandle = NULL; };
+
         XAIS_Animation(Handle(AIS_Animation) pos);
 
         void SetAnimationHandle(Handle(AIS_Animation) pos);

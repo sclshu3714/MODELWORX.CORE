@@ -72,6 +72,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeCircle() { IHandle = NULL; };
+		~XGC_MakeCircle() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeCircle(GC_MakeCircle* pos);
 

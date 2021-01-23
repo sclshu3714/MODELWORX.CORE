@@ -71,6 +71,9 @@ namespace TKG3d {
 	{
 
 	public:
+		!XGeom_Conic() { IHandle = NULL; };
+		~XGeom_Conic() { IHandle = NULL; };
+
 		XGeom_Conic();
 
 		XGeom_Conic(Handle(Geom_Conic) pos);

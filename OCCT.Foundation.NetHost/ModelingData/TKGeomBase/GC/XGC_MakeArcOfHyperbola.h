@@ -52,6 +52,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeArcOfHyperbola() { IHandle = NULL; };
+		~XGC_MakeArcOfHyperbola() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeArcOfHyperbola(GC_MakeArcOfHyperbola* pos);
 

@@ -62,7 +62,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeCone();
-
+		!xgce_MakeCone() { IHandle = NULL; };
+		~xgce_MakeCone() { IHandle = NULL; };
 		xgce_MakeCone(gce_MakeCone* pos);
 
 		void SetMakeCone(gce_MakeCone* pos);

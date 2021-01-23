@@ -64,7 +64,8 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XGC_MakePlane() { IHandle = NULL; };
+		~XGC_MakePlane() { IHandle = NULL; };
 
 		XGC_MakePlane();
 

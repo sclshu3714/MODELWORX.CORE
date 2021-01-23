@@ -54,7 +54,8 @@ namespace TKernel {
     public:
 
         //£¡ DEFINE_STANDARD_ALLOC
-
+        !XQuantity_Color() { IHandle = NULL; };
+        ~XQuantity_Color() { IHandle = NULL; };
         //! Creates Quantity_NOC_YELLOW color.
         XQuantity_Color();
 
@@ -283,10 +284,12 @@ namespace TKernel {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Quantity_Color* Handle
-        {
+        virtual property Quantity_Color* IHandle {
             Quantity_Color* get() {
                 return NativeHandle;
+            }
+            void set(Quantity_Color* handle) {
+                NativeHandle = handle;
             }
         };
     private:

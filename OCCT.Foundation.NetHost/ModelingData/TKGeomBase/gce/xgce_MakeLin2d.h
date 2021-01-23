@@ -60,7 +60,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeLin2d();
-
+		!xgce_MakeLin2d() { IHandle = NULL; };
+		~xgce_MakeLin2d() { IHandle = NULL; };
 		xgce_MakeLin2d(gce_MakeLin2d* pos);
 
 		void SetMakeLin2d(gce_MakeLin2d* pos);

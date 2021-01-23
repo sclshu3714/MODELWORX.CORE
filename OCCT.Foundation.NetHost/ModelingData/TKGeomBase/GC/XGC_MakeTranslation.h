@@ -49,6 +49,9 @@ namespace TKGeomBase {
 	{
 	public:
 
+
+		!XGC_MakeTranslation() { IHandle = NULL; };
+		~XGC_MakeTranslation() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeTranslation();
 

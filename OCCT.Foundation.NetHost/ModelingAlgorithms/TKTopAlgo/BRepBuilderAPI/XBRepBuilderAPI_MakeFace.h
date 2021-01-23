@@ -96,6 +96,9 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_MakeFace() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeFace() { IHandle = NULL; };
+
 		//! DEFINE_STANDARD_ALLOC
 		void Initialize(BRepBuilderAPI_MakeFace* pos);
 

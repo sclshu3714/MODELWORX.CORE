@@ -76,7 +76,8 @@ namespace TKBool {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBRepFill_Pipe() { IHandle = NULL; };
+        ~XBRepFill_Pipe() { IHandle = NULL; };
 
         XBRepFill_Pipe();
 

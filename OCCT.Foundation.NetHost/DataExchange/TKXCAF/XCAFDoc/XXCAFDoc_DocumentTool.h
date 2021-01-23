@@ -129,8 +129,11 @@ namespace TKXCAF {
 
 		XXCAFDoc_DocumentTool();
 
+		!XXCAFDoc_DocumentTool() { IHandle = NULL; };
+		~XXCAFDoc_DocumentTool() { IHandle = NULL; };
 		//! to be called when reading this attribute from file
 		void Init();
+
 
 		//!
 		XXCAFDoc_DocumentTool(Handle(XCAFDoc_DocumentTool) pos);

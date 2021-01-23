@@ -45,6 +45,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!xgce_MakeRotation2d() { IHandle = NULL; };
+		~xgce_MakeRotation2d() { IHandle = NULL; };
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeRotation2d();
 

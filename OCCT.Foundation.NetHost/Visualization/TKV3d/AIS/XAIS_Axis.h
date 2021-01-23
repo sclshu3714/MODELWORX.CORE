@@ -53,7 +53,8 @@ namespace TKV3d {
 
 		//! Initializes the line aComponent
 		XAIS_Axis(Handle(Geom_Line) aComponent);
-
+		!XAIS_Axis() { IHandle = NULL; };
+		~XAIS_Axis() { IHandle = NULL; };
 		//! initializes the axis2 position
 		//! aComponent. The coordinate system used is right-handed.
 		XAIS_Axis(Handle(Geom_Axis2Placement) aComponent, XAIS_TypeOfAxis anAxisType);

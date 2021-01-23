@@ -79,7 +79,8 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XGC_MakeHyperbola() { IHandle = NULL; };
+		~XGC_MakeHyperbola() { IHandle = NULL; };
 		XGC_MakeHyperbola();
 
 		XGC_MakeHyperbola(GC_MakeHyperbola* pos);

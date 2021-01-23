@@ -47,6 +47,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!xgce_MakeTranslation() { IHandle = NULL; };
+		~xgce_MakeTranslation() { IHandle = NULL; };
 		//DEFINE_STANDARD_ALLOC
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeTranslation();

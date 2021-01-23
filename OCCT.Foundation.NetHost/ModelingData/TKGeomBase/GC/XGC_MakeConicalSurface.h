@@ -82,7 +82,8 @@ namespace TKGeomBase {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XGC_MakeConicalSurface() { IHandle = NULL; };
+		~XGC_MakeConicalSurface() { IHandle = NULL; };
 		XGC_MakeConicalSurface(GC_MakeConicalSurface* pos);
 
 		void SetMakeConicalSurfaceHandle(GC_MakeConicalSurface* pos);

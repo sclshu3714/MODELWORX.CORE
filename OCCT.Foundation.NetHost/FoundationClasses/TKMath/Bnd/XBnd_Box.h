@@ -91,6 +91,8 @@ namespace TKMath {
         //! DEFINE_STANDARD_ALLOC
 
 
+        !XBnd_Box() { IHandle = NULL; };
+        ~XBnd_Box() { IHandle = NULL; };
         //! Creates an empty Box.
         //! The constructed box is qualified Void. Its gap is null.
         XBnd_Box();

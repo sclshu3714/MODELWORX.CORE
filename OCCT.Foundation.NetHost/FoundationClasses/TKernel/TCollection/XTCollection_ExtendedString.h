@@ -64,6 +64,7 @@ namespace TKernel {
     {
     public:
 
+        !XTCollection_ExtendedString() { IHandle = NULL; };
         //! Initializes a ExtendedString to an empty ExtendedString.
         XTCollection_ExtendedString();
 
@@ -380,10 +381,12 @@ namespace TKernel {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TCollection_ExtendedString* Handle
-        {
+        virtual property TCollection_ExtendedString* IHandle {
             TCollection_ExtendedString* get() {
                 return NativeHandle;
+            }
+            void set(TCollection_ExtendedString* handle) {
+                NativeHandle = handle;
             }
         }
 

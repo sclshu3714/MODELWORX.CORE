@@ -39,7 +39,8 @@ namespace TKBRep {
 
        //! DEFINE_STANDARD_ALLOC
 
-
+        !XTopoDS_Solid() { IHandle = NULL; };
+        ~XTopoDS_Solid() { IHandle = NULL; };
         //! Constructs an Undefined Solid.
         XTopoDS_Solid();
 

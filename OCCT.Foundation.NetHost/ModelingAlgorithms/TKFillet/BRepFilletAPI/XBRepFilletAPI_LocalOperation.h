@@ -46,7 +46,8 @@ namespace TKFillet {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepFilletAPI_LocalOperation() { IHandle = NULL; };
+		~XBRepFilletAPI_LocalOperation() { IHandle = NULL; };
 		XBRepFilletAPI_LocalOperation();
 
 		XBRepFilletAPI_LocalOperation(BRepFilletAPI_LocalOperation* handle);

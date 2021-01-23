@@ -42,6 +42,8 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_Copy() { IHandle = NULL; };
+		~XBRepBuilderAPI_Copy() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		//! Constructs an empty copy framework. Use the function
 		//! Perform to copy shapes.

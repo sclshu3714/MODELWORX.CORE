@@ -73,6 +73,9 @@ namespace TKG2d {
 
 	public:
 
+		!XGeom2d_Geometry() { IHandle = NULL; };
+		~XGeom2d_Geometry() { IHandle = NULL; };
+
 		XGeom2d_Geometry();
 
 		XGeom2d_Geometry(Handle(Geom2d_Geometry) pos);

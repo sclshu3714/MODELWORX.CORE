@@ -70,6 +70,7 @@ namespace TKG3d {
 		//!
 		~XGeom_Axis1Placement();
 
+		!XGeom_Axis1Placement() { IHandle = NULL; };
 		//! 
 		void SetAxis1PlacementHandle(Handle(Geom_Axis1Placement) pos);
 

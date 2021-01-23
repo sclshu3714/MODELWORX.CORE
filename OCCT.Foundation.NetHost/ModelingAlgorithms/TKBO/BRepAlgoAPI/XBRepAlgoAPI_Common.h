@@ -46,7 +46,7 @@ namespace TKBO {
 		//! Empty constructor
 		XBRepAlgoAPI_Common();
 		virtual ~XBRepAlgoAPI_Common();
-
+		!XBRepAlgoAPI_Common() { IHandle = NULL; };
 		//! Empty constructor
 		//! <PF> - PaveFiller object that is carried out
 		XBRepAlgoAPI_Common(const BOPAlgo_PaveFiller& PF);

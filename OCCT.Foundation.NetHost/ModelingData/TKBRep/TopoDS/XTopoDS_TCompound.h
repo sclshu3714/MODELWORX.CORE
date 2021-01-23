@@ -37,6 +37,8 @@ namespace TKBRep {
 
     public:
 
+        !XTopoDS_TCompound() { IHandle = NULL; };
+        ~XTopoDS_TCompound() { IHandle = NULL; };
         //! Creates an empty TCompound.
         XTopoDS_TCompound();
 

@@ -37,7 +37,8 @@ namespace TKBRep {
 
     public:
 
-
+        !XTopoDS_TShell() { IHandle = NULL; };
+        ~XTopoDS_TShell() { IHandle = NULL; };
         //! Creates an empty TShell.
         XTopoDS_TShell();
 

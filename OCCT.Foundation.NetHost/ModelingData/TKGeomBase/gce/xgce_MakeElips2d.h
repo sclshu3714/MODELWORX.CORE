@@ -58,7 +58,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeElips2d();
-
+		!xgce_MakeElips2d() { IHandle = NULL; };
+		~xgce_MakeElips2d() { IHandle = NULL; };
 		xgce_MakeElips2d(gce_MakeElips2d* pos);
 
 		void SetMakeElips2d(gce_MakeElips2d* pos);

@@ -112,6 +112,8 @@ namespace TKG3d {
 		//!
 		~XGeom_OffsetCurve();
 
+		!XGeom_OffsetCurve() { IHandle = NULL; };
+
 		void SetOffsetCurveHandle(Handle(Geom_OffsetCurve) pos);
 
 		virtual Handle(Geom_OffsetCurve) GetOffsetCurve();

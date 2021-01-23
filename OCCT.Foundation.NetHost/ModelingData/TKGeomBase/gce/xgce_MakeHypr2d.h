@@ -82,7 +82,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeHypr2d();
-
+		!xgce_MakeHypr2d() { IHandle = NULL; };
+		~xgce_MakeHypr2d() { IHandle = NULL; };
 		xgce_MakeHypr2d(gce_MakeHypr2d* pos);
 
 		void SetMakeHypr2d(gce_MakeHypr2d* pos);

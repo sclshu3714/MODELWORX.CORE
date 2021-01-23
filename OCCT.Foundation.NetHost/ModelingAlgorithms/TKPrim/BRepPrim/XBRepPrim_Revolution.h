@@ -59,6 +59,9 @@ namespace TKPrim {
 
 		//! DEFINE_STANDARD_ALLOC
 		//! 
+		!XBRepPrim_Revolution() { IHandle = NULL; };
+		~XBRepPrim_Revolution() { IHandle = NULL; };
+		//! 
 		XBRepPrim_Revolution();
 
 		XBRepPrim_Revolution(BRepPrim_Revolution* handle);

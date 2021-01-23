@@ -192,7 +192,7 @@ public:
     /// </summary>
     /// <param name="IsViewCube"></param>
     /// <param name="thePosition"></param>
-    void TriedronDisplay(bool IsViewCube, XAspect_TypeOfTriedronPosition thePosition, Standard_Real theOffsetX, Standard_Real theOffsetY) {
+    void TriedronDisplay(bool IsViewCube, XAspect_TypeOfTriedronPosition thePosition, Standard_Integer theOffsetX, Standard_Integer theOffsetY) {
         if (!IsViewCube) {
             mainView()->TriedronDisplay(safe_cast<Aspect_TypeOfTriedronPosition>(thePosition), Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //»­ÈýÎ¬×ø±êÏµ
         }

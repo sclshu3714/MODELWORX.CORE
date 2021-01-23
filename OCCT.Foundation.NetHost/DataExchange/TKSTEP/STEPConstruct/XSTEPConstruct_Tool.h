@@ -49,7 +49,8 @@ namespace TKSTEP {
 
         //! DEFINE_STANDARD_ALLOC
 
-
+        !XSTEPConstruct_Tool() { IHandle = NULL; };
+        ~XSTEPConstruct_Tool() { IHandle = NULL; };
         //! Creates an empty tool
         XSTEPConstruct_Tool();
 
@@ -81,12 +82,15 @@ namespace TKSTEP {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property STEPConstruct_Tool* Handle
-        {
+        virtual property STEPConstruct_Tool* IHandle {
             STEPConstruct_Tool* get() {
                 return NativeHandle;
             }
+            void set(STEPConstruct_Tool* handle) {
+                NativeHandle = handle;
+            }
         }
+
     private:
         STEPConstruct_Tool* NativeHandle;
         //NCollection_Haft<Handle(STEPConstruct_Tool)> NativeHandle;

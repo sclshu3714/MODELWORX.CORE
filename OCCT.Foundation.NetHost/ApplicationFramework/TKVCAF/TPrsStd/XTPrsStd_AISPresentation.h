@@ -68,6 +68,8 @@ namespace TKVCAF {
 	{
 
 	public:
+		!XTPrsStd_AISPresentation() { IHandle = NULL; };
+		~XTPrsStd_AISPresentation() { IHandle = NULL; };
 		XTPrsStd_AISPresentation();
 
 		XTPrsStd_AISPresentation(Handle(TPrsStd_AISPresentation) pos);

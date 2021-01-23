@@ -105,6 +105,8 @@ namespace TKG3d {
 		//!
 		~XGeom_CylindricalSurface();
 
+
+		!XGeom_CylindricalSurface() { IHandle = NULL; };
 		/// <summary>
 		/// 
 		/// </summary>

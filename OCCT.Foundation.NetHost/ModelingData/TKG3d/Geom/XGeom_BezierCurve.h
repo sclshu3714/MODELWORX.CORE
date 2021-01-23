@@ -118,6 +118,8 @@ namespace TKG3d {
 		//!
 		~XGeom_BezierCurve();
 
+		!XGeom_BezierCurve() { IHandle = NULL; };
+
 		void SetBezierCurveHandle(Handle(Geom_BezierCurve) pos);
 
 		//!

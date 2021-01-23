@@ -58,6 +58,8 @@ namespace TKG3d
 		//!
 		~XGeom_SweptSurface();
 
+		!XGeom_SweptSurface() { IHandle = NULL; };
+
 		void SetSweptSurfaceHandle(Handle(Geom_SweptSurface) handle);
 
 		//!

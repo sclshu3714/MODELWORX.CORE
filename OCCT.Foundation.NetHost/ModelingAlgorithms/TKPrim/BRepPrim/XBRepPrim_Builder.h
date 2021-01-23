@@ -69,7 +69,8 @@ namespace TKPrim {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XBRepPrim_Builder() { IHandle = NULL; };
+        ~XBRepPrim_Builder() { IHandle = NULL; };
 
         //! Creates an empty, useless  Builder. Necesseray for
         //! compilation.

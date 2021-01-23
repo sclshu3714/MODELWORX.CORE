@@ -39,7 +39,8 @@ namespace TKMath
         }
 
     public:
-
+        !xgp_QuaternionSLerp() { IHandle = NULL; };
+        ~xgp_QuaternionSLerp() { IHandle = NULL; };
         //! Empty constructor,
         xgp_QuaternionSLerp() {}
 
@@ -75,16 +76,18 @@ namespace TKMath
         void Interpolate(Standard_Real theT, xgp_Quaternion^ theResultQ) {
             theResultQ = *myQStart * Sin((1.0 - theT) * myOmega) + *myQEnd * Sin(theT * myOmega);
         }
+
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property gp_QuaternionSLerp* Handle
-        {
+        virtual property gp_QuaternionSLerp* IHandle {
             gp_QuaternionSLerp* get() {
                 return NativeHandle;
             }
+            void set(gp_QuaternionSLerp* handle) {
+                NativeHandle = handle;
+            }
         }
-
     private:
         gp_QuaternionSLerp* NativeHandle;
         xgp_Quaternion^ myQStart;

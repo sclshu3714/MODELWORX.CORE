@@ -51,7 +51,8 @@ namespace TKG3d {
 
 	public:
 
-
+		!XGeom_Direction() { IHandle = NULL; };
+		~XGeom_Direction() { IHandle = NULL; };
 		//! Creates a unit vector with it 3 cartesian coordinates.
 		//!
 		//! Raised if Sqrt( X*X + Y*Y + Z*Z) <= Resolution from gp.

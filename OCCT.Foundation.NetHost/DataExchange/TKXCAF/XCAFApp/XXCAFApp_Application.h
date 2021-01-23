@@ -43,7 +43,8 @@ namespace TKXCAF {
 	public ref class XXCAFApp_Application : XTDocStd_Application
 	{
 	public:
-
+		!XXCAFApp_Application() { IHandle = NULL; };
+		~XXCAFApp_Application() { IHandle = NULL; };
 		//! methods from TDocStd_Application
 		//! ================================
 		XXCAFApp_Application();

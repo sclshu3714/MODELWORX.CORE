@@ -17,6 +17,7 @@
 #ifndef _XTDataStd_Name_HeaderFile
 #define _XTDataStd_Name_HeaderFile
 #pragma once
+#include "pch.h"
 #include "TDataStd_Name.hxx"
 #include "XTDF_Attribute.h"
 #include "NCollection_Haft.h"
@@ -56,6 +57,8 @@ namespace TKLCAF {
 
 		XTDataStd_Name(Handle(TDataStd_Name) pos);
 
+		!XTDataStd_Name() { IHandle = NULL; };
+		~XTDataStd_Name() { IHandle = NULL; };
 		//XTDataStd_Name(XTDF_Attribute^ pos);
 
 		Handle(TDataStd_Name) GetName();

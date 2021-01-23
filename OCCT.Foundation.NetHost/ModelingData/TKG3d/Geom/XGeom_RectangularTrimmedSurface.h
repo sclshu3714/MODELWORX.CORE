@@ -93,6 +93,8 @@ namespace TKG3d {
 		//!
 		~XGeom_RectangularTrimmedSurface();
 
+		!XGeom_RectangularTrimmedSurface() { IHandle = NULL; };
+
 		void SetRectangularTrimmedSurfaceHandle(Handle(Geom_RectangularTrimmedSurface) handle);
 
 		//!

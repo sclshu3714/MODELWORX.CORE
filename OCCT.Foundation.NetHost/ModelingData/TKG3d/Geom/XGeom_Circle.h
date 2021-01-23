@@ -87,6 +87,8 @@ namespace TKG3d {
 
 	public:
 
+		!XGeom_Circle() { IHandle = NULL; };
+		~XGeom_Circle() { IHandle = NULL; };
 		//! Constructs a circle by conversion of the gp_Circ circle C.
 		XGeom_Circle(xgp_Circ^ C);
 

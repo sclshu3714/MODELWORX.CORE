@@ -69,6 +69,8 @@ namespace TKG3d {
 		//!
 		~XGeom_BoundedSurface();
 
+		!XGeom_BoundedSurface() { IHandle = NULL; };
+
 		void SetBoundedSurfaceHandle(Handle(Geom_BoundedSurface) handle);
 
 		//!

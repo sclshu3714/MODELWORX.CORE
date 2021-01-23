@@ -88,6 +88,9 @@ namespace TKBRep {
     public ref class XTopoDS_Builder
     {
     public:
+
+        !XTopoDS_Builder() { IHandle = NULL; };
+        ~XTopoDS_Builder() { IHandle = NULL; };
         //! DEFINE_STANDARD_ALLOC
         //! 
         XTopoDS_Builder(TopoDS_Builder* pos);

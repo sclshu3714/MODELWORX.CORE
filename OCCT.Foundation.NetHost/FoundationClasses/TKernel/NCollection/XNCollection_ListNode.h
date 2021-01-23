@@ -33,6 +33,8 @@ namespace TKernel {
 		// define new operator for use with NCollection allocators
 		// DEFINE_NCOLLECTION_ALLOC
 	public:
+		!XNCollection_ListNode() { IHandle = NULL; };
+		~XNCollection_ListNode() { IHandle = NULL; };
 		//! The only constructor
 		XNCollection_ListNode(Handle(NCollection_ListNode) theNext)
 			: NativeHandle(theNext) {}
@@ -57,6 +59,18 @@ namespace TKernel {
 		{
 			return gcnew XNCollection_ListNode(NativeHandle()->Next());
 		}
+
+		/// <summary>
+		/// ±¾µØ¾ä±ú
+		/// </summary>
+		virtual property Handle(NCollection_ListNode) IHandle {
+			Handle(NCollection_ListNode) get() {
+				return NativeHandle();
+			}
+			void set(Handle(NCollection_ListNode) handle) {
+				NativeHandle() = handle;
+			}
+		};
 
 	private:
 		//! operator= - forbidden

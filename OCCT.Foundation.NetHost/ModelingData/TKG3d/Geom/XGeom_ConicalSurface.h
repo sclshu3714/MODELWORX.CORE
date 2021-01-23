@@ -110,6 +110,8 @@ namespace TKG3d {
 		
 		~XGeom_ConicalSurface();
 
+		!XGeom_ConicalSurface() { IHandle = NULL; };
+
 		/// <summary>
 		/// 
 		/// </summary>

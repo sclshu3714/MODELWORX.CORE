@@ -49,7 +49,8 @@ namespace TKPrim {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepPrim_Cylinder() { IHandle = NULL; };
+		~XBRepPrim_Cylinder() { IHandle = NULL; };
 		//! 
 		XBRepPrim_Cylinder();
 

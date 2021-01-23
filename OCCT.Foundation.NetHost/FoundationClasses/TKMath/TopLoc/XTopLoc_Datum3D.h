@@ -33,6 +33,8 @@ namespace TKMath {
 
     public:
 
+        !XTopLoc_Datum3D() { IHandle = NULL; };
+        ~XTopLoc_Datum3D() { IHandle = NULL; };
         //! Constructs a default Datum3D.
         XTopLoc_Datum3D();
 
@@ -61,9 +63,12 @@ namespace TKMath {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property TopLoc_Datum3D* Handle {
+        virtual property TopLoc_Datum3D* IHandle {
             TopLoc_Datum3D* get() {
-                return  NativeHandle;
+                return NativeHandle;
+            }
+            void set(TopLoc_Datum3D* handle) {
+                NativeHandle = handle;
             }
         };
 

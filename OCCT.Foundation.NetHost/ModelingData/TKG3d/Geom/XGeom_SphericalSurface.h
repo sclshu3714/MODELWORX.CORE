@@ -109,6 +109,8 @@ namespace TKG3d {
 		//!
 		~XGeom_SphericalSurface();
 
+		!XGeom_SphericalSurface() { IHandle = NULL; };
+
 		void SetSphericalSurfaceHandle(Handle(Geom_SphericalSurface) handle);
 
 		//! 

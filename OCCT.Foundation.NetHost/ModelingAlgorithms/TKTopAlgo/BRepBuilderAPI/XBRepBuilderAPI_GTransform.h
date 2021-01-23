@@ -68,6 +68,8 @@ namespace TKTopAlgo {
 	{
 	public:
 
+		!XBRepBuilderAPI_GTransform() { IHandle = NULL; };
+		~XBRepBuilderAPI_GTransform() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 
 		XBRepBuilderAPI_GTransform();

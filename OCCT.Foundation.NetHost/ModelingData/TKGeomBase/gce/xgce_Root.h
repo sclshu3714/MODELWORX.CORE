@@ -37,7 +37,8 @@ namespace TKGeomBase {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !xgce_Root() { IHandle = NULL; };
+        ~xgce_Root() { IHandle = NULL; };
         xgce_Root();
 
         xgce_Root(gce_Root* pos);

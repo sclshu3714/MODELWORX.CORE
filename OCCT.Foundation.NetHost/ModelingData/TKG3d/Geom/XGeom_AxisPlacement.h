@@ -82,6 +82,7 @@ namespace TKG3d {
 		//!
 		~XGeom_AxisPlacement();
 
+		!XGeom_AxisPlacement() { IHandle = NULL; };
 		//! 
 		void SetAxisPlacementHandle(Handle(Geom_AxisPlacement) pos);
 

@@ -60,7 +60,8 @@ namespace TKTopAlgo {
 	public:
 
 		//! DEFINE_STANDARD_ALLOC
-
+		!XBRepBuilderAPI_MakeSolid() { IHandle = NULL; };
+		~XBRepBuilderAPI_MakeSolid() { IHandle = NULL; };
 
 		//! Initializes the construction of a solid. An empty solid is
 		//! considered to cover the whole space. The Add function

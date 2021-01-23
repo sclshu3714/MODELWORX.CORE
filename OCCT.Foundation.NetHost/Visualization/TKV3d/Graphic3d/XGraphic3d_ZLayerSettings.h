@@ -39,6 +39,8 @@ namespace TKV3d {
     //! Structure defines list of ZLayer properties.
     public ref struct XGraphic3d_ZLayerSettings
     {
+        !XGraphic3d_ZLayerSettings() { IHandle = NULL; };
+        ~XGraphic3d_ZLayerSettings() { IHandle = NULL; };
         //! Default settings.
         XGraphic3d_ZLayerSettings();
 

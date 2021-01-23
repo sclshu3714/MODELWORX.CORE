@@ -86,6 +86,8 @@ namespace TKG3d {
 		//!
 		~XGeom_Curve();
 
+		!XGeom_Curve() { IHandle = NULL; };
+
 		void SetCurveHandle(Handle(Geom_Curve) pos);
 
 		//!

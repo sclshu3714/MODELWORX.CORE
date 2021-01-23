@@ -37,6 +37,8 @@ namespace TKV3d {
         //! DEFINE_STANDARD_RTTIEXT(AIS_AnimationCamera, AIS_Animation)
     public:
 
+        !XAIS_AnimationCamera() { IHandle = NULL; };
+        ~XAIS_AnimationCamera() { IHandle = NULL; };
         //! Main constructor.
         XAIS_AnimationCamera(XTCollection_AsciiString^ theAnimationName, XV3d_View^ theView);
 

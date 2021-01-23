@@ -56,7 +56,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeRotation();
-
+		!xgce_MakeRotation() { IHandle = NULL; };
+		~xgce_MakeRotation() { IHandle = NULL; };
 		xgce_MakeRotation(gce_MakeRotation* pos);
 
 		void SetMakeRotation(gce_MakeRotation* pos);

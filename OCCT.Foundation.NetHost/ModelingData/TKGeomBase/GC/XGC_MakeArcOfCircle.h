@@ -54,6 +54,8 @@ namespace TKGeomBase {
 	{
 	public:
 
+		!XGC_MakeArcOfCircle() { IHandle = NULL; };
+		~XGC_MakeArcOfCircle() { IHandle = NULL; };
 		//! DEFINE_STANDARD_ALLOC
 		XGC_MakeArcOfCircle(GC_MakeArcOfCircle* pos);
 

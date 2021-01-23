@@ -73,7 +73,8 @@ namespace TKGeomBase {
 
 		//DEFINE_STANDARD_ALLOC
 		xgce_MakeParab2d();
-
+		!xgce_MakeParab2d() { IHandle = NULL; };
+		~xgce_MakeParab2d() { IHandle = NULL; };
 		xgce_MakeParab2d(gce_MakeParab2d* pos);
 
 		void SetMakeParab2d(gce_MakeParab2d* pos);

@@ -40,7 +40,8 @@ namespace TKBRep {
     public:
 
         //! DEFINE_STANDARD_ALLOC
-
+        !XTopoDS_CompSolid() { IHandle = NULL; };
+        ~XTopoDS_CompSolid() { IHandle = NULL; };
 
         //! Constructs an Undefined CompSolid.
         XTopoDS_CompSolid();

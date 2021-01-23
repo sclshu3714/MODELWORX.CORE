@@ -69,7 +69,8 @@ namespace TKV3d {
 
         //! Creates a material from default values.
         XGraphic3d_MaterialAspect();
-
+        !XGraphic3d_MaterialAspect() { IHandle = NULL; };
+        ~XGraphic3d_MaterialAspect() { IHandle = NULL; };
         //! Creates a generic material.
         XGraphic3d_MaterialAspect(XGraphic3d_NameOfMaterial theName);
 
@@ -198,10 +199,13 @@ namespace TKV3d {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        property Graphic3d_MaterialAspect* Handle
+        property Graphic3d_MaterialAspect* IHandle
         {
             Graphic3d_MaterialAspect* get() {
                 return NativeHandle;
+            }
+            void set(Graphic3d_MaterialAspect* handle) {
+                NativeHandle = handle;
             }
         };
     private:

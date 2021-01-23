@@ -100,6 +100,8 @@ namespace TKG3d
 		//!
 		~XGeom_SurfaceOfLinearExtrusion();
 
+		!XGeom_SurfaceOfLinearExtrusion() { IHandle = NULL; };
+
 		void SetSurfaceOfLinearExtrusionHandle(Handle(Geom_SurfaceOfLinearExtrusion) handle);
 
 		//!
