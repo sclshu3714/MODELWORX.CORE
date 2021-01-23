@@ -5854,8 +5854,8 @@ Class NCollection_Haft<opencascade::handle<Geom_Plane> >: AutoLayout, AnsiClass,
   Interfaces:
     System.IDisposable
   Methods:
-    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     op_FunctionCall(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKG3d.XGeom_ElementarySurface
     Void .ctor(Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5867,10 +5867,6 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
-    SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
-    GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
-    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetPln(xgp_Pln): PrivateScope, Public, HideBySig
     Pln(): PrivateScope, Public, HideBySig
@@ -5897,6 +5893,10 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
+    SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
+    GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -9390,6 +9390,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitViewer(IntPtr): PrivateScope, Public, HideBySig
     AISTextLabel(SByte*): PrivateScope, Public, HideBySig
     DisplayExplainText(SByte*, Aspect_TypeOfTriedronPosition, NCollection_Vec2<int>): PrivateScope, Public, HideBySig
+    TriedronDisplay(Boolean(HasFieldMarshal), XAspect_TypeOfTriedronPosition, Double, Double): PrivateScope, Public, HideBySig
     Dump(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     RedrawView(): PrivateScope, Public, HideBySig
     UpdateView(): PrivateScope, Public, HideBySig

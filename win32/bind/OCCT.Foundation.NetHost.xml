@@ -584,6 +584,13 @@ Make dump of current view to file
 </summary>
             <param name="theFileName">Name of dump file</param>
         </member>
+        <member name="M:OCCTProxy.TriedronDisplay(System.Boolean,XAspect_TypeOfTriedronPosition,System.Double,System.Double)">
+            <summary>
+全局坐标系显示
+</summary>
+            <param name="IsViewCube" />
+            <param name="thePosition" />
+        </member>
         <member name="M:OCCTProxy.DisplayExplainText(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*,Aspect_TypeOfTriedronPosition,NCollection_Vec2&lt;System.Int32&gt;)">
             <summary>
 左上角显示text
