@@ -135,32 +135,18 @@ public:
         mainView()->Redraw();
         mainView()->MustBeResized();
 
-        //mainView()->SetBgGradientColors(Quantity_Color(217 / 255., 217 / 255., 217 / 255., Quantity_TOC_RGB), Quantity_Color(236 / 255., 236 / 255., 236 / 255., Quantity_TOC_RGB));
+        TriedronDisplay(true, XAspect_TypeOfTriedronPosition(Aspect_TOTP_RIGHT_LOWER), 100, 100);
 
-        //mainView()->ZBufferTriedronSetup();
-        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
-        //mainView()->TriedronDisplay(Aspect_TOTP_RIGHT_LOWER, Quantity_NOC_BLACK, 0.15, V3d_WIREFRAME);   //画三维坐标系
-        Handle(AIS_ViewCube) HViewCube = new AIS_ViewCube();
-        //HViewCube->SetTransparency(0.1);
-        //HViewCube->SetTextColor(Quantity_Color(Quantity_NOC_BLACK));
-        //HViewCube->SetZLayer(Graphic3d_ZLayerId_TopOSD); // display object in overlay
-        //SetTransformPersistence (new Graphic3d_TransformPers (Graphic3d_TMF_TriedronPers, Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i (100, 100));
-        HViewCube->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, Aspect_TOTP_RIGHT_LOWER, Graphic3d_Vec2i(100, 100))); // set 2d flag, coordinate origin is set to down-left corner
-        mainAISContext()->Display(HViewCube, Standard_True);
-
-        AISTextLabel("sclshu3714@163.com");
-        //Aspect_TypeOfTriedronPosition
-        string str = "右上 - sclshu3714@163.com - 右上";
         Graphic3d_Vec2i anoffset(0, 10);
-        DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER, anoffset = Graphic3d_Vec2i(127, 0));
+       /* DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER, anoffset = Graphic3d_Vec2i(127, 0));
         DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_LEFT, anoffset = Graphic3d_Vec2i(0, 0));
         DisplayExplainText("左上 - sclshu3714@163.com - 左上", Aspect_TOTP_LEFT_UPPER, anoffset = Graphic3d_Vec2i(0, 15));
         DisplayExplainText("上中 - sclshu3714@163.com - 上中", Aspect_TOTP_TOP, anoffset = Graphic3d_Vec2i(127, 15));
         DisplayExplainText("右上 - sclshu3714@163.com - 右上", Aspect_TOTP_RIGHT_UPPER, anoffset = Graphic3d_Vec2i(254, 15));
         DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_RIGHT, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER, anoffset = Graphic3d_Vec2i(254, 0));
-        DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));
-        DisplayExplainText("左下 - sclshu3714@163.com - 左下", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
+        DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));*/
+        DisplayExplainText("sclshu3714@163.com", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
 
         ////把图片添加到句柄控件上
         //Standard_Real Width = 0.0;
@@ -201,6 +187,22 @@ public:
 #pragma endregion
 
 #pragma region 设置操作
+    /// <summary>
+    /// 全局坐标系显示
+    /// </summary>
+    /// <param name="IsViewCube"></param>
+    /// <param name="thePosition"></param>
+    void TriedronDisplay(bool IsViewCube, XAspect_TypeOfTriedronPosition thePosition, Standard_Real theOffsetX, Standard_Real theOffsetY) {
+        if (!IsViewCube) {
+            mainView()->TriedronDisplay(safe_cast<Aspect_TypeOfTriedronPosition>(thePosition), Quantity_NOC_BLACK, 0.20, V3d_ZBUFFER);   //画三维坐标系
+        }
+        else
+        {
+            Handle(AIS_ViewCube) HViewCube = new AIS_ViewCube();
+            HViewCube->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, safe_cast<Aspect_TypeOfTriedronPosition>(thePosition), Graphic3d_Vec2i(theOffsetX, theOffsetY))); // set 2d flag, coordinate origin is set to down-left corner
+            mainAISContext()->Display(HViewCube, Standard_True);
+        }
+    }
     /// <summary>
     /// Make dump of current view to file
     /// </summary>
