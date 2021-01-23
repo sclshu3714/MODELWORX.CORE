@@ -136,7 +136,7 @@ public:
         mainView()->MustBeResized();
 
         TriedronDisplay(true, XAspect_TypeOfTriedronPosition(Aspect_TOTP_RIGHT_LOWER), 100, 100);
-
+        mainView()->SetBgGradientColors(Quantity_Color(158 / 255.0, 165 / 255.0, 172 / 255.0, Quantity_TOC_RGB), Quantity_Color(229 / 255.0, 234 / 255.0, 236 / 255.0, Quantity_TOC_RGB), Aspect_GFM_VER, true);
         Graphic3d_Vec2i anoffset(0, 10);
        /* DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER, anoffset = Graphic3d_Vec2i(127, 0));
         DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_LEFT, anoffset = Graphic3d_Vec2i(0, 0));

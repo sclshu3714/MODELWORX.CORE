@@ -32,7 +32,6 @@ namespace UniversalCAD
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.fluentDesignFormContainer = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
-            this.RWControl = new DevExpress.XtraEditors.PanelControl();
             this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accElementOperation = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accElementOpen = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -48,8 +47,8 @@ namespace UniversalCAD
             this.fluentFormDefaultManager = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.imgList16 = new DevExpress.Utils.ImageCollection(this.components);
             this.imgList32 = new DevExpress.Utils.ImageCollection(this.components);
+            this.RWControl = new System.Windows.Forms.Panel();
             this.fluentDesignFormContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RWControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager)).BeginInit();
@@ -65,14 +64,6 @@ namespace UniversalCAD
             this.fluentDesignFormContainer.Name = "fluentDesignFormContainer";
             this.fluentDesignFormContainer.Size = new System.Drawing.Size(958, 668);
             this.fluentDesignFormContainer.TabIndex = 0;
-            // 
-            // RWControl
-            // 
-            this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RWControl.Location = new System.Drawing.Point(0, 0);
-            this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(958, 668);
-            this.RWControl.TabIndex = 3;
             // 
             // accordionControl
             // 
@@ -214,6 +205,15 @@ namespace UniversalCAD
             // 
             this.imgList32.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgList32.ImageStream")));
             // 
+            // RWControl
+            // 
+            this.RWControl.BackColor = System.Drawing.Color.Black;
+            this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RWControl.Location = new System.Drawing.Point(0, 0);
+            this.RWControl.Name = "RWControl";
+            this.RWControl.Size = new System.Drawing.Size(958, 668);
+            this.RWControl.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -223,6 +223,7 @@ namespace UniversalCAD
             this.Controls.Add(this.fluentDesignFormContainer);
             this.Controls.Add(this.accordionControl);
             this.Controls.Add(this.fluentDesignFormControl);
+            this.DoubleBuffered = true;
             this.FluentDesignFormControl = this.fluentDesignFormControl;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("MainForm.IconOptions.Icon")));
             this.Name = "MainForm";
@@ -230,7 +231,6 @@ namespace UniversalCAD
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAD";
             this.fluentDesignFormContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RWControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager)).EndInit();
@@ -248,7 +248,6 @@ namespace UniversalCAD
         private DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager fluentFormDefaultManager;
         private DevExpress.Utils.ImageCollection imgList16;
         private DevExpress.Utils.ImageCollection imgList32;
-        private DevExpress.XtraEditors.PanelControl RWControl;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementOpen;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementSave;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementTLable;
@@ -258,5 +257,6 @@ namespace UniversalCAD
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementMeasure;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementAbout;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementSetting;
+        private System.Windows.Forms.Panel RWControl;
     }
 }
