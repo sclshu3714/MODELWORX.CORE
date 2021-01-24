@@ -1,4 +1,5 @@
-namespace UniversalCAD.Module {
+namespace UniversalCAD.Modules
+{
     partial class ExplorerNew {
         /// <summary>
         /// Required designer variable.

@@ -13,7 +13,8 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
-namespace UniversalCAD.Module {
+namespace UniversalCAD.Modules
+{
     public partial class ExplorerNew : XtraUserControl {
         public TreeList MainControl {
             get { return this.treeList1; }
@@ -22,7 +23,7 @@ namespace UniversalCAD.Module {
             InitializeComponent();
             CalcImageSize();
         }
-        protected string[] WhatsThisCodeFileNames { get { return new string[] { "TreeListMainDemo\\Modules\\ExplorerNew" }; } }
+        protected string[] WhatsThisCodeFileNames { get { return new string[] { "Modules\\ExplorerNew" }; } }
         protected string WhatsThisXMLFileName { get { return "ExplorerNew"; } }
         void CalcImageSize() {
             Item.ImageSize = new Size(16, 16);
@@ -167,7 +168,7 @@ namespace UniversalCAD.Module {
         }
     }
     public class ThisPCItem : Item {
-        public ThisPCItem() : base("This PC") { }
+        public ThisPCItem() : base("此电脑") { }
         public override List<Item> GetDirectories() {
             List<Item> items = new List<Item>(10);
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)));
@@ -194,7 +195,7 @@ namespace UniversalCAD.Module {
                     FullName = driveInfo.Name,
                     Name = drive,
                     Image = GetImage(drive),
-                    TypeName = "Drive",
+                    TypeName = "驱动器",
                     Type = FileType.Drive
                 });
             }
@@ -207,7 +208,7 @@ namespace UniversalCAD.Module {
                 DateCreated = info.CreationTime,
                 DateModified = info.LastWriteTime,
                 Image = GetImage(info.FullName),
-                TypeName = "System Folder",
+                TypeName = "系统文件夹",
                 Type = FileType.SystemFolder
             };
         }
@@ -223,7 +224,7 @@ namespace UniversalCAD.Module {
             return _name;
         }
         protected override string GetDisplayName(string fullName) {
-            return "Disc (" + Name + ")";
+            return "本地磁盘 (" + Name + ":)";
         }
     }
     public class DirectoryItem : Item {
@@ -300,7 +301,7 @@ namespace UniversalCAD.Module {
                             DateCreated = directory.CreationTime,
                             DateModified = directory.LastWriteTime,
                             Image = GetImage(directory.FullName),
-                            TypeName = "File Folder",
+                            TypeName = "文件夹",
                             Type = FileType.FileFolder
                         });
                     }
@@ -314,7 +315,7 @@ namespace UniversalCAD.Module {
                             DateCreated = file.CreationTime,
                             DateModified = file.LastWriteTime,
                             Image = GetImage(file.FullName),
-                            TypeName = "File",
+                            TypeName = "文件",
                             Type = FileType.File,
                             Size = file.Length
                         });

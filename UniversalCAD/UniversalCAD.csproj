@@ -94,52 +94,68 @@
     <Reference Include="DevExpress.BonusSkins.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.BonusSkins.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.Data.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Images.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.Images.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Tutorials.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.Tutorials.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.Utils.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.Utils.v20.1.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraBars.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraEditors.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraGrid.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraLayout.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraNavBar.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dparty\DevExpress20.1\Framework\DevExpress.XtraTreeList.v20.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -165,16 +181,16 @@
     <Compile Include="MainFormold.Designer.cs">
       <DependentUpon>MainFormold.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\ExplorerNew.cs">
+    <Compile Include="Modules\ExplorerNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Module\ExplorerNew.Designer.cs">
+    <Compile Include="Modules\ExplorerNew.Designer.cs">
       <DependentUpon>ExplorerNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MenuControl.cs">
+    <Compile Include="Modules\MenuControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Module\MenuControl.Designer.cs">
+    <Compile Include="Modules\MenuControl.Designer.cs">
       <DependentUpon>MenuControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -185,11 +201,11 @@
     <EmbeddedResource Include="MainFormold.resx">
       <DependentUpon>MainFormold.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Module\ExplorerNew.resx">
+    <EmbeddedResource Include="Modules\ExplorerNew.resx">
       <DependentUpon>ExplorerNew.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Module\MenuControl.resx">
+    <EmbeddedResource Include="Modules\MenuControl.resx">
       <DependentUpon>MenuControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\licenses.licx" />
