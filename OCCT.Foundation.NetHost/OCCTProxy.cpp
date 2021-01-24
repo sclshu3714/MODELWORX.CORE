@@ -136,8 +136,9 @@ public:
         mainView()->MustBeResized();
 
         TriedronDisplay(true, XAspect_TypeOfTriedronPosition(Aspect_TOTP_RIGHT_LOWER), 100, 100);
-        mainView()->SetBgGradientColors(Quantity_Color(158 / 255.0, 165 / 255.0, 172 / 255.0, Quantity_TOC_RGB), Quantity_Color(229 / 255.0, 234 / 255.0, 236 / 255.0, Quantity_TOC_RGB), Aspect_GFM_VER, true);
-        Graphic3d_Vec2i anoffset(0, 10);
+        mainView()->SetBgGradientColors(Quantity_Color(158/255., 165/255., 172/255., Quantity_TOC_RGB), Quantity_Color(229/255., 234/255., 236/255., Quantity_TOC_RGB), Aspect_GFM_VER, true);
+        //mainView()->SetBgGradientColors(Quantity_Color(158 / 255.0, 165 / 255.0, 172 / 255.0, Quantity_TOC_RGB), Quantity_Color(229 / 255.0, 234 / 255.0, 236 / 255.0, Quantity_TOC_RGB), Aspect_GFM_VER, true);
+        //Graphic3d_Vec2i anoffset(0, 10);
        /* DisplayExplainText("中间 - sclshu3714@163.com - 中间", Aspect_TOTP_CENTER, anoffset = Graphic3d_Vec2i(127, 0));
         DisplayExplainText("左中 - sclshu3714@163.com - 左中", Aspect_TOTP_LEFT, anoffset = Graphic3d_Vec2i(0, 0));
         DisplayExplainText("左上 - sclshu3714@163.com - 左上", Aspect_TOTP_LEFT_UPPER, anoffset = Graphic3d_Vec2i(0, 15));
@@ -146,7 +147,7 @@ public:
         DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_RIGHT, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));*/
-        DisplayExplainText("sclshu3714@163.com", Aspect_TOTP_LEFT_LOWER, anoffset = Graphic3d_Vec2i(0, 0));
+        DisplayExplainText("sclshu3714@163.com", Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i(0, 20));
 
         ////把图片添加到句柄控件上
         //Standard_Real Width = 0.0;
@@ -621,6 +622,16 @@ public:
     void SetBgGradientColors(XQuantity_Color^ theColor1, XQuantity_Color^ theColor2, XAspect_GradientFillMethod theFillStyle, Standard_Boolean theToUpdate) {
         if (!mainView().IsNull()) {
             mainView()->SetBgGradientColors(*theColor1->GetColor(), *theColor2->GetColor(), safe_cast<Aspect_GradientFillMethod>(theFillStyle), theToUpdate);
+        }
+    }
+
+    /// <summary>
+/// 设置渐变背景色
+/// </summary>
+    void SetBackgroundImage(String^ theFileNamex, XAspect_FillMethod theFillStyle, Standard_Boolean theToUpdate) {
+        if (!mainView().IsNull()) {
+            Standard_CString theFileName = toAsciiString(theFileNamex).ToCString();
+            mainView()->SetBackgroundImage(theFileName, safe_cast<Aspect_FillMethod>(theFillStyle), theToUpdate);
         }
     }
 
