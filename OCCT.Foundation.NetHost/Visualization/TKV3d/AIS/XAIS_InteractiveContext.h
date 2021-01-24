@@ -91,7 +91,7 @@ namespace TKV3d
 
         //! Destructor.
         virtual ~XAIS_InteractiveContext();
-        !XAIS_InteractiveContext() { IHandle = NULL; };
+        !XAIS_InteractiveContext() { };//{ IHandle = NULL; };
         //! Returns the display status of the entity anIobj.
         //! This will be one of the following:
         //! - AIS_DS_Displayed displayed in main viewer
@@ -1120,7 +1120,11 @@ namespace TKV3d
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {// Standard_OVERRIDE {
-                NativeHandle() = Handle(AIS_InteractiveContext)::DownCast(handle);
+                //NativeHandle() = Handle(AIS_InteractiveContext)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(AIS_InteractiveContext)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         };
     protected: //! @name internal fields

@@ -57,7 +57,7 @@ namespace TKLCAF {
 
 		XTDataStd_Name(Handle(TDataStd_Name) pos);
 
-		!XTDataStd_Name() { IHandle = NULL; };
+		!XTDataStd_Name() { };//{ IHandle = NULL; };
 		~XTDataStd_Name() { IHandle = NULL; };
 		//XTDataStd_Name(XTDF_Attribute^ pos);
 
@@ -133,7 +133,11 @@ namespace TKLCAF {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(TDataStd_Name)::DownCast(handle);
+				//NativeHandle() = Handle(TDataStd_Name)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(TDataStd_Name)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 		//! DEFINE_STANDARD_RTTIEXT(XTDataStd_Name, XTDF_Attribute)

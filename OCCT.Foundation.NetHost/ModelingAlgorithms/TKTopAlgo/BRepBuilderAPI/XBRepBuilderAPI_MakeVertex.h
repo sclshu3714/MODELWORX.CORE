@@ -71,7 +71,11 @@ namespace TKTopAlgo {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepBuilderAPI_MakeVertex*>(handle);
+				//NativeHandle = static_cast<BRepBuilderAPI_MakeVertex*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepBuilderAPI_MakeVertex*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

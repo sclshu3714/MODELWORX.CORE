@@ -146,7 +146,11 @@ namespace TKG3d
 				return 	NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) {
-				NativeHandle() = Handle(Geom_Geometry)::DownCast(handle);
+				//NativeHandle() = Handle(Geom_Geometry)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom_Geometry)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 

@@ -96,7 +96,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepPrim_GWedge* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrim_Wedge*>(handle);
+				//NativeHandle = static_cast<BRepPrim_Wedge*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrim_Wedge*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

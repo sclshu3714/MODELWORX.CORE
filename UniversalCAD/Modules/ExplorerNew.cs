@@ -12,10 +12,11 @@ using DevExpress.XtraEditors.Behaviors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
+using static OCCT.Foundation.Net.OperationEvents;
 
 namespace UniversalCAD.Modules
 {
-    public partial class ExplorerNew : XtraUserControl {
+    public partial class ExplorerNew : XtraForm {
         public TreeList MainControl {
             get { return this.treeList1; }
         }
@@ -23,6 +24,20 @@ namespace UniversalCAD.Modules
             InitializeComponent();
             CalcImageSize();
         }
+
+        public string FullName { get; set; }
+        /// <summary>
+        /// 自定义事件
+        /// </summary>
+        private OperationEvent OnOperationEvent;
+        /// <summary>
+        /// 自定义事件
+        /// </summary>
+        public event OperationEvent OnCustomEvent {
+            add { OnOperationEvent += value; }
+            remove { OnOperationEvent -= value; }
+        }
+
         protected string[] WhatsThisCodeFileNames { get { return new string[] { "Modules\\ExplorerNew" }; } }
         protected string WhatsThisXMLFileName { get { return "ExplorerNew"; } }
         void CalcImageSize() {
@@ -37,7 +52,9 @@ namespace UniversalCAD.Modules
             InitializeDisplayTreeList();
             InitializeNavigationTreeList();
             UpdateButtonsState();
+            this.btnReturnMain.Click += BtnReturnMain_Click;
         }
+
         #region Initialize
         //<navigationTreeList>
         void InitializeNavigationTreeList() {
@@ -112,11 +129,32 @@ namespace UniversalCAD.Modules
                 return;
             TreeListNode pressedNode = hitInfo.Node;
             CustomFileInfo fileInfo = (CustomFileInfo)treeList1.GetRow(pressedNode.Id);
-            if(fileInfo.Type == FileType.File)
-                SafeProcess.Open(fileInfo.FullName);
+            if (fileInfo.Type == FileType.File)
+            {   //选择的文件
+                //SafeProcess.Open(fileInfo.FullName);
+                FullName = fileInfo.FullName;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                //MainForm main = this.ParentForm as MainForm;
+                //main.Controls.Remove(this);
+                //if (OnOperationEvent != null)
+                //    OnOperationEvent(sender, e, FullName);
+            }
             else
                 navigationTreeList.FocusedNode = navigationTreeList.FocusedNode.Nodes[pressedNode.Id];
         }
+
+        /// <summary>
+        /// 退出当前文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReturnMain_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
         void OnBackButtonClick(object sender, EventArgs e) {
             breadCrumbEdit.GoBack();
         }
@@ -224,7 +262,7 @@ namespace UniversalCAD.Modules
             return _name;
         }
         protected override string GetDisplayName(string fullName) {
-            return "本地磁盘 (" + Name + ":)";
+            return "本地磁盘 (" + Name + ")";
         }
     }
     public class DirectoryItem : Item {

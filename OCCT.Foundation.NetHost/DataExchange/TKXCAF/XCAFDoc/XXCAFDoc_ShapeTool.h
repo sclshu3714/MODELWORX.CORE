@@ -478,7 +478,11 @@ namespace TKXCAF {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-                NativeHandle() = Handle(XCAFDoc_ShapeTool)::DownCast(handle);
+                //NativeHandle() = Handle(XCAFDoc_ShapeTool)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(XCAFDoc_ShapeTool)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

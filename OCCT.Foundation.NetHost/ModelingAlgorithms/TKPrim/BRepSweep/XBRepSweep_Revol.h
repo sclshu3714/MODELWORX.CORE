@@ -110,7 +110,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepSweep_Revol* handle) { //Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepSweep_Revol*>(handle);
+				//NativeHandle = static_cast<BRepSweep_Revol*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepSweep_Revol*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

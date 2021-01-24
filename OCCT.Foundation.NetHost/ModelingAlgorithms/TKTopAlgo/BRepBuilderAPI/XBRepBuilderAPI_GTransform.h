@@ -133,7 +133,11 @@ namespace TKTopAlgo {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepBuilderAPI_GTransform*>(handle);
+				//NativeHandle = static_cast<BRepBuilderAPI_GTransform*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepBuilderAPI_GTransform*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

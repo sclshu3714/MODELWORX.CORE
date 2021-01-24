@@ -53,8 +53,8 @@ namespace TKLCAF {
 
 	public:
 
-		!XTDataStd_Integer() { IHandle = NULL; };
-		~XTDataStd_Integer() { IHandle = NULL; };
+		!XTDataStd_Integer() { };// { NativeHandle() = NULL; };
+		~XTDataStd_Integer() { NativeHandle() = NULL; };
 		/// <summary>
 		///  class methods 
 		///  Returns the GUID for integers.
@@ -133,7 +133,11 @@ namespace TKLCAF {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(TDataStd_Integer)::DownCast(handle);
+				//NativeHandle() = Handle(TDataStd_Integer)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(TDataStd_Integer)::DownCast(handle);
+				else if(!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 	private:

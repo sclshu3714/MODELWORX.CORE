@@ -947,7 +947,11 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) { // Standard_OVERRIDE {
-                NativeHandle() = Handle(V3d_View)::DownCast(handle);
+                //NativeHandle() = Handle(V3d_View)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(V3d_View)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

@@ -32,6 +32,7 @@ namespace UniversalCAD
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.fluentDesignFormContainer = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
+            this.RWControl = new System.Windows.Forms.Panel();
             this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accElementOperation = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accElementOpen = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -47,7 +48,6 @@ namespace UniversalCAD
             this.fluentFormDefaultManager = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.imgList16 = new DevExpress.Utils.ImageCollection(this.components);
             this.imgList32 = new DevExpress.Utils.ImageCollection(this.components);
-            this.RWControl = new System.Windows.Forms.Panel();
             this.fluentDesignFormContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl)).BeginInit();
@@ -64,6 +64,15 @@ namespace UniversalCAD
             this.fluentDesignFormContainer.Name = "fluentDesignFormContainer";
             this.fluentDesignFormContainer.Size = new System.Drawing.Size(958, 668);
             this.fluentDesignFormContainer.TabIndex = 0;
+            // 
+            // RWControl
+            // 
+            this.RWControl.BackColor = System.Drawing.Color.Black;
+            this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RWControl.Location = new System.Drawing.Point(0, 0);
+            this.RWControl.Name = "RWControl";
+            this.RWControl.Size = new System.Drawing.Size(958, 668);
+            this.RWControl.TabIndex = 0;
             // 
             // accordionControl
             // 
@@ -128,7 +137,6 @@ namespace UniversalCAD
             // 
             this.accElementTLable.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_176;
             this.accElementTLable.Name = "accElementTLable";
-            this.accElementTLable.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accElementTLable.Tag = "TLable";
             this.accElementTLable.Text = "模型";
             // 
@@ -136,7 +144,6 @@ namespace UniversalCAD
             // 
             this.accElementView.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_416;
             this.accElementView.Name = "accElementView";
-            this.accElementView.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accElementView.Tag = "View";
             this.accElementView.Text = "显示";
             // 
@@ -204,15 +211,6 @@ namespace UniversalCAD
             // imgList32
             // 
             this.imgList32.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgList32.ImageStream")));
-            // 
-            // RWControl
-            // 
-            this.RWControl.BackColor = System.Drawing.Color.Black;
-            this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RWControl.Location = new System.Drawing.Point(0, 0);
-            this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(958, 668);
-            this.RWControl.TabIndex = 0;
             // 
             // MainForm
             // 

@@ -53,7 +53,7 @@ namespace TKV3d {
         //!    friend class SelectMgr_SelectionManager;
     public:
         XSelectMgr_SelectableObject();
-        !XSelectMgr_SelectableObject() { IHandle = NULL; };
+        !XSelectMgr_SelectableObject() { };//{ IHandle = NULL; };
         //!
         XSelectMgr_SelectableObject(Handle(SelectMgr_SelectableObject) pos);
 
@@ -194,7 +194,10 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-                NativeHandle() = Handle(SelectMgr_SelectableObject)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(SelectMgr_SelectableObject)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         };
 

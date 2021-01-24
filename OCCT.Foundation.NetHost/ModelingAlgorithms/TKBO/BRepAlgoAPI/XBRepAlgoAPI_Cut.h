@@ -79,7 +79,11 @@ namespace TKBO {
 				return NativeHandle;
 			}
 			void set(BRepAlgoAPI_Cut* handle) {// Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepAlgoAPI_Cut*>(handle);
+				//NativeHandle = static_cast<BRepAlgoAPI_Cut*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepAlgoAPI_Cut*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

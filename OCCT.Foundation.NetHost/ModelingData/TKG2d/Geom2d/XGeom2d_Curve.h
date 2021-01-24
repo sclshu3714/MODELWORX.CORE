@@ -259,7 +259,11 @@ namespace TKG2d {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(Geom2d_Curve)::DownCast(handle);
+				//NativeHandle() = Handle(Geom2d_Curve)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom2d_Curve)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 

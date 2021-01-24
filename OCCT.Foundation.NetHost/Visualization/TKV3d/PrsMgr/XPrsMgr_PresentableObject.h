@@ -71,7 +71,7 @@ namespace TKV3d {
     public:
         //!
         XPrsMgr_PresentableObject();
-        !XPrsMgr_PresentableObject() { IHandle = NULL; };
+        !XPrsMgr_PresentableObject() { };//{ IHandle = NULL; };
         ~XPrsMgr_PresentableObject() { IHandle = NULL; };
         //!
         XPrsMgr_PresentableObject(Handle(PrsMgr_PresentableObject) pos);
@@ -429,7 +429,10 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {// Standard_OVERRIDE {
-                NativeHandle() = Handle(PrsMgr_PresentableObject)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(PrsMgr_PresentableObject)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         };
 

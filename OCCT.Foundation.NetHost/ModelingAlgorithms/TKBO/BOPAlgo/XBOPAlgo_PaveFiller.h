@@ -196,7 +196,11 @@ namespace TKBO {
                 return NativeHandle;
             }
             void set(BOPAlgo_PaveFiller* handle) {// Standard_OVERRIDE {
-                NativeHandle = static_cast<BOPAlgo_PaveFiller*>(handle);
+               // NativeHandle = static_cast<BOPAlgo_PaveFiller*>(handle);
+                if (handle == NULL)
+                    NativeHandle = static_cast<BOPAlgo_PaveFiller*>(handle);
+                else
+                    NativeHandle = NULL;
             }
         }
 

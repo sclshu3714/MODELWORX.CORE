@@ -43,7 +43,7 @@ namespace TKXCAF {
 	public ref class XXCAFApp_Application : XTDocStd_Application
 	{
 	public:
-		!XXCAFApp_Application() { IHandle = NULL; };
+		!XXCAFApp_Application() { };//{ IHandle = NULL; };
 		~XXCAFApp_Application() { IHandle = NULL; };
 		//! methods from TDocStd_Application
 		//! ================================
@@ -82,7 +82,11 @@ namespace TKXCAF {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(XCAFApp_Application)::DownCast(handle);
+				//NativeHandle() = Handle(XCAFApp_Application)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(XCAFApp_Application)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 	private:

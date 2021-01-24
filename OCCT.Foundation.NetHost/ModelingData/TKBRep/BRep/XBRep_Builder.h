@@ -299,7 +299,11 @@ namespace TKBRep {
                 return NativeHandle;
             }
             void set(TopoDS_Builder* handle) Standard_OVERRIDE {
-                NativeHandle = static_cast<BRep_Builder*>(handle);
+                //NativeHandle = static_cast<BRep_Builder*>(handle);
+                if (handle == NULL)
+                    NativeHandle = static_cast<BRep_Builder*>(handle);
+                else
+                    NativeHandle = NULL;
             }
         }
 

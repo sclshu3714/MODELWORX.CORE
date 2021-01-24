@@ -89,7 +89,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepPrim_OneAxis* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrim_Sphere*>(handle);
+				//NativeHandle = static_cast<BRepPrim_Sphere*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrim_Sphere*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

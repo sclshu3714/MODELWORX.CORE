@@ -54,7 +54,7 @@ namespace TKV3d
 
 		//!
 		~XAIS_InteractiveObject();
-		!XAIS_InteractiveObject() { IHandle = NULL; };
+		!XAIS_InteractiveObject() { };//{ IHandle = NULL; };
 		//!
 		void SetNativeHandle(Handle(AIS_InteractiveObject) pos);
 
@@ -144,7 +144,10 @@ namespace TKV3d
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(AIS_InteractiveObject)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(AIS_InteractiveObject)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 

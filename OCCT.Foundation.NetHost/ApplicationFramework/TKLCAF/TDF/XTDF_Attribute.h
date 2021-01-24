@@ -148,7 +148,7 @@ namespace TKLCAF {
 
     public:
         XTDF_Attribute();
-        !XTDF_Attribute() { IHandle = NULL; };
+        !XTDF_Attribute() { };//{ IHandle = NULL; };
         ~XTDF_Attribute() { IHandle = NULL; };
         //!
         XTDF_Attribute(Handle(TDF_Attribute) pos);
@@ -432,7 +432,11 @@ namespace TKLCAF {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {
-                NativeHandle() = Handle(TDF_Attribute)::DownCast(handle);
+                //NativeHandle() = Handle(TDF_Attribute)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(TDF_Attribute)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

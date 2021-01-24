@@ -141,7 +141,11 @@ namespace TKG2d {
 				return 	NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) {
-				NativeHandle() = Handle(Geom2d_Geometry)::DownCast(handle);
+				//NativeHandle() = Handle(Geom2d_Geometry)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom2d_Geometry)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 

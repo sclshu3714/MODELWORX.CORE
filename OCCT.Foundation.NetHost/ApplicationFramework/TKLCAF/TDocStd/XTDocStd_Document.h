@@ -73,7 +73,7 @@ namespace TKLCAF {
         //! exception if the document is not found.
         static Handle(TDocStd_Document) Get(XTDF_Label^ L);
 
-        !XTDocStd_Document() { IHandle = NULL; };
+        !XTDocStd_Document() { };//{ IHandle = NULL; };
         ~XTDocStd_Document() { IHandle = NULL; };
         //! Constructs a document object defined by the
         //! string astorageformat.
@@ -282,7 +282,11 @@ namespace TKLCAF {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {//Standard_OVERRIDE {
-                NativeHandle() = Handle(TDocStd_Document)::DownCast(handle);
+                //NativeHandle() = Handle(TDocStd_Document)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(TDocStd_Document)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

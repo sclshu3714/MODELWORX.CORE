@@ -22,11 +22,15 @@ using TKLCAF;
 using TKVCAF;
 using TKXCAF;
 using TKXDESTEP;
+using UniversalCAD.Modules;
+using System.IO;
+using DevExpress.XtraBars.Navigation;
 
 namespace UniversalCAD
 {
     public partial class MainForm : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        #region 构型初始化
         public MainForm()
         {
             InitializeComponent();
@@ -46,6 +50,7 @@ namespace UniversalCAD
             }
             //this.ToolStripMain.ItemClicked += ToolStripMain_ItemClicked;
             this.FormClosed += MainForm_FormClosed;
+            this.accordionControl.ElementClick += AccordionControl_ElementClick;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -87,6 +92,79 @@ namespace UniversalCAD
             this.RWControl.MouseWheel += RenderWindow_MouseWheel;
             return InitViewer;
         }
+        #endregion
+
+        #region ElementClick
+        /// <summary>
+        /// 操作事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AccordionControl_ElementClick(object sender, DevExpress.XtraBars.Navigation.ElementClickEventArgs e)
+        {
+            if (e.Element.Style == DevExpress.XtraBars.Navigation.ElementStyle.Group)
+                return;
+            switch (e.Element.Tag?.ToString())
+            {
+                case "Open":
+                    #region 打开文件
+                    OperationOpenFile();
+                    #endregion
+                    break;
+                case "Save":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 操作 - 打开文件，选择文件
+        /// </summary>
+        void OperationOpenFile() {
+            ExplorerNew explorer = new ExplorerNew();
+            explorer.FormBorderStyle = FormBorderStyle.None;
+            explorer.Location = new Point(0, 0);
+            explorer.Width = this.Width;
+            explorer.Height = this.Height;
+            if (explorer.ShowDialog() == DialogResult.OK) {
+                string FullName = explorer.FullName;
+                CurrentModelFormat theFormat = CurrentModelFormat.STEP;
+                switch (Path.GetExtension(FullName)?.ToLower())
+                {
+                    case ".stp":
+                    case ".step":
+                        theFormat = CurrentModelFormat.STEP;
+                        TranslateModel(FullName, theFormat);
+                        break;
+                    case ".brep":
+                        theFormat = CurrentModelFormat.BREP;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".iges":
+                        theFormat = CurrentModelFormat.IGES;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".vrml":
+                        theFormat = CurrentModelFormat.VRML;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".png":
+                    case ".pmp":
+                        theFormat = CurrentModelFormat.IMAGE;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".stl":
+                        theFormat = CurrentModelFormat.STL;
+                        OCCTView.TranslateModel(FullName,(int)theFormat, true);
+                        break;
+                    default:
+                        return;
+                }
+            }
+        }
+
+        #endregion
 
         #region 操作事件
         /// <summary>
@@ -513,9 +591,9 @@ namespace UniversalCAD
         #endregion
 
         #region 导入/导出
-        private int index = 0;
-        public bool TranslateModel(ref TreeView TempNode, string theFileName, CurrentModelFormat theFormat, bool theIsImport)
+        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat)
         {
+            this.accElementTLable.Elements.Clear();
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
@@ -525,7 +603,8 @@ namespace UniversalCAD
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
-            TreeNode PNode = null;
+            int index = 0;
+            AccordionControlElement PNode = null;
             XTDF_Label aRootLabel = aDoc.Main();
             XTDF_Attribute aName = new XTDataStd_Name();
             XTDF_Attribute aInteger = new XTDataStd_Integer();
@@ -539,33 +618,25 @@ namespace UniversalCAD
                 XTDataStd_Name XName = aName as XTDataStd_Name;
                 XTCollection_ExtendedString EString = XName.Get();
                 string text = EString.GetValueString();
-                PNode = new TreeNode();
+                PNode = new AccordionControlElement();
                 PNode.Name = text;
                 PNode.Text = $"{text}_{XInteger.Get()}";
                 PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                TempNode.Nodes.Add(PNode);
-
+                this.accElementTLable.Elements.Add(PNode);
             }
-            if (PNode == null)
-            {
-                PNode = new TreeNode();
-                PNode.Name = "ShapesSTEP";
-                PNode.Text = "ShapesSTEP";
-                //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                TempNode.Nodes.Add(PNode);
-            }
-            VisibleSettings(ref PNode, aRootLabel, true);
+            else
+                PNode = this.accElementTLable;
+            VisibleSettings(ref PNode,aRootLabel, ref index, true);
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return true;
         }
 
-        private void VisibleSettings(ref TreeNode TempNode, XTDF_Label theLabel, bool IsBoundaryDraw)
+        private void VisibleSettings(ref AccordionControlElement TempNode, XTDF_Label theLabel,ref int index, bool IsBoundaryDraw)
         {
-            if (!theLabel.IsNull() && !theLabel.HasChild()) // && XXCAFDoc_ShapeTool.IsShape(theLabel))
+            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsShape(theLabel))
             {
-
                 XTDF_Attribute aName = new XTDataStd_Name();
                 if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
                 {
@@ -578,50 +649,40 @@ namespace UniversalCAD
                     XTDataStd_Name XName = aName as XTDataStd_Name;
                     XTCollection_ExtendedString EString = XName.Get();
                     string text = EString.GetValueString();
-                    TreeNode CNode = new TreeNode();
+                    AccordionControlElement CNode = new AccordionControlElement();
                     CNode.Name = text;
                     CNode.Text = $"{text}_{XInteger.Get()}";
                     CNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                    TempNode.Nodes.Add(CNode);
+                    TempNode.Elements.Add(CNode);
                 }
-
                 Display(theLabel, IsBoundaryDraw);
                 return;
             }
-            TreeNode PNode = null;
+            AccordionControlElement PNode = null;
+            XTDF_Attribute cInteger = new XTDataStd_Integer();
+            XTDF_Attribute cName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref cName))
             {
-                XTDF_Attribute aInteger = new XTDataStd_Integer();
-                XTDF_Attribute aName = new XTDataStd_Name();
-                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
-                {
-                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
-                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
-                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
-                    else
-                        XInteger = aInteger as XTDataStd_Integer;
-                    XTDataStd_Name XName = aName as XTDataStd_Name;
-                    XTCollection_ExtendedString EString = XName.Get();
-                    string text = EString.GetValueString();
-                    PNode = new TreeNode();
-                    PNode.Name = text;
-                    PNode.Text = $"{text}_{XInteger.Get()}";
-                    PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                    TempNode.Nodes.Add(PNode);
-
-                }
+                XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref cInteger))
+                    XInteger = XTDataStd_Integer.Set(theLabel, index++);
                 else
-                {
-                    PNode = new TreeNode();
-                    PNode.Name = "NoName";
-                    PNode.Text = "没有名称";
-                    //PNode.Tag = XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                    TempNode.Nodes.Add(PNode);
-                }
+                    XInteger = cInteger as XTDataStd_Integer;
+                XTDataStd_Name XName = cName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                string text = EString.GetValueString();
+                PNode = new AccordionControlElement();
+                PNode.Name = text;
+                PNode.Text = $"{text}_{XInteger.Get()}";
+                PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+                TempNode.Elements.Add(PNode);
             }
+            else
+                PNode = TempNode;
             XTDF_ChildIterator iter = new XTDF_ChildIterator();
             for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
             {
-                VisibleSettings(ref PNode, iter.Value(), IsBoundaryDraw);
+                VisibleSettings(ref PNode, iter.Value(),ref index, IsBoundaryDraw);
             }
         }
 

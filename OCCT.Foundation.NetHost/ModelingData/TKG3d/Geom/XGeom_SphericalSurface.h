@@ -269,7 +269,11 @@ namespace TKG3d {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(Geom_SphericalSurface)::DownCast(handle);
+				//NativeHandle() = Handle(Geom_SphericalSurface)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom_SphericalSurface)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		};
 

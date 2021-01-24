@@ -124,7 +124,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrimAPI_MakeCylinder*>(handle);
+				//NativeHandle = static_cast<BRepPrimAPI_MakeCylinder*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrimAPI_MakeCylinder*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

@@ -315,7 +315,11 @@ namespace TKFillet {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepFilletAPI_MakeChamfer*>(handle);
+				//NativeHandle = static_cast<BRepFilletAPI_MakeChamfer*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepFilletAPI_MakeChamfer*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

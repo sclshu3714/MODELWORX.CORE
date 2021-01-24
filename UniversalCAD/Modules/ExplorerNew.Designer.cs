@@ -50,6 +50,8 @@ namespace UniversalCAD.Modules
             this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.breadCrumbEvents1 = new DevExpress.XtraEditors.Behaviors.BreadCrumbEvents(this.components);
+            this.btnReturnMain = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.navigationTreeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.breadCrumbEdit.Properties)).BeginInit();
@@ -67,6 +69,7 @@ namespace UniversalCAD.Modules
             this.sidePanel2.SuspendLayout();
             this.sidePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationTreeList
@@ -78,6 +81,7 @@ namespace UniversalCAD.Modules
             this.navNameCol});
             this.navigationTreeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationTreeList.Location = new System.Drawing.Point(0, 0);
+            this.navigationTreeList.MinWidth = 23;
             this.navigationTreeList.Name = "navigationTreeList";
             this.navigationTreeList.OptionsBehavior.Editable = false;
             this.navigationTreeList.OptionsFind.AllowFindPanel = false;
@@ -88,18 +92,21 @@ namespace UniversalCAD.Modules
             this.navigationTreeList.OptionsView.ShowIndentAsRowStyle = true;
             this.navigationTreeList.OptionsView.ShowIndicator = false;
             this.navigationTreeList.OptionsView.ShowVertLines = false;
-            this.navigationTreeList.RowHeight = 22;
+            this.navigationTreeList.RowHeight = 24;
             this.navigationTreeList.SelectImageList = this.svgImageCollection1;
-            this.navigationTreeList.Size = new System.Drawing.Size(239, 572);
+            this.navigationTreeList.Size = new System.Drawing.Size(259, 580);
             this.navigationTreeList.TabIndex = 1;
+            this.navigationTreeList.TreeLevelWidth = 21;
             // 
             // navNameCol
             // 
             this.navNameCol.Caption = "DisplayName";
             this.navNameCol.FieldName = "DisplayName";
+            this.navNameCol.MinWidth = 23;
             this.navNameCol.Name = "navNameCol";
             this.navNameCol.Visible = true;
             this.navNameCol.VisibleIndex = 0;
+            this.navNameCol.Width = 87;
             // 
             // svgImageCollection1
             // 
@@ -107,17 +114,21 @@ namespace UniversalCAD.Modules
             // 
             // breadCrumbEdit
             // 
-            this.breadCrumbEdit.Location = new System.Drawing.Point(141, 5);
+            this.breadCrumbEdit.Location = new System.Drawing.Point(199, 5);
+            this.breadCrumbEdit.MinimumSize = new System.Drawing.Size(0, 28);
             this.breadCrumbEdit.Name = "breadCrumbEdit";
+            this.breadCrumbEdit.Properties.AllowFocused = false;
+            this.breadCrumbEdit.Properties.AutoHeight = false;
             this.breadCrumbEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.breadCrumbEdit.Properties.Images = this.svgImageCollection1;
-            this.breadCrumbEdit.Size = new System.Drawing.Size(710, 22);
+            this.breadCrumbEdit.Size = new System.Drawing.Size(792, 28);
             this.breadCrumbEdit.TabIndex = 0;
             // 
             // layoutControl1
             // 
             this.layoutControl1.AllowCustomization = false;
+            this.layoutControl1.Controls.Add(this.btnReturnMain);
             this.layoutControl1.Controls.Add(this.backButton);
             this.layoutControl1.Controls.Add(this.forwardButton);
             this.layoutControl1.Controls.Add(this.recentButton);
@@ -130,7 +141,7 @@ namespace UniversalCAD.Modules
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(814, 217, 650, 400);
             this.layoutControl1.OptionsView.ShareLookAndFeelWithChildren = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1020, 32);
+            this.layoutControl1.Size = new System.Drawing.Size(1188, 38);
             this.layoutControl1.TabIndex = 6;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -141,10 +152,10 @@ namespace UniversalCAD.Modules
             this.backButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.backButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("backButton.ImageOptions.SvgImage")));
             this.backButton.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.backButton.Location = new System.Drawing.Point(7, 3);
-            this.backButton.MinimumSize = new System.Drawing.Size(26, 26);
+            this.backButton.Location = new System.Drawing.Point(42, 3);
+            this.backButton.MinimumSize = new System.Drawing.Size(30, 28);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(26, 26);
+            this.backButton.Size = new System.Drawing.Size(30, 28);
             this.backButton.TabIndex = 10;
             this.backButton.Click += new System.EventHandler(this.OnBackButtonClick);
             this.backButton.MouseEnter += new System.EventHandler(this.OnMouseEnterButton);
@@ -157,10 +168,10 @@ namespace UniversalCAD.Modules
             this.forwardButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.forwardButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("forwardButton.ImageOptions.SvgImage")));
             this.forwardButton.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.forwardButton.Location = new System.Drawing.Point(41, 3);
-            this.forwardButton.MinimumSize = new System.Drawing.Size(26, 26);
+            this.forwardButton.Location = new System.Drawing.Point(82, 3);
+            this.forwardButton.MinimumSize = new System.Drawing.Size(30, 28);
             this.forwardButton.Name = "forwardButton";
-            this.forwardButton.Size = new System.Drawing.Size(26, 26);
+            this.forwardButton.Size = new System.Drawing.Size(30, 28);
             this.forwardButton.TabIndex = 11;
             this.forwardButton.Click += new System.EventHandler(this.OnForwardButtonClick);
             this.forwardButton.MouseEnter += new System.EventHandler(this.OnMouseEnterButton);
@@ -174,10 +185,10 @@ namespace UniversalCAD.Modules
             this.recentButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.recentButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("recentButton.ImageOptions.SvgImage")));
             this.recentButton.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.recentButton.Location = new System.Drawing.Point(75, 3);
-            this.recentButton.MinimumSize = new System.Drawing.Size(26, 26);
+            this.recentButton.Location = new System.Drawing.Point(122, 3);
+            this.recentButton.MinimumSize = new System.Drawing.Size(30, 28);
             this.recentButton.Name = "recentButton";
-            this.recentButton.Size = new System.Drawing.Size(26, 26);
+            this.recentButton.Size = new System.Drawing.Size(30, 28);
             this.recentButton.TabIndex = 15;
             this.recentButton.Text = "checkButton1";
             this.recentButton.CheckedChanged += new System.EventHandler(this.OnRecentButtonCheckedChanged);
@@ -191,10 +202,10 @@ namespace UniversalCAD.Modules
             this.upButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.upButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("upButton.ImageOptions.SvgImage")));
             this.upButton.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.upButton.Location = new System.Drawing.Point(109, 3);
-            this.upButton.MinimumSize = new System.Drawing.Size(26, 26);
+            this.upButton.Location = new System.Drawing.Point(162, 3);
+            this.upButton.MinimumSize = new System.Drawing.Size(30, 28);
             this.upButton.Name = "upButton";
-            this.upButton.Size = new System.Drawing.Size(26, 26);
+            this.upButton.Size = new System.Drawing.Size(30, 28);
             this.upButton.TabIndex = 13;
             this.upButton.Click += new System.EventHandler(this.OnUpButtonClick);
             this.upButton.MouseEnter += new System.EventHandler(this.OnMouseEnterButton);
@@ -203,17 +214,18 @@ namespace UniversalCAD.Modules
             // searchControl
             // 
             this.searchControl.Client = this.treeList1;
-            this.searchControl.Location = new System.Drawing.Point(861, 5);
-            this.searchControl.MinimumSize = new System.Drawing.Size(0, 22);
+            this.searchControl.EditValue = "";
+            this.searchControl.Location = new System.Drawing.Point(1003, 5);
+            this.searchControl.MinimumSize = new System.Drawing.Size(0, 28);
             this.searchControl.Name = "searchControl";
             this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.searchControl.Properties.Client = this.treeList1;
-            this.searchControl.Size = new System.Drawing.Size(154, 20);
+            this.searchControl.Size = new System.Drawing.Size(180, 28);
             this.searchControl.TabIndex = 14;
             // 
-            // treeList
+            // treeList1
             // 
             this.treeList1.AutoFillColumn = this.displayNameCol;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
@@ -226,8 +238,9 @@ namespace UniversalCAD.Modules
             this.treeList1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeList1.CustomizationFormBounds = new System.Drawing.Rectangle(1108, 497, 260, 232);
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.Location = new System.Drawing.Point(240, 33);
-            this.treeList1.Name = "treeList";
+            this.treeList1.Location = new System.Drawing.Point(260, 39);
+            this.treeList1.MinWidth = 23;
+            this.treeList1.Name = "treeList1";
             this.treeList1.OptionsBehavior.Editable = false;
             this.treeList1.OptionsFind.AllowFindPanel = false;
             this.treeList1.OptionsMenu.EnableFooterMenu = false;
@@ -239,30 +252,33 @@ namespace UniversalCAD.Modules
             this.treeList1.OptionsView.ShowIndentAsRowStyle = true;
             this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.OptionsView.ShowVertLines = false;
-            this.treeList1.RowHeight = 20;
+            this.treeList1.RowHeight = 22;
             this.treeList1.SelectImageList = this.svgImageCollection1;
-            this.treeList1.Size = new System.Drawing.Size(780, 572);
+            this.treeList1.Size = new System.Drawing.Size(928, 580);
             this.treeList1.TabIndex = 2;
+            this.treeList1.TreeLevelWidth = 21;
             // 
             // displayNameCol
             // 
-            this.displayNameCol.Caption = "Name";
+            this.displayNameCol.Caption = "名称";
             this.displayNameCol.FieldName = "Name";
+            this.displayNameCol.MinWidth = 23;
             this.displayNameCol.Name = "displayNameCol";
             this.displayNameCol.Visible = true;
             this.displayNameCol.VisibleIndex = 0;
-            this.displayNameCol.Width = 399;
+            this.displayNameCol.Width = 484;
             // 
             // displayModifiedCol
             // 
             this.displayModifiedCol.AppearanceCell.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.displayModifiedCol.AppearanceCell.Options.UseForeColor = true;
-            this.displayModifiedCol.Caption = "Date Modified";
+            this.displayModifiedCol.Caption = "修改日期";
             this.displayModifiedCol.FieldName = "DateModified";
+            this.displayModifiedCol.MinWidth = 23;
             this.displayModifiedCol.Name = "displayModifiedCol";
             this.displayModifiedCol.Visible = true;
             this.displayModifiedCol.VisibleIndex = 1;
-            this.displayModifiedCol.Width = 174;
+            this.displayModifiedCol.Width = 203;
             // 
             // displaySizeCol
             // 
@@ -270,12 +286,13 @@ namespace UniversalCAD.Modules
             this.displaySizeCol.AppearanceCell.Options.UseForeColor = true;
             this.displaySizeCol.AppearanceCell.Options.UseTextOptions = true;
             this.displaySizeCol.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.displaySizeCol.Caption = "Size";
+            this.displaySizeCol.Caption = "大小";
             this.displaySizeCol.FieldName = "Size";
+            this.displaySizeCol.MinWidth = 23;
             this.displaySizeCol.Name = "displaySizeCol";
             this.displaySizeCol.Visible = true;
             this.displaySizeCol.VisibleIndex = 3;
-            this.displaySizeCol.Width = 99;
+            this.displaySizeCol.Width = 115;
             // 
             // displayCreateCol
             // 
@@ -283,19 +300,21 @@ namespace UniversalCAD.Modules
             this.displayCreateCol.AppearanceCell.Options.UseForeColor = true;
             this.displayCreateCol.Caption = "Date Created";
             this.displayCreateCol.FieldName = "DateCreated";
+            this.displayCreateCol.MinWidth = 23;
             this.displayCreateCol.Name = "displayCreateCol";
-            this.displayCreateCol.Width = 135;
+            this.displayCreateCol.Width = 157;
             // 
             // displayTypeColumn
             // 
             this.displayTypeColumn.AppearanceCell.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.displayTypeColumn.AppearanceCell.Options.UseForeColor = true;
-            this.displayTypeColumn.Caption = "Type";
+            this.displayTypeColumn.Caption = "类型";
             this.displayTypeColumn.FieldName = "TypeName";
+            this.displayTypeColumn.MinWidth = 23;
             this.displayTypeColumn.Name = "displayTypeColumn";
             this.displayTypeColumn.Visible = true;
             this.displayTypeColumn.VisibleIndex = 2;
-            this.displayTypeColumn.Width = 106;
+            this.displayTypeColumn.Width = 124;
             // 
             // displayPathColumn
             // 
@@ -303,7 +322,9 @@ namespace UniversalCAD.Modules
             this.displayPathColumn.AppearanceCell.Options.UseForeColor = true;
             this.displayPathColumn.Caption = "Path";
             this.displayPathColumn.FieldName = "FullName";
+            this.displayPathColumn.MinWidth = 23;
             this.displayPathColumn.Name = "displayPathColumn";
+            this.displayPathColumn.Width = 87;
             // 
             // Root
             // 
@@ -315,21 +336,22 @@ namespace UniversalCAD.Modules
             this.upButtonItem,
             this.recentButtonItem,
             this.forwardButtonItem,
-            this.backButtonItem});
+            this.backButtonItem,
+            this.layoutControlItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.Root.Size = new System.Drawing.Size(1020, 32);
+            this.Root.Size = new System.Drawing.Size(1188, 38);
             this.Root.TextVisible = false;
             // 
             // breadCrumbItem
             // 
             this.breadCrumbItem.Control = this.breadCrumbEdit;
-            this.breadCrumbItem.Location = new System.Drawing.Point(136, 0);
-            this.breadCrumbItem.MaxSize = new System.Drawing.Size(0, 26);
-            this.breadCrumbItem.MinSize = new System.Drawing.Size(54, 26);
+            this.breadCrumbItem.Location = new System.Drawing.Point(194, 0);
+            this.breadCrumbItem.MaxSize = new System.Drawing.Size(0, 28);
+            this.breadCrumbItem.MinSize = new System.Drawing.Size(63, 28);
             this.breadCrumbItem.Name = "breadCrumbItem";
-            this.breadCrumbItem.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 5, 2, 2);
-            this.breadCrumbItem.Size = new System.Drawing.Size(717, 26);
+            this.breadCrumbItem.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 6, 2, 2);
+            this.breadCrumbItem.Size = new System.Drawing.Size(800, 32);
             this.breadCrumbItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.breadCrumbItem.TextSize = new System.Drawing.Size(0, 0);
             this.breadCrumbItem.TextVisible = false;
@@ -337,12 +359,12 @@ namespace UniversalCAD.Modules
             // searchControlItem
             // 
             this.searchControlItem.Control = this.searchControl;
-            this.searchControlItem.Location = new System.Drawing.Point(853, 0);
-            this.searchControlItem.MaxSize = new System.Drawing.Size(161, 26);
-            this.searchControlItem.MinSize = new System.Drawing.Size(161, 26);
+            this.searchControlItem.Location = new System.Drawing.Point(994, 0);
+            this.searchControlItem.MaxSize = new System.Drawing.Size(188, 28);
+            this.searchControlItem.MinSize = new System.Drawing.Size(188, 28);
             this.searchControlItem.Name = "searchControlItem";
-            this.searchControlItem.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 2, 2, 2);
-            this.searchControlItem.Size = new System.Drawing.Size(161, 26);
+            this.searchControlItem.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 2, 2, 2);
+            this.searchControlItem.Size = new System.Drawing.Size(188, 32);
             this.searchControlItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.searchControlItem.TextSize = new System.Drawing.Size(0, 0);
             this.searchControlItem.TextVisible = false;
@@ -350,12 +372,12 @@ namespace UniversalCAD.Modules
             // upButtonItem
             // 
             this.upButtonItem.Control = this.upButton;
-            this.upButtonItem.Location = new System.Drawing.Point(102, 0);
-            this.upButtonItem.MaxSize = new System.Drawing.Size(34, 26);
-            this.upButtonItem.MinSize = new System.Drawing.Size(34, 26);
+            this.upButtonItem.Location = new System.Drawing.Point(154, 0);
+            this.upButtonItem.MaxSize = new System.Drawing.Size(40, 28);
+            this.upButtonItem.MinSize = new System.Drawing.Size(40, 28);
             this.upButtonItem.Name = "upButtonItem";
-            this.upButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 0, 0);
-            this.upButtonItem.Size = new System.Drawing.Size(34, 26);
+            this.upButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 0, 0);
+            this.upButtonItem.Size = new System.Drawing.Size(40, 32);
             this.upButtonItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.upButtonItem.TextSize = new System.Drawing.Size(0, 0);
             this.upButtonItem.TextVisible = false;
@@ -363,12 +385,12 @@ namespace UniversalCAD.Modules
             // recentButtonItem
             // 
             this.recentButtonItem.Control = this.recentButton;
-            this.recentButtonItem.Location = new System.Drawing.Point(68, 0);
-            this.recentButtonItem.MaxSize = new System.Drawing.Size(34, 26);
-            this.recentButtonItem.MinSize = new System.Drawing.Size(34, 26);
+            this.recentButtonItem.Location = new System.Drawing.Point(114, 0);
+            this.recentButtonItem.MaxSize = new System.Drawing.Size(40, 28);
+            this.recentButtonItem.MinSize = new System.Drawing.Size(40, 28);
             this.recentButtonItem.Name = "recentButtonItem";
-            this.recentButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 0, 0);
-            this.recentButtonItem.Size = new System.Drawing.Size(34, 26);
+            this.recentButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 0, 0);
+            this.recentButtonItem.Size = new System.Drawing.Size(40, 32);
             this.recentButtonItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.recentButtonItem.TextSize = new System.Drawing.Size(0, 0);
             this.recentButtonItem.TextVisible = false;
@@ -376,12 +398,12 @@ namespace UniversalCAD.Modules
             // forwardButtonItem
             // 
             this.forwardButtonItem.Control = this.forwardButton;
-            this.forwardButtonItem.Location = new System.Drawing.Point(34, 0);
-            this.forwardButtonItem.MaxSize = new System.Drawing.Size(34, 26);
-            this.forwardButtonItem.MinSize = new System.Drawing.Size(34, 26);
+            this.forwardButtonItem.Location = new System.Drawing.Point(74, 0);
+            this.forwardButtonItem.MaxSize = new System.Drawing.Size(40, 28);
+            this.forwardButtonItem.MinSize = new System.Drawing.Size(40, 28);
             this.forwardButtonItem.Name = "forwardButtonItem";
-            this.forwardButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 0, 0);
-            this.forwardButtonItem.Size = new System.Drawing.Size(34, 26);
+            this.forwardButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 0, 0);
+            this.forwardButtonItem.Size = new System.Drawing.Size(40, 32);
             this.forwardButtonItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.forwardButtonItem.TextSize = new System.Drawing.Size(0, 0);
             this.forwardButtonItem.TextVisible = false;
@@ -389,12 +411,12 @@ namespace UniversalCAD.Modules
             // backButtonItem
             // 
             this.backButtonItem.Control = this.backButton;
-            this.backButtonItem.Location = new System.Drawing.Point(0, 0);
-            this.backButtonItem.MaxSize = new System.Drawing.Size(34, 26);
-            this.backButtonItem.MinSize = new System.Drawing.Size(34, 26);
+            this.backButtonItem.Location = new System.Drawing.Point(34, 0);
+            this.backButtonItem.MaxSize = new System.Drawing.Size(40, 28);
+            this.backButtonItem.MinSize = new System.Drawing.Size(40, 28);
             this.backButtonItem.Name = "backButtonItem";
-            this.backButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 0, 0);
-            this.backButtonItem.Size = new System.Drawing.Size(34, 26);
+            this.backButtonItem.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 0, 0);
+            this.backButtonItem.Size = new System.Drawing.Size(40, 32);
             this.backButtonItem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.backButtonItem.TextSize = new System.Drawing.Size(0, 0);
             this.backButtonItem.TextVisible = false;
@@ -403,9 +425,9 @@ namespace UniversalCAD.Modules
             // 
             this.sidePanel2.Controls.Add(this.navigationTreeList);
             this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel2.Location = new System.Drawing.Point(0, 33);
+            this.sidePanel2.Location = new System.Drawing.Point(0, 39);
             this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(240, 572);
+            this.sidePanel2.Size = new System.Drawing.Size(260, 580);
             this.sidePanel2.TabIndex = 4;
             this.sidePanel2.Text = "sidePanel2";
             // 
@@ -416,21 +438,48 @@ namespace UniversalCAD.Modules
             this.sidePanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.sidePanel1.Location = new System.Drawing.Point(0, 0);
             this.sidePanel1.Name = "sidePanel1";
-            this.sidePanel1.Size = new System.Drawing.Size(1020, 33);
+            this.sidePanel1.Size = new System.Drawing.Size(1188, 39);
             this.sidePanel1.TabIndex = 5;
             this.sidePanel1.Text = "sidePanel1";
+            // 
+            // btnReturnMain
+            // 
+            this.btnReturnMain.AllowFocus = false;
+            this.btnReturnMain.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.btnReturnMain.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnReturnMain.ImageOptions.SvgImage = global::UniversalCAD.Properties.Resources.actions_arrow5upleft;
+            this.btnReturnMain.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.btnReturnMain.Location = new System.Drawing.Point(5, 5);
+            this.btnReturnMain.MinimumSize = new System.Drawing.Size(30, 28);
+            this.btnReturnMain.Name = "btnReturnMain";
+            this.btnReturnMain.Size = new System.Drawing.Size(30, 28);
+            this.btnReturnMain.TabIndex = 17;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnReturnMain;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(34, 32);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // ExplorerNew
             // 
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1188, 619);
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.sidePanel2);
             this.Controls.Add(this.sidePanel1);
+            this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("ExplorerNew.IconOptions.Image")));
+            this.LookAndFeel.SkinName = "Office 2016 Black";
+            this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Name = "ExplorerNew";
-            this.Size = new System.Drawing.Size(1020, 605);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "选择文件";
             ((System.ComponentModel.ISupportInitialize)(this.navigationTreeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.breadCrumbEdit.Properties)).EndInit();
@@ -448,6 +497,7 @@ namespace UniversalCAD.Modules
             this.sidePanel2.ResumeLayout(false);
             this.sidePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -480,5 +530,7 @@ namespace UniversalCAD.Modules
         private DevExpress.XtraLayout.LayoutControlItem recentButtonItem;
         private DevExpress.XtraLayout.LayoutControlItem forwardButtonItem;
         private DevExpress.XtraLayout.LayoutControlItem backButtonItem;
+        private DevExpress.XtraEditors.SimpleButton btnReturnMain;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

@@ -121,7 +121,11 @@ namespace TKOffset {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepOffsetAPI_MakePipe*>(handle);
+				//NativeHandle = static_cast<BRepOffsetAPI_MakePipe*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepOffsetAPI_MakePipe*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

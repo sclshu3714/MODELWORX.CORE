@@ -66,7 +66,7 @@ namespace TKV3d {
 
         //! Default constructor.
         XPrs3d_Drawer();
-        !XPrs3d_Drawer() { IHandle = NULL; };
+        !XPrs3d_Drawer() { };//{ IHandle = NULL; };
         ~XPrs3d_Drawer() { IHandle = NULL; };
         //! Default constructor.
         XPrs3d_Drawer(Handle(Prs3d_Drawer) pos);
@@ -767,7 +767,11 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-                NativeHandle() = Handle(Prs3d_Drawer)::DownCast(handle);
+                //NativeHandle() = Handle(Prs3d_Drawer)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(Prs3d_Drawer)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         };
     private:

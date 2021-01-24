@@ -85,7 +85,7 @@ namespace TKLCAF {
 
     public:
 
-        !XTDocStd_Application() { IHandle = NULL; };
+        !XTDocStd_Application() { };//{ IHandle = NULL; };
         ~XTDocStd_Application() { IHandle = NULL; };
         //! Constructs the new instance and registers it in CDM_Session
         XTDocStd_Application();
@@ -370,7 +370,11 @@ namespace TKLCAF {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {
-                NativeHandle() = Handle(TDocStd_Application)::DownCast(handle);
+                //NativeHandle() = Handle(TDocStd_Application)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(TDocStd_Application)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

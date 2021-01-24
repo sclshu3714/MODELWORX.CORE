@@ -46,7 +46,7 @@ namespace TKV3d {
 
         //! Destructor.
         virtual ~XGraphic3d_PresentationAttributes();
-        !XGraphic3d_PresentationAttributes() { IHandle = NULL; };
+        !XGraphic3d_PresentationAttributes() { };//{ IHandle = NULL; };
         virtual Handle(Graphic3d_PresentationAttributes) GetPresentationAttributes();
 
         void SetNativeHandle(Handle(Graphic3d_PresentationAttributes) pos);
@@ -101,7 +101,10 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) {//Standard_OVERRIDE {
-                NativeHandle() = Handle(Graphic3d_PresentationAttributes)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(Graphic3d_PresentationAttributes)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         };
     private:

@@ -47,7 +47,7 @@ namespace TKV3d {
 		//! DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)
 	public:
 
-		!XPrs3d_LineAspect() { IHandle = NULL; };
+		!XPrs3d_LineAspect() { };//{ IHandle = NULL; };
 		~XPrs3d_LineAspect() { IHandle = NULL; };
 		//! Constructs a framework for line aspect defined by
 		//! -   the color aColor
@@ -95,7 +95,11 @@ namespace TKV3d {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) {//Standard_OVERRIDE {
-				NativeHandle() = Handle(Prs3d_LineAspect)::DownCast(handle);
+				//NativeHandle() = Handle(Prs3d_LineAspect)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Prs3d_LineAspect)::DownCast(handle);
+				else if(!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		};
 	private:

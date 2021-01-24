@@ -182,16 +182,10 @@
       <DependentUpon>MainFormold.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\ExplorerNew.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\ExplorerNew.Designer.cs">
       <DependentUpon>ExplorerNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\MenuControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\MenuControl.Designer.cs">
-      <DependentUpon>MenuControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,9 +198,6 @@
     <EmbeddedResource Include="Modules\ExplorerNew.resx">
       <DependentUpon>ExplorerNew.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\MenuControl.resx">
-      <DependentUpon>MenuControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -797,6 +788,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actions_arrow5upleft.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

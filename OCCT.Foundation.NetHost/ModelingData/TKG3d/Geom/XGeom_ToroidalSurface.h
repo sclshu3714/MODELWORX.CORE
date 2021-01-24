@@ -295,7 +295,11 @@ namespace TKG3d {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(Geom_ToroidalSurface)::DownCast(handle);
+				//NativeHandle() = Handle(Geom_ToroidalSurface)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom_ToroidalSurface)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		};
 

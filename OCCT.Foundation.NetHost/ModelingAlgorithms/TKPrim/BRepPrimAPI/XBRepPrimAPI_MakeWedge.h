@@ -102,7 +102,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrimAPI_MakeWedge*>(handle);
+				//NativeHandle = static_cast<BRepPrimAPI_MakeWedge*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrimAPI_MakeWedge*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

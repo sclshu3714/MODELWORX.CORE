@@ -91,7 +91,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepBuilderAPI_MakeShape* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrimAPI_MakeOneAxis*>(handle);
+				//NativeHandle = static_cast<BRepPrimAPI_MakeOneAxis*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrimAPI_MakeOneAxis*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

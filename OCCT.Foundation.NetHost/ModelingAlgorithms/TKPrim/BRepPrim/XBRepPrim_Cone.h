@@ -117,7 +117,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepPrim_OneAxis* handle) Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrim_Cone*>(handle);
+				//NativeHandle = static_cast<BRepPrim_Cone*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrim_Cone*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

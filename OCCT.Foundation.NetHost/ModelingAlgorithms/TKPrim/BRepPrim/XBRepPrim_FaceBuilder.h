@@ -111,7 +111,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepPrim_FaceBuilder* handle) { //s Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrim_FaceBuilder*>(handle);
+				//NativeHandle = static_cast<BRepPrim_FaceBuilder*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrim_FaceBuilder*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

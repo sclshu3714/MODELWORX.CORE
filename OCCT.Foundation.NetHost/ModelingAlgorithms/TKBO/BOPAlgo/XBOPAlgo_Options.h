@@ -141,7 +141,11 @@ namespace TKBO {
                 return NativeHandle;
             }
             void set(BOPAlgo_Options* handle) {// Standard_OVERRIDE {
-                NativeHandle = static_cast<BOPAlgo_Options*>(handle);
+               // NativeHandle = static_cast<BOPAlgo_Options*>(handle);
+                if (handle == NULL)
+                    NativeHandle = static_cast<BOPAlgo_Options*>(handle);
+                else
+                    NativeHandle = NULL;
             }
         }
 

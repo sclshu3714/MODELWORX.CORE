@@ -68,7 +68,7 @@ namespace TKVCAF {
 	{
 
 	public:
-		!XTPrsStd_AISPresentation() { IHandle = NULL; };
+		!XTPrsStd_AISPresentation() { };//{ IHandle = NULL; };
 		~XTPrsStd_AISPresentation() { IHandle = NULL; };
 		XTPrsStd_AISPresentation();
 
@@ -252,7 +252,11 @@ namespace TKVCAF {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(TPrsStd_AISPresentation)::DownCast(handle);
+				//NativeHandle() = Handle(TPrsStd_AISPresentation)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(TPrsStd_AISPresentation)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		}
 	private:

@@ -222,7 +222,11 @@ namespace TKPrim {
 				return NativeHandle;
 			}
 			void set(BRepPrim_GWedge* handle) {// Standard_OVERRIDE {
-				NativeHandle = static_cast<BRepPrim_GWedge*>(handle);
+				//NativeHandle = static_cast<BRepPrim_GWedge*>(handle);
+				if (handle == NULL)
+					NativeHandle = static_cast<BRepPrim_GWedge*>(handle);
+				else
+					NativeHandle = NULL;
 			}
 		}
 

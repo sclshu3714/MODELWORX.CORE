@@ -271,7 +271,11 @@ namespace TKG3d {
 				return NativeHandle();
 			}
 			void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-				NativeHandle() = Handle(Geom_Plane)::DownCast(handle);
+				//NativeHandle() = Handle(Geom_Plane)::DownCast(handle);
+				if (!handle.IsNull())
+					NativeHandle() = Handle(Geom_Plane)::DownCast(handle);
+				else if (!NativeHandle().IsNull())
+					NativeHandle() = NULL;
 			}
 		};
 

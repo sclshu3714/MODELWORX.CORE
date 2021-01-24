@@ -69,7 +69,11 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-                NativeHandle() = Handle(AIS_AnimationCamera)::DownCast(handle);
+                //NativeHandle() = Handle(AIS_AnimationCamera)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(AIS_AnimationCamera)::DownCast(handle);
+                else if (!NativeHandle().IsNull())
+                    NativeHandle() = NULL;
             }
         }
     private:

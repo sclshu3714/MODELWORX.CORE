@@ -310,7 +310,10 @@ namespace TKV3d {
                 return NativeHandle();
             }
             void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
-                NativeHandle() = Handle(AIS_Shape)::DownCast(handle);
+                //NativeHandle() = Handle(AIS_Shape)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(AIS_Shape)::DownCast(handle);
+                else NativeHandle() = NULL;
             }
         }
 
