@@ -66,7 +66,7 @@ namespace TKXCAF {
 
 	void XXCAFApp_Application::InitDocument(XTDocStd_Document^ aDoc)
 	{
-		XCAFDoc_DocumentTool::Set(aDoc->Main()->GetLabel());
+		XCAFDoc_DocumentTool::Set(*aDoc->Main()->GetLabel());
 	}
 
 	//=======================================================================

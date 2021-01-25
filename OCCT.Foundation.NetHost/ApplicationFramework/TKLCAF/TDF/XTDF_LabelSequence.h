@@ -48,7 +48,7 @@ namespace TKLCAF {
 		};
 
 		XTDF_XIterator^ Iterator() {
-			NativeIterator = gcnew XTDF_XIterator(*NativeHandle, Standard_True);
+			NativeIterator = gcnew XTDF_XIterator(NativeHandle, Standard_True);
 			return NativeIterator;
 		};
 

@@ -5,7 +5,7 @@ namespace TKLCAF {
     //! returns the    document which contains <L>.  raises  an
     //! exception if the document is not found.
     Handle(TDocStd_Document) XTDocStd_Document::Get(XTDF_Label^ L) {
-        return TDocStd_Document::Get(L->GetLabel());
+        return TDocStd_Document::Get(*L->GetLabel());
     };
 
     //! Constructs a document object defined by the
@@ -103,7 +103,7 @@ namespace TKLCAF {
     //! Notify the label as modified, the Document becomes UnValid.
     //! returns True if <L> has been notified as modified.
     void XTDocStd_Document::SetModified(XTDF_Label^ L) {
-        NativeHandle()->SetModified(L->GetLabel());
+        NativeHandle()->SetModified(*L->GetLabel());
     };
 
     //! Remove all modifications. After this call The document

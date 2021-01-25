@@ -17,12 +17,12 @@ namespace TKLCAF {
 		}
 		//! Constructor with initialisation
 		//! const Standard_Boolean isStart = Standard_True
-		XTDF_XIterator(TDF_LabelSequence theSeq, Standard_Boolean isStart) {
-			NativeIterator = new TDF_LabelSequence::Iterator(theSeq, isStart);
+		XTDF_XIterator(TDF_LabelSequence* theSeq, Standard_Boolean isStart) {
+			NativeIterator = new TDF_LabelSequence::Iterator(*theSeq, isStart);
 		}
 
-		TDF_LabelSequence::Iterator GetIterator() {
-			return *NativeIterator;
+		TDF_LabelSequence::Iterator* GetIterator() {
+			return NativeIterator;
 		};
 
 		//! Check end
@@ -49,7 +49,7 @@ namespace TKLCAF {
 		//! Performs comparison of two iterators.
 		Standard_Boolean IsEqual(XTDF_XIterator^ theOther)
 		{
-			return NativeIterator->IsEqual(theOther->GetIterator());
+			return NativeIterator->IsEqual(*theOther->GetIterator());
 		}
 	private:
 		TDF_LabelSequence::Iterator* NativeIterator;

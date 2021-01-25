@@ -598,39 +598,62 @@ namespace UniversalCAD
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
             IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
+            XTDocStd_Document aDoc = new XTDocStd_Document("XSTEPCAF");
             XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
-            int index = 0;
-            AccordionControlElement PNode = null;
             XTDF_Label aRootLabel = aDoc.Main();
-            XTDF_Attribute aName = new XTDataStd_Name();
-            XTDF_Attribute aInteger = new XTDataStd_Integer();
-            if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+            XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aRootLabel);
+            XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
+            Assembly.GetFreeShapes(ref aRootLabels);
+            XTDF_XIterator aRootIter = aRootLabels.Iterator();
+            for (; aRootIter.More(); aRootIter.Next())
             {
-                XTDataStd_Integer XInteger = new XTDataStd_Integer();
-                if (!aRootLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
-                    XInteger = XTDataStd_Integer.Set(aRootLabel, index++);
-                else
-                    XInteger = aInteger as XTDataStd_Integer;
-                XTDataStd_Name XName = aName as XTDataStd_Name;
-                XTCollection_ExtendedString EString = XName.Get();
-                string text = EString.GetValueString();
-                PNode = new AccordionControlElement();
-                PNode.Name = text;
-                PNode.Text = $"{text}_{XInteger.Get()}";
-                PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                this.accElementTLable.Elements.Add(PNode);
+                bool IsBoundaryDraw = true;
+                XTDF_Label aTDFLabel = aRootIter.Value();
+                TDFChildLabel(aTDFLabel, IsBoundaryDraw);
             }
-            else
-                PNode = this.accElementTLable;
-            VisibleSettings(ref PNode,aRootLabel, ref index, true);
-            OCCTView.SetDisplayMode(1);
-            OCCTView.RedrawView();
-            OCCTView.ZoomAllView();
+            //int index = 0;
+            //AccordionControlElement PNode = this.accElementTLable;
+            //XTDF_Label aRootLabel = aDoc.Main();
+            //XTDF_Attribute aName = new XTDataStd_Name();
+            //XTDF_Attribute aInteger = new XTDataStd_Integer();
+            //if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
+            //{
+            //    XTDataStd_Integer XInteger = new XTDataStd_Integer();
+            //    if (!aRootLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+            //        XInteger = XTDataStd_Integer.Set(aRootLabel, index++);
+            //    else
+            //        XInteger = aInteger as XTDataStd_Integer;
+            //    XTDataStd_Name XName = aName as XTDataStd_Name;
+            //    XTCollection_ExtendedString EString = XName.Get();
+            //    string text = EString.GetValueString();
+            //    PNode = new AccordionControlElement();
+            //    PNode.Name = text;
+            //    PNode.Text = $"{text}_{XInteger.Get()}";
+            //    PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
+            //    this.accElementTLable.Elements.Add(PNode);
+            //}
+            //VisibleSettings(ref PNode,aRootLabel, ref index, true);
+            //OCCTView.SetDisplayMode(1);
+            //OCCTView.RedrawView();
+            //OCCTView.ZoomAllView();
             return true;
+        }
+
+        private void TDFChildLabel(XTDF_Label theLabel, bool IsBoundaryDraw)
+        {
+            if (!theLabel.IsNull() && !theLabel.HasChild())
+            {
+                Display(theLabel, IsBoundaryDraw);
+                return;
+            }
+            XTDF_ChildIterator iter = new XTDF_ChildIterator(theLabel, false);
+            for (; iter.More(); iter.Next())
+            {
+                TDFChildLabel(iter.Value(), IsBoundaryDraw);
+            }
         }
 
         private void VisibleSettings(ref AccordionControlElement TempNode, XTDF_Label theLabel,ref int index, bool IsBoundaryDraw)
@@ -778,25 +801,9 @@ namespace UniversalCAD
             XAIS_InteractiveObject anInteractive = xPrs.GetAIS();
             if (anInteractive != null)
             {
-                // get drawer
-                XPrs3d_Drawer aDrawer = anInteractive.Attributes();
-                // default attributes
-                float aRed = 0.0f;
-                float aGreen = 0.0f;
-                float aBlue = 0.0f;
-                //float aWidth = 1.0f;
-                //XAspect_TypeOfLine aLineType = XAspect_TypeOfLine.Aspect_TOL_SOLID;
-                // turn boundaries on/off
-                bool isBoundaryDraw = true;
-                aDrawer.SetFaceBoundaryDraw(isBoundaryDraw);
-                XQuantity_Color aColor = new XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor.Quantity_TOC_RGB);
-                XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();//  new XPrs3d_LineAspect(aColor, aLineType, aWidth);
-                aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
+                SetFaceBoundaryAspect(anInteractive, true);
                 context.Display(anInteractive, true);
-                OCCTView.SetDisplayMode(1);
-                OCCTView.ZoomAllView();
             }
-            //mainAISContext()->UpdateCurrentViewer();
         }
         #endregion
 

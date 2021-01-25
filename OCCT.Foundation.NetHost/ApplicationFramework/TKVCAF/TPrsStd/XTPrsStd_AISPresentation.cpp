@@ -37,7 +37,7 @@ namespace TKVCAF {
 	//! the label L, and sets the GUID driver.
 	//! static 
 	XTPrsStd_AISPresentation^ XTPrsStd_AISPresentation::Set(XTDF_Label^ L, XStandard_GUID^ driver) {
-		return gcnew XTPrsStd_AISPresentation(TPrsStd_AISPresentation::Set(L->GetLabel(), driver->GetGUID()));
+		return gcnew XTPrsStd_AISPresentation(TPrsStd_AISPresentation::Set(*L->GetLabel(), driver->GetGUID()));
 	};
 
 	//! Delete (if exist) the presentation attribute associated to the label <L>.
@@ -49,7 +49,7 @@ namespace TKVCAF {
 	//! Delete (if exist) the presentation attribute associated to the label <L>.
 	//! static 
 	void XTPrsStd_AISPresentation::Unset(XTDF_Label^ L) {
-		TPrsStd_AISPresentation::Unset(L->GetLabel());
+		TPrsStd_AISPresentation::Unset(*L->GetLabel());
 	};
 
 	//! Creates or retrieves the AISPresentation

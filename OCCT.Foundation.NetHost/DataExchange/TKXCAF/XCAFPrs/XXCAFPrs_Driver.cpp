@@ -18,8 +18,8 @@ namespace TKXCAF {
 
 	Standard_Boolean XXCAFPrs_Driver::Update(XTDF_Label^ L, XAIS_InteractiveObject^ ais) {
 		XCAFDoc_ShapeTool shapes;
-		if (!shapes.IsShape(L->GetLabel())) return Standard_False;
-		Handle(AIS_InteractiveObject) Handle_Ais = new XCAFPrs_AISObject(L->GetLabel());
+		if (!shapes.IsShape(*L->GetLabel())) return Standard_False;
+		Handle(AIS_InteractiveObject) Handle_Ais = new XCAFPrs_AISObject(*L->GetLabel());
 		ais = gcnew XAIS_InteractiveObject(Handle_Ais);
 		return Standard_True;
 	};

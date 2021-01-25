@@ -58,11 +58,11 @@ namespace TKLCAF {
 	//! Name methods
 	//! ============
 	XTDataStd_Name^ XTDataStd_Name::Set(XTDF_Label^ label, XTCollection_ExtendedString^ string) {
-		return gcnew XTDataStd_Name(TDataStd_Name::Set(label->GetLabel(), string->GetExtendedString()));
+		return gcnew XTDataStd_Name(TDataStd_Name::Set(*label->GetLabel(), string->GetExtendedString()));
 	};
 
 	XTDataStd_Name^ XTDataStd_Name::Set(XTDF_Label^ label, XStandard_GUID^ guid, XTCollection_ExtendedString^ string) {
-		return gcnew XTDataStd_Name(TDataStd_Name::Set(label->GetLabel(), guid->GetGUID(), string->GetExtendedString()));
+		return gcnew XTDataStd_Name(TDataStd_Name::Set(*label->GetLabel(), guid->GetGUID(), string->GetExtendedString()));
 	};
 
 	//! Sets <S> as name. Raises if <S> is not a valid name.

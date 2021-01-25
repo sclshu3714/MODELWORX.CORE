@@ -91,7 +91,7 @@ namespace TKLCAF {
         }
 
         //!  Returns the TDF_Label
-        TDF_Label GetLabel();
+        TDF_Label* GetLabel();
 
         //! Nullifies the label.
         void Nullify();

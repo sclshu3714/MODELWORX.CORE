@@ -10,7 +10,7 @@ namespace TKXCAF {
     //! Create (if not exist) ShapeTool from XCAFDoc on <L>.
     //! static 
     XXCAFDoc_ShapeTool^ XXCAFDoc_ShapeTool::Set(XTDF_Label^ L) {
-        return gcnew XXCAFDoc_ShapeTool(XCAFDoc_ShapeTool::Set(L->GetLabel()));
+        return gcnew XXCAFDoc_ShapeTool(XCAFDoc_ShapeTool::Set(*L->GetLabel()));
     };
 
     //! Creates an empty tool
@@ -39,7 +39,7 @@ namespace TKXCAF {
     //! Returns True if the label is a label of top-level shape,
     //! as opposed to component of assembly or subshape
     Standard_Boolean XXCAFDoc_ShapeTool::IsTopLevel(XTDF_Label^ L) {
-        return NativeHandle()->IsTopLevel(L->GetLabel());
+        return NativeHandle()->IsTopLevel(*L->GetLabel());
     };
 
     //! Returns True if the label is not used by any assembly, i.e.
@@ -48,27 +48,27 @@ namespace TKXCAF {
     //! (There  is  no  Father TreeNode on  this  <L>)
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsFree(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsFree(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsFree(*L->GetLabel());
     };
 
     //! Returns True if the label represents a shape (simple shape,
     //! assembly or reference)
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsShape(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsShape(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsShape(*L->GetLabel());
     };
 
     //! Returns True if the label is a label of simple shape
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsSimpleShape(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsSimpleShape(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsSimpleShape(*L->GetLabel());
     };
 
     //! Return true if <L> is a located instance of other shape
     //! i.e. reference
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsReference(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsReference(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsReference(*L->GetLabel());
     };
 
     //! Returns True if the label is a label of assembly, i.e.
@@ -76,14 +76,14 @@ namespace TKXCAF {
     //! This is relevant only if IsShape() is True
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsAssembly(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsAssembly(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsAssembly(*L->GetLabel());
     };
 
     //! Return true if <L> is reference serving as component
     //! of assembly
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsComponent(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsComponent(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsComponent(*L->GetLabel());
     };
 
     //! Returns True if the label is a label of compound, i.e.
@@ -91,23 +91,23 @@ namespace TKXCAF {
     //! This is relevant only if IsShape() is True
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsCompound(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsCompound(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsCompound(*L->GetLabel());
     };
 
     //! Return true if <L> is subshape of the top-level shape
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsSubShape(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::IsSubShape(L->GetLabel());
+        return XCAFDoc_ShapeTool::IsSubShape(*L->GetLabel());
     };
 
     //! Checks whether shape <sub> is subshape of shape stored on
     //! label shapeL
     Standard_Boolean XXCAFDoc_ShapeTool::IsSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub) {
-        return NativeHandle()->IsSubShape(shapeL->GetLabel(), sub);
+        return NativeHandle()->IsSubShape(*shapeL->GetLabel(), sub);
     };
 
     Standard_Boolean XXCAFDoc_ShapeTool::SearchUsingMap(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findWithoutLoc, Standard_Boolean findSubshape) {
-        return NativeHandle()->SearchUsingMap(S, L->GetLabel(), findWithoutLoc, findSubshape);
+        return NativeHandle()->SearchUsingMap(S, *L->GetLabel(), findWithoutLoc, findSubshape);
     };
 
     //! General tool to find a (sub) shape in the document
@@ -123,7 +123,7 @@ namespace TKXCAF {
     //! Returns False if nothing is found
     //!  Standard_Boolean findInstance = Standard_True, Standard_Boolean findComponent = Standard_True, Standard_Boolean findSubshape = Standard_True
     Standard_Boolean XXCAFDoc_ShapeTool::Search(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findInstance, Standard_Boolean findComponent, Standard_Boolean findSubshape) {
-        return NativeHandle()->Search(S, L->GetLabel(), findInstance, findComponent, findSubshape);
+        return NativeHandle()->Search(S, *L->GetLabel(), findInstance, findComponent, findSubshape);
     };
 
     //! Returns the label corresponding to shape S
@@ -136,7 +136,7 @@ namespace TKXCAF {
     //! Return True if <S> is found.
     //! Standard_Boolean findInstance = Standard_False
     Standard_Boolean XXCAFDoc_ShapeTool::FindShape(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findInstance) {
-        return NativeHandle()->FindShape(S, L->GetLabel(), findInstance);
+        return NativeHandle()->FindShape(S, *L->GetLabel(), findInstance);
     };
 
     //! Does the same as previous method
@@ -151,7 +151,7 @@ namespace TKXCAF {
     //! Returns False if label does not contain shape
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetShape(XTDF_Label^ L, TopoDS_Shape& S) {
-        return XCAFDoc_ShapeTool::GetShape(L->GetLabel(), S);
+        return XCAFDoc_ShapeTool::GetShape(*L->GetLabel(), S);
     };
 
     //! To get TopoDS_Shape from shape's label
@@ -159,7 +159,7 @@ namespace TKXCAF {
     //! Returns Null shape if label does not contain shape
     //!static 
     TopoDS_Shape XXCAFDoc_ShapeTool::GetShape(XTDF_Label^ L) {
-        return XCAFDoc_ShapeTool::GetShape(L->GetLabel());
+        return XCAFDoc_ShapeTool::GetShape(*L->GetLabel());
     };
 
     //! Creates new (empty) top-level shape.
@@ -170,7 +170,7 @@ namespace TKXCAF {
 
     //! Sets representation (TopoDS_Shape) for top-level shape.
     void XXCAFDoc_ShapeTool::SetShape(XTDF_Label^ L, TopoDS_Shape& S) {
-        NativeHandle()->SetShape(L->GetLabel(), S);
+        NativeHandle()->SetShape(*L->GetLabel(), S);
     };
 
     //! Adds a new top-level (creates and returns a new label)
@@ -191,7 +191,7 @@ namespace TKXCAF {
     //! or is not top-level shape
     //! Standard_Boolean removeCompletely = Standard_True
     Standard_Boolean XXCAFDoc_ShapeTool::RemoveShape(XTDF_Label^ L, Standard_Boolean removeCompletely) {
-        return NativeHandle()->RemoveShape(L->GetLabel(), removeCompletely);
+        return NativeHandle()->RemoveShape(*L->GetLabel(), removeCompletely);
     };
 
     //! set hasComponents into false
@@ -224,7 +224,7 @@ namespace TKXCAF {
 
     //! recursive
     void XXCAFDoc_ShapeTool::ComputeShapes(XTDF_Label^ L) {
-        NativeHandle()->ComputeShapes(L->GetLabel());
+        NativeHandle()->ComputeShapes(*L->GetLabel());
     };
 
     //! Compute a sequence of simple shapes
@@ -260,27 +260,27 @@ namespace TKXCAF {
     //! Returns number of users (0 if shape is free)
     //!static 
     Standard_Integer XXCAFDoc_ShapeTool::GetUsers(XTDF_Label^ L, TDF_LabelSequence& Labels, Standard_Boolean getsubchilds) {
-        return XCAFDoc_ShapeTool::GetUsers(L->GetLabel(), Labels, getsubchilds);
+        return XCAFDoc_ShapeTool::GetUsers(*L->GetLabel(), Labels, getsubchilds);
     };
 
     //! Returns location of instance
     //!static 
     XTopLoc_Location^ XXCAFDoc_ShapeTool::GetLocation(XTDF_Label^ L) {
-        return gcnew XTopLoc_Location(XCAFDoc_ShapeTool::GetLocation(L->GetLabel()));
+        return gcnew XTopLoc_Location(XCAFDoc_ShapeTool::GetLocation(*L->GetLabel()));
     };
 
     //! Returns label which corresponds to a shape referred by L
     //! Returns False if label is not reference
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetReferredShape(XTDF_Label^ L, XTDF_Label^ Label) {
-        return XCAFDoc_ShapeTool::GetReferredShape(L->GetLabel(), Label->GetLabel());
+        return XCAFDoc_ShapeTool::GetReferredShape(*L->GetLabel(), *Label->GetLabel());
     };
 
     //! Returns number of Assembles components
     //! Standard_Boolean getsubchilds = Standard_False
     //!static 
     Standard_Integer XXCAFDoc_ShapeTool::NbComponents(XTDF_Label^ L, Standard_Boolean getsubchilds) {
-        return XCAFDoc_ShapeTool::NbComponents(L->GetLabel(), getsubchilds);
+        return XCAFDoc_ShapeTool::NbComponents(*L->GetLabel(), getsubchilds);
     };
 
     //! Returns list of components of assembly
@@ -288,13 +288,13 @@ namespace TKXCAF {
     //! Standard_Boolean getsubchilds = Standard_False
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetComponents(XTDF_Label^ L, TDF_LabelSequence& Labels, Standard_Boolean getsubchilds) {
-        return XCAFDoc_ShapeTool::GetComponents(L->GetLabel(), Labels, getsubchilds);
+        return XCAFDoc_ShapeTool::GetComponents(*L->GetLabel(), Labels, getsubchilds);
     };
 
     //! Adds a component given by its label and location to the assembly
     //! Note: assembly must be IsAssembly() or IsSimpleShape()
     XTDF_Label^ XXCAFDoc_ShapeTool::AddComponent(XTDF_Label^ assembly, XTDF_Label^ comp, XTopLoc_Location^ Loc) {
-        return gcnew XTDF_Label(NativeHandle()->AddComponent(assembly->GetLabel(), comp->GetLabel(), *Loc->GetLocation()));
+        return gcnew XTDF_Label(NativeHandle()->AddComponent(*assembly->GetLabel(), *comp->GetLabel(), *Loc->GetLocation()));
     };
 
     //! Adds a shape (located) as a component to the assembly
@@ -305,12 +305,12 @@ namespace TKXCAF {
     //! Note: assembly must be IsAssembly() or IsSimpleShape()
     //! Standard_Boolean expand = Standard_False
     XTDF_Label^ XXCAFDoc_ShapeTool::AddComponent(XTDF_Label^ assembly, TopoDS_Shape& comp, Standard_Boolean expand) {
-        return gcnew XTDF_Label(NativeHandle()->AddComponent(assembly->GetLabel(), comp, expand));
+        return gcnew XTDF_Label(NativeHandle()->AddComponent(*assembly->GetLabel(), comp, expand));
     };
 
     //! Removes a component from its assembly
     void XXCAFDoc_ShapeTool::RemoveComponent(XTDF_Label^ comp) {
-        NativeHandle()->RemoveComponent(comp->GetLabel());
+        NativeHandle()->RemoveComponent(*comp->GetLabel());
     };
 
     //! Top-down update for all assembly compounds stored in the document.
@@ -322,21 +322,21 @@ namespace TKXCAF {
     //! label shapeL
     //! Returns Null label if it is not found
     Standard_Boolean XXCAFDoc_ShapeTool::FindSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub, XTDF_Label^ L) {
-        return NativeHandle()->FindSubShape(shapeL->GetLabel(), sub, L->GetLabel());
+        return NativeHandle()->FindSubShape(*shapeL->GetLabel(), sub, *L->GetLabel());
     };
 
     //! Adds a label for subshape <sub> of shape stored on
     //! label shapeL
     //! Returns Null label if it is not subshape
     XTDF_Label^ XXCAFDoc_ShapeTool::AddSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub) {
-        return gcnew XTDF_Label(NativeHandle()->AddSubShape(shapeL->GetLabel(), sub));
+        return gcnew XTDF_Label(NativeHandle()->AddSubShape(*shapeL->GetLabel(), sub));
     };
 
     //! Adds (of finds already existed) a label for subshape <sub> of shape stored on
     //! label shapeL. Label addedSubShapeL returns added (found) label or empty in case of wrong subshape.
     //! Returns True, if new shape was added, False in case of already existed subshape/wrong subshape
     Standard_Boolean XXCAFDoc_ShapeTool::AddSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub, XTDF_Label^ addedSubShapeL) {
-        return NativeHandle()->AddSubShape(shapeL->GetLabel(), sub, addedSubShapeL->GetLabel());
+        return NativeHandle()->AddSubShape(*shapeL->GetLabel(), sub, *addedSubShapeL->GetLabel());
     };
 
     XTDF_Label^ XXCAFDoc_ShapeTool::FindMainShapeUsingMap(const TopoDS_Shape& sub) {
@@ -355,7 +355,7 @@ namespace TKXCAF {
     //! Returns False if no subshapes are placed on that label
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetSubShapes(XTDF_Label^ L, TDF_LabelSequence& Labels) {
-        return XCAFDoc_ShapeTool::GetSubShapes(L->GetLabel(), Labels);
+        return XCAFDoc_ShapeTool::GetSubShapes(*L->GetLabel(), Labels);
     };
 
     //! returns the label under which shapes are stored
@@ -378,7 +378,7 @@ namespace TKXCAF {
     //! Standard_Integer level = 0, Standard_Boolean deep = Standard_False
     //!static 
     void XXCAFDoc_ShapeTool::DumpShape(Standard_OStream& theDumpLog, XTDF_Label^ L, Standard_Integer level, Standard_Boolean deep) {
-        XCAFDoc_ShapeTool::DumpShape(theDumpLog, L->GetLabel(), level, deep);
+        XCAFDoc_ShapeTool::DumpShape(theDumpLog, *L->GetLabel(), level, deep);
     };
 
     XStandard_GUID^ XXCAFDoc_ShapeTool::ID() {
@@ -402,7 +402,7 @@ namespace TKXCAF {
     //! described in document only their names
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::IsExternRef(XTDF_Label^ L) {
-        return  XCAFDoc_ShapeTool::IsExternRef(L->GetLabel());
+        return  XCAFDoc_ShapeTool::IsExternRef(*L->GetLabel());
     };
 
     //! Sets the names of references on the no-step files
@@ -412,13 +412,13 @@ namespace TKXCAF {
 
     //! Sets the names of references on the no-step files
     void XXCAFDoc_ShapeTool::SetExternRefs(XTDF_Label^ L, TColStd_SequenceOfHAsciiString& SHAS) {
-        NativeHandle()->SetExternRefs(L->GetLabel(), SHAS);
+        NativeHandle()->SetExternRefs(*L->GetLabel(), SHAS);
     };
 
     //! Gets the names of references on the no-step files
     //!static 
     void XXCAFDoc_ShapeTool::GetExternRefs(XTDF_Label^ L, TColStd_SequenceOfHAsciiString& SHAS) {
-        XCAFDoc_ShapeTool::GetExternRefs(L->GetLabel(), SHAS);
+        XCAFDoc_ShapeTool::GetExternRefs(*L->GetLabel(), SHAS);
     };
 
     //! Sets the SHUO structure between upper_usage and next_usage
@@ -433,14 +433,14 @@ namespace TKXCAF {
     //! Returns false in other case
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetSHUO(XTDF_Label^ SHUOLabel, Handle(XCAFDoc_GraphNode)& aSHUOAttr) {
-        return XCAFDoc_ShapeTool::GetSHUO(SHUOLabel->GetLabel(), aSHUOAttr);
+        return XCAFDoc_ShapeTool::GetSHUO(*SHUOLabel->GetLabel(), aSHUOAttr);
     };
 
     //! Returns founded SHUO GraphNodes of indicated component
     //! Returns false in other case
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetAllComponentSHUO(XTDF_Label^ CompLabel, TDF_AttributeSequence& SHUOAttrs) {
-        return XCAFDoc_ShapeTool::GetAllComponentSHUO(CompLabel->GetLabel(), SHUOAttrs);
+        return XCAFDoc_ShapeTool::GetAllComponentSHUO(*CompLabel->GetLabel(), SHUOAttrs);
     };
 
     //! Returns the sequence of labels of SHUO attributes,
@@ -450,7 +450,7 @@ namespace TKXCAF {
     //! NOTE: do not clear the sequence before filling
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetSHUOUpperUsage(XTDF_Label^ NextUsageL, TDF_LabelSequence& Labels) {
-        return XCAFDoc_ShapeTool::GetSHUOUpperUsage(NextUsageL->GetLabel(), Labels);
+        return XCAFDoc_ShapeTool::GetSHUOUpperUsage(*NextUsageL->GetLabel(), Labels);
     };
 
     //! Returns the sequence of labels of SHUO attributes,
@@ -460,7 +460,7 @@ namespace TKXCAF {
     //! NOTE: do not clear the sequence before filling
     //!static 
     Standard_Boolean XXCAFDoc_ShapeTool::GetSHUONextUsage(XTDF_Label^ UpperUsageL, TDF_LabelSequence& Labels) {
-        return XCAFDoc_ShapeTool::GetSHUONextUsage(UpperUsageL->GetLabel(), Labels);
+        return XCAFDoc_ShapeTool::GetSHUONextUsage(*UpperUsageL->GetLabel(), Labels);
     };
 
     //! Remove SHUO from component sublabel,
@@ -468,7 +468,7 @@ namespace TKXCAF {
     //! Returns FALSE if cannot remove SHUO dependencies.
     //! NOTE: remove any styles that associated with this SHUO.
     Standard_Boolean XXCAFDoc_ShapeTool::RemoveSHUO(XTDF_Label^ SHUOLabel) {
-        return NativeHandle()->RemoveSHUO(SHUOLabel->GetLabel());
+        return NativeHandle()->RemoveSHUO(*SHUOLabel->GetLabel());
     };
 
     //! Serach the path of labels in the document,
@@ -509,7 +509,7 @@ namespace TKXCAF {
 
     //! Convert Shape (compound/compsolid/shell/wire) to assembly
     Standard_Boolean XXCAFDoc_ShapeTool::Expand(XTDF_Label^ Shape) {
-        return NativeHandle()->Expand(Shape->GetLabel());
+        return NativeHandle()->Expand(*Shape->GetLabel());
     };
 
     //! Method to get NamedData attribute assigned to the given shape label.
@@ -518,7 +518,7 @@ namespace TKXCAF {
     //! @return Handle to the NamedData attribute or Null if there is none
     //! Standard_Boolean theToCreate = Standard_False
     Handle(TDataStd_NamedData) XXCAFDoc_ShapeTool::GetNamedProperties(XTDF_Label^ theLabel, Standard_Boolean theToCreate) {
-        return NativeHandle()->GetNamedProperties(theLabel->GetLabel(), theToCreate);
+        return NativeHandle()->GetNamedProperties(*theLabel->GetLabel(), theToCreate);
     };
 
     //! Method to get NamedData attribute assigned to a label of the given shape.

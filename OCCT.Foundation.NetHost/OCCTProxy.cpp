@@ -752,6 +752,15 @@ public:
         mainView()->MustBeResized();
     }
 
+    /// <summary>
+    /// …Ë÷√ «∑Òœ‘ æ±ﬂøÚ
+    /// </summary>
+    /// <param name="anInteractive"></param>
+    /// <param name="isBoundaryDraw"></param>
+    void SetFaceBoundaryDraw(XAIS_InteractiveObject^ anInteractive, bool isBoundaryDraw) {
+        Handle(Prs3d_Drawer) aDrawer = anInteractive->GetInteractiveObject()->Attributes();
+        aDrawer->SetFaceBoundaryDraw(isBoundaryDraw);
+    }
 
 #pragma endregion
 

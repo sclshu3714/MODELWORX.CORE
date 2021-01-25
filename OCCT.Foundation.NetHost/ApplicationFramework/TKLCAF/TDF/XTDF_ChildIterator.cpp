@@ -28,7 +28,7 @@ namespace TKLCAF {
     //! only the first, but all the sub label levels.
     //! allLevels default false
     XTDF_ChildIterator::XTDF_ChildIterator(XTDF_Label^ aLabel, const Standard_Boolean allLevels) {
-        NativeHandle = new TDF_ChildIterator(aLabel->GetLabel(), allLevels);
+        NativeHandle = new TDF_ChildIterator(*aLabel->GetLabel(), allLevels);
     };
 
     //! Initializes the iteration on the children of the
@@ -61,7 +61,7 @@ namespace TKLCAF {
 
     //! allLevels default false
     void XTDF_ChildIterator::Initialize(XTDF_Label^ aLabel, const Standard_Boolean allLevels) {
-        NativeHandle->Initialize(aLabel->GetLabel(), allLevels);
+        NativeHandle->Initialize(*aLabel->GetLabel(), allLevels);
     };
 
     //! Returns true if a current label is found in the

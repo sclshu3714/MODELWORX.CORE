@@ -22,8 +22,8 @@ namespace TKLCAF {
     };
 
     //!  Returns the TDF_Label
-    TDF_Label XTDF_Label::GetLabel() {
-        return *NativeHandle;
+    TDF_Label* XTDF_Label::GetLabel() {
+        return NativeHandle;
     };
 
     //! Nullifies the label.
@@ -70,11 +70,11 @@ namespace TKLCAF {
     //! Returns True if the <aLabel> is equal to me (same
     //! LabelNode*).
     Standard_Boolean XTDF_Label::IsEqual(XTDF_Label^ aLabel) {
-        return NativeHandle->IsEqual(aLabel->GetLabel());
+        return NativeHandle->IsEqual(*aLabel->GetLabel());
     };
 
     Standard_Boolean XTDF_Label::IsDifferent(XTDF_Label^ aLabel) {
-        return NativeHandle->IsDescendant(aLabel->GetLabel());
+        return NativeHandle->IsDescendant(*aLabel->GetLabel());
     };
 
     Standard_Boolean XTDF_Label::IsRoot() {
@@ -215,7 +215,7 @@ namespace TKLCAF {
     //! <aLabel>. Attention: every label is its own
     //! descendant.
     Standard_Boolean XTDF_Label::IsDescendant(XTDF_Label^ aLabel) {
-        return NativeHandle->IsDescendant(aLabel->GetLabel());
+        return NativeHandle->IsDescendant(*aLabel->GetLabel());
     };
 
     //! Returns the root label Root of the data structure.
@@ -267,7 +267,7 @@ namespace TKLCAF {
     //!
     //! -C++: inline
     Standard_Boolean XTDF_Label::HasLowerNode(XTDF_Label^ otherLabel) {
-        return NativeHandle->HasLowerNode(otherLabel->GetLabel());
+        return NativeHandle->HasLowerNode(*otherLabel->GetLabel());
     };
 
     //! Returns true if node address of <me> is greater
@@ -276,7 +276,7 @@ namespace TKLCAF {
     //!
     //! -C++: inline
     Standard_Boolean XTDF_Label::HasGreaterNode(XTDF_Label^ otherLabel) {
-        return NativeHandle->HasGreaterNode(otherLabel->GetLabel());
+        return NativeHandle->HasGreaterNode(*otherLabel->GetLabel());
     };
 
     //! Dumps the minimum information about <me> on

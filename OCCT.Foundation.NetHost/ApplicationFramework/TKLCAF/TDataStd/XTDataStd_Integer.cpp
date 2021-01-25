@@ -14,14 +14,14 @@ namespace TKLCAF {
 	//! the Integer  attribute is returned.
 	//! static 
 	XTDataStd_Integer^ XTDataStd_Integer::Set(XTDF_Label^ label, Standard_Integer value) {
-		return gcnew XTDataStd_Integer(TDataStd_Integer::Set(label->GetLabel(), value));
+		return gcnew XTDataStd_Integer(TDataStd_Integer::Set(*label->GetLabel(), value));
 	};
 
 	//! Finds, or creates, an Integer attribute with explicit user defined <guid> and sets <value>.
 	//! The Integer attribute  is  returned. 
 	//! static 
 	XTDataStd_Integer^ XTDataStd_Integer::Set(XTDF_Label^ label, XStandard_GUID^ guid, const Standard_Integer value) {
-		return gcnew XTDataStd_Integer(TDataStd_Integer::Set(label->GetLabel(), guid->GetGUID(), value));
+		return gcnew XTDataStd_Integer(TDataStd_Integer::Set(*label->GetLabel(), guid->GetGUID(), value));
 	};
 
 	//! Integer methods
