@@ -792,8 +792,5 @@
   <ItemGroup>
     <None Include="Resources\actions_arrow5upleft.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
