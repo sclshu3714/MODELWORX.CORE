@@ -147,7 +147,7 @@ public:
         DisplayExplainText("右中 - sclshu3714@163.com - 右中", Aspect_TOTP_RIGHT, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("右下 - sclshu3714@163.com - 右下", Aspect_TOTP_RIGHT_LOWER, anoffset = Graphic3d_Vec2i(254, 0));
         DisplayExplainText("下中 - sclshu3714@163.com - 下中", Aspect_TOTP_BOTTOM, anoffset = Graphic3d_Vec2i(127, 0));*/
-        DisplayExplainText("sclshu3714@163.com", Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i(0, 20));
+        DisplayExplainText("sclshu3714@163.com", Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i(20, 20));
 
         ////把图片添加到句柄控件上
         //Standard_Real Width = 0.0;

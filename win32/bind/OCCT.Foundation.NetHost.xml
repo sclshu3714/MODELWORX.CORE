@@ -31,7 +31,7 @@
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKMath.XTopLoc_Datum3D.Handle">
+        <member name="P:TKMath.XTopLoc_Datum3D.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -42,7 +42,7 @@
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKLCAF.XTDF_IDFilter.Handle">
+        <member name="P:TKLCAF.XTDF_IDFilter.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -104,7 +104,7 @@ Finds, or creates, an Integer attribute and sets the Integer  attribute is retur
 The basis to define an integer attribute.
 </summary>
         </member>
-        <member name="P:TKernel.XTCollection_AsciiString.Handle">
+        <member name="P:TKernel.XTCollection_AsciiString.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -173,7 +173,7 @@ The basis to define an integer attribute.
 构型
 </summary>
         </member>
-        <member name="P:TKSTEP.XSTEPConstruct_Tool.Handle">
+        <member name="P:TKSTEP.XSTEPConstruct_Tool.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -188,7 +188,7 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
-        <member name="P:TKXCAF.XXCAFPrs_Driver.Handle">
+        <member name="P:TKXCAF.XXCAFPrs_Driver.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -198,7 +198,7 @@ The basis to define an integer attribute.
 本地句柄
 </summary>
         </member>
-        <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.Handle">
+        <member name="P:TKXDESTEP.XSTEPCAFControl_Reader.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -384,6 +384,11 @@ Get version （获取版本）
         <member name="M:OCCTProxy.EraseObjects">
             <summary>
 Erase objects（删除对象）
+</summary>
+        </member>
+        <member name="M:OCCTProxy.SetBackgroundImage(System.String,XAspect_FillMethod,System.Boolean)">
+            <summary>
+设置渐变背景色
 </summary>
         </member>
         <member name="M:OCCTProxy.SetBgGradientColors(TKernel.XQuantity_Color,TKernel.XQuantity_Color,XAspect_GradientFillMethod,System.Boolean)">
@@ -584,7 +589,7 @@ Make dump of current view to file
 </summary>
             <param name="theFileName">Name of dump file</param>
         </member>
-        <member name="M:OCCTProxy.TriedronDisplay(System.Boolean,XAspect_TypeOfTriedronPosition,System.Double,System.Double)">
+        <member name="M:OCCTProxy.TriedronDisplay(System.Boolean,XAspect_TypeOfTriedronPosition,System.Int32,System.Int32)">
             <summary>
 全局坐标系显示
 </summary>
@@ -655,12 +660,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKernel.XTCollection_ExtendedString.Handle">
+        <member name="P:TKernel.XTCollection_ExtendedString.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKLCAF.XTDF_ChildIterator.Handle">
+        <member name="P:TKLCAF.XTDF_ChildIterator.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -690,12 +695,12 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKLCAF.XTDF_Label.Handle">
+        <member name="P:TKLCAF.XTDF_Label.IHandle">
             <summary>
 本地句柄
 </summary>
         </member>
-        <member name="P:TKernel.XStandard_GUID.Handle">
+        <member name="P:TKernel.XStandard_GUID.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -705,7 +710,7 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKernel.XStandard_UUID.Handle">
+        <member name="P:TKernel.XStandard_UUID.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -721,7 +726,7 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKernel.XQuantity_Color.Handle">
+        <member name="P:TKernel.XQuantity_Color.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -792,7 +797,7 @@ C++/CLI class visible from .Net (CSharp)
 本地句柄
 </summary>
         </member>
-        <member name="P:TKMath.XTopLoc_Location.Handle">
+        <member name="P:TKMath.XTopLoc_Location.IHandle">
             <summary>
 本地句柄
 </summary>
@@ -1007,7 +1012,7 @@ C++/CLI class visible from .Net (CSharp)
 </summary>
             <param name="pos" />
         </member>
-        <member name="P:TKMath.xgp_Ax1.Handle">
+        <member name="P:TKMath.xgp_Ax1.IHandle">
             <summary>
 本地句柄
 </summary>

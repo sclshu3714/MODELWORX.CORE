@@ -9,11 +9,15 @@ Class TKernel.XStandard_UUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Void .ctor(UInt32, UInt16, UInt16, Byte[]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    _GUID* Handle 'get ' : 
+    _GUID* IHandle 'get set' : 
   Methods:
     GetUUID(_GUID*): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(_GUID*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKernel.XStandard_GUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Standard_GUID*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XStandard_UUID): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -21,8 +25,10 @@ Class TKernel.XStandard_GUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Void .ctor(Char*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    Standard_GUID* Handle 'get ' : 
+    Standard_GUID* IHandle 'get set' : 
   Methods:
     ToUUID(): PrivateScope, Public, HideBySig
     GetGUID(Standard_GUID*): PrivateScope, Public, HideBySig
@@ -41,13 +47,17 @@ Class TKernel.XStandard_GUID: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Hash(Int32 IsConst): PrivateScope, Public, HideBySig
     HashCode(XStandard_GUID, Int32): PrivateScope, Public, Static, HideBySig
     IsEqual(XStandard_GUID, XStandard_GUID): PrivateScope, Public, Static, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(Standard_GUID*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKLCAF.XTDF_Label: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TDF_Label): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TDF_Label*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    TDF_Label* Handle 'get ' : 
+    TDF_Label* IHandle 'get set' : 
   Methods:
     SetNativeHandle(TDF_Label*): PrivateScope, Public, HideBySig
     GetLabel(TDF_Label*): PrivateScope, Public, HideBySig
@@ -91,7 +101,9 @@ Class TKLCAF.XTDF_Label: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     op_LeftShift(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
     ExtendedDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, TDF_IDFilter* IsImplicitlyDereferenced, NCollection_IndexedMap<opencascade::handle<TDF_Attribute>\,NCollection_DefaultHasher<opencascade::handle<Standard_Transient> > >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     EntryDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TDF_Label*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TDF_Attribute> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -156,7 +168,6 @@ Class TKLCAF.XTDF_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Forget(Int32 IsConst): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XTDF_Attribute(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Mat: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_XYZ, TKMath.xgp_XYZ, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -343,7 +354,7 @@ Class TKMath.xgp_Ax1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Interfaces:
     System.IDisposable
   Properties:
-    gp_Ax1* Handle 'get ' : 
+    gp_Ax1* IHandle 'get set' : 
   Methods:
     GetAx1(): PrivateScope, Public, HideBySig
     SetDirection(xgp_Dir): PrivateScope, Public, HideBySig
@@ -373,7 +384,8 @@ Class TKMath.xgp_Ax1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Translate(xgp_Vec): PrivateScope, Public, HideBySig
     Translated(xgp_Pnt, xgp_Pnt): PrivateScope, Public, HideBySig
     Translated(xgp_Vec): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(gp_Ax1*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp_Dir: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1147,7 +1159,6 @@ Class TKLCAF.XTDataStd_Integer: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTDataStd_Integer(): PrivateScope, Public, HideBySig
 Struct xgp_EulerSequence: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -1220,7 +1231,7 @@ Class TKernel.XTCollection_ExtendedString: AutoLayout, AnsiClass, Class, Public,
   Interfaces:
     System.IDisposable
   Properties:
-    TCollection_ExtendedString* Handle 'get ' : 
+    TCollection_ExtendedString* IHandle 'get set' : 
   Methods:
     GetExtendedString(TCollection_ExtendedString*): PrivateScope, Public, HideBySig
     AssignCat(XTCollection_ExtendedString): PrivateScope, Public, HideBySig
@@ -1274,7 +1285,8 @@ Class TKernel.XTCollection_ExtendedString: AutoLayout, AnsiClass, Class, Public,
     HashCode(XTCollection_ExtendedString, Int32 IsConst): PrivateScope, Public, Static, HideBySig
     ToUTF8CString(SByte** IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     LengthOfCString(): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TCollection_ExtendedString*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TDataStd_Name> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1307,14 +1319,15 @@ Class TKLCAF.XTDataStd_Name: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTDataStd_Name(): PrivateScope, Public, HideBySig
 Class TKLCAF.XTDF_ChildIterator: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKLCAF.XTDF_Label, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TDF_Label*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TDF_ChildIterator*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    TDF_ChildIterator* Handle 'get ' : 
+    TDF_ChildIterator* IHandle 'get set' : 
   Methods:
     Initialize(XTDF_Label, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     Initialize(TDF_Label* IsImplicitlyDereferenced, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
@@ -1322,12 +1335,16 @@ Class TKLCAF.XTDF_ChildIterator: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Next(): PrivateScope, Public, HideBySig
     NextBrother(): PrivateScope, Public, HideBySig
     Value(): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TDF_ChildIterator*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TDF_IDFilter*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    TDF_IDFilter* Handle 'get ' : 
+    TDF_IDFilter* IHandle 'get set' : 
   Methods:
     GetIDFilter(TDF_IDFilter*): PrivateScope, Public, HideBySig
     IgnoreAll(): PrivateScope, Public, HideBySig
@@ -1345,7 +1362,9 @@ Class TKLCAF.XTDF_IDFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     IDList(NCollection_List<Standard_GUID>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     Copy(XTDF_IDFilter): PrivateScope, Public, HideBySig
     Dump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TDF_IDFilter*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.XTopLoc_Location: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<TopLoc_Datum3D>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1355,7 +1374,7 @@ Class TKMath.XTopLoc_Location: AutoLayout, AnsiClass, Class, Public, BeforeField
   Interfaces:
     System.IDisposable
   Properties:
-    TopLoc_Location* Handle 'get ' : 
+    TopLoc_Location* IHandle 'get set' : 
   Methods:
     GetLocation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     IsIdentity(): PrivateScope, Public, HideBySig
@@ -1379,7 +1398,8 @@ Class TKMath.XTopLoc_Location: AutoLayout, AnsiClass, Class, Public, BeforeField
     op_Inequality(XTopLoc_Location): PrivateScope, Public, HideBySig, SpecialName
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
     ShallowDump(basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TopLoc_Location*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<AIS_InteractiveContext> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1396,6 +1416,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    SetWidth(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     UnsetWidth(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     SetMaterial(handle<AIS_InteractiveObject>*, Graphic3d_MaterialAspect*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     UnsetMaterial(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -1449,6 +1470,7 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    AddSelect(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
     Select(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Select(NCollection_Array1<gp_Pnt2d>*, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Select(Int32, Int32, Int32, Int32, handle<V3d_View>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -1534,7 +1556,6 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     SetColor(handle<AIS_InteractiveObject>*, Quantity_Color, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     UnsetColor(handle<AIS_InteractiveObject>*, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     Width(handle<AIS_InteractiveObject>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    SetWidth(handle<AIS_InteractiveObject>*, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetInteractiveContext(handle<AIS_InteractiveContext>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     DisplayStatus(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
     Status(handle<AIS_InteractiveObject>*, TCollection_ExtendedString*): PrivateScope, Public, HideBySig
@@ -1616,7 +1637,6 @@ Class TKV3d.XAIS_InteractiveContext: AutoLayout, AnsiClass, Class, Public, Befor
     NextDetected(): PrivateScope, Public, HideBySig
     DetectedCurrentOwner(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
     AddSelect(handle<AIS_InteractiveObject>*): PrivateScope, Public, HideBySig
-    AddSelect(handle<SelectMgr_EntityOwner>*): PrivateScope, Public, HideBySig
 Class TKMath.xgp_GTrsf: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Mat, TKMath.xgp_XYZ): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1663,8 +1683,10 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     Void .ctor(Quantity_Color*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(XQuantity_NameOfColor): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    Quantity_Color* Handle 'get ' : 
+    Quantity_Color* IHandle 'get set' : 
   Methods:
     GetColor(): PrivateScope, Public, HideBySig
     ChangeContrast(Double IsConst): PrivateScope, Public, HideBySig
@@ -1699,7 +1721,9 @@ Class TKernel.XQuantity_Color: AutoLayout, AnsiClass, Class, Public, BeforeField
     Color2argb(XQuantity_Color, Int32&): PrivateScope, Public, Static, HideBySig
     Argb2color(Int32 IsConst, XQuantity_Color): PrivateScope, Public, Static, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(Quantity_Color*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Graphic3d_PresentationAttributes> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -1758,7 +1782,6 @@ Class TKV3d.XGraphic3d_AspectLine3d: AutoLayout, AnsiClass, Class, Public, Befor
     SetWidth(Double IsConst): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGraphic3d_AspectLine3d(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Prs3d_LineAspect> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1786,7 +1809,6 @@ Class TKV3d.XPrs3d_LineAspect: AutoLayout, AnsiClass, Class, Public, BeforeField
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32 IsConst): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XPrs3d_LineAspect(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Prs3d_Drawer> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1802,6 +1824,8 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
+    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
     HasOwnDrawHiddenLine(): PrivateScope, Public, HideBySig
     VectorAspect(handle<Prs3d_LineAspect>*): PrivateScope, Public, HideBySig
     SetVectorAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
@@ -1863,7 +1887,6 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XPrs3d_Drawer(): PrivateScope, Public, HideBySig
     GetDrawer(handle<Prs3d_Drawer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetPresentationAttributes(handle<Graphic3d_PresentationAttributes>*): PrivateScope, Public, Virtual, HideBySig
     SetTypeOfDeflection(XAspect_TypeOfDeflection): PrivateScope, Public, HideBySig
@@ -1946,8 +1969,6 @@ Class TKV3d.XPrs3d_Drawer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetHiddenLineAspect(handle<Prs3d_LineAspect>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     HasOwnHiddenLineAspect(): PrivateScope, Public, HideBySig
     DrawHiddenLine(): PrivateScope, Public, HideBySig
-    EnableDrawHiddenLine(): PrivateScope, Public, HideBySig
-    DisableDrawHiddenLine(): PrivateScope, Public, HideBySig
 Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKernel.XTCollection_AsciiString, TKernel.XTCollection_AsciiString): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKernel.XTCollection_AsciiString, SByte*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -1964,8 +1985,9 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
   Interfaces:
     System.IDisposable
   Properties:
-    TCollection_AsciiString* Handle 'get ' : 
+    TCollection_AsciiString* IHandle 'get set' : 
   Methods:
+    Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     RealValue(): PrivateScope, Public, HideBySig
     RemoveAll(SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
     RemoveAll(SByte IsSignUnspecifiedByte, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -1989,7 +2011,8 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     Value(Int32): PrivateScope, Public, HideBySig
     HashCode(XTCollection_AsciiString, Int32): PrivateScope, Public, Static, HideBySig
     IsSameString(XTCollection_AsciiString, XTCollection_AsciiString, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TCollection_AsciiString*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     GetAsciiString(): PrivateScope, Public, HideBySig
     AssignCat(XTCollection_AsciiString): PrivateScope, Public, HideBySig
@@ -2062,12 +2085,13 @@ Class TKernel.XTCollection_AsciiString: AutoLayout, AnsiClass, Class, Public, Be
     LowerCase(): PrivateScope, Public, HideBySig
     Prepend(XTCollection_AsciiString): PrivateScope, Public, HideBySig
     Print(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    Read(basic_istream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
 Class TKV3d.XGraphic3d_MaterialAspect: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(XGraphic3d_NameOfMaterial): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    Graphic3d_MaterialAspect* Handle 'get ' : 
+    Graphic3d_MaterialAspect* IHandle 'get set' : 
   Methods:
     NumberOfMaterials(): PrivateScope, Public, Static, HideBySig
     MaterialName(): PrivateScope, Public, HideBySig
@@ -2110,7 +2134,9 @@ Class TKV3d.XGraphic3d_MaterialAspect: AutoLayout, AnsiClass, Class, Public, Bef
     op_Inequality(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig, SpecialName
     IsEqual(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig
     op_Equality(XGraphic3d_MaterialAspect): PrivateScope, Public, HideBySig, SpecialName
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
+    set_IHandle(Graphic3d_MaterialAspect*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<PrsMgr_PresentableObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -2211,7 +2237,6 @@ Class TKV3d.XPrsMgr_PresentableObject: AutoLayout, AnsiClass, Class, Public, Bef
     SetPropagateVisualState(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XPrsMgr_PresentableObject(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<SelectMgr_SelectableObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -2367,7 +2392,6 @@ Class TKVCAF.XTPrsStd_AISPresentation: AutoLayout, AnsiClass, Class, Public, Bef
     AfterUndo(handle<TDF_AttributeDelta>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTPrsStd_AISPresentation(): PrivateScope, Public, HideBySig
 Struct XAspect_TypeOfFacingModel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -3080,7 +3104,6 @@ Class TKLCAF.XTDocStd_Document: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     BeforeClose(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XTDocStd_Document(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TDocStd_Application> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3142,14 +3165,15 @@ Class TKLCAF.XTDocStd_Application: AutoLayout, AnsiClass, Class, Public, BeforeF
     OnAbortTransaction(handle<TDocStd_Document>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XTDocStd_Application(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKSTEP.XSTEPConstruct_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<XSControl_WorkSession>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(STEPConstruct_Tool*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    STEPConstruct_Tool* Handle 'get ' : 
+    STEPConstruct_Tool* IHandle 'get set' : 
   Methods:
     GetTool(STEPConstruct_Tool*): PrivateScope, Public, HideBySig
     WS(): PrivateScope, Public, HideBySig
@@ -3157,7 +3181,9 @@ Class TKSTEP.XSTEPConstruct_Tool: AutoLayout, AnsiClass, Class, Public, BeforeFi
     Graph(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     TransientProcess(): PrivateScope, Public, HideBySig
     FinderProcess(): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(STEPConstruct_Tool*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<XCAFApp_Application> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3180,10 +3206,11 @@ Class TKXCAF.XXCAFApp_Application: AutoLayout, AnsiClass, Class, Public, BeforeF
     GetApplication(): PrivateScope, Public, Static, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XXCAFApp_Application(): PrivateScope, Public, HideBySig
 Class TKLCAF.XTDF_XIterator: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(NCollection_Sequence<TDF_Label>*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Methods:
     GetIterator(Iterator*): PrivateScope, Public, HideBySig
     More(): PrivateScope, Public, HideBySig
@@ -3191,6 +3218,7 @@ Class TKLCAF.XTDF_XIterator: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Value(): PrivateScope, Public, HideBySig
     ChangeValue(): PrivateScope, Public, HideBySig
     IsEqual(XTDF_XIterator): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKLCAF.XTDF_LabelSequence: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(NCollection_Sequence<TDF_Label>*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -3293,7 +3321,6 @@ Class TKXCAF.XXCAFDoc_ShapeTool: AutoLayout, AnsiClass, Class, Public, BeforeFie
     GetNamedProperties(handle<TDataStd_NamedData>*, XTDF_Label, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XXCAFDoc_ShapeTool(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<XCAFDoc_DocumentTool> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -3337,22 +3364,27 @@ Class TKXCAF.XXCAFDoc_DocumentTool: AutoLayout, AnsiClass, Class, Public, Before
     GetAttribute(handle<TDF_Attribute>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XXCAFDoc_DocumentTool(): PrivateScope, Public, HideBySig
 Class TKXCAF.XXCAFPrs_Driver: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    XCAFPrs_Driver* Handle 'get ' : 
+    XCAFPrs_Driver* IHandle 'get set' : 
   Methods:
     Update(XTDF_Label, XAIS_InteractiveObject): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     Update(TDF_Label* IsImplicitlyDereferenced, handle<AIS_InteractiveObject>* IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     GetID(): PrivateScope, Public, Static, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(XCAFPrs_Driver*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(opencascade.handle<XSControl_WorkSession>*, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(STEPCAFControl_Reader*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    STEPCAFControl_Reader* Handle 'get ' : 
+    STEPCAFControl_Reader* IHandle 'get set' : 
   Methods:
     Init(handle<XSControl_WorkSession>* IsImplicitlyDereferenced, Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     ReadFile(String): PrivateScope, Public, HideBySig
@@ -3384,7 +3416,9 @@ Class TKXDESTEP.XSTEPCAFControl_Reader: AutoLayout, AnsiClass, Class, Public, Be
     GetMatMode(): PrivateScope, Public, HideBySig
     SetViewMode(Boolean(HasFieldMarshal) IsConst): PrivateScope, Public, HideBySig
     GetViewMode(): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(STEPCAFControl_Reader*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XIFSelect_ReturnStatus: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -3492,6 +3526,8 @@ Class TKMath.XBnd_Box: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Bnd_Box*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     Bnd_Box* IHandle 'get set' : 
   Methods:
@@ -3548,6 +3584,7 @@ Class TKMath.XBnd_Box: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(Bnd_Box*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XMaskFlags: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -3563,6 +3600,8 @@ Struct XMaskFlags: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
 Class TKMath.XBnd_Box2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(Bnd_Box2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     Bnd_Box2d* IHandle 'get set' : 
   Methods:
@@ -3601,6 +3640,7 @@ Class TKMath.XBnd_Box2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SquareExtent(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(Bnd_Box2d*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKMath.xgp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -4268,14 +4308,18 @@ Class TKMath.XTopLoc_Datum3D: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Void .ctor(TKMath.xgp_Trsf): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TopLoc_Datum3D*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
-    TopLoc_Datum3D* Handle 'get ' : 
+    TopLoc_Datum3D* IHandle 'get set' : 
   Methods:
     GetDatum3D(TopLoc_Datum3D*): PrivateScope, Public, HideBySig
     Transformation(): PrivateScope, Public, HideBySig
     DumpJson(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced, Int32): PrivateScope, Public, HideBySig
     ShallowDump(basic_ostream<char\,std::char_traits<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
-    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_IHandle(TopLoc_Datum3D*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -4294,6 +4338,8 @@ Class TKG3d.XTopAbs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class TKBRep.XTopoDS_Iterator: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKBRep.XTopoDS_Shape, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     TopoDS_Iterator* IHandle 'get set' : 
   Methods:
@@ -4304,6 +4350,7 @@ Class TKBRep.XTopoDS_Iterator: AutoLayout, AnsiClass, Class, Public, BeforeField
     Value(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(TopoDS_Iterator*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TShape> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -4343,7 +4390,6 @@ Class TKBRep.XTopoDS_TShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     DumpJson(basic_ostream<char\,std::char_traits<char> >*, Int32): PrivateScope, Public, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XTopoDS_TShape(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKBRep.XTopoDS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TopoDS_Shape*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -4459,6 +4505,8 @@ Class TKBool.XBRepFill_Pipe: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Void .ctor(TKBRep.XTopoDS_Wire, TKBRep.XTopoDS_Shape, XGeomFill_Trihedron, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(BRepFill_Pipe*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepFill_Pipe* IHandle 'get set' : 
   Methods:
@@ -4478,6 +4526,7 @@ Class TKBool.XBRepFill_Pipe: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     PipeLine(xgp_Pnt): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepFill_Pipe*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XGeomFill_Trihedron: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -4794,6 +4843,8 @@ Struct XGeomAbs_Shape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeField
     XGeomAbs_Shape GeomAbs_CN = 6 : Public, Static, Literal, HasDefault
 Class TKTopAlgo.XBRepBuilderAPI_MakeShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepBuilderAPI_MakeShape* IHandle 'get set' : 
   Methods:
@@ -4809,6 +4860,7 @@ Class TKTopAlgo.XBRepBuilderAPI_MakeShape: AutoLayout, AnsiClass, Class, Public,
     Check(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepBuilderAPI_MakeShape*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKFillet.XBRepFilletAPI_LocalOperation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_MakeShape
     Void .ctor(BRepFilletAPI_LocalOperation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5134,6 +5186,8 @@ Class TKBRep.XTopoDS_Compound: AutoLayout, AnsiClass, Class, Public, BeforeField
     set_IHandle(TopoDS_Shape*): PrivateScope, Public, Virtual, HideBySig, SpecialName
 Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TopoDS_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     TopoDS_Builder* IHandle 'get set' : 
   Methods:
@@ -5148,6 +5202,7 @@ Class TKBRep.XTopoDS_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Remove(XTopoDS_Shape, XTopoDS_Shape): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(TopoDS_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom2d_Geometry> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -5182,7 +5237,6 @@ Class TKG2d.XGeom2d_Geometry: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     Copy(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGeom2d_Geometry(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom2d_Curve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5220,7 +5274,6 @@ Class TKG2d.XGeom2d_Curve: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Value(Double): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom2d_Curve(): PrivateScope, Public, HideBySig
 Class TKBRep.XBRep_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKBRep.XTopoDS_Builder
     Void .ctor(BRep_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5286,6 +5339,8 @@ Class TKBRep.XBRep_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
 Class TKPrim.XBRepPrim_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(BRepPrim_Builder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepPrim_Builder* IHandle 'get set' : 
   Methods:
@@ -5315,12 +5370,15 @@ Class TKPrim.XBRepPrim_Builder: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     CompleteShell(XTopoDS_Shell): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepPrim_Builder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKPrim.XBRepPrim_GWedge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKPrim.XBRepPrim_Builder, TKMath.xgp_Ax2, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(BRepPrim_GWedge*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepPrim_GWedge* IHandle 'get set' : 
   Methods:
@@ -5354,6 +5412,7 @@ Class TKPrim.XBRepPrim_GWedge: AutoLayout, AnsiClass, Class, Public, BeforeField
     Point(XBRepPrim_Direction, XBRepPrim_Direction, XBRepPrim_Direction): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepPrim_GWedge*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKPrim.XBRepPrim_Wedge: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKPrim.XBRepPrim_GWedge
     Void .ctor(TKMath.xgp_Ax2, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5627,6 +5686,8 @@ Class TKPrim.XBRepSweep_Revol: AutoLayout, AnsiClass, Class, Public, BeforeField
     Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_Ax1, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(BRepSweep_Revol*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepSweep_Revol* IHandle 'get set' : 
   Methods:
@@ -5643,6 +5704,7 @@ Class TKPrim.XBRepSweep_Revol: AutoLayout, AnsiClass, Class, Public, BeforeField
     IsUsed(XTopoDS_Shape): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepSweep_Revol*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKPrim.XBRepPrimAPI_MakeRevol: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKPrim.XBRepPrimAPI_MakeSweep
     Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_Ax1, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -5803,6 +5865,8 @@ Class TKPrim.XBRepPrim_FaceBuilder: AutoLayout, AnsiClass, Class, Public, Before
     Void .ctor(TKBRep.XBRep_Builder, TKG3d.XGeom_Surface): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(BRepPrim_FaceBuilder*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepPrim_FaceBuilder* IHandle 'get set' : 
   Methods:
@@ -5816,6 +5880,7 @@ Class TKPrim.XBRepPrim_FaceBuilder: AutoLayout, AnsiClass, Class, Public, Before
     Vertex(Int32): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepPrim_FaceBuilder*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_ElementarySurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -5867,6 +5932,10 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
+    GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
+    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
     GetGeometry(handle<Geom_Geometry>*): PrivateScope, Public, Virtual, HideBySig
     SetPln(xgp_Pln): PrivateScope, Public, HideBySig
     Pln(): PrivateScope, Public, HideBySig
@@ -5893,10 +5962,6 @@ Class TKG3d.XGeom_Plane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    SetPlaneHandle(handle<Geom_Plane>*): PrivateScope, Public, HideBySig
-    GetPlane(handle<Geom_Plane>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
-    GetElementarySurface(handle<Geom_ElementarySurface>*): PrivateScope, Public, Virtual, HideBySig
-    GetSurface(handle<Geom_Surface>*): PrivateScope, Public, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -5958,7 +6023,6 @@ Class TKTopAlgo.XBRepBuilderAPI_FastSewing: AutoLayout, AnsiClass, Class, Public
     GetStatuses(basic_ostream<char\,std::char_traits<char> >*): PrivateScope, Public, HideBySig
     get_IHandle(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<BRepBuilderAPI_FastSewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XBRepBuilderAPI_FastSewing(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XFS_Statuses: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
@@ -5977,6 +6041,8 @@ Class TKTopAlgo.XBRepBuilderAPI_FindPlane: AutoLayout, AnsiClass, Class, Public,
     Void .ctor(TKBRep.XTopoDS_Shape, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(BRepBuilderAPI_FindPlane*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     BRepBuilderAPI_FindPlane* IHandle 'get set' : 
   Methods:
@@ -5987,6 +6053,7 @@ Class TKTopAlgo.XBRepBuilderAPI_FindPlane: AutoLayout, AnsiClass, Class, Public,
     Plane(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(BRepBuilderAPI_FindPlane*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI_GTransform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_ModifyShape
     Void .ctor(TKBRep.XTopoDS_Shape, TKMath.xgp_GTrsf, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6372,7 +6439,6 @@ Class TKTopAlgo.XBRepBuilderAPI_Sewing: AutoLayout, AnsiClass, Class, Public, Be
     NonManifoldMode(): PrivateScope, Public, HideBySig
     get_IHandle(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<BRepBuilderAPI_Sewing>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XBRepBuilderAPI_Sewing(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKTopAlgo.XBRepBuilderAPI_Transform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKTopAlgo.XBRepBuilderAPI_ModifyShape
@@ -6535,7 +6601,6 @@ Class TKBRep.XTopoDS_HShape: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     ChangeShape(): PrivateScope, Public, HideBySig
     get_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<TopoDS_HShape>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XTopoDS_HShape(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TVertex> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -6557,7 +6622,6 @@ Class TKBRep.XTopoDS_TVertex: AutoLayout, AnsiClass, Class, Public, BeforeFieldI
     ShapeType(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TVertex(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TEdge> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6578,7 +6642,6 @@ Class TKBRep.XTopoDS_TEdge: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     ShapeType(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TEdge(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TWire> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6600,7 +6663,6 @@ Class TKBRep.XTopoDS_TWire: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TWire(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TFace> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6622,7 +6684,6 @@ Class TKBRep.XTopoDS_TFace: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TFace(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TShell> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6644,7 +6705,6 @@ Class TKBRep.XTopoDS_TShell: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TShell(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TSolid> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6666,7 +6726,6 @@ Class TKBRep.XTopoDS_TSolid: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TSolid(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TCompSolid> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6688,7 +6747,6 @@ Class TKBRep.XTopoDS_TCompSolid: AutoLayout, AnsiClass, Class, Public, BeforeFie
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TCompSolid(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<TopoDS_TCompound> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -6710,7 +6768,6 @@ Class TKBRep.XTopoDS_TCompound: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     EmptyCopy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<TopoDS_TShape>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XTopoDS_TCompound(): PrivateScope, Public, HideBySig
 Class TKBRep.XTopoDS: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
@@ -7108,6 +7165,7 @@ Class TKG3d.XGeom_BSplineSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    VKnot(Int32): PrivateScope, Public, HideBySig
     VKnotDistribution(): PrivateScope, Public, HideBySig
     VKnots(): PrivateScope, Public, HideBySig
     VKnots(Double[]): PrivateScope, Public, HideBySig
@@ -7224,7 +7282,6 @@ Class TKG3d.XGeom_BSplineSurface: AutoLayout, AnsiClass, Class, Public, BeforeFi
     UMultiplicities(): PrivateScope, Public, HideBySig
     UMultiplicities(Int32[]): PrivateScope, Public, HideBySig
     VDegree(): PrivateScope, Public, HideBySig
-    VKnot(Int32): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Point> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7251,7 +7308,6 @@ Class TKG3d.XGeom_Point: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SquareDistance(XGeom_Point): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Point(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_CartesianPoint> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7286,7 +7342,6 @@ Class TKG3d.XGeom_CartesianPoint: AutoLayout, AnsiClass, Class, Public, BeforeFi
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_CartesianPoint(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Conic> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7320,7 +7375,6 @@ Class TKG3d.XGeom_Conic: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     IsCN(Int32): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Conic(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Circle> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7360,7 +7414,6 @@ Class TKG3d.XGeom_Circle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Circle(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_ConicalSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7493,7 +7546,6 @@ Class TKG3d.XGeom_Vector: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Vec(): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Vector(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Direction> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7526,7 +7578,6 @@ Class TKG3d.XGeom_Direction: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Direction(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Ellipse> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7573,7 +7624,6 @@ Class TKG3d.XGeom_Ellipse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Ellipse(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Hyperbola> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7627,7 +7677,6 @@ Class TKG3d.XGeom_Hyperbola: AutoLayout, AnsiClass, Class, Public, BeforeFieldIn
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Hyperbola(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_Line> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7673,7 +7722,6 @@ Class TKG3d.XGeom_Line: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Line(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_OffsetCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -7745,7 +7793,6 @@ Class TKG3d.XGeom_OsculatingSurface: AutoLayout, AnsiClass, Class, Public, Befor
     VOscSurf(Double, Double, Boolean&, XGeom_BSplineSurface&): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGeom_OsculatingSurface(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_OffsetSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -7850,7 +7897,6 @@ Class TKG3d.XGeom_Parabola: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_Parabola(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_RectangularTrimmedSurface> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -8160,7 +8206,6 @@ Class TKG3d.XGeom_Transformation: AutoLayout, AnsiClass, Class, Public, BeforeFi
     Copy(): PrivateScope, Public, HideBySig
     get_IHandle(handle<Geom_Transformation>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Geom_Transformation>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGeom_Transformation(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class NCollection_Haft<opencascade::handle<Geom_TrimmedCurve> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8252,10 +8297,11 @@ Class TKG3d.XGeom_VectorWithMagnitude: AutoLayout, AnsiClass, Class, Public, Bef
     Copy(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XGeom_VectorWithMagnitude(): PrivateScope, Public, HideBySig
 Class TKGeomBase.xgce_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(gce_Root*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_Root* IHandle 'get set' : 
   Methods:
@@ -8265,6 +8311,7 @@ Class TKGeomBase.xgce_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     Status(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_Root*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeCirc: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.xgce_Root
     Void .ctor(TKMath.xgp_Ax1, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8552,6 +8599,8 @@ Class TKGeomBase.xgce_MakeMirror: AutoLayout, AnsiClass, Class, Public, BeforeFi
     Void .ctor(TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeMirror* IHandle 'get set' : 
   Methods:
@@ -8562,6 +8611,7 @@ Class TKGeomBase.xgce_MakeMirror: AutoLayout, AnsiClass, Class, Public, BeforeFi
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeMirror2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Dir2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Lin2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8569,6 +8619,8 @@ Class TKGeomBase.xgce_MakeMirror2d: AutoLayout, AnsiClass, Class, Public, Before
     Void .ctor(TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeMirror2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeMirror2d* IHandle 'get set' : 
   Methods:
@@ -8579,6 +8631,7 @@ Class TKGeomBase.xgce_MakeMirror2d: AutoLayout, AnsiClass, Class, Public, Before
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeMirror2d*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeParab: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.xgce_Root
     Void .ctor(TKMath.xgp_Ax1, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8650,6 +8703,8 @@ Class TKGeomBase.xgce_MakeRotation: AutoLayout, AnsiClass, Class, Public, Before
     Void .ctor(TKMath.xgp_Lin, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeRotation* IHandle 'get set' : 
   Methods:
@@ -8660,10 +8715,13 @@ Class TKGeomBase.xgce_MakeRotation: AutoLayout, AnsiClass, Class, Public, Before
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeRotation2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeRotation2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeRotation2d* IHandle 'get set' : 
   Methods:
@@ -8674,10 +8732,13 @@ Class TKGeomBase.xgce_MakeRotation2d: AutoLayout, AnsiClass, Class, Public, Befo
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeRotation2d*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeScale: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeScale*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeScale* IHandle 'get set' : 
   Methods:
@@ -8688,10 +8749,13 @@ Class TKGeomBase.xgce_MakeScale: AutoLayout, AnsiClass, Class, Public, BeforeFie
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeScale*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeScale2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeScale2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeScale2d* IHandle 'get set' : 
   Methods:
@@ -8702,11 +8766,14 @@ Class TKGeomBase.xgce_MakeScale2d: AutoLayout, AnsiClass, Class, Public, BeforeF
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeScale2d*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeTranslation: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeTranslation* IHandle 'get set' : 
   Methods:
@@ -8717,11 +8784,14 @@ Class TKGeomBase.xgce_MakeTranslation: AutoLayout, AnsiClass, Class, Public, Bef
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.xgce_MakeTranslation2d: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt2d, TKMath.xgp_Pnt2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(TKMath.xgp_Vec2d): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(gce_MakeTranslation2d*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     gce_MakeTranslation2d* IHandle 'get set' : 
   Methods:
@@ -8732,9 +8802,12 @@ Class TKGeomBase.xgce_MakeTranslation2d: AutoLayout, AnsiClass, Class, Public, B
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(gce_MakeTranslation2d*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(GC_Root*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     GC_Root* IHandle 'get set' : 
   Methods:
@@ -8744,6 +8817,7 @@ Class TKGeomBase.XGC_Root: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Status(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_Root*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_MakeArcOfCircle: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Vec, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8941,6 +9015,8 @@ Class TKGeomBase.XGC_MakeMirror: AutoLayout, AnsiClass, Class, Public, BeforeFie
     Void .ctor(TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(GC_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     GC_MakeMirror* IHandle 'get set' : 
   Methods:
@@ -8950,6 +9026,7 @@ Class TKGeomBase.XGC_MakeMirror: AutoLayout, AnsiClass, Class, Public, BeforeFie
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_MakeMirror*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_MakePlane: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Ax1): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -8979,6 +9056,8 @@ Class TKGeomBase.XGC_MakeRotation: AutoLayout, AnsiClass, Class, Public, BeforeF
     Void .ctor(TKMath.xgp_Lin, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(GC_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     GC_MakeRotation* IHandle 'get set' : 
   Methods:
@@ -8988,10 +9067,13 @@ Class TKGeomBase.XGC_MakeRotation: AutoLayout, AnsiClass, Class, Public, BeforeF
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_MakeRotation*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_MakeScale: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(TKMath.xgp_Pnt, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(GC_MakeScale*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     GC_MakeScale* IHandle 'get set' : 
   Methods:
@@ -9001,6 +9083,7 @@ Class TKGeomBase.XGC_MakeScale: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_MakeScale*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_MakeSegment: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Lin, TKMath.xgp_Pnt, TKMath.xgp_Pnt): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -9026,6 +9109,8 @@ Class TKGeomBase.XGC_MakeTranslation: AutoLayout, AnsiClass, Class, Public, Befo
     Void .ctor(TKMath.xgp_Vec): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(GC_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     GC_MakeTranslation* IHandle 'get set' : 
   Methods:
@@ -9035,6 +9120,7 @@ Class TKGeomBase.XGC_MakeTranslation: AutoLayout, AnsiClass, Class, Public, Befo
     op_Implicit(): PrivateScope, Public, HideBySig, SpecialName
     get_IHandle(): PrivateScope, Public, HideBySig, SpecialName
     set_IHandle(GC_MakeTranslation*): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKGeomBase.XGC_MakeTrimmedCone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :TKGeomBase.XGC_Root
     Void .ctor(TKMath.xgp_Pnt, TKMath.xgp_Pnt, Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -9102,11 +9188,12 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<V3d_Viewer> IHandle 'get set' : 
   Methods:
+    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
+    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
     ShowGridEcho(XV3d_View, Graphic3d_Vertex* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     HideGridEcho(XV3d_View): PrivateScope, Public, HideBySig
     get_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XV3d_Viewer(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
     SetViewerHandle(handle<V3d_Viewer>*): PrivateScope, Public, HideBySig
     GetViewer(handle<V3d_Viewer>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
@@ -9189,8 +9276,6 @@ Class TKV3d.XV3d_Viewer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     SetCircularGridValues(Double, Double, Double, Int32, Double): PrivateScope, Public, HideBySig
     CircularGridGraphicValues(Double&, Double&): PrivateScope, Public, HideBySig
     SetCircularGridGraphicValues(Double, Double): PrivateScope, Public, HideBySig
-    RectangularGridGraphicValues(Double&, Double&, Double&): PrivateScope, Public, HideBySig
-    SetRectangularGridGraphicValues(Double, Double, Double): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<V3d_View> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9207,6 +9292,7 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Properties:
     opencascade.handle<Standard_Transient> IHandle 'get set' : 
   Methods:
+    WindowFit(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
     SetViewMappingDefault(): PrivateScope, Public, HideBySig
     ResetViewMapping(): PrivateScope, Public, HideBySig
     Reset(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
@@ -9368,7 +9454,6 @@ Class TKV3d.XV3d_View: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     FitAll(XBnd_Box, Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     FitAll(Double, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     DepthFitAll(Double, Double): PrivateScope, Public, HideBySig
-    WindowFit(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<OpenGl_GraphicDriver> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9390,7 +9475,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     InitViewer(IntPtr): PrivateScope, Public, HideBySig
     AISTextLabel(SByte*): PrivateScope, Public, HideBySig
     DisplayExplainText(SByte*, Aspect_TypeOfTriedronPosition, NCollection_Vec2<int>): PrivateScope, Public, HideBySig
-    TriedronDisplay(Boolean(HasFieldMarshal), XAspect_TypeOfTriedronPosition, Double, Double): PrivateScope, Public, HideBySig
+    TriedronDisplay(Boolean(HasFieldMarshal), XAspect_TypeOfTriedronPosition, Int32, Int32): PrivateScope, Public, HideBySig
     Dump(TCollection_AsciiString* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     RedrawView(): PrivateScope, Public, HideBySig
     UpdateView(): PrivateScope, Public, HideBySig
@@ -9432,6 +9517,7 @@ Class OCCTProxy: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     GetObjColB(): PrivateScope, Public, HideBySig
     SetBackgroundColor(Int32, Int32, Int32): PrivateScope, Public, HideBySig
     SetBgGradientColors(XQuantity_Color, XQuantity_Color, XAspect_GradientFillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    SetBackgroundImage(String, XAspect_FillMethod, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     EraseObjects(): PrivateScope, Public, HideBySig
     GetOCCVersion(): PrivateScope, Public, HideBySig
     SetMaterial(Int32): PrivateScope, Public, HideBySig
@@ -9606,6 +9692,8 @@ Class TKService.XAspect_Background: AutoLayout, AnsiClass, Class, Public, Before
     Void .ctor(TKernel.XQuantity_Color): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Aspect_Background*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     Aspect_Background* IHandle 'get set' : 
   Methods:
@@ -9615,6 +9703,7 @@ Class TKService.XAspect_Background: AutoLayout, AnsiClass, Class, Public, Before
     Color(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(Aspect_Background*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKV3d.XAIS_AnimationProgress: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
@@ -9693,7 +9782,6 @@ Class TKV3d.XAIS_AnimationCamera: AutoLayout, AnsiClass, Class, Public, BeforeFi
     SetCameraEnd(handle<Graphic3d_Camera>* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XAIS_AnimationCamera(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<AIS_AnimationObject> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9712,7 +9800,6 @@ Class TKV3d.XAIS_AnimationObject: AutoLayout, AnsiClass, Class, Public, BeforeFi
     GetAnimation(handle<AIS_Animation>*): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XAIS_AnimationObject(): PrivateScope, Public, HideBySig
 Class NCollection_Haft<opencascade::handle<AIS_Axis> >: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Interfaces:
@@ -9749,7 +9836,6 @@ Class TKV3d.XAIS_Axis: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     UnsetWidth(): PrivateScope, Public, Virtual, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XAIS_Axis(): PrivateScope, Public, HideBySig
 Struct XAIS_TypeOfAxis: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
@@ -9817,7 +9903,6 @@ Class TKV3d.XAIS_Shape: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     computeHlrPresentation(handle<Graphic3d_Camera>* IsImplicitlyDereferenced, handle<Graphic3d_Structure>* IsImplicitlyDereferenced, XTopoDS_Shape, XPrs3d_Drawer): PrivateScope, Public, Static, HideBySig
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, SpecialName
-    ~XAIS_Shape(): PrivateScope, Public, HideBySig
 Class XGraphic3d_Attribute: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
@@ -9864,7 +9949,6 @@ Class TKV3d.XGraphic3d_Buffer: AutoLayout, AnsiClass, Class, Public, BeforeField
     Invalidate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
     get_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Standard_Transient>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGraphic3d_Buffer(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct XGraphic3d_TypeOfAttribute: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
@@ -9905,10 +9989,11 @@ Class TKV3d.XGraphic3d_DataStructureManager: AutoLayout, AnsiClass, Class, Publi
     GetDataStructureManager(handle<Graphic3d_DataStructureManager>*): PrivateScope, Public, HideBySig
     get_IHandle(handle<Graphic3d_DataStructureManager>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(handle<Graphic3d_DataStructureManager>*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
-    ~XGraphic3d_DataStructureManager(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Class TKV3d.XGraphic3d_ZLayerSettings: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
   Properties:
     Graphic3d_ZLayerSettings* IHandle 'get set' : 
   Methods:
@@ -9946,6 +10031,7 @@ Class TKV3d.XGraphic3d_ZLayerSettings: AutoLayout, AnsiClass, Class, Public, Bef
     SetDepthOffsetNegative(): PrivateScope, Public, HideBySig
     get_IHandle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
     set_IHandle(Graphic3d_ZLayerSettings*): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
 Struct TKV3d.XGraphic3d_ZLayerSetting: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
   :System.Enum
   Fields:
