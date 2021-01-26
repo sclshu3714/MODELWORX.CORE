@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFDoc_ColorType_HeaderFile
-#define _XCAFDoc_ColorType_HeaderFile
+#ifndef _XXCAFDoc_ColorType_HeaderFile
+#define _XXCAFDoc_ColorType_HeaderFile
 
 //! Defines types of color assignments
 //! Color of shape is defined following way
@@ -26,11 +26,11 @@
 //! simple color
 //! color of surfaces
 //! color of curves
-enum XCAFDoc_ColorType
+public enum class XXCAFDoc_ColorType
 {
 XCAFDoc_ColorGen,
 XCAFDoc_ColorSurf,
 XCAFDoc_ColorCurv
 };
 
-#endif // _XCAFDoc_ColorType_HeaderFile
+#endif // _XXCAFDoc_ColorType_HeaderFile

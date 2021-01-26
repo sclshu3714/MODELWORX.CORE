@@ -91,7 +91,7 @@ namespace TKLCAF {
 
     //! Returns the current label; or, if there is
     //! none, a null label.
-    const XTDF_Label^ XTDF_ChildIterator::Value() {
+    XTDF_Label^ XTDF_ChildIterator::Value() {
         return gcnew XTDF_Label(NativeHandle->Value());
     };
 }

@@ -35,8 +35,8 @@ namespace TKLCAF {
 			NativeHandle = NULL;
 		};
 		!XTDF_LabelSequence() { 
-			NativeHandle->Clear(); 
-			NativeHandle = NULL;
+			/*NativeHandle->Clear(); 
+			NativeHandle = NULL;*/
 		};
 
 		void Initialize(TDF_LabelSequence Labels) {

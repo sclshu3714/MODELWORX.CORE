@@ -13,8 +13,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFDoc_HeaderFile
-#define _XCAFDoc_HeaderFile
+#ifndef _XXCAFDoc_HeaderFile
+#define _XXCAFDoc_HeaderFile
+#pragma once
+#include <XCAFDoc.hxx>
+#include <XStandard_GUID.h>
+#include <XXCAFDoc_ColorType.h>
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -43,93 +47,93 @@ class XCAFDoc_MaterialTool;
 class XCAFDoc_GraphNode;
 class XCAFDoc_Editor;
 class XCAFDoc_ViewTool;
+class XCAFDoc;
 
+using namespace TKernel;
+namespace TKXCAF {
+	ref class TKernel::XStandard_GUID;
+	//! Definition of general structure of DECAF document
+	//! and tools to work with it
+	//!
+	//! The document is composed of sections, each section
+	//! storing its own kind of data and managing by corresponding
+	//! tool
+	//! Some properties can be attached directly to shapes. These properties are:
+	//! * Name (the standard definition from OCAF) - class TDataStd_Name
+	//! * Centroid (for the validation of transfer) - class XCAFDoc_Centroid
+	//! * Volume (for the validation of transfer) - class XCAFDoc_Volume
+	//! * Area (for the validation of transfer) - class XCafDoc_Area
+	//! Management of these attributes is realized by OCAF. For getting
+	//! the attributes attached to a label the method class
+	//! TDF_Label::FindAttribute() should be used.
+	public ref class XXCAFDoc
+	{
+	public:
 
-//! Definition of general structure of DECAF document
-//! and tools to work with it
-//!
-//! The document is composed of sections, each section
-//! storing its own kind of data and managing by corresponding
-//! tool
-//! Some properties can be attached directly to shapes. These properties are:
-//! * Name (the standard definition from OCAF) - class TDataStd_Name
-//! * Centroid (for the validation of transfer) - class XCAFDoc_Centroid
-//! * Volume (for the validation of transfer) - class XCAFDoc_Volume
-//! * Area (for the validation of transfer) - class XCafDoc_Area
-//! Management of these attributes is realized by OCAF. For getting
-//! the attributes attached to a label the method class
-//! TDF_Label::FindAttribute() should be used.
-class XCAFDoc 
-{
-public:
+		//! class for containing GraphNodes.
+		//! Returns GUID for UAttribute identifying assembly
+		static XStandard_GUID^ AssemblyGUID();
 
-  DEFINE_STANDARD_ALLOC
+		//! Returns GUID for TreeNode representing assembly link
+		static XStandard_GUID^ ShapeRefGUID();
 
-  
-  //! class for containing GraphNodes.
-  //! Returns GUID for UAttribute identifying assembly
-  Standard_EXPORT static const Standard_GUID& AssemblyGUID();
-  
-  //! Returns GUID for TreeNode representing assembly link
-  Standard_EXPORT static const Standard_GUID& ShapeRefGUID();
-  
-  //! Return GUIDs for TreeNode representing specified types of colors
-  Standard_EXPORT static const Standard_GUID& ColorRefGUID (const XCAFDoc_ColorType type);
-  
-  //! Return GUIDs for TreeNode representing specified types of DGT
-  Standard_EXPORT static const Standard_GUID& DimTolRefGUID();
+		//! Return GUIDs for TreeNode representing specified types of colors
+		static XStandard_GUID^ ColorRefGUID(XXCAFDoc_ColorType type);
 
-  //! Return GUIDs for TreeNode representing specified types of Dimension
-  Standard_EXPORT static const Standard_GUID& DimensionRefFirstGUID() ;
+		//! Return GUIDs for TreeNode representing specified types of DGT
+		static XStandard_GUID^ DimTolRefGUID();
 
-  //! Return GUIDs for TreeNode representing specified types of Dimension
-  Standard_EXPORT static const Standard_GUID& DimensionRefSecondGUID() ;
+		//! Return GUIDs for TreeNode representing specified types of Dimension
+		static XStandard_GUID^ DimensionRefFirstGUID();
 
-  //! Return GUIDs for TreeNode representing specified types of GeomTolerance
-  Standard_EXPORT static const Standard_GUID& GeomToleranceRefGUID() ;
-  
-  //! Return GUIDs for TreeNode representing specified types of datum
-  Standard_EXPORT static const Standard_GUID& DatumRefGUID();
-  
-  //! Return GUIDs for TreeNode representing connections Datum-Toler
-  Standard_EXPORT static const Standard_GUID& DatumTolRefGUID();
-  
-  Standard_EXPORT static const Standard_GUID& LayerRefGUID();
-  
-  Standard_EXPORT static const Standard_GUID& MaterialRefGUID();
+		//! Return GUIDs for TreeNode representing specified types of Dimension
+		static XStandard_GUID^ DimensionRefSecondGUID();
 
-  //! Return GUIDs for representing notes
-  Standard_EXPORT static const Standard_GUID& NoteRefGUID();
+		//! Return GUIDs for TreeNode representing specified types of GeomTolerance
+		static XStandard_GUID^ GeomToleranceRefGUID();
 
-  Standard_EXPORT static const Standard_GUID& InvisibleGUID();
+		//! Return GUIDs for TreeNode representing specified types of datum
+		static XStandard_GUID^ DatumRefGUID();
 
-  Standard_EXPORT static const Standard_GUID& ColorByLayerGUID();
-  
-  //! Returns GUID for UAttribute identifying external reference on no-step file
-  Standard_EXPORT static const Standard_GUID& ExternRefGUID();
-  
-  //! Returns GUID for UAttribute identifying specified higher usage occurrence
-  Standard_EXPORT static const Standard_GUID& SHUORefGUID();
+		//! Return GUIDs for TreeNode representing connections Datum-Toler
+		static XStandard_GUID^ DatumTolRefGUID();
 
-  //! Return GUIDs for TreeNode representing specified types of View
-  Standard_EXPORT static const Standard_GUID& ViewRefGUID();
+		static XStandard_GUID^ LayerRefGUID();
 
-  //! Return GUIDs for TreeNode representing specified types of View
-  Standard_EXPORT static const Standard_GUID& ViewRefShapeGUID();
+		static XStandard_GUID^ MaterialRefGUID();
 
-  //! Return GUIDs for TreeNode representing specified types of View
-  Standard_EXPORT static const Standard_GUID& ViewRefGDTGUID();
-  
-  //! Return GUIDs for TreeNode representing specified types of View
-  Standard_EXPORT static const Standard_GUID& ViewRefPlaneGUID();
+		//! Return GUIDs for representing notes
+		static XStandard_GUID^ NoteRefGUID();
 
-  //! Return GUIDs for GraphNode representing specified types of View
-  Standard_EXPORT static const Standard_GUID& ViewRefNoteGUID();
-  Standard_EXPORT static const Standard_GUID& ViewRefAnnotationGUID();
+		static XStandard_GUID^ InvisibleGUID();
 
-  //! Returns GUID for UAttribute identifying lock flag
-  Standard_EXPORT static const Standard_GUID& LockGUID();
+		static XStandard_GUID^ ColorByLayerGUID();
 
+		//! Returns GUID for UAttribute identifying external reference on no-step file
+		static XStandard_GUID^ ExternRefGUID();
+
+		//! Returns GUID for UAttribute identifying specified higher usage occurrence
+		static XStandard_GUID^ SHUORefGUID();
+
+		//! Return GUIDs for TreeNode representing specified types of View
+		static XStandard_GUID^ ViewRefGUID();
+
+		//! Return GUIDs for TreeNode representing specified types of View
+		static XStandard_GUID^ ViewRefShapeGUID();
+
+		//! Return GUIDs for TreeNode representing specified types of View
+		static XStandard_GUID^ ViewRefGDTGUID();
+
+		//! Return GUIDs for TreeNode representing specified types of View
+		static XStandard_GUID^ ViewRefPlaneGUID();
+
+		//! Return GUIDs for GraphNode representing specified types of View
+		static XStandard_GUID^ ViewRefNoteGUID();
+		static XStandard_GUID^ ViewRefAnnotationGUID();
+
+		//! Returns GUID for UAttribute identifying lock flag
+		static XStandard_GUID^ LockGUID();
+
+	};
 };
-
-#endif // _XCAFDoc_HeaderFile
+#endif // _XXCAFDoc_HeaderFile

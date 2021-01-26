@@ -1,296 +1,113 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
-//
-// This file is part of Open CASCADE Technology software library.
-//
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
-//
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+#include "XXCAFDoc.h"
 
-#include <XCAFDoc.hxx>
-#include <XCAFDoc_ColorType.hxx>
+namespace TKXCAF {
+	//! class for containing GraphNodes.
+		//! Returns GUID for UAttribute identifying assembly
+	XStandard_GUID^ XXCAFDoc::AssemblyGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::AssemblyGUID());
+	};
 
-#include <TDF_Label.hxx>
-#include <TDF_Tool.hxx>
-#include <TDataStd_Name.hxx>
-#include <TDocStd_Document.hxx>
-#include <Standard_GUID.hxx>
+	//! Returns GUID for TreeNode representing assembly link
+	XStandard_GUID^ XXCAFDoc::ShapeRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ShapeRefGUID());
+	};
 
-//=======================================================================
-//function : ShapeRefGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for TreeNode representing specified types of colors
+	XStandard_GUID^ XXCAFDoc::ColorRefGUID(XXCAFDoc_ColorType type) {
+		return gcnew XStandard_GUID(XCAFDoc::ColorRefGUID(safe_cast<XCAFDoc_ColorType>(type)));
+	};
 
-const Standard_GUID& XCAFDoc::ShapeRefGUID ()
-{
-  static const Standard_GUID ID ("5b896afe-3adf-11d4-b9b7-0060b0ee281b");
-  return ID;
-}
+	//! Return GUIDs for TreeNode representing specified types of DGT
+	XStandard_GUID^ XXCAFDoc::DimTolRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::DimTolRefGUID());
+	};
 
+	//! Return GUIDs for TreeNode representing specified types of Dimension
+	XStandard_GUID^ XXCAFDoc::DimensionRefFirstGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::DimensionRefFirstGUID());
+	};
 
-//=======================================================================
-//function : AssemblyGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for TreeNode representing specified types of Dimension
+	XStandard_GUID^ XXCAFDoc::DimensionRefSecondGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::DimensionRefSecondGUID());
+	};
 
-const Standard_GUID& XCAFDoc::AssemblyGUID ()
-{
-  static const Standard_GUID ID ("5b896b00-3adf-11d4-b9b7-0060b0ee281b");
-  return ID;
-}
+	//! Return GUIDs for TreeNode representing specified types of GeomTolerance
+	XStandard_GUID^ XXCAFDoc::GeomToleranceRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::GeomToleranceRefGUID());
+	};
 
+	//! Return GUIDs for TreeNode representing specified types of datum
+	XStandard_GUID^ XXCAFDoc::DatumRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::DatumRefGUID());
+	};
 
-//=======================================================================
-//function : ExternRefGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for TreeNode representing connections Datum-Toler
+	XStandard_GUID^ XXCAFDoc::DatumTolRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::DatumTolRefGUID());
+	};
 
-const Standard_GUID& XCAFDoc::ExternRefGUID ()
-{
-  static const Standard_GUID ID ("6b896b01-3adf-11d4-b9b7-0060b0ee281b");
-  return ID;
-}
+	XStandard_GUID^ XXCAFDoc::LayerRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ShapeRefGUID());
+	};
 
+	XStandard_GUID^ XXCAFDoc::MaterialRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::MaterialRefGUID());
+	};
 
-//=======================================================================
-//function : ColorRefGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for representing notes
+	XStandard_GUID^ XXCAFDoc::NoteRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::NoteRefGUID());
+	};
 
-const Standard_GUID& XCAFDoc::ColorRefGUID (const XCAFDoc_ColorType type)
-{
-  static const Standard_GUID IDcol     ("efd212e4-6dfd-11d4-b9c8-0060b0ee281b");
-  static const Standard_GUID IDcolSurf ("efd212e5-6dfd-11d4-b9c8-0060b0ee281b");
-  static const Standard_GUID IDcolCurv ("efd212e6-6dfd-11d4-b9c8-0060b0ee281b");
+	XStandard_GUID^ XXCAFDoc::InvisibleGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ShapeRefGUID());
+	};
 
-  switch ( type ) {
-  default:
-  case XCAFDoc_ColorGen : return IDcol;
-  case XCAFDoc_ColorSurf: return IDcolSurf;
-  case XCAFDoc_ColorCurv: return IDcolCurv;
-  }
-}
+	XStandard_GUID^ XXCAFDoc::ColorByLayerGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ColorByLayerGUID());
+	};
 
+	//! Returns GUID for UAttribute identifying external reference on no-step file
+	XStandard_GUID^ XXCAFDoc::ExternRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ShapeRefGUID());
+	};
 
-//=======================================================================
-//function : DimTolRefGUID
-//purpose  : 
-//=======================================================================
+	//! Returns GUID for UAttribute identifying specified higher usage occurrence
+	XStandard_GUID^ XXCAFDoc::SHUORefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::SHUORefGUID());
+	};
 
-const Standard_GUID& XCAFDoc::DimTolRefGUID()
-{
-  //static const Standard_GUID IDDimTol("58ed092d-44de-11d8-8776-001083004c77");
-  static const Standard_GUID ID("efd212e9-6dfd-11d4-b9c8-0060b0ee281b");
-  //return IDDimTol;
-  return ID;
-}
+	//! Return GUIDs for TreeNode representing specified types of View
+	XStandard_GUID^ XXCAFDoc::ViewRefGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefGUID());
+	};
 
-//=======================================================================
-//function : DimensionRefGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for TreeNode representing specified types of View
+	XStandard_GUID^ XXCAFDoc::ViewRefShapeGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefShapeGUID());
+	};
 
-const Standard_GUID& XCAFDoc::DimensionRefFirstGUID()
-{
-  static const Standard_GUID ID("efd212e3-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
+	//! Return GUIDs for TreeNode representing specified types of View
+	XStandard_GUID^ XXCAFDoc::ViewRefGDTGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefGDTGUID());
+	};
 
-//=======================================================================
-//function : DimensionRefGUID
-//purpose  : 
-//=======================================================================
+	//! Return GUIDs for TreeNode representing specified types of View
+	XStandard_GUID^ XXCAFDoc::ViewRefPlaneGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefPlaneGUID());
+	};
 
-const Standard_GUID& XCAFDoc::DimensionRefSecondGUID()
-{
-  static const Standard_GUID ID("efd212e0-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
+	//! Return GUIDs for GraphNode representing specified types of View
+	XStandard_GUID^ XXCAFDoc::ViewRefNoteGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefNoteGUID());
+	};
+	XStandard_GUID^ XXCAFDoc::ViewRefAnnotationGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::ViewRefAnnotationGUID());
+	};
 
-//=======================================================================
-//function : GeomToleranceRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::GeomToleranceRefGUID()
-{
-  static const Standard_GUID ID("efd213e3-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : DatumRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::DatumRefGUID()
-{
-  static const Standard_GUID ID("efd212e2-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-
-//=======================================================================
-//function : DatumTolRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::DatumTolRefGUID()
-{
-  //static const Standard_GUID IDDimTol("58ed092d-44de-11d8-8776-001083004c77");
-  static const Standard_GUID ID("efd212e7-6dfd-11d4-b9c8-0060b0ee281b");
-  //return IDDimTol;
-  return ID;
-}
-
-
-//=======================================================================
-//function : LayerRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::LayerRefGUID ()
-{
-  static const Standard_GUID ID ("efd212e8-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-
-//=======================================================================
-//function : MaterialRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::MaterialRefGUID ()
-{
-  static const Standard_GUID ID ("efd212f7-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-
-//=======================================================================
-//function : NoteRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::NoteRefGUID()
-{
-  static const Standard_GUID ID ("F3599E50-F84A-493e-8D1B-1284E79322F1");
-  return ID;
-}
-
-//=======================================================================
-//function : InvisibleGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::InvisibleGUID ()
-{
-  static const Standard_GUID ID ("5b896aff-3adf-11d4-b9b7-0060b0ee281b");
-  return ID;
-}
-
-
-//=======================================================================
-//function : ColorByLayerGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ColorByLayerGUID ()
-{
-  static const Standard_GUID ID ("279e8c1e-70af-4130-b626-9cc52a537db8");
-  return ID;
-}
-
-
-//=======================================================================
-//function : SHUORefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::SHUORefGUID ()
-{
-  static const Standard_GUID ID ("efd212ea-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefGUID()
-{
-  static const Standard_GUID ID("efd213e5-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefShapeGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefShapeGUID()
-{
-  static const Standard_GUID ID("efd213e6-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefGDTGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefGDTGUID()
-{
-  static const Standard_GUID ID("efd213e7-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefPlaneGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefPlaneGUID()
-{
-  static const Standard_GUID ID("efd213e9-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefPlaneGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefNoteGUID()
-{
-  static const Standard_GUID ID("C814ACC6-43AC-4812-9B2A-4E9A2A549354");
-  return ID;
-}
-
-//=======================================================================
-//function : ViewRefPlaneGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::ViewRefAnnotationGUID()
-{
-  static const Standard_GUID ID("A2B5BA42-DD00-43f5-8882-4B5F8E76B9D2");
-  return ID;
-}
-
-//=======================================================================
-//function : LockGUID
-//purpose  : 
-//=======================================================================
-
-const Standard_GUID& XCAFDoc::LockGUID()
-{
-  static const Standard_GUID ID("efd213eb-6dfd-11d4-b9c8-0060b0ee281b");
-  return ID;
+	//! Returns GUID for UAttribute identifying lock flag
+	XStandard_GUID^ XXCAFDoc::LockGUID() {
+		return gcnew XStandard_GUID(XCAFDoc::LockGUID());
+	};
 }

@@ -115,7 +115,7 @@ namespace TKLCAF {
 
         //! Returns the current label; or, if there is
         //! none, a null label.
-        const XTDF_Label^ Value();
+        XTDF_Label^ Value();
 
         /// <summary>
         /// ±¾µØ¾ä±ú

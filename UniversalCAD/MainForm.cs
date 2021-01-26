@@ -117,7 +117,7 @@ namespace UniversalCAD
                     break;
             }
         }
-
+        #region 打开文件
         /// <summary>
         /// 操作 - 打开文件，选择文件
         /// </summary>
@@ -163,7 +163,7 @@ namespace UniversalCAD
                 }
             }
         }
-
+        #endregion
         #endregion
 
         #region 操作事件
@@ -603,6 +603,10 @@ namespace UniversalCAD
             anApp.NewDocument("XSEFSTEP", aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
+            int ElementId = 0;
+            bool IsBoundaryDraw = true;
+            bool BuildElement = false;
+            AccordionControlElement RootNode = this.accElementTLable; 
             XTDF_Label aRootLabel = aDoc.Main();
             XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aRootLabel);
             XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
@@ -610,50 +614,64 @@ namespace UniversalCAD
             XTDF_XIterator aRootIter = aRootLabels.Iterator();
             for (; aRootIter.More(); aRootIter.Next())
             {
-                bool IsBoundaryDraw = true;
                 XTDF_Label aTDFLabel = aRootIter.Value();
-                TDFChildLabel(aTDFLabel, IsBoundaryDraw);
+                AccordionControlElement tempElement = AddAccordionElement(RootNode, aTDFLabel, ref ElementId);
+                TDFChildLabel(tempElement, aTDFLabel,ref ElementId, IsBoundaryDraw);
+                BuildElement = true;
             }
-            //int index = 0;
-            //AccordionControlElement PNode = this.accElementTLable;
-            //XTDF_Label aRootLabel = aDoc.Main();
-            //XTDF_Attribute aName = new XTDataStd_Name();
-            //XTDF_Attribute aInteger = new XTDataStd_Integer();
-            //if (aRootLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
-            //{
-            //    XTDataStd_Integer XInteger = new XTDataStd_Integer();
-            //    if (!aRootLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
-            //        XInteger = XTDataStd_Integer.Set(aRootLabel, index++);
-            //    else
-            //        XInteger = aInteger as XTDataStd_Integer;
-            //    XTDataStd_Name XName = aName as XTDataStd_Name;
-            //    XTCollection_ExtendedString EString = XName.Get();
-            //    string text = EString.GetValueString();
-            //    PNode = new AccordionControlElement();
-            //    PNode.Name = text;
-            //    PNode.Text = $"{text}_{XInteger.Get()}";
-            //    PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-            //    this.accElementTLable.Elements.Add(PNode);
-            //}
-            //VisibleSettings(ref PNode,aRootLabel, ref index, true);
-            //OCCTView.SetDisplayMode(1);
-            //OCCTView.RedrawView();
-            //OCCTView.ZoomAllView();
+            if (!BuildElement) {
+                AccordionControlElement tempElement = AddAccordionElement(RootNode, aRootLabel, ref ElementId);
+                TDFChildLabel(tempElement, aRootLabel, ref ElementId, IsBoundaryDraw);
+            }
+            OCCTView.SetDisplayMode(1);
+            OCCTView.RedrawView();
+            OCCTView.ZoomAllView();
             return true;
         }
 
-        private void TDFChildLabel(XTDF_Label theLabel, bool IsBoundaryDraw)
+        private void TDFChildLabel(AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw)
         {
-            if (!theLabel.IsNull() && !theLabel.HasChild())
+            if (!theLabel.IsNull() && theLabel.NbChildren() == 0)
             {
                 Display(theLabel, IsBoundaryDraw);
                 return;
             }
-            XTDF_ChildIterator iter = new XTDF_ChildIterator(theLabel, false);
-            for (; iter.More(); iter.Next())
+            XTDF_ChildIDIterator ChildIDIterator = new XTDF_ChildIDIterator(theLabel, XXCAFDoc.ShapeRefGUID(), false);
+            for (; ChildIDIterator.More(); ChildIDIterator.Next())
             {
-                TDFChildLabel(iter.Value(), IsBoundaryDraw);
+                XTDF_Attribute ChildIDAttribute = ChildIDIterator.Value();
+                XTDF_Label RTDFLabel = ChildIDAttribute.Label();
+                AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
+                TDFChildLabel(tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw);
             }
+        }
+
+        /// <summary>
+        /// 构建对象结构
+        /// </summary>
+        private AccordionControlElement AddAccordionElement(AccordionControlElement GroupElement, XTDF_Label NTDFLabel, ref int ElementId)
+        {
+            AccordionControlElement GroupNode = GroupElement;
+            XTDF_Attribute aName = new XTDataStd_Name();
+            XTDF_Attribute aInteger = new XTDataStd_Integer();
+            if (NTDFLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName)) {
+                XTDataStd_Integer XInteger = new XTDataStd_Integer();
+                if (!NTDFLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
+                    XInteger = XTDataStd_Integer.Set(NTDFLabel, ElementId++);
+                else
+                    XInteger = aInteger as XTDataStd_Integer;
+                XTDataStd_Name XName = aName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XName.Get();
+                string text = EString.GetValueString();
+                GroupNode = new AccordionControlElement();
+                GroupNode.Name = text;
+                GroupNode.Text = $"{text}_{XInteger.Get()}";
+                GroupNode.Tag = XInteger.Get();
+                if (!NTDFLabel.HasChild())
+                    GroupNode.Style = ElementStyle.Item;
+                GroupElement.Elements.Add(GroupNode);
+            }
+            return GroupNode;
         }
 
         private void VisibleSettings(ref AccordionControlElement TempNode, XTDF_Label theLabel,ref int index, bool IsBoundaryDraw)

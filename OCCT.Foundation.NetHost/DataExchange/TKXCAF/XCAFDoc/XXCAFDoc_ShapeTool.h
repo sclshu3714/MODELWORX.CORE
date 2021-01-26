@@ -134,7 +134,7 @@ namespace TKXCAF {
         //! Attaches to label XCAFDoc::LabelShapes()
         XXCAFDoc_ShapeTool();
 
-        !XXCAFDoc_ShapeTool() { IHandle = NULL; };
+        !XXCAFDoc_ShapeTool() { };// { IHandle = NULL; };
         ~XXCAFDoc_ShapeTool() { IHandle = NULL; };
         //! Creates an empty tool
         //! Creates a tool to work with a document <Doc>

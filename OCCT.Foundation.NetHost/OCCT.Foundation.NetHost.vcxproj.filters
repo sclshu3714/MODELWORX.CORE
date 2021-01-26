@@ -1689,6 +1689,15 @@
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIDIterator.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorType.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2441,6 +2450,12 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIDIterator.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
