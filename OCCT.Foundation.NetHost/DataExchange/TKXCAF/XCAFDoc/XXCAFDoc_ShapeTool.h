@@ -284,7 +284,7 @@ namespace TKXCAF {
         void ComputeSimpleShapes();
 
         //! Returns a sequence of all top-level shapes
-        void GetShapes(XTDF_LabelSequence^ Labels);
+        void GetShapes(XTDF_LabelSequence^% Labels);
 
         //! Returns a sequence of all top-level shapes
         //! which are free (i.e. not referred by any other)

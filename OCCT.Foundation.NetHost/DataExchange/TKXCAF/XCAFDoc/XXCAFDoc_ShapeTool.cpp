@@ -246,7 +246,7 @@ namespace TKXCAF {
     };
 
     //! Returns a sequence of all top-level shapes
-    void XXCAFDoc_ShapeTool::GetShapes(XTDF_LabelSequence^ XLabels) {
+    void XXCAFDoc_ShapeTool::GetShapes(XTDF_LabelSequence^% XLabels) {
         TDF_LabelSequence Labels;
         NativeHandle()->GetShapes(Labels);
         XLabels = gcnew XTDF_LabelSequence(Labels);

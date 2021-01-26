@@ -655,8 +655,8 @@ namespace UniversalCAD
                         XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
                         for (; iter.More(); iter.Next()) {
                             XTopoDS_Shape SubShape = iter.Value();
-                            XTDF_Label aTDFLabel = new XTDF_Label(); //Assembly.FindShape2(SubShape, true);
-                            if (AssemblyShapeTool.FindShape1(SubShape, ref aTDFLabel, false)) {
+                            XTDF_Label aTDFLabel = new XTDF_Label();
+                            if (AssemblyShapeTool.Search(SubShape, ref aTDFLabel, true, true, true)) {
                                 AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
                                 TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
                             }
@@ -695,6 +695,24 @@ namespace UniversalCAD
                 GroupElement.Elements.Add(GroupNode);
             }
             return GroupNode;
+        }
+
+        /// <summary>
+        /// 查找
+        /// </summary>
+        /// <returns></returns>
+        private XTDF_Label FindLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XTopoDS_Shape currentShape)
+        {
+            XTDF_LabelSequence aAllLabels = new XTDF_LabelSequence();
+            AssemblyShapeTool.GetShapes(ref aAllLabels);
+            XTDF_XIterator aRootIter = aAllLabels.Iterator();
+            for (; aRootIter.More(); aRootIter.Next()) {
+                XTDF_Label aTDFLabel = aRootIter.Value();
+                XTopoDS_Shape tempShape = XXCAFDoc_ShapeTool.GetShape2(aTDFLabel);
+                if (tempShape.IsSame(currentShape))
+                    return aTDFLabel;
+            }
+            return null;
         }
 
         /// <summary>

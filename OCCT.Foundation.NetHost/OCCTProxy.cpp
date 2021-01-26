@@ -55,6 +55,7 @@
 #include <Aspect_TypeOfTriedronPosition.hxx>
 #include <TDataStd_Integer.hxx>
 #include <AIS_ViewCube.hxx>
+#include <XAIS_Shape.h>
 
 #pragma region required OCCT libraries
 // list of required OCCT libraries
@@ -204,6 +205,38 @@ public:
             mainAISContext()->Display(HViewCube, Standard_True);
         }
     }
+
+    /// <summary>
+    /// 设置高亮风格
+    /// </summary>
+    /// <param name="theMethod">颜色显示方式</param>
+    /// <param name="theColor">设置高亮颜色</param>
+    /// <param name="theMode">整体高亮</param>
+    /// <param name="theTranspCoef">设置透明度</param>
+    void SetHighlightStyle(XAspect_TypeOfHighlightMethod theMethod, XQuantity_Color^ theColor, Standard_Integer theMode, Standard_ShortReal theTranspCoef) {
+        // 设置模型高亮的风格
+        Handle(Prs3d_Drawer) IHighlightStyle = mainAISContext()->HighlightStyle(); // 获取高亮风格
+        IHighlightStyle->SetMethod(safe_cast<Aspect_TypeOfHighlightMethod>(theMethod));  // 颜色显示方式
+        IHighlightStyle->SetColor(*theColor->GetColor());    // 设置高亮颜色
+        IHighlightStyle->SetDisplayMode(theMode); // 整体高亮
+        IHighlightStyle->SetTransparency(theTranspCoef); // 设置透明度
+    }
+    /// <summary>
+    /// 设置选择风格
+    /// </summary>
+    /// <param name="theMethod">颜色显示方式</param>
+    /// <param name="theColor">设置高亮颜色</param>
+    /// <param name="theMode">整体高亮</param>
+    /// <param name="theTranspCoef">设置透明度</param>
+    void SetSelectionStyle(XAspect_TypeOfHighlightMethod theMethod, XQuantity_Color^ theColor, Standard_Integer theMode, Standard_ShortReal theTranspCoef) {
+        // 设置模型高亮的风格
+        Handle(Prs3d_Drawer) ISelectionStyle = mainAISContext()->SelectionStyle(); // 获取高亮风格
+        ISelectionStyle->SetMethod(safe_cast<Aspect_TypeOfHighlightMethod>(theMethod));  // 颜色显示方式
+        ISelectionStyle->SetColor(*theColor->GetColor());   // 设置选择后颜色
+        ISelectionStyle->SetDisplayMode(theMode); // 整体高亮
+        ISelectionStyle->SetTransparency(theTranspCoef); // 设置透明度
+    }
+
     /// <summary>
     /// Make dump of current view to file
     /// </summary>
@@ -761,6 +794,103 @@ public:
         Handle(Prs3d_Drawer) aDrawer = anInteractive->GetInteractiveObject()->Attributes();
         aDrawer->SetFaceBoundaryDraw(isBoundaryDraw);
     }
+
+    /// <summary>
+    /// 设置图形的位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <param name="aLocation"></param>
+    void SetLocation1(XAIS_InteractiveObject^ aniobj, XTopLoc_Location^ aLocation) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetInteractiveObject();
+        mainAISContext()->SetLocation(aniobjh, *aLocation->GetLocation());
+    }
+
+    /// <summary>
+    /// 设置图形的位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <param name="aLocation"></param>
+    void SetLocation2(XAIS_Shape^ aniobj, XTopLoc_Location^ aLocation) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetShape();
+        mainAISContext()->SetLocation(aniobjh, *aLocation->GetLocation());
+    }
+
+    /// <summary>
+    /// 设置图形的位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <param name="aLocation"></param>
+    void SetLocation3(XAIS_InteractiveObject^ aniobj, xgp_Trsf^ aLocation) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetInteractiveObject();
+        mainAISContext()->SetLocation(aniobjh, *aLocation->GetTrsf());
+    }
+
+    /// <summary>
+    /// 设置图形的位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <param name="aLocation"></param>
+    void SetLocation4(XAIS_Shape^ aniobj, xgp_Trsf^ aLocation) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetShape();
+        mainAISContext()->SetLocation(aniobjh, *aLocation->GetTrsf());
+    }
+    /// <summary>
+    /// 重置图形位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    void ResetLocation1(XAIS_InteractiveObject^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetInteractiveObject();
+        mainAISContext()->ResetLocation(aniobjh);
+    }
+    /// <summary>
+    /// 重置图形位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    void ResetLocation2(XAIS_Shape^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetShape();
+        mainAISContext()->ResetLocation(aniobjh);
+    }
+    /// <summary>
+    /// 是否具有位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <returns></returns>
+    bool HasLocation1(XAIS_InteractiveObject^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetInteractiveObject();
+        return mainAISContext()->HasLocation(aniobjh);
+    }
+    /// <summary>
+    /// 是否具有位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <returns></returns>
+    bool HasLocation2(XAIS_Shape^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetShape();
+        return mainAISContext()->HasLocation(aniobjh);
+    }
+
+    /// <summary>
+    /// 图形位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <returns></returns>
+    XTopLoc_Location^ Location1(XAIS_InteractiveObject^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetInteractiveObject();
+        TopLoc_Location loc = mainAISContext()->Location(aniobjh);
+        return gcnew XTopLoc_Location(loc);
+    }
+
+    /// <summary>
+    /// 图形位置
+    /// </summary>
+    /// <param name="aniobj"></param>
+    /// <returns></returns>
+    XTopLoc_Location^ Location2(XAIS_Shape^ aniobj) {
+        Handle(AIS_InteractiveObject) aniobjh = aniobj->GetShape();
+        TopLoc_Location loc = mainAISContext()->Location(aniobjh);
+        return gcnew XTopLoc_Location(loc);
+    }
+
 
 #pragma endregion
 
