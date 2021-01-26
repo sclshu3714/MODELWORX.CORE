@@ -50,7 +50,7 @@ namespace TKBRep {
     public:
 
        //! DEFINE_STANDARD_ALLOC
-        !XTopoDS_Iterator() { IHandle = NULL; };
+        !XTopoDS_Iterator() { };// { IHandle = NULL; };
         ~XTopoDS_Iterator() { IHandle = NULL; };
 
         //! Creates an empty Iterator.

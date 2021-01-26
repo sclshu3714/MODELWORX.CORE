@@ -152,7 +152,9 @@ namespace TKLCAF {
             theAttribute = gcnew XTDataStd_Integer(TInteger);
         }
         else {
-            result = NativeHandle->FindAttribute(anID->GetGUID(), theAttribute->GetAttribute());
+            Handle(TDF_Attribute) baseAttribute = theAttribute->GetAttribute();
+            result = NativeHandle->FindAttribute(anID->GetGUID(), baseAttribute);
+            theAttribute = gcnew XTDF_Attribute(baseAttribute);
         }
         return  result;
     };

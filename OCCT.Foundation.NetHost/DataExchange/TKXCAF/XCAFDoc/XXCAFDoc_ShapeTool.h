@@ -23,6 +23,7 @@
 #include "XTDF_Attribute.h"
 #include <XTDF_LabelSequence.h>
 #include "XTopLoc_Location.h"
+#include <XTopoDS_Shape.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -114,11 +115,13 @@ class XCAFDoc_GraphNode;
 using namespace TKLCAF;
 using namespace TKernel;
 using namespace TKMath;
+using namespace TKBRep;
 namespace TKXCAF {
     ref class TKLCAF::XTDF_Attribute;
     ref class TKernel::XStandard_GUID;
     ref class TKLCAF::XTDF_Label;
     ref class TKMath::XTopLoc_Location;
+    ref class TKBRep::XTopoDS_Shape;
     public ref class XXCAFDoc_ShapeTool : public XTDF_Attribute
     {
 
@@ -186,9 +189,9 @@ namespace TKXCAF {
 
         //! Checks whether shape <sub> is subshape of shape stored on
         //! label shapeL
-        Standard_Boolean IsSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub);
+        Standard_Boolean IsSubShape(XTDF_Label^ shapeL, XTopoDS_Shape^ sub);
 
-        Standard_Boolean SearchUsingMap(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findWithoutLoc, Standard_Boolean findSubshape);
+        Standard_Boolean SearchUsingMap(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findWithoutLoc, Standard_Boolean findSubshape);
 
         //! General tool to find a (sub) shape in the document
         //! * If findInstance is True, and S has a non-null location,
@@ -202,7 +205,7 @@ namespace TKXCAF {
         //! shape as a subshape of top-level simple shapes
         //! Returns False if nothing is found
         //!  Standard_Boolean findInstance = Standard_True, Standard_Boolean findComponent = Standard_True, Standard_Boolean findSubshape = Standard_True
-        Standard_Boolean Search(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findInstance, Standard_Boolean findComponent, Standard_Boolean findSubshape);
+        Standard_Boolean Search(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance, Standard_Boolean findComponent, Standard_Boolean findSubshape);
 
         //! Returns the label corresponding to shape S
         //! (searches among top-level shapes, not including subcomponents
@@ -213,29 +216,29 @@ namespace TKXCAF {
         //! input shape as is.
         //! Return True if <S> is found.
         //! Standard_Boolean findInstance = Standard_False
-        Standard_Boolean FindShape(const TopoDS_Shape& S, XTDF_Label^ L, Standard_Boolean findInstance);
+        Standard_Boolean FindShape1(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance);
 
         //! Does the same as previous method
         //! Returns Null label if not found
         //! Standard_Boolean findInstance = Standard_False
-        XTDF_Label^ FindShape(const TopoDS_Shape& S, Standard_Boolean findInstance);
+        XTDF_Label^ FindShape2(XTopoDS_Shape^ S, Standard_Boolean findInstance);
 
         //! To get TopoDS_Shape from shape's label
         //! For component, returns new shape with correct location
         //! Returns False if label does not contain shape
-        static Standard_Boolean GetShape(XTDF_Label^ L, TopoDS_Shape& S);
+        static Standard_Boolean GetShape1(XTDF_Label^ L, XTopoDS_Shape^% S);
 
         //! To get TopoDS_Shape from shape's label
         //! For component, returns new shape with correct location
         //! Returns Null shape if label does not contain shape
-        static TopoDS_Shape GetShape(XTDF_Label^ L);
+        static XTopoDS_Shape^ GetShape2(XTDF_Label^ L);
 
         //! Creates new (empty) top-level shape.
         //! Initially it holds empty TopoDS_Compound
         XTDF_Label^ NewShape();
 
         //! Sets representation (TopoDS_Shape) for top-level shape.
-        void SetShape(XTDF_Label^ L, TopoDS_Shape& S);
+        void SetShape(XTDF_Label^ L, XTopoDS_Shape^ S);
 
         //! Adds a new top-level (creates and returns a new label)
         //! If makeAssembly is True, treats TopAbs_COMPOUND shapes
@@ -244,7 +247,7 @@ namespace TKXCAF {
         //! in assmebly by located components to avoid some problems.
         //! If AutoNaming() is True then automatically attaches names.
         //! Standard_Boolean makeAssembly = Standard_True, Standard_Boolean makePrepare = Standard_True
-        XTDF_Label^ AddShape(const TopoDS_Shape& S, Standard_Boolean makeAssembly, Standard_Boolean makePrepare);
+        XTDF_Label^ AddShape(XTopoDS_Shape^ S, Standard_Boolean makeAssembly, Standard_Boolean makePrepare);
 
         //! Removes shape (whole label and all its sublabels)
         //! If removeCompletely is true, removes complete shape
@@ -289,19 +292,19 @@ namespace TKXCAF {
 
         //! Returns a sequence of all top-level shapes
         //! which are free (i.e. not referred by any other)
-        void GetFreeShapes(XTDF_LabelSequence^ %FreeLabels);
+        void GetFreeShapes(XTDF_LabelSequence^% FreeLabels);
 
         //! Returns list of labels which refer shape L as component
         //! Returns number of users (0 if shape is free)
         //! Standard_Boolean getsubchilds = Standard_False
-        static Standard_Integer GetUsers(XTDF_Label^ L, TDF_LabelSequence& Labels, Standard_Boolean getsubchilds);
+        static Standard_Integer GetUsers(XTDF_Label^ L, XTDF_LabelSequence^% Labels, Standard_Boolean getsubchilds);
 
         //! Returns location of instance
         static XTopLoc_Location^ GetLocation(XTDF_Label^ L);
 
         //! Returns label which corresponds to a shape referred by L
         //! Returns False if label is not reference
-        static Standard_Boolean GetReferredShape(XTDF_Label^ L, XTDF_Label^ Label);
+        static Standard_Boolean GetReferredShape(XTDF_Label^ L, XTDF_Label^% Label);
 
         //! Returns number of Assembles components
         //! Standard_Boolean getsubchilds = Standard_False
@@ -310,7 +313,7 @@ namespace TKXCAF {
         //! Returns list of components of assembly
         //! Returns False if label is not assembly
         //! Standard_Boolean getsubchilds = Standard_False
-        static Standard_Boolean GetComponents(XTDF_Label^ L, TDF_LabelSequence& Labels, Standard_Boolean getsubchilds);
+        static Standard_Boolean GetComponents(XTDF_Label^ L, XTDF_LabelSequence^% Labels, Standard_Boolean getsubchilds);
 
         //! Adds a component given by its label and location to the assembly
         //! Note: assembly must be IsAssembly() or IsSimpleShape()
@@ -323,7 +326,7 @@ namespace TKXCAF {
         //! be created as assembly also
         //! Note: assembly must be IsAssembly() or IsSimpleShape()
         //! Standard_Boolean expand = Standard_False
-        XTDF_Label^ AddComponent(XTDF_Label^ assembly, TopoDS_Shape& comp, Standard_Boolean expand);
+        XTDF_Label^ AddComponent(XTDF_Label^ assembly, XTopoDS_Shape^ comp, Standard_Boolean expand);
 
         //! Removes a component from its assembly
         void RemoveComponent(XTDF_Label^ comp);
@@ -334,29 +337,29 @@ namespace TKXCAF {
         //! Finds a label for subshape <sub> of shape stored on
         //! label shapeL
         //! Returns Null label if it is not found
-        Standard_Boolean FindSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub, XTDF_Label^ L);
+        Standard_Boolean FindSubShape(XTDF_Label^ shapeL, XTopoDS_Shape^ sub, XTDF_Label^% L);
 
         //! Adds a label for subshape <sub> of shape stored on
         //! label shapeL
         //! Returns Null label if it is not subshape
-        XTDF_Label^ AddSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub);
+        XTDF_Label^ AddSubShape(XTDF_Label^ shapeL, XTopoDS_Shape^ sub);
 
         //! Adds (of finds already existed) a label for subshape <sub> of shape stored on
         //! label shapeL. Label addedSubShapeL returns added (found) label or empty in case of wrong subshape.
         //! Returns True, if new shape was added, False in case of already existed subshape/wrong subshape
-        Standard_Boolean AddSubShape(XTDF_Label^ shapeL, TopoDS_Shape& sub, XTDF_Label^ addedSubShapeL);
+        Standard_Boolean AddSubShape(XTDF_Label^ shapeL, XTopoDS_Shape^ sub, XTDF_Label^ addedSubShapeL);
 
-        XTDF_Label^ FindMainShapeUsingMap(const TopoDS_Shape& sub);
+        XTDF_Label^ FindMainShapeUsingMap(XTopoDS_Shape^ sub);
 
         //! Performs a search among top-level shapes to find
         //! the shape containing <sub> as subshape
         //! Checks only simple shapes, and returns the first found
         //! label (which should be the only one for valid model)
-        XTDF_Label^ FindMainShape(const TopoDS_Shape& sub);
+        XTDF_Label^ FindMainShape(XTopoDS_Shape^ sub);
 
         //! Returns list of labels identifying subshapes of the given shape
         //! Returns False if no subshapes are placed on that label
-        static Standard_Boolean GetSubShapes(XTDF_Label^ L, TDF_LabelSequence& Labels);
+        static Standard_Boolean GetSubShapes(XTDF_Label^ L, XTDF_LabelSequence^% Labels);
 
         //! returns the label under which shapes are stored
         XTDF_Label^ BaseLabel();
@@ -412,14 +415,14 @@ namespace TKXCAF {
         //! (that indicated by label)
         //! NOTE: returns upper_usages only on one level (not recurse)
         //! NOTE: do not clear the sequence before filling
-        static Standard_Boolean GetSHUOUpperUsage(XTDF_Label^ NextUsageL, TDF_LabelSequence& Labels);
+        static Standard_Boolean GetSHUOUpperUsage(XTDF_Label^ NextUsageL, XTDF_LabelSequence^% Labels);
 
         //! Returns the sequence of labels of SHUO attributes,
         //! which is next_usage for this upper_usage SHUO attribute
         //! (that indicated by label)
         //! NOTE: returns next_usages only on one level (not recurse)
         //! NOTE: do not clear the sequence before filling
-        static Standard_Boolean GetSHUONextUsage(XTDF_Label^ UpperUsageL, TDF_LabelSequence& Labels);
+        static Standard_Boolean GetSHUONextUsage(XTDF_Label^ UpperUsageL, XTDF_LabelSequence^% Labels);
 
         //! Remove SHUO from component sublabel,
         //! remove all dependencies on other SHUO.
@@ -432,7 +435,7 @@ namespace TKXCAF {
         //! Try to search the sequence of labels with location that
         //! produce this shape as component of any assembly
         //! NOTE: Clear sequence of labels before filling
-        Standard_Boolean FindComponent(const TopoDS_Shape& theShape, TDF_LabelSequence& Labels);
+        Standard_Boolean FindComponent(XTopoDS_Shape^ theShape, XTDF_LabelSequence^% Labels);
 
         //! Search for the component shape that styled by shuo
         //! Returns null shape if no any shape is found.

@@ -606,43 +606,68 @@ namespace UniversalCAD
             int ElementId = 0;
             bool IsBoundaryDraw = true;
             bool BuildElement = false;
-            AccordionControlElement RootNode = this.accElementTLable; 
+            AccordionControlElement RootNode = this.accElementTLable;
             XTDF_Label aRootLabel = aDoc.Main();
-            XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aRootLabel);
+            XXCAFDoc_ShapeTool AssemblyShapeTool = XXCAFDoc_DocumentTool.ShapeTool(aRootLabel);
             XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
-            Assembly.GetFreeShapes(ref aRootLabels);
+            AssemblyShapeTool.GetFreeShapes(ref aRootLabels);
             XTDF_XIterator aRootIter = aRootLabels.Iterator();
-            for (; aRootIter.More(); aRootIter.Next())
-            {
+            for (; aRootIter.More(); aRootIter.Next()) {
                 XTDF_Label aTDFLabel = aRootIter.Value();
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aTDFLabel, ref ElementId);
-                TDFChildLabel(tempElement, aTDFLabel,ref ElementId, IsBoundaryDraw);
+                TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
                 BuildElement = true;
             }
             if (!BuildElement) {
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aRootLabel, ref ElementId);
-                TDFChildLabel(tempElement, aRootLabel, ref ElementId, IsBoundaryDraw);
+                TDFChildLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw);
             }
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return true;
         }
-
-        private void TDFChildLabel(AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw)
+        /// <summary>
+        /// 子结构查询
+        /// </summary>
+        /// <param name="AssemblyShapeTool"></param>
+        /// <param name="GroupElement"></param>
+        /// <param name="theLabel"></param>
+        /// <param name="ElementId"></param>
+        /// <param name="IsBoundaryDraw"></param>
+        private void TDFChildLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw)
         {
-            if (!theLabel.IsNull() && theLabel.NbChildren() == 0)
-            {
-                Display(theLabel, IsBoundaryDraw);
-                return;
-            }
             XTDF_ChildIDIterator ChildIDIterator = new XTDF_ChildIDIterator(theLabel, XXCAFDoc.ShapeRefGUID(), false);
-            for (; ChildIDIterator.More(); ChildIDIterator.Next())
-            {
-                XTDF_Attribute ChildIDAttribute = ChildIDIterator.Value();
-                XTDF_Label RTDFLabel = ChildIDAttribute.Label();
-                AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
-                TDFChildLabel(tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw);
+            if (ChildIDIterator.More()) {
+                for (; ChildIDIterator.More(); ChildIDIterator.Next()) {
+                    XTDF_Attribute ChildIDAttribute = ChildIDIterator.Value();
+                    XTDF_Label RTDFLabel = ChildIDAttribute.Label();
+                    AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
+                    TDFChildLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw);
+                }
+            }
+            else {
+                XTopoDS_Shape currentShape = XXCAFDoc_ShapeTool.GetShape2(theLabel);
+                XTopAbs_ShapeEnum _ShapeEnum = currentShape.ShapeType();
+                switch (_ShapeEnum) {
+                    case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
+                    case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
+                        XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
+                        for (; iter.More(); iter.Next()) {
+                            XTopoDS_Shape SubShape = iter.Value();
+                            XTDF_Label aTDFLabel = new XTDF_Label(); //Assembly.FindShape2(SubShape, true);
+                            if (AssemblyShapeTool.FindShape1(SubShape, ref aTDFLabel, false)) {
+                                AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                                TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
+                            }
+                        }
+                        break;
+                    default: {
+                            GroupElement.Style = ElementStyle.Item;
+                            Display(theLabel, IsBoundaryDraw);
+                        }
+                        break;
+                }
             }
         }
 
@@ -664,130 +689,14 @@ namespace UniversalCAD
                 XTCollection_ExtendedString EString = XName.Get();
                 string text = EString.GetValueString();
                 GroupNode = new AccordionControlElement();
-                GroupNode.Name = text;
-                GroupNode.Text = $"{text}_{XInteger.Get()}";
+                GroupNode.Name = $"{text}_{XInteger.Get()}";
+                GroupNode.Text = $"{text}";
                 GroupNode.Tag = XInteger.Get();
-                if (!NTDFLabel.HasChild())
-                    GroupNode.Style = ElementStyle.Item;
                 GroupElement.Elements.Add(GroupNode);
             }
             return GroupNode;
         }
 
-        private void VisibleSettings(ref AccordionControlElement TempNode, XTDF_Label theLabel,ref int index, bool IsBoundaryDraw)
-        {
-            if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsShape(theLabel))
-            {
-                XTDF_Attribute aName = new XTDataStd_Name();
-                if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
-                {
-                    XTDF_Attribute aInteger = new XTDataStd_Integer();
-                    XTDataStd_Integer XInteger = new XTDataStd_Integer();
-                    if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
-                        XInteger = XTDataStd_Integer.Set(theLabel, index++);
-                    else
-                        XInteger = aInteger as XTDataStd_Integer;
-                    XTDataStd_Name XName = aName as XTDataStd_Name;
-                    XTCollection_ExtendedString EString = XName.Get();
-                    string text = EString.GetValueString();
-                    AccordionControlElement CNode = new AccordionControlElement();
-                    CNode.Name = text;
-                    CNode.Text = $"{text}_{XInteger.Get()}";
-                    CNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                    TempNode.Elements.Add(CNode);
-                }
-                Display(theLabel, IsBoundaryDraw);
-                return;
-            }
-            AccordionControlElement PNode = null;
-            XTDF_Attribute cInteger = new XTDataStd_Integer();
-            XTDF_Attribute cName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref cName))
-            {
-                XTDataStd_Integer XInteger = new XTDataStd_Integer();
-                if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref cInteger))
-                    XInteger = XTDataStd_Integer.Set(theLabel, index++);
-                else
-                    XInteger = cInteger as XTDataStd_Integer;
-                XTDataStd_Name XName = cName as XTDataStd_Name;
-                XTCollection_ExtendedString EString = XName.Get();
-                string text = EString.GetValueString();
-                PNode = new AccordionControlElement();
-                PNode.Name = text;
-                PNode.Text = $"{text}_{XInteger.Get()}";
-                PNode.Tag = XInteger.Get();// XXCAFDoc_ShapeTool.GetShape(aRootLabel);
-                TempNode.Elements.Add(PNode);
-            }
-            else
-                PNode = TempNode;
-            XTDF_ChildIterator iter = new XTDF_ChildIterator();
-            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
-            {
-                VisibleSettings(ref PNode, iter.Value(),ref index, IsBoundaryDraw);
-            }
-        }
-
-        /// <summary>
-        /// 定义必须调用的导入/导出函数
-        /// Define which Import/Export function must be called
-        /// </summary>
-        /// <param name="theFileName">Name of Import/Export file</param>
-        /// <param name="theFormat">Determines format of Import/Export file</param>
-        /// <param name="theIsImport">Determines is Import or not</param>
-        public bool TranslateModel(string theFileName, CurrentModelFormat theFormat, bool theIsImport)
-        {
-            //bool reuslt = OCCTView.TranslateModel(theFileName, (int)theFormat, theIsImport);
-            //OCCTView.SetDisplayMode(1);
-            //OCCTView.RedrawView();
-            //OCCTView.ZoomAllView();
-            XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
-            aReader.SetColorMode(true);
-            aReader.SetNameMode(true);
-            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
-            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
-            anApp.NewDocument("XSEFSTEP", aDoc);
-            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
-                return false;
-            //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
-            //XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
-            //Assembly.GetFreeShapes(ref aRootLabels);
-            //XTDF_XIterator aRootIter = aRootLabels.Iterator();
-            //for (; aRootIter.More(); aRootIter.Next())
-            //{
-            //    XTDF_Label aRootLabel = aRootIter.Value();
-            //    VisibleSettings(aRootLabel, true);
-            //}
-            XTDF_Label aRootLabel = aDoc.Main();
-            VisibleSettings(aRootLabel, true);
-            OCCTView.SetDisplayMode(1);
-            OCCTView.RedrawView();
-            OCCTView.ZoomAllView();
-            return true;
-        }
-
-        private void VisibleSettings(XTDF_Label theLabel, bool IsBoundaryDraw)
-        {
-            XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(theLabel);
-            XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
-            Assembly.GetFreeShapes(ref aRootLabels);
-            XTDF_XIterator aRootIter;// = aRootLabels.Iterator();
-            for (aRootIter = aRootLabels.Iterator(); aRootIter.More(); aRootIter.Next())
-            {
-                XTDF_Label aRootLabel = aRootIter.Value();
-                Display(aRootLabel, IsBoundaryDraw);
-            }
-            //if (!theLabel.IsNull() && !theLabel.HasChild() && XXCAFDoc_ShapeTool.IsFree(theLabel))
-            //{
-            //    Display(theLabel, IsBoundaryDraw);
-            //    return;
-            //}
-            XTDF_ChildIterator iter = new XTDF_ChildIterator();
-            for (iter.Initialize(theLabel, false); iter.More(); iter.Next())
-            {
-                VisibleSettings(iter.Value(), IsBoundaryDraw);
-            }
-        }
         /// <summary>
         /// 显示图形
         /// </summary>
@@ -796,16 +705,6 @@ namespace UniversalCAD
         void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-            XTDF_Attribute aName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName))
-            {
-                //std::cout << "  Name: " << aName.Get() << std::endl;
-                XTDataStd_Name XName = aName as XTDataStd_Name;
-                XTCollection_ExtendedString EString = XName.Get();
-                //MessageBox.Show($"Name:{EString.GetValueString()}");
-                //context.RemoveAll(true);
-
-            }
             XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
             XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
             if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs))

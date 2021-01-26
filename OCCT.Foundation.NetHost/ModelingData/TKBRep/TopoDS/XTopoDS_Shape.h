@@ -49,6 +49,7 @@ namespace TKBRep {
 
         //! Creates a NULL Shape referring to nothing.
         XTopoDS_Shape(TopoDS_Shape* pos);
+        XTopoDS_Shape(TopoDS_Shape pos);
 
         ~XTopoDS_Shape();
 

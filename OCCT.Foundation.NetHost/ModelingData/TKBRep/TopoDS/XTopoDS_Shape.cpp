@@ -11,12 +11,16 @@ namespace TKBRep {
         NativeHandle = pos;
     };
 
+    XTopoDS_Shape::XTopoDS_Shape(TopoDS_Shape pos) {
+        NativeHandle = new TopoDS_Shape(pos);
+    };
+
     XTopoDS_Shape::~XTopoDS_Shape() {
         NativeHandle = NULL;
     };
 
     void XTopoDS_Shape::SetShapeHandle(TopoDS_Shape pos) {
-        NativeHandle = &pos;
+        NativeHandle = new TopoDS_Shape(pos);
     };
 
     void XTopoDS_Shape::SetShapeHandle(TopoDS_Shape* pos) {
