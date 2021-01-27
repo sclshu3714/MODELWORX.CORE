@@ -654,7 +654,6 @@ namespace UniversalCAD
                 XTopAbs_ShapeEnum _ShapeEnum = currentShape.ShapeType();
                 switch (_ShapeEnum) {
                     case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
-                    case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
                         ////XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
                         //XTDF_Label ShapeLabel = new XTDF_Label();
                         //if (XXCAFDoc_ShapeTool.IsReference(theLabel) && XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref ShapeLabel) && !ShapeLabel.IsNull()) {
@@ -669,12 +668,35 @@ namespace UniversalCAD
                                 AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
                                 TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, LocalLocation);
                             }
+                            else if (AssemblyShapeTool.FindShape1(SubShape, ref aTDFLabel, false)) {
+                                AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                                TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, LocalLocation);
+                            }
+                            else {
+                                GroupElement.Style = ElementStyle.Item;
+                                Display(theLabel, IsBoundaryDraw, XLocalLocation);
+                            }
                         }
                         break;
-                    default: {
+                    case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_SOLID:
+                    case XTopAbs_ShapeEnum.TopAbs_FACE:
+                    case XTopAbs_ShapeEnum.TopAbs_EDGE: {
                             GroupElement.Style = ElementStyle.Item;
                             Display(theLabel, IsBoundaryDraw, XLocalLocation);
                         }
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_SHELL:
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_SHAPE:
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_WIRE:
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_VERTEX:
+                        break;
+                   
+                    default:
                         break;
                 }
             }
