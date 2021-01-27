@@ -1,7 +1,7 @@
 #include "XStandard_Helper.h"
 //#include <WinUser.h>
 //#include <afxwin.h>
-
+using namespace System;
 namespace TKernel {
     //! Auxiliary tool for converting C# string into UTF-8 string.
     TCollection_AsciiString XStandard_Helper::toAsciiString(String^ theString) {
@@ -23,12 +23,25 @@ namespace TKernel {
     };
 
     String^ XStandard_Helper::toString(Standard_CString CString) {
-        System::String^ sString = gcnew System::String(CString);
+        TCollection_AsciiString AString = TCollection_AsciiString(CString);
+        char buff[255];
+        for (int ic = 1; ic <= AString.Length(); ic++)
+            buff[ic - 1] = AString.Value(ic);
+        buff[AString.Length()] = '\0';
+        char* ch1 = buff;
+        String^ sString = System::Runtime::InteropServices::Marshal::PtrToStringAnsi((IntPtr)ch1);
+        //System::String^ sString = gcnew System::String(CString);
         return sString;
     };
 
     String^ XStandard_Helper::toString(TCollection_AsciiString AString) {
-        System::String^ sString = gcnew System::String(AString.ToCString());
+        char buff[255];
+        for (int ic = 1; ic <= AString.Length(); ic++)
+            buff[ic - 1] = AString.Value(ic);
+        buff[AString.Length()] = '\0';
+        char* ch1 = buff;
+        String^ sString = System::Runtime::InteropServices::Marshal::PtrToStringAnsi((IntPtr)ch1);
+        //System::String^ sString = gcnew System::String(AString.ToCString());
         return sString;
     };
 
