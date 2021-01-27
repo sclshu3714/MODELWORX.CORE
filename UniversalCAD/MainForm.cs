@@ -655,11 +655,20 @@ namespace UniversalCAD
                 switch (_ShapeEnum) {
                     case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
                     case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
-                        XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
+                        //XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
                         XTDF_Label ShapeLabel = new XTDF_Label();
                         if (XXCAFDoc_ShapeTool.IsReference(theLabel) && XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref ShapeLabel) && !ShapeLabel.IsNull()) {
                             TDFChildLabel(AssemblyShapeTool, GroupElement, ShapeLabel, ref ElementId, IsBoundaryDraw);
                         }
+                        //XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
+                        //for (; iter.More(); iter.Next()) {
+                        //    XTopoDS_Shape SubShape = iter.Value();
+                        //    XTDF_Label aTDFLabel = new XTDF_Label();
+                        //    if (AssemblyShapeTool.Search(SubShape, ref aTDFLabel, true, true, true)) {
+                        //        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                        //        TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
+                        //    }
+                        //}
                         break;
                     default: {
                             GroupElement.Style = ElementStyle.Item;
@@ -701,7 +710,7 @@ namespace UniversalCAD
         /// </summary>
         /// <param name="theLabel"></param>
         /// <param name="IsBoundaryDraw"></param>
-        void Display(XTDF_Label theLabel, bool IsBoundaryDraw)
+        void Display(XTDF_Label theLabel, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation = null)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
