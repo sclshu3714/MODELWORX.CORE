@@ -62,7 +62,9 @@ namespace TKBRep {
 
     //! Sets the shape local coordinate system.
     void XTopoDS_Shape::Location(XTopLoc_Location^% theLoc) {
-        NativeHandle->Location(*theLoc->GetLocation());
+        TopLoc_Location* theLocx = new TopLoc_Location(*theLoc->GetLocation());
+        NativeHandle->Location(*theLocx);
+        theLoc = gcnew XTopLoc_Location(theLocx);
     };
 
     //! Returns a  shape  similar to <me> with   the local

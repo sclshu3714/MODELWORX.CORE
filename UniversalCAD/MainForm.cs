@@ -206,10 +206,10 @@ namespace UniversalCAD
         {
             if (e.Shift)
                 myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
-            if (e.Control)
-                myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Ctrl;
-            if (e.Alt)
-                myCurrentPressedKey |= CurrentPressedKey.CurPressedKey_Alt;
+            else if (e.Control)
+                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Ctrl;
+            else if (e.Alt)
+                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Alt;
         }
         /// <summary>
         /// 键盘弹起事件
@@ -219,6 +219,7 @@ namespace UniversalCAD
         private void RenderWindow_KeyUp(object sender, KeyEventArgs e)
         {
             myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
+            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
         }
         /// <summary>
         /// 鼠标按下事件
@@ -554,7 +555,7 @@ namespace UniversalCAD
 
         private void DrawRectangle(bool draw)
         {
-            Graphics gr = Graphics.FromHwnd(this.Handle);
+            Graphics gr = Graphics.FromHwnd(this.RWControl.Handle);
             System.Drawing.Pen p = null;
             if (this.IsRectVisible || (!draw))//erase the rect
             {
@@ -598,9 +599,10 @@ namespace UniversalCAD
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
             IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
-            XTDocStd_Document aDoc = new XTDocStd_Document("XSTEPCAF");
-            XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
-            anApp.NewDocument("XSEFSTEP", aDoc);
+            string astorageformat = $"XSTEPCAF_{Guid.NewGuid().ToString()}_XSTEPCAF";
+            XTDocStd_Document aDoc = new XTDocStd_Document(astorageformat);
+            XXCAFApp_Application anApp = new XXCAFApp_Application();
+            anApp.NewDocument(astorageformat, aDoc);
             if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
             int ElementId = 0;
@@ -625,6 +627,7 @@ namespace UniversalCAD
             OCCTView.SetDisplayMode(1);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
+            this.Refresh();
             return true;
         }
         /// <summary>
@@ -652,14 +655,10 @@ namespace UniversalCAD
                 switch (_ShapeEnum) {
                     case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
                     case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
-                        XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
-                        for (; iter.More(); iter.Next()) {
-                            XTopoDS_Shape SubShape = iter.Value();
-                            XTDF_Label aTDFLabel = new XTDF_Label();
-                            if (AssemblyShapeTool.Search(SubShape, ref aTDFLabel, true, true, true)) {
-                                AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
-                                TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
-                            }
+                        XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
+                        XTDF_Label ShapeLabel = new XTDF_Label();
+                        if (XXCAFDoc_ShapeTool.IsReference(theLabel) && XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref ShapeLabel) && !ShapeLabel.IsNull()) {
+                            TDFChildLabel(AssemblyShapeTool, GroupElement, ShapeLabel, ref ElementId, IsBoundaryDraw);
                         }
                         break;
                     default: {
@@ -695,24 +694,6 @@ namespace UniversalCAD
                 GroupElement.Elements.Add(GroupNode);
             }
             return GroupNode;
-        }
-
-        /// <summary>
-        /// 查找
-        /// </summary>
-        /// <returns></returns>
-        private XTDF_Label FindLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XTopoDS_Shape currentShape)
-        {
-            XTDF_LabelSequence aAllLabels = new XTDF_LabelSequence();
-            AssemblyShapeTool.GetShapes(ref aAllLabels);
-            XTDF_XIterator aRootIter = aAllLabels.Iterator();
-            for (; aRootIter.More(); aRootIter.Next()) {
-                XTDF_Label aTDFLabel = aRootIter.Value();
-                XTopoDS_Shape tempShape = XXCAFDoc_ShapeTool.GetShape2(aTDFLabel);
-                if (tempShape.IsSame(currentShape))
-                    return aTDFLabel;
-            }
-            return null;
         }
 
         /// <summary>
