@@ -74,7 +74,7 @@ namespace TKV3d {
        //! DEFINE_STANDARD_RTTIEXT(AIS_Shape, AIS_InteractiveObject)
     public:
 
-        !XAIS_Shape() { IHandle = NULL; };
+        !XAIS_Shape() { };// { IHandle = NULL; };
         ~XAIS_Shape() { IHandle = NULL; };
         //! Initializes construction of the shape shap from wires,
         //! edges and vertices.

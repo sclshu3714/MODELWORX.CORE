@@ -638,7 +638,7 @@ namespace UniversalCAD
         /// <param name="theLabel"></param>
         /// <param name="ElementId"></param>
         /// <param name="IsBoundaryDraw"></param>
-        private void TDFChildLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw)
+        private void TDFChildLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation = null)
         {
             XTDF_ChildIDIterator ChildIDIterator = new XTDF_ChildIDIterator(theLabel, XXCAFDoc.ShapeRefGUID(), false);
             if (ChildIDIterator.More()) {
@@ -646,7 +646,7 @@ namespace UniversalCAD
                     XTDF_Attribute ChildIDAttribute = ChildIDIterator.Value();
                     XTDF_Label RTDFLabel = ChildIDAttribute.Label();
                     AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
-                    TDFChildLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw);
+                    TDFChildLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
             }
             else {
@@ -655,24 +655,25 @@ namespace UniversalCAD
                 switch (_ShapeEnum) {
                     case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
                     case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
-                        //XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
-                        XTDF_Label ShapeLabel = new XTDF_Label();
-                        if (XXCAFDoc_ShapeTool.IsReference(theLabel) && XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref ShapeLabel) && !ShapeLabel.IsNull()) {
-                            TDFChildLabel(AssemblyShapeTool, GroupElement, ShapeLabel, ref ElementId, IsBoundaryDraw);
-                        }
-                        //XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
-                        //for (; iter.More(); iter.Next()) {
-                        //    XTopoDS_Shape SubShape = iter.Value();
-                        //    XTDF_Label aTDFLabel = new XTDF_Label();
-                        //    if (AssemblyShapeTool.Search(SubShape, ref aTDFLabel, true, true, true)) {
-                        //        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
-                        //        TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw);
-                        //    }
+                        ////XTopLoc_Location LocalLocation = XXCAFDoc_ShapeTool.GetLocation(theLabel);
+                        //XTDF_Label ShapeLabel = new XTDF_Label();
+                        //if (XXCAFDoc_ShapeTool.IsReference(theLabel) && XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref ShapeLabel) && !ShapeLabel.IsNull()) {
+                        //    TDFChildLabel(AssemblyShapeTool, GroupElement, ShapeLabel, ref ElementId, IsBoundaryDraw);
                         //}
+                        XTopoDS_Iterator iter = new XTopoDS_Iterator(currentShape, true, true);
+                        for (; iter.More(); iter.Next()) {
+                            XTopoDS_Shape SubShape = iter.Value();
+                            XTopLoc_Location LocalLocation = SubShape.Location();
+                            XTDF_Label aTDFLabel = new XTDF_Label();
+                            if (AssemblyShapeTool.Search(SubShape, ref aTDFLabel, true, true, true)) {
+                                AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                                TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, LocalLocation);
+                            }
+                        }
                         break;
                     default: {
                             GroupElement.Style = ElementStyle.Item;
-                            Display(theLabel, IsBoundaryDraw);
+                            Display(theLabel, IsBoundaryDraw, XLocalLocation);
                         }
                         break;
                 }
@@ -728,6 +729,8 @@ namespace UniversalCAD
             {
                 SetFaceBoundaryAspect(anInteractive, true);
                 context.Display(anInteractive, true);
+                if (XLocalLocation != null)
+                    OCCTView.SetLocation1(anInteractive, XLocalLocation);
             }
         }
         #endregion
