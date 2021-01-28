@@ -216,22 +216,22 @@ namespace TKXCAF {
         //! input shape as is.
         //! Return True if <S> is found.
         //! Standard_Boolean findInstance = Standard_False
-        Standard_Boolean FindShape1(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance);
+        Standard_Boolean FindShape(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance);
 
         //! Does the same as previous method
         //! Returns Null label if not found
         //! Standard_Boolean findInstance = Standard_False
-        XTDF_Label^ FindShape2(XTopoDS_Shape^ S, Standard_Boolean findInstance);
+        XTDF_Label^ FindShape(XTopoDS_Shape^ S, Standard_Boolean findInstance);
 
         //! To get TopoDS_Shape from shape's label
         //! For component, returns new shape with correct location
         //! Returns False if label does not contain shape
-        static Standard_Boolean GetShape1(XTDF_Label^ L, XTopoDS_Shape^% S);
+        static Standard_Boolean GetShape(XTDF_Label^ L, XTopoDS_Shape^% S);
 
         //! To get TopoDS_Shape from shape's label
         //! For component, returns new shape with correct location
         //! Returns Null shape if label does not contain shape
-        static XTopoDS_Shape^ GetShape2(XTDF_Label^ L);
+        static XTopoDS_Shape^ GetShape(XTDF_Label^ L);
 
         //! Creates new (empty) top-level shape.
         //! Initially it holds empty TopoDS_Compound

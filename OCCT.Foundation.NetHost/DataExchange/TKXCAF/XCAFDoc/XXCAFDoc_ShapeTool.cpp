@@ -141,7 +141,7 @@ namespace TKXCAF {
     //! input shape as is.
     //! Return True if <S> is found.
     //! Standard_Boolean findInstance = Standard_False
-    Standard_Boolean XXCAFDoc_ShapeTool::FindShape1(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance) {
+    Standard_Boolean XXCAFDoc_ShapeTool::FindShape(XTopoDS_Shape^ S, XTDF_Label^% L, Standard_Boolean findInstance) {
         TDF_Label baseLabel = TDF_Label(*L->GetLabel());
         Standard_Boolean Result = NativeHandle()->FindShape(*S->GetShape(), baseLabel, findInstance);
         L = gcnew XTDF_Label(baseLabel);
@@ -151,7 +151,7 @@ namespace TKXCAF {
     //! Does the same as previous method
     //! Returns Null label if not found
     //! Standard_Boolean findInstance = Standard_False
-    XTDF_Label^ XXCAFDoc_ShapeTool::FindShape2(XTopoDS_Shape^ S, Standard_Boolean findInstance) {
+    XTDF_Label^ XXCAFDoc_ShapeTool::FindShape(XTopoDS_Shape^ S, Standard_Boolean findInstance) {
         return gcnew XTDF_Label(NativeHandle()->FindShape(*S->GetShape(), findInstance));
     };
 
@@ -159,7 +159,7 @@ namespace TKXCAF {
     //! For component, returns new shape with correct location
     //! Returns False if label does not contain shape
     //!static 
-    Standard_Boolean XXCAFDoc_ShapeTool::GetShape1(XTDF_Label^ L, XTopoDS_Shape^% S) {
+    Standard_Boolean XXCAFDoc_ShapeTool::GetShape(XTDF_Label^ L, XTopoDS_Shape^% S) {
         TopoDS_Shape baseShape = TopoDS_Shape(*S->GetShape());
         Standard_Boolean Result = XCAFDoc_ShapeTool::GetShape(*L->GetLabel(), baseShape);
         S = gcnew XTopoDS_Shape(baseShape);
@@ -170,7 +170,7 @@ namespace TKXCAF {
     //! For component, returns new shape with correct location
     //! Returns Null shape if label does not contain shape
     //!static 
-    XTopoDS_Shape^ XXCAFDoc_ShapeTool::GetShape2(XTDF_Label^ L) {
+    XTopoDS_Shape^ XXCAFDoc_ShapeTool::GetShape(XTDF_Label^ L) {
         TopoDS_Shape* shape = new TopoDS_Shape(XCAFDoc_ShapeTool::GetShape(*L->GetLabel()));
         return gcnew XTopoDS_Shape(shape);
     };
