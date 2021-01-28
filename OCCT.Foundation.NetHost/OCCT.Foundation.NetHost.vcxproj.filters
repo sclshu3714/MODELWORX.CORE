@@ -1698,6 +1698,12 @@
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorType.h">
       <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
     </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorTool.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClInclude>
+    <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.h">
+      <Filter>头文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2456,6 +2462,9 @@
     </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.cpp">
+      <Filter>源文件\FoundationClasses\TKernel\Quantity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

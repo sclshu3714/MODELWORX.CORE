@@ -242,6 +242,7 @@
     <ClInclude Include="DataExchange\TKSTEP\STEPConstruct\XSTEPConstruct_Tool.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc.h" />
+    <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorTool.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorType.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_DocumentTool.h" />
     <ClInclude Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ShapeTool.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="DataExchange\TKXSBase\IFSelect\XIFSelect_ReturnStatus.h" />
     <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.h" />
+    <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_NameOfColor.h" />
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_TypeOfColor.h" />
     <ClInclude Include="FoundationClasses\TKernel\Standard\XStandard_ConstructionError.h" />
@@ -646,6 +648,7 @@
     <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp" />
     <ClCompile Include="DataExchange\TKXDESTEP\STEPCAFControl\XSTEPCAFControl_Reader.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.cpp" />
+    <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_GUID.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\Standard\XStandard_Helper.cpp" />
     <ClCompile Include="FoundationClasses\TKernel\TCollection\XTCollection_AsciiString.cpp" />

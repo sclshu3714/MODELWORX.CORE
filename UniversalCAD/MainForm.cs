@@ -651,9 +651,9 @@ namespace UniversalCAD
                 for (; ChildIDIterator.More(); ChildIDIterator.Next()) {
                     XTDF_Attribute ChildIDAttribute = ChildIDIterator.Value();
                     XTDF_Label RTDFLabel = ChildIDAttribute.Label();
-                    XTopLoc_Location aLocalLocation = XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(RTDFLabel));
+                    //XTopLoc_Location aLocalLocation = XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(RTDFLabel));
                     AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
-                    DisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, aLocalLocation);
+                    DisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
             }
             else {
@@ -687,10 +687,17 @@ namespace UniversalCAD
             XTopoDS_Iterator iter = new XTopoDS_Iterator(parentShape, true, true);
             for (; iter.More(); iter.Next()) {
                 XTopoDS_Shape currentShape = iter.Value();
-                if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
+                XTopLoc_Location LocalLocation = currentShape.Location();
+                XTDF_Label aTDFLabel = new XTDF_Label();
+                if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
+                    AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                    TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                }
+                else if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
                     DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
                 else {
+                    GroupElement.Style = ElementStyle.Item;
                     context.Display(new XAIS_Shape(currentShape), true);
                 }
             }
