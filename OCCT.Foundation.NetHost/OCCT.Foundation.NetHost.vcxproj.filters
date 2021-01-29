@@ -1704,6 +1704,12 @@
     <ClInclude Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.h">
       <Filter>头文件\FoundationClasses\TKernel\Quantity</Filter>
     </ClInclude>
+    <ClInclude Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_AISObject.h">
+      <Filter>头文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_ColoredShape.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2465,6 +2471,15 @@
     </ClCompile>
     <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_ColorRGBA.cpp">
       <Filter>源文件\FoundationClasses\TKernel\Quantity</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFDoc\XXCAFDoc_ColorTool.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKV3d\AIS\XAIS_ColoredShape.cpp">
+      <Filter>源文件\Visualization\TKV3d\AIS</Filter>
+    </ClCompile>
+    <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_AISObject.cpp">
+      <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

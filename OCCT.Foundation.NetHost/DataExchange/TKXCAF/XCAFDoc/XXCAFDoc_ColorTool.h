@@ -27,6 +27,7 @@
 #include <XXCAFDoc_ShapeTool.h>
 #include <XQuantity_Color.h>
 #include <XXCAFDoc_ColorType.h>
+#include <XQuantity_ColorRGBA.h>
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -58,6 +59,7 @@ using namespace TKBRep;
 namespace TKXCAF {
     ref class TKernel::XStandard_GUID;
     ref class TKernel::XQuantity_Color;
+    ref class TKernel::XQuantity_ColorRGBA;
     ref class TKLCAF::XTDF_Attribute;
     ref class TKLCAF::XTDF_Label;
     ref class TKMath::XTopLoc_Location;
@@ -70,6 +72,10 @@ namespace TKXCAF {
 
 
         XXCAFDoc_ColorTool();
+
+        XXCAFDoc_ColorTool(Handle(XCAFDoc_ColorTool) pos);
+
+        Handle(XCAFDoc_ColorTool) GetColorTool();
 
         //! Creates (if not exist) ColorTool.
         static XXCAFDoc_ColorTool^ Set(XTDF_Label^ L);
@@ -89,22 +95,22 @@ namespace TKXCAF {
         //! Returns color defined by label lab
         //! Returns False if the label is not in colortable
         //! or does not define a color
-        Standard_Boolean GetColor(XTDF_Label^ lab, XQuantity_Color^ col);
+        Standard_Boolean GetColor(XTDF_Label^ lab, XQuantity_Color^% col);
 
         //! Returns color defined by label lab
         //! Returns False if the label is not in colortable
         //! or does not define a color
-        Standard_Boolean GetColor(XTDF_Label^ lab, Quantity_ColorRGBA col);
+        Standard_Boolean GetColor(XTDF_Label^ lab, XQuantity_ColorRGBA^% col);
 
         //! Finds a color definition in a colortable and returns
         //! its label if found
         //! Returns False if color is not found in colortable
-        Standard_Boolean FindColor(XQuantity_Color^ col, XTDF_Label^ lab);
+        Standard_Boolean FindColor(XQuantity_Color^ col, XTDF_Label^% lab);
 
         //! Finds a color definition in a colortable and returns
         //! its label if found
         //! Returns False if color is not found in colortable
-        Standard_Boolean FindColor(Quantity_ColorRGBA& col, XTDF_Label^ lab);
+        Standard_Boolean FindColor(XQuantity_ColorRGBA^ col, XTDF_Label^% lab);
 
         //! Finds a color definition in a colortable and returns
         //! its label if found (or Null label else)
@@ -112,7 +118,7 @@ namespace TKXCAF {
 
         //! Finds a color definition in a colortable and returns
         //! its label if found (or Null label else)
-        XTDF_Label^ FindColor(Quantity_ColorRGBA& col);
+        XTDF_Label^ FindColor(XQuantity_ColorRGBA^ col);
 
         //! Adds a color definition to a colortable and returns
         //! its label (returns existing label if the same color
@@ -122,14 +128,14 @@ namespace TKXCAF {
         //! Adds a color definition to a colortable and returns
         //! its label (returns existing label if the same color
         //! is already defined)
-        XTDF_Label^ AddColor(Quantity_ColorRGBA& col);
+        XTDF_Label^ AddColor(XQuantity_ColorRGBA^ col);
 
         //! Removes color from the colortable
         void RemoveColor(XTDF_Label^ lab);
 
         //! Returns a sequence of colors currently stored
         //! in the colortable
-        void GetColors(XTDF_LabelSequence^ Labels);
+        void GetColors(XTDF_LabelSequence^% Labels);
 
         //! Sets a link with GUID defined by <type> (see
         //! XCAFDoc::ColorRefGUID()) from label <L> to color
@@ -151,7 +157,7 @@ namespace TKXCAF {
         //! XCAFDoc::ColorRefGUID()) from label <L> to color <Color>
         //! in the colortable
         //! Adds a color as necessary
-        void SetColor(XTDF_Label^ L, Quantity_ColorRGBA& Color, XXCAFDoc_ColorType type);
+        void SetColor(XTDF_Label^ L, XQuantity_ColorRGBA^ Color, XXCAFDoc_ColorType type);
 
         //! Removes a link with GUID defined by <type> (see
         //! XCAFDoc::ColorRefGUID()) from label <L> to color
@@ -171,7 +177,7 @@ namespace TKXCAF {
 
         //! Returns color assigned to <L> as <type>
         //! Returns False if no such color is assigned
-        Standard_Boolean GetColor(XTDF_Label^ L, XXCAFDoc_ColorType type, Quantity_ColorRGBA& color);
+        Standard_Boolean GetColor(XTDF_Label^ L, XXCAFDoc_ColorType type, XQuantity_ColorRGBA^% color);
 
         //! Sets a link with GUID defined by <type> (see
         //! XCAFDoc::ColorRefGUID()) from label <L> to color
@@ -191,7 +197,7 @@ namespace TKXCAF {
         //! in the colortable
         //! Adds a color as necessary
         //! Returns False if cannot find a label for shape S
-        Standard_Boolean SetColor(XTopoDS_Shape^ S, Quantity_ColorRGBA& Color, XXCAFDoc_ColorType type);
+        Standard_Boolean SetColor(XTopoDS_Shape^ S, XQuantity_ColorRGBA^ Color, XXCAFDoc_ColorType type);
 
         //! Removes a link with GUID defined by <type> (see
         //! XCAFDoc::ColorRefGUID()) from label <L> to color
@@ -204,15 +210,15 @@ namespace TKXCAF {
 
         //! Returns label with color assigned to <L> as <type>
         //! Returns False if no such color is assigned
-        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, XTDF_Label^ colorL);
+        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, XTDF_Label^% colorL);
 
         //! Returns color assigned to <L> as <type>
         //! Returns False if no such color is assigned
-        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, XQuantity_Color^ color);
+        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, XQuantity_Color^% color);
 
         //! Returns color assigned to <L> as <type>
         //! Returns False if no such color is assigned
-        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, Quantity_ColorRGBA& color);
+        Standard_Boolean GetColor(XTopoDS_Shape^ S, XXCAFDoc_ColorType type, XQuantity_ColorRGBA^% color);
 
         //! Return TRUE if object on this label is visible, FALSE if invisible.
         Standard_Boolean IsVisible(XTDF_Label^ L);
@@ -240,7 +246,7 @@ namespace TKXCAF {
         //! Returns FALSE if no sush component found
         //! NOTE: create SHUO structeure if it is necessary and if <isCreateSHUO>
         //! Standard_Boolean isCreateSHUO = Standard_True
-        Standard_Boolean SetInstanceColor(XTopoDS_Shape^ theShape, XXCAFDoc_ColorType type, Quantity_ColorRGBA& color, Standard_Boolean isCreateSHUO);
+        Standard_Boolean SetInstanceColor(XTopoDS_Shape^ theShape, XXCAFDoc_ColorType type, XQuantity_ColorRGBA^ color, Standard_Boolean isCreateSHUO);
 
         //! Gets the color of component that styled with SHUO structure
         //! Returns FALSE if no sush component or color type
@@ -248,7 +254,7 @@ namespace TKXCAF {
 
         //! Gets the color of component that styled with SHUO structure
         //! Returns FALSE if no sush component or color type
-        Standard_Boolean GetInstanceColor(XTopoDS_Shape^ theShape, XXCAFDoc_ColorType type, Quantity_ColorRGBA& color);
+        Standard_Boolean GetInstanceColor(XTopoDS_Shape^ theShape, XXCAFDoc_ColorType type, XQuantity_ColorRGBA^% color);
 
         //! Gets the visibility status of component that styled with SHUO structure
         //! Returns FALSE if no sush component

@@ -20,6 +20,7 @@
 #include "XQuantity_NameOfColor.h"
 #include <Standard_Assert.hxx>
 //#include "XStandard_Helper.h"
+class Quantity_ColorRGBA;
 
 //! The pair of Quantity_Color and Alpha component (1.0 opaque, 0.0 transparent).
 using namespace System;
@@ -33,6 +34,8 @@ namespace TKernel {
         //! Creates a color with the default value.
         XQuantity_ColorRGBA();
 
+        XQuantity_ColorRGBA(Quantity_ColorRGBA* pos);
+
         //! Creates the color with specified RGB value.
         XQuantity_ColorRGBA(XQuantity_Color^ theRgb);
 
@@ -40,13 +43,15 @@ namespace TKernel {
         XQuantity_ColorRGBA(XQuantity_Color^ theRgb, float theAlpha);
 
         //! Creates the color from RGBA vector.
-        XQuantity_ColorRGBA(array<float,1> theRgba);
+        //XQuantity_ColorRGBA(array<float,1>^ theRgba);
 
         //! Creates the color from RGBA values.
         XQuantity_ColorRGBA(float theRed, float theGreen, float theBlue, float theAlpha);
 
         //! Assign new values to the color.
         void SetValues(float theRed, float theGreen, float theBlue, float theAlpha);
+
+        Quantity_ColorRGBA* GetColorRGBA();
 
         //! Return RGB color value.
         XQuantity_Color^ GetRGB();
@@ -64,10 +69,12 @@ namespace TKernel {
         void SetAlpha(Standard_ShortReal theAlpha);
 
         //! Return the color as vector of 4 float elements.
-        operator array<Standard_Real, 1>& () {
+        //operator NCollection_Vec4<float>& () { return *(const NCollection_Vec4<float>*)this->NativeHandle; }
+        //! Return the color as vector of 4 float elements.
+        /*operator array<float>^& () {
            NCollection_Vec4<float> NVec4 = *(NCollection_Vec4<float>*)this->NativeHandle;
-           //array<Standard_Real, 1> P = array<Standard_Real,1>();
-        };
+           array<Standard_Real, 1>^ P = array<Standard_Real,1>();
+        };*/
 
         //! Returns true if the distance between colors is greater than Epsilon().
         bool IsDifferent(XQuantity_ColorRGBA^ theOther);

@@ -81,9 +81,9 @@ namespace TKernel {
 
     void XStandard_Helper::OnFreeDll()
     {
-        for (size_t i = 0; i < m_Modeules->size(); ++i)
+        /*for (size_t i = 0; i < m_Modeules->size(); ++i)
             ::FreeLibrary(m_Modeules->at(i));
-        m_Modeules->clear();
+        m_Modeules->clear();*/
     };
 
     // 提取资源

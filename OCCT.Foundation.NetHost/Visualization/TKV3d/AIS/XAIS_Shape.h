@@ -227,7 +227,7 @@ namespace TKV3d {
 
         //! Returns the Color attributes of the shape accordingly to
         //! the current facing model;
-        virtual void Color(XQuantity_Color^ aColor) Standard_OVERRIDE;
+        virtual void Color(XQuantity_Color^% aColor) Standard_OVERRIDE;
 
         //! Returns the NameOfMaterial attributes of the shape accordingly to
         //! the current facing model;

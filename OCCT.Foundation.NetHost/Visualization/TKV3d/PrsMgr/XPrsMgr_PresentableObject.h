@@ -335,7 +335,7 @@ namespace TKV3d {
         Standard_Boolean HasColor();
 
         //! Returns the color setting of the Interactive Object.
-        virtual void Color(XQuantity_Color^ theColor);
+        virtual void Color(XQuantity_Color^% theColor);
 
         //! Only the interactive object knowns which Drawer attribute is affected by the color, if any
         //! (ex: for a wire,it's the wireaspect field of the drawer, but for a vertex, only the point aspect field is affected by the color).

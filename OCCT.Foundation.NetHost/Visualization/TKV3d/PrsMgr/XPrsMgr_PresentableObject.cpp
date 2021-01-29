@@ -394,8 +394,10 @@ namespace TKV3d {
     };
 
     //! Returns the color setting of the Interactive Object.
-    void XPrsMgr_PresentableObject::Color(XQuantity_Color^ theColor) {
-        NativeHandle()->Color(*theColor->GetColor());
+    void XPrsMgr_PresentableObject::Color(XQuantity_Color^% theColor) {
+        Quantity_Color* temp = theColor->GetColor();
+        NativeHandle()->Color(*temp);
+        theColor = gcnew XQuantity_Color(temp);
     };
 
     //! Only the interactive object knowns which Drawer attribute is affected by the color, if any
@@ -450,7 +452,7 @@ namespace TKV3d {
     //! Material aspect determines shading aspect, color and
     //! transparency of visible entities.
     void XPrsMgr_PresentableObject::SetMaterial(XGraphic3d_MaterialAspect^ aName) {
-        NativeHandle()->SetMaterial(aName->GetMaterialAspect());
+        NativeHandle()->SetMaterial(*aName->GetMaterialAspect());
     };
 
     //! Removes the setting for material.

@@ -20,7 +20,7 @@
 #define MAKEINTRESOURCE  MAKEINTRESOURCEA
 #endif // !UNICODE
 
-using namespace std;
+//using namespace std;
 using namespace System;
 using namespace System::Runtime;
 using namespace System::Runtime::InteropServices;
@@ -60,8 +60,8 @@ namespace TKernel {
 		Standard_Boolean FreeEmbedResourse(UINT uiResouceName, char* lpszResourceType, char* lpszSaveFileName);
 	protected:
 		void OnFreeDll();
-	private:
-		vector<HMODULE>* m_Modeules;
+	//private:
+		//vector<HMODULE>* m_Modeules;
 	};
 }
 #endif _XStandard_Helper_HeaderFile

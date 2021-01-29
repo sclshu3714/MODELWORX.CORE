@@ -201,7 +201,7 @@ namespace TKV3d {
     //! Allows you to provide settings for the material aName
     //! in the reconstructed compound shape.
     void XAIS_Shape::SetMaterial(XGraphic3d_MaterialAspect^ aName) {
-        NativeHandle()->SetMaterial(aName->GetMaterialAspect());
+        NativeHandle()->SetMaterial(*aName->GetMaterialAspect());
     };
 
     //! Removes settings for material in the reconstructed compound shape.
@@ -232,8 +232,10 @@ namespace TKV3d {
 
     //! Returns the Color attributes of the shape accordingly to
     //! the current facing model;
-    void XAIS_Shape::Color(XQuantity_Color^ aColor) {
-        NativeHandle()->Color(*aColor->GetColor());
+    void XAIS_Shape::Color(XQuantity_Color^% aColor) {
+        Quantity_Color* temp = aColor->GetColor();
+        NativeHandle()->Color(*temp);
+        aColor = gcnew XQuantity_Color(temp);
     };
 
     //! Returns the NameOfMaterial attributes of the shape accordingly to

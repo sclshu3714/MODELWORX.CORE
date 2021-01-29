@@ -13,11 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_ColoredShape_HeaderFile
-#define _AIS_ColoredShape_HeaderFile
+#ifndef _XAIS_ColoredShape_HeaderFile
+#define _XAIS_ColoredShape_HeaderFile
+#pragma once
+#include <AIS_ColoredShape.hxx>
+#include <XAIS_Shape.h>
+#include <XTopoDS_Shape.h>
+#include <XQuantity_Color.h>
+#include <XGraphic3d_MaterialAspect.h>
 
 #include <AIS_DataMapOfShapeDrawer.hxx>
-#include <AIS_Shape.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 #include <StdPrs_Volume.hxx>
 #include <TopoDS_Compound.hxx>
@@ -27,161 +32,107 @@
 class StdSelect_BRepOwner;
 
 //! Presentation of the shape with customizable sub-shapes properties.
-class AIS_ColoredShape : public AIS_Shape
-{
-public:
+using namespace TKBRep;
+using namespace TKernel;
+using namespace TKMath;
+using namespace TKV3d;
+namespace TKXCAF {
 
-  //! Default constructor
-  Standard_EXPORT AIS_ColoredShape (const TopoDS_Shape& theShape);
+    ref class TKBRep::XTopoDS_Shape;
+    ref class TKernel::XQuantity_Color;
+    ref class TKV3d::XAIS_Shape;
+    ref class TKV3d::XGraphic3d_MaterialAspect;
+    public ref class XAIS_ColoredShape : public XAIS_Shape
+    {
+    public:
+        //! Default constructor
+        XAIS_ColoredShape(XTopoDS_Shape^ theShape);
 
-  //! Copy constructor
-  Standard_EXPORT AIS_ColoredShape (const Handle(AIS_Shape)& theShape);
+        //! Copy constructor
+        XAIS_ColoredShape(XAIS_Shape^ theShape);
 
-public: //! @name sub-shape aspects
+        XAIS_ColoredShape(Handle(AIS_ColoredShape) pos);
 
-  //! Customize properties of specified sub-shape.
-  //! The shape will be stored in the map but ignored, if it is not sub-shape of main Shape!
-  //! This method can be used to mark sub-shapes with customizable properties.
-  Standard_EXPORT virtual Handle(AIS_ColoredDrawer) CustomAspects (const TopoDS_Shape& theShape);
+        virtual Handle(AIS_ColoredShape) GetColoredShape();
 
-  //! Reset the map of custom sub-shape aspects.
-  Standard_EXPORT virtual void ClearCustomAspects();
+        virtual Handle(AIS_Shape) GetShape() Standard_OVERRIDE;
 
-  //! Reset custom properties of specified sub-shape.
-  //! @param theToUnregister unregister or not sub-shape from the map
-  Standard_EXPORT void UnsetCustomAspects (const TopoDS_Shape&    theShape,
-                                           const Standard_Boolean theToUnregister = Standard_False);
+        virtual Handle(AIS_InteractiveObject) GetInteractiveObject() Standard_OVERRIDE;
 
-  //! Customize color of specified sub-shape
-  Standard_EXPORT void SetCustomColor (const TopoDS_Shape&   theShape,
-                                       const Quantity_Color& theColor);
+        virtual Handle(SelectMgr_SelectableObject) GetSelectableObject() Standard_OVERRIDE;
 
-  //! Customize transparency of specified sub-shape
-  Standard_EXPORT void SetCustomTransparency (const TopoDS_Shape& theShape,
-                                              Standard_Real theTransparency);
+        virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
 
-  //! Customize line width of specified sub-shape
-  Standard_EXPORT void SetCustomWidth (const TopoDS_Shape& theShape,
-                                       const Standard_Real theLineWidth);
+    public: //! @name sub-shape aspects
 
-  //! Return the map of custom aspects.
-  const AIS_DataMapOfShapeDrawer& CustomAspectsMap() const { return myShapeColors; }
+      //! Customize properties of specified sub-shape.
+      //! The shape will be stored in the map but ignored, if it is not sub-shape of main Shape!
+      //! This method can be used to mark sub-shapes with customizable properties.
+        virtual Handle(AIS_ColoredDrawer) CustomAspects(XTopoDS_Shape^ theShape);
 
-  //! Return the map of custom aspects.
-  AIS_DataMapOfShapeDrawer& ChangeCustomAspectsMap() { return myShapeColors; }
+        //! Reset the map of custom sub-shape aspects.
+        virtual void ClearCustomAspects();
 
-public: //! @name global aspects
+        //! Reset custom properties of specified sub-shape.
+        //! @param theToUnregister unregister or not sub-shape from the map
+        //! Standard_Boolean theToUnregister = Standard_False
+        void UnsetCustomAspects(XTopoDS_Shape^ theShape, Standard_Boolean theToUnregister);
 
-  //! Setup color of entire shape.
-  Standard_EXPORT virtual void SetColor (const Quantity_Color& theColor) Standard_OVERRIDE;
+        //! Customize color of specified sub-shape
+        void SetCustomColor(XTopoDS_Shape^ theShape, XQuantity_Color^ theColor);
 
-  //! Setup line width of entire shape.
-  Standard_EXPORT virtual void SetWidth (const Standard_Real theLineWidth) Standard_OVERRIDE;
+        //! Customize transparency of specified sub-shape
+        void SetCustomTransparency(XTopoDS_Shape^ theShape, Standard_Real theTransparency);
 
-  //! Sets transparency value.
-  Standard_EXPORT virtual void SetTransparency (const Standard_Real theValue) Standard_OVERRIDE;
+        //! Customize line width of specified sub-shape
+        void SetCustomWidth(XTopoDS_Shape^ theShape, Standard_Real theLineWidth);
 
-  //! Sets the material aspect.
-  Standard_EXPORT virtual void SetMaterial (const Graphic3d_MaterialAspect& theAspect) Standard_OVERRIDE;
+        //! Return the map of custom aspects.
+        AIS_DataMapOfShapeDrawer CustomAspectsMap();
 
-public:
+        //! Return the map of custom aspects.
+        AIS_DataMapOfShapeDrawer ChangeCustomAspectsMap();
 
-  //! Removes the setting for transparency in the reconstructed compound shape.
-  Standard_EXPORT virtual void UnsetTransparency() Standard_OVERRIDE;
+    public: //! @name global aspects
 
-  //! Setup line width of entire shape.
-  Standard_EXPORT virtual void UnsetWidth() Standard_OVERRIDE;
+      //! Setup color of entire shape.
+        virtual void SetColor(XQuantity_Color^ theColor) Standard_OVERRIDE;
 
-protected: //! @name override presentation computation
+        //! Setup line width of entire shape.
+        virtual void SetWidth(Standard_Real theLineWidth) Standard_OVERRIDE;
 
-  //! Compute presentation considering sub-shape color map.
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePrsMgr,
-                                        const Handle(Prs3d_Presentation)&           thePrs,
-                                        const Standard_Integer                      theMode) Standard_OVERRIDE;
+        //! Sets transparency value.
+        virtual void SetTransparency(Standard_Real theValue) Standard_OVERRIDE;
 
-  //! Compute selection considering sub-shape hidden state.
-  Standard_EXPORT virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
-                                                 const Standard_Integer theMode) Standard_OVERRIDE;
+        //! Sets the material aspect.
+        virtual void SetMaterial(XGraphic3d_MaterialAspect^ theAspect) Standard_OVERRIDE;
 
-protected:
+    public:
 
-  typedef NCollection_IndexedDataMap<Handle(AIS_ColoredDrawer), TopoDS_Compound, TColStd_MapTransientHasher> DataMapOfDrawerCompd;
+        //! Removes the setting for transparency in the reconstructed compound shape.
+        virtual void UnsetTransparency() Standard_OVERRIDE;
 
-protected:
+        //! Setup line width of entire shape.
+        virtual void UnsetWidth() Standard_OVERRIDE;
 
-  //! Recursive function to map shapes.
-  //! @param theParentDrawer   the drawer to be used for undetailed shapes (default colors)
-  //! @param theShapeToParse   the subshape to be recursively parsed
-  //! @param theShapeDrawerMap shapes map Subshape (in the base shape) -> Drawer
-  //! @param theParentType     the parent subshape type
-  //! @param theIsParentClosed flag indicating that specified shape is part of closed Solid
-  //! @param theDrawerOpenedShapePerType the array of shape types to fill
-  //! @param theDrawerClosedFaces        the map for closed faces
-  Standard_EXPORT static Standard_Boolean dispatchColors (const Handle(AIS_ColoredDrawer)& theParentDrawer,
-                                                          const TopoDS_Shape& theShapeToParse,
-                                                          const AIS_DataMapOfShapeDrawer& theShapeDrawerMap,
-                                                          const TopAbs_ShapeEnum theParentType,
-                                                          const Standard_Boolean theIsParentClosed,
-                                                          DataMapOfDrawerCompd* theDrawerOpenedShapePerType,
-                                                          DataMapOfDrawerCompd& theDrawerClosedFaces);
-protected:
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                //NativeHandle() = Handle(AIS_Shape)::DownCast(handle);
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(AIS_ColoredShape)::DownCast(handle);
+                else NativeHandle() = NULL;
+            }
+        }
 
-  //! Extract myShapeColors map (KeyshapeColored -> Color) to subshapes map (Subshape -> Color).
-  //! This needed when colored shape is not part of BaseShape (but subshapes are) and actually container for subshapes.
-  Standard_EXPORT void fillSubshapeDrawerMap (AIS_DataMapOfShapeDrawer& theSubshapeDrawerMap) const;
+    private:
+        NCollection_Haft<Handle(AIS_ColoredShape)> NativeHandle;
 
-  //! Add shape to presentation
-  //! @param thePrs the presentation
-  //! @param theDrawerOpenedShapePerType the shapes map with unique attributes
-  //! @param theDrawerClosedFaces the map of attributes for closed faces
-  //! @param theMode display mode
-  Standard_EXPORT void addShapesWithCustomProps (const Handle(Prs3d_Presentation)& thePrs,
-                                                 const DataMapOfDrawerCompd* theDrawerOpenedShapePerType,
-                                                 const DataMapOfDrawerCompd& theDrawerClosedFaces,
-                                                 const Standard_Integer theMode);
-
-  //! Check all shapes from myShapeColorsfor visibility
-  Standard_EXPORT Standard_Boolean isShapeEntirelyVisible() const;
-
-  //! Resolve (parse) theKeyShape into subshapes, search in they for theBaseShape,
-  //! bind all resolved subshapes with theOriginKeyShape and store all binds in theShapeDrawerMap
-  //! @param theShapeDrawerMap shapes map: resolved and found theBaseShape subshape -> theOriginKeyShape
-  //! @param theKeyShape       a shape to be resolved (parse) into smaller (in topological sense)
-  //!                          subshapes for new bind cycle
-  //! @param theDrawer         assigned drawer
-  Standard_EXPORT void bindSubShapes (AIS_DataMapOfShapeDrawer& theShapeDrawerMap,
-                                      const TopoDS_Shape& theKeyShape,
-                                      const Handle(AIS_ColoredDrawer)& theDrawer) const;
-
-  //! Add sub-shape to selection considering hidden state (recursively).
-  //! @param theParentDrawer   drawer of parent shape
-  //! @param theShapeDrawerMap shapes map
-  //! @param theShape          shape to compute sensitive entities
-  //! @param theOwner          selectable owner object
-  //! @param theSelection      selection to append new sensitive entities
-  //! @param theTypOfSel       type of selection
-  //! @param theDeflection     linear deflection
-  //! @param theDeflAngle      angular deflection
-  Standard_EXPORT void computeSubshapeSelection (const Handle(AIS_ColoredDrawer)& theParentDrawer,
-                                                 const AIS_DataMapOfShapeDrawer& theShapeDrawerMap,
-                                                 const TopoDS_Shape& theShape,
-                                                 const Handle(StdSelect_BRepOwner)& theOwner,
-                                                 const Handle(SelectMgr_Selection)& theSelection,
-                                                 const TopAbs_ShapeEnum theTypOfSel,
-                                                 const Standard_Integer thePriority,
-                                                 const Standard_Real theDeflection,
-                                                 const Standard_Real theDeflAngle);
-
-protected:
-
-  AIS_DataMapOfShapeDrawer myShapeColors;
-
-public:
-
-  DEFINE_STANDARD_RTTIEXT(AIS_ColoredShape,AIS_Shape)
-
-};
-
-DEFINE_STANDARD_HANDLE(AIS_ColoredShape, AIS_Shape)
-
-#endif // _AIS_ColoredShape_HeaderFile
+    };
+}
+#endif // _XAIS_ColoredShape_HeaderFile

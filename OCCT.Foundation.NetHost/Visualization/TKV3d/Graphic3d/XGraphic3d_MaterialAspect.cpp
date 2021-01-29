@@ -57,8 +57,8 @@ namespace TKV3d  {
         NativeHandle = new Graphic3d_MaterialAspect(safe_cast<Graphic3d_NameOfMaterial>(theName));
     };
 
-    Graphic3d_MaterialAspect XGraphic3d_MaterialAspect::GetMaterialAspect() {
-        return *NativeHandle;
+    Graphic3d_MaterialAspect* XGraphic3d_MaterialAspect::GetMaterialAspect() {
+        return NativeHandle;
     };
 
     //! Returns the material name (within predefined enumeration).
@@ -235,12 +235,12 @@ namespace TKV3d  {
 
     //! Returns TRUE if this material differs from specified one.
     Standard_Boolean XGraphic3d_MaterialAspect::IsDifferent(XGraphic3d_MaterialAspect^ theOther) {
-        return NativeHandle->IsDifferent(theOther->GetMaterialAspect());
+        return NativeHandle->IsDifferent(*theOther->GetMaterialAspect());
     };
 
 
     //! Returns TRUE if this material is identical to specified one.
     Standard_Boolean XGraphic3d_MaterialAspect::IsEqual(XGraphic3d_MaterialAspect^ theOther) {
-        return NativeHandle->IsEqual(theOther->GetMaterialAspect());
+        return NativeHandle->IsEqual(*theOther->GetMaterialAspect());
     };
 }

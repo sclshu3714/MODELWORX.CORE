@@ -74,7 +74,7 @@ namespace TKV3d {
         //! Creates a generic material.
         XGraphic3d_MaterialAspect(XGraphic3d_NameOfMaterial theName);
 
-        virtual Graphic3d_MaterialAspect GetMaterialAspect();
+        virtual Graphic3d_MaterialAspect* GetMaterialAspect();
 
         //! Returns the material name (within predefined enumeration).
         XGraphic3d_NameOfMaterial Name();

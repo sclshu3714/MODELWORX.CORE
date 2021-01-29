@@ -11,78 +11,80 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFPrs_AISObject_HeaderFile
-#define _XCAFPrs_AISObject_HeaderFile
-
-#include <AIS_ColoredShape.hxx>
-
-#include <TDF_Label.hxx>
+#ifndef _XXCAFPrs_AISObject_HeaderFile
+#define _XXCAFPrs_AISObject_HeaderFile
+#pragma once
+#include <XCAFPrs_AISObject.hxx>
+#include <XAIS_ColoredShape.h>
+#include <XTDF_Label.h>
 
 class XCAFPrs_Style;
+using namespace TKLCAF;
+namespace TKXCAF {
+    ref class TKLCAF::XTDF_Label;
+    //! Implements AIS_InteractiveObject functionality for shape in DECAF document.
+    public ref class XXCAFPrs_AISObject : public XAIS_ColoredShape
+    {
+    public:
 
-//! Implements AIS_InteractiveObject functionality for shape in DECAF document.
-class XCAFPrs_AISObject : public AIS_ColoredShape
-{
-public:
+        //! Creates an object to visualise the shape label.
+        XXCAFPrs_AISObject(XTDF_Label^ theLabel);
 
-  //! Creates an object to visualise the shape label.
-  Standard_EXPORT XCAFPrs_AISObject (const TDF_Label& theLabel);
 
-  //! Returns the label which was visualised by this presentation
-  const TDF_Label& GetLabel() const { return myLabel; }
+        XXCAFPrs_AISObject(Handle(XCAFPrs_AISObject) pos);
 
-  //! Assign the label to this presentation
-  //! (but does not mark it outdated with SetToUpdate()).
-  void SetLabel (const TDF_Label& theLabel)
-  {
-    myLabel = theLabel;
-  }
+        virtual Handle(XCAFPrs_AISObject) GetAISObject();
 
-  //! Fetch the Shape from associated Label and fill the map of sub-shapes styles.
-  //! By default, this method is called implicitly within first ::Compute().
-  //! Application might call this method explicitly to manipulate styles afterwards.
-  //! @param theToSyncStyles flag indicating if method ::Compute() should call this method again
-  //!                        on first compute or re-compute
-  Standard_EXPORT virtual void DispatchStyles (const Standard_Boolean theToSyncStyles = Standard_False);
+        virtual Handle(AIS_ColoredShape) GetColoredShape() Standard_OVERRIDE;
 
-  //! Sets the material aspect.
-  //! This method assigns the new default material without overriding XDE styles.
-  //! Re-computation of existing presentation is not required after calling this method.
-  Standard_EXPORT virtual void SetMaterial (const Graphic3d_MaterialAspect& theMaterial) Standard_OVERRIDE;
+        virtual Handle(AIS_Shape) GetShape() Standard_OVERRIDE;
 
-protected:
+        virtual Handle(AIS_InteractiveObject) GetInteractiveObject() Standard_OVERRIDE;
 
-  //! Redefined method to compute presentation.
-  Standard_EXPORT virtual  void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
-                                         const Handle(Prs3d_Presentation)&           thePresentation,
-                                         const Standard_Integer                      theMode) Standard_OVERRIDE;
+        virtual Handle(SelectMgr_SelectableObject) GetSelectableObject() Standard_OVERRIDE;
 
-  //! Set colors to drawer
-  Standard_EXPORT void SetColors (const Handle(Prs3d_Drawer)& theDrawer,
-                                  const Quantity_Color&       theColorCurv,
-                                  const Quantity_ColorRGBA&   theColorSurf);
+        virtual Handle(PrsMgr_PresentableObject) GetPresentableObject() Standard_OVERRIDE;
 
-  //! Set colors to drawer
-  void SetColors (const Handle(Prs3d_Drawer)& theDrawer,
-                  const Quantity_Color& theColorCurv,
-                  const Quantity_Color& theColorSurf) { SetColors (theDrawer, theColorCurv, Quantity_ColorRGBA (theColorSurf)); }
+        //! Returns the label which was visualised by this presentation
+        XTDF_Label^ GetLabel();
 
-  //! Fills out a default style object which is used when styles are
-  //! not explicitly defined in the document.
-  //! By default, the style uses white color for curves and surfaces.
-  Standard_EXPORT virtual  void DefaultStyle (XCAFPrs_Style& theStyle) const;
+        //! Assign the label to this presentation
+        //! (but does not mark it outdated with SetToUpdate()).
+        void SetLabel(XTDF_Label^ theLabel);
 
-protected:
+        // !Returns the Color attributes of the shape accordingly to
+        //! the current facing model;
+        virtual void Color(XQuantity_Color ^ %aColor) Standard_OVERRIDE;
 
-  TDF_Label        myLabel;        //!< label pointing onto the shape
-  Standard_Boolean myToSyncStyles; //!< flag indicating that shape and sub-shapes should be updates within Compute()
+        //! Fetch the Shape from associated Label and fill the map of sub-shapes styles.
+        //! By default, this method is called implicitly within first ::Compute().
+        //! Application might call this method explicitly to manipulate styles afterwards.
+        //! @param theToSyncStyles flag indicating if method ::Compute() should call this method again
+        //!                        on first compute or re-compute
+        //! Standard_Boolean theToSyncStyles = Standard_False
+        virtual void DispatchStyles(Standard_Boolean theToSyncStyles);
 
-public:
+        //! Sets the material aspect.
+        //! This method assigns the new default material without overriding XDE styles.
+        //! Re-computation of existing presentation is not required after calling this method.
+        virtual void SetMaterial(XGraphic3d_MaterialAspect^ theMaterial) Standard_OVERRIDE;
 
-  DEFINE_STANDARD_RTTIEXT(XCAFPrs_AISObject,AIS_ColoredShape)
+        /// <summary>
+        /// ±¾µØ¾ä±ú
+        /// </summary>
+        virtual property Handle(Standard_Transient) IHandle {
+            Handle(Standard_Transient) get() Standard_OVERRIDE {
+                return NativeHandle();
+            }
+            void set(Handle(Standard_Transient) handle) Standard_OVERRIDE {
+                if (!handle.IsNull())
+                    NativeHandle() = Handle(XCAFPrs_AISObject)::DownCast(handle);
+                else NativeHandle() = NULL;
+            }
+        }
 
-};
-
-DEFINE_STANDARD_HANDLE(XCAFPrs_AISObject, AIS_ColoredShape)
-
-#endif // _XCAFPrs_AISObject_HeaderFile
+    private:
+        NCollection_Haft<Handle(XCAFPrs_AISObject)> NativeHandle;
+    };
+}
+#endif // _XXCAFPrs_AISObject_HeaderFile

@@ -22,6 +22,7 @@
 #include "XTDF_Label.h"
 #include "XStandard_GUID.h"
 #include "XXCAFDoc_ShapeTool.h"
+#include "XXCAFDoc_ColorTool.h"
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
@@ -107,7 +108,7 @@ namespace TKXCAF {
 		static XXCAFDoc_ShapeTool^ ShapeTool(XTDF_Label^ acces);
 
 		//! Creates (if it does not exist) ColorTool attribute on ColorsLabel().
-		static Handle(XCAFDoc_ColorTool) ColorTool(XTDF_Label^ acces);
+		static XXCAFDoc_ColorTool^ ColorTool(XTDF_Label^ acces);
 
 		//! Creates (if it does not exist) LayerTool attribute on LayersLabel().
 		static Handle(XCAFDoc_LayerTool) LayerTool(XTDF_Label^ acces);

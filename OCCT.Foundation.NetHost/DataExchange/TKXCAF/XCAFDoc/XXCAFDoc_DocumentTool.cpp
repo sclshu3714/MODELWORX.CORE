@@ -87,8 +87,8 @@ namespace TKXCAF {
 
 	//! Creates (if it does not exist) ColorTool attribute on ColorsLabel().
 	//! static 
-	Handle(XCAFDoc_ColorTool) XXCAFDoc_DocumentTool::ColorTool(XTDF_Label^ acces) {
-		return XCAFDoc_DocumentTool::ColorTool(*acces->GetLabel());
+	XXCAFDoc_ColorTool^ XXCAFDoc_DocumentTool::ColorTool(XTDF_Label^ acces) {
+		return gcnew XXCAFDoc_ColorTool(XCAFDoc_DocumentTool::ColorTool(*acces->GetLabel()));
 	};
 
 	//! Creates (if it does not exist) LayerTool attribute on LayersLabel().
