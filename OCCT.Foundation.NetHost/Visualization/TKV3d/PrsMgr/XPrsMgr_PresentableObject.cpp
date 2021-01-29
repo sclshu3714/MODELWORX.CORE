@@ -220,8 +220,15 @@ namespace TKV3d {
     //! Return the local transformation.
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::LocalTransformationGeom() {
-          return NativeHandle()->LocalTransformationGeom();
+    XTopLoc_Datum3D^ XPrsMgr_PresentableObject::LocalTransformationGeom() {
+          return gcnew XTopLoc_Datum3D(NativeHandle()->LocalTransformationGeom());
+    };
+
+    //! Sets local transformation to theTransformation.
+    //! Note that the local transformation of the object having Transformation Persistence
+    //! is applied within Local Coordinate system defined by this Persistence.
+    void XPrsMgr_PresentableObject::SetLocalTransformation(XTopLoc_Location^ theTrsf) {
+        NativeHandle()->SetLocalTransformation(*theTrsf->GetLocation());
     };
 
     //! Sets local transformation to theTransformation.
@@ -234,8 +241,8 @@ namespace TKV3d {
     //! Sets local transformation to theTransformation.
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    void XPrsMgr_PresentableObject::SetLocalTransformation(const Handle(TopLoc_Datum3D)& theTrsf) {
-        NativeHandle()->SetLocalTransformation(theTrsf);
+    void XPrsMgr_PresentableObject::SetLocalTransformation(XTopLoc_Datum3D^ theTrsf) {
+        NativeHandle()->SetLocalTransformation(theTrsf->GetDatum3D());
     };
 
     //! Returns true if object has a transformation that is different from the identity.
@@ -246,14 +253,14 @@ namespace TKV3d {
     //! Return the transformation taking into account transformation of parent object(s).
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::TransformationGeom() {
-        return NativeHandle()->TransformationGeom();
+    XTopLoc_Datum3D^ XPrsMgr_PresentableObject::TransformationGeom() {
+        return gcnew XTopLoc_Datum3D(NativeHandle()->TransformationGeom());
     };
 
     //! Return the local transformation.
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const xgp_Trsf^ XPrsMgr_PresentableObject::LocalTransformation() {
+    xgp_Trsf^ XPrsMgr_PresentableObject::LocalTransformation() {
         gp_Trsf* temp = new gp_Trsf(NativeHandle()->LocalTransformation());
         return gcnew xgp_Trsf(temp);
     };
@@ -261,20 +268,20 @@ namespace TKV3d {
     //! Return the transformation taking into account transformation of parent object(s).
     //! Note that the local transformation of the object having Transformation Persistence
     //! is applied within Local Coordinate system defined by this Persistence.
-    const xgp_Trsf^ XPrsMgr_PresentableObject::Transformation() {
+    xgp_Trsf^ XPrsMgr_PresentableObject::Transformation() {
         gp_Trsf* temp = new gp_Trsf(NativeHandle()->Transformation());
         return gcnew xgp_Trsf(temp);
     };
 
     //! Return inversed transformation.
-    const xgp_GTrsf^ XPrsMgr_PresentableObject::InversedTransformation() {
+    xgp_GTrsf^ XPrsMgr_PresentableObject::InversedTransformation() {
         gp_GTrsf* temp = new gp_GTrsf(NativeHandle()->InversedTransformation());
         return gcnew xgp_GTrsf(temp);
     };
 
     //! Return combined parent transformation.
-    const Handle(TopLoc_Datum3D)& XPrsMgr_PresentableObject::CombinedParentTransformation() {
-        return NativeHandle()->CombinedParentTransformation();
+    XTopLoc_Datum3D^ XPrsMgr_PresentableObject::CombinedParentTransformation() {
+        return gcnew XTopLoc_Datum3D(NativeHandle()->CombinedParentTransformation());
     };
 
     //! resets local transformation to identity.
@@ -366,8 +373,8 @@ namespace TKV3d {
     //! Returns bounding box of object correspondingly to its current display mode.
     //! This method requires presentation to be already computed, since it relies on bounding box of presentation structures,
     //! which are supposed to be same/close amongst different display modes of this object.
-    void XPrsMgr_PresentableObject::BoundingBox(Bnd_Box& theBndBox) {
-
+    void XPrsMgr_PresentableObject::BoundingBox(XBnd_Box^ theBndBox) {
+        NativeHandle()->BoundingBox(*theBndBox->GetBndBox());
     };
     //! @name simplified presentation properties API
 
@@ -492,8 +499,12 @@ namespace TKV3d {
     };
 
     //! Retrieves current polygon offsets settings from <myDrawer>.
-    void XPrsMgr_PresentableObject::PolygonOffsets(Standard_Integer& aMode, Standard_ShortReal& aFactor, Standard_ShortReal& aUnits) {
-        NativeHandle()->PolygonOffsets(aMode, aFactor, aUnits);
+    void XPrsMgr_PresentableObject::PolygonOffsets(Standard_Integer% aMode, Standard_ShortReal% aFactor, Standard_ShortReal% aUnits) {
+        Standard_Integer aModex = aMode;
+        Standard_ShortReal aFactorx = aFactor;
+        Standard_ShortReal aUnitsx = aUnits;
+        NativeHandle()->PolygonOffsets(aModex, aFactorx, aUnitsx);
+        aMode = aModex; aFactor = aFactorx, aUnits = aUnitsx;
     };
 
     //! Sets up polygon offsets for this object.

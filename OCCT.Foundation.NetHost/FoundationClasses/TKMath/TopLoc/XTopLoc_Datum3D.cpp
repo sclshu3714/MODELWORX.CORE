@@ -7,12 +7,12 @@ namespace TKMath {
     //=======================================================================
     XTopLoc_Datum3D::XTopLoc_Datum3D()
     {
-        NativeHandle = new TopLoc_Datum3D();
+        NativeHandle() = new TopLoc_Datum3D();
     };
 
     //! Constructs a default Datum3D.
-    XTopLoc_Datum3D::XTopLoc_Datum3D(TopLoc_Datum3D* pos) {
-        NativeHandle = new TopLoc_Datum3D(*pos);
+    XTopLoc_Datum3D::XTopLoc_Datum3D(Handle(TopLoc_Datum3D) pos) {
+        NativeHandle() = pos;
     };
 
     //=======================================================================
@@ -22,18 +22,18 @@ namespace TKMath {
 
     XTopLoc_Datum3D::XTopLoc_Datum3D(xgp_Trsf^ T)
     {
-        NativeHandle = new TopLoc_Datum3D(*T->GetTrsf());
+        NativeHandle() = new TopLoc_Datum3D(*T->GetTrsf());
     };
 
     //!
-    TopLoc_Datum3D XTopLoc_Datum3D::GetDatum3D() {
-        return *NativeHandle;
+    Handle(TopLoc_Datum3D) XTopLoc_Datum3D::GetDatum3D() {
+        return NativeHandle();
     };
 
     //! Returns a gp_Trsf which, when applied to this datum,
         //! produces the default datum.
     xgp_Trsf^ XTopLoc_Datum3D::Transformation() {
-        gp_Trsf* temp = new gp_Trsf(NativeHandle->Transformation());
+        gp_Trsf* temp = new gp_Trsf(NativeHandle()->Transformation());
         return gcnew xgp_Trsf(temp);
     };
     //=======================================================================
@@ -41,7 +41,7 @@ namespace TKMath {
     //purpose  : 
     //=======================================================================
     void XTopLoc_Datum3D::DumpJson(Standard_OStream& theOStream, const Standard_Integer theDepth) {
-        NativeHandle->DumpJson(theOStream, theDepth);
+        NativeHandle()->DumpJson(theOStream, theDepth);
     };                       
 
     //=======================================================================
@@ -50,7 +50,7 @@ namespace TKMath {
     //=======================================================================
 
     void  XTopLoc_Datum3D::ShallowDump(Standard_OStream& S)  {
-        NativeHandle->ShallowDump(S);
+        NativeHandle()->ShallowDump(S);
     };
 }
 

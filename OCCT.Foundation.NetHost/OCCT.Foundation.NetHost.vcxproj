@@ -235,6 +235,7 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_LabelSequence.h" />
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_XIterator.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.h" />
     <ClInclude Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.h" />
@@ -639,6 +640,7 @@
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_ChildIterator.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Label.cpp" />
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Application.cpp" />
     <ClCompile Include="ApplicationFramework\TKLCAF\TDocStd\XTDocStd_Document.cpp" />
     <ClCompile Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.cpp" />

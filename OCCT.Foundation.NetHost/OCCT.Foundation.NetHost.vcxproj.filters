@@ -1710,6 +1710,9 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_ColoredShape.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
     </ClInclude>
+    <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.h">
+      <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2480,6 +2483,9 @@
     </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_AISObject.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.cpp">
+      <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

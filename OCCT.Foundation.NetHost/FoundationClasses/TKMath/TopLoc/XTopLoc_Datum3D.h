@@ -13,12 +13,22 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+#ifndef _XTopLoc_Datum3D_HeaderFile
+#define _XTopLoc_Datum3D_HeaderFile
 
 #pragma once
 #include <TopLoc_Datum3D.hxx>
 #include "xgp_Trsf.h"
 #include "XStandard_ConstructionError.h"
+#include "NCollection_Haft.h"
 
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <gp_Trsf.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_OStream.hxx>
 
 namespace TKMath {
     ref class XStandard_ConstructionError;
@@ -39,14 +49,14 @@ namespace TKMath {
         XTopLoc_Datum3D();
 
         //! Constructs a default Datum3D.
-        XTopLoc_Datum3D(TopLoc_Datum3D* pos);
+        XTopLoc_Datum3D(Handle(TopLoc_Datum3D) pos);
 
         //! Constructs a Datum3D form a Trsf from gp. An error is
         //! raised if the Trsf is not a rigid transformation.
         XTopLoc_Datum3D(xgp_Trsf^ T);
 
         //!
-        TopLoc_Datum3D GetDatum3D();
+        Handle(TopLoc_Datum3D) GetDatum3D();
 
         //! Returns a gp_Trsf which, when applied to this datum,
         //! produces the default datum.
@@ -63,20 +73,21 @@ namespace TKMath {
         /// <summary>
         /// ±¾µØ¾ä±ú
         /// </summary>
-        virtual property TopLoc_Datum3D* IHandle {
-            TopLoc_Datum3D* get() {
-                return NativeHandle;
+        virtual property Handle(TopLoc_Datum3D) IHandle {
+            Handle(TopLoc_Datum3D) get() {
+                return NativeHandle();
             }
-            void set(TopLoc_Datum3D* handle) {
-                NativeHandle = handle;
+            void set(Handle(TopLoc_Datum3D) handle) {
+                NativeHandle() = handle;
             }
         };
 
     private:
-        TopLoc_Datum3D* NativeHandle;
+        NCollection_Haft<Handle(TopLoc_Datum3D)> NativeHandle;
 
     };
     inline void ShallowDump(const Handle(TopLoc_Datum3D)& me, Standard_OStream& S) {
         me->ShallowDump(S);
     };
 }
+#endif // _XTopLoc_Datum3D_HeaderFile

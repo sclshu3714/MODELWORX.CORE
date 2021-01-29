@@ -26,6 +26,9 @@
 #include "XPrsMgr_TypeOfPresentation3d.h"
 #include "XGraphic3d_NameOfMaterial.h"
 #include <XGraphic3d_MaterialAspect.h>
+#include <XTopLoc_Datum3D.h>
+#include <XTopLoc_Location.h>
+#include <XBnd_Box.h>
 
 #include <Aspect_TypeOfFacingModel.hxx>
 #include <gp_GTrsf.hxx>
@@ -62,6 +65,9 @@ using namespace TKMath;
 namespace TKV3d {
     ref class TKMath::xgp_Trsf;
     ref class TKMath::xgp_GTrsf;
+    ref class TKMath::XTopLoc_Datum3D;
+    ref class TKMath::XTopLoc_Location;
+    ref class TKMath::XBnd_Box;
     ref class XGraphic3d_MaterialAspect;
     public ref class XPrsMgr_PresentableObject //: public Standard_Transient
     {
@@ -218,7 +224,12 @@ namespace TKV3d {
         //! Return the local transformation.
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const Handle(TopLoc_Datum3D)& LocalTransformationGeom();
+        XTopLoc_Datum3D^ LocalTransformationGeom();
+
+        //! Sets local transformation to theTransformation.
+        //! Note that the local transformation of the object having Transformation Persistence
+        //! is applied within Local Coordinate system defined by this Persistence.
+        void SetLocalTransformation(XTopLoc_Location^ theTrsf);
 
         //! Sets local transformation to theTransformation.
         //! Note that the local transformation of the object having Transformation Persistence
@@ -228,7 +239,7 @@ namespace TKV3d {
         //! Sets local transformation to theTransformation.
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        void SetLocalTransformation(const Handle(TopLoc_Datum3D)& theTrsf);
+        void SetLocalTransformation(XTopLoc_Datum3D^ theTrsf);
 
         //! Returns true if object has a transformation that is different from the identity.
         Standard_Boolean HasTransformation();
@@ -236,23 +247,23 @@ namespace TKV3d {
         //! Return the transformation taking into account transformation of parent object(s).
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const Handle(TopLoc_Datum3D)& TransformationGeom();
+        XTopLoc_Datum3D^ TransformationGeom();
 
         //! Return the local transformation.
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const xgp_Trsf^ LocalTransformation();
+        xgp_Trsf^ LocalTransformation();
 
         //! Return the transformation taking into account transformation of parent object(s).
         //! Note that the local transformation of the object having Transformation Persistence
         //! is applied within Local Coordinate system defined by this Persistence.
-        const xgp_Trsf^ Transformation();
+        xgp_Trsf^ Transformation();
 
         //! Return inversed transformation.
-        const xgp_GTrsf^ InversedTransformation();
+        xgp_GTrsf^ InversedTransformation();
 
         //! Return combined parent transformation.
-        const Handle(TopLoc_Datum3D)& CombinedParentTransformation();
+        XTopLoc_Datum3D^ CombinedParentTransformation();
 
         //! resets local transformation to identity.
         virtual void ResetTransformation();
@@ -317,7 +328,7 @@ namespace TKV3d {
         //! Returns bounding box of object correspondingly to its current display mode.
         //! This method requires presentation to be already computed, since it relies on bounding box of presentation structures,
         //! which are supposed to be same/close amongst different display modes of this object.
-        virtual void BoundingBox(Bnd_Box& theBndBox);
+        virtual void BoundingBox(XBnd_Box^ theBndBox);
     public: //! @name simplified presentation properties API
 
       //! Enables or disables on-triangulation build of isolines according to the flag given.
@@ -399,7 +410,7 @@ namespace TKV3d {
         virtual Standard_Boolean HasPolygonOffsets();
 
         //! Retrieves current polygon offsets settings from <myDrawer>.
-        virtual void PolygonOffsets(Standard_Integer& aMode, Standard_ShortReal& aFactor, Standard_ShortReal& aUnits);
+        virtual void PolygonOffsets(Standard_Integer% aMode, Standard_ShortReal% aFactor, Standard_ShortReal% aUnits);
 
         //! Sets up polygon offsets for this object.
         //! @sa Graphic3d_Aspects::SetPolygonOffsets()

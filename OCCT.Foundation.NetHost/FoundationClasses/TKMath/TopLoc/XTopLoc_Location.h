@@ -13,12 +13,23 @@
 //
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
+#ifndef _XTopLoc_Location_HeaderFile
+#define _XTopLoc_Location_HeaderFile
+
 #pragma once
 #include <TopLoc_Location.hxx>
 #include "xgp_Trsf.h"
+#include <XTopLoc_Datum3D.h>
 
 
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
 
+#include <TopLoc_SListOfItemLocation.hxx>
+#include <Standard_Boolean.hxx>
+#include <Standard_Integer.hxx>
+#include <Standard_OStream.hxx>
 
 //! A Location is a composite transition. It comprises a
 //! series of elementary reference coordinates, i.e.
@@ -28,6 +39,7 @@
 namespace TKMath {
 
     ref class xgp_Trsf;
+    ref class XTopLoc_Datum3D;
     public ref class XTopLoc_Location
     {
     public:
@@ -52,7 +64,7 @@ namespace TKMath {
         //! Exceptions
         //! Standard_ConstructionError if the transformation
         //! T does not represent a 3D coordinate system.
-        XTopLoc_Location(const Handle(TopLoc_Datum3D) D);
+        XTopLoc_Location(XTopLoc_Datum3D^ D);
 
         //! ÊÍ·Å
         ~XTopLoc_Location();
@@ -71,7 +83,7 @@ namespace TKMath {
         //! the other data comprising this location.
         //! Exceptions
         //! Standard_NoSuchObject if this location is empty.
-        Handle(TopLoc_Datum3D) FirstDatum();
+        XTopLoc_Datum3D^ FirstDatum();
 
         //! Returns   the  power  elevation  of    the   first
         //! elementary datum.
@@ -164,7 +176,8 @@ namespace TKMath {
             void set(TopLoc_Location* handle) {
                 NativeHandle = handle;
             }
-        }
+        };
+
     private:
         TopLoc_Location* NativeHandle;
     };
@@ -181,6 +194,6 @@ namespace TKMath {
         me->GetLocation()->ShallowDump(S);
     }
 };
-
+#endif // _XTopLoc_Location_HeaderFile
 
 

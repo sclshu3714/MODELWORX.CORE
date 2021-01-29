@@ -13,7 +13,7 @@ namespace TKMath {
     //!ructs an empty local coordinate system object.
     //! Note: A Locationructed from a default datum is said to be "empty".
     XTopLoc_Location::XTopLoc_Location(TopLoc_Location* pos) {
-        NativeHandle = new TopLoc_Location(*pos);
+        NativeHandle = pos;
     };
 
     //!ructs an empty local coordinate system object.
@@ -32,14 +32,12 @@ namespace TKMath {
     //! Exceptions
     //! Standard_ConstructionError if the transformation
     //! T does not represent a 3D coordinate system.
-    XTopLoc_Location::XTopLoc_Location(const Handle(TopLoc_Datum3D) D) {
-        NativeHandle = new TopLoc_Location(D);
+    XTopLoc_Location::XTopLoc_Location(XTopLoc_Datum3D^ D) {
+        NativeHandle = new TopLoc_Location(D->GetDatum3D());
     };
 
     //! ÊÍ·Å
     XTopLoc_Location::~XTopLoc_Location() {
-        if (NativeHandle != NULL)
-            delete NativeHandle;
         NativeHandle = NULL;
     };
 
@@ -59,12 +57,12 @@ namespace TKMath {
     };
 
     //! Returns    the  first   elementary  datum  of  the
-    //! Location.  Use the NextLocation function recursively to access
+    //! Location.  Use the NextLocation function recursively to accesss
     //! the other data comprising this location.
     //! Exceptions
     //! Standard_NoSuchObject if this location is empty.
-    Handle(TopLoc_Datum3D) XTopLoc_Location::FirstDatum() {
-        return NativeHandle->FirstDatum();
+    XTopLoc_Datum3D^ XTopLoc_Location::FirstDatum() {
+        return gcnew XTopLoc_Datum3D(NativeHandle->FirstDatum());
     };
 
     //! Returns   the  power  elevation  of    the   first

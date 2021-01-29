@@ -636,6 +636,29 @@ namespace UniversalCAD
             return true;
         }
 
+        private bool XDisplayLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XXCAFDoc_ColorTool AssemblyColorTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
+        {
+            string aName = null;
+            XTDF_Attribute aNodeName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
+                XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
+                XTCollection_ExtendedString EString = XNodeName.Get();
+                aName = EString.GetValueString();
+            }
+            if (string.IsNullOrEmpty(aName)) {
+                XTDF_Label aRefLabel = new XTDF_Label();
+                if (XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref aRefLabel) && aRefLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
+                    XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
+                    XTCollection_ExtendedString EString = XNodeName.Get();
+                    aName = EString.GetValueString();
+                }
+            }
+            if (string.IsNullOrEmpty(aName)) {
+                //XTDF_Tool.
+            }
+            return true;
+        }
+
         /// <summary>
         /// 显示TDF_Label
         /// </summary>

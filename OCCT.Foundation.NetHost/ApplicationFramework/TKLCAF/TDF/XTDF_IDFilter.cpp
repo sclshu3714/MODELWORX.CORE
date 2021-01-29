@@ -21,12 +21,12 @@ namespace TKLCAF {
     };
 
     //! Creates an ID/attribute filter based on an ID
-    XTDF_IDFilter::XTDF_IDFilter(TDF_IDFilter& pos) {
-        NativeHandle = &pos;
+    XTDF_IDFilter::XTDF_IDFilter(TDF_IDFilter* pos) {
+        NativeHandle = pos;
     };
 
-    TDF_IDFilter XTDF_IDFilter::GetIDFilter() {
-        return &NativeHandle;
+    TDF_IDFilter* XTDF_IDFilter::GetIDFilter() {
+        return NativeHandle;
     };
 
     //! The list of ID is cleared and the filter mode is

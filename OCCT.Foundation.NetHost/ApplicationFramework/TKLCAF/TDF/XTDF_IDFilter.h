@@ -60,10 +60,10 @@ namespace TKLCAF {
         XTDF_IDFilter(const Standard_Boolean ignoreMode);
 
         //! Creates an ID/attribute filter based on an ID
-        XTDF_IDFilter(TDF_IDFilter& pos);
+        XTDF_IDFilter(TDF_IDFilter* pos);
 
         //!
-        TDF_IDFilter GetIDFilter();
+        TDF_IDFilter* GetIDFilter();
 
         //! The list of ID is cleared and the filter mode is
         //! set to ignore mode if <keep> is true; false
