@@ -82,7 +82,7 @@ namespace UniversalCAD
             myDegenerateModeIsOn = true;
             IsRectVisible = false;
             OCCTView.SetLight(true);
-            OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_COLOR, new XQuantity_Color(Color.Blue.R / 255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 1, 1.0f);
+            OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_COLOR, new XQuantity_Color(Color.Blue.R / 255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 0, 1.0f);
             this.RWControl.SizeChanged += RenderWindow_SizeChanged;
             this.RWControl.Paint += RenderWindow_Paint;
             this.RWControl.KeyDown += RenderWindow_KeyDown;
@@ -377,13 +377,9 @@ namespace UniversalCAD
                                 else
                                     InputEvent(myXmax, myYmax);
                             }
-                            else
-                            {
+                            else if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift) {
                                 myXmax = e.X; myYmax = e.Y;
-                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                    MultiDragEvent(myXmax, myYmax, 1);
-                                else
-                                    DragEvent(myXmax, myYmax, 1);
+                                MultiDragEvent(myXmax, myYmax, 1);
                             }
                             if (!myDegenerateModeIsOn)
                             {
