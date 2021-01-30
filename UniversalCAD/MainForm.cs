@@ -169,427 +169,6 @@ namespace UniversalCAD
         #endregion
         #endregion
 
-        #region 操作事件
-        /// <summary>
-        /// 窗体大小变化事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenderWindow_SizeChanged(object sender, EventArgs e)
-        {
-            if (InitViewer)
-            {
-                OCCTView.RedrawView();
-                OCCTView.UpdateView();
-                OCCTView.UpdateCurrentViewer();
-                this.RWControl.Select();
-            }
-        }
-        /// <summary>
-        /// 窗体绘制事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenderWindow_Paint(object sender, PaintEventArgs e)
-        {
-            if (InitViewer)
-            {
-                OCCTView.RedrawView();
-                OCCTView.UpdateView();
-                OCCTView.UpdateCurrentViewer();
-                this.RWControl.Select();
-            }
-        }
-        /// <summary>
-        /// 键盘按下事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenderWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Shift)
-                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
-            else if (e.Control)
-                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Ctrl;
-            else if (e.Alt)
-                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Alt;
-        }
-        /// <summary>
-        /// 键盘弹起事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenderWindow_KeyUp(object sender, KeyEventArgs e)
-        {
-            myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
-            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-        }
-        /// <summary>
-        /// 鼠标按下事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenderWindow_MouseDown(object sender, MouseEventArgs e)
-        {
-            //InputHandler.MouseDown(mCanvas, e, Control.ModifierKeys);
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    #region 鼠标左键按下
-                    myXmin = e.X; myYmin = e.Y;
-                    myXmax = e.X; myYmax = e.Y;
-                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
-                        // start the dinamic zooming....
-                        myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
-                    else
-                    {
-                        switch (myCurrentMode)
-                        {
-                            case CurrentAction3d.CurAction3d_Nothing:
-                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                    MultiDragEvent(myXmax, myYmax, -1);
-                                else
-                                    DragEvent(myXmax, myYmax, -1);
-                                break;
-                            case CurrentAction3d.CurAction3d_DynamicRotation:
-                                if (!myDegenerateModeIsOn)
-                                    OCCTView.SetDegenerateModeOn();
-                                //start the rotation
-                                OCCTView.StartRotation(e.X, e.Y);
-                                break;
-                            case CurrentAction3d.CurAction3d_WindowZooming:
-                                this.Cursor = System.Windows.Forms.Cursors.Hand;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    #endregion
-                    break;
-                case MouseButtons.Right:
-                    #region 鼠标右键按下
-                    //MessageBox.Show("right mouse button is down");
-                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
-                    {
-                        if (!myDegenerateModeIsOn)
-                            OCCTView.SetDegenerateModeOn();
-                        OCCTView.StartRotation(e.X, e.Y);
-                    }
-                    //else
-                    //    Popup(e.X, e.Y);
-                    #endregion
-                    break;
-                case MouseButtons.Middle:
-                    #region 鼠标中键按下
-                    {
-                        if (!myDegenerateModeIsOn)
-                            OCCTView.SetDegenerateModeOn();
-                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
-                    }
-                    #endregion
-                    break;
-                default:
-                    break;
-            }
-        }
-        /// <summary>
-        /// 鼠标弹起事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-		private void RenderWindow_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    #region 鼠标左键弹起
-                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
-                    {
-                        if (e.X == myXmin && e.Y == myYmin)
-                        {
-                            myXmax = e.X; myYmax = e.Y;
-                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                MultiInputEvent(myXmax, myYmax);
-                            else
-                                InputEvent(myXmax, myYmax);
-                        }
-                        else
-                        {
-                            myXmax = e.X; myYmax = e.Y;
-                            DrawRectangle(false);
-                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                MultiDragEvent(myXmax, myYmax, 1);
-                            else
-                                DragEvent(myXmax, myYmax, 1);
-                        }
-                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-                        return;
-                    }
-                    switch (myCurrentMode)
-                    {
-                        case CurrentAction3d.CurAction3d_Nothing:
-                            if (e.X == myXmin && e.Y == myYmin)
-                            {
-                                myXmax = e.X; myYmax = e.Y;
-                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                    MultiInputEvent(myXmax, myYmax);
-                                else
-                                    InputEvent(myXmax, myYmax);
-                            }
-                            else
-                            {
-                                myXmax = e.X; myYmax = e.Y;
-                                DrawRectangle(false);
-                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                    MultiDragEvent(myXmax, myYmax, 1);
-                                else
-                                    DragEvent(myXmax, myYmax, 1);
-                            }
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicZooming:
-                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicZooming;
-                            break;
-                        case CurrentAction3d.CurAction3d_WindowZooming:
-                            myXmax = e.X; myYmax = e.Y;
-                            DrawRectangle(false);
-                            int ValZWMin = 1;
-                            if (Math.Abs(myXmax - myXmin) > ValZWMin && Math.Abs(myXmax - myYmax) > ValZWMin)
-                                OCCTView.WindowFitAll(myXmin, myYmin, myXmax, myYmax);
-                            this.Cursor = System.Windows.Forms.Cursors.Default;
-                            //IE_WinForms.Form1 f = (IE_WinForms.Form1)this.ParentForm;
-                            //f.SelectionChanged();
-                            myCurrentMode = CurrentAction3d.CurAction3d_WindowZooming;
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicPanning:
-                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
-                            break;
-                        case CurrentAction3d.CurAction3d_GlobalPanning:
-                            OCCTView.Place(e.X, e.Y, myCurZoom);
-                            myCurrentMode = CurrentAction3d.CurAction3d_GlobalPanning;
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicRotation:
-                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-                            if (e.X == myXmin && e.Y == myYmin)
-                            {
-                                myXmax = e.X; myYmax = e.Y;
-                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                                    MultiInputEvent(myXmax, myYmax);
-                                else
-                                    InputEvent(myXmax, myYmax);
-                            }
-                            else if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift) {
-                                myXmax = e.X; myYmax = e.Y;
-                                MultiDragEvent(myXmax, myYmax, 1);
-                            }
-                            if (!myDegenerateModeIsOn)
-                            {
-                                OCCTView.SetDegenerateModeOff();
-                                myDegenerateModeIsOn = false;
-                            }
-                            else
-                            {
-                                OCCTView.SetDegenerateModeOn();
-                                myDegenerateModeIsOn = true;
-                            }
-                            break;
-                        default:
-                            break;
-
-                    }
-                    #endregion
-                    break;
-                case MouseButtons.Right:
-                    #region 鼠标右键弹起
-                    if (!myDegenerateModeIsOn)
-                    {
-                        OCCTView.SetDegenerateModeOff();
-                        myDegenerateModeIsOn = false;
-                    }
-                    else
-                    {
-                        OCCTView.SetDegenerateModeOn();
-                        myDegenerateModeIsOn = true;
-                    }
-                    #endregion
-                    break;
-                case MouseButtons.Middle:
-                    #region 鼠标中键弹出
-                    if (!myDegenerateModeIsOn)
-                    {
-                        OCCTView.SetDegenerateModeOff();
-                        myDegenerateModeIsOn = false;
-                    }
-                    else
-                    {
-                        OCCTView.SetDegenerateModeOn();
-                        myDegenerateModeIsOn = true;
-                    }
-                    myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
-                    #endregion
-                    break;
-                default:
-                    break;
-            }
-        }
-        /// <summary>
-        /// 鼠标移动事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-		private void RenderWindow_MouseMove(object sender, MouseEventArgs e)
-        {
-            //InputHandler.MouseMove(mCanvas, e, Control.ModifierKeys);
-            if (e.Button == MouseButtons.Left) //left button is pressed
-            {
-                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
-                {
-                    //OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
-                    //myXmax = e.X; myYmax = e.Y;
-                    DrawRectangle(false);
-                    myXmax = e.X; myYmax = e.Y;
-                    DrawRectangle(true);
-                }
-                else
-                {
-                    switch (myCurrentMode)
-                    {
-                        case CurrentAction3d.CurAction3d_Nothing:
-                            DrawRectangle(false);
-                            myXmax = e.X; myYmax = e.Y;
-                            DrawRectangle(true);
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicZooming:
-                            OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
-                            myXmax = e.X; myYmax = e.Y;
-                            break;
-                        case CurrentAction3d.CurAction3d_WindowZooming:
-                            DrawRectangle(false);
-                            myXmax = e.X; myYmax = e.Y;
-                            DrawRectangle(true);//add brush here
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicPanning:
-                            OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
-                            myXmax = e.X; myYmax = e.Y;
-                            break;
-                        case CurrentAction3d.CurAction3d_GlobalPanning:
-                            break;
-                        case CurrentAction3d.CurAction3d_DynamicRotation:
-                            OCCTView.Rotation(e.X, e.Y);
-                            OCCTView.RedrawView();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            } // e.Button == MouseButtons.Left
-            else if (e.Button == MouseButtons.Middle)
-            {
-                OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
-                myXmax = e.X; myYmax = e.Y;
-            }//e.Button=MouseButtons.Middle
-            else if (e.Button == MouseButtons.Right) //right button is pressed
-            {
-                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
-                    OCCTView.Rotation(e.X, e.Y);
-            }
-            else // no buttons are pressed
-            {
-                myXmax = e.X; myYmax = e.Y;
-                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
-                    MultiMoveEvent(e.X, e.Y);
-                else
-                    MoveEvent(e.X, e.Y);
-            }
-        }
-        /// <summary>
-        /// 鼠标滚轮事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e)
-        {
-            //InputHandler.MouseWheel(mCanvas, e, Control.ModifierKeys);
-            int addsd = 1;
-            if (e.Delta > 0) addsd = -1;
-            else addsd = 1;
-            OCCTView.Zoom(e.X + addsd, e.Y, e.X, e.Y);
-            myXmax = e.X; myYmax = e.Y;
-        }
-
-        protected void MultiDragEvent(int x, int y, int theState)
-        {
-            if (theState == -1)
-            {
-                theButtonDownX = x;
-                theButtonDownY = y;
-            }
-            else if (theState == 1)
-                OCCTView.ShiftSelect(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
-                        Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
-        }
-
-        protected void DragEvent(int x, int y, int theState)
-        {
-            if (theState == -1) //mouse is down
-            {
-                theButtonDownX = x;
-                theButtonDownY = y;
-            }
-            else if (theState == 1) //mouse is up
-            {
-                OCCTView.Select(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
-                        Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
-            }
-        }
-
-        protected void MultiInputEvent(int x, int y)
-        {
-            OCCTView.ShiftSelect();
-        }
-
-        protected void InputEvent(int x, int y)
-        {
-            OCCTView.Select();
-        }
-
-        private void DrawRectangle(bool draw)
-        {
-            Graphics gr = Graphics.FromHwnd(this.RWControl.Handle);
-            System.Drawing.Pen p = null;
-            if (this.IsRectVisible || (!draw))//erase the rect
-            {
-                int r = OCCTView.GetBGColR();
-                int g = OCCTView.GetBGColG();
-                int b = OCCTView.GetBGColB();
-                p = new Pen(System.Drawing.Color.FromArgb(r, g, b));
-                this.IsRectVisible = false;
-                this.OCCTView.UpdateView();
-            }
-            else if (draw)
-            {
-                p = new Pen(System.Drawing.Color.White);
-                this.IsRectVisible = true;
-            }
-            if (p == null)
-                return;
-            int x = Math.Min(this.myXmin, this.myXmax);
-            int y = Math.Min(this.myYmin, this.myYmax);
-            gr.DrawRectangle(p, x, y, Math.Abs(myXmax - myXmin), Math.Abs(myYmax - myYmin));
-            this.theRectDownX = Math.Max(this.myXmin, this.myXmax);
-            this.theRectDownY = Math.Max(this.myYmin, this.myYmax);
-        }
-
-        protected void MultiMoveEvent(int x, int y)
-        {
-            OCCTView.MoveTo(x, y);
-        }
-
-        protected void MoveEvent(int x, int y)
-        {
-            OCCTView.MoveTo(x, y);
-        }
-        #endregion
-
         #region 导入/导出
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat)
         {
@@ -680,15 +259,6 @@ namespace UniversalCAD
                 switch (_ShapeEnum) {
                     case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
                     case XTopAbs_ShapeEnum.TopAbs_COMPSOLID:
-                        //XTDF_Label aRefLabel = theLabel;
-                        //if (XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref aRefLabel) && XXCAFDoc_ShapeTool.IsAssembly(aRefLabel)) {
-                        //    XTopLoc_Location aLoc = XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(theLabel));
-                        //    XTDF_ChildIterator aChildIter = new XTDF_ChildIterator(aRefLabel, false);
-                        //    for (; aChildIter.More(); aChildIter.Next()) {
-                        //        XTDF_Label aTDFLabel = aChildIter.Value();
-                        //        DisplayLabel(AssemblyShapeTool, AssemblyColorTool, GroupElement, aTDFLabel, ref ElementId, IsBoundaryDraw, aLoc);
-                        //    }
-                        //}
                         DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
                         break;
                     case XTopAbs_ShapeEnum.TopAbs_WIRE:
@@ -721,8 +291,9 @@ namespace UniversalCAD
                     XLocalLocation = new XTopLoc_Location();
                 if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
                     XTDF_Label aTDFLabel = new XTDF_Label();
+                    AccordionControlElement tempElement = new AccordionControlElement();
                     if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
-                        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                        tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
                     }
                     else {
                         AccordionControlElement GroupNode = GroupElement;
@@ -731,14 +302,15 @@ namespace UniversalCAD
                         GroupNode.Text = currentShape.ShapeType().ToString();
                         GroupNode.Tag = ElementId++;
                         GroupElement.Elements.Add(GroupNode);
-                        GroupElement = GroupNode;
+                        tempElement = GroupNode;
                     }
-                    DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                    DisplayChildrenLabel(AssemblyShapeTool, tempElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
                 else {
                     XTDF_Label aTDFLabel = new XTDF_Label();
                     if (AssemblyShapeTool.Search(currentShape, ref aTDFLabel, true, true, true)) {
-                        DisplayLabel(AssemblyShapeTool, GroupElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                        DisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                     }
                     else {
                         GroupElement.Style = ElementStyle.Item;
@@ -2155,6 +1727,401 @@ namespace UniversalCAD
             }
         }
 
+        #endregion
+
+        #region 操作事件
+        /// <summary>
+        /// 窗体大小变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenderWindow_SizeChanged(object sender, EventArgs e)
+        {
+            if (InitViewer) {
+                OCCTView.RedrawView();
+                OCCTView.UpdateView();
+                OCCTView.UpdateCurrentViewer();
+                this.RWControl.Select();
+            }
+        }
+        /// <summary>
+        /// 窗体绘制事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenderWindow_Paint(object sender, PaintEventArgs e)
+        {
+            if (InitViewer) {
+                OCCTView.RedrawView();
+                OCCTView.UpdateView();
+                OCCTView.UpdateCurrentViewer();
+                this.RWControl.Select();
+            }
+        }
+        /// <summary>
+        /// 键盘按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenderWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift)
+                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Shift;
+            else if (e.Control)
+                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Ctrl;
+            else if (e.Alt)
+                myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Alt;
+        }
+        /// <summary>
+        /// 键盘弹起事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenderWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            myCurrentPressedKey = CurrentPressedKey.CurPressedKey_Nothing;
+            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+        }
+        /// <summary>
+        /// 鼠标按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenderWindow_MouseDown(object sender, MouseEventArgs e)
+        {
+            //InputHandler.MouseDown(mCanvas, e, Control.ModifierKeys);
+            switch (e.Button) {
+                case MouseButtons.Left:
+                    #region 鼠标左键按下
+                    myXmin = e.X; myYmin = e.Y;
+                    myXmax = e.X; myYmax = e.Y;
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                        // start the dinamic zooming....
+                        myCurrentMode = CurrentAction3d.CurAction3d_Nothing;
+                    else {
+                        switch (myCurrentMode) {
+                            case CurrentAction3d.CurAction3d_Nothing:
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiDragEvent(myXmax, myYmax, -1);
+                                else
+                                    DragEvent(myXmax, myYmax, -1);
+                                break;
+                            case CurrentAction3d.CurAction3d_DynamicRotation:
+                                if (!myDegenerateModeIsOn)
+                                    OCCTView.SetDegenerateModeOn();
+                                //start the rotation
+                                OCCTView.StartRotation(e.X, e.Y);
+                                break;
+                            case CurrentAction3d.CurAction3d_WindowZooming:
+                                this.Cursor = System.Windows.Forms.Cursors.Hand;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    #endregion
+                    break;
+                case MouseButtons.Right:
+                    #region 鼠标右键按下
+                    //MessageBox.Show("right mouse button is down");
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                        if (!myDegenerateModeIsOn)
+                            OCCTView.SetDegenerateModeOn();
+                        OCCTView.StartRotation(e.X, e.Y);
+                    }
+                    //else
+                    //    Popup(e.X, e.Y);
+                    #endregion
+                    break;
+                case MouseButtons.Middle:
+                    #region 鼠标中键按下
+                    {
+                        if (!myDegenerateModeIsOn)
+                            OCCTView.SetDegenerateModeOn();
+                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
+                    }
+                    #endregion
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 鼠标弹起事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+		private void RenderWindow_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch (e.Button) {
+                case MouseButtons.Left:
+                    #region 鼠标左键弹起
+                    if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                        if (e.X == myXmin && e.Y == myYmin) {
+                            myXmax = e.X; myYmax = e.Y;
+                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                MultiInputEvent(myXmax, myYmax);
+                            else
+                                InputEvent(myXmax, myYmax);
+                        }
+                        else {
+                            myXmax = e.X; myYmax = e.Y;
+                            DrawRectangle(false);
+                            if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                MultiDragEvent(myXmax, myYmax, 1);
+                            else
+                                DragEvent(myXmax, myYmax, 1);
+                        }
+                        myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+                        return;
+                    }
+                    switch (myCurrentMode) {
+                        case CurrentAction3d.CurAction3d_Nothing:
+                            if (e.X == myXmin && e.Y == myYmin) {
+                                myXmax = e.X; myYmax = e.Y;
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiInputEvent(myXmax, myYmax);
+                                else
+                                    InputEvent(myXmax, myYmax);
+                            }
+                            else {
+                                myXmax = e.X; myYmax = e.Y;
+                                DrawRectangle(false);
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiDragEvent(myXmax, myYmax, 1);
+                                else
+                                    DragEvent(myXmax, myYmax, 1);
+                            }
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicZooming:
+                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicZooming;
+                            break;
+                        case CurrentAction3d.CurAction3d_WindowZooming:
+                            myXmax = e.X; myYmax = e.Y;
+                            DrawRectangle(false);
+                            int ValZWMin = 1;
+                            if (Math.Abs(myXmax - myXmin) > ValZWMin && Math.Abs(myXmax - myYmax) > ValZWMin)
+                                OCCTView.WindowFitAll(myXmin, myYmin, myXmax, myYmax);
+                            this.Cursor = System.Windows.Forms.Cursors.Default;
+                            //IE_WinForms.Form1 f = (IE_WinForms.Form1)this.ParentForm;
+                            //f.SelectionChanged();
+                            myCurrentMode = CurrentAction3d.CurAction3d_WindowZooming;
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicPanning:
+                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicPanning;
+                            break;
+                        case CurrentAction3d.CurAction3d_GlobalPanning:
+                            OCCTView.Place(e.X, e.Y, myCurZoom);
+                            myCurrentMode = CurrentAction3d.CurAction3d_GlobalPanning;
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicRotation:
+                            myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+                            if (e.X == myXmin && e.Y == myYmin) {
+                                myXmax = e.X; myYmax = e.Y;
+                                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                                    MultiInputEvent(myXmax, myYmax);
+                                else
+                                    InputEvent(myXmax, myYmax);
+                            }
+                            else if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift) {
+                                myXmax = e.X; myYmax = e.Y;
+                                MultiDragEvent(myXmax, myYmax, 1);
+                            }
+                            if (!myDegenerateModeIsOn) {
+                                OCCTView.SetDegenerateModeOff();
+                                myDegenerateModeIsOn = false;
+                            }
+                            else {
+                                OCCTView.SetDegenerateModeOn();
+                                myDegenerateModeIsOn = true;
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                    #endregion
+                    break;
+                case MouseButtons.Right:
+                    #region 鼠标右键弹起
+                    if (!myDegenerateModeIsOn) {
+                        OCCTView.SetDegenerateModeOff();
+                        myDegenerateModeIsOn = false;
+                    }
+                    else {
+                        OCCTView.SetDegenerateModeOn();
+                        myDegenerateModeIsOn = true;
+                    }
+                    #endregion
+                    break;
+                case MouseButtons.Middle:
+                    #region 鼠标中键弹出
+                    if (!myDegenerateModeIsOn) {
+                        OCCTView.SetDegenerateModeOff();
+                        myDegenerateModeIsOn = false;
+                    }
+                    else {
+                        OCCTView.SetDegenerateModeOn();
+                        myDegenerateModeIsOn = true;
+                    }
+                    myCurrentMode = CurrentAction3d.CurAction3d_DynamicRotation;
+                    #endregion
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 鼠标移动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+		private void RenderWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            //InputHandler.MouseMove(mCanvas, e, Control.ModifierKeys);
+            if (e.Button == MouseButtons.Left) //left button is pressed
+            {
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl) {
+                    //OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
+                    //myXmax = e.X; myYmax = e.Y;
+                    DrawRectangle(false);
+                    myXmax = e.X; myYmax = e.Y;
+                    DrawRectangle(true);
+                }
+                else {
+                    switch (myCurrentMode) {
+                        case CurrentAction3d.CurAction3d_Nothing:
+                            DrawRectangle(false);
+                            myXmax = e.X; myYmax = e.Y;
+                            DrawRectangle(true);
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicZooming:
+                            OCCTView.Zoom(myXmax, myYmax, e.X, e.Y);
+                            myXmax = e.X; myYmax = e.Y;
+                            break;
+                        case CurrentAction3d.CurAction3d_WindowZooming:
+                            DrawRectangle(false);
+                            myXmax = e.X; myYmax = e.Y;
+                            DrawRectangle(true);//add brush here
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicPanning:
+                            OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
+                            myXmax = e.X; myYmax = e.Y;
+                            break;
+                        case CurrentAction3d.CurAction3d_GlobalPanning:
+                            break;
+                        case CurrentAction3d.CurAction3d_DynamicRotation:
+                            OCCTView.Rotation(e.X, e.Y);
+                            OCCTView.RedrawView();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } // e.Button == MouseButtons.Left
+            else if (e.Button == MouseButtons.Middle) {
+                OCCTView.Pan(e.X - myXmax, myYmax - e.Y);
+                myXmax = e.X; myYmax = e.Y;
+            }//e.Button=MouseButtons.Middle
+            else if (e.Button == MouseButtons.Right) //right button is pressed
+            {
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Ctrl)
+                    OCCTView.Rotation(e.X, e.Y);
+            }
+            else // no buttons are pressed
+            {
+                myXmax = e.X; myYmax = e.Y;
+                if (myCurrentPressedKey == CurrentPressedKey.CurPressedKey_Shift)
+                    MultiMoveEvent(e.X, e.Y);
+                else
+                    MoveEvent(e.X, e.Y);
+            }
+        }
+        /// <summary>
+        /// 鼠标滚轮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+		private void RenderWindow_MouseWheel(object sender, MouseEventArgs e)
+        {
+            //InputHandler.MouseWheel(mCanvas, e, Control.ModifierKeys);
+            int addsd = 1;
+            if (e.Delta > 0) addsd = -1;
+            else addsd = 1;
+            OCCTView.Zoom(e.X + addsd, e.Y, e.X, e.Y);
+            myXmax = e.X; myYmax = e.Y;
+        }
+
+        protected void MultiDragEvent(int x, int y, int theState)
+        {
+            if (theState == -1) {
+                theButtonDownX = x;
+                theButtonDownY = y;
+            }
+            else if (theState == 1)
+                OCCTView.ShiftSelect(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
+                        Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
+        }
+
+        protected void DragEvent(int x, int y, int theState)
+        {
+            if (theState == -1) //mouse is down
+            {
+                theButtonDownX = x;
+                theButtonDownY = y;
+            }
+            else if (theState == 1) //mouse is up
+            {
+                OCCTView.Select(Math.Min(theButtonDownX, x), Math.Min(theButtonDownY, y),
+                        Math.Max(theButtonDownX, x), Math.Max(theButtonDownY, y));
+            }
+        }
+
+        protected void MultiInputEvent(int x, int y)
+        {
+            OCCTView.ShiftSelect();
+        }
+
+        protected void InputEvent(int x, int y)
+        {
+            OCCTView.Select();
+        }
+
+        private void DrawRectangle(bool draw)
+        {
+            Graphics gr = Graphics.FromHwnd(this.RWControl.Handle);
+            System.Drawing.Pen p = null;
+            if (this.IsRectVisible || (!draw))//erase the rect
+            {
+                int r = OCCTView.GetBGColR();
+                int g = OCCTView.GetBGColG();
+                int b = OCCTView.GetBGColB();
+                p = new Pen(System.Drawing.Color.FromArgb(r, g, b));
+                this.IsRectVisible = false;
+                this.OCCTView.UpdateView();
+            }
+            else if (draw) {
+                p = new Pen(System.Drawing.Color.White);
+                this.IsRectVisible = true;
+            }
+            if (p == null)
+                return;
+            int x = Math.Min(this.myXmin, this.myXmax);
+            int y = Math.Min(this.myYmin, this.myYmax);
+            gr.DrawRectangle(p, x, y, Math.Abs(myXmax - myXmin), Math.Abs(myYmax - myYmin));
+            this.theRectDownX = Math.Max(this.myXmin, this.myXmax);
+            this.theRectDownY = Math.Max(this.myYmin, this.myYmax);
+        }
+
+        protected void MultiMoveEvent(int x, int y)
+        {
+            OCCTView.MoveTo(x, y);
+        }
+
+        protected void MoveEvent(int x, int y)
+        {
+            OCCTView.MoveTo(x, y);
+        }
         #endregion
 
         #region 字段
