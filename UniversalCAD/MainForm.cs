@@ -646,10 +646,8 @@ namespace UniversalCAD
                     XTDF_Label RTDFLabel = aChildIter.Value();
                     XTopoDS_Shape currentShape = XXCAFDoc_ShapeTool.GetShape(RTDFLabel);
                     XTopLoc_Location LocalLocation = currentShape.Location();
-                    if (!LocalLocation.IsIdentity())
-                        XLocalLocation = LocalLocation;// XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(RTDFLabel));
                     AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
-                    XDisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                    XDisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, LocalLocation);
                 }
             }
             else {
@@ -891,8 +889,14 @@ namespace UniversalCAD
             XXCAFPrs_AISObject aPrsObject = new XXCAFPrs_AISObject(theLabel);
             if (XLocalLocation != null && !XLocalLocation.IsIdentity())
                 aPrsObject.SetLocalTransformation(XLocalLocation);
-            SetFaceBoundaryAspect(aPrsObject, IsBoundaryDraw);
+            XPrs3d_Drawer aDrawer = aPrsObject.Attributes();
+            aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
+            aPrsObject.SetAttributes(aDrawer);
+            //aPrsObject.SetCurrentFacingModel(XAspect_TypeOfFacingModel.Aspect_TOFM_BOTH_SIDE);
+            aPrsObject.SetHilightMode(1);
             context.Display(aPrsObject, true);
+            OCCTView.SetFaceBoundaryDraw(aPrsObject, IsBoundaryDraw);
+            OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_BOUNDBOX, new XQuantity_Color(Color.Blue.R/255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 1, 1.0f);
         }
         #endregion
 
