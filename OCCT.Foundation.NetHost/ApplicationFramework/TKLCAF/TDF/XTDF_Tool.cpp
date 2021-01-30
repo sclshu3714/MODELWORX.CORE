@@ -130,8 +130,10 @@ namespace TKLCAF {
 	//! of the ASCII character string anEntry containing
 	//! the tag list for aLabel.
 	//! static 
-	void XTDF_Tool::Entry(XTDF_Label^ aLabel, XTCollection_AsciiString^ anEntry) {
-		TDF_Tool::Entry(*aLabel->GetLabel(), *anEntry->GetAsciiString());
+	void XTDF_Tool::Entry(XTDF_Label^ aLabel, XTCollection_AsciiString^% anEntry) {
+		TCollection_AsciiString* temp = anEntry->GetAsciiString();
+		TDF_Tool::Entry(*aLabel->GetLabel(), *temp);
+		anEntry = gcnew XTCollection_AsciiString(temp);
 	};
 
 	//! Returns the entry of <aLabel> as list of integers

@@ -166,7 +166,7 @@ namespace TKLCAF {
     //! application, the new document is handled by the
     //! applicative session.
     void XTDocStd_Application::NewDocument(XTCollection_ExtendedString^ format, XTDocStd_Document^ aDoc) {
-        NativeHandle()->NewDocument(format->GetExtendedString(), aDoc->GetDocument());
+        NativeHandle()->NewDocument(*format->GetExtendedString(), aDoc->GetDocument());
     };
     //! Constructs the empty new document aDoc.
    //! This document will have the format format.
@@ -175,7 +175,7 @@ namespace TKLCAF {
    //! applicative session.
     void XTDocStd_Application::NewDocument(System::String^ format, XTDocStd_Document^ aDoc) {
         XTCollection_ExtendedString^ pos = gcnew XTCollection_ExtendedString(format, Standard_False);
-        NativeHandle()->NewDocument(pos->GetExtendedString(), aDoc->GetDocument());
+        NativeHandle()->NewDocument(*pos->GetExtendedString(), aDoc->GetDocument());
     };
 
     //! Initialize the document aDoc for the applicative session.
@@ -235,7 +235,7 @@ namespace TKLCAF {
         return NativeHandle()->IsInSession(path);
     };
     Standard_Integer XTDocStd_Application::IsInSession(XTCollection_ExtendedString^ path) {
-        return NativeHandle()->IsInSession(path->GetExtendedString());
+        return NativeHandle()->IsInSession(*path->GetExtendedString());
     };
 
     //! Retrieves the document aDoc stored under the
@@ -247,7 +247,7 @@ namespace TKLCAF {
         return NativeHandle()->Open(path, aDoc);
     };
     PCDM_ReaderStatus XTDocStd_Application::Open(XTCollection_ExtendedString^ path, XTDocStd_Document^ aDoc) {
-        return NativeHandle()->Open(path->GetExtendedString(), aDoc->GetDocument());
+        return NativeHandle()->Open(*path->GetExtendedString(), aDoc->GetDocument());
     };
     //! Retrieves aDoc from standard SEEKABLE stream theIStream.
     //! the stream should support SEEK fuctionality
@@ -266,7 +266,7 @@ namespace TKLCAF {
     //! Save the  active document  in the file  <name> in the
     //! path <path> ; o verwrites  the file  if  it already exists.
     PCDM_StoreStatus XTDocStd_Application::SaveAs(XTDocStd_Document^ aDoc, XTCollection_ExtendedString^ path) {
-        return NativeHandle()->SaveAs(aDoc->GetDocument(), path->GetExtendedString());
+        return NativeHandle()->SaveAs(aDoc->GetDocument(), *path->GetExtendedString());
     };
 
     //! Save theDoc to standard SEEKABLE stream theOStream.
@@ -308,7 +308,7 @@ namespace TKLCAF {
     //! path <path>  .  overwrite  the file  if  it
     //! already exist.
     PCDM_StoreStatus XTDocStd_Application::SaveAs(XTDocStd_Document^ aDoc, XTCollection_ExtendedString^ path, XTCollection_ExtendedString^ theStatusMessage) {
-        return NativeHandle()->SaveAs(aDoc->GetDocument(), path->GetExtendedString(), theStatusMessage->GetExtendedString());
+        return NativeHandle()->SaveAs(aDoc->GetDocument(), *path->GetExtendedString(), *theStatusMessage->GetExtendedString());
     };
 
     //! Save theDoc TO standard SEEKABLE stream theOStream.
@@ -320,7 +320,7 @@ namespace TKLCAF {
     //! Save theDoc TO standard SEEKABLE stream theOStream.
     //! the stream should support SEEK fuctionality
     PCDM_StoreStatus XTDocStd_Application::SaveAs(XTDocStd_Document^ theDoc, Standard_OStream& theOStream, XTCollection_ExtendedString^ theStatusMessage) {
-        return NativeHandle()->SaveAs(theDoc->GetDocument(), theOStream, theStatusMessage->GetExtendedString());
+        return NativeHandle()->SaveAs(theDoc->GetDocument(), theOStream, *theStatusMessage->GetExtendedString());
     };
 
     //! Save the document overwriting the previous file
@@ -330,7 +330,7 @@ namespace TKLCAF {
 
     //! Save the document overwriting the previous file
     PCDM_StoreStatus XTDocStd_Application::Save(XTDocStd_Document^ aDoc, XTCollection_ExtendedString^ theStatusMessage) {
-        return NativeHandle()->Save(aDoc->GetDocument(), theStatusMessage->GetExtendedString());
+        return NativeHandle()->Save(aDoc->GetDocument(), *theStatusMessage->GetExtendedString());
     };
 
     //! Notification that is fired at each OpenTransaction event.

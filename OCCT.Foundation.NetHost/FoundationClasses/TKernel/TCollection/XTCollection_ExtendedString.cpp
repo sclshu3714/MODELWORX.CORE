@@ -154,13 +154,13 @@ namespace TKernel
 
     //! Initializes a ExtendedString with another ExtendedString.
     XTCollection_ExtendedString::XTCollection_ExtendedString(XTCollection_ExtendedString^ astring) {
-        NativeHandle = new TCollection_ExtendedString(astring->GetExtendedString());
+        NativeHandle = new TCollection_ExtendedString(*astring->GetExtendedString());
     };
 
 #ifndef OCCT_NO_RVALUE_REFERENCE
     //! Move constructor
     XTCollection_ExtendedString::XTCollection_ExtendedString(XTCollection_ExtendedString^& theOther) {
-        NativeHandle = new TCollection_ExtendedString(theOther->GetExtendedString());
+        NativeHandle = new TCollection_ExtendedString(*theOther->GetExtendedString());
     };
 #endif
 
@@ -172,20 +172,20 @@ namespace TKernel
     };
 
     //! Returns the TCollection_ExtendedString
-    TCollection_ExtendedString XTCollection_ExtendedString::GetExtendedString() {
-      return *NativeHandle;
+    TCollection_ExtendedString* XTCollection_ExtendedString::GetExtendedString() {
+      return NativeHandle;
     };
 
     //! Appends the other extended string to this extended string.
     //! Note that this method is an alias of operator +=.
     //! Example: aString += anotherString
     void XTCollection_ExtendedString::AssignCat(XTCollection_ExtendedString^ other) {
-        NativeHandle->AssignCat(other->GetExtendedString());
+        NativeHandle->AssignCat(*other->GetExtendedString());
     };
 
     //! Appends <other> to me.
     XTCollection_ExtendedString^ XTCollection_ExtendedString::Cat(XTCollection_ExtendedString^ other) {
-        return gcnew XTCollection_ExtendedString(NativeHandle->Cat(other->GetExtendedString()));
+        return gcnew XTCollection_ExtendedString(NativeHandle->Cat(*other->GetExtendedString()));
     };
 
 
@@ -207,12 +207,12 @@ namespace TKernel
     //! Copy <fromwhere> to <me>.
     //! Used as operator =
     void XTCollection_ExtendedString::Copy(XTCollection_ExtendedString^ fromwhere) {
-        NativeHandle->Copy(fromwhere->GetExtendedString());
+        NativeHandle->Copy(*fromwhere->GetExtendedString());
     };
 
     //! Exchange the data of two strings (without reallocating memory).
     void XTCollection_ExtendedString::Swap(XTCollection_ExtendedString^ theOther) {
-        NativeHandle->Swap(theOther->GetExtendedString());
+        NativeHandle->Swap(*theOther->GetExtendedString());
     };
 
 
@@ -228,7 +228,7 @@ namespace TKernel
 
     //! Insert a ExtendedString at position <where>.
     void XTCollection_ExtendedString::Insert(const Standard_Integer where, XTCollection_ExtendedString^ what) {
-        NativeHandle->Insert(where, what->GetExtendedString());
+        NativeHandle->Insert(where, *what->GetExtendedString());
     };
 
     //! Returns True if this string contains no characters.
@@ -247,7 +247,7 @@ namespace TKernel
     //! string are identical to the characters in the other extended string.
     //! Note that this method is an alias of operator ==
     Standard_Boolean XTCollection_ExtendedString::IsEqual(XTCollection_ExtendedString^ other) {
-        return NativeHandle->IsEqual(other->GetExtendedString());
+        return NativeHandle->IsEqual(*other->GetExtendedString());
     };
 
     //! Returns true if there are differences between the
@@ -261,7 +261,7 @@ namespace TKernel
     //! characters in this extended string and the other extended string.
     //! Note that this method is an alias of operator !=.
     Standard_Boolean XTCollection_ExtendedString::IsDifferent(XTCollection_ExtendedString^ other) {
-        return NativeHandle->IsDifferent(other->GetExtendedString());
+        return NativeHandle->IsDifferent(*other->GetExtendedString());
     };
 
     //! Returns TRUE if <me> is less than <other>.
@@ -271,7 +271,7 @@ namespace TKernel
 
     //! Returns TRUE if <me> is less than <other>.
     Standard_Boolean XTCollection_ExtendedString::IsLess(XTCollection_ExtendedString^ other) {
-        return NativeHandle->IsLess(other->GetExtendedString());
+        return NativeHandle->IsLess(*other->GetExtendedString());
     };
 
     //! Returns TRUE if <me> is greater than <other>.
@@ -281,17 +281,17 @@ namespace TKernel
 
     //! Returns TRUE if <me> is greater than <other>.
     Standard_Boolean XTCollection_ExtendedString::IsGreater(XTCollection_ExtendedString^ other) {
-        return NativeHandle->IsGreater(other->GetExtendedString());
+        return NativeHandle->IsGreater(*other->GetExtendedString());
     };
 
     //! Determines whether the beginning of this string instance matches the specified string.
     Standard_Boolean XTCollection_ExtendedString::StartsWith(XTCollection_ExtendedString^ theStartString) {
-        return NativeHandle->StartsWith(theStartString->GetExtendedString());
+        return NativeHandle->StartsWith(*theStartString->GetExtendedString());
     };
 
     //! Determines whether the end of this string instance matches the specified string.
     Standard_Boolean XTCollection_ExtendedString::EndsWith(XTCollection_ExtendedString^ theEndString) {
-        return NativeHandle->EndsWith(theEndString->GetExtendedString());
+        return NativeHandle->EndsWith(*theEndString->GetExtendedString());
     };
 
     //! Returns True if the ExtendedString contains only
@@ -326,14 +326,14 @@ namespace TKernel
     //! and returns position of first item <what> matching.
     //! it returns -1 if not found.
     Standard_Integer XTCollection_ExtendedString::Search(XTCollection_ExtendedString^ what) {
-        return NativeHandle->Search(what->GetExtendedString());
+        return NativeHandle->Search(*what->GetExtendedString());
     };
 
     //! Searches a ExtendedString in another ExtendedString from the
     //! end and returns position of first item <what> matching.
     //! it returns -1 if not found.
     Standard_Integer XTCollection_ExtendedString::SearchFromEnd(XTCollection_ExtendedString^ what) {
-        return NativeHandle->SearchFromEnd(what->GetExtendedString());
+        return NativeHandle->SearchFromEnd(*what->GetExtendedString());
     };
 
     //! Replaces one character in the ExtendedString at position <where>.
@@ -345,7 +345,7 @@ namespace TKernel
 
     //! Replaces a part of <me> by another ExtendedString see above.
     void XTCollection_ExtendedString::SetValue(const Standard_Integer where, XTCollection_ExtendedString^ what) {
-        return NativeHandle->SetValue(where, what->GetExtendedString());
+        return NativeHandle->SetValue(where, *what->GetExtendedString());
     };
 
     //! Splits this extended string into two sub-strings at position where.

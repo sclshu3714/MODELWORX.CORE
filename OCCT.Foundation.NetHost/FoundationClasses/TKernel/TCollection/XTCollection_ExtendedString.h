@@ -124,7 +124,7 @@ namespace TKernel {
         XTCollection_ExtendedString(TCollection_AsciiString astring);
 
         //! Returns the TCollection_ExtendedString
-        TCollection_ExtendedString GetExtendedString();
+        TCollection_ExtendedString* GetExtendedString();
 
         
 
@@ -357,7 +357,7 @@ namespace TKernel {
         //! @return a computed hash code, in the range [1, theUpperBound]
         static Standard_Integer HashCode(XTCollection_ExtendedString^ theString, const Standard_Integer theUpperBound)
         {
-            return ::HashCode(theString->GetExtendedString().ToExtString(), theUpperBound);
+            return ::HashCode(*theString->GetExtendedString()->ToExtString(), theUpperBound);
         }
 
         //! Returns true if the characters in this extended
@@ -365,7 +365,7 @@ namespace TKernel {
         //! Note that this method is an alias of operator ==.
         static Standard_Boolean IsEqual(XTCollection_ExtendedString^ theString1, XTCollection_ExtendedString^ theString2)
         {
-            return theString1->GetExtendedString().IsEqual(theString2->GetExtendedString());
+            return theString1->GetExtendedString()->IsEqual(*theString2->GetExtendedString());
         }
 
         //! Converts the internal <mystring> to UTF8 coding and
@@ -400,7 +400,7 @@ namespace TKernel {
     //! @return a computed hash code, in the range [1, theUpperBound]
     inline Standard_Integer HashCode(XTCollection_ExtendedString^ theExtendedString,const Standard_Integer theUpperBound)
     {
-        return TCollection_ExtendedString::HashCode(theExtendedString->GetExtendedString(), theUpperBound);
+        return TCollection_ExtendedString::HashCode(*theExtendedString->GetExtendedString(), theUpperBound);
     }
 }
 #endif // _XTCollection_ExtendedString_HeaderFile

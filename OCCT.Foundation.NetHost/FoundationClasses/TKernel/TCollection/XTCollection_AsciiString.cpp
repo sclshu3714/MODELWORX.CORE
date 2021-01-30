@@ -54,6 +54,12 @@ namespace TKernel {
     };
 
     //! Initializes a AsciiString with copy of another AsciiString
+    //! concatenated with the message character.
+    XTCollection_AsciiString::XTCollection_AsciiString(XTCollection_ExtendedString^ astring) {
+        NativeHandle = new TCollection_AsciiString(*astring->GetExtendedString());
+    };
+
+    //! Initializes a AsciiString with copy of another AsciiString
     //! concatenated with the message string.
     XTCollection_AsciiString::XTCollection_AsciiString(XTCollection_AsciiString^  astring, Standard_CString message){
         NativeHandle = new TCollection_AsciiString(*astring->GetAsciiString(), message);
@@ -648,6 +654,11 @@ namespace TKernel {
     //! Warning: Because this "char *" is 'const', you can't modify its contents.
     Standard_CString XTCollection_AsciiString::ToCString(){
         return NativeHandle->ToCString();
+    };
+
+    String^ XTCollection_AsciiString::ValueToCString() {
+        Standard_CString CString = NativeHandle->ToCString();
+        return XStandard_Helper::toString(CString);
     };
 
     //! Extracts <whichone> token from <me>.

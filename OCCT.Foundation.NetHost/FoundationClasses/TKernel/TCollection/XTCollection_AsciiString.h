@@ -20,6 +20,7 @@
 #include <TCollection_AsciiString.hxx>
 #include "NCollection_Haft.h"
 #include "XStandard_Helper.h"
+#include "XTCollection_ExtendedString.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -93,6 +94,9 @@ namespace TKernel {
         //! concatenated with the message character.
         XTCollection_AsciiString(XTCollection_AsciiString^ astring, Standard_Character message);
 
+        //! Initializes a AsciiString with copy of another AsciiString
+        //! concatenated with the message character.
+        XTCollection_AsciiString(XTCollection_ExtendedString^ astring);
         //! Initializes a AsciiString with copy of another AsciiString
         //! concatenated with the message string.
         XTCollection_AsciiString(XTCollection_AsciiString^ astring, Standard_CString message);
@@ -630,6 +634,9 @@ namespace TKernel {
         //! Warning: Because this "char *" is 'const', you can't modify its contents.
         Standard_CString ToCString();
 
+        //! Returns pointer to AsciiString (char *).
+        String^ ValueToCString();
+
         //! Extracts <whichone> token from <me>.
         //! By default, the <separators> is set to space and tabulation.
         //! By default, the token extracted is the first one (whichone = 1).
@@ -666,6 +673,7 @@ namespace TKernel {
         //! aString contains "Hello"
         //! aString.Value(2) returns 'e'
         Standard_Character Value(Standard_Integer where);
+
 
         //! Computes a hash code for the given ASCII string, in the range [1, theUpperBound].
         //! Returns the same integer value as the hash function for TCollection_ExtendedString

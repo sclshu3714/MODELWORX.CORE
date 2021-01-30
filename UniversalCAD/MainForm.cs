@@ -613,20 +613,19 @@ namespace UniversalCAD
             AccordionControlElement RootNode = this.accElementTLable;
             XTDF_Label aRootLabel = aDoc.Main();
             XXCAFDoc_ShapeTool AssemblyShapeTool = XXCAFDoc_DocumentTool.ShapeTool(aRootLabel);
-            XXCAFDoc_ColorTool AssemblyColorTool = XXCAFDoc_DocumentTool.ColorTool(aRootLabel);
             XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
             AssemblyShapeTool.GetFreeShapes(ref aRootLabels);
             XTDF_XIterator aRootIter = aRootLabels.Iterator();
             for (; aRootIter.More(); aRootIter.Next()) {
                 XTDF_Label aTDFLabel = aRootIter.Value();
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aTDFLabel, ref ElementId);
-                DisplayLabel(AssemblyShapeTool, AssemblyColorTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
+                XDisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 //TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 BuildElement = true;
             }
             if (!BuildElement) {
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aRootLabel, ref ElementId);
-                DisplayLabel(AssemblyShapeTool, AssemblyColorTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
+                XDisplayLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 //TDFChildLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
             }
             OCCTView.SetDisplayMode(1);
@@ -636,27 +635,27 @@ namespace UniversalCAD
             return true;
         }
 
-        private bool XDisplayLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XXCAFDoc_ColorTool AssemblyColorTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
+        private void XDisplayLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
         {
-            string aName = null;
-            XTDF_Attribute aNodeName = new XTDataStd_Name();
-            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
-                XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
-                XTCollection_ExtendedString EString = XNodeName.Get();
-                aName = EString.GetValueString();
-            }
-            if (string.IsNullOrEmpty(aName)) {
-                XTDF_Label aRefLabel = new XTDF_Label();
-                if (XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref aRefLabel) && aRefLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
-                    XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
-                    XTCollection_ExtendedString EString = XNodeName.Get();
-                    aName = EString.GetValueString();
+            XTDF_Label aRefLabel = theLabel;
+            XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref aRefLabel);
+            if (XXCAFDoc_ShapeTool.IsAssembly(aRefLabel)) {
+                //XTopLoc_Location aLoc = XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(theLabel));
+                XTDF_ChildIterator aChildIter = new XTDF_ChildIterator(aRefLabel, false);
+                for (; aChildIter.More(); aChildIter.Next()) {
+                    XTDF_Label RTDFLabel = aChildIter.Value();
+                    XTopoDS_Shape currentShape = XXCAFDoc_ShapeTool.GetShape(RTDFLabel);
+                    XTopLoc_Location LocalLocation = currentShape.Location();
+                    if (!LocalLocation.IsIdentity())
+                        XLocalLocation = LocalLocation;// XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(RTDFLabel));
+                    AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
+                    XDisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
             }
-            if (string.IsNullOrEmpty(aName)) {
-                //XTDF_Tool.
+            else {
+                GroupElement.Style = ElementStyle.Item;
+                Display(theLabel, IsBoundaryDraw, XLocalLocation);
             }
-            return true;
         }
 
         /// <summary>
@@ -668,7 +667,7 @@ namespace UniversalCAD
         /// <param name="ElementId"></param>
         /// <param name="IsBoundaryDraw"></param>
         /// <param name="XLocalLocation"></param>
-        private void DisplayLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XXCAFDoc_ColorTool AssemblyColorTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
+        private void DisplayLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
         {
             XTDF_ChildIDIterator ChildIDIterator = new XTDF_ChildIDIterator(theLabel, XXCAFDoc.ShapeRefGUID(), false);
             if (ChildIDIterator.More()) {
@@ -677,7 +676,7 @@ namespace UniversalCAD
                     XTDF_Label RTDFLabel = ChildIDAttribute.Label();
                     //XTopLoc_Location aLocalLocation = XLocalLocation.Multiplied(XXCAFDoc_ShapeTool.GetLocation(RTDFLabel));
                     AccordionControlElement tempElement = AddAccordionElement(GroupElement, RTDFLabel, ref ElementId);
-                    DisplayLabel(AssemblyShapeTool, AssemblyColorTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                    DisplayLabel(AssemblyShapeTool, tempElement, RTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
             }
             else {
@@ -695,11 +694,7 @@ namespace UniversalCAD
                         //        DisplayLabel(AssemblyShapeTool, AssemblyColorTool, GroupElement, aTDFLabel, ref ElementId, IsBoundaryDraw, aLoc);
                         //    }
                         //}
-                        AssemblyColorTool = XXCAFDoc_ColorTool.Set(theLabel);
-                        XQuantity_Color CompoundColor = new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_GRAY60);
-                        XXCAFPrs_AISObject aISObject = new XXCAFPrs_AISObject(theLabel);
-                        aISObject.Color(ref CompoundColor);
-                        DisplayChildrenLabel(AssemblyShapeTool, AssemblyColorTool, GroupElement, currentShape, CompoundColor, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                        DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
                         break;
                     case XTopAbs_ShapeEnum.TopAbs_WIRE:
                         break;
@@ -718,7 +713,7 @@ namespace UniversalCAD
             }
         }
         //创建子树(只构建下面一层子树)
-        private void DisplayChildrenLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, XXCAFDoc_ColorTool AssemblyColorTool, AccordionControlElement GroupElement, XTopoDS_Shape parentShape, XQuantity_Color CompoundColor, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
+        private void DisplayChildrenLabel(XXCAFDoc_ShapeTool AssemblyShapeTool, AccordionControlElement GroupElement, XTopoDS_Shape parentShape, ref int ElementId, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
             XTopoDS_Iterator iter = new XTopoDS_Iterator(parentShape, true, true);
@@ -729,28 +724,41 @@ namespace UniversalCAD
                     XLocalLocation = LocalLocation;
                 else
                     XLocalLocation = new XTopLoc_Location();
-                XTDF_Label aTDFLabel = new XTDF_Label();
+                //XTDF_Label aTDFLabel = new XTDF_Label();
                 //if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
                 //    AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
                 //    DisplayLabel(AssemblyShapeTool, AssemblyColorTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 //}
                 //else
                 if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
-                    DisplayChildrenLabel(AssemblyShapeTool, AssemblyColorTool, GroupElement, currentShape, CompoundColor, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                    XTDF_Label aTDFLabel = new XTDF_Label();
+                    if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
+                        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                    }
+                    else {
+                        AccordionControlElement GroupNode = GroupElement;
+                        GroupNode = new AccordionControlElement();
+                        GroupNode.Name = $"{currentShape.ShapeType().ToString()}_{ ElementId }";
+                        GroupNode.Text = currentShape.ShapeType().ToString();
+                        GroupNode.Tag = ElementId++;
+                        GroupElement.Elements.Add(GroupNode);
+                        GroupElement = GroupNode;
+                    }
+                    DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
                 }
                 else {
+                    XTDF_Label aTDFLabel = new XTDF_Label();
+                    if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
+                        XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
+                        XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
+                        if (!aTDFLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs)) {
+                            xPrs = XTPrsStd_AISPresentation.Set(aTDFLabel, XXCAFPrs_Driver.GetID());
+                            xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_METALIZED);
+                            xPrs.Display(true);
+                        }
+                    }
                     GroupElement.Style = ElementStyle.Item;
                     XAIS_Shape shape = new XAIS_Shape(currentShape);
-                    XQuantity_Color color = new XQuantity_Color(XQuantity_NameOfColor.Quantity_NOC_GRAY60);
-                    if (AssemblyColorTool.GetColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorGen, ref color) ||
-                        AssemblyColorTool.GetColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorCurv, ref color) ||
-                        AssemblyColorTool.GetColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorSurf, ref color) ||
-                        AssemblyColorTool.GetInstanceColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorGen, ref color) ||
-                        AssemblyColorTool.GetInstanceColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorCurv, ref color) ||
-                        AssemblyColorTool.GetInstanceColor(currentShape, XXCAFDoc_ColorType.XCAFDoc_ColorSurf, ref color))
-                        shape.SetColor(color);
-                    else
-                        shape.SetColor(CompoundColor);
                     context.Display(shape, true);
                 }
             }
@@ -833,26 +841,42 @@ namespace UniversalCAD
         /// <summary>
         /// 构建对象结构
         /// </summary>
-        private AccordionControlElement AddAccordionElement(AccordionControlElement GroupElement, XTDF_Label NTDFLabel, ref int ElementId)
+        private AccordionControlElement AddAccordionElement(AccordionControlElement GroupElement, XTDF_Label theLabel, ref int ElementId)
         {
-            AccordionControlElement GroupNode = GroupElement;
-            XTDF_Attribute aName = new XTDataStd_Name();
-            XTDF_Attribute aInteger = new XTDataStd_Integer();
-            if (NTDFLabel.FindAttribute(XTDataStd_Name.GetID(), ref aName)) {
-                XTDataStd_Integer XInteger = new XTDataStd_Integer();
-                if (!NTDFLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger))
-                    XInteger = XTDataStd_Integer.Set(NTDFLabel, ElementId++);
-                else
-                    XInteger = aInteger as XTDataStd_Integer;
-                XTDataStd_Name XName = aName as XTDataStd_Name;
-                XTCollection_ExtendedString EString = XName.Get();
-                string text = EString.GetValueString();
-                GroupNode = new AccordionControlElement();
-                GroupNode.Name = $"{text}_{XInteger.Get()}";
-                GroupNode.Text = $"{text}";
-                GroupNode.Tag = XInteger.Get();
-                GroupElement.Elements.Add(GroupNode);
+            XTCollection_AsciiString aName = new XTCollection_AsciiString();
+            XTDF_Attribute aNodeName = new XTDataStd_Name();
+            if (theLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
+                XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
+                aName = new XTCollection_AsciiString(XNodeName.Get());
             }
+            if (aName.IsEmpty()) {
+                XTDF_Label aRefLabel = new XTDF_Label();
+                if (XXCAFDoc_ShapeTool.GetReferredShape(theLabel, ref aRefLabel) && aRefLabel.FindAttribute(XTDataStd_Name.GetID(), ref aNodeName)) {
+                    XTDataStd_Name XNodeName = aNodeName as XTDataStd_Name;
+                    aName = new XTCollection_AsciiString(XNodeName.Get());
+                }
+            }
+            if (aName.IsEmpty()) {
+                XTDF_Tool.Entry(theLabel, ref aName);
+            }
+            string text = aName.ValueToCString();
+            if (string.IsNullOrEmpty(text)) {
+                text = theLabel.Tag().ToString();
+            }
+            XTDataStd_Integer XInteger = new XTDataStd_Integer();
+            XTDF_Attribute aInteger = new XTDataStd_Integer();
+            if (!theLabel.FindAttribute(XTDataStd_Integer.GetID(), ref aInteger)) {
+                XInteger = XTDataStd_Integer.Set(theLabel, ElementId++);
+            }
+            else{
+                XInteger = aInteger as XTDataStd_Integer;
+            }
+            AccordionControlElement GroupNode = GroupElement;
+            GroupNode = new AccordionControlElement();
+            GroupNode.Name = $"{text}_{XInteger.Get()}";
+            GroupNode.Text = $"{text}";
+            GroupNode.Tag = XInteger.Get();
+            GroupElement.Elements.Add(GroupNode);
             return GroupNode;
         }
 
@@ -864,27 +888,11 @@ namespace UniversalCAD
         void Display(XTDF_Label theLabel, bool IsBoundaryDraw, XTopLoc_Location XLocalLocation = null)
         {
             XAIS_InteractiveContext context = OCCTView.GetInteractiveContext();
-            XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
-            XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
-            if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs))
-            {
-                xPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
-                xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
-                xPrs.Display(true);
-            }
-            else
-                xPrs = aPrs as XTPrsStd_AISPresentation;
-            //XXCAFPrs_AISObject aPrs = new XXCAFPrs_AISObject();
-            XAIS_InteractiveObject anInteractive = xPrs.GetAIS();
-            if (anInteractive != null)
-            {
-                if (XLocalLocation != null)
-                    anInteractive.SetLocalTransformation(XLocalLocation.Transformation());
-                SetFaceBoundaryAspect(anInteractive, true);
-                context.Display(anInteractive, true);
-                //if (XLocalLocation != null)
-                //    OCCTView.SetLocation1(anInteractive, XLocalLocation);
-            }
+            XXCAFPrs_AISObject aPrsObject = new XXCAFPrs_AISObject(theLabel);
+            if (XLocalLocation != null && !XLocalLocation.IsIdentity())
+                aPrsObject.SetLocalTransformation(XLocalLocation);
+            SetFaceBoundaryAspect(aPrsObject, IsBoundaryDraw);
+            context.Display(aPrsObject, true);
         }
         #endregion
 

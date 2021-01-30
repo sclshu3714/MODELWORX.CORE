@@ -111,7 +111,7 @@ namespace TKLCAF {
 		//! Returns the entry for the label aLabel in the form
 		//! of the ASCII character string anEntry containing
 		//! the tag list for aLabel.
-		static void Entry(XTDF_Label^ aLabel, XTCollection_AsciiString^ anEntry);
+		static void Entry(XTDF_Label^ aLabel, XTCollection_AsciiString^% anEntry);
 
 		//! Returns the entry of <aLabel> as list of integers
 		//! in <aTagList>.

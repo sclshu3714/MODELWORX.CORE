@@ -18,7 +18,7 @@ namespace TKLCAF {
         //! string astorageformat.
     XTDocStd_Document::XTDocStd_Document(System::String^ astorageformat) {
         XTCollection_ExtendedString^ pos = gcnew XTCollection_ExtendedString(astorageformat, Standard_False);
-        NativeHandle() = new TDocStd_Document(pos ->GetExtendedString());
+        NativeHandle() = new TDocStd_Document(*pos ->GetExtendedString());
     };
 
     //! Constructs a document object defined by the
@@ -30,7 +30,7 @@ namespace TKLCAF {
     //! Constructs a document object defined by the
     //! string astorageformat.
     XTDocStd_Document::XTDocStd_Document(XTCollection_ExtendedString^ astorageformat) {
-        NativeHandle() = new TDocStd_Document(astorageformat->GetExtendedString());
+        NativeHandle() = new TDocStd_Document(*astorageformat->GetExtendedString());
     };
 
     Handle(TDocStd_Document) XTDocStd_Document::GetDocument() {
