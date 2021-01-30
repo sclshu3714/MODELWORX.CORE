@@ -82,6 +82,7 @@ namespace UniversalCAD
             myDegenerateModeIsOn = true;
             IsRectVisible = false;
             OCCTView.SetLight(true);
+            OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_COLOR, new XQuantity_Color(Color.Blue.R / 255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 1, 1.0f);
             this.RWControl.SizeChanged += RenderWindow_SizeChanged;
             this.RWControl.Paint += RenderWindow_Paint;
             this.RWControl.KeyDown += RenderWindow_KeyDown;
@@ -619,13 +620,13 @@ namespace UniversalCAD
             for (; aRootIter.More(); aRootIter.Next()) {
                 XTDF_Label aTDFLabel = aRootIter.Value();
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aTDFLabel, ref ElementId);
-                XDisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
+                DisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 //TDFChildLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 BuildElement = true;
             }
             if (!BuildElement) {
                 AccordionControlElement tempElement = AddAccordionElement(RootNode, aRootLabel, ref ElementId);
-                XDisplayLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
+                DisplayLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 //TDFChildLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
             }
             OCCTView.SetDisplayMode(1);
@@ -722,12 +723,6 @@ namespace UniversalCAD
                     XLocalLocation = LocalLocation;
                 else
                     XLocalLocation = new XTopLoc_Location();
-                //XTDF_Label aTDFLabel = new XTDF_Label();
-                //if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
-                //    AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
-                //    DisplayLabel(AssemblyShapeTool, AssemblyColorTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
-                //}
-                //else
                 if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
                     XTDF_Label aTDFLabel = new XTDF_Label();
                     if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
@@ -746,18 +741,15 @@ namespace UniversalCAD
                 }
                 else {
                     XTDF_Label aTDFLabel = new XTDF_Label();
-                    if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
-                        XTPrsStd_AISPresentation xPrs = new XTPrsStd_AISPresentation();
-                        XTDF_Attribute aPrs = new XTPrsStd_AISPresentation();
-                        if (!aTDFLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs)) {
-                            xPrs = XTPrsStd_AISPresentation.Set(aTDFLabel, XXCAFPrs_Driver.GetID());
-                            xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_METALIZED);
-                            xPrs.Display(true);
-                        }
+                    if (AssemblyShapeTool.Search(currentShape, ref aTDFLabel, true, true, true)) {
+                        DisplayLabel(AssemblyShapeTool, GroupElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
                     }
-                    GroupElement.Style = ElementStyle.Item;
-                    XAIS_Shape shape = new XAIS_Shape(currentShape);
-                    context.Display(shape, true);
+                    else {
+                        GroupElement.Style = ElementStyle.Item;
+                        XAIS_Shape shape = new XAIS_Shape(currentShape);
+                        context.Display(shape, true);
+                        OCCTView.SetFaceBoundaryDraw(shape, IsBoundaryDraw);
+                    }
                 }
             }
         }
@@ -891,12 +883,13 @@ namespace UniversalCAD
                 aPrsObject.SetLocalTransformation(XLocalLocation);
             XPrs3d_Drawer aDrawer = aPrsObject.Attributes();
             aDrawer.SetFaceBoundaryDraw(IsBoundaryDraw);
-            aPrsObject.SetAttributes(aDrawer);
+            //aPrsObject.SetAttributes(aDrawer);
             //aPrsObject.SetCurrentFacingModel(XAspect_TypeOfFacingModel.Aspect_TOFM_BOTH_SIDE);
-            aPrsObject.SetHilightMode(1);
+            //aPrsObject.SetHilightMode(1);
             context.Display(aPrsObject, true);
+            if (XLocalLocation != null && !XLocalLocation.IsIdentity())
+                OCCTView.SetLocation1(aPrsObject, XLocalLocation);
             OCCTView.SetFaceBoundaryDraw(aPrsObject, IsBoundaryDraw);
-            OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_BOUNDBOX, new XQuantity_Color(Color.Blue.R/255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 1, 1.0f);
         }
         #endregion
 
