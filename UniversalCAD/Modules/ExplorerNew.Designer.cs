@@ -67,12 +67,12 @@ namespace UniversalCAD.Modules
             this.flyoutSetPanel = new DevExpress.Utils.FlyoutPanel();
             this.flyoutPanelControl1 = new DevExpress.Utils.FlyoutPanelControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.imageComboBoxEdit1 = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.imageComboBoxEdit2 = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
+            this.imageComboBoxEdit2 = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.imageComboBoxEdit1 = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.navigationTreeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
@@ -108,12 +108,12 @@ namespace UniversalCAD.Modules
             this.flyoutPanelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,7 +139,7 @@ namespace UniversalCAD.Modules
             this.navigationTreeList.OptionsView.ShowVertLines = false;
             this.navigationTreeList.RowHeight = 24;
             this.navigationTreeList.SelectImageList = this.svgImageCollection1;
-            this.navigationTreeList.Size = new System.Drawing.Size(259, 576);
+            this.navigationTreeList.Size = new System.Drawing.Size(259, 575);
             this.navigationTreeList.TabIndex = 1;
             this.navigationTreeList.TreeLevelWidth = 21;
             // 
@@ -312,7 +312,7 @@ namespace UniversalCAD.Modules
             this.mainTreeList.OptionsView.ShowVertLines = false;
             this.mainTreeList.RowHeight = 22;
             this.mainTreeList.SelectImageList = this.svgImageCollection1;
-            this.mainTreeList.Size = new System.Drawing.Size(774, 536);
+            this.mainTreeList.Size = new System.Drawing.Size(774, 535);
             this.mainTreeList.TabIndex = 2;
             this.mainTreeList.TreeLevelWidth = 21;
             // 
@@ -494,7 +494,7 @@ namespace UniversalCAD.Modules
             this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel2.Location = new System.Drawing.Point(0, 39);
             this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(260, 576);
+            this.sidePanel2.Size = new System.Drawing.Size(260, 575);
             this.sidePanel2.TabIndex = 4;
             this.sidePanel2.Text = "sidePanel2";
             // 
@@ -513,7 +513,7 @@ namespace UniversalCAD.Modules
             // 
             this.sideSavePanel.Controls.Add(this.layoutControl2);
             this.sideSavePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sideSavePanel.Location = new System.Drawing.Point(260, 575);
+            this.sideSavePanel.Location = new System.Drawing.Point(260, 574);
             this.sideSavePanel.Name = "sideSavePanel";
             this.sideSavePanel.Size = new System.Drawing.Size(774, 40);
             this.sideSavePanel.TabIndex = 6;
@@ -666,7 +666,9 @@ namespace UniversalCAD.Modules
             // flyoutSetPanel
             // 
             this.flyoutSetPanel.Controls.Add(this.flyoutPanelControl1);
-            this.flyoutSetPanel.Location = new System.Drawing.Point(879, 429);
+            this.flyoutSetPanel.Location = new System.Drawing.Point(849, 433);
+            this.flyoutSetPanel.LookAndFeel.SkinName = "Office 2016 Black";
+            this.flyoutSetPanel.LookAndFeel.UseDefaultLookAndFeel = false;
             this.flyoutSetPanel.Name = "flyoutSetPanel";
             this.flyoutSetPanel.OptionsBeakPanel.Opacity = 0.9D;
             this.flyoutSetPanel.OptionsButtonPanel.AllowGlyphSkinning = true;
@@ -675,9 +677,9 @@ namespace UniversalCAD.Modules
             this.flyoutSetPanel.OptionsButtonPanel.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
             new DevExpress.Utils.PeekFormButton("导出设置", true, buttonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, false, null, true, false, true, null, -1, false)});
             this.flyoutSetPanel.OptionsButtonPanel.ShowButtonPanel = true;
-            this.flyoutSetPanel.OwnerControl = this.mainTreeList;
+            this.flyoutSetPanel.OwnerControl = this.btnSetting;
             this.flyoutSetPanel.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
-            this.flyoutSetPanel.Size = new System.Drawing.Size(143, 120);
+            this.flyoutSetPanel.Size = new System.Drawing.Size(173, 120);
             this.flyoutSetPanel.TabIndex = 7;
             // 
             // flyoutPanelControl1
@@ -687,7 +689,7 @@ namespace UniversalCAD.Modules
             this.flyoutPanelControl1.FlyoutPanel = this.flyoutSetPanel;
             this.flyoutPanelControl1.Location = new System.Drawing.Point(0, 30);
             this.flyoutPanelControl1.Name = "flyoutPanelControl1";
-            this.flyoutPanelControl1.Size = new System.Drawing.Size(143, 90);
+            this.flyoutPanelControl1.Size = new System.Drawing.Size(173, 90);
             this.flyoutPanelControl1.TabIndex = 0;
             // 
             // layoutControl3
@@ -700,53 +702,26 @@ namespace UniversalCAD.Modules
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(427, 277, 650, 400);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(139, 86);
+            this.layoutControl3.Size = new System.Drawing.Size(169, 86);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
-            // layoutControlGroup2
+            // toggleSwitch1
             // 
-            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup2.GroupBordersVisible = false;
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem6,
-            this.layoutControlItem7,
-            this.layoutControlItem8});
-            this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(139, 86);
-            this.layoutControlGroup2.TextVisible = false;
-            // 
-            // imageComboBoxEdit1
-            // 
-            this.imageComboBoxEdit1.EditValue = "AP214CD";
-            this.imageComboBoxEdit1.Location = new System.Drawing.Point(57, 5);
-            this.imageComboBoxEdit1.Name = "imageComboBoxEdit1";
-            this.imageComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.imageComboBoxEdit1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214CD", "AP214CD", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214...", "AP214...", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP203", "AP203", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214IS", "AP214IS", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP242...", "AP242...", -1)});
-            this.imageComboBoxEdit1.Size = new System.Drawing.Size(77, 20);
-            this.imageComboBoxEdit1.StyleController = this.layoutControl3;
-            this.imageComboBoxEdit1.TabIndex = 4;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.imageComboBoxEdit1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(133, 24);
-            this.layoutControlItem6.Text = "文件格式";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            this.toggleSwitch1.Location = new System.Drawing.Point(56, 29);
+            this.toggleSwitch1.Name = "toggleSwitch1";
+            this.toggleSwitch1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.toggleSwitch1.Properties.OffText = "Off";
+            this.toggleSwitch1.Properties.OnText = "On";
+            this.toggleSwitch1.Properties.ShowText = false;
+            this.toggleSwitch1.Size = new System.Drawing.Size(108, 25);
+            this.toggleSwitch1.StyleController = this.layoutControl3;
+            this.toggleSwitch1.TabIndex = 6;
             // 
             // imageComboBoxEdit2
             // 
             this.imageComboBoxEdit2.EditValue = "MM";
-            this.imageComboBoxEdit2.Location = new System.Drawing.Point(57, 58);
+            this.imageComboBoxEdit2.Location = new System.Drawing.Point(56, 58);
             this.imageComboBoxEdit2.Name = "imageComboBoxEdit2";
             this.imageComboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -762,30 +737,57 @@ namespace UniversalCAD.Modules
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("UM", "UM", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("CM", "CM", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("UIN", "UIN", -1)});
-            this.imageComboBoxEdit2.Size = new System.Drawing.Size(77, 20);
+            this.imageComboBoxEdit2.Size = new System.Drawing.Size(108, 20);
             this.imageComboBoxEdit2.StyleController = this.layoutControl3;
             this.imageComboBoxEdit2.TabIndex = 5;
+            // 
+            // imageComboBoxEdit1
+            // 
+            this.imageComboBoxEdit1.EditValue = "AP214CD";
+            this.imageComboBoxEdit1.Location = new System.Drawing.Point(56, 5);
+            this.imageComboBoxEdit1.Name = "imageComboBoxEdit1";
+            this.imageComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.imageComboBoxEdit1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214CD", "AP214CD", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214...", "AP214...", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP203", "AP203", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP214IS", "AP214IS", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("AP242...", "AP242...", -1)});
+            this.imageComboBoxEdit1.Size = new System.Drawing.Size(108, 20);
+            this.imageComboBoxEdit1.StyleController = this.layoutControl3;
+            this.imageComboBoxEdit1.TabIndex = 4;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem6,
+            this.layoutControlItem7,
+            this.layoutControlItem8});
+            this.layoutControlGroup2.Name = "Root";
+            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(169, 86);
+            this.layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.imageComboBoxEdit1;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(163, 24);
+            this.layoutControlItem6.Text = "文件格式";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.imageComboBoxEdit2;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 53);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(133, 27);
+            this.layoutControlItem7.Size = new System.Drawing.Size(163, 27);
             this.layoutControlItem7.Text = "数据单位";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(48, 14);
-            // 
-            // toggleSwitch1
-            // 
-            this.toggleSwitch1.Location = new System.Drawing.Point(57, 29);
-            this.toggleSwitch1.Name = "toggleSwitch1";
-            this.toggleSwitch1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.toggleSwitch1.Properties.OffText = "Off";
-            this.toggleSwitch1.Properties.OnText = "On";
-            this.toggleSwitch1.Properties.ShowText = false;
-            this.toggleSwitch1.Size = new System.Drawing.Size(77, 25);
-            this.toggleSwitch1.StyleController = this.layoutControl3;
-            this.toggleSwitch1.TabIndex = 6;
             // 
             // layoutControlItem8
             // 
@@ -794,7 +796,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem8.Control = this.toggleSwitch1;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(133, 29);
+            this.layoutControlItem8.Size = new System.Drawing.Size(163, 29);
             this.layoutControlItem8.Text = "写入曲线";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -804,7 +806,7 @@ namespace UniversalCAD.Modules
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 615);
+            this.ClientSize = new System.Drawing.Size(1034, 614);
             this.Controls.Add(this.flyoutSetPanel);
             this.Controls.Add(this.mainTreeList);
             this.Controls.Add(this.sideSavePanel);
@@ -852,12 +854,12 @@ namespace UniversalCAD.Modules
             this.flyoutPanelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
 
