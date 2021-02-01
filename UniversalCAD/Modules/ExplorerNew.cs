@@ -18,12 +18,13 @@ namespace UniversalCAD.Modules
 {
     public partial class ExplorerNew : XtraForm {
         public TreeList MainControl {
-            get { return this.treeList1; }
+            get { return this.mainTreeList; }
         }
         public ExplorerNew() {
             InitializeComponent();
             CalcImageSize();
         }
+        private bool IsSaveState = false;
 
         public string FullName { get; set; }
         /// <summary>
@@ -52,8 +53,9 @@ namespace UniversalCAD.Modules
             InitializeDisplayTreeList();
             InitializeNavigationTreeList();
             UpdateButtonsState();
-            this.btnReturnMain.Click += BtnReturnMain_Click;
+            UpdateSaveButtonsState();
         }
+
 
         #region Initialize
         //<navigationTreeList>
@@ -76,14 +78,22 @@ namespace UniversalCAD.Modules
         //</navigationTreeList>
         //<breadCrumbEdit>
         void InitializeBreadCrumb() {
-            breadCrumbEdit.Properties.RootImageIndex = 0;            
+            breadCrumbEdit.Properties.RootImageIndex = 0;
+            //breadCrumbEdit.EditValueChanged += BreadCrumbEdit_EditValueChanged;
             breadCrumbEdit.PathChanged += OnBreadCrumbEditPathChanged;
             breadCrumbEvents1.CustomItemContents += OnBreadCrumbEventsCustomItemContents;
+            this.btnReturnMain.Click += BtnReturnMain_Click;
         }
+
+        private void BreadCrumbEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            string path = breadCrumbEdit.Path;
+        }
+
         void InitializeDisplayTreeList() {
-            treeList1.CustomDrawNodeImages += OnTreeListCustomDrawNodeImages;
-            treeList1.GetSelectImage += OnTreeListGetStateImage;
-            treeList1.MouseDoubleClick += OnTreeListMouseDoubleClick;
+            mainTreeList.CustomDrawNodeImages += OnTreeListCustomDrawNodeImages;
+            mainTreeList.GetSelectImage += OnTreeListGetStateImage;
+            mainTreeList.MouseDoubleClick += OnTreeListMouseDoubleClick;
         }
         //</breadCrumbEdit>
         #endregion
@@ -107,7 +117,7 @@ namespace UniversalCAD.Modules
             searchControl.Properties.NullValuePrompt = "Search " + navigationTreeList.FocusedNode.GetDisplayText(0);
             Item _item = (Item)navigationTreeList.GetRow(navigationTreeList.FocusedNode.Id);
             breadCrumbEdit.Properties.RootGlyph = _item.Image;
-            treeList1.DataSource = _item.GetFilesSystemInfo();
+            mainTreeList.DataSource = _item.GetFilesSystemInfo();
             Cursor.Current = current;
         }
         void OnTreeListCustomDrawNodeImages(object sender, CustomDrawNodeImagesEventArgs e) {
@@ -124,21 +134,24 @@ namespace UniversalCAD.Modules
         void OnTreeListMouseDoubleClick(object sender, MouseEventArgs e) {
             if(e.Button != MouseButtons.Left)
                 return;
-            TreeListHitInfo hitInfo = treeList1.CalcHitInfo(e.Location);
+            TreeListHitInfo hitInfo = mainTreeList.CalcHitInfo(e.Location);
             if(hitInfo.Node == null)
                 return;
             TreeListNode pressedNode = hitInfo.Node;
-            CustomFileInfo fileInfo = (CustomFileInfo)treeList1.GetRow(pressedNode.Id);
+            CustomFileInfo fileInfo = (CustomFileInfo)mainTreeList.GetRow(pressedNode.Id);
             if (fileInfo.Type == FileType.File)
             {   //选择的文件
                 //SafeProcess.Open(fileInfo.FullName);
-                FullName = fileInfo.FullName;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-                //MainForm main = this.ParentForm as MainForm;
-                //main.Controls.Remove(this);
-                //if (OnOperationEvent != null)
-                //    OnOperationEvent(sender, e, FullName);
+                if (!IsSaveState) { //打开
+                    FullName = fileInfo.FullName;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else { //保存
+                    //FullName = fileInfo.FullName;
+                    //保存文件执行，save
+                }
+               
             }
             else
                 navigationTreeList.FocusedNode = navigationTreeList.FocusedNode.Nodes[pressedNode.Id];
@@ -163,6 +176,12 @@ namespace UniversalCAD.Modules
         }
         void OnUpButtonClick(object sender, EventArgs e) {
             breadCrumbEdit.GoUp();
+        }
+
+        // <breadCrumbEdit>
+        void OnBreadCrumbPathChanged(object sender, BreadCrumbPathChangedEventArgs e)
+        {
+            UpdateButtonsState();
         }
         //<breadCrumbEdit>
         void OnBreadCrumbEditPathChanged(object sender, BreadCrumbPathChangedEventArgs e) {
@@ -191,6 +210,52 @@ namespace UniversalCAD.Modules
             SimpleButton button = (SimpleButton)sender;
             button.ButtonStyle = BorderStyles.NoBorder;
         }
+
+        /// <summary>
+        /// 是打开文件还是保存文件
+        /// </summary>
+        public void SetOperationSave(bool IsSave) {
+            IsSaveState = IsSave;
+            sideSavePanel.Visible = IsSaveState;
+        }
+
+        /// <summary>
+        /// 保存栏设置
+        /// </summary>
+        private void UpdateSaveButtonsState()
+        {
+            sideSavePanel.Visible = IsSaveState;
+            this.btnSetting.Click += BtnSetting_Click;
+            this.btnSave.Click += BtnSave_Click;
+        }
+
+
+        /// <summary>
+        /// 设置栏是否显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSetting_Click(object sender, EventArgs e)
+        {
+            if (this.flyoutSetPanel.IsPopupOpen)
+                this.flyoutSetPanel.HideBeakForm();
+            else
+                this.flyoutSetPanel.ShowBeakForm();
+        }
+
+
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtNameEdit.Text))
+                return;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
     public class RootItem : Item {
         public RootItem() : base("Root") { }
@@ -210,6 +275,7 @@ namespace UniversalCAD.Modules
         public override List<Item> GetDirectories() {
             List<Item> items = new List<Item>(10);
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)));
+            items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.Recent)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)));
@@ -222,6 +288,7 @@ namespace UniversalCAD.Modules
         public override List<CustomFileInfo> GetFilesSystemInfo() {
             List<CustomFileInfo> infos = new List<CustomFileInfo>(15);
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory))));
+            infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Recent))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures))));

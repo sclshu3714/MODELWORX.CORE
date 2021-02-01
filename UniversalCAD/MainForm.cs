@@ -113,6 +113,9 @@ namespace UniversalCAD
                     #endregion
                     break;
                 case "Save":
+                    #region 打开文件
+                    OperationSaveFile();
+                    #endregion
                     break;
                 default:
                     break;
@@ -160,6 +163,56 @@ namespace UniversalCAD
                     case ".stl":
                         theFormat = CurrentModelFormat.STL;
                         OCCTView.TranslateModel(FullName,(int)theFormat, true);
+                        break;
+                    default:
+                        return;
+                }
+            }
+        }
+        #endregion
+        #region 打开文件
+        /// <summary>
+        /// 操作 - 打开文件，选择文件
+        /// </summary>
+        void OperationSaveFile()
+        {
+            ExplorerNew explorer = new ExplorerNew();
+            explorer.SetOperationSave(true);
+            explorer.FormBorderStyle = FormBorderStyle.None;
+            explorer.Location = new Point(0, 0);
+            explorer.Width = this.Width;
+            explorer.Height = this.Height;
+            if (explorer.ShowDialog() == DialogResult.OK) {
+                OCCTView.GetInteractiveContext().RemoveAll(true);
+                OCCTView.TriedronDisplay(true, XAspect_TypeOfTriedronPosition.Aspect_TOTP_RIGHT_LOWER, 100, 100);
+                string FullName = explorer.FullName;
+                CurrentModelFormat theFormat = CurrentModelFormat.STEP;
+                switch (Path.GetExtension(FullName)?.ToLower()) {
+                    case ".stp":
+                    case ".step":
+                        theFormat = CurrentModelFormat.STEP;
+                        TranslateModel(FullName, theFormat);
+                        break;
+                    case ".brep":
+                        theFormat = CurrentModelFormat.BREP;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".iges":
+                        theFormat = CurrentModelFormat.IGES;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".vrml":
+                        theFormat = CurrentModelFormat.VRML;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".png":
+                    case ".pmp":
+                        theFormat = CurrentModelFormat.IMAGE;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        break;
+                    case ".stl":
+                        theFormat = CurrentModelFormat.STL;
+                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
                         break;
                     default:
                         return;
