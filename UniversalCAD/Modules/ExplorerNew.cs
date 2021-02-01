@@ -87,7 +87,12 @@ namespace UniversalCAD.Modules
 
         private void BreadCrumbEdit_EditValueChanged(object sender, EventArgs e)
         {
-            string path = breadCrumbEdit.Path;
+            breadCrumbEdit.EditValueChanged -= BreadCrumbEdit_EditValueChanged;
+            if (!string.IsNullOrEmpty(breadCrumbEdit.Path) && !breadCrumbEdit.Path.Contains("此电脑")) {
+                breadCrumbEdit.Path = $@"此电脑\{breadCrumbEdit.Path}";
+                breadCrumbEdit.RefreshEditValue();
+            }
+            breadCrumbEdit.EditValueChanged += BreadCrumbEdit_EditValueChanged;
         }
 
         void InitializeDisplayTreeList() {
@@ -276,7 +281,7 @@ namespace UniversalCAD.Modules
         public override List<Item> GetDirectories() {
             List<Item> items = new List<Item>(10);
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)));
-            items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.Recent)));
+            //items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.Recent)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic)));
             items.Add(new DirectoryItem(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)));
@@ -289,7 +294,7 @@ namespace UniversalCAD.Modules
         public override List<CustomFileInfo> GetFilesSystemInfo() {
             List<CustomFileInfo> infos = new List<CustomFileInfo>(15);
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory))));
-            infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Recent))));
+            //infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Recent))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic))));
             infos.Add(CreateSystemFolderInfo(new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures))));

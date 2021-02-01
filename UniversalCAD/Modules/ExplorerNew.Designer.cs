@@ -21,6 +21,8 @@ namespace UniversalCAD.Modules
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode1 = new DevExpress.XtraEditors.BreadCrumbNode();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode2 = new DevExpress.XtraEditors.BreadCrumbNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplorerNew));
             DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions1 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
             this.navigationTreeList = new DevExpress.XtraTreeList.TreeList();
@@ -139,7 +141,7 @@ namespace UniversalCAD.Modules
             this.navigationTreeList.OptionsView.ShowVertLines = false;
             this.navigationTreeList.RowHeight = 24;
             this.navigationTreeList.SelectImageList = this.svgImageCollection1;
-            this.navigationTreeList.Size = new System.Drawing.Size(259, 575);
+            this.navigationTreeList.Size = new System.Drawing.Size(259, 574);
             this.navigationTreeList.TabIndex = 1;
             this.navigationTreeList.TreeLevelWidth = 21;
             // 
@@ -167,6 +169,14 @@ namespace UniversalCAD.Modules
             this.breadCrumbEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.breadCrumbEdit.Properties.Images = this.svgImageCollection1;
+            breadCrumbNode1.Caption = "D:";
+            breadCrumbNode2.Caption = "OpenCASCADE7.3.0";
+            breadCrumbNode2.Value = "OpenCASCADE7.3.0";
+            breadCrumbNode1.ChildNodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
+            breadCrumbNode2});
+            breadCrumbNode1.Value = "D:";
+            this.breadCrumbEdit.Properties.Nodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
+            breadCrumbNode1});
             this.breadCrumbEdit.Size = new System.Drawing.Size(638, 28);
             this.breadCrumbEdit.TabIndex = 0;
             // 
@@ -312,7 +322,7 @@ namespace UniversalCAD.Modules
             this.mainTreeList.OptionsView.ShowVertLines = false;
             this.mainTreeList.RowHeight = 22;
             this.mainTreeList.SelectImageList = this.svgImageCollection1;
-            this.mainTreeList.Size = new System.Drawing.Size(774, 535);
+            this.mainTreeList.Size = new System.Drawing.Size(774, 534);
             this.mainTreeList.TabIndex = 2;
             this.mainTreeList.TreeLevelWidth = 21;
             // 
@@ -494,7 +504,7 @@ namespace UniversalCAD.Modules
             this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel2.Location = new System.Drawing.Point(0, 39);
             this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(260, 575);
+            this.sidePanel2.Size = new System.Drawing.Size(260, 574);
             this.sidePanel2.TabIndex = 4;
             this.sidePanel2.Text = "sidePanel2";
             // 
@@ -513,7 +523,7 @@ namespace UniversalCAD.Modules
             // 
             this.sideSavePanel.Controls.Add(this.layoutControl2);
             this.sideSavePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sideSavePanel.Location = new System.Drawing.Point(260, 574);
+            this.sideSavePanel.Location = new System.Drawing.Point(260, 573);
             this.sideSavePanel.Name = "sideSavePanel";
             this.sideSavePanel.Size = new System.Drawing.Size(774, 40);
             this.sideSavePanel.TabIndex = 6;
@@ -806,7 +816,7 @@ namespace UniversalCAD.Modules
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 614);
+            this.ClientSize = new System.Drawing.Size(1034, 613);
             this.Controls.Add(this.flyoutSetPanel);
             this.Controls.Add(this.mainTreeList);
             this.Controls.Add(this.sideSavePanel);
