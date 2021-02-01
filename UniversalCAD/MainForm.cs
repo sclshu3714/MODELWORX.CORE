@@ -183,8 +183,6 @@ namespace UniversalCAD
             explorer.Width = this.Width;
             explorer.Height = this.Height;
             if (explorer.ShowDialog() == DialogResult.OK) {
-                OCCTView.GetInteractiveContext().RemoveAll(true);
-                OCCTView.TriedronDisplay(true, XAspect_TypeOfTriedronPosition.Aspect_TOTP_RIGHT_LOWER, 100, 100);
                 string FullName = explorer.FullName;
                 CurrentModelFormat theFormat = CurrentModelFormat.STEP;
                 switch (Path.GetExtension(FullName)?.ToLower()) {
