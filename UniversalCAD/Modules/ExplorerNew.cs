@@ -253,6 +253,7 @@ namespace UniversalCAD.Modules
         {
             if (string.IsNullOrEmpty(this.txtNameEdit.Text))
                 return;
+            FullName = $"{breadCrumbEdit.Path}\\{this.txtNameEdit.Text}{((ImageComboBoxItem)this.cmbExtension.SelectedItem).Value}";
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

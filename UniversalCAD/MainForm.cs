@@ -191,28 +191,28 @@ namespace UniversalCAD
                     case ".stp":
                     case ".step":
                         theFormat = CurrentModelFormat.STEP;
-                        TranslateModel(FullName, theFormat);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     case ".brep":
                         theFormat = CurrentModelFormat.BREP;
-                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     case ".iges":
                         theFormat = CurrentModelFormat.IGES;
-                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     case ".vrml":
                         theFormat = CurrentModelFormat.VRML;
-                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     case ".png":
                     case ".pmp":
                         theFormat = CurrentModelFormat.IMAGE;
-                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     case ".stl":
                         theFormat = CurrentModelFormat.STL;
-                        OCCTView.TranslateModel(FullName, (int)theFormat, true);
+                        OCCTView.TranslateModel(FullName, (int)theFormat, false);
                         break;
                     default:
                         return;
