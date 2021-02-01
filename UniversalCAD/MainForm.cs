@@ -170,9 +170,9 @@ namespace UniversalCAD
             }
         }
         #endregion
-        #region 打开文件
+        #region 保存文件
         /// <summary>
-        /// 操作 - 打开文件，选择文件
+        /// 操作 - 保存文件
         /// </summary>
         void OperationSaveFile()
         {
