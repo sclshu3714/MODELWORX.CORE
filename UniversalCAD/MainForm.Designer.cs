@@ -48,6 +48,33 @@ namespace UniversalCAD
             this.fluentFormDefaultManager = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.imgList16 = new DevExpress.Utils.ImageCollection(this.components);
             this.imgList32 = new DevExpress.Utils.ImageCollection(this.components);
+            this.accElementProperty = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementNone = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementMaterial = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementTexture = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementDisplayMode = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementHollowMesh = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accoElementMeshEdges = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementMeshShrinked = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementWireframe = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementFlatShaded = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementSmoothlyShaded = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementShadedwithEdges = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementRubberbandselection = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementOrbitrotationbysingletouch = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementPanbysingletouch = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementZoombysingletouch = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementShowAll = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementFitAll = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementPerspectivemodel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementMessagewindow = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementShowselected = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementHideSelected = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementShowonlyselected = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementPropertyWindow = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementSelectParent = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementAssignorchangematerial = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accElementDeleteSelected = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl)).BeginInit();
@@ -60,9 +87,9 @@ namespace UniversalCAD
             // 
             this.fluentDesignFormContainer.Controls.Add(this.RWControl);
             this.fluentDesignFormContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fluentDesignFormContainer.Location = new System.Drawing.Point(52, 31);
+            this.fluentDesignFormContainer.Location = new System.Drawing.Point(250, 31);
             this.fluentDesignFormContainer.Name = "fluentDesignFormContainer";
-            this.fluentDesignFormContainer.Size = new System.Drawing.Size(958, 668);
+            this.fluentDesignFormContainer.Size = new System.Drawing.Size(760, 668);
             this.fluentDesignFormContainer.TabIndex = 0;
             // 
             // RWControl
@@ -71,7 +98,7 @@ namespace UniversalCAD
             this.RWControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RWControl.Location = new System.Drawing.Point(0, 0);
             this.RWControl.Name = "RWControl";
-            this.RWControl.Size = new System.Drawing.Size(958, 668);
+            this.RWControl.Size = new System.Drawing.Size(760, 668);
             this.RWControl.TabIndex = 0;
             // 
             // accordionControl
@@ -93,11 +120,10 @@ namespace UniversalCAD
             this.accordionControl.LookAndFeel.SkinName = "Office 2016 Black";
             this.accordionControl.LookAndFeel.UseDefaultLookAndFeel = false;
             this.accordionControl.Name = "accordionControl";
-            this.accordionControl.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             this.accordionControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            this.accordionControl.Size = new System.Drawing.Size(52, 668);
+            this.accordionControl.Size = new System.Drawing.Size(250, 668);
             this.accordionControl.TabIndex = 1;
             this.accordionControl.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -142,6 +168,9 @@ namespace UniversalCAD
             // 
             // accElementView
             // 
+            this.accElementView.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accElementProperty,
+            this.accElementDisplayMode});
             this.accElementView.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_416;
             this.accElementView.Name = "accElementView";
             this.accElementView.Tag = "View";
@@ -149,9 +178,24 @@ namespace UniversalCAD
             // 
             // accElementViewer
             // 
+            this.accElementViewer.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accElementRubberbandselection,
+            this.accElementOrbitrotationbysingletouch,
+            this.accElementPanbysingletouch,
+            this.accElementZoombysingletouch,
+            this.accElementShowAll,
+            this.accElementFitAll,
+            this.accElementPerspectivemodel,
+            this.accElementMessagewindow,
+            this.accElementShowselected,
+            this.accElementHideSelected,
+            this.accElementShowonlyselected,
+            this.accElementPropertyWindow,
+            this.accElementSelectParent,
+            this.accElementAssignorchangematerial,
+            this.accElementDeleteSelected});
             this.accElementViewer.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_306;
             this.accElementViewer.Name = "accElementViewer";
-            this.accElementViewer.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accElementViewer.Tag = "Viewer";
             this.accElementViewer.Text = "视图";
             // 
@@ -212,6 +256,205 @@ namespace UniversalCAD
             // 
             this.imgList32.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgList32.ImageStream")));
             // 
+            // accElementProperty
+            // 
+            this.accElementProperty.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accElementNone,
+            this.accElementMaterial,
+            this.accElementTexture});
+            this.accElementProperty.Name = "accElementProperty";
+            this.accElementProperty.Tag = "Property";
+            this.accElementProperty.Text = "性质";
+            // 
+            // accElementNone
+            // 
+            this.accElementNone.Name = "accElementNone";
+            this.accElementNone.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementNone.Tag = "None";
+            this.accElementNone.Text = "无";
+            // 
+            // accElementMaterial
+            // 
+            this.accElementMaterial.Name = "accElementMaterial";
+            this.accElementMaterial.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementMaterial.Tag = "Material";
+            this.accElementMaterial.Text = "材料";
+            // 
+            // accElementTexture
+            // 
+            this.accElementTexture.Name = "accElementTexture";
+            this.accElementTexture.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementTexture.Tag = "Texture";
+            this.accElementTexture.Text = "皮肤[N/A]";
+            // 
+            // accElementDisplayMode
+            // 
+            this.accElementDisplayMode.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accElementHollowMesh,
+            this.accoElementMeshEdges,
+            this.accElementMeshShrinked,
+            this.accElementWireframe,
+            this.accElementFlatShaded,
+            this.accElementSmoothlyShaded,
+            this.accElementShadedwithEdges});
+            this.accElementDisplayMode.Name = "accElementDisplayMode";
+            this.accElementDisplayMode.Tag = "DisplayMode";
+            this.accElementDisplayMode.Text = "显示模式";
+            // 
+            // accElementHollowMesh
+            // 
+            this.accElementHollowMesh.Name = "accElementHollowMesh";
+            this.accElementHollowMesh.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementHollowMesh.Tag = "HollowMesh";
+            this.accElementHollowMesh.Text = "空心网格";
+            // 
+            // accoElementMeshEdges
+            // 
+            this.accoElementMeshEdges.Name = "accoElementMeshEdges";
+            this.accoElementMeshEdges.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accoElementMeshEdges.Tag = "MeshEdges";
+            this.accoElementMeshEdges.Text = "网格边缘";
+            // 
+            // accElementMeshShrinked
+            // 
+            this.accElementMeshShrinked.Name = "accElementMeshShrinked";
+            this.accElementMeshShrinked.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementMeshShrinked.Tag = "MeshShrinked";
+            this.accElementMeshShrinked.Text = "网格收缩";
+            // 
+            // accElementWireframe
+            // 
+            this.accElementWireframe.Name = "accElementWireframe";
+            this.accElementWireframe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementWireframe.Tag = "Wireframe";
+            this.accElementWireframe.Text = "线框模式";
+            // 
+            // accElementFlatShaded
+            // 
+            this.accElementFlatShaded.Name = "accElementFlatShaded";
+            this.accElementFlatShaded.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementFlatShaded.Tag = "FlatShaded";
+            this.accElementFlatShaded.Text = "平面投影";
+            // 
+            // accElementSmoothlyShaded
+            // 
+            this.accElementSmoothlyShaded.Name = "accElementSmoothlyShaded";
+            this.accElementSmoothlyShaded.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementSmoothlyShaded.Tag = "SmoothlyShaded";
+            this.accElementSmoothlyShaded.Text = "平滑阴影";
+            // 
+            // accElementShadedwithEdges
+            // 
+            this.accElementShadedwithEdges.Name = "accElementShadedwithEdges";
+            this.accElementShadedwithEdges.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementShadedwithEdges.Tag = "ShadedwithEdges";
+            this.accElementShadedwithEdges.Text = "显示边框";
+            // 
+            // accElementRubberbandselection
+            // 
+            this.accElementRubberbandselection.Name = "accElementRubberbandselection";
+            this.accElementRubberbandselection.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementRubberbandselection.Tag = "Rubberbandselection";
+            this.accElementRubberbandselection.Text = "橡皮筋选择";
+            // 
+            // accElementOrbitrotationbysingletouch
+            // 
+            this.accElementOrbitrotationbysingletouch.Name = "accElementOrbitrotationbysingletouch";
+            this.accElementOrbitrotationbysingletouch.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementOrbitrotationbysingletouch.Tag = "Orbitrotationbysingletouch";
+            this.accElementOrbitrotationbysingletouch.Text = "单触旋转";
+            // 
+            // accElementPanbysingletouch
+            // 
+            this.accElementPanbysingletouch.Name = "accElementPanbysingletouch";
+            this.accElementPanbysingletouch.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementPanbysingletouch.Tag = "Panbysingletouch";
+            this.accElementPanbysingletouch.Text = "单触平移";
+            // 
+            // accElementZoombysingletouch
+            // 
+            this.accElementZoombysingletouch.Name = "accElementZoombysingletouch";
+            this.accElementZoombysingletouch.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementZoombysingletouch.Tag = "Zoombysingletouch";
+            this.accElementZoombysingletouch.Text = "单触缩放";
+            // 
+            // accElementShowAll
+            // 
+            this.accElementShowAll.Name = "accElementShowAll";
+            this.accElementShowAll.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementShowAll.Tag = "ShowAll";
+            this.accElementShowAll.Text = "显示所有";
+            // 
+            // accElementFitAll
+            // 
+            this.accElementFitAll.Name = "accElementFitAll";
+            this.accElementFitAll.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementFitAll.Tag = "FitAll";
+            this.accElementFitAll.Text = "适合所有";
+            // 
+            // accElementPerspectivemodel
+            // 
+            this.accElementPerspectivemodel.Name = "accElementPerspectivemodel";
+            this.accElementPerspectivemodel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementPerspectivemodel.Tag = "Enable/disableperspectivemodel";
+            this.accElementPerspectivemodel.Text = "透视模式";
+            // 
+            // accElementMessagewindow
+            // 
+            this.accElementMessagewindow.Name = "accElementMessagewindow";
+            this.accElementMessagewindow.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementMessagewindow.Tag = "Show/hidemessagewindow";
+            this.accElementMessagewindow.Text = "消息窗口";
+            // 
+            // accElementShowselected
+            // 
+            this.accElementShowselected.Name = "accElementShowselected";
+            this.accElementShowselected.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementShowselected.Tag = "Showselected";
+            this.accElementShowselected.Text = "显示选择";
+            // 
+            // accElementHideSelected
+            // 
+            this.accElementHideSelected.Name = "accElementHideSelected";
+            this.accElementHideSelected.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementHideSelected.Tag = "HideSelected";
+            this.accElementHideSelected.Text = "隐藏选择";
+            // 
+            // accElementShowonlyselected
+            // 
+            this.accElementShowonlyselected.Name = "accElementShowonlyselected";
+            this.accElementShowonlyselected.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementShowonlyselected.Tag = "Showonlyselected";
+            this.accElementShowonlyselected.Text = "仅显示选择";
+            // 
+            // accElementPropertyWindow
+            // 
+            this.accElementPropertyWindow.Name = "accElementPropertyWindow";
+            this.accElementPropertyWindow.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementPropertyWindow.Tag = "PropertyWindow";
+            this.accElementPropertyWindow.Text = "属性窗口";
+            // 
+            // accElementSelectParent
+            // 
+            this.accElementSelectParent.Name = "accElementSelectParent";
+            this.accElementSelectParent.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementSelectParent.Tag = "SelectParent";
+            this.accElementSelectParent.Text = "选择父级";
+            // 
+            // accElementAssignorchangematerial
+            // 
+            this.accElementAssignorchangematerial.Name = "accElementAssignorchangematerial";
+            this.accElementAssignorchangematerial.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementAssignorchangematerial.Tag = "Assignorchangematerial";
+            this.accElementAssignorchangematerial.Text = "指定材质";
+            // 
+            // accElementDeleteSelected
+            // 
+            this.accElementDeleteSelected.Name = "accElementDeleteSelected";
+            this.accElementDeleteSelected.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accElementDeleteSelected.Tag = "DeleteSelected";
+            this.accElementDeleteSelected.Text = "删除选择";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -256,5 +499,32 @@ namespace UniversalCAD
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementAbout;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accElementSetting;
         private System.Windows.Forms.Panel RWControl;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementProperty;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementNone;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementMaterial;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementTexture;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementDisplayMode;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementHollowMesh;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accoElementMeshEdges;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementMeshShrinked;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementWireframe;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementFlatShaded;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementSmoothlyShaded;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementShadedwithEdges;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementRubberbandselection;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementOrbitrotationbysingletouch;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementPanbysingletouch;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementZoombysingletouch;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementShowAll;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementFitAll;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementPerspectivemodel;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementMessagewindow;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementShowselected;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementHideSelected;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementShowonlyselected;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementPropertyWindow;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementSelectParent;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementAssignorchangematerial;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accElementDeleteSelected;
     }
 }
