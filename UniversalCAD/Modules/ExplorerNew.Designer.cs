@@ -21,10 +21,10 @@ namespace UniversalCAD.Modules
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode1 = new DevExpress.XtraEditors.BreadCrumbNode();
-            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode2 = new DevExpress.XtraEditors.BreadCrumbNode();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode3 = new DevExpress.XtraEditors.BreadCrumbNode();
+            DevExpress.XtraEditors.BreadCrumbNode breadCrumbNode4 = new DevExpress.XtraEditors.BreadCrumbNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplorerNew));
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions1 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
+            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions2 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
             this.navigationTreeList = new DevExpress.XtraTreeList.TreeList();
             this.navNameCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(this.components);
@@ -169,14 +169,14 @@ namespace UniversalCAD.Modules
             this.breadCrumbEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.breadCrumbEdit.Properties.Images = this.svgImageCollection1;
-            breadCrumbNode1.Caption = "D:";
-            breadCrumbNode2.Caption = "OpenCASCADE7.3.0";
-            breadCrumbNode2.Value = "OpenCASCADE7.3.0";
-            breadCrumbNode1.ChildNodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
-            breadCrumbNode2});
-            breadCrumbNode1.Value = "D:";
+            breadCrumbNode3.Caption = "D:";
+            breadCrumbNode4.Caption = "OpenCASCADE7.3.0";
+            breadCrumbNode4.Value = "OpenCASCADE7.3.0";
+            breadCrumbNode3.ChildNodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
+            breadCrumbNode4});
+            breadCrumbNode3.Value = "D:";
             this.breadCrumbEdit.Properties.Nodes.AddRange(new DevExpress.XtraEditors.BreadCrumbNode[] {
-            breadCrumbNode1});
+            breadCrumbNode3});
             this.breadCrumbEdit.Size = new System.Drawing.Size(638, 28);
             this.breadCrumbEdit.TabIndex = 0;
             // 
@@ -592,6 +592,7 @@ namespace UniversalCAD.Modules
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("MSH", ".msh", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("PNG", ".png", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("LOG", ".log", -1)});
+            this.cmbExtension.ShowToolTips = false;
             this.cmbExtension.Size = new System.Drawing.Size(79, 33);
             this.cmbExtension.StyleController = this.layoutControl2;
             this.cmbExtension.TabIndex = 5;
@@ -685,7 +686,7 @@ namespace UniversalCAD.Modules
             this.flyoutSetPanel.OptionsButtonPanel.ButtonPanelContentAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.flyoutSetPanel.OptionsButtonPanel.ButtonPanelLocation = DevExpress.Utils.FlyoutPanelButtonPanelLocation.Top;
             this.flyoutSetPanel.OptionsButtonPanel.Buttons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.Utils.PeekFormButton("导出设置", true, buttonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, false, null, true, false, true, null, -1, false)});
+            new DevExpress.Utils.PeekFormButton("导出设置", true, buttonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, false, null, true, false, true, null, -1, false)});
             this.flyoutSetPanel.OptionsButtonPanel.ShowButtonPanel = true;
             this.flyoutSetPanel.OwnerControl = this.btnSetting;
             this.flyoutSetPanel.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
