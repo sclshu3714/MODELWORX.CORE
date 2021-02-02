@@ -141,7 +141,7 @@ namespace UniversalCAD.Modules
             this.navigationTreeList.OptionsView.ShowVertLines = false;
             this.navigationTreeList.RowHeight = 24;
             this.navigationTreeList.SelectImageList = this.svgImageCollection1;
-            this.navigationTreeList.Size = new System.Drawing.Size(259, 574);
+            this.navigationTreeList.Size = new System.Drawing.Size(259, 573);
             this.navigationTreeList.TabIndex = 1;
             this.navigationTreeList.TreeLevelWidth = 21;
             // 
@@ -322,7 +322,7 @@ namespace UniversalCAD.Modules
             this.mainTreeList.OptionsView.ShowVertLines = false;
             this.mainTreeList.RowHeight = 22;
             this.mainTreeList.SelectImageList = this.svgImageCollection1;
-            this.mainTreeList.Size = new System.Drawing.Size(774, 534);
+            this.mainTreeList.Size = new System.Drawing.Size(774, 524);
             this.mainTreeList.TabIndex = 2;
             this.mainTreeList.TreeLevelWidth = 21;
             // 
@@ -504,7 +504,7 @@ namespace UniversalCAD.Modules
             this.sidePanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel2.Location = new System.Drawing.Point(0, 39);
             this.sidePanel2.Name = "sidePanel2";
-            this.sidePanel2.Size = new System.Drawing.Size(260, 574);
+            this.sidePanel2.Size = new System.Drawing.Size(260, 573);
             this.sidePanel2.TabIndex = 4;
             this.sidePanel2.Text = "sidePanel2";
             // 
@@ -523,9 +523,9 @@ namespace UniversalCAD.Modules
             // 
             this.sideSavePanel.Controls.Add(this.layoutControl2);
             this.sideSavePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sideSavePanel.Location = new System.Drawing.Point(260, 573);
+            this.sideSavePanel.Location = new System.Drawing.Point(260, 563);
             this.sideSavePanel.Name = "sideSavePanel";
-            this.sideSavePanel.Size = new System.Drawing.Size(774, 40);
+            this.sideSavePanel.Size = new System.Drawing.Size(774, 49);
             this.sideSavePanel.TabIndex = 6;
             this.sideSavePanel.Text = "sidePanel3";
             // 
@@ -541,7 +541,7 @@ namespace UniversalCAD.Modules
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(556, 284, 650, 400);
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(774, 39);
+            this.layoutControl2.Size = new System.Drawing.Size(774, 48);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -617,7 +617,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem5});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(774, 39);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(774, 48);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem2
@@ -628,7 +628,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem2.MinSize = new System.Drawing.Size(50, 38);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem2.Size = new System.Drawing.Size(550, 39);
+            this.layoutControlItem2.Size = new System.Drawing.Size(550, 48);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -641,7 +641,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem3.MinSize = new System.Drawing.Size(85, 39);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem3.Size = new System.Drawing.Size(85, 39);
+            this.layoutControlItem3.Size = new System.Drawing.Size(85, 48);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -654,7 +654,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem4.MinSize = new System.Drawing.Size(39, 39);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem4.Size = new System.Drawing.Size(39, 39);
+            this.layoutControlItem4.Size = new System.Drawing.Size(39, 48);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "set";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -668,7 +668,7 @@ namespace UniversalCAD.Modules
             this.layoutControlItem5.MinSize = new System.Drawing.Size(100, 39);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem5.Size = new System.Drawing.Size(100, 39);
+            this.layoutControlItem5.Size = new System.Drawing.Size(100, 48);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -676,7 +676,7 @@ namespace UniversalCAD.Modules
             // flyoutSetPanel
             // 
             this.flyoutSetPanel.Controls.Add(this.flyoutPanelControl1);
-            this.flyoutSetPanel.Location = new System.Drawing.Point(849, 433);
+            this.flyoutSetPanel.Location = new System.Drawing.Point(813, 420);
             this.flyoutSetPanel.LookAndFeel.SkinName = "Office 2016 Black";
             this.flyoutSetPanel.LookAndFeel.UseDefaultLookAndFeel = false;
             this.flyoutSetPanel.Name = "flyoutSetPanel";
@@ -816,7 +816,7 @@ namespace UniversalCAD.Modules
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 613);
+            this.ClientSize = new System.Drawing.Size(1034, 612);
             this.Controls.Add(this.flyoutSetPanel);
             this.Controls.Add(this.mainTreeList);
             this.Controls.Add(this.sideSavePanel);

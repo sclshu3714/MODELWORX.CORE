@@ -128,9 +128,9 @@ namespace UniversalCAD
         void OperationOpenFile() {
             ExplorerNew explorer = new ExplorerNew();
             explorer.FormBorderStyle = FormBorderStyle.None;
-            explorer.Location = new Point(0, 0);
-            explorer.Width = this.Width;
-            explorer.Height = this.Height;
+            explorer.Location = new Point(3, 3);
+            explorer.Width = this.Width - 3;
+            explorer.Height = this.Height - 3;
             if (explorer.ShowDialog() == DialogResult.OK) {
                 OCCTView.GetInteractiveContext().RemoveAll(true);
                 OCCTView.TriedronDisplay(true, XAspect_TypeOfTriedronPosition.Aspect_TOTP_RIGHT_LOWER, 100, 100);
@@ -179,9 +179,9 @@ namespace UniversalCAD
             ExplorerNew explorer = new ExplorerNew();
             explorer.SetOperationSave(true);
             explorer.FormBorderStyle = FormBorderStyle.None;
-            explorer.Location = new Point(0, 0);
-            explorer.Width = this.Width;
-            explorer.Height = this.Height;
+            explorer.Location = new Point(3, 3);
+            explorer.Width = this.Width - 3;
+            explorer.Height = this.Height - 3;
             if (explorer.ShowDialog() == DialogResult.OK) {
                 string FullName = explorer.FullName;
                 CurrentModelFormat theFormat = CurrentModelFormat.STEP;
