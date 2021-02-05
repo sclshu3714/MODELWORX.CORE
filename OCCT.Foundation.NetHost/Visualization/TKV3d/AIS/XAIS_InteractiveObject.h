@@ -40,7 +40,7 @@
 #include <XAIS_KindOfInteractive.h>
 
 class Prs3d_BasicAspect;
-
+class AIS_InteractiveObject;
 namespace TKV3d
 {
 	public ref class XAIS_InteractiveObject : public XSelectMgr_SelectableObject

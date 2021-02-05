@@ -1713,6 +1713,24 @@
     <ClInclude Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.h">
       <Filter>头文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DimensionSelectionMode.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplayMode.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplaySpecialSymbol.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplayStatus.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DragAction.h">
+      <Filter>头文件\Visualization\TKV3d\AIS</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_PickingStrategy.h">
+      <Filter>头文件\Visualization\TKV3d\SelectMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">

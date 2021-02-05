@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DisplaySpecialSymbol_HeaderFile
-#define _AIS_DisplaySpecialSymbol_HeaderFile
+#ifndef _XAIS_DisplaySpecialSymbol_HeaderFile
+#define _XAIS_DisplaySpecialSymbol_HeaderFile
 
 //! Specifies dimension special symbol display options
-enum AIS_DisplaySpecialSymbol
+public enum class XAIS_DisplaySpecialSymbol
 {
 AIS_DSS_No,
 AIS_DSS_Before,
 AIS_DSS_After
 };
 
-#endif // _AIS_DisplaySpecialSymbol_HeaderFile
+#endif // _XAIS_DisplaySpecialSymbol_HeaderFile

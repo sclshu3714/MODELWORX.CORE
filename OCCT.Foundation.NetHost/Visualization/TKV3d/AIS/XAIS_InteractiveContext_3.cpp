@@ -43,9 +43,9 @@
 
 namespace TKV3d
 {
-    void XAIS_InteractiveContext::SetPolygonOffsets(Handle(AIS_InteractiveObject) anObj, Standard_Integer aMode, Standard_ShortReal aFactor, Standard_ShortReal aUnits, Standard_Boolean updateviewer)
+    void XAIS_InteractiveContext::SetPolygonOffsets(XAIS_InteractiveObject^ anObj, Standard_Integer aMode, Standard_ShortReal aFactor, Standard_ShortReal aUnits, Standard_Boolean updateviewer)
     {
-        NativeHandle()->SetPolygonOffsets(anObj, aMode, aFactor, aUnits, updateviewer);
+        NativeHandle()->SetPolygonOffsets(anObj->GetInteractiveObject(), aMode, aFactor, aUnits, updateviewer);
     };
 
 
@@ -53,17 +53,17 @@ namespace TKV3d
     //function : HasPolygonOffsets 
     //purpose  : 
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::HasPolygonOffsets(Handle(AIS_InteractiveObject) anObj)
+    Standard_Boolean XAIS_InteractiveContext::HasPolygonOffsets(XAIS_InteractiveObject^ anObj)
     {
-        return NativeHandle()->HasPolygonOffsets(anObj);
+        return NativeHandle()->HasPolygonOffsets(anObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : PolygonOffsets 
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::PolygonOffsets(Handle(AIS_InteractiveObject) anObj, Standard_Integer aMode, Standard_ShortReal aFactor, Standard_ShortReal aUnits)
+    void XAIS_InteractiveContext::PolygonOffsets(XAIS_InteractiveObject^ anObj, Standard_Integer aMode, Standard_ShortReal aFactor, Standard_ShortReal aUnits)
     {
-        NativeHandle()->PolygonOffsets(anObj, aMode, aFactor, aUnits);
+        NativeHandle()->PolygonOffsets(anObj->GetInteractiveObject(), aMode, aFactor, aUnits);
     };
 }

@@ -20,7 +20,7 @@
 #include <TDF_Label.hxx>
 #include "XStandard_GUID.h"
 #include "XTDF_Attribute.h"
-//#include "XTDataStd_Name.h"
+//#include "XAIS_InteractiveObject.h"
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -65,10 +65,12 @@ class TDF_IDFilter;
 //! current attribute.
 //! 
 using namespace TKernel;
+//using namespace TKV3d;
 namespace TKLCAF {
 
     ref class XTDF_Attribute;
     ref class TKernel::XStandard_GUID;
+    //ref class TKV3d::XAIS_InteractiveObject;
     //ref class XTDataStd_Name;
     public ref class XTDF_Label
     {

@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DimensionSelectionMode_HeaderFile
-#define _AIS_DimensionSelectionMode_HeaderFile
+#ifndef _XAIS_DimensionSelectionMode_HeaderFile
+#define _XAIS_DimensionSelectionMode_HeaderFile
 
 //! Specifies dimension selection modes.
-enum AIS_DimensionSelectionMode
+public enum class XAIS_DimensionSelectionMode
 {
 AIS_DSM_All,
 AIS_DSM_Line,
 AIS_DSM_Text
 };
 
-#endif // _AIS_DimensionSelectionMode_HeaderFile
+#endif // _XAIS_DimensionSelectionMode_HeaderFile

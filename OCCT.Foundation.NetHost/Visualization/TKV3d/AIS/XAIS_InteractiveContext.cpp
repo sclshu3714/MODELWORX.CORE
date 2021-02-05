@@ -41,54 +41,15 @@
 #include <V3d_View.hxx>
 #include <V3d_Viewer.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(AIS_InteractiveContext, Standard_Transient)
-
-namespace
-{
-    typedef NCollection_DataMap<Handle(SelectMgr_SelectableObject), Handle(SelectMgr_IndexedMapOfOwner)> AIS_MapOfObjectOwners;
-    typedef NCollection_DataMap<Handle(SelectMgr_SelectableObject), Handle(SelectMgr_IndexedMapOfOwner)>::Iterator AIS_MapIteratorOfMapOfObjectOwners;
-
-    //! Initialize default highlighting attributes.
-    static void initDefaultHilightAttributes(const Handle(Prs3d_Drawer)& theDrawer)
-    {
-        theDrawer->SetMethod(Aspect_TOHM_COLOR);
-        theDrawer->SetDisplayMode(0);
-
-        theDrawer->SetPointAspect(new Prs3d_PointAspect(Aspect_TOM_POINT, Quantity_NOC_BLACK, 1.0));
-        *theDrawer->PointAspect()->Aspect() = *theDrawer->Link()->PointAspect()->Aspect();
-        theDrawer->SetLineAspect(new Prs3d_LineAspect(Quantity_NOC_BLACK, Aspect_TOL_SOLID, 1.0));
-        *theDrawer->LineAspect()->Aspect() = *theDrawer->Link()->LineAspect()->Aspect();
-        theDrawer->SetWireAspect(new Prs3d_LineAspect(Quantity_NOC_BLACK, Aspect_TOL_SOLID, 1.0));
-        *theDrawer->WireAspect()->Aspect() = *theDrawer->Link()->WireAspect()->Aspect();
-        theDrawer->SetPlaneAspect(new Prs3d_PlaneAspect());
-        *theDrawer->PlaneAspect()->EdgesAspect() = *theDrawer->Link()->PlaneAspect()->EdgesAspect();
-        theDrawer->SetFreeBoundaryAspect(new Prs3d_LineAspect(Quantity_NOC_BLACK, Aspect_TOL_SOLID, 1.0));
-        *theDrawer->FreeBoundaryAspect()->Aspect() = *theDrawer->Link()->FreeBoundaryAspect()->Aspect();
-        theDrawer->SetUnFreeBoundaryAspect(new Prs3d_LineAspect(Quantity_NOC_BLACK, Aspect_TOL_SOLID, 1.0));
-        *theDrawer->UnFreeBoundaryAspect()->Aspect() = *theDrawer->Link()->UnFreeBoundaryAspect()->Aspect();
-
-        theDrawer->WireAspect()->SetWidth(2.0);
-        theDrawer->LineAspect()->SetWidth(2.0);
-        theDrawer->PlaneAspect()->EdgesAspect()->SetWidth(2.0);
-        theDrawer->FreeBoundaryAspect()->SetWidth(2.0);
-        theDrawer->UnFreeBoundaryAspect()->SetWidth(2.0);
-        theDrawer->PointAspect()->SetTypeOfMarker(Aspect_TOM_O_POINT);
-        theDrawer->PointAspect()->SetScale(2.0);
-
-        // the triangulation should be computed using main presentation attributes,
-        // and should not be overridden by highlighting
-        theDrawer->SetAutoTriangulation(Standard_False);
-    }
-}
 namespace TKV3d {
     //=======================================================================
     //function : AIS_InteractiveContext
     //purpose  : 
     //=======================================================================
 
-    XAIS_InteractiveContext::XAIS_InteractiveContext(Handle(V3d_Viewer) MainViewer)
+    XAIS_InteractiveContext::XAIS_InteractiveContext(XV3d_Viewer^ MainViewer)
     {
-        NativeHandle() = new AIS_InteractiveContext(MainViewer);
+        NativeHandle() = new AIS_InteractiveContext(MainViewer->GetViewer());
     }
 
     //! Constructs the interactive context object defined by the principal viewer MainViewer.
@@ -114,20 +75,20 @@ namespace TKV3d {
     //function : LastActiveView
     //purpose  :
     //=======================================================================
-    Handle(V3d_View) XAIS_InteractiveContext::LastActiveView()
+    XV3d_View^ XAIS_InteractiveContext::LastActiveView()
     {
-        return NativeHandle()->LastActiveView();
+        return gcnew XV3d_View(NativeHandle()->LastActiveView());
     }
 
     //! Returns the default attribute manager.
         //! This contains all the color and line attributes which can be used by interactive objects which do not have their own attributes.
-    Handle(Prs3d_Drawer) XAIS_InteractiveContext::DefaultDrawer() {
-        return NativeHandle()->DefaultDrawer();
+    XPrs3d_Drawer^ XAIS_InteractiveContext::DefaultDrawer() {
+        return gcnew XPrs3d_Drawer(NativeHandle()->DefaultDrawer());
     };
 
     //! Returns the current viewer.
-    Handle(V3d_Viewer) XAIS_InteractiveContext::CurrentViewer() {
-        return NativeHandle()->CurrentViewer();
+    XV3d_Viewer^ XAIS_InteractiveContext::CurrentViewer() {
+        return gcnew XV3d_Viewer(NativeHandle()->CurrentViewer());
     };
 
     Handle(SelectMgr_SelectionManager) XAIS_InteractiveContext::SelectionManager() {
@@ -165,9 +126,9 @@ namespace TKV3d {
     //function : DisplayedObjects
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::DisplayedObjects(AIS_KindOfInteractive theKind, Standard_Integer theSign, AIS_ListOfInteractive theListOfIO)
+    void XAIS_InteractiveContext::DisplayedObjects(XAIS_KindOfInteractive theKind, Standard_Integer theSign, AIS_ListOfInteractive theListOfIO)
     {
-        ObjectsByDisplayStatus(theKind, theSign, AIS_DS_Displayed, theListOfIO);
+        ObjectsByDisplayStatus(theKind, theSign, XAIS_DisplayStatus(AIS_DS_Displayed), theListOfIO);
     };
 
     //=======================================================================
@@ -176,70 +137,70 @@ namespace TKV3d {
     //=======================================================================
     void XAIS_InteractiveContext::ErasedObjects(AIS_ListOfInteractive theListOfIO)
     {
-        ObjectsByDisplayStatus(AIS_DS_Erased, theListOfIO);
+        ObjectsByDisplayStatus(XAIS_DisplayStatus(AIS_DS_Erased), theListOfIO);
     };
 
     //=======================================================================
     //function : ErasedObjects
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ErasedObjects(AIS_KindOfInteractive theKind, Standard_Integer theSign, AIS_ListOfInteractive theListOfIO)
+    void XAIS_InteractiveContext::ErasedObjects(XAIS_KindOfInteractive theKind, Standard_Integer theSign, AIS_ListOfInteractive theListOfIO)
     {
-        ObjectsByDisplayStatus(theKind, theSign, AIS_DS_Erased, theListOfIO);
+        ObjectsByDisplayStatus(theKind, theSign, XAIS_DisplayStatus(AIS_DS_Erased), theListOfIO);
     };
 
     //=======================================================================
     //function : ObjectsByDisplayStatus
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ObjectsByDisplayStatus(AIS_DisplayStatus theStatus, AIS_ListOfInteractive theListOfIO)
+    void XAIS_InteractiveContext::ObjectsByDisplayStatus(XAIS_DisplayStatus theStatus, AIS_ListOfInteractive theListOfIO)
     {
-        NativeHandle()->ObjectsByDisplayStatus(theStatus, theListOfIO);
+        NativeHandle()->ObjectsByDisplayStatus(safe_cast<AIS_DisplayStatus>(theStatus), theListOfIO);
     };
 
     //=======================================================================
     //function : ObjectsByDisplayStatus
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ObjectsByDisplayStatus(AIS_KindOfInteractive theKind, Standard_Integer theSign, AIS_DisplayStatus theStatus, AIS_ListOfInteractive theListOfIO)
+    void XAIS_InteractiveContext::ObjectsByDisplayStatus(XAIS_KindOfInteractive theKind, Standard_Integer theSign, XAIS_DisplayStatus theStatus, AIS_ListOfInteractive theListOfIO)
     {
-        NativeHandle()->ObjectsByDisplayStatus(theKind, theSign, theStatus, theListOfIO);
+        NativeHandle()->ObjectsByDisplayStatus(safe_cast<AIS_KindOfInteractive>(theKind), theSign, safe_cast<AIS_DisplayStatus>(theStatus), theListOfIO);
     };
 
     //=======================================================================
     //function : ObjectsInside
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ObjectsInside(AIS_ListOfInteractive theListOfIO, AIS_KindOfInteractive theKind, Standard_Integer theSign)
+    void XAIS_InteractiveContext::ObjectsInside(AIS_ListOfInteractive theListOfIO, XAIS_KindOfInteractive theKind, Standard_Integer theSign)
     {
-        NativeHandle()->ObjectsInside(theListOfIO, theKind, theSign);
+        NativeHandle()->ObjectsInside(theListOfIO, safe_cast<AIS_KindOfInteractive>(theKind), theSign);
     };
 
     //=======================================================================
     //function : ObjectsForView
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ObjectsForView(AIS_ListOfInteractive theListOfIO, Handle(V3d_View) theView, Standard_Boolean theIsVisibleInView, AIS_DisplayStatus theStatus)
+    void XAIS_InteractiveContext::ObjectsForView(AIS_ListOfInteractive theListOfIO, XV3d_View^ theView, Standard_Boolean theIsVisibleInView, XAIS_DisplayStatus theStatus)
     {
-        NativeHandle()->ObjectsForView(theListOfIO, theView, theIsVisibleInView, theStatus);
+        NativeHandle()->ObjectsForView(theListOfIO, theView->GetView(), theIsVisibleInView, safe_cast<AIS_DisplayStatus>(theStatus));
     };
 
     //=======================================================================
     //function : Display
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Display(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->Display(theIObj, theToUpdateViewer);
+        NativeHandle()->Display(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetViewAffinity
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetViewAffinity(Handle(AIS_InteractiveObject) theIObj, Handle(V3d_View) theView, Standard_Boolean theIsVisible)
+    void XAIS_InteractiveContext::SetViewAffinity(XAIS_InteractiveObject^ theIObj, XV3d_View^ theView, Standard_Boolean theIsVisible)
     {
-        NativeHandle()->SetViewAffinity(theIObj, theView, theIsVisible);
+        NativeHandle()->SetViewAffinity(theIObj->GetInteractiveObject(), theView->GetView(), theIsVisible);
     };
 
     //! Returns the Display Mode setting to be used by default.
@@ -251,59 +212,19 @@ namespace TKV3d {
     //function : Display
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Display(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, AIS_DisplayStatus theDispStatus)
+    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, XAIS_DisplayStatus theDispStatus)
     {
-        NativeHandle()->Display(theIObj, theDispMode, theSelectionMode, theToUpdateViewer, theDispStatus);
+        NativeHandle()->Display(theIObj->GetInteractiveObject(), theDispMode, theSelectionMode, theToUpdateViewer, safe_cast<AIS_DisplayStatus>(theDispStatus));
     };
 
-    //! Displays the object in this Context using default Display Mode.
-        //! This will be the object's default display mode, if there is one. Otherwise, it will be the context mode.
-        //! The Interactive Object's default selection mode is activated if GetAutoActivateSelection() is TRUE. In general, this is 0.
-    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theXIObj, Standard_Boolean theToUpdateViewer) {
-        NativeHandle()->Display(theXIObj->GetInteractiveObject(), theToUpdateViewer);
-    };
-
-    //! Sets status, display mode and selection mode for specified Object
-        //! If theSelectionMode equals -1, theIObj will not be activated: it will be displayed but will not be selectable.
-        //! AIS_DisplayStatus theDispStatus
-    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Integer theDispStatus) {
-        NativeHandle()->Display(theIObj->GetInteractiveObject(), theDispMode, theSelectionMode, theToUpdateViewer, AIS_DisplayStatus(theDispStatus));
-    };
 
     //=======================================================================
     //function : Load
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Load(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theSelMode)
+    void XAIS_InteractiveContext::Load(XAIS_InteractiveObject^ theIObj, Standard_Integer theSelMode)
     {
-        NativeHandle()->Load(theIObj, theSelMode);
-    };
-
-    //! Allows you to load the Interactive Object with a given selection mode,
-        //! and/or with the desired decomposition option, whether the object is visualized or not.
-        //! The loaded objects will be selectable but displayable in highlighting only when detected by the Selector.
-    void XAIS_InteractiveContext::Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode) {
-        NativeHandle()->Load(theObj->GetInteractiveObject(), theSelectionMode);
-    };
-
-    //! AIS_DisplayStatus   theDispStatus
-    void XAIS_InteractiveContext::Display(XAIS_InteractiveObject^ theIObj, Standard_Integer theDispMode, Standard_Integer theSelectionMode, Standard_Boolean theToUpdateViewer, Standard_Boolean theToAllowDecomposition, Standard_Integer theDispStatus) {
-        (void)theToAllowDecomposition;
-        NativeHandle()->Display(theIObj->GetInteractiveObject(), theDispMode, theSelectionMode, theToUpdateViewer, AIS_DisplayStatus(theDispStatus));
-    }
-
-    void XAIS_InteractiveContext::Load(XAIS_InteractiveObject^ theObj, Standard_Integer theSelectionMode, Standard_Boolean) {
-        NativeHandle()->Load(theObj->GetInteractiveObject(), theSelectionMode);
-    }
-
-
-    //=======================================================================
-    //function : Erase
-    //purpose  :
-    //=======================================================================
-    void XAIS_InteractiveContext::Erase(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
-    {
-        NativeHandle()->Erase(theIObj, theToUpdateViewer);
+        NativeHandle()->Load(theIObj->GetInteractiveObject(), theSelMode);
     };
 
     //! Hides the object. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
@@ -341,12 +262,6 @@ namespace TKV3d {
 
     //! Empties the graphic presentation of the mode indexed by aMode.
         //! Warning! Removes theIObj. theIObj is still active if it was previously activated.
-    void XAIS_InteractiveContext::ClearPrs(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer) {
-        NativeHandle()->ClearPrs(theIObj, theMode, theToUpdateViewer);
-    };
-
-    //! Empties the graphic presentation of the mode indexed by aMode.
-        //! Warning! Removes theIObj. theIObj is still active if it was previously activated.
     void XAIS_InteractiveContext::ClearPrs(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer) {
         NativeHandle()->ClearPrs(theIObj->GetInteractiveObject(), theMode, theToUpdateViewer);
     };
@@ -365,19 +280,11 @@ namespace TKV3d {
     //function : DisplayStatus
     //purpose  :
     //=======================================================================
-    AIS_DisplayStatus XAIS_InteractiveContext::DisplayStatus(Handle(AIS_InteractiveObject) theIObj)
+    XAIS_DisplayStatus XAIS_InteractiveContext::DisplayStatus(XAIS_InteractiveObject^ theIObj)
     {
-       return NativeHandle()->DisplayStatus(theIObj);
+       return safe_cast<XAIS_DisplayStatus>(NativeHandle()->DisplayStatus(theIObj->GetInteractiveObject()));
     };
 
-    //=======================================================================
-    //function : Remove
-    //purpose  :
-    //=======================================================================
-    void XAIS_InteractiveContext::Remove(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
-    {
-        NativeHandle()->Remove(theIObj, theToUpdateViewer);
-    };
 
     //! Removes Object from every viewer.
     void XAIS_InteractiveContext::Remove(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
@@ -397,27 +304,27 @@ namespace TKV3d {
     //function : HilightWithColor
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::HilightWithColor(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle, Standard_Boolean theIsToUpdate)
+    void XAIS_InteractiveContext::HilightWithColor(XAIS_InteractiveObject^ theObj, XPrs3d_Drawer^ theStyle, Standard_Boolean theIsToUpdate)
     {
-        NativeHandle()->HilightWithColor(theObj, theStyle, theIsToUpdate);
+        NativeHandle()->HilightWithColor(theObj->GetInteractiveObject(), theStyle->GetDrawer(), theIsToUpdate);
     };
 
     //=======================================================================
     //function : Unhilight
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::Unhilight(Handle(AIS_InteractiveObject) anIObj, Standard_Boolean updateviewer)
+    void XAIS_InteractiveContext::Unhilight(XAIS_InteractiveObject^ anIObj, Standard_Boolean updateviewer)
     {
-        NativeHandle()->Unhilight(anIObj, updateviewer);
+        NativeHandle()->Unhilight(anIObj->GetInteractiveObject(), updateviewer);
     };
 
     //=======================================================================
     //function : IsHilighted
     //purpose  : Returns true if the objects global status is set to highlighted.
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::IsHilighted(Handle(AIS_InteractiveObject) theObj)
+    Standard_Boolean XAIS_InteractiveContext::IsHilighted(XAIS_InteractiveObject^ theObj)
     {
-        return  NativeHandle()->IsHilighted(theObj);
+        return  NativeHandle()->IsHilighted(theObj->GetInteractiveObject());
     };
 
     //=======================================================================
@@ -432,7 +339,7 @@ namespace TKV3d {
     //! Updates the display in the viewer to take dynamic detection into account.
         //! On dynamic detection by the mouse cursor, sensitive primitives are highlighted.
         //! The highlight color of entities detected by mouse movement is white by default.
-    /*void XAIS_InteractiveContext::Hilight(Handle(AIS_InteractiveObject) theObj, Standard_Boolean theIsToUpdateViewer) {
+    /*void XAIS_InteractiveContext::Hilight(XAIS_InteractiveObject^ theObj, Standard_Boolean theIsToUpdateViewer) {
         NativeHandle()->Hilight(theObj, theIsToUpdateViewer);
     };*/
 
@@ -441,18 +348,18 @@ namespace TKV3d {
     //function : HighlightStyle
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(Handle(AIS_InteractiveObject) theObj, Handle(Prs3d_Drawer) theStyle)
+    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(XAIS_InteractiveObject^ theObj, XPrs3d_Drawer^ theStyle)
     {
-        return  NativeHandle()->HighlightStyle(theObj, theStyle);
+        return  NativeHandle()->HighlightStyle(theObj->GetInteractiveObject(), theStyle->GetDrawer());
     };
 
     //=======================================================================
     //function : HighlightStyle
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, Handle(Prs3d_Drawer) theStyle)
+    Standard_Boolean XAIS_InteractiveContext::HighlightStyle(Handle(SelectMgr_EntityOwner) theOwner, XPrs3d_Drawer^ theStyle)
     {
-        return  NativeHandle()->HighlightStyle(theOwner, theStyle);
+        return  NativeHandle()->HighlightStyle(theOwner, theStyle->GetDrawer());
     };
 
     //=======================================================================
@@ -460,18 +367,18 @@ namespace TKV3d {
     //purpose  : 
     //=======================================================================
 
-    Standard_Boolean XAIS_InteractiveContext::IsDisplayed(Handle(AIS_InteractiveObject) theObj)
+    Standard_Boolean XAIS_InteractiveContext::IsDisplayed(XAIS_InteractiveObject^ theObj)
     {
-        return  NativeHandle()->IsDisplayed(theObj);
+        return  NativeHandle()->IsDisplayed(theObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : IsDisplayed
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::IsDisplayed(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theMode)
+    Standard_Boolean XAIS_InteractiveContext::IsDisplayed(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode)
     {
-        return  NativeHandle()->IsDisplayed(theIObj, theMode);
+        return  NativeHandle()->IsDisplayed(theIObj->GetInteractiveObject(), theMode);
     };
 
     //! Enable or disable automatic activation of default selection mode while displaying the object.
@@ -488,27 +395,18 @@ namespace TKV3d {
     //function : DisplayPriority
     //purpose  :
     //=======================================================================
-    Standard_Integer XAIS_InteractiveContext::DisplayPriority(Handle(AIS_InteractiveObject) theIObj)
+    Standard_Integer XAIS_InteractiveContext::DisplayPriority(XAIS_InteractiveObject^ theIObj)
     {
-        return  NativeHandle()->DisplayPriority(theIObj);
+        return  NativeHandle()->DisplayPriority(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : SetDisplayPriority
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetDisplayPriority(Handle(AIS_InteractiveObject) theIObj, Standard_Integer thePriority)
+    void XAIS_InteractiveContext::SetDisplayPriority(XAIS_InteractiveObject^ theIObj, Standard_Integer thePriority)
     {
-         NativeHandle()->SetDisplayPriority(theIObj, thePriority);
-    };
-
-    //=======================================================================
-    //function : Redisplay
-    //purpose  :
-    //=======================================================================
-    void XAIS_InteractiveContext::Redisplay(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes)
-    {
-         NativeHandle()->Redisplay(theIObj, theToUpdateViewer, theAllModes);
+         NativeHandle()->SetDisplayPriority(theIObj->GetInteractiveObject(), thePriority);
     };
 
     //! Recomputes the seen parts presentation of the Object.
@@ -521,18 +419,9 @@ namespace TKV3d {
     //function : Redisplay
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Redisplay(AIS_KindOfInteractive theKOI, Standard_Integer theSign, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::Redisplay(XAIS_KindOfInteractive theKOI, Standard_Integer theSign, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->Redisplay(theKOI, theSign, theToUpdateViewer);
-    };
-
-    //=======================================================================
-    //function : RecomputePrsOnly
-    //purpose  :
-    //=======================================================================
-    void XAIS_InteractiveContext::RecomputePrsOnly(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer, Standard_Boolean theAllModes)
-    {
-        NativeHandle()->RecomputePrsOnly(theIObj, theToUpdateViewer, theAllModes);
+        NativeHandle()->Redisplay(safe_cast<AIS_KindOfInteractive>(theKOI), theSign, theToUpdateViewer);
     };
 
     //! Recomputes the displayed presentations, flags the others.
@@ -541,28 +430,11 @@ namespace TKV3d {
         NativeHandle()->RecomputePrsOnly(theIObj->GetInteractiveObject(), theToUpdateViewer, theAllModes);
     };
 
-    //=======================================================================
-    //function : RecomputeSelectionOnly
-    //purpose  : 
-    //=======================================================================
-    void XAIS_InteractiveContext::RecomputeSelectionOnly(Handle(AIS_InteractiveObject) theIO)
-    {
-        NativeHandle()->RecomputeSelectionOnly(theIO);
-    };
 
     //! Recomputes the active selections, flags the others.
         //! Doesn't update presentations.
     void XAIS_InteractiveContext::RecomputeSelectionOnly(XAIS_InteractiveObject^ anIObj) {
         NativeHandle()->RecomputeSelectionOnly(anIObj->GetInteractiveObject());
-    };
-
-    //=======================================================================
-    //function : Update
-    //purpose  :
-    //=======================================================================
-    void XAIS_InteractiveContext::Update(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theUpdateViewer)
-    {
-        NativeHandle()->Update(theIObj, theUpdateViewer);
     };
 
     //! Updates displayed interactive object by checking and recomputing its flagged as "to be recomputed" presentation and selection structures.
@@ -573,14 +445,14 @@ namespace TKV3d {
     };
 
     //! Returns highlight style settings.   enum:Prs3d_TypeOfHighlight
-    Handle(Prs3d_Drawer) XAIS_InteractiveContext::HighlightStyle(Prs3d_TypeOfHighlight theStyleType) {
-       return  NativeHandle()->HighlightStyle(theStyleType);
+    XPrs3d_Drawer^ XAIS_InteractiveContext::HighlightStyle(XPrs3d_TypeOfHighlight theStyleType) {
+       return gcnew XPrs3d_Drawer(NativeHandle()->HighlightStyle(safe_cast<Prs3d_TypeOfHighlight>(theStyleType)));
     };
 
 
     //! enum:Prs3d_TypeOfHighlight
-    void XAIS_InteractiveContext::SetHighlightStyle(Prs3d_TypeOfHighlight theStyleType, Handle(Prs3d_Drawer) theStyle) {
-        NativeHandle()->SetHighlightStyle(theStyleType, theStyle);
+    void XAIS_InteractiveContext::SetHighlightStyle(XPrs3d_TypeOfHighlight theStyleType, XPrs3d_Drawer^ theStyle) {
+        NativeHandle()->SetHighlightStyle(safe_cast<Prs3d_TypeOfHighlight>(theStyleType), theStyle->GetDrawer());
     };
 
     //! Returns current dynamic highlight style settings.
@@ -588,12 +460,12 @@ namespace TKV3d {
     //!   - the color of dynamic highlight is Quantity_NOC_CYAN1;
     //!   - the presentation for dynamic highlight is completely opaque;
     //!   - the type of highlight is Aspect_TOHM_COLOR.
-    Handle(Prs3d_Drawer) XAIS_InteractiveContext::HighlightStyle() {
-       return NativeHandle()->HighlightStyle();
+    XPrs3d_Drawer^ XAIS_InteractiveContext::HighlightStyle() {
+       return gcnew XPrs3d_Drawer(NativeHandle()->HighlightStyle());
     };
 
-    void XAIS_InteractiveContext::SetHighlightStyle(Handle(Prs3d_Drawer) theStyle) {
-        NativeHandle()->SetHighlightStyle(theStyle);
+    void XAIS_InteractiveContext::SetHighlightStyle(XPrs3d_Drawer^ theStyle) {
+        NativeHandle()->SetHighlightStyle(theStyle->GetDrawer());
     };
 
     //! Returns current selection style settings.
@@ -601,49 +473,49 @@ namespace TKV3d {
     //!   - the color of selection is Quantity_NOC_GRAY80;
     //!   - the presentation for selection is completely opaque;
     //!   - the type of highlight is Aspect_TOHM_COLOR.
-    Handle(Prs3d_Drawer) XAIS_InteractiveContext::SelectionStyle() {
-        return NativeHandle()->SelectionStyle();
+    XPrs3d_Drawer^ XAIS_InteractiveContext::SelectionStyle() {
+        return gcnew XPrs3d_Drawer(NativeHandle()->SelectionStyle());
     };
 
     //! Setup the style of selection highlighting.
-    void XAIS_InteractiveContext::SetSelectionStyle(Handle(Prs3d_Drawer) theStyle) {
-        NativeHandle()->SetSelectionStyle(theStyle);
+    void XAIS_InteractiveContext::SetSelectionStyle(XPrs3d_Drawer^ theStyle) {
+        NativeHandle()->SetSelectionStyle(theStyle->GetDrawer());
     };
 
     //=======================================================================
     //function : SetLocation
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetLocation(Handle(AIS_InteractiveObject) theIObj, XTopLoc_Location^ theLoc)
+    void XAIS_InteractiveContext::SetLocation(XAIS_InteractiveObject^ theIObj, XTopLoc_Location^ theLoc)
     {
-        NativeHandle()->SetLocation(theIObj, *theLoc->GetLocation());
+        NativeHandle()->SetLocation(theIObj->GetInteractiveObject(), *theLoc->GetLocation());
     };
 
     //=======================================================================
     //function : ResetLocation
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ResetLocation(Handle(AIS_InteractiveObject) theIObj)
+    void XAIS_InteractiveContext::ResetLocation(XAIS_InteractiveObject^ theIObj)
     {
-        NativeHandle()->ResetLocation(theIObj);
+        NativeHandle()->ResetLocation(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : HasLocation
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::HasLocation(Handle(AIS_InteractiveObject) theIObj)
+    Standard_Boolean XAIS_InteractiveContext::HasLocation(XAIS_InteractiveObject^ theIObj)
     {
-        return NativeHandle()->HasLocation(theIObj);
+        return NativeHandle()->HasLocation(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : Location
     //purpose  :
     //=======================================================================
-    XTopLoc_Location^ XAIS_InteractiveContext::Location(Handle(AIS_InteractiveObject) theIObj)
+    XTopLoc_Location^ XAIS_InteractiveContext::Location(XAIS_InteractiveObject^ theIObj)
     {
-        return gcnew XTopLoc_Location(NativeHandle()->Location(theIObj));
+        return gcnew XTopLoc_Location(NativeHandle()->Location(theIObj->GetInteractiveObject()));
     };
 
     //=======================================================================
@@ -742,61 +614,61 @@ namespace TKV3d {
     //function : SetDisplayMode
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetDisplayMode(Handle(AIS_InteractiveObject) theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetDisplayMode(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetDisplayMode(theIObj, theMode, theToUpdateViewer);
+        NativeHandle()->SetDisplayMode(theIObj->GetInteractiveObject(), theMode, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : UnsetDisplayMode
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetDisplayMode(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetDisplayMode(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->UnsetDisplayMode(theIObj, theToUpdateViewer);
+        NativeHandle()->UnsetDisplayMode(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetCurrentFacingModel
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetCurrentFacingModel(Handle(AIS_InteractiveObject) theIObj, Aspect_TypeOfFacingModel theModel)
+    void XAIS_InteractiveContext::SetCurrentFacingModel(XAIS_InteractiveObject^ theIObj, XAspect_TypeOfFacingModel theModel)
     {
-        NativeHandle()->SetCurrentFacingModel(theIObj, theModel);
+        NativeHandle()->SetCurrentFacingModel(theIObj->GetInteractiveObject(), safe_cast<Aspect_TypeOfFacingModel>(theModel));
     };
 
     //=======================================================================
     //function : SetColor
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetColor(Handle(AIS_InteractiveObject) theIObj, Quantity_Color theColor, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetColor(XAIS_InteractiveObject^ theIObj, XQuantity_Color^ theColor, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetColor(theIObj, theColor, theToUpdateViewer);
+        NativeHandle()->SetColor(theIObj->GetInteractiveObject(), *theColor->GetColor(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetIsoOnTriangulation
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::IsoOnTriangulation(Standard_Boolean theIsEnabled, Handle(AIS_InteractiveObject) theObject)
+    void XAIS_InteractiveContext::IsoOnTriangulation(Standard_Boolean theIsEnabled, XAIS_InteractiveObject^ theObject)
     {
-        NativeHandle()->IsoOnTriangulation(theIsEnabled, theObject);
+        NativeHandle()->IsoOnTriangulation(theIsEnabled, theObject->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : SetDeviationCoefficient
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetDeviationCoefficient(XAIS_InteractiveObject^ theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetDeviationCoefficient(theIObj, theCoefficient, theToUpdateViewer);
+        NativeHandle()->SetDeviationCoefficient(theIObj->GetInteractiveObject(), theCoefficient, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetHLRDeviationCoefficient
     //purpose  :
     //=======================================================================
-    /*void XAIS_InteractiveContext::SetHLRDeviationCoefficient(Handle(AIS_InteractiveObject) theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
+    /*void XAIS_InteractiveContext::SetHLRDeviationCoefficient(XAIS_InteractiveObject^ theIObj, Standard_Real theCoefficient, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRDeviationCoefficient(theIObj, theCoefficient, theToUpdateViewer);
     };*/
@@ -805,25 +677,25 @@ namespace TKV3d {
     //function : SetDeviationAngle
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetDeviationAngle(XAIS_InteractiveObject^ theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetDeviationAngle(theIObj, theAngle, theToUpdateViewer);
+        NativeHandle()->SetDeviationAngle(theIObj->GetInteractiveObject(), theAngle, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetAngleAndDeviation
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetAngleAndDeviation(XAIS_InteractiveObject^ theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetAngleAndDeviation(theIObj, theAngle, theToUpdateViewer);
+        NativeHandle()->SetAngleAndDeviation(theIObj->GetInteractiveObject(), theAngle, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetHLRAngleAndDeviation
     //purpose  :
     //=======================================================================
-    /*void XAIS_InteractiveContext::SetHLRAngleAndDeviation(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+    /*void XAIS_InteractiveContext::SetHLRAngleAndDeviation(XAIS_InteractiveObject^ theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRAngleAndDeviation(theIObj, theAngle, theToUpdateViewer);
     };*/
@@ -832,7 +704,7 @@ namespace TKV3d {
     //function : SetHLRDeviationAngle
     //purpose  :
     //=======================================================================
-   /* void XAIS_InteractiveContext::SetHLRDeviationAngle(Handle(AIS_InteractiveObject) theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
+   /* void XAIS_InteractiveContext::SetHLRDeviationAngle(XAIS_InteractiveObject^ theIObj, Standard_Real theAngle, Standard_Boolean theToUpdateViewer)
     {
         NativeHandle()->SetHLRDeviationAngle(theIObj, theAngle, theToUpdateViewer);
     };*/
@@ -841,90 +713,90 @@ namespace TKV3d {
     //function : UnsetColor
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetColor(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetColor(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->UnsetColor(theIObj, theToUpdateViewer);
+        NativeHandle()->UnsetColor(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : HasColor
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::HasColor(Handle(AIS_InteractiveObject) theIObj)
+    Standard_Boolean XAIS_InteractiveContext::HasColor(XAIS_InteractiveObject^ theIObj)
     {
-        return NativeHandle()->HasColor(theIObj);
+        return NativeHandle()->HasColor(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : Color
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Color(Handle(AIS_InteractiveObject) theIObj, Quantity_Color theColor)
+    void XAIS_InteractiveContext::Color(XAIS_InteractiveObject^ theIObj, XQuantity_Color^ theColor)
     {
-        NativeHandle()->Color(theIObj, theColor);
+        NativeHandle()->Color(theIObj->GetInteractiveObject(), *theColor->GetColor());
     };
 
     //=======================================================================
     //function : Width
     //purpose  :
     //=======================================================================
-    Standard_Real XAIS_InteractiveContext::Width(Handle(AIS_InteractiveObject) theIObj)
+    Standard_Real XAIS_InteractiveContext::Width(XAIS_InteractiveObject^ theIObj)
     {
-        return NativeHandle()->Width(theIObj);
+        return NativeHandle()->Width(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : SetWidth
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetWidth(Handle(AIS_InteractiveObject) theIObj, Standard_Real theWidth, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetWidth(XAIS_InteractiveObject^ theIObj, Standard_Real theWidth, Standard_Boolean theToUpdateViewer)
     {
-        return NativeHandle()->SetWidth(theIObj, theWidth, theToUpdateViewer);
+        return NativeHandle()->SetWidth(theIObj->GetInteractiveObject(), theWidth, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : UnsetWidth
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetWidth(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetWidth(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        return NativeHandle()->UnsetWidth(theIObj, theToUpdateViewer);
+        return NativeHandle()->UnsetWidth(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetMaterial
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetMaterial(Handle(AIS_InteractiveObject) theIObj, Graphic3d_MaterialAspect theMaterial, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetMaterial(XAIS_InteractiveObject^ theIObj, Graphic3d_MaterialAspect theMaterial, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetMaterial(theIObj, theMaterial, theToUpdateViewer);
+        NativeHandle()->SetMaterial(theIObj->GetInteractiveObject(), theMaterial, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : UnsetMaterial
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetMaterial(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetMaterial(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->UnsetMaterial(theIObj, theToUpdateViewer);
+        NativeHandle()->UnsetMaterial(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : SetTransparency
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetTransparency(Handle(AIS_InteractiveObject) theIObj, Standard_Real theValue, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetTransparency(XAIS_InteractiveObject^ theIObj, Standard_Real theValue, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetTransparency(theIObj, theValue, theToUpdateViewer);
+        NativeHandle()->SetTransparency(theIObj->GetInteractiveObject(), theValue, theToUpdateViewer);
     };
 
     //=======================================================================
     //function : UnsetTransparency
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetTransparency(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetTransparency(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->UnsetTransparency(theIObj, theToUpdateViewer);
+        NativeHandle()->UnsetTransparency(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
@@ -940,34 +812,34 @@ namespace TKV3d {
     //function : SetLocalAttributes
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetLocalAttributes(Handle(AIS_InteractiveObject) theIObj, Handle(Prs3d_Drawer) theDrawer, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetLocalAttributes(XAIS_InteractiveObject^ theIObj, XPrs3d_Drawer^ theDrawer, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetLocalAttributes(theIObj, theDrawer, theToUpdateViewer);
+        NativeHandle()->SetLocalAttributes(theIObj->GetInteractiveObject(), theDrawer->GetDrawer(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : UnsetLocalAttributes
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::UnsetLocalAttributes(Handle(AIS_InteractiveObject) theIObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::UnsetLocalAttributes(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->UnsetLocalAttributes(theIObj, theToUpdateViewer);
+        NativeHandle()->UnsetLocalAttributes(theIObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
     //function : Status
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::Status(Handle(AIS_InteractiveObject) theIObj, TCollection_ExtendedString theStatus)
+    void XAIS_InteractiveContext::Status(XAIS_InteractiveObject^ theIObj, XTCollection_ExtendedString^ theStatus)
     {
-        NativeHandle()->Status(theIObj, theStatus);
+        NativeHandle()->Status(theIObj->GetInteractiveObject(), *theStatus->GetExtendedString());
     };
 
     //=======================================================================
     //function : GetDefModes
     //purpose  :
     //=======================================================================
-    //void XAIS_InteractiveContext::GetDefModes(Handle(AIS_InteractiveObject) theIObj, Standard_Integer& theDispMode, Standard_Integer& theHiMode, Standard_Integer& theSelMode)
+    //void XAIS_InteractiveContext::GetDefModes(XAIS_InteractiveObject^ theIObj, Standard_Integer& theDispMode, Standard_Integer& theHiMode, Standard_Integer& theSelMode)
     //{
     //    //NativeHandle()->GetDefModes(theIObj, theDispMode, theHiMode, theSelMode);
     //    if (theIObj.IsNull())
@@ -985,7 +857,7 @@ namespace TKV3d {
     ////function : EraseGlobal
     ////purpose  :
     ////=======================================================================
-    //void XAIS_InteractiveContext::EraseGlobal(Handle(AIS_InteractiveObject)& theIObj, Standard_Boolean theToUpdateviewer)
+    //void XAIS_InteractiveContext::EraseGlobal(XAIS_InteractiveObject^& theIObj, Standard_Boolean theToUpdateviewer)
     //{
     //    NativeHandle()->EraseGlobal(theIObj, theToUpdateviewer);
     //};
@@ -994,7 +866,7 @@ namespace TKV3d {
     ////function : unselectOwners
     ////purpose  :
     ////=======================================================================
-    //void XAIS_InteractiveContext::unselectOwners(Handle(AIS_InteractiveObject)& theObject)
+    //void XAIS_InteractiveContext::unselectOwners(XAIS_InteractiveObject^& theObject)
     //{
     //    NativeHandle()->unselectOwners(theObject);
     //};
@@ -1003,7 +875,7 @@ namespace TKV3d {
     ////function : ClearGlobal
     ////purpose  :
     ////=======================================================================
-    //void XAIS_InteractiveContext::ClearGlobal(Handle(AIS_InteractiveObject)& theIObj, Standard_Boolean theToUpdateviewer)
+    //void XAIS_InteractiveContext::ClearGlobal(XAIS_InteractiveObject^& theIObj, Standard_Boolean theToUpdateviewer)
     //{
     //    NativeHandle()->ClearGlobal(theIObj, theToUpdateviewer);
     //};
@@ -1012,7 +884,7 @@ namespace TKV3d {
     ////function : ClearGlobalPrs
     ////purpose  :
     ////=======================================================================
-    //void XAIS_InteractiveContext::ClearGlobalPrs(Handle(AIS_InteractiveObject)& theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer)
+    //void XAIS_InteractiveContext::ClearGlobalPrs(XAIS_InteractiveObject^& theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer)
     //{
     //    NativeHandle()->ClearGlobalPrs(theIObj, theMode, theToUpdateViewer);
     //};
@@ -1040,10 +912,10 @@ namespace TKV3d {
     };
 
     //! Returns the interactive objects last detected in context.
-    //! In general this is just a wrapper for Handle(AIS_InteractiveObject)::DownCast(DetectedOwner()->Selectable()).
+    //! In general this is just a wrapper for XAIS_InteractiveObject^::DownCast(DetectedOwner()->Selectable()).
     //! @sa DetectedOwner()
-    Handle(AIS_InteractiveObject) XAIS_InteractiveContext::DetectedInteractive() {
-        return NativeHandle()->DetectedInteractive();
+    XAIS_InteractiveObject^ XAIS_InteractiveContext::DetectedInteractive() {
+        return gcnew XAIS_InteractiveObject(NativeHandle()->DetectedInteractive());
     };
 
     //=======================================================================
@@ -1095,18 +967,18 @@ namespace TKV3d {
     //function : SetIsoNumber
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetIsoNumber(Standard_Integer theNb, AIS_TypeOfIso theType)
+    void XAIS_InteractiveContext::SetIsoNumber(Standard_Integer theNb, XAIS_TypeOfIso theType)
     {
-        NativeHandle()->SetIsoNumber(theNb, theType);
+        NativeHandle()->SetIsoNumber(theNb, safe_cast<AIS_TypeOfIso>(theType));
     };
 
     //=======================================================================
     //function : IsoNumber
     //purpose  :
     //=======================================================================
-    Standard_Integer XAIS_InteractiveContext::IsoNumber(AIS_TypeOfIso theType)
+    Standard_Integer XAIS_InteractiveContext::IsoNumber(XAIS_TypeOfIso theType)
     {
-        return NativeHandle()->IsoNumber(theType);
+        return NativeHandle()->IsoNumber(safe_cast<AIS_TypeOfIso>(theType));
     };
 
     //=======================================================================
@@ -1167,9 +1039,9 @@ namespace TKV3d {
     //function : SetSelectionSensitivity
     //purpose  : Allows to manage sensitivity of a particular selection of interactive object theObject
     //=======================================================================
-    void XAIS_InteractiveContext::SetSelectionSensitivity(Handle(AIS_InteractiveObject) theObject, Standard_Integer theMode, Standard_Integer theNewSensitivity)
+    void XAIS_InteractiveContext::SetSelectionSensitivity(XAIS_InteractiveObject^ theObject, Standard_Integer theMode, Standard_Integer theNewSensitivity)
     {
-        NativeHandle()->SetSelectionSensitivity(theObject, theMode, theNewSensitivity);
+        NativeHandle()->SetSelectionSensitivity(theObject->GetInteractiveObject(), theMode, theNewSensitivity);
     };
 
     ////=======================================================================
@@ -1230,18 +1102,18 @@ namespace TKV3d {
     //function : SetZLayer
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetZLayer(Handle(AIS_InteractiveObject) theIObj, Graphic3d_ZLayerId theLayerId)
+    void XAIS_InteractiveContext::SetZLayer(XAIS_InteractiveObject^ theIObj, Graphic3d_ZLayerId theLayerId)
     {
-        NativeHandle()->SetZLayer(theIObj, theLayerId);
+        NativeHandle()->SetZLayer(theIObj->GetInteractiveObject(), theLayerId);
     };
 
     //=======================================================================
     //function : GetZLayer
     //purpose  :
     //=======================================================================
-    Graphic3d_ZLayerId XAIS_InteractiveContext::GetZLayer(Handle(AIS_InteractiveObject) theIObj)
+    Graphic3d_ZLayerId XAIS_InteractiveContext::GetZLayer(XAIS_InteractiveObject^ theIObj)
     {
-        return NativeHandle()->GetZLayer(theIObj);
+        return NativeHandle()->GetZLayer(theIObj->GetInteractiveObject());
     };
 
     //=======================================================================
@@ -1257,16 +1129,16 @@ namespace TKV3d {
     //function : Disconnect
     //purpose  : Disconnects selectable object from an assembly and updates selection structures
     //=======================================================================
-    void XAIS_InteractiveContext::Disconnect(Handle(AIS_InteractiveObject) theAssembly, Handle(AIS_InteractiveObject) theObjToDisconnect)
+    void XAIS_InteractiveContext::Disconnect(XAIS_InteractiveObject^ theAssembly, XAIS_InteractiveObject^ theObjToDisconnect)
     {
-        NativeHandle()->Disconnect(theAssembly, theObjToDisconnect);
+        NativeHandle()->Disconnect(theAssembly->GetInteractiveObject(), theObjToDisconnect->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : FitSelected
     //purpose  : Fits the view corresponding to the bounds of selected objects
     //=======================================================================
-    void XAIS_InteractiveContext::FitSelected(Handle(V3d_View) theView)
+    void XAIS_InteractiveContext::FitSelected(XV3d_View^ theView)
     {
         FitSelected(theView, 0.01, Standard_True);
     };
@@ -1275,18 +1147,18 @@ namespace TKV3d {
     //function : BoundingBoxOfSelection
     //purpose  :
     //=======================================================================
-    Bnd_Box XAIS_InteractiveContext::BoundingBoxOfSelection()
+    XBnd_Box^ XAIS_InteractiveContext::BoundingBoxOfSelection()
     {
-        return NativeHandle()->BoundingBoxOfSelection();
+        return gcnew XBnd_Box(&NativeHandle()->BoundingBoxOfSelection());
     };
 
     //=======================================================================
     //function : FitSelected
     //purpose  : Fits the view corresponding to the bounds of selected objects
     //=======================================================================
-    void XAIS_InteractiveContext::FitSelected(Handle(V3d_View) theView, Standard_Real theMargin, Standard_Boolean theToUpdate)
+    void XAIS_InteractiveContext::FitSelected(XV3d_View^ theView, Standard_Real theMargin, Standard_Boolean theToUpdate)
     {
-        NativeHandle()->FitSelected(theView, theMargin, theToUpdate);
+        NativeHandle()->FitSelected(theView->GetView(), theMargin, theToUpdate);
     };
 
     //! Return value specified whether selected object must be hilighted when mouse cursor is moved above it
@@ -1328,25 +1200,25 @@ namespace TKV3d {
     //function : SetTransformPersistence
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetTransformPersistence(Handle(AIS_InteractiveObject) theObject, Handle(Graphic3d_TransformPers) theTrsfPers)
+    void XAIS_InteractiveContext::SetTransformPersistence(XAIS_InteractiveObject^ theObject, Handle(Graphic3d_TransformPers) theTrsfPers)
     {
-        NativeHandle()->SetTransformPersistence(theObject, theTrsfPers);
+        NativeHandle()->SetTransformPersistence(theObject->GetInteractiveObject(), theTrsfPers);
     };
 
     //=======================================================================
     //function : GravityPoint
     //purpose  :
     //=======================================================================
-    xgp_Pnt^ XAIS_InteractiveContext::GravityPoint(Handle(V3d_View) theView)
+    xgp_Pnt^ XAIS_InteractiveContext::GravityPoint(XV3d_View^ theView)
     {
-        gp_Pnt* temp = new gp_Pnt(NativeHandle()->GravityPoint(theView));
+        gp_Pnt* temp = new gp_Pnt(NativeHandle()->GravityPoint(theView->GetView()));
         return gcnew xgp_Pnt(temp);
     };
     ////=======================================================================
     ////function : setObjectStatus
     ////purpose  :
     ////=======================================================================
-    //void XAIS_InteractiveContext::setObjectStatus(Handle(AIS_InteractiveObject)& theIObj, AIS_DisplayStatus theStatus, Standard_Integer theDispMode, Standard_Integer theSelectionMode)
+    //void XAIS_InteractiveContext::setObjectStatus(XAIS_InteractiveObject^& theIObj, AIS_DisplayStatus theStatus, Standard_Integer theDispMode, Standard_Integer theSelectionMode)
     //{
     //    NativeHandle()->setObjectStatus(theIObj, theStatus, theDispMode, theSelectionMode);
     //};

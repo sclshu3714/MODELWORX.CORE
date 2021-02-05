@@ -57,72 +57,77 @@ namespace TKV3d
     //function : MoveTo
     //purpose  :
     //=======================================================================
-    AIS_StatusOfDetection XAIS_InteractiveContext::MoveTo(Standard_Integer  theXPix, Standard_Integer  theYPix, Handle(V3d_View) theView, Standard_Boolean  theToRedrawOnUpdate)
+    XAIS_StatusOfDetection XAIS_InteractiveContext::MoveTo(Standard_Integer  theXPix, Standard_Integer  theYPix, XV3d_View^ theView, Standard_Boolean  theToRedrawOnUpdate)
     {
-        return NativeHandle()->MoveTo(theXPix, theYPix, theView, theToRedrawOnUpdate);
+        return safe_cast<XAIS_StatusOfDetection>(NativeHandle()->MoveTo(theXPix, theYPix, theView->GetView(), theToRedrawOnUpdate));
     };
 
     //=======================================================================
     //function : AddSelect
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::AddSelect(Handle(SelectMgr_EntityOwner) theObject)
+    XAIS_StatusOfPick XAIS_InteractiveContext::AddSelect(Handle(SelectMgr_EntityOwner) theObject)
     {
-        return NativeHandle()->AddSelect(theObject);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->AddSelect(theObject));
+    };
+
+    //! Adds object in the selection.
+    XAIS_StatusOfPick XAIS_InteractiveContext::AddSelect(XAIS_InteractiveObject^ theObject) {
+        return AddSelect(theObject->GlobalSelOwner());
     };
 
     //=======================================================================
     //function : Select
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::Select(Standard_Integer  theXPMin, Standard_Integer  theYPMin, Standard_Integer  theXPMax, Standard_Integer  theYPMax, Handle(V3d_View) theView, Standard_Boolean  toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::Select(Standard_Integer  theXPMin, Standard_Integer  theYPMin, Standard_Integer  theXPMax, Standard_Integer  theYPMax, XV3d_View^ theView, Standard_Boolean  toUpdateViewer)
     {
-        return NativeHandle()->Select(theXPMin, theYPMin, theXPMax, theYPMax, theView, toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->Select(theXPMin, theYPMin, theXPMax, theYPMax, theView->GetView(), toUpdateViewer));
     };
 
     //=======================================================================
     //function : Select
     //purpose  : Selection by polyline
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::Select(TColgp_Array1OfPnt2d thePolyline, Handle(V3d_View) theView, Standard_Boolean toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::Select(TColgp_Array1OfPnt2d thePolyline, XV3d_View^ theView, Standard_Boolean toUpdateViewer)
     {
-        return NativeHandle()->Select(thePolyline, theView, toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->Select(thePolyline, theView->GetView(), toUpdateViewer));
     };
 
     //=======================================================================
     //function : Select
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::Select(Standard_Boolean toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::Select(Standard_Boolean toUpdateViewer)
     {
-        return NativeHandle()->Select(toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->Select(toUpdateViewer));
     };
 
     //=======================================================================
     //function : ShiftSelect
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(Standard_Boolean toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(Standard_Boolean toUpdateViewer)
     {
-        return NativeHandle()->ShiftSelect(toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->ShiftSelect(toUpdateViewer));
     };
 
     //=======================================================================
     //function : ShiftSelect
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(Standard_Integer theXPMin, Standard_Integer theYPMin, Standard_Integer theXPMax, Standard_Integer theYPMax, Handle(V3d_View) theView, Standard_Boolean toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(Standard_Integer theXPMin, Standard_Integer theYPMin, Standard_Integer theXPMax, Standard_Integer theYPMax, XV3d_View^ theView, Standard_Boolean toUpdateViewer)
     {
-        return NativeHandle()->ShiftSelect(theXPMin, theYPMin, theXPMax, theYPMax, theView, toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->ShiftSelect(theXPMin, theYPMin, theXPMax, theYPMax, theView->GetView(), toUpdateViewer));
     };
 
     //=======================================================================
     //function : ShiftSelect
     //purpose  : 
     //=======================================================================
-    AIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(TColgp_Array1OfPnt2d thePolyline, Handle(V3d_View) theView, Standard_Boolean toUpdateViewer)
+    XAIS_StatusOfPick XAIS_InteractiveContext::ShiftSelect(TColgp_Array1OfPnt2d thePolyline, XV3d_View^ theView, Standard_Boolean toUpdateViewer)
     {
-        return NativeHandle()->ShiftSelect(thePolyline, theView, toUpdateViewer);
+        return safe_cast<XAIS_StatusOfPick>(NativeHandle()->ShiftSelect(thePolyline, theView->GetView(), toUpdateViewer));
     };
 
     //=======================================================================
@@ -166,9 +171,9 @@ namespace TKV3d
     //function : SetSelected
     //purpose  : Sets the whole object as selected and highlights it with selection color
     //=======================================================================
-    void XAIS_InteractiveContext::SetSelected(Handle(AIS_InteractiveObject) theObject, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SetSelected(XAIS_InteractiveObject^ theObject, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SetSelected(theObject, theToUpdateViewer);
+        NativeHandle()->SetSelected(theObject->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
@@ -186,9 +191,9 @@ namespace TKV3d
     //           Since this method makes sence only for neutral point selection of a whole object,
     //           if 0 selection of the object is empty this method simply does nothing.
     //=======================================================================
-    void XAIS_InteractiveContext::AddOrRemoveSelected(Handle(AIS_InteractiveObject) theObject, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::AddOrRemoveSelected(XAIS_InteractiveObject^ theObject, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->AddOrRemoveSelected(theObject, theToUpdateViewer);
+        NativeHandle()->AddOrRemoveSelected(theObject->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //=======================================================================
@@ -214,18 +219,18 @@ namespace TKV3d
     //function : IsSelected
     //purpose  :
     //=======================================================================
-    Standard_Boolean XAIS_InteractiveContext::IsSelected(Handle(AIS_InteractiveObject) theObj)
+    Standard_Boolean XAIS_InteractiveContext::IsSelected(XAIS_InteractiveObject^ theObj)
     {
-        return NativeHandle()->IsSelected(theObj);
+        return NativeHandle()->IsSelected(theObj->GetInteractiveObject());
     };
 
     //=======================================================================
     //function : FirstSelectedObject
     //purpose  :
     //=======================================================================
-    Handle(AIS_InteractiveObject) XAIS_InteractiveContext::FirstSelectedObject()
+    XAIS_InteractiveObject^ XAIS_InteractiveContext::FirstSelectedObject()
     {
-        return NativeHandle()->FirstSelectedObject();
+        return gcnew XAIS_InteractiveObject(NativeHandle()->FirstSelectedObject());
     };
 
     //! Count a number of selected entities using InitSelected()+MoreSelected()+NextSelected() iterator.
@@ -258,10 +263,10 @@ namespace TKV3d
         return NativeHandle()->SelectedOwner();
     };
 
-    //! Return Handle(AIS_InteractiveObject)::DownCast (SelectedOwner()->Selectable()).
+    //! Return XAIS_InteractiveObject^::DownCast (SelectedOwner()->Selectable()).
     //! @sa SelectedOwner().
-    Handle(AIS_InteractiveObject) XAIS_InteractiveContext::SelectedInteractive() {
-        return NativeHandle()->SelectedInteractive();
+    XAIS_InteractiveObject^ XAIS_InteractiveContext::SelectedInteractive() {
+        return gcnew XAIS_InteractiveObject(NativeHandle()->SelectedInteractive());
     };
 
     //=======================================================================
@@ -277,18 +282,32 @@ namespace TKV3d
     //function : SelectedShape
     //purpose  :
     //=======================================================================
-    TopoDS_Shape XAIS_InteractiveContext::SelectedShape()
+    XTopoDS_Shape^ XAIS_InteractiveContext::SelectedShape()
     {
-        return NativeHandle()->SelectedShape();
+        return gcnew XTopoDS_Shape(NativeHandle()->SelectedShape());
     };
+
+    //! Returns SelectedInteractive()->HasOwner().
+        //! @sa SelectedOwner().
+    Standard_Boolean XAIS_InteractiveContext::HasApplicative() 
+    { 
+        return SelectedInteractive()->HasOwner();
+    }
+
+    //! Returns SelectedInteractive()->GetOwner().
+    //! @sa SelectedOwner().
+    Handle(Standard_Transient) XAIS_InteractiveContext::Applicative() 
+    { 
+        return SelectedInteractive()->GetOwner(); 
+    }
 
     //=======================================================================
     //function : EntityOwners
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::EntityOwners(Handle(SelectMgr_IndexedMapOfOwner) theOwners, Handle(AIS_InteractiveObject) theIObj, Standard_Integer theMode)
+    void XAIS_InteractiveContext::EntityOwners(Handle(SelectMgr_IndexedMapOfOwner) theOwners, XAIS_InteractiveObject^ theIObj, Standard_Integer theMode)
     {
-        NativeHandle()->EntityOwners(theOwners, theIObj, theMode);
+        NativeHandle()->EntityOwners(theOwners, theIObj->GetInteractiveObject(), theMode);
     };
 
     //=======================================================================
@@ -319,18 +338,18 @@ namespace TKV3d
     //function : HilightNextDetected
     //purpose  :
     //=======================================================================
-    Standard_Integer XAIS_InteractiveContext::HilightNextDetected(Handle(V3d_View) theView, Standard_Boolean  theToRedrawImmediate)
+    Standard_Integer XAIS_InteractiveContext::HilightNextDetected(XV3d_View^ theView, Standard_Boolean  theToRedrawImmediate)
     {
-        return NativeHandle()->HilightNextDetected(theView, theToRedrawImmediate);
+        return NativeHandle()->HilightNextDetected(theView->GetView(), theToRedrawImmediate);
     };
 
     //=======================================================================
     //function : HilightPreviousDetected
     //purpose  :
     //=======================================================================
-    Standard_Integer XAIS_InteractiveContext::HilightPreviousDetected(Handle(V3d_View) theView, Standard_Boolean  theToRedrawImmediate)
+    Standard_Integer XAIS_InteractiveContext::HilightPreviousDetected(XV3d_View^ theView, Standard_Boolean  theToRedrawImmediate)
     {
-        return NativeHandle()->HilightPreviousDetected(theView, theToRedrawImmediate);
+        return NativeHandle()->HilightPreviousDetected(theView->GetView(), theToRedrawImmediate);
     };
 
 
@@ -376,7 +395,7 @@ namespace TKV3d
     //function : DetectedCurrentObject
     //purpose  :
     //=======================================================================
-    /*Handle(AIS_InteractiveObject) XAIS_InteractiveContext::DetectedCurrentObject()
+    /*XAIS_InteractiveObject^ XAIS_InteractiveContext::DetectedCurrentObject()
     {
         return NativeHandle()->DetectedCurrentObject();
     };*/

@@ -14,18 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DisplayMode_HeaderFile
-#define _AIS_DisplayMode_HeaderFile
+#ifndef _XAIS_DisplayMode_HeaderFile
+#define _XAIS_DisplayMode_HeaderFile
 
 
 //! Sets display modes other than neutral point ones,
 //! for interactive objects. The possibilities include:
 //! -   wireframe,
 //! -   shaded,
-enum AIS_DisplayMode
+public enum class XAIS_DisplayMode
 {
 AIS_WireFrame,
 AIS_Shaded
 };
 
-#endif // _AIS_DisplayMode_HeaderFile
+#endif // _XAIS_DisplayMode_HeaderFile

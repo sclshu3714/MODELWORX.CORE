@@ -540,6 +540,11 @@
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_AnimationObject.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Axis.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_ColoredShape.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DimensionSelectionMode.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplayMode.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplaySpecialSymbol.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DisplayStatus.h" />
+    <ClInclude Include="Visualization\TKV3d\AIS\XAIS_DragAction.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveContext.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_InteractiveObject.h" />
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_KindOfDimension.h" />
@@ -619,6 +624,7 @@
     <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_VertexDrawMode.h" />
     <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_PresentableObject.h" />
     <ClInclude Include="Visualization\TKV3d\PrsMgr\XPrsMgr_TypeOfPresentation3d.h" />
+    <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_PickingStrategy.h" />
     <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.h" />
     <ClInclude Include="Visualization\TKV3d\V3d\XV3d_StereoDumpOptions.h" />
     <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfAxe.h" />

@@ -11,11 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DragAction_HeaderFile
-#define _AIS_DragAction_HeaderFile
+#ifndef _XAIS_DragAction_HeaderFile
+#define _XAIS_DragAction_HeaderFile
 
 //! Dragging action.
-enum AIS_DragAction
+public enum class XAIS_DragAction
 {
   AIS_DragAction_Start,  //!< (try) start dragging object
   AIS_DragAction_Update, //!< perform dragging (update position)

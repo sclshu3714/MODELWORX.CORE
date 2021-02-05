@@ -14,15 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DisplayStatus_HeaderFile
-#define _AIS_DisplayStatus_HeaderFile
+#ifndef _XAIS_DisplayStatus_HeaderFile
+#define _XAIS_DisplayStatus_HeaderFile
 
 //! To give the display status of an Interactive Object.
-enum AIS_DisplayStatus
+public enum class XAIS_DisplayStatus
 {
   AIS_DS_Displayed, //!< the Interactive Object is displayed in the main viewer
   AIS_DS_Erased,    //!< the Interactive Object is hidden in main viewer
   AIS_DS_None       //!< the Interactive Object is nowhere displayed
 };
 
-#endif // _AIS_DisplayStatus_HeaderFile
+#endif // _XAIS_DisplayStatus_HeaderFile

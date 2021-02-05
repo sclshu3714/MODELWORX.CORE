@@ -200,9 +200,10 @@ public:
         }
         else
         {
-            Handle(AIS_ViewCube) HViewCube = new AIS_ViewCube();
-            HViewCube->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, safe_cast<Aspect_TypeOfTriedronPosition>(thePosition), Graphic3d_Vec2i(theOffsetX, theOffsetY))); // set 2d flag, coordinate origin is set to down-left corner
-            mainAISContext()->Display(HViewCube, Standard_True);
+            HViewCube() = new AIS_ViewCube();
+            HViewCube()->SetTransformPersistence(new Graphic3d_TransformPers(Graphic3d_TMF_TriedronPers, safe_cast<Aspect_TypeOfTriedronPosition>(thePosition), Graphic3d_Vec2i(theOffsetX, theOffsetY))); // set 2d flag, coordinate origin is set to down-left corner
+            mainAISContext()->Display(HViewCube(), Standard_True);
+            mainAISContext()->Activate(HViewCube(), AIS_Shape::SelectionMode(TopAbs_SHAPE));
         }
     }
 
@@ -549,7 +550,7 @@ public:
     ///Set display mode of objects
     /// </summary>
     /// <param name="theMode">Set current mode</param>
-    void SetDisplayMode(Standard_Integer theMode) {
+    void SetDisplayMode(Standard_Integer theMode, Standard_Boolean theToUpdateViewer) {
         if (mainAISContext().IsNull()) {
             return;
         }
@@ -562,15 +563,27 @@ public:
         }
 
         if (mainAISContext()->NbSelected() == 0) {
-            mainAISContext()->SetDisplayMode(aCurrentMode, Standard_False);
+            mainAISContext()->SetDisplayMode(aCurrentMode, theToUpdateViewer);
         }
         else {
             for (mainAISContext()->InitSelected(); mainAISContext()->MoreSelected(); mainAISContext()->NextSelected()) {
-                mainAISContext()->SetDisplayMode(mainAISContext()->SelectedInteractive(), theMode, Standard_False);
+                mainAISContext()->SetDisplayMode(mainAISContext()->SelectedInteractive(), theMode, theToUpdateViewer);
             }
         }
+        mainAISContext()->Activate(HViewCube(), AIS_Shape::SelectionMode(TopAbs_SHAPE));
         mainAISContext()->UpdateCurrentViewer();
     }
+
+    /// <summary>
+    /// Set display mode of the object
+    /// </summary>
+    /// <param name="theIObj"></param>
+    /// <param name="theMode"></param>
+    /// <param name="theToUpdateViewer"></param>
+    void SetDisplayMode(XAIS_InteractiveObject^ theIObj, Standard_Integer theMode, Standard_Boolean theToUpdateViewer)
+    {
+        mainAISContext()->SetDisplayMode(theIObj->GetInteractiveObject(), theMode, theToUpdateViewer);
+    };
 
     /// <summary>
     ///Set color
@@ -678,6 +691,39 @@ public:
 
         mainAISContext()->EraseSelected(Standard_False);
         mainAISContext()->ClearSelected(Standard_True);
+    }
+
+    /// <summary>
+    /// Erase objects
+    /// </summary>
+    /// <param name="theIObj"></param>
+    /// <param name="theToUpdateViewer"></param>
+    void Erase(XAIS_InteractiveObject^ theIObj, Standard_Boolean theToUpdateViewer) {
+        mainAISContext()->Erase(theIObj->GetInteractiveObject(), theToUpdateViewer);
+    }
+
+    /// <summary>
+    /// Erase All
+    /// </summary>
+    /// <param name="theToUpdateViewer"></param>
+    void EraseAll(Standard_Boolean theToUpdateViewer) {
+        mainAISContext()->EraseAll(theToUpdateViewer);
+    }
+
+    /// <summary>
+    /// Display All
+    /// </summary>
+    /// <param name="theToUpdateViewer"></param>
+    void DisplayAll(Standard_Boolean theToUpdateViewer) {
+        mainAISContext()->DisplayAll(theToUpdateViewer);
+    }
+
+    /// <summary>
+    /// Display Selected
+    /// </summary>
+    /// <param name="theToUpdateViewer"></param>
+    void DisplaySelected(Standard_Boolean theToUpdateViewer) {
+        mainAISContext()->DisplaySelected(theToUpdateViewer);
     }
 
     /// <summary>
@@ -990,102 +1036,6 @@ public:
 
         return true;
     }
-
-    /// <summary>
-    /// Import Step file
-    /// </summary>
-    /// <param name="theFileName">Name of import file</param>
-    /// <param name="ColorMode">default: Standard_True</param>
-    /// <param name="NameMode">default: Standard_True</param>
-    /// <param name="LayerMode">default: Standard_True</param>
-    /// <param name="PropsMode">default: Standard_True</param>
-    /// <param name="SHUOMode">default: Standard_False</param>
-    /// <param name="GDTMode">default: Standard_True</param>
-    /// <param name="ViewMode">default: Standard_True</param>
-    /// <returns></returns>
-    bool ImportStep(const TCollection_AsciiString& theFileName, Boolean ColorMode, Boolean NameMode, Boolean LayerMode, Boolean PropsMode, Boolean SHUOMode, Boolean GDTMode, Boolean ViewMode) {
-        STEPCAFControl_Reader aReader;
-        aReader.SetColorMode(ColorMode);
-        aReader.SetNameMode(NameMode);
-        /*aReader.SetLayerMode(LayerMode);
-        aReader.SetPropsMode(PropsMode);
-        aReader.SetSHUOMode(SHUOMode);
-        aReader.SetGDTMode(GDTMode);
-        aReader.SetViewMode(ViewMode);*/
-        IFSelect_ReturnStatus aStatus = IFSelect_RetVoid;
-        aStatus = aReader.ReadFile(theFileName.ToCString());
-        //Handle(TDocStd_Document) aDoc = new TDocStd_Document("XSEFSTEP");
-        Handle(TDocStd_Document) aDoc;
-        Handle(XCAFApp_Application) anApp = XCAFApp_Application::GetApplication();
-        anApp->NewDocument("XSEFSTEP", aDoc);
-        if (aStatus != IFSelect_RetDone || !aReader.Transfer(aDoc)) {
-            return false;
-        }
-        TDF_Label aRootLabel = aDoc->Main();
-        visit(aRootLabel, Standard_True);
-        return true;
-    }
-    bool ImportStepB(const TCollection_AsciiString& theFileName, Boolean ColorMode, Boolean NameMode, Boolean LayerMode, Boolean PropsMode, Boolean SHUOMode, Boolean GDTMode, Boolean ViewMode) {
-        Handle(TDocStd_Document) aDoc;
-        STEPCAFControl_Reader aReader;
-        aReader.SetColorMode(ColorMode);
-        aReader.SetNameMode(NameMode);
-        IFSelect_ReturnStatus aStatus = IFSelect_RetVoid;
-        aStatus = aReader.ReadFile(theFileName.ToCString());
-        Handle(XCAFApp_Application) anApp = XCAFApp_Application::GetApplication();
-        anApp->NewDocument("XSEFSTEP", aDoc);
-        if (aStatus != IFSelect_RetDone || !aReader.Transfer(aDoc)) {
-            return false;
-        }
-        Handle(XCAFDoc_ShapeTool) Assembly = XCAFDoc_DocumentTool::ShapeTool(aDoc->Main());
-        TDF_LabelSequence aRootLabels;
-        //Assembly->GetShapes(aRootLabels);
-        Assembly->GetFreeShapes(aRootLabels);
-        for (TDF_LabelSequence::Iterator aRootIter(aRootLabels); aRootIter.More(); aRootIter.Next())
-        {
-           const TDF_Label& aRootLabel = aRootIter.Value();
-           visitB(aRootLabel, true);
-        }
-        return true;
-    }
-    /// <summary>
-    /// 遍历结构
-    /// </summary>
-    /// <param name="theLabel"></param>
-    /// <param name="IsBoundaryDraw"></param>
-    void visit(const TDF_Label& theLabel, Standard_Boolean IsBoundaryDraw)
-    {
-        //Handle(TDataStd_Name) aName;
-        //if (theLabel.FindAttribute(TDataStd_Name::GetID(), aName)) {
-        //    std::cout << "  Name: " << aName->Get() << std::endl;
-        //}
-        if (!theLabel.HasChild()) {
-            Display(theLabel, IsBoundaryDraw);
-            return;
-        }
-        TDF_ChildIterator iter;
-        for (iter.Initialize(theLabel, Standard_False); iter.More(); iter.Next()) {
-            if (iter.Value().IsNull())
-                continue;
-            visit(iter.Value(), IsBoundaryDraw);
-        }
-    }
-    /// <summary>
-    /// 遍历结构
-    /// </summary>
-    /// <param name="theLabel"></param>
-    /// <param name="IsBoundaryDraw"></param>
-    void visitB(const TDF_Label& theLabel,Standard_Boolean IsBoundaryDraw)
-    {
-        if (!theLabel.IsNull() && !theLabel.HasChild()) {
-            Display(theLabel, IsBoundaryDraw);
-            return;
-        }
-        TDF_ChildIterator iter;
-        for (iter.Initialize(theLabel, Standard_False); iter.More(); iter.Next()) {
-            visit(iter.Value(), IsBoundaryDraw);
-        }
-    }
     /// <summary>
     /// 显示图形
     /// </summary>
@@ -1273,7 +1223,7 @@ public:
                 isResult = ImportBrep(aFilename);
                 break;
             case 1:
-                isResult = ImportStepB(aFilename, true, true, true, true, false, true, true);// ImportStep(aFilename);
+                isResult = ImportStep(aFilename);
                 break;
             case 2:
                 isResult = ImportIges(aFilename);
@@ -1327,5 +1277,5 @@ private:
     NCollection_Haft<Handle(V3d_View)>               mainView;
     NCollection_Haft<Handle(AIS_InteractiveContext)> mainAISContext;
     NCollection_Haft<Handle(OpenGl_GraphicDriver)>   mainGraphicDriver;
-    NCollection_Haft<Handle(Graphic3d_AspectText3d)> m_hLayer;
+    NCollection_Haft<Handle(AIS_ViewCube)> HViewCube;
 };

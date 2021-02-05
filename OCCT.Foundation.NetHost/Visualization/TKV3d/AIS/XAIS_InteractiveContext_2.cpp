@@ -47,9 +47,9 @@ namespace TKV3d
     //function : SetSelectionModeActive
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::SetSelectionModeActive(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode, Standard_Boolean theIsActive, AIS_SelectionModesConcurrency theActiveFilter, Standard_Boolean theIsForce)
+    void XAIS_InteractiveContext::SetSelectionModeActive(XAIS_InteractiveObject^ theObj, Standard_Integer theMode, Standard_Boolean theIsActive, XAIS_SelectionModesConcurrency theActiveFilter, Standard_Boolean theIsForce)
     {
-        NativeHandle()->SetSelectionModeActive(theObj, theMode, theIsActive, theActiveFilter, theIsForce);
+        NativeHandle()->SetSelectionModeActive(theObj->GetInteractiveObject(), theMode, theIsActive, safe_cast<AIS_SelectionModesConcurrency>(theActiveFilter), theIsForce);
     };
 
     // ============================================================================
@@ -62,13 +62,13 @@ namespace TKV3d
     };
 
     //! Deactivates all the activated selection modes of an object.
-    void XAIS_InteractiveContext::Deactivate(Handle(AIS_InteractiveObject) theObj) {
-        NativeHandle()->Deactivate(theObj);
+    void XAIS_InteractiveContext::Deactivate(XAIS_InteractiveObject^ theObj) {
+        NativeHandle()->Deactivate(theObj->GetInteractiveObject());
     };
 
     //! Deactivates all the activated selection modes of the interactive object anIobj with a given selection mode aMode.
-    void XAIS_InteractiveContext::Deactivate(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode) {
-        NativeHandle()->Deactivate(theObj, theMode);
+    void XAIS_InteractiveContext::Deactivate(XAIS_InteractiveObject^ theObj, Standard_Integer theMode) {
+        NativeHandle()->Deactivate(theObj->GetInteractiveObject(), theMode);
     };
 
 
@@ -94,43 +94,43 @@ namespace TKV3d
     //function : ActivatedModes
     //purpose  :
     //=======================================================================
-    void XAIS_InteractiveContext::ActivatedModes(Handle(AIS_InteractiveObject) theObj, TColStd_ListOfInteger theList)
+    void XAIS_InteractiveContext::ActivatedModes(XAIS_InteractiveObject^ theObj, TColStd_ListOfInteger theList)
     {
-        NativeHandle()->ActivatedModes(theObj, theList);
+        NativeHandle()->ActivatedModes(theObj->GetInteractiveObject(), theList);
     };
 
     //! Sub-intensity allows temporary highlighting of particular objects with specified color in a manner of selection highlight,
       //! but without actual selection (e.g., global status and owner's selection state will not be updated).
       //! The method returns the color of such highlighting.
       //! By default, it is Quantity_NOC_GRAY40.
-    Quantity_Color XAIS_InteractiveContext::SubIntensityColor() {
-        return NativeHandle()->SubIntensityColor();
+    XQuantity_Color^ XAIS_InteractiveContext::SubIntensityColor() {
+        return gcnew XQuantity_Color(NativeHandle()->SubIntensityColor());
     };
 
     //! Sub-intensity allows temporary highlighting of particular objects with specified color in a manner of selection highlight,
     //! but without actual selection (e.g., global status and owner's selection state will not be updated).
     //! The method sets up the color for such highlighting.
     //! By default, this is Quantity_NOC_GRAY40.
-    void XAIS_InteractiveContext::SetSubIntensityColor(Quantity_Color theColor) {
-        NativeHandle()->SetSubIntensityColor(theColor);
+    void XAIS_InteractiveContext::SetSubIntensityColor(XQuantity_Color^ theColor) {
+        NativeHandle()->SetSubIntensityColor(*theColor->GetColor());
     };
 
     //=======================================================================
     //function : SubIntensityOn
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::SubIntensityOn(Handle(AIS_InteractiveObject) anIObj, Standard_Boolean updateviewer)
+    void XAIS_InteractiveContext::SubIntensityOn(XAIS_InteractiveObject^ anIObj, Standard_Boolean updateviewer)
     {
-        NativeHandle()->SubIntensityOn(anIObj, updateviewer);
+        NativeHandle()->SubIntensityOn(anIObj->GetInteractiveObject(), updateviewer);
     };
     //=======================================================================
     //function : SubIntensityOff
     //purpose  : 
     //=======================================================================
 
-    void XAIS_InteractiveContext::SubIntensityOff(Handle(AIS_InteractiveObject) theObj, Standard_Boolean theToUpdateViewer)
+    void XAIS_InteractiveContext::SubIntensityOff(XAIS_InteractiveObject^ theObj, Standard_Boolean theToUpdateViewer)
     {
-        NativeHandle()->SubIntensityOff(theObj, theToUpdateViewer);
+        NativeHandle()->SubIntensityOff(theObj->GetInteractiveObject(), theToUpdateViewer);
     };
 
     //! Returns selection instance
@@ -174,8 +174,8 @@ namespace TKV3d
 
     //! Return picking strategy; SelectMgr_PickingStrategy_FirstAcceptable by default.
         //! @sa MoveTo()/Filters()
-    SelectMgr_PickingStrategy XAIS_InteractiveContext::PickingStrategy() {
-        return NativeHandle()->PickingStrategy();
+    XSelectMgr_PickingStrategy XAIS_InteractiveContext::PickingStrategy() {
+        return safe_cast<XSelectMgr_PickingStrategy>(NativeHandle()->PickingStrategy());
     };
 
     //! Setup picking strategy - which entities detected by picking line will be accepted, considering Selection Filters.
@@ -190,8 +190,8 @@ namespace TKV3d
     //! SelectMgr_PickingStrategy_OnlyTopmost will NOT prevent picking entities behind
     //! visible by unregistered in Selection Manager presentations (e.g. deactivated).
     //! Hence, SelectMgr_PickingStrategy_OnlyTopmost changes behavior only with Selection Filters enabled.
-    void XAIS_InteractiveContext::SetPickingStrategy(SelectMgr_PickingStrategy theStrategy) {
-        NativeHandle()->SetPickingStrategy(theStrategy);
+    void XAIS_InteractiveContext::SetPickingStrategy(XSelectMgr_PickingStrategy theStrategy) {
+        NativeHandle()->SetPickingStrategy(safe_cast<SelectMgr_PickingStrategy>(theStrategy));
     };
 
 
@@ -208,27 +208,27 @@ namespace TKV3d
     //function : DisplayActiveSensitive
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::DisplayActiveSensitive(Handle(V3d_View) aviou)
+    void XAIS_InteractiveContext::DisplayActiveSensitive(XV3d_View^ aviou)
     {
-        NativeHandle()->DisplayActiveSensitive(aviou);
+        NativeHandle()->DisplayActiveSensitive(aviou->GetView());
     };
     //=======================================================================
     //function : DisplayActiveSensitive
     //purpose  : 
     //=======================================================================
 
-    void XAIS_InteractiveContext::DisplayActiveSensitive(Handle(AIS_InteractiveObject) theObj, Handle(V3d_View) theView)
+    void XAIS_InteractiveContext::DisplayActiveSensitive(XAIS_InteractiveObject^ theObj, XV3d_View^ theView)
     {
-        NativeHandle()->DisplayActiveSensitive(theObj, theView);
+        NativeHandle()->DisplayActiveSensitive(theObj->GetInteractiveObject(), theView->GetView());
     };
 
     //=======================================================================
     //function : ClearActiveSensitive
     //purpose  : 
     //=======================================================================
-    void XAIS_InteractiveContext::ClearActiveSensitive(Handle(V3d_View) theView)
+    void XAIS_InteractiveContext::ClearActiveSensitive(XV3d_View^ theView)
     {
-        NativeHandle()->ClearActiveSensitive(theView);
+        NativeHandle()->ClearActiveSensitive(theView->GetView());
     };
 
     //=======================================================================
@@ -246,7 +246,7 @@ namespace TKV3d
     ////function : PurgeViewer
     ////purpose  : 
     ////=======================================================================
-    //Standard_Integer XAIS_InteractiveContext::PurgeViewer(Handle(V3d_Viewer) Vwr)
+    //Standard_Integer XAIS_InteractiveContext::PurgeViewer(XV3d_Viewer^ Vwr)
     //{
     //    return NativeHandle()->PurgeViewer(Vwr);
     //};
@@ -262,8 +262,8 @@ namespace TKV3d
     };
 
     //! Redraws immediate structures in all views of the viewer given taking into account its visibility.
-    void XAIS_InteractiveContext::RedrawImmediate(Handle(V3d_Viewer) theViewer) {
-        NativeHandle()->RedrawImmediate(theViewer);
+    void XAIS_InteractiveContext::RedrawImmediate(XV3d_Viewer^ theViewer) {
+        NativeHandle()->RedrawImmediate(theViewer->GetViewer());
     };
 
     //=======================================================================
@@ -281,9 +281,9 @@ namespace TKV3d
     //purpose  :
     //=======================================================================
 
-    Standard_Boolean XAIS_InteractiveContext::ImmediateAdd(Handle(AIS_InteractiveObject) theObj, Standard_Integer theMode)
+    Standard_Boolean XAIS_InteractiveContext::ImmediateAdd(XAIS_InteractiveObject^ theObj, Standard_Integer theMode)
     {
-        return NativeHandle()->ImmediateAdd(theObj, theMode);
+        return NativeHandle()->ImmediateAdd(theObj->GetInteractiveObject(), theMode);
     };
 
     //=======================================================================
@@ -291,9 +291,9 @@ namespace TKV3d
     //purpose  :
     //=======================================================================
 
-    Standard_Boolean XAIS_InteractiveContext::EndImmediateDraw(Handle(V3d_View) theView)
+    Standard_Boolean XAIS_InteractiveContext::EndImmediateDraw(XV3d_View^ theView)
     {
-        return NativeHandle()->EndImmediateDraw(theView);
+        return NativeHandle()->EndImmediateDraw(theView->GetView());
     };
 
     //=======================================================================
