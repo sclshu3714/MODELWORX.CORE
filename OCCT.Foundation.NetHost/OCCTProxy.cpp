@@ -238,6 +238,20 @@ public:
         ISelectionStyle->SetTransparency(theTranspCoef); // 设置透明度
     }
 
+    //! Activates the selection mode aMode whose index is given, for the given interactive entity anIobj.
+    //! const Standard_Integer theMode = 0, const Standard_Boolean theIsForce = Standard_False
+    //! eg.theMode = AIS_Shape::SelectionMode(TopAbs_SHAPE)
+    void Activate(XAIS_InteractiveObject^ theObj, Standard_Integer theMode, Standard_Boolean theIsForce)
+    {
+        mainAISContext()->Activate(theObj->GetInteractiveObject(), theMode, theIsForce);
+    }
+
+    //! Activates the given selection mode for the all displayed objects.
+    //! eg.theMode = AIS_Shape::SelectionMode(TopAbs_SHAPE),Standard_Boolean theIsForce = Standard_False
+    void Activate(Standard_Integer theMode, Standard_Boolean theIsForce) {
+        mainAISContext()->Activate(theMode, theIsForce);
+    }
+
     /// <summary>
     /// Make dump of current view to file
     /// </summary>
@@ -588,33 +602,30 @@ public:
     /// <summary>
     ///Set color
     /// </summary>
-    void SetColor(Standard_Integer theR, Standard_Integer theG, Standard_Integer theB) {
+    void SetColor(XQuantity_Color^ theColor) {
         if (mainAISContext().IsNull()) {
             return;
         }
-        Quantity_Color aCol = Quantity_Color(theR / 255., theG / 255., theB / 255., Quantity_TOC_RGB);
         for (; mainAISContext()->MoreSelected(); mainAISContext()->NextSelected()) {
-            mainAISContext()->SetColor(mainAISContext()->SelectedInteractive(), aCol, Standard_False);
+            mainAISContext()->SetColor(mainAISContext()->SelectedInteractive(), *theColor->GetColor(), Standard_False);
         }
         mainAISContext()->UpdateCurrentViewer();
     }
 
     /// <summary>
-    ///Get object color red
+    ///Set color
     /// </summary>
-    Standard_Integer GetObjColR(void) {
-        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
-        ObjectColor(aRed, aGreen, aBlue);
-        return aRed;
+    void SetColor(XAIS_InteractiveObject^ theIObj, XQuantity_Color^ theColor, Standard_Boolean theToUpdateViewer) {
+        mainAISContext()->SetColor(mainAISContext()->SelectedInteractive(), *theColor->GetColor(), theToUpdateViewer);
     }
 
     /// <summary>
-    ///Get object color green
+    ///Get object color red
     /// </summary>
-    Standard_Integer GetObjColG(void) {
+    XQuantity_Color^ GetObjectColor(void) {
         Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
         ObjectColor(aRed, aGreen, aBlue);
-        return aGreen;
+        return gcnew XQuantity_Color(aRed, aGreen, aBlue, XQuantity_TypeOfColor(Quantity_TOC_RGB));
     }
 
     /// <summary>
@@ -644,14 +655,6 @@ public:
         }
     }
 
-    /// <summary>
-    ///Get object color blue
-    /// </summary>
-    Standard_Integer GetObjColB(void) {
-        Standard_Integer aRed = 0, aGreen = 0, aBlue = 0;
-        ObjectColor(aRed, aGreen, aBlue);
-        return aBlue;
-    }
 
     /// <summary>
     ///Set background color R/G/B
@@ -682,7 +685,7 @@ public:
     }
 
     /// <summary>
-    ///Erase objects（删除对象）
+    ///Erase objects（隐藏选择对象）
     /// </summary>
     void EraseObjects(void) {
         if (mainAISContext().IsNull()) {
@@ -694,7 +697,7 @@ public:
     }
 
     /// <summary>
-    /// Erase objects
+    /// Erase objects（隐藏自定对象）
     /// </summary>
     /// <param name="theIObj"></param>
     /// <param name="theToUpdateViewer"></param>
@@ -703,7 +706,7 @@ public:
     }
 
     /// <summary>
-    /// Erase All
+    /// Erase All（隐藏全部）
     /// </summary>
     /// <param name="theToUpdateViewer"></param>
     void EraseAll(Standard_Boolean theToUpdateViewer) {
@@ -711,7 +714,7 @@ public:
     }
 
     /// <summary>
-    /// Display All
+    /// Display All（显示所有）
     /// </summary>
     /// <param name="theToUpdateViewer"></param>
     void DisplayAll(Standard_Boolean theToUpdateViewer) {
@@ -719,7 +722,7 @@ public:
     }
 
     /// <summary>
-    /// Display Selected
+    /// Display Selected（显示选择）
     /// </summary>
     /// <param name="theToUpdateViewer"></param>
     void DisplaySelected(Standard_Boolean theToUpdateViewer) {

@@ -624,7 +624,7 @@ namespace UniversalCAD
                 TempNode.Nodes.Add(PNode);
             }
             VisibleSettings(ref PNode, aRootLabel, true);
-            OCCTView.SetDisplayMode(1);
+            OCCTView.SetDisplayMode(1, true);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return true;
@@ -727,7 +727,7 @@ namespace UniversalCAD
             //}
             XTDF_Label aRootLabel = aDoc.Main();
             VisibleSettings(aRootLabel, true);
-            OCCTView.SetDisplayMode(1);
+            OCCTView.SetDisplayMode(1, true);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             return true;
@@ -801,7 +801,7 @@ namespace UniversalCAD
                 XPrs3d_LineAspect aBoundaryAspect = aDrawer.FaceBoundaryAspect();//  new XPrs3d_LineAspect(aColor, aLineType, aWidth);
                 aDrawer.SetFaceBoundaryAspect(aBoundaryAspect);
                 context.Display(anInteractive, true);
-                OCCTView.SetDisplayMode(1);
+                OCCTView.SetDisplayMode(1, true);
                 OCCTView.ZoomAllView();
             }
             //mainAISContext()->UpdateCurrentViewer();
@@ -1745,7 +1745,7 @@ namespace UniversalCAD
         /// <param name="aMode">显示模式</param>
         public void SetDisplayMode(int aMode)
         {
-            OCCTView.SetDisplayMode(aMode);
+            OCCTView.SetDisplayMode(aMode, true);
             OCCTView.RedrawView();
         }
 

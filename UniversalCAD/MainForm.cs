@@ -221,6 +221,12 @@ namespace UniversalCAD
         #endregion
 
         #region 导入/导出
+        /// <summary>
+        /// 导入STEP
+        /// </summary>
+        /// <param name="theFileName"></param>
+        /// <param name="theFormat"></param>
+        /// <returns></returns>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat)
         {
             this.accElementTLable.Elements.Clear();
@@ -255,7 +261,7 @@ namespace UniversalCAD
                 DisplayLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
                 //TDFChildLabel(AssemblyShapeTool, tempElement, aRootLabel, ref ElementId, IsBoundaryDraw, new XTopLoc_Location());
             }
-            OCCTView.SetDisplayMode(1);
+            OCCTView.SetDisplayMode(1, true);
             OCCTView.RedrawView();
             OCCTView.ZoomAllView();
             this.Refresh();
@@ -322,6 +328,7 @@ namespace UniversalCAD
                     case XTopAbs_ShapeEnum.TopAbs_VERTEX:
                     default: {
                             GroupElement.Style = ElementStyle.Item;
+                            GroupElement.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_5101;
                             Display(theLabel, IsBoundaryDraw, XLocalLocation);
                         }
                         break;
@@ -365,6 +372,7 @@ namespace UniversalCAD
                     }
                     else {
                         GroupElement.Style = ElementStyle.Item;
+                        GroupElement.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_5101;
                         XAIS_Shape shape = new XAIS_Shape(currentShape);
                         context.Display(shape, true);
                         OCCTView.SetFaceBoundaryDraw(shape, IsBoundaryDraw);
@@ -1449,7 +1457,7 @@ namespace UniversalCAD
         /// <param name="aMode">显示模式</param>
         public void SetDisplayMode(int aMode)
         {
-            OCCTView.SetDisplayMode(aMode);
+            OCCTView.SetDisplayMode(aMode, true);
             OCCTView.RedrawView();
         }
 
