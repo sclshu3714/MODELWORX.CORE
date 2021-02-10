@@ -120,6 +120,8 @@ namespace UniversalCAD
             this.accordionControl.LookAndFeel.SkinName = "Office 2016 Black";
             this.accordionControl.LookAndFeel.UseDefaultLookAndFeel = false;
             this.accordionControl.Name = "accordionControl";
+            this.accordionControl.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Minimal;
+            this.accordionControl.OptionsMinimizing.PopupFormAutoHeightMode = DevExpress.XtraBars.Navigation.AccordionPopupFormAutoHeightMode.FitContent;
             this.accordionControl.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             this.accordionControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;

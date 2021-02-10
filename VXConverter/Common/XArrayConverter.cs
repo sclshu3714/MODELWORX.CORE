@@ -10,7 +10,7 @@ namespace VXConverter.Common
     /// </summary>
     /// <example>
     /// </example>
-    public class VXArrayConverter : ArrayConverter
+    public class XArrayConverter : ArrayConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) {
             if(sourceType == typeof(string[]))

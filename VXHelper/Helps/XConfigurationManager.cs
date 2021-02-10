@@ -9,27 +9,27 @@ namespace VXHelper
     /// <summary>
     /// 配置管理器
     /// </summary>
-    public class VXConfigurationManager
+    public class XConfigurationManager
     {
         private static Configuration config = null;
         private static AppSettingsSection appSettings = null;
         private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXConfigurationManager ConfigManager = null;//全局设置
+        private static XConfigurationManager ConfigManager = null;//全局设置
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXConfigurationManager() { }
+        public XConfigurationManager() { }
 
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXConfigurationManager AppConfiguration {
+        public static XConfigurationManager AppConfiguration {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
                     if(null == ConfigManager) {
-                        ConfigManager = new VXConfigurationManager();
+                        ConfigManager = new XConfigurationManager();
                     }
                 }
                 return ConfigManager;

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model.core\VXModel.csproj" />
+    <ProjectReference Include="..\Model.core\XModel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,26 +9,26 @@ using System.Text.RegularExpressions;
 
 namespace VXHelper
 {
-    public class VXFlushMemory
+    public class XFlushMemory
     {
         [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
         public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
         private static readonly object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXFlushMemory flushMemory = null;//全局设置
+        private static XFlushMemory flushMemory = null;//全局设置
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXFlushMemory() { }
+        public XFlushMemory() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXFlushMemory FlushMemoryExt {
+        public static XFlushMemory FlushMemoryExt {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
                     if(null == flushMemory) {
-                        flushMemory = new VXFlushMemory();
+                        flushMemory = new XFlushMemory();
                     }
                 }
                 return flushMemory;

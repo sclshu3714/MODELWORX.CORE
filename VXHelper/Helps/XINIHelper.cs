@@ -9,14 +9,14 @@ namespace VXHelper
     /// <summary>
     /// INI格式的配置文件
     /// </summary>
-    public class VXINI
+    public class XINI
     {
         [DllImport("kernel32")]
         private static extern int WritePrivateProfileString(string section, string key, string val, string filepath);
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retval, int size, string filePath);
         private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXINI ini = null;//全局设置
+        private static XINI ini = null;//全局设置
         //获取ini文件路径
         private static string workbenchPath = null;// Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Config\{0}", DesignINI));
         private static string INIFilename = null;
@@ -24,16 +24,16 @@ namespace VXHelper
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXINI() { }
+        public XINI() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXINI INIEXT {
+        public static XINI INIEXT {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
                     if(null == ini) {
-                        ini = new VXINI();
+                        ini = new XINI();
                     }
                 }
                 return ini;
@@ -45,10 +45,10 @@ namespace VXHelper
         private static string StaticWorkbenchPath {
             get {
                 if(string.IsNullOrEmpty(workbenchPath))
-                    workbenchPath = VXConfigurationManager.StaticGetConfiguration<string>("WorkbenchPath");
+                    workbenchPath = XConfigurationManager.StaticGetConfiguration<string>("WorkbenchPath");
                 if(string.IsNullOrEmpty(workbenchPath)) {
                     workbenchPath = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MODELWORX","config");
-                    VXConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
+                    XConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
                 }
                 if(!Directory.Exists(workbenchPath))
                     Directory.CreateDirectory(workbenchPath);
@@ -56,7 +56,7 @@ namespace VXHelper
             }
             set {
                 workbenchPath = Path.Combine(value, "MODELWORX");
-                VXConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
+                XConfigurationManager.StaticSetConfiguration("WorkbenchPath", workbenchPath);
                 if(!Directory.Exists(workbenchPath))
                     Directory.CreateDirectory(workbenchPath);
             }
@@ -96,7 +96,7 @@ namespace VXHelper
         public static T StaticGetValue<T>(string section, string key) {
             StringBuilder value = new StringBuilder(1024);
             GetPrivateProfileString(section, key, "", value, 1024, INIFilename);
-            return VXConvert.staticChangeType<T>(value);
+            return XConvert.staticChangeType<T>(value);
         }
         /// <summary>
         /// return Value of the given setting as variant or defaultValue.

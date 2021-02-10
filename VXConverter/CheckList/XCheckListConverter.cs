@@ -9,7 +9,7 @@ namespace VXConverter.CheckList
     /// <summary>
     /// 属性支持复选
     /// </summary>
-    public class VXCheckListConverter : TypeConverter
+    public class XCheckListConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) {
             if(sourceType == typeof(string))
@@ -31,7 +31,7 @@ namespace VXConverter.CheckList
                 return strValue;
             }
             if(destType == typeof(string) && value is List<string> list) {
-                VXArrayAttribute listAttribute = (VXArrayAttribute)context.PropertyDescriptor.Attributes[typeof(VXArrayAttribute)];
+                XArrayAttribute listAttribute = (XArrayAttribute)context.PropertyDescriptor.Attributes[typeof(XArrayAttribute)];
                 string strValue = null;
                 foreach(string item in list) {
                     strValue += "," + item;

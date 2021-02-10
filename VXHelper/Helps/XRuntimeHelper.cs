@@ -7,19 +7,19 @@ using System.Text;
 
 namespace VXHelper
 {
-    public class VXRuntime
+    public class XRuntime
     {
         private static readonly object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXRuntime runtime = null;//全局设置
+        private static XRuntime runtime = null;//全局设置
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXRuntime() { }
+        public XRuntime() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXRuntime SystemRuntime
+        public static XRuntime SystemRuntime
         {
             get
             {
@@ -27,7 +27,7 @@ namespace VXHelper
                 {
                     if (null == runtime)
                     {
-                        runtime = new VXRuntime();
+                        runtime = new XRuntime();
                     }
                 }
                 return runtime;

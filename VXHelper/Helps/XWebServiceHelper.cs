@@ -9,20 +9,20 @@ using System.Xml;
 
 namespace VXHelper
 {
-    public class VXWebService
+    public class XWebService
     {
         private static readonly object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXWebService webService = null;//全局设置
+        private static XWebService webService = null;//全局设置
         private static System.Diagnostics.Process WebServiceProcess = null;
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXWebService() { }
+        public XWebService() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXWebService WebService
+        public static XWebService WebService
         {
             get
             {
@@ -30,7 +30,7 @@ namespace VXHelper
                 {
                     if (null == webService)
                     {
-                        webService = new VXWebService();
+                        webService = new XWebService();
                     }
                 }
                 return webService;
@@ -276,11 +276,11 @@ namespace VXHelper
         public static bool WebServerStart(string _AppRoot = null, string _Port = null, string _WebPath = null, string _WebvPath = "/")
         {
             if (string.IsNullOrEmpty(_AppRoot) || !File.Exists(_AppRoot))
-                _AppRoot = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, VXConfigurationManager.StaticGetConfiguration<string>("WebServer")));
+                _AppRoot = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, XConfigurationManager.StaticGetConfiguration<string>("WebServer")));
             if (string.IsNullOrEmpty(_Port))
                 _Port = "28373";
             if (string.IsNullOrEmpty(_WebPath))
-                _WebPath = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, VXConfigurationManager.StaticGetConfiguration<string>("LocalService")));
+                _WebPath = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, XConfigurationManager.StaticGetConfiguration<string>("LocalService")));
             if (string.IsNullOrEmpty(_Port))
                 _WebvPath = "/";
             //简单校验
@@ -309,11 +309,11 @@ namespace VXHelper
         public static bool CheckWebServer(string _AppRoot = null, string _Port = null, string _WebPath = null, string _WebvPath = "/")
         {
             if (string.IsNullOrEmpty(_AppRoot) || !File.Exists(_AppRoot))
-                _AppRoot = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, VXConfigurationManager.StaticGetConfiguration<string>("WebServer")));
+                _AppRoot = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, XConfigurationManager.StaticGetConfiguration<string>("WebServer")));
             if (string.IsNullOrEmpty(_Port))
                 _Port = "28373";
             if (string.IsNullOrEmpty(_WebPath))
-                _WebPath = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, VXConfigurationManager.StaticGetConfiguration<string>("LocalService")));
+                _WebPath = System.IO.Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, XConfigurationManager.StaticGetConfiguration<string>("LocalService")));
             if (string.IsNullOrEmpty(_Port))
                 _WebvPath = "/";
             if (!System.IO.File.Exists(_AppRoot))

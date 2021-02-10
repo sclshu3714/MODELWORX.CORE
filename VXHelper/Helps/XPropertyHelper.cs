@@ -7,7 +7,7 @@ using VXModel.Common;
 
 namespace VXHelper
 {
-    public class VXPropertyEdit
+    public class XPropertyEdit
     {
         /// <summary>
         /// 设置属性是否可见
@@ -62,7 +62,7 @@ namespace VXHelper
         /// <param name="propertyName"></param>
         /// <param name="WriteArray"></param>
         public static void SetPropertyWriteArray(object obj, string propertyName, string[] WriteArray) {
-            Type type = typeof(VXArrayAttribute);
+            Type type = typeof(XArrayAttribute);
             PropertyDescriptorCollection props = TypeDescriptor.GetProperties(obj);
             if(props.Find(propertyName, true) != null) {
                 AttributeCollection attrs = props[propertyName].Attributes;

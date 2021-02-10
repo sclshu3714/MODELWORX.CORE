@@ -33,38 +33,38 @@ namespace VXHelper.Helps
         /// <summary>
         /// app.config配置管理
         /// </summary>
-        public static VXConfigurationManager AppManager { 
-            get { return VXConfigurationManager.AppConfiguration; } 
+        public static XConfigurationManager AppManager { 
+            get { return XConfigurationManager.AppConfiguration; } 
         }
         /// <summary>
         /// ini备份扩展
         /// </summary>
-        public static VXINI INI {
-            get { return VXINI.INIEXT; }
+        public static XINI INI {
+            get { return XINI.INIEXT; }
         }
         /// <summary>
         /// Serialize序列化
         /// </summary>
-        public static VXSerialize Serialize {
-            get { return VXSerialize.Serialize; }
+        public static XSerialize Serialize {
+            get { return XSerialize.Serialize; }
         }
         /// <summary>
         /// JSON转换帮助
         /// </summary>
-        public static VXJson JsonUntity {
-            get { return VXJson.JSONEXT; }
+        public static XJson JsonUntity {
+            get { return XJson.JSONEXT; }
         }
         /// <summary>
         /// 加密解密，格式转换
         /// </summary>
-        public static VXConvert DConvert {
-            get { return VXConvert.CONVERTEXT; }
+        public static XConvert DConvert {
+            get { return XConvert.CONVERTEXT; }
         }
         /// <summary>
         /// 内存清理
         /// </summary>
         public static void FlushMemory() {
-            VXFlushMemory.StaticFlushMemory();
+            XFlushMemory.StaticFlushMemory();
         }
         #endregion
 

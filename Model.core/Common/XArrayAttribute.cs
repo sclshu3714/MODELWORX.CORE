@@ -4,13 +4,13 @@ using System.Text;
 
 namespace VXModel.Common
 {
-    public class VXArrayAttribute : Attribute
+    public class XArrayAttribute : Attribute
     {
         /// <summary>
         /// 记录数组数据
         /// </summary>
         public object[] list = null;
-        public VXArrayAttribute(params object[] list) {
+        public XArrayAttribute(params object[] list) {
             this.list = list;
         }
     }

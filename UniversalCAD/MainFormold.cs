@@ -1781,9 +1781,10 @@ namespace UniversalCAD
             int r, g, b;
             if (IsObjectColor)
             {
-                r = OCCTView.GetObjColR();
-                g = OCCTView.GetObjColG();
-                b = OCCTView.GetObjColB();
+                XQuantity_Color XColor = OCCTView.GetObjectColor();
+                r = (int)(XColor.Red() * 255);
+                g = (int)(XColor.Green() * 255);
+                b = (int)(XColor.Blue() * 255);
             }
             else
             {
@@ -1799,8 +1800,10 @@ namespace UniversalCAD
                 r = c.R;
                 g = c.G;
                 b = c.B;
-                if (IsObjectColor)
-                    OCCTView.SetColor(r, g, b);
+                if (IsObjectColor) {
+                    XQuantity_Color XColor = new XQuantity_Color(r, g, b, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+                    OCCTView.SetColor(XColor);
+                }
                 else
                     OCCTView.SetBackgroundColor(r, g, b);
             }
@@ -1828,9 +1831,10 @@ namespace UniversalCAD
             int r, g, b;
             if (IsObjectColor)
             {
-                r = OCCTView.GetObjColR();
-                g = OCCTView.GetObjColG();
-                b = OCCTView.GetObjColB();
+                XQuantity_Color XColor = OCCTView.GetObjectColor();
+                r = (int)(XColor.Red() * 255);
+                g = (int)(XColor.Green() * 255);
+                b = (int)(XColor.Blue() * 255);
             }
             else
             {
@@ -1848,8 +1852,10 @@ namespace UniversalCAD
                 }
             }
             r = color.R; g = color.G; b = color.B;
-            if (IsObjectColor)
-                OCCTView.SetColor(r, g, b);
+            if (IsObjectColor) {
+                XQuantity_Color XColor = new XQuantity_Color(r, g, b, XQuantity_TypeOfColor.Quantity_TOC_RGB);
+                OCCTView.SetColor(XColor);
+            }
             else
                 OCCTView.SetBackgroundColor(r, g, b);
             this.OCCTView.UpdateCurrentViewer();

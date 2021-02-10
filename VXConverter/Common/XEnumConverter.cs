@@ -9,7 +9,7 @@ namespace VXConverter.Common
     /// <summary>
     /// 枚举显示中文注释
     /// </summary>
-    public class VXEnumConverter : TypeConverter
+    public class XEnumConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) {
             if(sourceType == typeof(string))

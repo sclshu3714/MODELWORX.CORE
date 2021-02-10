@@ -12,7 +12,7 @@ namespace VXConverter.Common
     /// <example>
     /// TypeConverter(typeof(VXComboConverter)), VXArrayAttribute("铆钉", "螺栓")]
     /// </example>
-    public class VXComboConverter : TypeConverter
+    public class XComboConverter : TypeConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context) {
             return true;
@@ -21,7 +21,7 @@ namespace VXConverter.Common
             return true;
         }
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context) {
-            VXArrayAttribute listAttribute = (VXArrayAttribute)context.PropertyDescriptor.Attributes[typeof(VXArrayAttribute)];
+            XArrayAttribute listAttribute = (XArrayAttribute)context.PropertyDescriptor.Attributes[typeof(XArrayAttribute)];
             StandardValuesCollection vals = new TypeConverter.StandardValuesCollection(listAttribute.list);
             return vals;
         }

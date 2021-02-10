@@ -9,24 +9,24 @@ using System.Text;
 
 namespace VXHelper
 {
-    public class VXConvert
+    public class XConvert
     {
         private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXConvert convert = null;//全局设置
+        private static XConvert convert = null;//全局设置
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXConvert() { }
+        public XConvert() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXConvert CONVERTEXT {
+        public static XConvert CONVERTEXT {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
                     if(null == convert) {
-                        convert = new VXConvert();
+                        convert = new XConvert();
                     }
                 }
                 return convert;

@@ -7,24 +7,24 @@ using System.Text;
 
 namespace VXHelper
 {
-    public class VXSerialize
+    public class XSerialize
     {
         private static object lockObject = new object();   //对象锁，用于控制多线程异步操作
-        private static VXSerialize serialize = null;//全局设置
+        private static XSerialize serialize = null;//全局设置
 
         /// <summary>
         /// 全局设置
         /// </summary>
-        public VXSerialize() { }
+        public XSerialize() { }
         /// <summary>
         /// 默认的全局设置
         /// </summary>
-        public static VXSerialize Serialize {
+        public static XSerialize Serialize {
             get {
                 lock(lockObject)  //上锁，解决多线程异步操作时的相互影响
                 {
                     if(null == serialize) {
-                        serialize = new VXSerialize();
+                        serialize = new XSerialize();
                     }
                 }
                 return serialize;
