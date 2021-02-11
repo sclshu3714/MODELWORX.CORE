@@ -25,7 +25,7 @@
 #include <TCollection_AsciiString.hxx>
 
 using namespace TKMath;
-namespace TKV3d {
+namespace TKService {
     public enum class XGraphic3d_ZLayerSetting
     {
         Graphic3d_ZLayerDepthTest = 1,

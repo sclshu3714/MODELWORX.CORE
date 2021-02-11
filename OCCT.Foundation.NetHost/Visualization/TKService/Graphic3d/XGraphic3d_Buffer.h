@@ -73,7 +73,7 @@ public ref struct XGraphic3d_Attribute
 
 //typedef NCollection_Array1<Graphic3d_Attribute> Graphic3d_Array1OfAttribute;
 
-namespace TKV3d {
+namespace TKService {
     //! Buffer of vertex attributes.
    public ref class XGraphic3d_Buffer //: public NCollection_Buffer
     {

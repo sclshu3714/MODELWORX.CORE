@@ -35,7 +35,7 @@ using namespace TKernel;
 //! Keywords: Material, FillArea, Shininess, Ambient, Color, Diffuse,
 //! Specular, Transparency, Emissive, ReflectionMode,
 //! BackFace, FrontFace, Reflection, Absorbtion
-namespace TKV3d {
+namespace TKService {
     ref class TKernel::XStandard_Helper;
     public ref class XGraphic3d_MaterialAspect
     {

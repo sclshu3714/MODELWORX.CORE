@@ -15,7 +15,7 @@
 
 #include <XGraphic3d_PresentationAttributes.h>
 
-namespace TKV3d {
+namespace TKService {
     //! Empty constructor.
     XGraphic3d_PresentationAttributes::XGraphic3d_PresentationAttributes() {
         NativeHandle() = new Graphic3d_PresentationAttributes();

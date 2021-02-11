@@ -36,12 +36,13 @@ using namespace TKBRep;
 using namespace TKernel;
 using namespace TKMath;
 using namespace TKV3d;
+using namespace TKService;
 namespace TKXCAF {
 
     ref class TKBRep::XTopoDS_Shape;
     ref class TKernel::XQuantity_Color;
     ref class TKV3d::XAIS_Shape;
-    ref class TKV3d::XGraphic3d_MaterialAspect;
+    ref class TKService::XGraphic3d_MaterialAspect;
     public ref class XAIS_ColoredShape : public XAIS_Shape
     {
     public:

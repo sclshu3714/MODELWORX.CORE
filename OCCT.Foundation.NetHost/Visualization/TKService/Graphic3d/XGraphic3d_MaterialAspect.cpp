@@ -15,7 +15,7 @@
 #include <XGraphic3d_MaterialAspect.h>
 
 
-namespace TKV3d  {
+namespace TKService {
 
     //! Returns the number of predefined textures.
     //! static 

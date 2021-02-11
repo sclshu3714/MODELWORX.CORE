@@ -17,11 +17,14 @@
 #include <XCAFPrs_AISObject.hxx>
 #include <XAIS_ColoredShape.h>
 #include <XTDF_Label.h>
+#include <XGraphic3d_MaterialAspect.h>
 
 class XCAFPrs_Style;
 using namespace TKLCAF;
+using namespace TKService;
 namespace TKXCAF {
     ref class TKLCAF::XTDF_Label;
+    ref class TKService::XGraphic3d_MaterialAspect;
     //! Implements AIS_InteractiveObject functionality for shape in DECAF document.
     public ref class XXCAFPrs_AISObject : public XAIS_ColoredShape
     {

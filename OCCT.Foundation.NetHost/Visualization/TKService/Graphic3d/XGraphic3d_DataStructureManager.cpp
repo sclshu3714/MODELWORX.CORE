@@ -23,7 +23,7 @@
 // for the class
 
 #include <XGraphic3d_DataStructureManager.h>
-namespace TKV3d {
+namespace TKService {
 	XGraphic3d_DataStructureManager::XGraphic3d_DataStructureManager() {
 		//NativeHandle() = new Graphic3d_DataStructureManager();
 	};

@@ -62,13 +62,14 @@
 //! Sub-classes might override these methods to modify Prs3d_Drawer or class properties providing a convenient short-cut depending on application needs.
 //! For more sophisticated configuring, Prs3d_Drawer should be modified directly, while short-cuts might be left unimplemented.
 using namespace TKMath;
+using namespace TKService;
 namespace TKV3d {
     ref class TKMath::xgp_Trsf;
     ref class TKMath::xgp_GTrsf;
     ref class TKMath::XTopLoc_Datum3D;
     ref class TKMath::XTopLoc_Location;
     ref class TKMath::XBnd_Box;
-    ref class XGraphic3d_MaterialAspect;
+    ref class TKService::XGraphic3d_MaterialAspect;
     public ref class XPrsMgr_PresentableObject //: public Standard_Transient
     {
        //! DEFINE_STANDARD_RTTIEXT(PrsMgr_PresentableObject, Standard_Transient)

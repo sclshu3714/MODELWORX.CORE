@@ -1,5 +1,5 @@
 #include <XGraphic3d_AspectLine3d.h>
-namespace TKV3d {
+namespace TKService {
     //! Creates a context table for line primitives
     //! defined with the following default values:
     //!

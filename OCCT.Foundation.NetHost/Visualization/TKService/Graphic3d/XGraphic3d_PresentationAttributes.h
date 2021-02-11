@@ -30,7 +30,7 @@
 #include <Quantity_ColorRGBA.hxx>
 
 using namespace TKernel;
-namespace TKV3d {
+namespace TKService {
     ref class TKernel::XQuantity_Color;
     //! Class defines presentation properties.
     public ref class XGraphic3d_PresentationAttributes    // : public Standard_Transient

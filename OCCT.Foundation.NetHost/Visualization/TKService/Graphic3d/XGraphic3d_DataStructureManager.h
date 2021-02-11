@@ -28,7 +28,7 @@
 class Graphic3d_DataStructureManager;
 //DEFINE_STANDARD_HANDLE(Graphic3d_DataStructureManager, Standard_Transient)
 
-namespace TKV3d {
+namespace TKService {
 	//! This class allows the definition of a manager to
 	//! which the graphic objects are associated.
 	//! It allows them to be globally manipulated.

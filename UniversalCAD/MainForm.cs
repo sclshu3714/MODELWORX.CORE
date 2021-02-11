@@ -57,6 +57,8 @@ namespace UniversalCAD
             if (InitViewer)
             {
                 OCCTView.InitOCCTProxy();
+                OCCTView = null;
+                OCCTContext = null;
             }
         }
 
@@ -82,6 +84,7 @@ namespace UniversalCAD
             IsRectVisible = false;
             OCCTView.SetLight(true);
             OCCTView.SetSelectionStyle(XAspect_TypeOfHighlightMethod.Aspect_TOHM_COLOR, new XQuantity_Color(Color.Blue.R / 255, Color.Blue.G / 255, Color.Blue.B / 255, XQuantity_TypeOfColor.Quantity_TOC_RGB), 0, 1.0f);
+            OCCTContext = OCCTView.GetInteractiveContext();
             this.RWControl.SizeChanged += RenderWindow_SizeChanged;
             this.RWControl.Paint += RenderWindow_Paint;
             this.RWControl.KeyDown += RenderWindow_KeyDown;
@@ -116,10 +119,110 @@ namespace UniversalCAD
                     OperationSaveFile();
                     #endregion
                     break;
+                case "None":                            //特性 - 无
+                case "Material":                        //特性 - 材料
+                case "Texture":                         //特性 - 纹理
+                    SetProperty(e.Element.Tag?.ToString());
+                    break;
+                case "HollowMesh":                      //显示模式 - 空心网格
+                    break;
+                case "MeshEdges":                       //显示模式 - 网格边缘
+                    break;
+                case "MeshShrinked":                    //显示模式 - 网格收缩
+                    break;
+                case "Wireframe":                       //显示模式 - 线框模式
+                    break;
+                case "FlatShaded":                      //显示模式 - 平面投影
+                    break;
+                case "SmoothlyShaded":                  //显示模式 - 平滑阴影
+                    break;
+                case "ShadedwithEdges":                 //显示模式 - 显示边框
+                    break;
+                case "Rubberbandselection":             //视图模式 - 橡皮筋选择
+                    break;
+                case "Orbitrotationbysingletouch":      //视图模式 - 单触旋转
+                    break;
+                case "Panbysingletouch":                //视图模式 - 单触平移
+                    break;
+                case "Zoombysingletouch":               //视图模式 - 单触缩放
+                    break;
+                case "ShowAll":                         //视图模式 - 显示所有
+                    break;
+                case "FitAll":                          //视图模式 - 适合所有
+                    break;
+                case "Enable/disableperspectivemodel":  //视图模式 - 透视模式
+                    break;
+                case "Show/hidemessagewindow":          //视图模式 - 消息窗口
+                    break;
+                case "Showselected":                    //视图模式 - 显示选择
+                    break;
+                case "HideSelected":                    //视图模式 - 隐藏选择
+                    break;
+                case "Showonlyselected":                //视图模式 - 仅显示选择
+                    break;
+                case "PropertyWindow":                  //视图模式 - 属性窗口
+                    break;
+                case "SelectParent":                    //视图模式 - 选择父级
+                    break;
+                case "Assignorchangematerial":          //视图模式 - 指定材质
+                    break;
+                case "DeleteSelected":                  //视图模式 - 删除选择
+                    break;
                 default:
                     break;
             }
         }
+        #region 视图
+
+        #endregion
+
+        #region 显示模式
+
+        #endregion
+
+        #region 更改展示的特性
+        /// <summary>
+        /// 设置指定或者选择的图形的展示特性
+        /// </summary>
+        /// <param name="Tag">展示方式</param>
+        /// <param name="shape">指定的图形</param>
+        /// <example>
+        /// shape = null 且无选择的图形时，不做任何操作；
+        /// shape = null 且有选择的图形时，修改选择的图形的特性；
+        /// shape != null时，修改指定的shape的特性
+        /// </example>
+        private void SetProperty(string Tag, XAIS_InteractiveObject shape = null)
+        {
+            switch (Tag) {
+                case "Material":                        //特性 - 材料
+                    if (shape != null) {
+                        XPrs3d_Drawer shapeDrawer = shape.Attributes();
+                    }
+                    else if(OCCTContext.SelectedInteractive() is XAIS_InteractiveObject SelectedShape && SelectedShape != null) {
+                        
+                    }
+                    break;
+                case "Texture":                         //特性 - 纹理
+                    if (shape != null) {
+
+                    }
+                    else if (OCCTContext.SelectedInteractive() is XAIS_InteractiveObject SelectedShape && SelectedShape != null) {
+
+                    }
+                    break;
+                case "None":                            //特性 - 无
+                default:
+                    if (shape != null) {
+
+                    }
+                    else if (OCCTContext.SelectedInteractive() is XAIS_InteractiveObject SelectedShape && SelectedShape != null) {
+
+                    }
+                    break;
+            }
+        }
+        #endregion
+
         #region 打开文件
         /// <summary>
         /// 操作 - 打开文件，选择文件
@@ -170,6 +273,7 @@ namespace UniversalCAD
             }
         }
         #endregion
+
         #region 保存文件
         /// <summary>
         /// 操作 - 保存文件
@@ -2220,6 +2324,7 @@ namespace UniversalCAD
         protected bool IsRectVisible;
 
         public OCCTProxy OCCTView { get; set; } = null;
+        public XAIS_InteractiveContext OCCTContext { get; set; } = null;
         public bool InitViewer { get; set; } = false;
 
         private static object lockObject = new object();

@@ -1,5 +1,5 @@
 #include <XGraphic3d_ZLayerSettings.h>
-namespace TKV3d {
+namespace TKService {
 
     //! Default settings.
     XGraphic3d_ZLayerSettings::XGraphic3d_ZLayerSettings() {

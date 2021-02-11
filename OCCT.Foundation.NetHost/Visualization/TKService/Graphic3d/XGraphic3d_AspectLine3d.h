@@ -26,7 +26,7 @@
 using namespace TKernel;
 //! Creates and updates a group of attributes for 3d line primitives.
 //! This group contains the color, the type of line, and its thickness.
-namespace TKV3d {
+namespace TKService {
     ref class TKernel::XQuantity_Color;
    public ref class XGraphic3d_AspectLine3d //: public Graphic3d_Aspects
     {

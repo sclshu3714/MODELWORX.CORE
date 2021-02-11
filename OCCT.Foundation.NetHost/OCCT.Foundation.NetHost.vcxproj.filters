@@ -217,9 +217,6 @@
     <Filter Include="源文件\DataExchange\TKXCAF\XCAFPrs">
       <UniqueIdentifier>{c9adab4d-f342-4855-906e-0de78fbf3d22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\Visualization\TKV3d\Graphic3d">
-      <UniqueIdentifier>{0ae6dfc2-a531-4f4c-aef0-a80e22c20c7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\Visualization\TKV3d\Prs3d">
       <UniqueIdentifier>{dca35983-27eb-45db-873f-915339725c6a}</UniqueIdentifier>
     </Filter>
@@ -249,9 +246,6 @@
     </Filter>
     <Filter Include="头文件\Visualization\TKService\Aspect">
       <UniqueIdentifier>{e7ec6c82-f925-438d-8e18-2784b907ed18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Visualization\TKV3d\Graphic3d">
-      <UniqueIdentifier>{61bf5c87-0f5f-46b1-a73d-9c689e1ddffb}</UniqueIdentifier>
     </Filter>
     <Filter Include="头文件\FoundationClasses\TKernel\Quantity">
       <UniqueIdentifier>{1259e72e-4b3c-46ee-8d38-448f717f0404}</UniqueIdentifier>
@@ -496,6 +490,12 @@
     <Filter Include="源文件\FoundationClasses\TKernel\NCollection">
       <UniqueIdentifier>{37569cd8-6c3c-4825-9cdd-fef3a1a0f78e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Visualization\TKService\Graphic3d">
+      <UniqueIdentifier>{0ae6dfc2-a531-4f4c-aef0-a80e22c20c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Visualization\TKService\Graphic3d">
+      <UniqueIdentifier>{61bf5c87-0f5f-46b1-a73d-9c689e1ddffb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -672,9 +672,6 @@
     <ClInclude Include="ApplicationFramework\TKVCAF\TPrsStd\XTPrsStd_AISPresentation.h">
       <Filter>头文件\ApplicationFramework\TKVCAF\TPrsStd</Filter>
     </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfMaterial.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
     <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_TypeOfHighlight.h">
       <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
     </ClInclude>
@@ -692,9 +689,6 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfLine.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_PresentationAttributes.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_TypeOfHighlightMethod.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
@@ -747,14 +741,8 @@
     <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_VertexDrawMode.h">
       <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
     </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfShadingModel.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
     <ClInclude Include="Visualization\TKV3d\Prs3d\XPrs3d_LineAspect.h">
       <Filter>头文件\Visualization\TKV3d\Prs3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_SelectableObject.h">
       <Filter>头文件\Visualization\TKV3d\SelectMgr</Filter>
@@ -839,123 +827,6 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_TypeOfPlane.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_MaterialAspect.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfMaterial.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AlphaMode.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ArrayFlags.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_BufferType.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_CappingFlags.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_FrameStatsTimer.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_GroupAspect.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_HighlightStyle.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_HorizontalTextAlignment.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_LevelOfTextureAnisotropy.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfTexture1D.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfTexture2D.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfTextureEnv.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_NameOfTexturePlane.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_RenderingMode.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_RenderTransparentMethod.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_StereoMode.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TextPath.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TextureUnit.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ToneMappingMethod.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TransModeFlags.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfAnswer.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfBackfacingModel.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfBackground.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfComposition.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfConnection.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfLightSource.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfLimit.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfPrimitiveArray.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfReflection.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfShaderObject.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfStructure.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfTexture.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfTextureFilter.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfTextureMode.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_TypeOfVisualization.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_VerticalTextAlignment.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerId.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\AIS\XAIS_Axis.h">
       <Filter>头文件\Visualization\TKV3d\AIS</Filter>
@@ -1245,9 +1116,6 @@
     <ClInclude Include="Visualization\TKV3d\V3d\XV3d_TypeOfRepresentation.h">
       <Filter>头文件\Visualization\TKV3d\V3d</Filter>
     </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DiagnosticInfo.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
     <ClInclude Include="ModelingData\TKBRep\BRepTools\XBRepTools.h">
       <Filter>头文件\ModelingData\TKBRep\BRepTools</Filter>
     </ClInclude>
@@ -1331,9 +1199,6 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\V3d\XV3d_Viewer.h">
       <Filter>头文件\Visualization\TKV3d\V3d</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerSettings.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_GridDrawMode.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
@@ -1662,14 +1527,8 @@
     <ClInclude Include="Visualization\TKService\Aspect\XAspect_Background.h">
       <Filter>头文件\Visualization\TKService\Aspect</Filter>
     </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClInclude>
     <ClInclude Include="FoundationClasses\TKernel\NCollection\XNCollection_ListNode.h">
       <Filter>头文件\FoundationClasses\TKernel\NCollection</Filter>
-    </ClInclude>
-    <ClInclude Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.h">
-      <Filter>头文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClInclude>
     <ClInclude Include="DataExchange\TKXCAF\XCAFApp\XXCAFApp_Application.h">
       <Filter>头文件\DataExchange\TKXCAF\XCAFApp</Filter>
@@ -1730,6 +1589,147 @@
     </ClInclude>
     <ClInclude Include="Visualization\TKV3d\SelectMgr\XSelectMgr_PickingStrategy.h">
       <Filter>头文件\Visualization\TKV3d\SelectMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_AlphaMode.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_ArrayFlags.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_AspectLine3d.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_Buffer.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_BufferType.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_CappingFlags.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_DataStructureManager.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_DiagnosticInfo.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_FrameStatsTimer.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_GroupAspect.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_HighlightStyle.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_HorizontalTextAlignment.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_LevelOfTextureAnisotropy.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_MaterialAspect.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_NameOfMaterial.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_NameOfTexture1D.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_NameOfTexture2D.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_NameOfTextureEnv.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_NameOfTexturePlane.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_PresentationAttributes.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_RenderingMode.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_RenderTransparentMethod.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_StereoMode.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TextPath.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TextureUnit.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_ToneMappingMethod.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TransModeFlags.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfAnswer.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfBackfacingModel.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfBackground.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfComposition.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfConnection.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfLightSource.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfLimit.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfMaterial.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfPrimitiveArray.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfReflection.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfShaderObject.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfShadingModel.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfStructure.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfTexture.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfTextureFilter.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfTextureMode.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_TypeOfVisualization.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_VerticalTextAlignment.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_ZLayerId.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_ZLayerSettings.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1905,9 +1905,6 @@
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_IDFilter.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
     </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_PresentationAttributes.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClCompile>
     <ClCompile Include="FoundationClasses\TKernel\Quantity\XQuantity_Color.cpp">
       <Filter>源文件\FoundationClasses\TKernel\Quantity</Filter>
     </ClCompile>
@@ -1916,9 +1913,6 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\Prs3d\XPrs3d_Drawer.cpp">
       <Filter>源文件\Visualization\TKV3d\Prs3d</Filter>
-    </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_AspectLine3d.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\Prs3d\XPrs3d_LineAspect.cpp">
       <Filter>源文件\Visualization\TKV3d\Prs3d</Filter>
@@ -1943,9 +1937,6 @@
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Shape.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
-    </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_MaterialAspect.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\AIS\XAIS_Axis.cpp">
       <Filter>源文件\Visualization\TKV3d\AIS</Filter>
@@ -2198,9 +2189,6 @@
     </ClCompile>
     <ClCompile Include="FoundationClasses\TKMath\Bnd\XBnd_Box.cpp">
       <Filter>源文件\FoundationClasses\TKMath\Bnd</Filter>
-    </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_ZLayerSettings.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKV3d\V3d\XV3d_Viewer.cpp">
       <Filter>源文件\Visualization\TKV3d\V3d</Filter>
@@ -2463,12 +2451,6 @@
     <ClCompile Include="Visualization\TKService\Aspect\XAspect_Background.cpp">
       <Filter>源文件\Visualization\TKService\Aspect</Filter>
     </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_DataStructureManager.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClCompile>
-    <ClCompile Include="Visualization\TKV3d\Graphic3d\XGraphic3d_Buffer.cpp">
-      <Filter>源文件\Visualization\TKV3d\Graphic3d</Filter>
-    </ClCompile>
     <ClCompile Include="DataExchange\TKXCAF\XCAFPrs\XXCAFPrs_Driver.cpp">
       <Filter>源文件\DataExchange\TKXCAF\XCAFPrs</Filter>
     </ClCompile>
@@ -2504,6 +2486,24 @@
     </ClCompile>
     <ClCompile Include="ApplicationFramework\TKLCAF\TDF\XTDF_Tool.cpp">
       <Filter>源文件\ApplicationFramework\TKLCAF\TDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_AspectLine3d.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_Buffer.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_DataStructureManager.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_MaterialAspect.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_PresentationAttributes.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_ZLayerSettings.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

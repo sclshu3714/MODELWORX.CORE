@@ -103,6 +103,7 @@ namespace UniversalCAD
             // 
             // accordionControl
             // 
+            this.accordionControl.AllowItemSelection = true;
             this.accordionControl.Appearance.Item.Disabled.Font = new System.Drawing.Font("Tahoma", 10F);
             this.accordionControl.Appearance.Item.Disabled.Options.UseFont = true;
             this.accordionControl.Appearance.Item.Hovered.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -117,7 +118,7 @@ namespace UniversalCAD
             this.accElementSetting,
             this.accElementAbout});
             this.accordionControl.Location = new System.Drawing.Point(0, 31);
-            this.accordionControl.LookAndFeel.SkinName = "Office 2016 Black";
+            this.accordionControl.LookAndFeel.SkinName = "Office 2019 Black";
             this.accordionControl.LookAndFeel.UseDefaultLookAndFeel = false;
             this.accordionControl.Name = "accordionControl";
             this.accordionControl.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Minimal;

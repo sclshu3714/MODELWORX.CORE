@@ -39,9 +39,10 @@
 //! an argument may then be given the attribute manager
 //! as a substitute argument in the form of a field such as myDrawer for example.
 using namespace TKernel;
+using namespace TKService;
 namespace TKV3d {
 	ref class TKernel::XQuantity_Color;	
-	ref class XGraphic3d_AspectLine3d;
+	ref class TKService::XGraphic3d_AspectLine3d;
 	public ref class XPrs3d_LineAspect //: public Prs3d_BasicAspect
 	{
 		//! DEFINE_STANDARD_RTTIEXT(Prs3d_LineAspect, Prs3d_BasicAspect)

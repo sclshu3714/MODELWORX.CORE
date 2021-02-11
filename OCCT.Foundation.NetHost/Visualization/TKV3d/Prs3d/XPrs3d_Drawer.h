@@ -53,12 +53,13 @@ class Prs3d_DimensionAspect;
 class TCollection_AsciiString;
 
 //£¡ DEFINE_STANDARD_HANDLE(Prs3d_Drawer, Graphic3d_PresentationAttributes)
-
+using namespace TKService;
 namespace TKV3d {
     //! A graphic attribute manager which governs how
     //! objects such as color, width, line thickness and deflection are displayed.
     //! A drawer includes an instance of the Aspect classes with particular default values.
     ref class XPrs3d_LineAspect;
+    ref class TKService::XGraphic3d_PresentationAttributes;
     public ref class XPrs3d_Drawer : public XGraphic3d_PresentationAttributes
     {
         //! DEFINE_STANDARD_RTTIEXT(Prs3d_Drawer, Graphic3d_PresentationAttributes)

@@ -1,5 +1,5 @@
 #include <XGraphic3d_Buffer.h>
-namespace TKV3d {
+namespace TKService {
     ////! Empty constructor.
     //XGraphic3d_Buffer(XNCollection_BaseAllocator^ theAlloc) {
 
