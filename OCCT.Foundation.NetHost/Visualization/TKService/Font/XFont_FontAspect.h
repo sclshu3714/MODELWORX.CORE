@@ -12,11 +12,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Font_FontAspect_HeaderFile
-#define _Font_FontAspect_HeaderFile
+#ifndef _XFont_FontAspect_HeaderFile
+#define _XFont_FontAspect_HeaderFile
 
 //! Specifies aspect of system font.
-enum Font_FontAspect
+public enum class XFont_FontAspect
 {
   Font_FontAspect_UNDEFINED = -1, //!< special value reserved for undefined aspect
   Font_FontAspect_Regular   =  0, //!< normal (regular) aspect
@@ -29,8 +29,8 @@ enum Font_FontAspect
   Font_FA_Regular    = Font_FontAspect_Regular,
   Font_FA_Bold       = Font_FontAspect_Bold,
   Font_FA_Italic     = Font_FontAspect_Italic,
-  Font_FA_BoldItalic = Font_FontAspect_BoldItalic
+  Font_FA_BoldItalic = Font_FontAspect_BoldItalic,
+  Font_FontAspect_NB = Font_FontAspect_BoldItalic + 1
 };
-enum { Font_FontAspect_NB = Font_FontAspect_BoldItalic + 1 };
 
-#endif // _Font_FontAspect_HeaderFile
+#endif // _XFont_FontAspect_HeaderFile

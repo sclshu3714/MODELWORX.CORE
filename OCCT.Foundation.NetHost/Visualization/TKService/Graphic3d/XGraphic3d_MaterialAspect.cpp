@@ -57,6 +57,10 @@ namespace TKService {
         NativeHandle = new Graphic3d_MaterialAspect(safe_cast<Graphic3d_NameOfMaterial>(theName));
     };
 
+    XGraphic3d_MaterialAspect::XGraphic3d_MaterialAspect(Graphic3d_MaterialAspect* pos) {
+        NativeHandle = pos;
+    };
+
     Graphic3d_MaterialAspect* XGraphic3d_MaterialAspect::GetMaterialAspect() {
         return NativeHandle;
     };

@@ -496,6 +496,9 @@
     <Filter Include="源文件\Visualization\TKService\Graphic3d">
       <UniqueIdentifier>{61bf5c87-0f5f-46b1-a73d-9c689e1ddffb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Visualization\TKService\Font">
+      <UniqueIdentifier>{cbec2791-8717-4f9e-be4a-2d7472d3d673}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoundationClasses\TKMath\gp\xgp_Ax1.h">
@@ -1731,6 +1734,12 @@
     <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_ZLayerSettings.h">
       <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
     </ClInclude>
+    <ClInclude Include="Visualization\TKService\Graphic3d\XGraphic3d_Aspects.h">
+      <Filter>头文件\Visualization\TKService\Graphic3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization\TKService\Font\XFont_FontAspect.h">
+      <Filter>头文件\Visualization\TKService\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FoundationClasses\TKMath\gp\xgp_Ax1.cpp">
@@ -2503,6 +2512,9 @@
       <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
     </ClCompile>
     <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_ZLayerSettings.cpp">
+      <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualization\TKService\Graphic3d\XGraphic3d_Aspects.cpp">
       <Filter>源文件\Visualization\TKService\Graphic3d</Filter>
     </ClCompile>
   </ItemGroup>

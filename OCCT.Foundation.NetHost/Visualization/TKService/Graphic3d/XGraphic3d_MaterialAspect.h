@@ -74,6 +74,8 @@ namespace TKService {
         //! Creates a generic material.
         XGraphic3d_MaterialAspect(XGraphic3d_NameOfMaterial theName);
 
+        XGraphic3d_MaterialAspect(Graphic3d_MaterialAspect* pos);
+
         virtual Graphic3d_MaterialAspect* GetMaterialAspect();
 
         //! Returns the material name (within predefined enumeration).
