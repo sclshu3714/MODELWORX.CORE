@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace OCCT.Foundation.Net
+namespace XModel.Events
 {
+    /// <summary>
+    /// 操作事件
+    /// </summary>
+    /// <param name="args"></param>
+    public delegate void OperationEvent(object sender, EventArgs e, params object[] args);
     public class OperationEvents
     {
-        /// <summary>
-        /// 操作事件
-        /// </summary>
-        /// <param name="args"></param>
-        public delegate void OperationEvent(object sender, EventArgs e, params object[] args);
         public OperationEvents() { }
 
         public void InputEvent_Remove() {

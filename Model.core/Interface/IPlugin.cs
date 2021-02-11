@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using VXModel.Users;
+using XModel.Users;
 
-namespace VXModel.Interface
+namespace XModel.Interface
 {
     /// <summary>
     /// 插件接口
@@ -34,6 +34,6 @@ namespace VXModel.Interface
         /// <summary>
         /// 模块归类
         /// </summary>
-        string PluginModule { get; }
+        string PluginCategory { get; }
     }
 }

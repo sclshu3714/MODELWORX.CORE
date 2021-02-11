@@ -30,7 +30,7 @@ namespace UniversalCAD
 {
     public partial class MainForm : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
-        #region 构型初始化
+        #region 构型初始
         public MainForm()
         {
             InitializeComponent();
@@ -48,7 +48,6 @@ namespace UniversalCAD
                 Application.Exit();
                 return;
             }
-            //this.ToolStripMain.ItemClicked += ToolStripMain_ItemClicked;
             this.FormClosed += MainForm_FormClosed;
             this.accordionControl.ElementClick += AccordionControl_ElementClick;
         }
@@ -95,7 +94,7 @@ namespace UniversalCAD
         }
         #endregion
 
-        #region ElementClick
+        #region 元素事件
         /// <summary>
         /// 操作事件
         /// </summary>
@@ -141,6 +140,7 @@ namespace UniversalCAD
                     case ".stp":
                     case ".step":
                         theFormat = CurrentModelFormat.STEP;
+                        this.accElementTLable.Elements.Clear();
                         TranslateModel(FullName, theFormat);
                         break;
                     case ".brep":
@@ -220,7 +220,7 @@ namespace UniversalCAD
         #endregion
         #endregion
 
-        #region 导入/导出
+        #region 导入导出
         /// <summary>
         /// 导入STEP
         /// </summary>
@@ -229,16 +229,15 @@ namespace UniversalCAD
         /// <returns></returns>
         public bool TranslateModel(string theFileName, CurrentModelFormat theFormat)
         {
-            this.accElementTLable.Elements.Clear();
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
-            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XIFSelect_ReturnStatus aStatus = (XIFSelect_ReturnStatus)aReader.ReadFile(theFileName);
             string astorageformat = $"XSTEPCAF_{Guid.NewGuid().ToString()}_XSTEPCAF";
             XTDocStd_Document aDoc = new XTDocStd_Document(astorageformat);
             XXCAFApp_Application anApp = new XXCAFApp_Application();
             anApp.NewDocument(astorageformat, aDoc);
-            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+            if (aStatus != XIFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
             int ElementId = 0;
             bool IsBoundaryDraw = true;
@@ -347,36 +346,51 @@ namespace UniversalCAD
                     XLocalLocation = LocalLocation;
                 else
                     XLocalLocation = new XTopLoc_Location();
-                if (currentShape.ShapeType() == XTopAbs_ShapeEnum.TopAbs_COMPOUND) {
-                    XTDF_Label aTDFLabel = new XTDF_Label();
-                    AccordionControlElement tempElement = new AccordionControlElement();
-                    if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
-                        tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
-                    }
-                    else {
-                        AccordionControlElement GroupNode = GroupElement;
-                        GroupNode = new AccordionControlElement();
-                        GroupNode.Name = $"{currentShape.ShapeType().ToString()}_{ ElementId }";
-                        GroupNode.Text = currentShape.ShapeType().ToString();
-                        GroupNode.Tag = ElementId++;
-                        GroupElement.Elements.Add(GroupNode);
-                        tempElement = GroupNode;
-                    }
-                    DisplayChildrenLabel(AssemblyShapeTool, tempElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
-                }
-                else {
-                    XTDF_Label aTDFLabel = new XTDF_Label();
-                    if (AssemblyShapeTool.Search(currentShape, ref aTDFLabel, true, true, true)) {
-                        AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
-                        DisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
-                    }
-                    else {
-                        GroupElement.Style = ElementStyle.Item;
-                        GroupElement.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_5101;
-                        XAIS_Shape shape = new XAIS_Shape(currentShape);
-                        context.Display(shape, true);
-                        OCCTView.SetFaceBoundaryDraw(shape, IsBoundaryDraw);
-                    }
+                XTopAbs_ShapeEnum _ShapeEnum = currentShape.ShapeType();
+                switch (_ShapeEnum) {
+                    case XTopAbs_ShapeEnum.TopAbs_COMPOUND:
+                    case XTopAbs_ShapeEnum.TopAbs_COMPSOLID: {
+                            //DisplayChildrenLabel(AssemblyShapeTool, GroupElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                            XTDF_Label aTDFLabel = new XTDF_Label();
+                            AccordionControlElement tempElement = new AccordionControlElement();
+                            if (AssemblyShapeTool.FindShape(currentShape, ref aTDFLabel, false)) {
+                                tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                            }
+                            else {
+                                AccordionControlElement GroupNode = GroupElement;
+                                GroupNode = new AccordionControlElement();
+                                GroupNode.Name = $"{currentShape.ShapeType().ToString()}_{ ElementId }";
+                                GroupNode.Text = currentShape.ShapeType().ToString();
+                                GroupNode.Tag = ElementId++;
+                                GroupElement.Elements.Add(GroupNode);
+                                tempElement = GroupNode;
+                            }
+                            DisplayChildrenLabel(AssemblyShapeTool, tempElement, currentShape, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                        }
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_WIRE:
+                        break;
+                    case XTopAbs_ShapeEnum.TopAbs_SOLID:
+                    case XTopAbs_ShapeEnum.TopAbs_FACE:
+                    case XTopAbs_ShapeEnum.TopAbs_EDGE:
+                    case XTopAbs_ShapeEnum.TopAbs_SHELL:
+                    case XTopAbs_ShapeEnum.TopAbs_SHAPE:
+                    case XTopAbs_ShapeEnum.TopAbs_VERTEX:
+                    default: {
+                            XTDF_Label aTDFLabel = new XTDF_Label();
+                            if (AssemblyShapeTool.Search(currentShape, ref aTDFLabel, true, true, true)) {
+                                AccordionControlElement tempElement = AddAccordionElement(GroupElement, aTDFLabel, ref ElementId);
+                                DisplayLabel(AssemblyShapeTool, tempElement, aTDFLabel, ref ElementId, IsBoundaryDraw, XLocalLocation);
+                            }
+                            else {
+                                GroupElement.Style = ElementStyle.Item;
+                                GroupElement.ImageOptions.Image = global::UniversalCAD.Properties.Resources.Img_5101;
+                                XAIS_Shape shape = new XAIS_Shape(currentShape);
+                                context.Display(shape, true);
+                                OCCTView.SetFaceBoundaryDraw(shape, IsBoundaryDraw);
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -520,7 +534,7 @@ namespace UniversalCAD
         }
         #endregion
 
-        #region 动画
+        #region 动画演示
         /// <summary>
         /// 动画
         /// </summary>
@@ -1590,7 +1604,7 @@ namespace UniversalCAD
         /// Setting materials
         /// </summary>
         /// <param name="NameOfMaterial"></param>
-        public void SetMaterial(Graphic3d_NameOfMaterial NameOfMaterial)
+        public void SetMaterial(XGraphic3d_NameOfMaterial NameOfMaterial)
         {
             OCCTView.SetMaterial((int)NameOfMaterial);
             OCCTView.RedrawView();
@@ -2189,7 +2203,7 @@ namespace UniversalCAD
         }
         #endregion
 
-        #region 字段
+        #region 字段属性
         protected CurrentAction3d myCurrentMode;
         protected CurrentPressedKey myCurrentPressedKey;
         protected float myCurZoom;

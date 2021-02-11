@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using VXModel.Users;
+using XModel.Users;
+using XModel.Events;
 
 namespace VXHelper.Helps
 {
@@ -95,6 +96,14 @@ namespace VXHelper.Helps
 
         #region 字段属性
         /// <summary>
+        /// 委托事件
+        /// </summary>
+        public event OperationEvent OnDelegateEvent {
+            add { OnCustomEvent += value; }
+            remove { OnCustomEvent -= value; }
+
+        }
+        /// <summary>
         /// 登录用户
         /// </summary>
         public static User LogonUser {
@@ -105,6 +114,10 @@ namespace VXHelper.Helps
         private static User logonUser = null;             // 登录用户
         private static object lockObject = new object();    //对象锁，用于控制多线程异步操作
         private static DesignSettings designSettings = null;//全局设置
+        /// <summary>
+        /// 委托事件
+        /// </summary>
+        public OperationEvent OnCustomEvent { get; set; } = null;
         #endregion
     }
 }

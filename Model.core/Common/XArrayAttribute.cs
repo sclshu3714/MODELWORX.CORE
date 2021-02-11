@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VXModel.Common
+namespace XModel.Common
 {
     public class XArrayAttribute : Attribute
     {

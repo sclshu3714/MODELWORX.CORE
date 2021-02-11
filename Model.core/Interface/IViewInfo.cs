@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VXModel.Users;
+using XModel.Users;
 
-namespace VXModel.Interface
+namespace XModel.Interface
 {
     public interface IViewInfo : IDisposable, ICloneable
     {
@@ -19,11 +19,11 @@ namespace VXModel.Interface
         /// 项目名称
         /// </summary>
         string ProjectName { get; }
+
         /// <summary>
-        /// 打开工作区文件
+        /// 主窗体
         /// </summary>
-        /// <param name="ProjectId">信息参数</param>
-        void OpenWorkbench(string ProjectId = null);
+        dynamic MDIForm { get; }
         /// <summary>
         /// 显示状态信息
         /// </summary>

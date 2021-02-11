@@ -588,11 +588,11 @@ namespace UniversalCAD
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
-            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XIFSelect_ReturnStatus aStatus = (XIFSelect_ReturnStatus)aReader.ReadFile(theFileName);
             XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
             XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
             anApp.NewDocument("XSEFSTEP", aDoc);
-            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+            if (aStatus != XIFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
             TreeNode PNode = null;
             XTDF_Label aRootLabel = aDoc.Main();
@@ -710,11 +710,11 @@ namespace UniversalCAD
             XSTEPCAFControl_Reader aReader = new XSTEPCAFControl_Reader();
             aReader.SetColorMode(true);
             aReader.SetNameMode(true);
-            IFSelect_ReturnStatus aStatus = (IFSelect_ReturnStatus)aReader.ReadFile(theFileName);
+            XIFSelect_ReturnStatus aStatus = (XIFSelect_ReturnStatus)aReader.ReadFile(theFileName);
             XTDocStd_Document aDoc = new XTDocStd_Document("STEPCAF");
             XXCAFApp_Application anApp = new XXCAFApp_Application();// XXCAFApp_Application::GetApplication();
             anApp.NewDocument("XSEFSTEP", aDoc);
-            if (aStatus != IFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
+            if (aStatus != XIFSelect_ReturnStatus.IFSelect_RetDone || !aReader.Transfer(aDoc))
                 return false;
             //XXCAFDoc_ShapeTool Assembly = XXCAFDoc_DocumentTool.ShapeTool(aDoc.Main());
             //XTDF_LabelSequence aRootLabels = new XTDF_LabelSequence();
@@ -778,7 +778,7 @@ namespace UniversalCAD
             if (!theLabel.FindAttribute(XTPrsStd_AISPresentation.GetID(), ref aPrs))
             {
                 xPrs = XTPrsStd_AISPresentation.Set(theLabel, XXCAFPrs_Driver.GetID());
-                xPrs.SetMaterial((int)Graphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
+                xPrs.SetMaterial((int)XGraphic3d_NameOfMaterial.Graphic3d_NOM_PLASTIC);
                 xPrs.Display(true);
             }
             else
@@ -1878,7 +1878,7 @@ namespace UniversalCAD
         /// Setting materials
         /// </summary>
         /// <param name="NameOfMaterial"></param>
-        public void SetMaterial(Graphic3d_NameOfMaterial NameOfMaterial)
+        public void SetMaterial(XGraphic3d_NameOfMaterial NameOfMaterial)
         {
             OCCTView.SetMaterial((int)NameOfMaterial);
             OCCTView.RedrawView();

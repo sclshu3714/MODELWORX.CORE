@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace VXHelper
 {
@@ -163,5 +165,99 @@ namespace VXHelper
             }
             return result;
         }
+
+        #region 对外解析dll失败时调用
+        /// <summary>
+        /// AssemblyResolve事件的处理函数，该函数用来自定义程序集加载逻辑
+        /// </summary>
+        /// <param name="sender">事件引发源</param>
+        /// <param name="args">事件参数，从该参数中可以获取加载失败的程序集的名称</param>
+        /// <returns></returns>
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            string assembly_dllName = Regex.Split(args.Name, @"\s*,\s*")[0];
+            switch (assembly_dllName) {
+                default:
+                    string assembly_dll = new AssemblyName(args.Name).Name + ".dll";
+                    string assembly_directory = string.Format(@"{0}", AppDomain.CurrentDomain.BaseDirectory); //"Parent directory of the C++ dlls";
+                    if (assembly_dll.Contains("resources"))
+                        assembly_directory = string.Format(@"{0}zh-Hans\", AppDomain.CurrentDomain.BaseDirectory); //"Parent directory of the C++ dlls";
+                    string assembly_dllPath = GetAssembly_dllPath(assembly_directory, assembly_dll);
+                    if (File.Exists(assembly_dllPath)) {
+                        Assembly assembly = null;
+                        if (Environment.Is64BitProcess)
+                            assembly = Assembly.LoadFrom(assembly_dllPath);
+                        else
+                            assembly = Assembly.LoadFrom(assembly_dllPath);
+                        return assembly;
+                    }
+                    break;
+            }
+            return null;
+        }
+        /// <summary>
+        /// 便利文件夹获取dll
+        /// </summary>
+        /// <param name="assembly_dllName"></param>
+        private static string GetAssembly_dllPath(string BaseDirectory, string assembly_dllName)
+        {
+            try {
+                string assembly_directory = BaseDirectory;
+                string assembly_dllPath = string.Format(@"{0}{1}", BaseDirectory, assembly_dllName);
+                if (File.Exists(assembly_dllPath))
+                    return assembly_dllPath;
+                DirectoryInfo assembly_directoryInfo = new DirectoryInfo(BaseDirectory);
+                foreach (FileInfo fileInfo in assembly_directoryInfo.GetFiles()) {
+                    if (fileInfo.Name == assembly_dllName)
+                        return fileInfo.FullName;
+                }
+                foreach (DirectoryInfo childInfo in assembly_directoryInfo.GetDirectories()) {
+                    assembly_dllPath = string.Format(@"{0}\{1}", childInfo.FullName, assembly_dllName);
+                    if (File.Exists(assembly_dllPath))
+                        return assembly_dllPath;
+                    assembly_dllPath = GetAssembly_dllPath(childInfo.FullName, assembly_dllName);
+                    if (File.Exists(assembly_dllPath))
+                        return assembly_dllPath;
+                }
+                if (File.Exists(assembly_dllPath))
+                    return assembly_dllPath;
+            } catch (Exception) {
+            }
+            return null;
+        }
+        /// <summary>
+        /// TypeResolve事件的处理函数，该函数用来自定义程序集加载逻辑
+        /// </summary>
+        /// <param name="sender">事件引发源</param>
+        /// <param name="args">事件参数，从该参数中可以获取加载失败的类型的名称</param>
+        /// <returns></returns>
+        private static Assembly CurrentDomain_TypeResolve(object sender, ResolveEventArgs args)
+        {
+            ////根据加载失败类型的名字找到其所属程序集并返回
+            //if (Regex.Split(args.Name,@"\s*,\s*")[0] == "MessageDisplay.MessageDisplayHelper")
+            //{
+            //    //我们自定义的程序集加载逻辑知道MessageDisplay.MessageDisplayHelper类属于MessageDisplay程序集，而MessageDisplay程序集在C:\AssemblyResolverConsle\Reference\MessageDisplay.dll这个路径下，所以这里加载这个路径下的dll文件作为TypeResolve事件处理函数的返回值
+            //    return Assembly.LoadFile(@"C:\AssemblyResolverConsle\Reference\MessageDisplay.dll");
+            //}
+            ////如果TypeResolve事件的处理函数返回null，说明TypeResolve事件的处理函数也不知道加载失败的类型属于哪个程序集
+            string assembly_dllName = Regex.Split(args.Name, @"\s*,\s*")[0];
+            switch (assembly_dllName) {
+                default:
+                    string assembly_dll = new AssemblyName(args.Name).Name + ".dll";
+                    string assembly_directory = string.Format(@"{0}", AppDomain.CurrentDomain.BaseDirectory); //"Parent directory of the C++ dlls";
+                    string assembly_dllPath = GetAssembly_dllPath(assembly_directory, assembly_dll);
+                    if (File.Exists(assembly_dllPath)) {
+                        Assembly assembly = null;
+                        if (Environment.Is64BitProcess)
+                            assembly = Assembly.LoadFrom(assembly_dllPath);
+                        else
+                            assembly = Assembly.LoadFrom(assembly_dllPath);
+                        return assembly;
+                    }
+                    break;
+            }
+            return null;
+        }
+        #endregion
     }
 }
